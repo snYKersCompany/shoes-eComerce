@@ -3,7 +3,7 @@ module.exports = (sequelize) => {
     // defino el modelo
     sequelize.define('stock', {
         id: {
-            type: DataTypes.UUID, //VERIFICAR
+            type: DataTypes.UUID,
             defaultValue: UUIDV4,
             primaryKey: true
         },

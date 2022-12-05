@@ -1,35 +1,40 @@
 const { DataTypes, UUIDV4 } = require('sequelize');
 module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('product', {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true
-    },
-    background_image: {
-      type: DataTypes.TEXT,
-    },
-    released: {
-      type: DataTypes.STRING,
-      defaulfValue: DataTypes.NOW,
-      allowNull: true
-    },
-    rating: {
-      type: DataTypes.FLOAT,
-      validate: {
-        min: 0,
-        max: 5
-      }
-    }
-  }, { timestamps: false });
+    // defino el modelo
+    sequelize.define('product', {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: UUIDV4,
+            primaryKey: true
+        }, 
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: false
+        },
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            defaultValue: "Descripcion vacia"
+        },
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        image: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            defaultValue: ""
+        },
+        rating: {
+            type: DataTypes.ENUM("1","2","3","4","5"), 
+            defaultValue: "1"
+        },
+        review: {
+            type: DataTypes.TEXT, 
+            defaultValue: ""
+        }
+
+    }, { timestamps: false });
 };
