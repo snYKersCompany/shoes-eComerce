@@ -32,8 +32,6 @@ const Paginated= () =>{
             return slice
         }
     }
-    console.log(slicedPaged())
-    console.log(actualPage)
     
     return(
         pages.length<=8 && pages.length !== 0? // cuando son menos de 8 páginas
