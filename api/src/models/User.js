@@ -1,7 +1,7 @@
 const { DataTypes, UUIDV4 } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('usuario', {
+  sequelize.define('user', {
     id: {
       type: DataTypes.UUID,
       defaultValue: UUIDV4,
@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       }
     },
     phoneNumber: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     direccion: {
