@@ -10,7 +10,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export const NavBar = () => {
+const NavBar = () => {
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -39,18 +39,12 @@ export const NavBar = () => {
                 Link
               </Nav.Link>
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+            <SearchBar className="d-flex" />
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </>
   );
 };
+
+export default NavBar;

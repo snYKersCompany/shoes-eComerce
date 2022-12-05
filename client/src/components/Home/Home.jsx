@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 //COMPONENTS
-import { NavBar } from "../NavBar/Navbar.jsx";
+import NavBar from "../Navbar/NavBar";
 
-export const Home = () => {
+const Home = () => {
   return (
     <>
       <NavBar />
@@ -10,3 +10,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;
