@@ -1,11 +1,10 @@
 import React from "react";
 import Form from 'react-bootstrap/Form';
+
 export default function SearchBar(){
-    
     const handleSubmit =(e) =>{
         e.preventDefault()
     }
-    
     
     return(
         <Form onSubmit={(e) => handleSubmit(e)} className="d-flex justify-content-center">
