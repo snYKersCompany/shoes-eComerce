@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import Landing from "./components/Landing"
 import SearchBar from './components/SearchBar';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
