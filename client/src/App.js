@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { Characters } from "./components/Characters"
-import SearchBar from "./components/SearchBar/SearchBar"
+import { Home } from "./components/Home/Home";
 import './App.css';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
           <Route exact path="/" component={Characters} />
         </Switch>
         <Switch>
-          <Route exact path="/home" component={SearchBar} />
+          <Route exact path="/home" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>
