@@ -13,7 +13,6 @@ function App() {
         <Switch>
           <Route exact path="/home" component={SearchBar} />
         </Switch>
-
       </div>
     </BrowserRouter>
   );
