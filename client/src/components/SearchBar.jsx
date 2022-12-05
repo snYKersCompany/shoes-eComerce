@@ -1,4 +1,5 @@
 import React from "react";
+import Form from 'react-bootstrap/Form';
 
 export default function SearchBar(){
     
@@ -8,11 +9,13 @@ export default function SearchBar(){
     
     
     return(
-    <div className="Container">
-        <p>soy el Search</p>
-        <form onSubmit={(e)=> handleSubmit(e)}>
-            <input type="search" />
-        </form>
-    </div>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+            <Form.Group>
+                <Form.Control
+                    type="search"
+                    placeholder="Discover a new world"
+                />
+            </Form.Group>
+        </Form>
 )
 }

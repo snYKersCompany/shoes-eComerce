@@ -12,7 +12,6 @@ function App() {
           <Route exact path="/" component={Landing} />
         </Switch>
 
-        //home
         <Switch>
           <Route exact path="/home" component={SearchBar} />
         </Switch>
