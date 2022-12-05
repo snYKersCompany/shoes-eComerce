@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //COMPONENTS
-import { NavBar } from "../NavBar/Navbar";
+import { NavBar } from "../NavBar/Navbar.jsx";
 
 export const Home = () => {
   return (
