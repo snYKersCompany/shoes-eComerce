@@ -2,6 +2,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { Characters } from "./components/Characters"
 import SearchBar from "./components/SearchBar/SearchBar"
 import './App.css';
+import Paginated from "./components/Paged/Paginated";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -11,7 +14,10 @@ function App() {
           <Route exact path="/" component={Characters} />
         </Switch>
         <Switch>
-          <Route exact path="/home" component={SearchBar} />
+          <Route exact path="/home"> 
+            <SearchBar/>
+            <Paginated/>  
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>
