@@ -26,6 +26,9 @@ server.use((req, res, next) => {
 });
 
 server.use("/api", routes);
+server.get('/', (req, res) => {
+  return res.status(200).json({ message: `Application Snykers` });
+});
 
 // Error catching endware.
 server.use((err, req, res, next) => {

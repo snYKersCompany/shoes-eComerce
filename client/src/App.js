@@ -1,14 +1,17 @@
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { Characters } from "./components/Characters"
+import SearchBar from "./components/SearchBar/SearchBar"
 import './App.css';
-import { BrowserRouter, Route, Switch } from "react-router-odm"
-import Landing from "./components/Landing"
-
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Characters} />
+        </Switch>
+        <Switch>
+          <Route exact path="/home" component={SearchBar} />
         </Switch>
       </div>
     </BrowserRouter>
