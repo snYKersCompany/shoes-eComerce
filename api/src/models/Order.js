@@ -1,23 +1,15 @@
-const { DataTypes, UUIDV4 } = require('sequelize');
-module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('order', {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
-      primaryKey: true
-    },
-    estado: {
-      type: DataTypes.ENUM("pendiente","completado","rechazado","cancelado"),
-      allowNull: false,
-    },
-    comprobante: {
-      type: DataTypes.STRING, //VERIFICAR
-      allowNull: false
-    },
-    fecha: {
-      type: DataTypes.DATEONLY,
-      allowNull: false
-    },
-  }, { timestamps: false });
-};
+const mongoose = require('mongoose')
+const { UUID } = require('sequelize')
+
+const ProductsSchema = mongoose.Schema({
+    id: UUID, 
+    estados: ["pendig","complete","refused","cancelled"],
+    comprobante: String,
+    fecha: Date
+  
+  })
+const ProductsModel = mongoose.model('order', ProductsSchema) //export 
+
+module.exports = {
+    ProductsModel
+}
