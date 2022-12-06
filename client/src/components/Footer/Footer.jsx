@@ -1,13 +1,13 @@
 import React from "react";
 import {
   CDBFooter,
-  CDBFooterLink,
+  CDBFooterLink, // eslint-disable-line
   CDBBtn,
   CDBIcon,
-  CDBContainer,
+  CDBContainer, // eslint-disable-line
   CDBBox,
 } from "cdbreact";
-import snyckers from "../utils/images/footer/snyckers.jpeg";
+import snyckers from "../../utils/images/footer/snyckers.jpeg";
 import {
   juaniGH,
   martinGH,
@@ -18,13 +18,13 @@ import {
   santiagoGH,
   igAPP,
   twAPP,
-} from "../utils/helpfulLinks";
-import cssjshtml from "../utils/images/footer/cssjshtml.png";
-import nodejs from "../utils/images/footer/nodejs.png";
-import react from "../utils/images/footer/react.png";
-import redux from "../utils/images/footer/redux.png";
-import firebase from "../utils/images/footer/firebase.png";
-import * as style from "../styles/footer.module.css";
+} from "../../utils/helpfulLinks";
+import cssjshtml from "../../utils/images/footer/cssjshtml.png";
+import nodejs from "../../utils/images/footer/nodejs.png";
+import react from "../../utils/images/footer/react.png";
+import redux from "../../utils/images/footer/redux.png";
+import firebase from "../../utils/images/footer/firebase.png";
+import "../../styles/footer.css";
 
 const Footer = () => {
   //hardCoding asi no se rompe
@@ -152,15 +152,15 @@ const Footer = () => {
 
         {/*tecnologias */}
         <CDBBox display="flex" right-padding="1px">
-          <img src={cssjshtml} className={style.image1} alt="not found" />
+          <img src={cssjshtml} className="image1" alt="not found" />
 
-          <img src={nodejs} className={style.image2} alt="not found" />
+          <img src={nodejs} className="image2" alt="not found" />
 
-          <img src={react} className={style.image2} alt="not found" />
+          <img src={react} className="image2" alt="not found" />
 
-          <img src={redux} className={style.image2} alt="not found" />
+          <img src={redux} className="image2" alt="not found" />
 
-          <img src={firebase} className={style.image2} alt="" />
+          <img src={firebase} className="image2" alt="not found" />
         </CDBBox>
       </CDBBox>
     </CDBFooter>

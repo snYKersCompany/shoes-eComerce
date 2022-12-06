@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // eslint-disable-line
 import { Link } from "react-router-dom";
 //JSX
 import SearchBar from "../SearchBar/SearchBar";
