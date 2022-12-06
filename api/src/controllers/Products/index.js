@@ -5,7 +5,14 @@ const getProducts = async (_id)=>{
     return products;
 }
 
+//  Cuando se tenga biene definido que tiene que recibir y que se setea por default, agregar comprobaciones
+const postProduct = async (dataProduct)=>{
+    const product = new ProductsModel(dataProduct)
+    return await product.save()
+}
+
 module.exports = {
-    getProducts
+    getProducts,
+    postProduct
 }
 
