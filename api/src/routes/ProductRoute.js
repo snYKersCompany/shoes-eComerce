@@ -14,10 +14,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const {id} = req.params;
-        
-        const products = await getProducts(id)
-        
+        const {id} = req.params;  
+        const products = await getProducts(id) 
         return res.status(200).json({products: products});
     } catch (error) {
         return res.status(404).send(`El error es: ${error}`)
