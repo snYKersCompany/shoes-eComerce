@@ -1,12 +1,9 @@
-const videoGamesRoutes = require("./videogame");
-const genreRoute = require("./genre");
-const platformRoute = require("./platform");
-
-const { Router } = require("express")
+const { Router } = require('express');
+const productMiddleware = require('./ProductRoute');
+const userMiddleware = require('./UserRoute');
 const router = Router();
 
-router.use("/videogames", videoGamesRoutes);
-router.use("/genres", genreRoute);
-router.use("/platforms", platformRoute);
+router.use('/products', productMiddleware);
+router.use('/users', userMiddleware);
 
 module.exports = router;
