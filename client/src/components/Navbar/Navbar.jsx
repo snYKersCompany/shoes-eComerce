@@ -20,17 +20,19 @@ const NavBar = () => {
     <>
       <Navbar bg="dark">
         <Container>
-          <Navbar.Brand href="#home">
-            <div height="100px">
-              <img
-                alt="SNYKERS"
-                src={logoBlanco}
-                width="100%"
-                height="100%"
-                className="d-inline-block align-top"
-              />
-            </div>
-          </Navbar.Brand>
+          <Link to="/">
+            <Navbar.Brand href="#home">
+              <div height="100px">
+                <img
+                  alt="SNYKERS"
+                  src={logoBlanco}
+                  width="100%"
+                  height="100%"
+                  className="d-inline-block align-top"
+                />
+              </div>
+            </Navbar.Brand>
+          </Link>
           <Nav className="justify-content-end" activeKey="/home">
             <SearchBar />
             <Dropdown as={NavItem}>
