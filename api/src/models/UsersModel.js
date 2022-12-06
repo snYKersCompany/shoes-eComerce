@@ -9,7 +9,7 @@ const ProductsSchema = mongoose.Schema({
   phone: {type: String, require: true},
   address: {type: String, require: true},
   image: {type: String, require: true},
-  admin: {type: Boolean, require: true}
+  admin: {type: Boolean, require: true, default: true}
 });
 const UsersModel = mongoose.model('users', ProductsSchema);
 
