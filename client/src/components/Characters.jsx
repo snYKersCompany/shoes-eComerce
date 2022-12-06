@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getChars } from "../redux/characters/characterActions"
 
-export const Characters = () => {
+const Characters = () => {
     const dispatch = useDispatch()
     //toma el estado del slice
     const { characters } = useSelector(state => state.characters)
@@ -24,3 +24,5 @@ export const Characters = () => {
         </div>
     )
 }
+
+export default Characters
