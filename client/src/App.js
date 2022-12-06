@@ -9,6 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <h2>Si ves esto esta andando</h2>
         <Route exact path="/home" component={Home} />
       </Switch>
     </BrowserRouter >
