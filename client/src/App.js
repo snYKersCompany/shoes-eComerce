@@ -1,10 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { Characters } from "./components/Characters"
-import SearchBar from "./components/SearchBar/SearchBar"
-import Paginated from "./components/Paged/Paginated";
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Home from './components/Home/Home';
 
 function App() {
   return (
@@ -14,10 +13,7 @@ function App() {
           <Route exact path="/" component={Characters} />
         </Switch>
         <Switch>
-          <Route exact path="/home"> 
-            <SearchBar/>
-            <Paginated/>  
-          </Route>
+          <Route exact path="/home" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>
