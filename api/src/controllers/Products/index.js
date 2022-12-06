@@ -1,10 +1,11 @@
-const { Product } = require('../../db');
+const { ProductsModel } = require('../../models/ModelsDB');
 
-const listProducts =  async () => {
-    const products = await Product.findAll();
+const getProducts = async (_id)=>{
+    const products = await ProductsModel.find(_id?{_id}:null)
     return products;
 }
 
 module.exports = {
-    listProducts
+    getProducts
 }
+
