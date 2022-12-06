@@ -3,7 +3,6 @@ const router = express.Router();
 const {getProducts} = require('../controllers/Products');
 const {ProductsModel} = require('../models/ModelsDB')
 
-
 router.get('/', async (req, res) => {
     try {
         const products = await getProducts()
