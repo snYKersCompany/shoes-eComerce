@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 //COMPONENTS
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar/Navbar";
 import Paginated from "../Paged/Paginated";
 
 const Home = () => {
