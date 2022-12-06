@@ -7,7 +7,17 @@ router.get('/', async (req, res) => {
         const users = await controllers.listUsers();
         return res.status(200).json({users: users});
     } catch (error) {
-        error(console.log(error));
+        next();
+    }
+});
+
+router.post('/', async (req, res) => {
+    const { name, email, password, phone, address, image, admin } = req.body;
+    try {
+        const message = await controllers.addUser(name, email, password, phone, address, image, admin);
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(400).json({error: error.message});
     }
 });
 
