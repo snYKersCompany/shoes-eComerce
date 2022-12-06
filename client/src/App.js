@@ -4,22 +4,22 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { Characters } from "./components/Characters"
 import Home from './components/Home/Home';
+import AuthProvider from './context/authContext';
 
 
 
 function App() {
   return (
-    <BrowserRouter>
+    <AuthProvider>
       <div className="App">
         <Switch>
           <Route exact path="/" component={Characters} />
         </Switch>
         <Switch>
-        <Route exact path="/home" component={Home} />
-
+          <Route exact path="/home" component={Home} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </AuthProvider>
   );
 }
 

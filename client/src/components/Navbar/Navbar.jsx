@@ -15,7 +15,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
   return (
     <>
       <Navbar bg="dark">
