@@ -11,18 +11,19 @@ mongoose.connect(url)
 
 // ======================= MODELS =======================
 
-const ProductsSchema = mongoose.Schema({
-  name: String,
-})
+// const ProductsSchema = mongoose.Schema({
+//   name: String,
+// })
+// const ProductsModel = mongoose.model('products', ProductsSchema) //export 
 
-const ProductsModel = mongoose.model('products', ProductsSchema)
+// ======================================================
 
-const mostrar = async ()=>{
-  // console.log('Llegue hasta aca')
-  const products = await ProductsModel.find()
-  console.log(products)
-}
-mostrar()
+// const mostrar = async ()=>{
+//   // console.log('Llegue hasta aca')
+//   const products = await ProductsModel.find()
+//   console.log(products)
+// }
+// mostrar()
 
 module.exports = {
 }
