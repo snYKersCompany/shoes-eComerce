@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 //COMPONENTS
-import NavBar from "../Navbar/NavBar";
+import NavBar from "../NavBar/NavBar";
+import Paginated from "../Paged/Paginated";
 
 const Home = () => {
   return (
     <>
       <NavBar />
-      <h1>Esto es Home</h1>
+      <h1>CardGrid</h1>
+      <Paginated />
     </>
   );
 };
