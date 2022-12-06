@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { Characters } from "./components/Characters"
 import Home from './components/Home/Home';
 
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -13,7 +15,8 @@ function App() {
           <Route exact path="/" component={Characters} />
         </Switch>
         <Switch>
-          <Route exact path="/home" component={Home} />
+        <Route exact path="/home" component={Home} />
+
         </Switch>
       </div>
     </BrowserRouter>
