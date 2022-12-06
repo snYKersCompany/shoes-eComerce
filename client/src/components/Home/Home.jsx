@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react"; // eslint-disable-line
 import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Filters from "../Filters/Filters.jsx";
-import Footer from "./components/Footer/Footer";
-import SearchBar from "./components/SearchBar/SearchBar";
+import Footer from "../Footer/Footer";
+import SearchBar from "../SearchBar/SearchBar";
 // import CardsContainer from "./components/CardsContainer/CardsContainer.jsx"
 
 const Home = () => {

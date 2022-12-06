@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // eslint-disable-line
 import { Link } from "react-router-dom";
 //JSX
 import SearchBar from "../SearchBar/SearchBar";
-import logo from "../../utils/images/logo.svg";
+import logo from "../../utils/images/logo.svg"; // eslint-disable-line
 import logoBlanco from "../../utils/images/logoBlanco.svg";
-import cart from "../../utils/images/navbar/cart.svg";
+import cart from "../../utils/images/navbar/cart.svg"; // eslint-disable-line
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 import accBlanco from "../../utils/images/navbar/accBlanco.svg";
 //BS
