@@ -28,7 +28,8 @@
     "pg": "^8.7.3",
     "postgre": "^0.1.8",
     "sequelize": "^6.21.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "chai": "^4.3.6",
