@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //JSX
 import SearchBar from "../SearchBar/SearchBar";
-import logo from "../../utils/images/logo.svg";
+import Login from "../Auth/Login";
+import Register from "../Auth/Register";
 import logoBlanco from "../../utils/images/logoBlanco.svg";
-import cart from "../../utils/images/navbar/cart.svg";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 import accBlanco from "../../utils/images/navbar/accBlanco.svg";
 //BS
@@ -14,6 +14,7 @@ import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
+import Button from "react-bootstrap/esm/Button";
 
 const NavBar = ({ user }) => {
   return (
@@ -48,8 +49,12 @@ const NavBar = ({ user }) => {
                 </Link>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item>Login</Dropdown.Item>
-                <Dropdown.Item>Register</Dropdown.Item>
+                <Button>
+                  <Dropdown.Item>Login</Dropdown.Item>
+                </Button>
+                <Button>
+                  <Dropdown.Item>Register</Dropdown.Item>
+                </Button>
               </Dropdown.Menu>
             </Dropdown>
             <NavItem>
