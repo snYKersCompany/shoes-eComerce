@@ -6,7 +6,6 @@ function validator (str) {
 }
 
 const ProductsSchema = mongoose.Schema({
-  _id: {type: String, default: uuid},
   name: {type: String, require: true, validate: /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/},
   email: {type: String, require: true},
   password: {type: String, require: true},
