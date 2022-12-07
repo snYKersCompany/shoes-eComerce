@@ -21,7 +21,6 @@ const Details = (
   return (
     <div className="details d-flex flex-column">
       <div className="d-flex justify-content-center DetailsContainerGeneral">
-
         <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
           <div className="div1 col-6 d-flex flex-column align-items-start text-start DetailsHeader">
             {/* {brand}&nbsp;{name} */}
@@ -38,7 +37,7 @@ const Details = (
               className="image"
               src="https://image.goat.com/750/attachments/product_template_pictures/images/018/898/008/original/482531_00.png.png"
               alt="nike"
-              />
+            />
             {/* {colection} */}
             <p className="fs-6 me-3 text-secondary">
               Colection <br />
@@ -47,8 +46,7 @@ const Details = (
             {/* release_date */}
             <p className="released fs-4 me-3">Released 21/02/21</p>
           </div>
-      </section>
-
+        </section>
       </div>
       <section className="d-flex flex-column justify-content-center align-items-center text-center mb-2">
         {/* {description} */}
@@ -71,7 +69,7 @@ const Details = (
 
       <section className="d-flex mb-2 flex-row justify-content-center align-items-center">
         <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
-          Price: $1500
+          Price: $1800
         </p>
         <Button
           variant="custom"
