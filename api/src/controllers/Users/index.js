@@ -9,6 +9,10 @@ const addUser = async (name, email, password, phone, address, city, image, admin
     if (!name && !email && !password && !phone && !address && !image & !admin) {
         throw new Error(`It must set all values`);
     }
+    const result = await UsersModel.findOne({email: email});
+    if (result) {
+        throw new Error(`The email was already found in the database`);
+    }
     const user = await UsersModel.create({name, email, password, phone, address, city, image, admin});
     return `${user.name} was successfully created`;
 }
