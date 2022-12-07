@@ -1,0 +1,68 @@
+.containerGeneralFormCreate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 200px 0;
+}
+.containerFormCreate{
+    width: max-content;
+    background-color: whitesmoke;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    margin: 7px;
+}
+.FormCreateChildrensSize{
+    background-color: white;
+    color:rgb(87, 86, 86);
+    padding:0 0 0 8px;
+    margin: 2px 4px;
+    border-radius: 12px;
+}
+
+.FormCreateInputSize{
+    width: 160px;
+    margin-right: 5px;
+}
+
+.FormCreateChildrensSizeButton{
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 9px;
+    padding-bottom: 3px;
+    height: 100%;
+    border: none;
+    margin-left: 4px;
+}
+
+.FormCreateChildrensSizeButton:hover{
+    background-color: rgb(253, 74, 74);
+    color: white;
+}
+
+
+.FormCreateInputStock{
+    width: 90px;
+}
+
+.FormCreateInputHidden{
+    color:whitesmoke
+}
+.containerFormCreateImgs{
+    width:400px;
+    margin: 0 10px;
+}
+.FormCreateCarousel{
+}
+@media (max-width:880px) {
+    .FormCreateContainerResponsive{
+        flex-direction: column;
+    }
+    .containerFormCreateImgs{
+        width: 100%;
+    }
+    .FormCreateContainerResponsive{
+        flex-wrap: nowrap !important;
+    }
+}
