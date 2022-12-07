@@ -45,10 +45,14 @@ const NavBar = ({ user }) => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item>
-                  <Login />
+                  <Link to="/login">
+                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                  </Link>
                 </Dropdown.Item>
                 <Dropdown.Item>
-                  <Register />
+                  <Link to="/register">
+                    <Dropdown.Item href="/register">Register</Dropdown.Item>
+                  </Link>
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

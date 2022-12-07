@@ -10,14 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  /////-----MODAL LOGIN-----/////
-  const [showLogin, setShowLogin] = useState(false);
-  const handleCloseLogin = () => setShowLogin(false);
-  const handleShowLogin = () => {
-    console.log("setshow Login");
-    setShowLogin(true);
-  };
-
   /////-----STATES-----/////
   const [user, setUser] = useState({
     email: "",
@@ -56,55 +48,29 @@ const Login = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={() => handleShowLogin()}>
-        Login
-      </Button>
-
-      <Modal
-        show={showLogin}
-        onHide={() => handleCloseLogin}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={(e) => handleSubmit(e)}>
-            {error && <p>{error}</p>}
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                name="email"
-                id="email"
-                type="email"
-                placeholder="Enter email"
-                onSubmit={(e) => handleChange(e)}
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                name="password"
-                id="password"
-                type="password"
-                placeholder="Password"
-                onSubmit={(e) => handleChange(e)}
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleCloseLogin}>Close</Button>
-        </Modal.Footer>
-      </Modal>
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control name="email" type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            name="password"
+            type="password"
+            placeholder="Password"
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </>
   );
 };
