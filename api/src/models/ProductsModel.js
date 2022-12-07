@@ -9,7 +9,7 @@ const ProductsSchema = mongoose.Schema({
     review: String,
     stock: Object,
     brand: Array, // Marcas
-    categories: Array
+    category: Array
   })
 const ProductsModel = mongoose.model('products', ProductsSchema) //export 
 

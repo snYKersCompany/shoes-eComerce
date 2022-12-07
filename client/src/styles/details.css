@@ -1,0 +1,55 @@
+@font-face {
+    font-family: NikeFutura;
+    src: url(../utils/fonts/Futura.otf);
+}
+
+@font-face {
+    font-family: HelveticaNeue;
+    src: url(../utils/fonts/HelveticaNeue.otf);
+}
+
+.details {
+    margin: 0 2rem;
+}
+
+.section1 {
+    height: 39rem;
+}
+
+.title {
+    margin-top: 2rem;
+    color: red;
+    font-family: NikeFutura;
+    font-weight: 100;
+}
+
+.image {
+    transform: scaleX(-1) rotate(15deg);
+    width: 25rem;
+    margin-bottom: -4.5rem;
+    z-index: 1;
+    margin-top: 6rem;
+    margin-right: -1rem;
+}
+
+.released {
+    color: gold;
+    font-family: NikeFutura;
+    font-weight: 100;
+    margin-top: -0.5rem;
+}
+
+.div2 {
+    background: rgb(24, 26, 41);
+    border-radius: 0 2rem 0 2rem;
+}
+
+.custom {
+    background: red !important;
+    color: white;
+}
+
+.category,
+.brand {
+    margin-bottom: -0.2rem;
+}
