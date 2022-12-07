@@ -1,0 +1,64 @@
+.card {
+    background: rgb(28, 28, 28) !important;
+    border-radius: 3rem !important;
+    box-shadow: -0.1em 1.5em 1.5em rgba(0, 0, 0, 0.5) !important;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    max-width: 20rem;
+    max-height: 44rem;
+    z-index: 1;
+}
+
+.brand {
+    font-size: 1em;
+    text-transform: uppercase;
+    color: red;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    word-spacing: -1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 16rem;
+    letter-spacing: -0.8rem;
+}
+
+.marg {
+    margin-top: -6rem !important;
+}
+
+.cardImage {
+    transform: rotate(30deg);
+    margin-left: -2.3rem;
+    margin-bottom: 2rem;
+    margin-top: -5rem;
+    width: 30rem !important;
+    z-index: -1;
+}
+
+.text-gold {
+    color: gold;
+}
+
+.fav {
+    color: gold;
+    font-size: 3rem;
+}
+
+.primary {
+    background: transparent !important;
+}
+
+.btnFav {
+    z-index: 1;
+}
+
+.btn-custom {
+    color: yellow !important;
+    background-color: transparent !important;
+}
+
+.btn-custom2 {
+    color: black !important;
+    background-color: yellow !important;
+}
