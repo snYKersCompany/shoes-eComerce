@@ -12,6 +12,7 @@ const ProductsSchema = mongoose.Schema({
   password: {type: String, require: true},
   phone: {type: String, require: true},
   address: {type: String, require: true, validate: [validator, 'It must have more than 5 characters']},
+  city: {type: String, require: true},
   image: {type: String, require: true},
   admin: {type: Boolean, require: true, default: true}
 });
