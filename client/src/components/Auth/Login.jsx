@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-const Login = (props) => {
+const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -36,7 +36,7 @@ const Login = (props) => {
     setError("");
     try {
       await login(user.email, user.password);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         setError("Correo invalido");
@@ -61,7 +61,6 @@ const Login = (props) => {
       </Button>
 
       <Modal
-        {...props}
         show={showLogin}
         onHide={() => handleCloseLogin}
         size="lg"

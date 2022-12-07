@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-const Register = (props) => {
+const Register = () => {
   const navigate = useNavigate();
   const { signUp } = useAuth();
 
@@ -30,10 +30,10 @@ const Register = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     try {
       await signUp(user.email, user.password);
-      navigate("/");
+      console.log(user);
+      navigate("/home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         setError("Correo invalido");
@@ -52,7 +52,6 @@ const Register = (props) => {
       </Button>
 
       <Modal
-        {...props}
         show={showRegister}
         onHide={() => handleCloseRegister}
         size="lg"
@@ -62,12 +61,11 @@ const Register = (props) => {
         <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
         </Modal.Header>
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form>
           {error && <p>{error}</p>}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
-              id="email"
               name="email"
               type="email"
               placeholder="Enter email"
@@ -80,14 +78,17 @@ const Register = (props) => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              id="password"
               name="password"
               type="password"
               placeholder="Password"
               onClick={(e) => handleChange(e)}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={(e) => handleSubmit(e)}
+          >
             Register
           </Button>
         </Form>
