@@ -20,33 +20,36 @@ const Details = (
 ) => {
   return (
     <div className="details d-flex flex-column">
-      <section className="d-flex mt-5 section1 mb-5">
-        <div className="div1 col-6 d-flex flex-column align-items-start text-start">
-          {/* {brand}&nbsp;{name} */}
-          <h2 className="fs-1 title ms-3 brand">Nike Air Max</h2>
-          {/* {category}&nbsp;{gender} */}
-          <p className="fs-3 ms-3 text-black category">Basket Men</p>
-          {/* {color} */}
-          <p className="fs-3 ms-3 text-black">Color Red</p>
-        </div>
+      <div className="d-flex justify-content-center DetailsContainerGeneral">
 
-        <div className="div2 col-6 d-flex flex-column align-items-end text-end">
-          {/* {detail_picture} */}
-          <Image
-            className="image"
-            src="https://image.goat.com/750/attachments/product_template_pictures/images/018/898/008/original/482531_00.png.png"
-            alt="nike"
-          />
-          {/* {colection} */}
-          <p className="fs-6 me-3 text-secondary">
-            Colection <br />
-            air jordan 1 - air jordan 1 - air jordan 1 - air jordan 1
-          </p>
-          {/* release_date */}
-          <p className="released fs-4 me-3">Released 21/02/21</p>
-        </div>
+        <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
+          <div className="div1 col-6 d-flex flex-column align-items-start text-start DetailsHeader">
+            {/* {brand}&nbsp;{name} */}
+            <h2 className="fs-1 title ms-3 brand">Nike Air Max</h2>
+            {/* {category}&nbsp;{gender} */}
+            <p className="fs-3 ms-3 text-black category">Basket Men</p>
+            {/* {color} */}
+            <p className="fs-3 ms-3 text-black">Color Red</p>
+          </div>
+
+          <div className="div2 col-6 d-flex flex-column align-items-end text-end">
+            {/* {detail_picture} */}
+            <Image
+              className="image"
+              src="https://image.goat.com/750/attachments/product_template_pictures/images/018/898/008/original/482531_00.png.png"
+              alt="nike"
+              />
+            {/* {colection} */}
+            <p className="fs-6 me-3 text-secondary">
+              Colection <br />
+              air jordan 1 - air jordan 1 - air jordan 1 - air jordan 1
+            </p>
+            {/* release_date */}
+            <p className="released fs-4 me-3">Released 21/02/21</p>
+          </div>
       </section>
 
+      </div>
       <section className="d-flex flex-column justify-content-center align-items-center text-center mb-2">
         {/* {description} */}
         <p className="fs-5 text-secondary">
