@@ -14,16 +14,24 @@ const postProduct = async (dataProduct)=>{
 
 //  Recibe la data que queramos actualizar y el id del producto 
 const putProductById = async (updateData, _id)=>{
+    console.log({_id})
     //  verificar que alla un producto con ese id (reutilizar getProducts(_id))
     //  Verificar que NO ALLA NINGUN DATO QUE NO ESTE EN EL MODELO (o con una ruta equivocada)
-    return await ProductsModel.updateOne({_id},{
+    const product = await ProductsModel.updateOne({_id},{
         $set:updateData
     })
+    return product
+}
+
+const deleteProductById = async (_id)=>{
+    const product = await ProductsModel.deleteOne({_id})
+    return product
 }
 
 module.exports = {
     getProducts,
     postProduct,
-    putProductById
+    putProductById,
+    deleteProductById
 }
 
