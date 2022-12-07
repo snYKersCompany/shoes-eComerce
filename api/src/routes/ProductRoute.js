@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getProducts, postProduct} = require('../controllers/Products');
+const {getProducts, postProduct, putProductById} = require('../controllers/Products');
 const {ProductsModel} = require('../models/ModelsDB')
 
 router.get('/', async (req, res) => {
@@ -38,6 +38,18 @@ router.post('/', async (req, res) => {
         // }
         const newProduct = postProduct(dataProduct)
         return res.status(200).json(newProduct);
+    } catch (error) {
+        return res.status(404).send(`El error es: ${error}`)
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        const _id = req.params 
+        const updateData = req.body
+
+        const updateProduct = putProductById(updateData, _id)
+        return res.status(200).json(updateProduct);
     } catch (error) {
         return res.status(404).send(`El error es: ${error}`)
     }
