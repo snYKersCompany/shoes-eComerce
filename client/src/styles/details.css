@@ -53,3 +53,18 @@
 .brand {
     margin-bottom: -0.2rem;
 }
+
+.DetailsContainerImg{
+    width: 350px;
+}
+
+.DetailsHeader{
+    padding: 0 5px 0 0;
+}
+
+@media (min-width:650px) {
+    .DetailsContainerImg{
+        width: 420px;
+    }
+    
+}
