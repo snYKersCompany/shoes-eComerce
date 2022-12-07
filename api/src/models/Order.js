@@ -1,15 +1,15 @@
 const mongoose = require('mongoose')
 const { UUID } = require('sequelize')
 
-const ProductsSchema = mongoose.Schema({
+const orderSchema = mongoose.Schema({
     id: UUID, 
     estados: ["pendig","complete","refused","cancelled"],
     comprobante: String,
     fecha: Date
   
   })
-const ProductsModel = mongoose.model('order', ProductsSchema) //export 
+const orderModels = mongoose.model('order', orderSchema) //export 
 
 module.exports = {
-    ProductsModel
+    orderModels
 }
