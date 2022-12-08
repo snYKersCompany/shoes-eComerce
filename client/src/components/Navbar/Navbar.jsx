@@ -27,7 +27,8 @@ const NavBar = () => {
   /////-----HANDLES-----/////
   const handleLogOut = async () => {
     await logOut();
-    navigate("/login");
+    alert("You have been loged out");
+    navigate("/home");
   };
 
   if (loading) {

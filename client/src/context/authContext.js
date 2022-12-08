@@ -22,21 +22,11 @@ export const AuthProvider = ({ children }) => {
 
     const signUp = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                console.log(userCredential)
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
     }
 
-    const logIn = (email, password) =>
+    const logIn = async (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
-
+    }
 
     const logOut = () => signOut(auth)
 
