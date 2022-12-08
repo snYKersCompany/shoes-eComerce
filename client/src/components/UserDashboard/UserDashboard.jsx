@@ -9,9 +9,10 @@ export default function UserDashboard() {
   const dispatch = useDispatch();
   const { user } = useAuth();
 
-  //   useEffect(() => {
-  //     dispatch(getUser(id));
-  //   }, [dispatch, id]);
+  useEffect(() => {
+    console.log(user);
+    // dispatch(getUser(id));
+  }, []);
 
   return (
     <div>

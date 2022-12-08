@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+///JSX
+import Alert from "./Alert";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -39,7 +41,8 @@ const Register = () => {
 
   return (
     <>
-      {error && <p>{error}</p>}
+      <h1>Register</h1>
+      {error && <Alert message={error} />}
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>

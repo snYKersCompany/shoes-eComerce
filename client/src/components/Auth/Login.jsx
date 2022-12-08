@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+///JSX
+import Alert from "./Alert";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -8,7 +10,7 @@ import Modal from "react-bootstrap/Modal";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { logIn } = useAuth();
+  const { logIn, logInGoogle } = useAuth();
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
@@ -38,10 +40,19 @@ const Login = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      await logInGoogle();
+      navigate("/home");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <>
       <h1>Login</h1>
-      {error && <p>{error}</p>}
+      {error && <Alert message={error} />}
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -68,6 +79,10 @@ const Login = () => {
           Login
         </Button>
       </Form>
+
+      <Button variant="primary" onClick={handleGoogleLogin}>
+        Login with Google
+      </Button>
     </>
   );
 };
