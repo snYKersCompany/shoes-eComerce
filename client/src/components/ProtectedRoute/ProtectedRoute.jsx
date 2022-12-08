@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/authContext";
-import { Navigate } from "react-router";
+import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
