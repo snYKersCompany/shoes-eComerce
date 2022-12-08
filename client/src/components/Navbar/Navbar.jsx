@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"; // eslint-disable-line
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 //JSX
 import SearchBar from "../SearchBar/SearchBar";
-import Login from "../Auth/Login";
-import Register from "../Auth/Register";
+//SVG
 import logoBlanco from "../../utils/images/logoBlanco.svg";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 import accBlanco from "../../utils/images/navbar/accBlanco.svg";
@@ -15,7 +15,25 @@ import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
 
-const NavBar = ({ user }) => {
+const NavBar = () => {
+  const navigate = useNavigate();
+
+  //devuelve toda la info del contexto
+  const authContext = useAuth();
+
+  //devuelve el user del contexto
+  const { user, logOut, loading } = useAuth();
+
+  /////-----HANDLES-----/////
+  const handleLogOut = async () => {
+    await logOut();
+    alert("You have been loged out");
+    navigate("/home");
+  };
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
   return (
     <>
       <Navbar bg="dark">
@@ -44,16 +62,33 @@ const NavBar = ({ user }) => {
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item>
-                  <Link to="/login">
-                    <Dropdown.Item href="/login">Login</Dropdown.Item>
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link to="/register">
-                    <Dropdown.Item href="/register">Register</Dropdown.Item>
-                  </Link>
-                </Dropdown.Item>
+                {!user ? (
+                  <>
+                    <Dropdown.Item>
+                      <Link to="/login">
+                        <Dropdown.Item href="/login">Login</Dropdown.Item>
+                      </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      <Link to="/register">
+                        <Dropdown.Item href="/register">Register</Dropdown.Item>
+                      </Link>
+                    </Dropdown.Item>
+                  </>
+                ) : (
+                  <>
+                    <Dropdown.Item>
+                      <Link to="/account">
+                        <Dropdown.Item href="/login">Account</Dropdown.Item>
+                      </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      <Dropdown.Item href="/register" onClick={handleLogOut}>
+                        LogOut
+                      </Dropdown.Item>
+                    </Dropdown.Item>
+                  </>
+                )}
               </Dropdown.Menu>
             </Dropdown>
             <NavItem>
