@@ -1,30 +1,24 @@
+import React from 'react';
+import { Routes, Route } from "react-router-dom"
+import Home from './components/Home/Home';
+import Details from './components/Details/Details';
+import { AuthProvider } from "./context/authContext"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { Characters } from "./components/Characters"
-import Home from './components/Home/Home';
 import Create from './components/Create/Create';
-
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={Characters} />
-        </Switch>
-        <Switch>
-        <Route exact path="/home" component={Home} />
-        </Switch>
-
-        <Switch>
-        <Route exact path="/create" component={Create} />
-        </Switch>
-
-      </div>
-    </BrowserRouter>
+    <div>
+      <AuthProvider>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/details" element={<Details />} />
+          <Route path='/create' element={<Create/>} />
+        </Routes>
+      </AuthProvider>
+    </div>
   );
 }
 
