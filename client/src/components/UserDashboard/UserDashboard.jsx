@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+// import React, { useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import {getUser} from "../"
 
-export default function UserDashboard () {
-    const { id } = useParams();
-    const dispatch = useDispatch();
-    const { user } = useSelector(state => state);
+// export default function UserDashboard () {
+//     const { id } = useParams();
+//     const dispatch = useDispatch();
+//     const { user } = useSelector(state => state);
     
-    useEffect(() => {
-        dispatch(getUser(id));
-    }, [dispatch, id]);
+//     useEffect(() => {
+//         dispatch(getUser(id));
+//     }, [dispatch, id]);
 
-    return (
-        <div>
-            <div>User Dashboard</div>
-            <h4>{user.name}</h4>
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <div>User Dashboard</div>
+//             <h4>{user.name}</h4>
+//         </div>
+//     )
+// }
