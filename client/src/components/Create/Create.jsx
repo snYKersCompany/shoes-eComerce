@@ -139,8 +139,8 @@ const Create = () => {
               </Form.Group>
             </div>
 
-            <Form.Group className="d-flex w-100 flex-wrap ">
-              <div className="FormCreateInputSize">
+            <Form.Group className="d-flex w-100 flex-wrap align-items-center">
+              <div className="FormCreateInputSize  ">
                 <Form.Label className="d-flex">Sizes:</Form.Label>
                 <Form.Select
                   className="d-flex FormCreateInputSize"
@@ -157,7 +157,7 @@ const Create = () => {
                   ))}
                 </Form.Select>
               </div>
-              <div className="d-flex flex-wrap w75 align-items-center ">
+              <div className="d-flex flex-wrap w75 align-items-center FormCreateContainerChilds">
                 {form.size !== ""
                   ? form.size.map((size) => (
                       <div
@@ -175,7 +175,9 @@ const Create = () => {
                         </button>
                       </div>
                     ))
-                  : null}
+                  :
+                    null
+}
               </div>
             </Form.Group>
             {error.name === " " ? (

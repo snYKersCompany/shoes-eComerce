@@ -5,16 +5,15 @@
     margin: 200px 0;
 }
 .containerFormCreate{
-    width: max-content;
     background-color: whitesmoke;
     padding: 10px;
-    border: none;
+    border: solid 1px rgb(150, 150, 150);
     border-radius: 6px;
     margin: 7px;
 }
 .FormCreateChildrensSize{
     background-color: white;
-    color:rgb(87, 86, 86);
+    color:rgb(77, 75, 75);
     padding:0 0 0 8px;
     margin: 2px 4px;
     border-radius: 12px;
@@ -53,8 +52,17 @@
     width:400px;
     margin: 0 10px;
 }
-.FormCreateCarousel{
+
+.FormCreateContainerChilds{
+    border: solid 1px rgb(172, 171, 171);
+    border-radius: 8px;
+    padding: 4px;
+    width: 257px;
+    height: 110px;
 }
+
+
+
 @media (max-width:880px) {
     .FormCreateContainerResponsive{
         flex-direction: column;
