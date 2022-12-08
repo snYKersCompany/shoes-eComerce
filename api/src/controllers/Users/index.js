@@ -21,7 +21,7 @@ const findUser = async (id) => {
     if (!id) {
         throw new Error(`It needs an id property`);
     }
-    const user = await UsersModel.findById(id);
+    const user = await UsersModel.findById(id);    
     if (!user) {
         return `The user with an id ${id} was not found in the database`
     }
@@ -32,7 +32,7 @@ const deleteUser = async (id) => {
     if (!id) {
         throw new Error(`It needs an id property`);
     }
-    const user = await UsersModel.findById(id);
+    const user = await UsersModel.findById(id);    
     if (!user) {
         return `The user with an id ${id} was not found in the database`;
     }
@@ -49,10 +49,28 @@ const modifyUser = async (id, name, email, password, phone, address, city, image
     return `The user with an id ${id} was successfully modified`;
 }
 
+const postUsers = async (array) => {    
+    array.map((e) => {
+        UsersModel.create({
+            name: e.name, 
+            email: e.email, 
+            password: e.password, 
+            phone: e.phone, 
+            address: e.address, 
+            city: e.city, 
+            image: e.image, 
+            admin: e.admin
+        })
+    });
+    Promise.all(array);    
+    return `Users added successfully`;
+}
+
 module.exports = {
     listUsers,
     addUser,
     findUser,
     deleteUser,
-    modifyUser
+    modifyUser,
+    postUsers
 }

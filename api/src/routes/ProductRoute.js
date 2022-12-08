@@ -5,7 +5,8 @@ const {ProductsModel} = require('../models/ModelsDB')
 
 router.get('/', async (req, res) => {
     try {
-        const products = await getProducts()
+        const filtros = req.query
+        const products = await getProducts(filtros)
         return res.status(200).json({products: products});
     } catch (error) {
         return res.status(404).send(error.message)    
@@ -16,7 +17,7 @@ router.get('/:id', async (req, res) => {
     try {
         const {id} = req.params;  
         if (!id) throw new Error(`It needs an id property`);
-        const products = await getProducts(id)
+        const products = await getProductsById(id)
         return res.status(200).json(products);
     } catch (error) {
         return res.status(404).send(error.message)
