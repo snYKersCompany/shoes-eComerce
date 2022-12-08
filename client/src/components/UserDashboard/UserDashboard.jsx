@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useActionData, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+// import { getUser } from "../";
+import { useAuth } from "../../context/authContext";
 
+<<<<<<< HEAD
 export default function UserDashboard () {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -10,11 +13,21 @@ export default function UserDashboard () {
     useEffect(() => {
         // dispatch(getUser(id));
     }, [dispatch, id]);
+=======
+export default function UserDashboard() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { user } = useAuth();
+>>>>>>> dev
 
-    return (
-        <div>
-            <div>User Dashboard</div>
-            <h4>{user.name}</h4>
-        </div>
-    )
+  //   useEffect(() => {
+  //     dispatch(getUser(id));
+  //   }, [dispatch, id]);
+
+  return (
+    <div>
+      <div>User Dashboard</div>
+      <h4>{user.name}</h4>
+    </div>
+  );
 }

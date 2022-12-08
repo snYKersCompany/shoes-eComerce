@@ -4,18 +4,20 @@ import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Filters from "../Filters/Filters.jsx";
 import Footer from "../Footer/Footer";
-import Register from "../Auth/Register";
-import Login from "../Auth/Register";
+import CardsContainer from "../CardsContainer/CardsContainer";
 
 const Home = () => {
+  //devuelve toda la info del contexto
   const authContext = useAuth();
+
+  //devuelve el user del contexto
   const { user } = useAuth();
 
   return (
     <>
       <NavBar />
       <Filters />
-      <h1>CardGrid</h1>
+      {/* <h1>Welcome {user}</h1> */}
       <Paginated />
       <Footer />
     </>
