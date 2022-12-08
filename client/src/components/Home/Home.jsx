@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react"; // eslint-disable-next-line
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/authContext";
-//COMPONENTS
-import NavBar from "../Navbar/Navbar";
+import NavBar from "../NavBar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Filters from "../Filters/Filters.jsx";
 import Footer from "../Footer/Footer";
-import Register from "../Auth/Register"; // eslint-disable-next-line
-import Login from "../Auth/Register"; // eslint-disable-next-line
+import Register from "../Auth/Register";
+import Login from "../Auth/Register";
 
 const Home = () => {
-  const authContext = useAuth();// eslint-disable-next-line
-  const { user } = useAuth();// eslint-disable-next-line
+  const authContext = useAuth();
+  const { user } = useAuth();
 
   return (
     <>
@@ -18,7 +17,6 @@ const Home = () => {
       <Filters />
       <h1>CardGrid</h1>
       <Paginated />
-      {/* <CardsContainer/> */}
       <Footer />
     </>
   );

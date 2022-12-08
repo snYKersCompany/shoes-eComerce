@@ -26,7 +26,8 @@ const ProductsSchema = mongoose.Schema({
   address: {type: String, require: true, validate: [validateAddress, 'It must have more than 5 characters']},
   city: {type: String, require: true},
   image: {type: String, require: true},
-  admin: {type: Boolean, require: true, default: true}
+  admin: {type: Boolean, require: true, default: true},
+  createdAt: {type: Date, default: Date.now}
 });
 const UsersModel = mongoose.model('users', ProductsSchema);
 
