@@ -6,14 +6,15 @@ const { uuid } = require('uuidv4');
 
 
 const orderSchema = mongoose.Schema({
-    _id: {type: String, default: uuid}, 
-    state: {type: String, require: true, enum:["pending", "aprobed","refused", "cancelled"]},
-    voucher: {type: String, require: true},
-    date: {type: Date, require: true}
-  
-  })
-const orderModels = mongoose.model('order', orderSchema) //export 
+  _id: { type: String, default: uuid },
+  _idProduct: {type: Array, require: true},
+  state: { type: String, require: true, enum: ["pending", "aprobed", "refused", "cancelled"] },
+  voucher: { type: String, require: true },
+  date: { type: Date, require: true , default: Date}
+
+})
+const OrderModel = mongoose.model('order', orderSchema) //export 
 
 module.exports = {
-    orderModels
+  OrderModel
 }
