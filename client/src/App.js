@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from "react-router-dom"
 import { AuthProvider } from "./context/authContext"
 import Home from './components/Home/Home';
@@ -23,4 +22,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
