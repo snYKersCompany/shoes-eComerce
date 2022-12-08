@@ -14,47 +14,46 @@ import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
-import Button from "react-bootstrap/esm/Button";
 
 const NavBar = ({ user }) => {
   return (
     <>
       <Navbar bg="dark">
         <Container>
-          <Link to="/">
-            <Navbar.Brand href="#home">
-              <div height="100px">
-                <img
-                  alt="SNYKERS"
-                  src={logoBlanco}
-                  width="100%"
-                  height="100%"
-                  className="d-inline-block align-top"
-                />
-              </div>
-            </Navbar.Brand>
-          </Link>
+          <Navbar.Brand>
+            <div height="100px">
+              <img
+                alt="SNYKERS"
+                src={logoBlanco}
+                width="100%"
+                height="100%"
+                className="d-inline-block align-top"
+              />
+            </div>
+          </Navbar.Brand>
           <Nav className="justify-content-end" activeKey="/home">
             <SearchBar />
             <Dropdown as={NavItem}>
               <Dropdown.Toggle as={NavLink}>
-                <Link to="/">
-                  <img
-                    src={accBlanco}
-                    width="40"
-                    height="40"
-                    className="d-inline-block align-top"
-                    alt="Acc"
-                  />
-                </Link>
+                <img
+                  src={accBlanco}
+                  width="40"
+                  height="40"
+                  className="d-inline-block align-top"
+                  alt="Acc"
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Button>
-                  <Dropdown.Item>Login</Dropdown.Item>
-                </Button>
-                <Button>
-                  <Dropdown.Item>Register</Dropdown.Item>
-                </Button>
+                <Dropdown.Item>
+                  <Link to="/login">
+                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                  </Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/register">
+                    <Dropdown.Item href="/register">Register</Dropdown.Item>
+                  </Link>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <NavItem>
