@@ -1,9 +1,10 @@
+require('dotenv').config();
 const mongoose = require('mongoose')
 
-const url = 'mongodb+srv://UserMaster:hmBKrzA9XQPVHVUP@cluster0.elzma4t.mongodb.net/snikersdb?retryWrites=true&w=majority'
+const {DB_URL} = process.env
 
 mongoose.set('strictQuery', false)
-mongoose.connect(url)
+mongoose.connect(DB_URL)
 .then(()=>console.log('CONEXION A MONGO EXITOSA'))
 .catch((err)=> console.log(`El error de conexion es: ${err}`))
 

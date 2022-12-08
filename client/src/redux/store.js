@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import characters from "./characters/characterSlice"
-
-
+import characters from "./features/characters/characterSlice";
+import products from "./features/products/productsSlice";
 
 export const store = configureStore({
-    reducer: {
-        characters: characters,
-    }
-})
+  reducer: {
+    characters: characters,
+    products: products,
+  },
+});

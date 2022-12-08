@@ -3,9 +3,11 @@ const mongoose = require('mongoose')
 const date = new Date();
 const release_date = date.toLocaleDateString().split('/').reverse().join('-')
 
+const validateString = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/
+
 const ProductsSchema = mongoose.Schema({
-  name: {type: String, require: true, validate: /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/},
-  brand: {type: String, require: true, validate: /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/}, // Marcas
+  name: {type: String, require: true, validate: validateString},
+  brand: {type: String, require: true, validate: validateString}, // Marcas
   category: {type: Array, default: []},
   color: {type: String, default: ''},
   gender: {type: Array, default: []},

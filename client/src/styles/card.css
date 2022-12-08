@@ -1,12 +1,13 @@
 .card {
+    display: flex;
+    justify-self: center;
     background: rgb(28, 28, 28) !important;
     border-radius: 3rem !important;
-    box-shadow: -0.1em 1.5em 1.5em rgba(0, 0, 0, 0.5) !important;
-    margin-left: 2rem;
-    margin-top: 1rem;
-    max-width: 20rem;
+    box-shadow: -0.1em 1em 1.5em rgba(0, 0, 0, 0.5) !important;
     max-height: 44rem;
+    margin: 1rem 1.5rem;
     z-index: 1;
+    width: 25rem !important;
 }
 
 .brand {
@@ -29,10 +30,7 @@
 
 .cardImage {
     transform: rotate(30deg);
-    margin-left: -2.3rem;
-    margin-bottom: 2rem;
-    margin-top: -5rem;
-    width: 30rem !important;
+    width: 94% !important;
     z-index: -1;
 }
 
@@ -61,4 +59,12 @@
 .btn-custom2 {
     color: black !important;
     background-color: yellow !important;
+}
+
+.CardBody1{
+    margin-right: -.1rem !important;
+}
+
+.CardBody1:hover{
+    cursor: default;
 }

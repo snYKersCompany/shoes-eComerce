@@ -52,4 +52,14 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.post('/data/json', async (req, res) => {
+    let { users } = req.body;
+    try {
+        const message = await controllers.postUsers(users);
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+});
+
 module.exports = router;

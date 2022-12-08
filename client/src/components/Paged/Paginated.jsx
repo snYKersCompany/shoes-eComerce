@@ -2,37 +2,51 @@ import React, { useEffect } from 'react'
 import Pagination from 'react-bootstrap/Pagination';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getChars } from "../../redux/characters/charactersActions"
+// import { getChars } from "../../redux/features/characters/charactersActions"
+import { getAllProducts } from "../../redux/features/products/productsActions"
+import CardsContainer from '../CardsContainer/CardsContainer';
+
 
 const Paginated= () =>{
     
     const dispatch = useDispatch()
     //toma el estado del slice
-    const { characters } = useSelector(state => state.characters)
+    // const { characters } = useSelector(state => state.characters)
+    const { products } = useSelector(state => state.products)
+
     
+    // useEffect(() => {
+    //     dispatch(getChars())
+    // }, [dispatch])
+
     useEffect(() => {
-        dispatch(getChars())
+        dispatch(getAllProducts())
     }, [dispatch])
 
-    let charactersRepeat = characters.concat(characters).concat(characters)
+    // let charactersRepeat = characters.concat(characters).concat(characters)
 
-    console.log(charactersRepeat)
 
     // let products=['producto1','producto2','producto3','producto4','producto5','producto6',
     // 'producto1','producto2','producto3','producto4','producto5','producto6'] // funciona como sustituto de la info
 
     let pages = [] // el número de páginas de mi componente 
-    if(charactersRepeat.length>0){
-        for(let i = 1; i<=Math.ceil(charactersRepeat.length/9); i++){
+    // if(charactersRepeat.length>0){
+    //     for(let i = 1; i<=Math.ceil(charactersRepeat.length/9); i++){
+    //         pages.push(i)
+    //     }
+    // }
+
+
+    if(products.length>0){
+        for(let i = 1; i<=Math.ceil(products.length/15); i++){
             pages.push(i)
         }
     }
 
 
-
     //lígica de recorrido del páginado
     const slicedPaged = () =>{
-        if(actualPage <=3){
+        if(actualPage <=2){
             const slice = pages.slice(0,7)   
             return slice
         }
@@ -59,14 +73,15 @@ const Paginated= () =>{
 //const
     const indexOfLastVideogame= actualPage* videogamesPerPage
     const indexOfFirstVideogame= indexOfLastVideogame - videogamesPerPage
-    const videogamesSliced =  charactersRepeat.slice(indexOfFirstVideogame, indexOfLastVideogame) 
+    // const videogamesSliced =  charactersRepeat.slice(indexOfFirstVideogame, indexOfLastVideogame)
+    const productsSliced =  products.slice(indexOfFirstVideogame, indexOfLastVideogame)
 //fin paginado
 
-    
     return(
         <div>
             <div>
-            {charactersRepeat.length>1?
+            {/* {charactersRepeat.length>1? */}
+            {products.length>1?
                 pages.length<8?
                     <Pagination className="d-flex justify-content-center mt-3">
                         {actualPage!==1?
@@ -134,17 +149,8 @@ const Paginated= () =>{
             {/*cards de pruebas*/}
 
             </div>
-                <div className='d-flex  justify-content-center flex-wrap'>
-                    {videogamesSliced.length? 
-                        videogamesSliced.map(character => 
-                            <div className='d-flex flex-column p-4 '>
-                                <label className='d-flex justify-content-center'>{character.name} </label>
-                                <img className='d-flex' src={character.image} alt={'img'}/>
-                            </div>
-                            )
-                    : <></>}
-                </div>
-        </div>
+                <CardsContainer productsSliced={productsSliced} />
+            </div>
         // {:
         // <></> //no se renderiza nada si no hay elementos en las cards}
 )}
