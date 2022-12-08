@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-const Login = (props) => {
+const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -28,7 +28,7 @@ const Login = (props) => {
     setError("");
     try {
       await login(user.email, user.password);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         setError("Correo invalido");
@@ -47,51 +47,31 @@ const Login = (props) => {
   };
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Register!</Modal.Title>
-      </Modal.Header>
-      <Form onSubmit={(e) => handleSubmit(e)}>
-        {error && <p>{error}</p>}
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+    <>
+      <h1>Login</h1>
+      {error && <p>{error}</p>}
+      <Form>
+        <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control
-            name="email"
-            id="email"
-            type="email"
-            placeholder="Enter email"
-            onSubmit={(e) => handleChange(e)}
-          />
+          <Form.Control name="email" type="email" placeholder="Enter email" />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             name="password"
-            id="password"
             type="password"
             placeholder="Password"
-            onSubmit={(e) => handleChange(e)}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
         </Button>
       </Form>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+    </>
   );
 };
+
+export default Login;

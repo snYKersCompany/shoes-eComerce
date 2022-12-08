@@ -6,16 +6,15 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-const Register = (props) => {
+const Register = () => {
   const navigate = useNavigate();
   const { signUp } = useAuth();
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
-    email: "",
-    password: "",
+    email: null,
+    password: null,
   });
-
   const [error, setError] = useState("");
 
   /////-----HANDLES-----/////
@@ -28,66 +27,57 @@ const Register = (props) => {
     setError("");
     try {
       await signUp(user.email, user.password);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         setError("Correo invalido");
       }
-      if (error.code === "auth/internal-error") {
-        setError("La contrasena debe tener 7 o mas caracteres");
+      if (error.code === "(auth/weak-password)") {
+        setError("La contrasena debe tengr 7 o mas caracteres");
       }
-      console.log(error);
+      if (error.code === "auth/internal-error") {
+        setError("La contrasena debe tengr 7 o mas caracteres");
+      }
+      if (error.code === "auth/weak-password") {
+        setError("The password should be at least 6 characters");
+      }
+      console.log(error.code);
     }
   };
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Register</Modal.Title>
-      </Modal.Header>
+    <>
+      <h1>Register</h1>
+      {error && <p>{error}</p>}
       <Form onSubmit={(e) => handleSubmit(e)}>
-        {error && <p>{error}</p>}
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            id="email"
+            onChange={(e) => handleChange(e)}
             name="email"
             type="email"
             placeholder="Enter email"
-            onClick={(e) => handleChange(e)}
           />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            id="password"
+            onChange={(e) => handleChange(e)}
             name="password"
             type="password"
             placeholder="Password"
-            onClick={(e) => handleChange(e)}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
+        <Form.Group controlId="formBasicCheckbox"></Form.Group>
         <Button variant="primary" type="submit">
           Submit
         </Button>
       </Form>
-      <Modal.Footer>
-        <Button type="submit" onClick={props.onHide}>
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    </>
   );
 };
+
+export default Register;
