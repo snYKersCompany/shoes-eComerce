@@ -6,7 +6,7 @@ import { BsFillHeartFill, BsFillStarFill, BsHeart } from "react-icons/bs"; // es
 
 import "../../styles/card.css";
 
-const CardProduct = (id, name, price, card_picture, brand, rating) => {
+const CardProduct = ({ id, name, price, card_picture, brand, rating }) => {
   return (
     <Card className="d-flex  card " style={{ width: "20rem" }}>
       <div className="d-flex justify-content-end me-4 mt-4">

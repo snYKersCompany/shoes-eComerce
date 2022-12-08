@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/authContext";
-//COMPONENTS
 import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Filters from "../Filters/Filters.jsx";
@@ -18,7 +17,6 @@ const Home = () => {
       <Filters />
       <h1>CardGrid</h1>
       <Paginated />
-      {/* <CardsContainer/> */}
       <Footer />
     </>
   );
