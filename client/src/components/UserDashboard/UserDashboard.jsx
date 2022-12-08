@@ -8,7 +8,7 @@ export default function UserDashboard () {
     const { user } = useSelector(state => state);
     
     useEffect(() => {
-        dispatch(getUser(id));
+        // dispatch(getUser(id));
     }, [dispatch, id]);
 
     return (
