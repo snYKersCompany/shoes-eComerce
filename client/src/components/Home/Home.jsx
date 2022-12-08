@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; // eslint-disable-next-line
 import { useAuth } from "../../context/authContext";
 //COMPONENTS
-import NavBar from "../NavBar/Navbar";
+import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Filters from "../Filters/Filters.jsx";
 import Footer from "../Footer/Footer";
