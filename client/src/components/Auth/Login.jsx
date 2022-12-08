@@ -48,6 +48,8 @@ const Login = () => {
 
   return (
     <>
+      <h1>Login</h1>
+      {error && <p>{error}</p>}
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -63,9 +65,6 @@ const Login = () => {
             type="password"
             placeholder="Password"
           />
-        </Form.Group>
-        <Form.Group controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit

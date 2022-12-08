@@ -1,9 +1,10 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom"
-import Home from './components/Home/Home';
-import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
 import { AuthProvider } from "./context/authContext"
+import Home from './components/Home/Home';
+import Register from './components/Auth/Register';
+import Login from './components/Auth/Login';
+import Details from './components/Details/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/details" element={<Details />} />
         </Routes>
       </AuthProvider>
     </div>
