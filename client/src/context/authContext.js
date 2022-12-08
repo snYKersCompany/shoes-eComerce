@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider } from "firebase/auth"
 import { auth } from '../utils/firebase/credentials'
 export const authContext = createContext()
 
@@ -18,17 +18,32 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(loading)
 
+    const provider = new GoogleAuthProvider()
+
     const signUp = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(userCredential)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
     }
 
-    const login = async (email, password) =>
+    const logIn = (email, password) =>
         signInWithEmailAndPassword(auth, email, password)
+
 
     const logOut = () => signOut(auth)
 
     useEffect(() => {
+        console.log("auth provider log")
         const unsub = onAuthStateChanged(auth, (currentUser) => {
+            console.log(currentUser)
             setUser(currentUser)
             setLoading(false)
         })
@@ -36,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     return (
-        <authContext.Provider value={{ signUp, login, logOut, user, loading }}>
+        <authContext.Provider value={{ signUp, logIn, logOut, user, loading }}>
             {children}
         </authContext.Provider>
     )

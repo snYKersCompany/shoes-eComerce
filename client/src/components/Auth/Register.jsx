@@ -29,25 +29,16 @@ const Register = () => {
       await signUp(user.email, user.password);
       navigate("/home");
     } catch (error) {
+      console.log(error.code);
       if (error.code === "auth/invalid-email") {
         setError("Correo invalido");
       }
-      if (error.code === "(auth/weak-password)") {
-        setError("La contrasena debe tengr 7 o mas caracteres");
-      }
-      if (error.code === "auth/internal-error") {
-        setError("La contrasena debe tengr 7 o mas caracteres");
-      }
-      if (error.code === "auth/weak-password") {
-        setError("The password should be at least 6 characters");
-      }
-      console.log(error.code);
+      setError(error.message);
     }
   };
 
   return (
     <>
-      <h1>Register</h1>
       {error && <p>{error}</p>}
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Form.Group controlId="formBasicEmail">
