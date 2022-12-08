@@ -1,6 +1,13 @@
 const { ProductsModel } = require('../../models/ModelsDB');
 
-const getProducts = async (_id)=>{
+const getProducts = async ({rating})=>{
+    let parameters = {}
+    if(rating) parameters.rating = rating
+    const products = await ProductsModel.find(parameters)
+    return products; 
+}
+
+const getProductsById = async (_id)=>{
     try {
         const products = await ProductsModel.find(_id?{_id}:null)
         return products;
@@ -79,6 +86,7 @@ const deleteProductById = async (_id)=>{
 
 module.exports = {
     getProducts,
+    getProductsById,
     postProduct,
     putProductById,
     deleteProductById
