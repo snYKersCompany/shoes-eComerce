@@ -34,6 +34,7 @@ const Footer = () => {
       regular: "regular",
     },
   };
+  //
 
   return user && user.roll.regular ? (
     <CDBFooter className="shadow">
