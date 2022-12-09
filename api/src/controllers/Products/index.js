@@ -1,10 +1,16 @@
 const { ProductsModel } = require('../../models/ModelsDB');
 
-const getProducts = async ({rating, search})=>{
+const getProducts = async ({rating, search, category, orderBy})=>{
     let parameters = {}
     if(rating) parameters.rating = rating
+    if(category) parameters.category = category
+    
     if(search) parameters = {name:{$regex:`(?i)${search}(?-i)`}}
-    const products = await ProductsModel.find(parameters)
+
+    let sort = null
+    if(orderBy) sort = JSON.parse(orderBy)
+
+    const products = await ProductsModel.find(parameters).sort(sort)
     return products; 
 }
 

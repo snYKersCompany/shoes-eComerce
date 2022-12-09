@@ -42,7 +42,7 @@ console.log(name.split(" ").slice(0,2))
                 </>
             }
           </Card.Text>
-          <Link to={`/home/${_id}`} className="link">
+          <Link to={`/details/${_id}`} className="link">
             <Button variant="custom2 fw-bold">More Info</Button>
           </Link>
         </div>

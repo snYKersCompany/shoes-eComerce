@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductDetail } from "../../redux/get_snykers/productActions";
 import "../../styles/details.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,9 +22,42 @@ const Details = () => {
   }, [dispatch, id])
 
 
+<<<<<<< HEAD
+const Details = (
+  id,
+  brand,
+  name,
+  category,
+  gender,
+  color,
+  detail_picture,
+  colection,
+  release_date,
+  description,
+  range,
+  rating,
+  price
+) => {
+  
+  const _idProduct = window.location.pathname.split('/').at(-1)
+  const dispatch = useDispatch()
+
+  let productDetails = useSelector(state => state.productDetail)
+  useEffect(() => {
+    dispatch(getProductDetail(_idProduct))
+    console.log("estoy haciendo la llamada del dispatch")
+  }, [dispatch])
+
+  
+  useEffect(() => {
+    console.log(productDetails)
+  }, [productDetails])
+
+=======
+>>>>>>> dev
   return (
     <div className="details d-flex flex-column">
-      <div className="d-flex justify-content-center DetailsContainerGeneral">
+      {/* <div className="d-flex justify-content-center DetailsContainerGeneral">
         <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
           <div className="div1 col-6 d-flex flex-column align-items-start text-start DetailsHeader">
             <h2 className="fs-1 title ms-3 brand">
@@ -62,7 +97,8 @@ const Details = () => {
         >
           Buy Now!!
         </Button>
-      </section>
+      </section> */}
+      <h1>Estoy en details</h1>
     </div>
   )
 }
