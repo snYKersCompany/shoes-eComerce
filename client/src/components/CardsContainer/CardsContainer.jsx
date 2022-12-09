@@ -1,6 +1,7 @@
-import { useEffect, React } from "react";
+import React from "react";
 import Card from "./Card";
 import "../../styles/cardsContainer.css";
+<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux"
 import { getAllProducts } from "../../redux/features/products/productsActions"
 
@@ -21,12 +22,15 @@ const CardsContainer = ({productsSliced}) => {
 
 
 
+=======
+>>>>>>> dev
 
+const CardsContainer = ({ productsSliced }) => {
   return (
     <div className="cardsGroupContainer">
       <div className="cardsGroup">
         <div className="d-flex flex-wrap justify-content-center">
-          {productsSliced?.map((product,i) => (
+          {productsSliced?.map((product, i) => (
             <Card
               key={i}
               _id={product._id.toString()}
