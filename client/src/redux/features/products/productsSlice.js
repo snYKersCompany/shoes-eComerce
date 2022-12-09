@@ -20,6 +20,7 @@ export const productsSlice = createSlice({
   },
 });
 
+
 export const { getProducts, productsDetails, createProducs } = productsSlice.actions;
 
 export default productsSlice.reducer;
