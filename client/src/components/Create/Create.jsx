@@ -18,6 +18,7 @@ const Create = () => {
     brand: "",
     price: "",
     size: "",
+    color: "",
     stock: "",
   });
 
@@ -44,13 +45,29 @@ const Create = () => {
   };
 
   let handleSize = (e) => {
-    let a = form.size
-      ? form.size.filter((size) => size === e.target.value)
-      : null;
-    console.log(a);
-    a === null || a.length < 1
-      ? setform({ ...form, size: [...form.size, e.target.value] })
-      : setform(form);
+    if (e.target.value === "All") {
+      setform({ ...form, size: sizes.map((el) => el.toString()) });
+    } else {
+      let a = form.size
+        ? form.size.filter((size) => size === e.target.value)
+        : null;
+      a === null || a.length < 1
+        ? setform({ ...form, size: [...form.size, e.target.value] })
+        : setform(form);
+    }
+  };
+
+  let handleColor = (e) => {
+    if (e.target.value === "All") {
+      setform({ ...form, color: colors });
+    } else {
+      let a = form.color
+        ? form.color.filter((color) => color === e.target.value)
+        : null;
+      a === null || a.length < 1
+        ? setform({ ...form, color: [...form.color, e.target.value] })
+        : setform(form);
+    }
   };
 
   let handleStock = (e) => {
@@ -62,15 +79,19 @@ const Create = () => {
     setform({ ...form, size: filtered });
   };
 
+  let deleteColor = (e) => {
+    let filtered = form.color.filter((color) => color !== e.target.value);
+    setform({ ...form, color: filtered });
+  };
+
   const user = { admin: true };
   const sizes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5];
-  const colors = ['Yellow', 'Blue', 'Red', 'White', 'Gray', 'Pink', 'Black', 9.5, 10, 10.5];
+  const colors = ["Yellow", "Blue", "Red", "White", "Gray", "Pink", "Black"];
   console.log(form);
-
   return user.admin === true ? (
     <div className="containerGeneralFormCreate">
       <div className="d-flex containerFormCreate">
-        <Form className="d-flex flex-wrap w-100 FormCreateContainerResponsive" >
+        <Form className="d-flex flex-wrap w-100 FormCreateContainerResponsive">
           <div className="d-flex flex-column">
             <Form.Group className="d-flex mb-3 flex-column justify-content-start">
               <Form.Label className="d-flex">Name:</Form.Label>
@@ -150,34 +171,43 @@ const Create = () => {
                   <option value="none" hidden>
                     Select the sizes{" "}
                   </option>
-                  {sizes.map((size) => (
+                  {sizes.map((size, i) => (
                     <option key={size} value={size}>
                       {size}
                     </option>
                   ))}
+                  <option value="All">All</option>
                 </Form.Select>
               </div>
               <div className="d-flex flex-wrap w75 align-items-center FormCreateContainerChilds">
-                {form.size !== ""
-                  ? form.size.map((size) => (
-                      <div
-                        key={size + "div"}
-                        className={`d-flex align-items-center FormCreateChildrensSize`}
+                {form.size.length ? (
+                  form.size.map((size) => (
+                    <div
+                      key={size + "div"}
+                      style={{
+                        order: sizes.findIndex((el) => el === Number(size)),
+                      }}
+                      className={`d-flex align-items-center FormCreateChildrensSize`}
+                    >
+                      <label key={size}>{size}</label>
+                      <button
+                        onClick={(size) => deleteSize(size)}
+                        key={size + "btn"}
+                        value={size}
+                        className={"FormCreateChildrensSizeButton"}
                       >
-                        <label key={size}>{size}</label>
-                        <button
-                          onClick={(size) => deleteSize(size)}
-                          key={size + "btn"}
-                          value={size}
-                          className={"FormCreateChildrensSizeButton"}
-                        >
-                          x
-                        </button>
-                      </div>
-                    ))
-                  :
-                    null
-}
+                        x
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <label
+                    className="d-flex justify-content-center w-100 fs-6 text-muted"
+                    style={{ "font-family": "candara" }}
+                  >
+                    Select a size
+                  </label>
+                )}
               </div>
             </Form.Group>
             {error.name === " " ? (
@@ -186,43 +216,51 @@ const Create = () => {
               <label className="d-flex"> </label>
             )}
 
-            <Form.Group className="d-flex ">
+            <Form.Group className="d-flex w-100 flex-wrap align-items-center">
               <div className="FormCreateInputColors">
                 <Form.Label className="d-flex">Colors:</Form.Label>
                 <Form.Select
                   className="d-flex FormCreateInputColors"
                   defaultValue={"none"}
-                  onChange={(e) => handleSize(e)}
+                  onChange={(e) => handleColor(e)}
                 >
                   <option value="none" hidden>
-                    Select the Colors 
+                    Select the Colors
                   </option>
-                  {sizes.map((size) => (
-                    <option key={size} value={size}>
-                      {size}
+                  {colors.map((color) => (
+                    <option key={color} value={color}>
+                      {color}
                     </option>
                   ))}
+                  <option value="All">All</option>
                 </Form.Select>
               </div>
-              <div className="d-flex flex-wrap w100 align-items-center">
-                {/* {form.size !== ""
-                  ? form.size.map((size) => (
-                      <div
-                        key={size + "div"}
-                        className={`d-flex align-items-center FormCreateChildrensSize`}
+              <div className="d-flex flex-wrap w100 align-items-center FormCreateContainerChilds">
+                {form.color.length ? (
+                  form.color.map((color) => (
+                    <div
+                      key={color + "div"}
+                      className={`d-flex align-items-center FormCreateChildrensSize FormCreateChildrensSize${color} `}
+                    >
+                      <label key={color}>{color}</label>
+                      <button
+                        onClick={(color) => deleteColor(color)}
+                        key={color + "btn"}
+                        value={color}
+                        className={"FormCreateChildrensSizeButton"}
                       >
-                        <label key={size}>{size}</label>
-                        <button
-                          onClick={(size) => deleteSize(size)}
-                          key={size + "btn"}
-                          value={size}
-                          className={"FormCreateChildrensSizeButton"}
-                        >
-                          x
-                        </button>
-                      </div>
-                    ))
-                  : null} */}
+                        x
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <label
+                    className="d-flex justify-content-center w-100 fs-6 text-muted"
+                    style={{ "font-family": "candara" }}
+                  >
+                    Select a color
+                  </label>
+                )}
               </div>
             </Form.Group>
             {error.name === " " ? (
@@ -230,22 +268,37 @@ const Create = () => {
             ) : (
               <label className="d-flex"> </label>
             )}
-
-            <Form.Group className="d-flex flex-column">
-              <Form.Label className="d-flex">Available Stock:</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="95"
-                className="d-flex FormCreateInputStock"
-                onChange={(e) => handleStock(e)}
-                value={form.stock}
-              />
-              {error.name === false ? (
-                <label>{error.brand}</label>
-              ) : (
-                <label>{error.brand}</label>
-              )}
-            </Form.Group>
+            <div className="d-flex justify-content-evenly">
+              <Form.Group className="d-flex flex-column justify-content-center">
+                <Form.Label className="d-flex">Available Stock:</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="95"
+                  className="d-flex FormCreateInputStock"
+                  onChange={(e) => handleStock(e)}
+                  value={form.stock}
+                />
+                {error.name === false ? (
+                  <label>{error.brand}</label>
+                ) : (
+                  <label>{error.brand}</label>
+                )}
+              </Form.Group>
+              <Form.Group className="d-flex flex-column justify-content-center">
+                <Form.Label className="d-flex">Release Date:</Form.Label>
+                <Form.Control
+                  type="date"
+                  className="d-flex FormCreateInputReleased "
+                  onChange={(e) => handleStock(e)}
+                  value={form.stock}
+                />
+                {error.name === false ? (
+                  <label>{error.brand}</label>
+                ) : (
+                  <label>{error.brand}</label>
+                )}
+              </Form.Group>
+            </div>
           </div>
           <div className=" containerFormCreateImgs justify-content-center ">
             <Form.Group className="d-flex flex-column justify-content-center align-items-center">
@@ -283,7 +336,7 @@ const Create = () => {
                 className="mt-3 d-flex flex-column"
               >
                 <Form.Label>Upload images of your product</Form.Label>
-                <Form.Control type="file" multiple  />
+                <Form.Control type="file" multiple />
               </Form.Group>
             </Form.Group>
           </div>

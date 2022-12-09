@@ -12,16 +12,24 @@
     margin: 7px;
 }
 .FormCreateChildrensSize{
-    background-color: white;
-    color:rgb(77, 75, 75);
+    background-color: rgb(253, 253, 253);
+    outline: solid 1px rgb(201, 199, 199);
     padding:0 0 0 8px;
     margin: 2px 4px;
     border-radius: 12px;
 }
 
 .FormCreateInputSize{
-    width: 160px;
+    width: 170px;
     margin-right: 5px;
+}
+
+.FormCreateInputColors{
+    width: 170px;
+    margin-right: 5px;
+}
+.FormCreateCarousel{
+    height: max-content !important;
 }
 
 .FormCreateChildrensSizeButton{
@@ -49,26 +57,60 @@
     color:whitesmoke
 }
 .containerFormCreateImgs{
-    width:400px;
+    height: 500px !important;
+    width: 500px !important;
     margin: 0 10px;
 }
 
 .FormCreateContainerChilds{
-    border: solid 1px rgb(172, 171, 171);
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border: solid 1px rgba(172, 171, 171, 0.644);
     border-radius: 8px;
     padding: 4px;
     width: 257px;
     height: 110px;
 }
 
+.FormCreateChildrensSizeBlue{
+    background-color: rgb(10, 94, 252);
+    color: white;
+}
+.FormCreateChildrensSizeRed{
+    background-color: rgb(252, 10, 30);
+    color: white;
+}
+.FormCreateChildrensSizePink{
+    background-color: rgb(250, 65, 151);
+    color: white;
+}
+.FormCreateChildrensSizeGray{
+    background-color: rgb(131, 130, 130);
+    color: white;
+}
+.FormCreateChildrensSizeYellow{
+    background-color: rgb(252, 248, 30);
+    color: rgb(43, 42, 42);
+
+}
+.FormCreateChildrensSizeBlack{
+    background-color: rgb(29, 28, 28);
+    color: white;
+}
+.FormCreateChildrensSizeWhite{
+    background-color: rgb(255, 255, 255);
+}
 
 
-@media (max-width:880px) {
+@media (max-width:1000px) {
     .FormCreateContainerResponsive{
         flex-direction: column;
     }
     .containerFormCreateImgs{
-        width: 100%;
+        width: 100% !important;
+        max-width: 500px !important;
+        height: max-content !important;
     }
     .FormCreateContainerResponsive{
         flex-wrap: nowrap !important;
