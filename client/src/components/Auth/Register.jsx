@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
+import Modal from "react-bootstrap/Modal"; // eslint-disable-line
 
 const Register = () => {
   const navigate = useNavigate();
