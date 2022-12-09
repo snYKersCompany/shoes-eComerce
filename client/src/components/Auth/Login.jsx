@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 ///JSX
 import Alert from "./Alert";
@@ -10,7 +10,7 @@ import Modal from "react-bootstrap/Modal"; // eslint-disable-line
 
 const Login = () => {
   const navigate = useNavigate();
-  const { logIn, logInGoogle } = useAuth();
+  const { logIn, logInGoogle, resetPassword } = useAuth();
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
@@ -18,32 +18,64 @@ const Login = () => {
     password: "",
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
   /////-----HANDLES-----/////
   const handleChange = ({ target: { name, value } }) => {
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await logIn(user.email, user.password);
-      navigate("/home");
-    } catch (error) {
-      console.log(error.code);
-      if (error.code === "auth/invalid-email") {
-        setError("Correo invalido");
-      }
-      setError(error.message);
-    }
+  const handleSubmit = (e) => {
+    return new Promise(() => {
+      e.preventDefault();
+      setError("");
+      logIn(user.email, user.password)
+        .then(() => {
+          navigate("/home");
+        })
+        .catch((error) => {
+          if (error.code === "auth/wrong-password") {
+            setError("Wrong Password");
+          }
+          setError(error.message);
+        });
+    });
   };
+
+  // const handleSubmit = () => {
+  //   const a = new Promise(
+  //     logIn(user.email, user.password).then((user) => {
+  //       alert(`${user} has been loged in snYKers`)
+  //         .then(navigate("home"))
+  //         .catch((error) => {
+  //           console.log(error.code);
+  //           if (error.code === "auth/invalid-email") {
+  //             setError("Correo invalido");
+  //           }
+  //           setError(error.message);
+  //         });
+  //     })
+  //   );
+  //   return a;
+  // };
 
   const handleGoogleLogin = async () => {
     try {
       await logInGoogle();
       navigate("/home");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleResetPassword = async () => {
+    if (!user.email) {
+      return setError("Please enter your email");
+    }
+    try {
+      await resetPassword(user.email);
+      alert("We have sent you an email with a link to reset your password");
+      setError("We have sent you an email with a link to reset your password");
     } catch (error) {
       setError(error.message);
     }
@@ -78,11 +110,17 @@ const Login = () => {
         <Button variant="primary" type="submit">
           Login
         </Button>
+        <Button variant="primary" type="submit" onClick={handleResetPassword}>
+          Forgot Password ?
+        </Button>
       </Form>
 
       <Button variant="primary" onClick={handleGoogleLogin}>
         Login with Google
       </Button>
+      <Link to="/register">
+        <Button variant="primary">Dont have an account? Register here</Button>
+      </Link>
     </>
   );
 };

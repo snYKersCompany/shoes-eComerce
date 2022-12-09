@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 ///JSX
 import Alert from "./Alert";
 //BS
@@ -67,9 +67,12 @@ const Register = () => {
         </Form.Group>
         <Form.Group controlId="formBasicCheckbox"></Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+          Register
         </Button>
       </Form>
+      <Link to="/login">
+        <Button variant="primary">Already have an account? Login here</Button>
+      </Link>
     </>
   );
 };
