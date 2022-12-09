@@ -6,7 +6,6 @@ const {ProductsModel} = require('../models/ModelsDB')
 router.get('/', async (req, res) => {
     try {
         const filtros = req.query
-        console.log(filtros)
         const products = await getProducts(filtros)
         return res.status(200).json({products: products});
     } catch (error) {

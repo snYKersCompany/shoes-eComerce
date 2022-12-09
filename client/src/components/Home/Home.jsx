@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAuth } from "../../context/authContext";
 import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Filters from "../Filters/Filters.jsx";
 import Footer from "../Footer/Footer";
-import CardsContainer from "../CardsContainer/CardsContainer";
-import Register from "../Auth/Register";
-import Login from "../Auth/Register";
 
 const Home = () => {
-  const authContext = useAuth();
-  const { user } = useAuth();
+  //devuelve toda la info del contexto
+  const authContext = useAuth(); // eslint-disable-line
 
-
-
+  //devuelve el user del contexto
+  const { user } = useAuth(); // eslint-disable-line
 
   return (
     <>
       <NavBar />
       <Filters />
-      <h1>CardGrid</h1>
       <Paginated />
       <Footer />
     </>
