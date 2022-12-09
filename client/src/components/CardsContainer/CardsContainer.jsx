@@ -1,29 +1,6 @@
 import React from "react";
 import Card from "./Card";
 import "../../styles/cardsContainer.css";
-<<<<<<< HEAD
-import { useDispatch, useSelector } from "react-redux"
-import { getAllProducts } from "../../redux/features/products/productsActions"
-
-
-
-const CardsContainer = ({productsSliced}) => {
-  
-  
-  const dispatch = useDispatch()
-  //toma el estado del slice
-  // const { characters } = useSelector(state => state.characters)
-  const { products } = useSelector(state => state.products)
-  console.log(products)
-
-  useEffect(() => {
-    dispatch(getAllProducts())
-}, [dispatch])
-
-
-
-=======
->>>>>>> dev
 
 const CardsContainer = ({ productsSliced }) => {
   return (
