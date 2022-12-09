@@ -12,9 +12,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const { name, email, password, phone, address, image, admin } = req.body;
+    const { name, email, password, phone, address, city, image, admin } = req.body;
     try {
-        const message = await controllers.addUser(name, email, password, phone, address, image, admin);
+        const message = await controllers.addUser(name, email, password, phone, address, city, image, admin);
         return res.status(200).json(message);
     } catch (error) {
         return res.status(400).json({error: error.message});
@@ -35,6 +35,27 @@ router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const message = await controllers.deleteUser(id);
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name, email, password, phone, address, city, image, admin } = req.body;
+        const message = await controllers.modifyUser(id, name, email, password, phone, address, city, image, admin);
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+});
+
+router.post('/data/json', async (req, res) => {
+    let { users } = req.body;
+    try {
+        const message = await controllers.postUsers(users);
         return res.status(200).json(message);
     } catch (error) {
         return res.status(400).json({ error: error.message });

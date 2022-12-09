@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"; // eslint-disable-line
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 //JSX
 import SearchBar from "../SearchBar/SearchBar";
-import logo from "../../utils/images/logo.svg"; // eslint-disable-line
+//SVG
 import logoBlanco from "../../utils/images/logoBlanco.svg";
-import cart from "../../utils/images/navbar/cart.svg"; // eslint-disable-line
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 import accBlanco from "../../utils/images/navbar/accBlanco.svg";
 //BS
@@ -16,11 +16,29 @@ import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  //devuelve toda la info del contexto
+  const authContext = useAuth(); // eslint-disable-line
+
+  //devuelve el user del contexto
+  const { user, logOut, loading } = useAuth();
+
+  /////-----HANDLES-----/////
+  const handleLogOut = async () => {
+    await logOut();
+    alert("You have been loged out");
+    navigate("/home");
+  };
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
   return (
     <>
       <Navbar bg="dark">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand>
             <div height="100px">
               <img
                 alt="SNYKERS"
@@ -35,19 +53,42 @@ const NavBar = () => {
             <SearchBar />
             <Dropdown as={NavItem}>
               <Dropdown.Toggle as={NavLink}>
-                <Link to="/">
-                  <img
-                    src={accBlanco}
-                    width="40"
-                    height="40"
-                    className="d-inline-block align-top"
-                    alt="Acc"
-                  />
-                </Link>
+                <img
+                  src={accBlanco}
+                  width="40"
+                  height="40"
+                  className="d-inline-block align-top"
+                  alt="Acc"
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item>Login</Dropdown.Item>
-                <Dropdown.Item>Register</Dropdown.Item>
+                {!user ? (
+                  <>
+                    <Dropdown.Item>
+                      <Link to="/login">
+                        <Dropdown.Item href="/login">Login</Dropdown.Item>
+                      </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      <Link to="/register">
+                        <Dropdown.Item href="/register">Register</Dropdown.Item>
+                      </Link>
+                    </Dropdown.Item>
+                  </>
+                ) : (
+                  <>
+                    <Dropdown.Item>
+                      <Link to="/account">
+                        <Dropdown.Item href="/login">Account</Dropdown.Item>
+                      </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      <Dropdown.Item href="/register" onClick={handleLogOut}>
+                        LogOut
+                      </Dropdown.Item>
+                    </Dropdown.Item>
+                  </>
+                )}
               </Dropdown.Menu>
             </Dropdown>
             <NavItem>

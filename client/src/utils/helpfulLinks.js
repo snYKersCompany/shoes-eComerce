@@ -5,6 +5,6 @@ export const walterGH = 'https://github.com/Walter-Celiz';
 export const crisgGH = 'https://github.com/CrisGab22';
 export const rodrigoGH = 'https://github.com/RodrHM';
 export const santiagoGH = 'nomepasoellink';
-
+export const pGbrand = 'SnykErs'
 export const igAPP = 'https://www.instagram.com/snyckersshop/'
 export const twAPP = 'https://twitter.com/SnyckersShop'

@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react"; // eslint-disable-line
-//COMPONENTS
+import React from "react";
+import { useAuth } from "../../context/authContext";
 import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Filters from "../Filters/Filters.jsx";
 import Footer from "../Footer/Footer";
-import SearchBar from "../SearchBar/SearchBar";
-// import CardsContainer from "./components/CardsContainer/CardsContainer.jsx"
 
 const Home = () => {
+  //devuelve toda la info del contexto
+  const authContext = useAuth(); // eslint-disable-line
+
+  //devuelve el user del contexto
+  const { user } = useAuth(); // eslint-disable-line
+
   return (
     <>
       <NavBar />
-      <SearchBar />
       <Filters />
-      <h1>CardGrid</h1>
       <Paginated />
-      {/* <CardsContainer/> */}
       <Footer />
     </>
   );
