@@ -13,7 +13,7 @@ const CardsContainer = ({productsSliced}) => {
   //toma el estado del slice
   // const { characters } = useSelector(state => state.characters)
   const { products } = useSelector(state => state.products)
-
+  console.log(products)
 
   useEffect(() => {
     dispatch(getAllProducts())

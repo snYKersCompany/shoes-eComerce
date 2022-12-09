@@ -13,8 +13,9 @@ export const getAllProducts = () => async (dispatch) => {
 
 export const getProductDetail = (id) => async (dispatch) => {
   try {
-    const response = await axios(`http://localhost:3001/dogs/${id}`)
-    return dispatch(getProductsDetails(response.data.products))
+    const response = await axios(`http://localhost:3001/api/products/${id}`)
+    console.log(...response.data)
+    return dispatch(getProductsDetails(...response.data))
   }
   catch(error){
     return error
