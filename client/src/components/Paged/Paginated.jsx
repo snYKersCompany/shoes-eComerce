@@ -12,7 +12,9 @@ const Paginated= () =>{
     const dispatch = useDispatch()
     //toma el estado del slice
     // const { characters } = useSelector(state => state.characters)
-    const { products } = useSelector(state => state.products)
+
+
+    const { products } = useSelector(state => state.products) //cambiar nombre
 
     
     // useEffect(() => {
