@@ -19,7 +19,7 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   //devuelve toda la info del contexto
-  const authContext = useAuth();
+  const authContext = useAuth(); // eslint-disable-line
 
   //devuelve el user del contexto
   const { user, logOut, loading } = useAuth();

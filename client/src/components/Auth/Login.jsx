@@ -6,7 +6,7 @@ import Alert from "./Alert";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
+import Modal from "react-bootstrap/Modal"; // eslint-disable-line
 
 const Login = () => {
   const navigate = useNavigate();

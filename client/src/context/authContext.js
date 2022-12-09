@@ -5,18 +5,17 @@ export const authContext = createContext()
 
 //USEAUTH
 export const useAuth = () => {
-    const context = useContext(authContext)
+    const context = useContext(authContext);
     if (!context) {
-        throw new Error("There ir no Auth provider")
+        throw new Error("There ir no Auth provider");
     }
-    return context
-}
-
+    return context;
+};
 
 //AUTH PROVIDER
 export const AuthProvider = ({ children }) => {
-    const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(loading)
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(loading);
 
     //GOOGLE LOG IN
     const logInGoogle = () => {
