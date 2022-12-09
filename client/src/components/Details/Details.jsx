@@ -14,6 +14,7 @@ const Details = () => {
   const { id } = useParams();
   const { productDetail } = useSelector((state) => state.products)
 
+
   useEffect(() => {
     dispatch(getProductsDetails(id))
   }, [dispatch, id])

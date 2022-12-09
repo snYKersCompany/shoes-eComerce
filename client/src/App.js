@@ -18,13 +18,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-<<<<<<< HEAD
-          <Route path="/home/:id" element={<Details />} />
-          <Route path = "/account/:id" element={UserDashboard}/>
-=======
           <Route path="/account" element={<ProtectedRoute><UserDashboard /></ProtectedRoute>} />
-          <Route path="/details" element={<Details />} />
->>>>>>> dev
+          <Route path="/home/:id" element={<Details />} />
         </Routes>
       </AuthProvider>
     </div>
