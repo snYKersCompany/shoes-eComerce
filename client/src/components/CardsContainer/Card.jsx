@@ -2,7 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { BsFillHeartFill, BsFillStarFill, BsHeart, BsStar } from "react-icons/bs"; // eslint-disable-line
+import {
+  BsFillHeartFill, // eslint-disable-line
+  BsFillStarFill,
+  BsHeart,
+  BsStar, // eslint-disable-line
+} from "react-icons/bs"; // eslint-disable-line
 
 import "../../styles/card.css";
 
@@ -25,23 +30,19 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
           </Card.Title>
           <Card.Text className="text-white fs-2">{price}</Card.Text>
           <Card.Text className="text-gold fs-5 mb-3">
-
-            {
-              rating !== 0?
+            {rating !== 0 ? (
               <>
-              rating:{" "}
-              {[...Array(rating)].map((index,i) => (
+                rating:{" "}
+                {[...Array(rating)].map((index, i) => (
                   <BsFillStarFill key={i} />
-                ))}  
+                ))}
               </>
-                :
-                // <BsStar/>
-                <>
-                  New
-                </>
-            }
+            ) : (
+              // <BsStar/>
+              <>New</>
+            )}
           </Card.Text>
-          <Link to={`/home/${_id}`} className="link">
+          <Link to={`/details/${_id}`} className="link">
             <Button variant="custom2 fw-bold">More Info</Button>
           </Link>
         </div>
