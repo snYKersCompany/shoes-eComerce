@@ -7,8 +7,24 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import "./Create.css";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
+// import {useSelector, useDispatch} from "react-redux"
+// import { useEffect } from "react";
+// import { getAllProductsCategories } from "../../redux/features/products/productsActions";
+
 
 const Create = () => {
+
+//   const dispatch = useDispatch() 
+  
+  
+//   const {productCategories} = useSelector((state) => state.products)
+
+//   useEffect(()=>{
+//     dispatch(getAllProductsCategories())
+//   },[dispatch])
+
+//   console.log(productCategories)
+
   const [error, setError] = useState({
     name: false,
     description: false,
@@ -22,19 +38,20 @@ const Create = () => {
   });
 
 // let prueba={
-//     name: "Nike Air Force 1",
-//     description: "son una nuevas zapas que en la vida has visto",
+  //     name: "Nike Air Force 1",
+  //     stock: "49",
 //     brand: "Nike",
-//     size: [
-//         "6.5",
-//         "8.5"
-//     ],
-//     color: [
+//     color: [  <---- cambiar por categoría
 //         "White",
 //         "Black"
 //     ],
+//     stock: {
+  //         "6.5" : 10 unidades disponibles,
+  //         "8.5"
+  //   }
+  //
 //     price: "85.00",
-//     stock: "49",
+//     description: "son una nuevas zapas que en la vida has visto",
 //     release: "2017-02-09",
 //     img: [
 //         "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e777c881-5b62-4250-92a6-362967f54cca/calzado-air-force-1-07-b19lqD.png"
@@ -473,7 +490,7 @@ const Create = () => {
                   type="radio"
                   variant={"outline-success"}
                   value={controller.radio}
-                  onClick={() => setController({ ...controller, controller: true })}
+                  onClick={() => setController({ ...controller, radio: true })}
                   checked={controller.radio === true}
                 >
                   {"Image Adress"}
