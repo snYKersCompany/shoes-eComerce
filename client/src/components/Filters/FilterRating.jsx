@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 const FilterRating = ({ setActualPage }) => {
   const dispatch = useDispatch();
 
+
   function handleFilterRating(e) {
     e.preventDefault();
     console.log("::::::::::::::::::ESTO ES E.TARGET.VALUE", e.target.value);
