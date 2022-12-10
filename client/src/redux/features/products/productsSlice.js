@@ -3,10 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 export const productsSlice = createSlice({
   name: "products",
   initialState: {
-    products: [],
+    products: [], // este es el único estado que llenamos en el home. 
     productsLoaded: [],
-    productDetail: [],
-    productRating: [],
+    productDetail: [], // esto se llena por el useSelector() de /Details.jsx
+    // productRating: [],
+    productCategory: [],
   },
   reducers: {
     getProducts: (state, action) => {
@@ -19,25 +20,19 @@ export const productsSlice = createSlice({
       state.products = action.payload;
     },
     filterRating: (state, action) => {
-      const rating2 = state.products;
-      console.log("::::::::::::::::::::::: ESTO ES RATING2", rating2);
-      const filterByRating =
-        action.payload === "all"
-          ? rating2
-          : rating2.filter((product) => product.rating);
-      console.log(
-        "::::::::::::::::::::::ESTO ES FILTERBYRATING",
-        filterByRating
-      );
-      return {
-        ...state,
-        products: action.payload === "all" ? state.products : filterByRating,
-      };
+      state.products = action.payload //hay que cambiar el estado que se llena 'en paginated se llena solamente products'
+      // console.log('esto es state.products', state.products)
     },
+    searchByQuery: (state, action) => {
+      state.products = action.payload
+    },
+    filterByCategory: (state, action) => {
+      state.products = action.payload
+    }
   },
 });
 
-export const { getProducts, productsDetails, createProducs, filterRating } =
+export const { getProducts, productsDetails, createProducs, filterRating, searchByQuery, filterByCategory } =
   productsSlice.actions;
 
 export default productsSlice.reducer;
