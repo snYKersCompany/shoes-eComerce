@@ -29,7 +29,7 @@
     margin-right: 5px;
 }
 .FormCreateCarousel{
-    height: max-content !important;
+    height: 100% !important;
 }
 
 .FormCreateChildrensSizeButton{
@@ -57,9 +57,10 @@
     color:whitesmoke
 }
 .containerFormCreateImgs{
-    height: 500px !important;
+    height: 100% !important;
     width: 500px !important;
     margin: 0 10px;
+    margin-bottom: 15px;
 }
 
 .FormCreateContainerChilds{
@@ -71,6 +72,7 @@
     padding: 4px;
     width: 257px;
     height: 110px;
+    margin: 5px 0;
 }
 
 .FormCreateChildrensSizeBlue{
@@ -90,8 +92,10 @@
     color: white;
 }
 .FormCreateChildrensSizeYellow{
-    background-color: rgb(252, 248, 30);
-    color: rgb(43, 42, 42);
+    background-color: rgb(255, 251, 25);
+    color: rgb(48, 48, 48);
+    border-color: yellowgreen ;
+    
 
 }
 .FormCreateChildrensSizeBlack{
@@ -102,6 +106,29 @@
     background-color: rgb(255, 255, 255);
 }
 
+.FormCreateError{
+    color: rgb(248, 68, 68);
+    margin-top: 4px;
+    display: flex;
+    font-size: 12px;
+}
+
+.FormCreateInputUrl{
+    width: 500px !important;
+}
+
+.formCreateButtonSubmitDiv{
+    margin-left: -50px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-self: center;
+}
+
+.formCreateButtonSubmit{
+    display: flex;
+    height: fit-content !important;
+}
 
 @media (max-width:1000px) {
     .FormCreateContainerResponsive{
