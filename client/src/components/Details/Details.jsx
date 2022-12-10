@@ -1,23 +1,19 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getProductsDetails } from "../../redux/features/products/productsActions";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import { useDispatch, useSelector } from "react-redux";
 import "../../styles/details.css";
-import { useParams } from 'react-router-dom'
-import { getProductsDetails } from '../../redux/features/products/productsActions';
-
 
 const Details = () => {
-
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { productDetail } = useSelector((state) => state.products)
-
+  const { productDetail } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getProductsDetails(id))
-  }, [dispatch, id])
-
+    dispatch(getProductsDetails(id));
+  }, [dispatch, id]);
 
   return (
     <div className="details d-flex flex-column">
@@ -34,12 +30,18 @@ const Details = () => {
           </div>
 
           <div className="div2 col-6 d-flex flex-column align-items-end text-end">
-            <Image className="image" src={productDetail.detail_picture} alt={productDetail.name} />
+            <Image
+              className="image"
+              src={productDetail.detail_picture}
+              alt={productDetail.name}
+            />
             <p className="fs-6 me-3 text-secondary">
               Colection <br />
               {productDetail.colection}
             </p>
-            <p className="released fs-4 me-3">Released {productDetail.release_date}</p>
+            <p className="released fs-4 me-3">
+              Released {productDetail.release_date}
+            </p>
           </div>
         </section>
       </div>
@@ -62,9 +64,8 @@ const Details = () => {
           Buy Now!!
         </Button>
       </section>
-      {/* <h1>Estoy en details</h1> */}
     </div>
-  )
-}
+  );
+};
 
 export default Details;

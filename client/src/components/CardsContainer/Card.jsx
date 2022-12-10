@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import {
-  BsFillHeartFill,
+  BsFillHeartFill, // eslint-disable-line
   BsFillStarFill,
   BsHeart,
-  BsStar,
+  BsStar, // eslint-disable-line
 } from "react-icons/bs"; // eslint-disable-line
 
 import "../../styles/card.css";

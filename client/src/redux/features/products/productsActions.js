@@ -2,13 +2,12 @@ import axios from "axios";
 import { getProducts, productsDetails, filterRating, searchByQuery, filterByCategory } from "./productsSlice";
 
 export const getAllProducts = () => async (dispatch) => {
-    try {
-        const response = await axios("http://localhost:3001/api/products/");
-        // const response = await axios("https://snykers.onrender.com/api/products");
-        return dispatch(getProducts(response.data.products));
-    } catch (error) {
-        return error;
-    }
+  try {
+    const response = await axios("http://localhost:3001/api/products/");
+    return dispatch(getProducts(response.data.products));
+  } catch (error) {
+    return error;
+  }
 };
 
 export const getProductsDetails = (_id) => async (dispatch) => {
