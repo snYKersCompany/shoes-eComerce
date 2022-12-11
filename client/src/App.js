@@ -28,6 +28,7 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
+          <Route path="/home/:id" element={<Details />} />
         </Routes>
       </AuthProvider>
     </div>
