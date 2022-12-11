@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 export const productsSlice = createSlice({
   name: "products",
   initialState: {
-    products: [], // este es el único estado que llenamos en el home. 
-    productsLoaded: [],
-    productDetail: [], // esto se llena por el useSelector() de /Details.jsx
-    orderBy:{},
-    // productRating: [],
-    productCategory: [],
+    products: [],
+    productDetail: [],
+    // guardar en el obj filter/order el objeto y su valor
+    filters: {},
+    orders: {},
+    // productsLoaded: [],
   },
   reducers: {
     getProducts: (state, action) => {
@@ -20,27 +20,31 @@ export const productsSlice = createSlice({
     createProducts: (state, action) => {
       state.products = action.payload;
     },
-    addOrder: (state, action) => {
-      state.orderBy = {...state.orderBy,...action.payload};
+    filterAdd: (state, action) => {
+      state.filters = { ...state.filters, ...action.payload };
     },
-    cleanOrder: (state, action) => {
-      state.orderBy = {};
-    },
-    filterRating: (state, action) => {
-      state.products = action.payload //hay que cambiar el estado que se llena 'en paginated se llena solamente products'
-      // console.log('esto es state.products', state.products)
+    //para hacer
+    clearFilter: (state, action) => {
+      state.filters = {};
+      // como usuario quiero eliminar un unico filtro y consevar los que ya tenia
     },
     searchByQuery: (state, action) => {
-      state.products = action.payload
+      state.products = action.payload;
     },
     filterByCategory: (state, action) => {
-      state.products = action.payload
-    }
+      state.products = action.payload;
+    },
   },
 });
 
-export const { getProducts, productsDetails, createProducs, filterRating, searchByQuery, filterByCategory } =
-  productsSlice.actions;
+export const {
+  getProducts,
+  productsDetails,
+  createProducs,
+  filterRating,
+  filterAdd,
+  searchByQuery,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;
 

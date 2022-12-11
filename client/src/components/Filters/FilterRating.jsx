@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { filterRatings } from "../../redux/features/products/productsActions";
+import { filterAdds } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
 const FilterRating = ({ setActualPage }) => {
@@ -9,8 +9,7 @@ const FilterRating = ({ setActualPage }) => {
 
   function handleFilterRating(e) {
     e.preventDefault();
-    console.log("::::::::::::::::::ESTO ES E.TARGET.VALUE", e.target.value);
-    dispatch(filterRatings(e.target.value));
+    dispatch(filterAdds({ rating: e.target.value }));
     setActualPage(1);
   }
 

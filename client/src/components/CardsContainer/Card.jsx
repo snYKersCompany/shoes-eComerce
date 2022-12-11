@@ -42,7 +42,7 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
               <>New</>
             )}
           </Card.Text>
-          <Link to={`/details/${_id}`} className="link">
+          <Link to={`/home/${_id}`} className="link">
             <Button variant="custom2 fw-bold">More Info</Button>
           </Link>
         </div>

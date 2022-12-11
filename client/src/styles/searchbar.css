@@ -1,0 +1,14 @@
+.icon {
+    color: black !important;
+    /* background: red !important; */
+}
+
+.btn-custom3 {
+    background: white !important;
+    border-radius: 0rem 1rem 1rem 0rem !important;
+}
+
+.input-search {
+    border-right: transparent !important;
+    border-radius: 1rem 0 0 1rem !important;
+}
