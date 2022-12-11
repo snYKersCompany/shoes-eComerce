@@ -35,11 +35,12 @@ export const createProduct = (payload) => async () => {
 
 export const filterRatings = (rating) => async (dispatch) => {
   try {
-    const filter = await axios(
-      "http://localhost:3001/api/products?rating=" + rating
-    );
-    console.log(":::::::::::::::::::::::::::ESTO ES FILTER.DATA", filter.data);
-    return dispatch(filterRating(filter.data[0]));
+    let filter ;
+    if(rating === "all") filter = await axios("http://localhost:3001/api/products/");
+    if(rating !== "all") filter = await axios("http://localhost:3001/api/products?rating=" + rating);
+    console.log(":::::::::::::::::::::::::::ESTO ES FILTER.DATA");
+    console.log(filter.data.products)
+    return dispatch(filterRating(filter.data.products));
   } catch (error) {
     return error;
   }

@@ -19,20 +19,7 @@ export const productsSlice = createSlice({
       state.products = action.payload;
     },
     filterRating: (state, action) => {
-      const rating2 = state.products;
-      console.log("::::::::::::::::::::::: ESTO ES RATING2", rating2);
-      const filterByRating =
-        action.payload === "all"
-          ? rating2
-          : rating2.filter((product) => product.rating);
-      console.log(
-        "::::::::::::::::::::::ESTO ES FILTERBYRATING",
-        filterByRating
-      );
-      return {
-        ...state,
-        products: action.payload === "all" ? state.products : filterByRating,
-      };
+      state.products = action.payload;
     },
   },
 });
