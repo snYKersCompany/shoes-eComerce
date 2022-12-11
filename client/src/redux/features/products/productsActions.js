@@ -33,6 +33,14 @@ export const createProduct = (payload) => async () => {
   }
 };
 
+export const addOrders = (orderBy) => async () => {
+  try {
+    return dispatch(addOrder(orderBy))
+  } catch (error) {
+    return error;
+  }
+};
+
 export const filterRatings = (payload) => async (dispatch) => {
   try {
     const response = await axios (`http://localhost:3001/api/products?rating=${payload}`)
