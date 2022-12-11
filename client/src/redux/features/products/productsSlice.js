@@ -31,6 +31,9 @@ export const productsSlice = createSlice({
     searchByQuery: (state, action) => {
       state.products = action.payload;
     },
+    filterByCategory: (state, action) => {
+      state.products = action.payload;
+    },
   },
 });
 

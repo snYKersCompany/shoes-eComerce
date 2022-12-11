@@ -4,6 +4,7 @@ import FilterGenre from "./FilterGenre.jsx";
 import FilterPrice from "./FilterPrice.jsx";
 import FilterRating from "./FilterRating.jsx";
 import FilterOrder from "./FiltersOrder.jsx";
+
 const Filters = ({ setActualPage }) => {
   return (
     <div className="d-flex justify-content-center">

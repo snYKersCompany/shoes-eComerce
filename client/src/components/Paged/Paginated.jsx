@@ -6,10 +6,12 @@ import CardsContainer from "../CardsContainer/CardsContainer";
 import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
 
+
 const Paginated = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products); //cambiar nombre
   const { filters } = useSelector((state) => state.products);
+
 
   useEffect(() => {
     dispatch(getAllProducts(filters));
@@ -17,11 +19,7 @@ const Paginated = () => {
 
   let pages = []; // el número de páginas de mi componente
 
-  if (products.length > 0) {
-    for (let i = 1; i <= Math.ceil(products.length / 15); i++) {
-      pages.push(i);
-    }
-  }
+
 
   //logica de recorrido del páginado
   const slicedPaged = () => {
@@ -49,6 +47,13 @@ const Paginated = () => {
     setActualPage(numberpage);
   };
 
+
+  if (products.length > 0) {
+    for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
+      pages.push(i);
+    }
+  }
+  
   const indexOfLastProduct = actualPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const productsSliced = products.slice(
@@ -59,7 +64,8 @@ const Paginated = () => {
   return (
     <div>
       <div>
-        <Filters setActualPage={setActualPage} />
+        {/* filters funciona pero no hace el paginado */}
+        <Filters setActualPage={setActualPage} /> 
         {products.length > 1 ? (
           pages.length < 8 ? (
             <Pagination className="d-flex justify-content-center mt-3">

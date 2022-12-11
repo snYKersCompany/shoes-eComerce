@@ -93,3 +93,48 @@ filters: {
 http://localhost:3001/api/products?rating=1&category=bascket
 */
 // const product = await axios(`http://localhost:3001/api/products`);
+
+// export const filterRatings = (rating) => async (dispatch) => {
+//   try {
+//     let filter;
+//     if (rating === "all")
+//       filter = await axios("http://localhost:3001/api/products/");
+//     if (rating !== "all")
+//       filter = await axios(
+//         "http://localhost:3001/api/products?rating=" + rating
+//       );
+//     return dispatch(productsDetails(filterRating));
+//   } catch (error) {
+//     return error;
+//   }
+// };
+
+/* 
+filters: {
+  rating: 1,
+  category: bascket
+}
+http://localhost:3001/api/products?rating=1&category=bascket
+*/
+// const product = await axios(`http://localhost:3001/api/products`);
+
+// export const getProductByQuery = (payload) => async (dispatch) => {
+//   try {
+//     const response = await axios(
+//       "http://localhost:3001/api/products?search=" + payload
+//     );
+//     return dispatch(searchByQuery(response.data.products));
+//   } catch (error) {
+//     return error;
+//   }
+// };
+
+// export const getProductByCategory = (payload) => async (dispatch) => {
+//   try {
+//     const response = await axios(`http://localhost:3001/api/categories`);
+//     console.log("esto es categories", response.data);
+//     return dispatch(filterByCategory(response.data));
+//   } catch (error) {
+//     return error;
+//   }
+// };
