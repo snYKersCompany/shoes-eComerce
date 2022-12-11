@@ -1,16 +1,33 @@
 import React from "react";
-import Form from 'react-bootstrap/Form';
+import { useDispatch } from "react-redux";
+import { filterAdds } from "../../redux/features/products/productsActions";
+import Form from "react-bootstrap/Form";
 
+const FilterCategory = () => {
+  const dispatch = useDispatch();
 
-const FilterCategory = () =>{
-    return(
-        <Form.Select className="d-flex m-1 " defaultValue='none'>
-            <option value='none' hidden>Category .</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </Form.Select>
-    )
-}
+  function handleFilterCategories(e) {
+    e.preventDefault();
+    dispatch(filterAdds({ category: e.target.value }));
+  }
 
-export default FilterCategory
+  return (
+    <Form.Select
+      className="d-flex m-1 "
+      defaultValue="none"
+      onChange={(e) => {
+        handleFilterCategories(e);
+      }}
+    >
+      <option value="none" hidden>
+        Category
+      </option>
+      <option></option>
+      <option value="basketball">Basketball</option>
+      <option value="lifestyle">Lifestyle</option>
+      <option value="3">Three</option>
+    </Form.Select>
+  );
+};
+
+export default FilterCategory;

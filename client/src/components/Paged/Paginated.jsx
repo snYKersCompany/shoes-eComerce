@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
-import Pagination from "react-bootstrap/Pagination";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Filters from "../Filters/Filters";
+import Pagination from "react-bootstrap/Pagination";
 
 const Paginated = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products); //cambiar nombre
+  const { filters } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
+    dispatch(getAllProducts(filters));
+  }, [dispatch, filters]);
 
   let pages = []; // el número de páginas de mi componente
 
@@ -83,7 +84,6 @@ const Paginated = () => {
                   </Pagination.Item>
                 )
               )}
-
               {actualPage !== pages[pages.length - 1] ? (
                 <Pagination.Next onClick={() => currentPage(actualPage + 1)} />
               ) : (

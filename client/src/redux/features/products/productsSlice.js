@@ -4,9 +4,11 @@ export const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    productsLoaded: [],
     productDetail: [],
-    productRating: [],
+    // guardar en el obj filter/order el objeto y su valor
+    filters: {},
+    orders: {},
+    // productsLoaded: [],
   },
   reducers: {
     getProducts: (state, action) => {
@@ -18,27 +20,28 @@ export const productsSlice = createSlice({
     createProducts: (state, action) => {
       state.products = action.payload;
     },
-    filterRating: (state, action) => {
-      const rating2 = state.products;
-      console.log("::::::::::::::::::::::: ESTO ES RATING2", rating2);
-      const filterByRating =
-        action.payload === "all"
-          ? rating2
-          : rating2.filter((product) => product.rating);
-      console.log(
-        "::::::::::::::::::::::ESTO ES FILTERBYRATING",
-        filterByRating
-      );
-      return {
-        ...state,
-        products: action.payload === "all" ? state.products : filterByRating,
-      };
+    filterAdd: (state, action) => {
+      state.filters = { ...state.filters, ...action.payload };
+    },
+    //para hacer
+    clearFilter: (state, action) => {
+      state.filters = {};
+      // como usuario quiero eliminar un unico filtro y consevar los que ya tenia
+    },
+    searchByQuery: (state, action) => {
+      state.products = action.payload;
     },
   },
 });
 
-export const { getProducts, productsDetails, createProducs, filterRating } =
-  productsSlice.actions;
+export const {
+  getProducts,
+  productsDetails,
+  createProducs,
+  filterRating,
+  filterAdd,
+  searchByQuery,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;
 

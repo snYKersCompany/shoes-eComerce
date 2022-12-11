@@ -47,7 +47,11 @@ const Details = () => {
       </div>
       <section className="d-flex flex-column justify-content-center align-items-center text-center mb-2">
         <p className="fs-5 text-secondary">
-          <em>{productDetail.description}</em>
+          <em>
+            <div
+              dangerouslySetInnerHTML={{ __html: productDetail.description }}
+            />
+          </em>
         </p>
         <p className="fw-bold fs-5">Range: {productDetail.range}</p>
         <p className="fw-bold fs-5">Rating: {productDetail.rating}</p>

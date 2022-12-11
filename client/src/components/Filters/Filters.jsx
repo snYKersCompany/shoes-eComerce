@@ -8,7 +8,7 @@ const Filters = ({ setActualPage }) => {
   return (
     <div className="d-flex justify-content-center">
       <div className="d-flex">
-        <FilterCategory />
+        <FilterCategory setActualPage={setActualPage} />
         <FilterGenre />
         <FilterPrice />
         <FilterRating setActualPage={setActualPage} />
