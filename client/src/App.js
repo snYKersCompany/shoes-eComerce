@@ -15,6 +15,7 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -26,7 +27,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/details/:id" element={<Details />} />
+          <Route path="/home/:id" element={<Details />} />
         </Routes>
       </AuthProvider>
     </div>
