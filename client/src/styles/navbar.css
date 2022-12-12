@@ -1,8 +1,30 @@
 @media screen and (max-width: 760px) {
-  div.logo {
-    display: none;
+  .logo {
+    position: absolute;
+    visibility: hidden;
+    width:0 ;
   }
 }
+
+
+.ContainerNavImg{
+  height: 100%;
+  position: relative;
+}
+
+.NavImg{
+  display: flex !important;
+  transform: scale(1.6);
+}
+
+.ContainerGeneralNav{
+  height: 80px;
+}
+
+/* .ContainerGeneralNav:hover{
+  cursor: pointer;
+} */
+
 
 /* .nav-link {
     display: hidden;

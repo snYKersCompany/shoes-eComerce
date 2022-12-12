@@ -7,7 +7,7 @@ import FilterOrder from "./FiltersOrder.jsx";
 
 const Filters = ({ setActualPage }) => {
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center flex-wrap">
       <div className="d-flex">
         <FilterCategory setActualPage={setActualPage} />
         <FilterGenre />
