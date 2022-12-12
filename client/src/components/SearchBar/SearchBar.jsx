@@ -13,12 +13,13 @@ export default function SearchBar() {
 
   const handleInput = (e) => {
     e.preventDefault();
-    console.log("esto es e de handleinput", e.target.value);
     setSearch(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(getProductByQuery(search)); //escucha? :check:
+    setSearch("");
     dispatch(getProductByQuery(search)); //escucha? :check:
     setSearch("");
   };

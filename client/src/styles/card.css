@@ -1,37 +1,26 @@
 .card {
     display: flex;
-    justify-self: center;
     background: rgb(28, 28, 28) !important;
     border-radius: 3rem !important;
     box-shadow: -0.1em 1em 1.5em rgba(0, 0, 0, 0.5) !important;
-    max-height: 44rem;
-    margin: 1rem 1.5rem;
+    max-height: 50rem;
+    margin: 1rem 2rem;
     z-index: 1;
     width: 25rem !important;
 }
 
 .brand {
-    font-size: 1em;
     text-transform: uppercase;
     color: red;
-    writing-mode: vertical-lr;
-    text-orientation: upright;
-    word-spacing: -1em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 16rem;
-    letter-spacing: -0.8rem;
+
 }
 
-.marg {
-    margin-top: -6rem !important;
-}
 
 .cardImage {
-    transform: rotate(30deg);
-    width: 94% !important;
-    z-index: -1;
+    /* transform: rotate(30deg); */
+    margin-top: -5rem;
+    width: 100%;
+    margin-bottom: -3rem;
 }
 
 .text-gold {
@@ -61,10 +50,10 @@
     background-color: yellow !important;
 }
 
-.CardBody1{
-    margin-right: -.1rem !important;
+.CardBody1 {
+    margin-right: 1.1rem !important;
 }
 
-.CardBody1:hover{
+.CardBody1:hover {
     cursor: default;
 }

@@ -15,7 +15,7 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -27,6 +27,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/home/:id" element={<Details />} />
           <Route path="/home/:id" element={<Details />} />
         </Routes>
       </AuthProvider>
