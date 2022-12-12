@@ -5,6 +5,7 @@ import { getAllProducts, getCategories } from "../../redux/features/products/pro
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
+import { Link } from "react-router-dom";
 
 
 const Paginated = () => {
@@ -69,8 +70,10 @@ const Paginated = () => {
     <div>
       <div>
         {/* filters funciona pero no hace el paginado */}
-        <Filters setActualPage={setActualPage} /> 
-        {products.length > 1 ? (
+        <div></div>
+        <Filters setActualPage={setActualPage} />
+        
+        {products.length >= 1 ? (
           pages.length < 8 ? (
             <Pagination className="d-flex justify-content-center mt-3">
               {actualPage !== 1 ? (
@@ -156,6 +159,11 @@ const Paginated = () => {
           <></>
         )}
       </div>
+      <div className=" d-flex w-100 justify-content-end pe-3">
+          <Link to={"/create"}>
+            <button className="d- flex p-2 border border-none rounded border-primary">Add Product (Demo)</button>
+          </Link>
+        </div>
       <CardsContainer productsSliced={productsSliced} />
     </div>
   );

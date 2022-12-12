@@ -17,6 +17,7 @@ const Details = () => {
     dispatch(getProductsDetails(id));
   }, [dispatch, id]);
 
+  console.log(productDetail)
   return (
     <div className="details d-flex flex-column">
       <div className="d-flex justify-content-center DetailsContainerGeneral">
@@ -51,31 +52,24 @@ const Details = () => {
         </section>
       </div>
       <section className="d-flex flex-column justify-content-center align-items-center text-center mb-2">
-        <p className="fs-5 text-secondary">
-          <em>
-            <div
-              dangerouslySetInnerHTML={{ __html: productDetail.description }}
-            />
-          </em>
-        </p>
+        <em className="fs-5 text-secondary">
+          <div
+            dangerouslySetInnerHTML={{ __html: productDetail.description }}
+          />
+        </em>
+
         <p className="fw-bold fs-5">Ranges:</p>
         {/* productDetail.ranges */}
         <ListGroup horizontal className="horizontalWrapper">
-          {/* {productDetail.range.map((r) => (
-            <ListGroup.Item className="horizontalItem">{r}</ListGroup.Item>
-          ))} */}
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
+          {productDetail.range?.map((r) => (
+            <ListGroup.Item className="horizontalItem" key={r}>{r}</ListGroup.Item>
+          ))}
         </ListGroup>
 
         <p className="fw-bold fs-5">
           Rating: <br />
-          {[...Array(productDetail.rating)].map((i) => (
-            <BsFillStarFill key={i} className="star" />
+          {[...Array(productDetail.rating)].map((i, index) => (
+            <BsFillStarFill key={index} className="star" />
           ))}
         </p>
       </section>

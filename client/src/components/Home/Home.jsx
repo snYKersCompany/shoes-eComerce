@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/authContext";
-import NavBar from "../NavBar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 
@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <>
-      <NavBar />
+      <Navbar />
       <Paginated />
       <Footer />
     </>

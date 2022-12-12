@@ -20,18 +20,17 @@ export default function SearchBar() {
     e.preventDefault();
     dispatch(getProductByQuery(search)); //escucha? :check:
     setSearch("");
-    dispatch(getProductByQuery(search)); //escucha? :check:
-    setSearch("");
   };
 
   return (
-    <Form onChange={(e) => handleInput(e)}>
+    <Form onSubmit={(e) =>handleSubmit(e)}>
       <Form.Group className="d-flex">
         <Form.Control
           className="input-search"
           type="text"
           value={search}
           placeholder="search"
+          onChange={(e) => handleInput(e)}
         />
         <Button variant="custom3" className="custom3">
           <BsSearch
