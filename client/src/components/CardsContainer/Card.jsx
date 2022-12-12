@@ -19,21 +19,25 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
           <BsHeart className="d-flex justify-content-center card-top fav" />
         </Button>
       </div>
-      <Card.Img className="cardImage" variant="top" src={card_picture} />
-      <Card.Body className="d-flex justify-content-center align-items-center me-4 marg CardBody1">
-        <div className="d-flex brand">
-          <Card.Text className="fs-1 mb-3">{brand}</Card.Text>
+      <Card.Img
+        className="cardImage d-flex "
+        variant="top"
+        src={card_picture}
+      />
+      <Card.Body className="d-flex flex-column justify-content-center align-items-center CardBody1">
+        <div className="d-flex ">
+          <Card.Text className=" fs-1 brand">{brand}</Card.Text>
         </div>
         <div className="d-flex flex-column align-items-center">
-          <Card.Title className="text-white fs-1 text-center">
+          <Card.Title className="text-white fs-1 text-center name ">
             {name}
           </Card.Title>
-          <Card.Text className="text-white fs-2">{price}</Card.Text>
+          <Card.Text className="text-white fs-2">${price}</Card.Text>
           <Card.Text className="text-gold fs-5 mb-3">
             {rating !== 0 ? (
               <>
                 rating:{" "}
-                {[...Array(rating)].map((index, i) => (
+                {[...Array(rating)].map((i) => (
                   <BsFillStarFill key={i} />
                 ))}
               </>
@@ -42,7 +46,7 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
               <>New</>
             )}
           </Card.Text>
-          <Link to={`/details/${_id}`} className="link">
+          <Link to={`/home/${_id}`} className="link">
             <Button variant="custom2 fw-bold">More Info</Button>
           </Link>
         </div>
