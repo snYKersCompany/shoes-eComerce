@@ -1,13 +1,14 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Application E-commerce Snykers",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon -L",
     "start": "node index.js",
     "test": "mocha -w ./tests/**/*.spec.js"
   },
-  "author": "Henry",
+  "author": "Snykers",
   "license": "ISC",
   "engines": {
     "node": ">=12.18.3",
