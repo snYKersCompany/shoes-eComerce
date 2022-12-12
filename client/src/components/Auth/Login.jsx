@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 ///JSX
-import Alert from "./Alert";
+import AlertMSJ from "./Alert";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const Login = () => {
   });
 
   const [error, setError] = useState();
+
+  const [forgotPassword, setForgotPassword] = useState();
 
   /////-----HANDLES-----/////
   const handleChange = ({ target: { name, value } }) => {
@@ -56,7 +59,9 @@ const Login = () => {
     try {
       await resetPassword(user.email);
       alert("We have sent you an email with a link to reset your password");
-      setError("We have sent you an email with a link to reset your password");
+      setForgotPassword(
+        "We have sent you an email with a link to reset your password"
+      );
     } catch (error) {
       setError(error.message);
     }
@@ -64,53 +69,59 @@ const Login = () => {
 
   return (
     <>
-      <Card className="text-center" style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Login</Card.Title>
-          {error && <Alert message={error} />}
-          <Form onSubmit={(e) => handleSubmit(e)}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                onChange={(e) => handleChange(e)}
-                name="email"
-                type="email"
-                placeholder="Enter email"
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                onChange={(e) => handleChange(e)}
-                name="password"
-                type="password"
-                placeholder="Password"
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Login
+      <CardGroup>
+        <Card className="text-center" style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>Login</Card.Title>
+            {forgotPassword && <p>{forgotPassword}</p>}
+            {error && <AlertMSJ message={error} />}
+            <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  onChange={(e) => handleChange(e)}
+                  name="email"
+                  type="email"
+                  placeholder="Enter email"
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  onChange={(e) => handleChange(e)}
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Login
+              </Button>
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={handleResetPassword}
+              >
+                Forgot Password ?
+              </Button>
+            </Form>
+            <Button variant="primary" onClick={handleGoogleLogin}>
+              Login with Google
             </Button>
-            <Button
-              variant="primary"
-              type="submit"
-              onClick={handleResetPassword}
-            >
-              Forgot Password ?
-            </Button>
-          </Form>
-          <Button variant="primary" onClick={handleGoogleLogin}>
-            Login with Google
-          </Button>
-          <Link to="/register">
-            <Button variant="primary">
-              Dont have an account? Register here
-            </Button>
-          </Link>
-        </Card.Body>
-      </Card>
+            <Link to="/register">
+              <Button variant="primary">
+                Dont have an account? Register here
+              </Button>
+            </Link>
+          </Card.Body>
+          <Card.Footer className="text-muted">
+            <Link to="/home">Go Home</Link>
+          </Card.Footer>
+        </Card>
+      </CardGroup>
     </>
   );
 };
