@@ -14,6 +14,8 @@ import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
+//style
+import '../../styles/navbar.css'
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -36,10 +38,10 @@ const NavBar = () => {
   }
   return (
     <>
-      <Navbar bg="dark">
-        <Container>
+      <Navbar bg="dark" className="d-flex">
+        <Container className="d-flex">
+            <div height="100px" className="logo">
           <Navbar.Brand>
-            <div height="100px">
               <img
                 alt="SNYKERS"
                 src={logoBlanco}
@@ -47,17 +49,17 @@ const NavBar = () => {
                 height="100%"
                 className="d-inline-block align-top"
               />
-            </div>
           </Navbar.Brand>
+            </div>
           <Nav className="justify-content-end" activeKey="/home">
             <SearchBar />
             <Dropdown as={NavItem}>
-              <Dropdown.Toggle as={NavLink}>
+              <Dropdown.Toggle as={NavLink} className='d-flex justify-content-center align-items-center'>
                 <img
                   src={accBlanco}
                   width="40"
-                  height="40"
-                  className="d-inline-block align-top"
+                  height="30"
+                  className="d-flex mb-4 ms-3"
                   alt="Acc"
                 />
               </Dropdown.Toggle>
