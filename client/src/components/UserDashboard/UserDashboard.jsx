@@ -7,19 +7,17 @@ import { useAuth } from "../../context/authContext"; // eslint-disable-line
 export default function UserDashboard() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state);
+  const { user } = useAuth();
 
   useEffect(() => {
+    console.log(user);
     // dispatch(getUser(id));
-  }, [dispatch, id]);
-  //   useEffect(() => {
-  //     dispatch(getUser(id));
-  //   }, [dispatch, id]);
+  }, []);
 
   return (
     <div>
       <div>User Dashboard</div>
-      <h4>{user.name}</h4>
+      {user}
     </div>
   );
 }
