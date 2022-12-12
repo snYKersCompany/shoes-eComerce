@@ -69,8 +69,8 @@ const Paginated = () => {
     <div>
       <div>
         {/* filters funciona pero no hace el paginado */}
-        <Filters setActualPage={setActualPage} /> 
-        {products.length > 1 ? (
+        <Filters setActualPage={setActualPage} />
+        {products.length >= 1 ? (
           pages.length < 8 ? (
             <Pagination className="d-flex justify-content-center mt-3">
               {actualPage !== 1 ? (

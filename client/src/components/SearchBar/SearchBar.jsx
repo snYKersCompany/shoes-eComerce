@@ -23,7 +23,7 @@ export default function SearchBar() {
   };
 
   return (
-    <Form>
+    <Form onSubmit={(e) =>handleSubmit(e)}>
       <Form.Group className="d-flex">
         <Form.Control
           className="input-search"
