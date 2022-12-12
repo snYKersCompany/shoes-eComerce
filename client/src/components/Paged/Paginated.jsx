@@ -54,7 +54,7 @@ const Paginated = () => {
 
 
   if (products.length > 0) {
-    for (let i = 1; i <= Math.ceil(products.length / 7); i++) {
+    for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
       pages.push(i);
     }
   } 
@@ -65,7 +65,6 @@ const Paginated = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-console.log(pages)
   return (
     <div>
       <div>
