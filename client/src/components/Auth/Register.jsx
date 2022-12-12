@@ -8,6 +8,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
+//style
+import "../../styles/register.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -67,6 +69,7 @@ const Register = () => {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
+                  className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="email"
                   type="email"
@@ -79,6 +82,9 @@ const Register = () => {
               <Form.Group controlId="formBasicPassword" className="mb-4">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  size="40"
+                  maxlength="256"
+                  className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="password"
                   type="password"

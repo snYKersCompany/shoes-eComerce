@@ -351,7 +351,8 @@ const Create = () => {
       price: form.price,
       description: form.description,
     };
-    setController({ ...controller, general: false });
+    setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
+    
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
       ? dispatch(createProduct(formToSend))
