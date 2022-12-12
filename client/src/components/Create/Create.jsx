@@ -138,12 +138,7 @@ const Create = () => {
     e.target.value === "none"
       ? setError({ ...error, gender: "choose a gender" })
       : setError({ ...error, gender: false });
-    if(e.target.value === "Unisex"){
-      setform({ ...form, gender: [e.target.value, "Men", "Women"] });
-    }
-    else{
       setform({ ...form, gender: [e.target.value ]});
-    }
   };
 
   let handleColor = (e) => {
