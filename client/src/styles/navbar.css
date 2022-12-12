@@ -1,0 +1,13 @@
+@media screen and (max-width: 760px) {
+  div.logo {
+    display: none;
+  }
+}
+
+/* .nav-link {
+    display: hidden;
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+} */

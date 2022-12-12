@@ -9,6 +9,7 @@ export const productsSlice = createSlice({
     filters: {},
     orders: {},
     // productsLoaded: [],
+    categories: []
   },
   reducers: {
     getProducts: (state, action) => {
@@ -23,15 +24,15 @@ export const productsSlice = createSlice({
     filterAdd: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
     },
+    categories: (state, action) => {
+      state.categories = action.payload
+    },
     //para hacer
     clearFilter: (state, action) => {
       state.filters = {};
       // como usuario quiero eliminar un unico filtro y consevar los que ya tenia
     },
     searchByQuery: (state, action) => {
-      state.products = action.payload;
-    },
-    filterByCategory: (state, action) => {
       state.products = action.payload;
     },
   },
@@ -44,6 +45,7 @@ export const {
   filterRating,
   filterAdd,
   searchByQuery,
+  categories,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
