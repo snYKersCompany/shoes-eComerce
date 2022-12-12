@@ -17,7 +17,7 @@ function validateAddress (str) {
   return str.length > 5;
 }
 
-const ProductsSchema = mongoose.Schema({
+const UsersSchema = mongoose.Schema({
   _id: {type: String, default: uuid},
   name: {type: String, require: true, validate: [validateName, 'The field name cannot contain strange characters']},
   email: {type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format']},
@@ -28,8 +28,11 @@ const ProductsSchema = mongoose.Schema({
   image: {type: String, require: true},
   admin: {type: Boolean, require: true, default: true},
   createdAt: {type: Date, default: Date.now}
+}, {
+  timestamps: false,
+  versionKey: false
 });
-const UsersModel = mongoose.model('users', ProductsSchema);
+const UsersModel = mongoose.model('users', UsersSchema);
 
 module.exports = {
   UsersModel
