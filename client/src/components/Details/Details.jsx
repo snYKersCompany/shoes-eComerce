@@ -51,13 +51,12 @@ const Details = () => {
         </section>
       </div>
       <section className="d-flex flex-column justify-content-center align-items-center text-center mb-2">
-        <p className="fs-5 text-secondary">
-          <em>
-            <div
-              dangerouslySetInnerHTML={{ __html: productDetail.description }}
-            />
-          </em>
-        </p>
+        <em className="fs-5 text-secondary">
+          <div
+            dangerouslySetInnerHTML={{ __html: productDetail.description }}
+          />
+        </em>
+
         <p className="fw-bold fs-5">Ranges:</p>
         {/* productDetail.ranges */}
         <ListGroup horizontal className="horizontalWrapper">
@@ -74,8 +73,8 @@ const Details = () => {
 
         <p className="fw-bold fs-5">
           Rating: <br />
-          {[...Array(productDetail.rating)].map((i) => (
-            <BsFillStarFill key={i} className="star" />
+          {[...Array(productDetail.rating)].map((i, index) => (
+            <BsFillStarFill key={index} className="star" />
           ))}
         </p>
       </section>
