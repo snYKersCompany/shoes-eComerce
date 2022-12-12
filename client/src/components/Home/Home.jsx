@@ -10,6 +10,7 @@ const Home = () => {
 
   //devuelve el user del contexto
   const { user } = useAuth(); // eslint-disable-line
+  // console.log(user.uid);
 
   return (
     <>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 ///JSX
-import AlertMSJ from "./Alert";
+import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -29,14 +29,29 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(user.email, user.password);
+      await signUp(user.emial, user.password);
       navigate("/home");
     } catch (error) {
       console.log("catch");
       console.log(error.code);
       console.log(error.message);
       if (error.code === "auth/admin-restricted-operation") {
-        setError("Correo invalido");
+        setError("Introduce an email and password");
+      }
+      if (error.code === "auth/internal-error") {
+        setError("Introduce a password");
+      }
+      if (error.code === "auth/weak-password") {
+        setError("Password must be 6 or longer");
+      }
+      if (error.code === "auth/email-already-in-use") {
+        setError("This email is already in use, please use another");
+      }
+      if (error.code === "auth/email-already-in-use") {
+        setError("This email is already in use, please use another");
+      }
+      if (error.code === "auth/missing-email") {
+        setError("Introduce an email");
       }
     }
   };

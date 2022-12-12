@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 ///JSX
-import AlertMSJ from "./Alert";
+import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
+import RestorePassword from "./RestorePassword";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,9 +20,8 @@ const Login = () => {
     password: "",
   });
 
-  const [error, setError] = useState();
-
-  const [forgotPassword, setForgotPassword] = useState();
+  const [error, setError] = useState("");
+  const [forgotPassword, setForgotPassword] = useState("");
 
   /////-----HANDLES-----/////
   const handleChange = ({ target: { name, value } }) => {
@@ -34,13 +34,23 @@ const Login = () => {
     setError("");
     try {
       await logIn(user.email, user.password);
-      alert("You have been logged succesfully");
       navigate("/home");
     } catch (error) {
+      console.log("catch");
+      console.log(error.code);
+      console.log(error.message);
       if (error.code === "auth/invalid-email") {
-        setError("Correo invalido");
+        setError("Introduce an email");
       }
-      setError(error.message);
+      if (error.code === "auth/internal-error") {
+        setError("Introduce a password");
+      }
+      if (error.code === "auth/wrong-password") {
+        setError("Wrong Password");
+      }
+      if (error.code === "auth/user-not-found") {
+        setError("This email is no registered");
+      }
     }
   };
 
@@ -59,7 +69,6 @@ const Login = () => {
     }
     try {
       await resetPassword(user.email);
-      alert("We have sent you an email with a link to reset your password");
       setForgotPassword(
         "We have sent you an email with a link to reset your password"
       );
@@ -74,7 +83,7 @@ const Login = () => {
         <Card className="text-center text-white" style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>Login</Card.Title>
-            {forgotPassword && <p>{forgotPassword}</p>}
+            {forgotPassword && <RestorePassword message={forgotPassword} />}
             {error && <AlertMSJ message={error} />}
             <Form onSubmit={(e) => handleSubmit(e)}>
               <Form.Group controlId="formBasicEmail">
