@@ -38,28 +38,24 @@ const NavBar = () => {
   }
   return (
     <>
-      <Navbar bg="dark" className="d-flex">
-        <Container className="d-flex">
-            <div height="100px" className="logo">
-          <Navbar.Brand>
-              <img
-                alt="SNYKERS"
-                src={logoBlanco}
-                width="100%"
-                height="100%"
-                className="d-inline-block align-top"
-              />
-          </Navbar.Brand>
-            </div>
-          <Nav className="justify-content-end" activeKey="/home">
+      <Navbar bg="dark" className="d-flex h-100 p-0">
+        <Container className="d-flex p-0 ContainerGeneralNav " >
+              <Navbar.Brand className="d-flex p-0 ContainerNavImg logo"> 
+                  <img
+                    alt="SNYKERS"
+                    src={logoBlanco}
+                    className="NavImg"
+                  />
+              </Navbar.Brand>
             <SearchBar />
+          <Nav className="justify-content-end align-items-center" activeKey="/home">
             <Dropdown as={NavItem}>
               <Dropdown.Toggle as={NavLink} className='d-flex justify-content-center align-items-center'>
                 <img
                   src={accBlanco}
                   width="40"
                   height="30"
-                  className="d-flex mb-4 ms-3"
+                  className="d-flex ms-3"
                   alt="Acc"
                 />
               </Dropdown.Toggle>
