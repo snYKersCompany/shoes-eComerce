@@ -1,7 +1,6 @@
 import React from "react";
 //BS
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 
 const AlertMSJ = ({ message }) => {
   return (
