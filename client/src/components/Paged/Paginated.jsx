@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/features/products/productsActions";
+import { getAllProducts, getCategories } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
@@ -13,8 +13,10 @@ const Paginated = () => {
   const { filters } = useSelector((state) => state.products);
 
 
+
   useEffect(() => {
     dispatch(getAllProducts(filters));
+    dispatch(getCategories())
   }, [dispatch, filters]);
 
   let pages = []; // el número de páginas de mi componente
@@ -23,15 +25,18 @@ const Paginated = () => {
 
   //logica de recorrido del páginado
   const slicedPaged = () => {
-    if (actualPage <= 2) {
+    if (actualPage <= 3) {
       const slice = pages.slice(0, 7);
       return slice;
     }
-    if (actualPage > 3 && pages[actualPage + 3] !== undefined) {
+    if (actualPage >3 && pages[actualPage + 3] !== undefined) {
       const slice = pages.slice(actualPage - 4, actualPage + 3);
+      console.log(slice +"2")
       return slice;
+
     } else if (actualPage > 3 && pages[actualPage + 4] === undefined) {
       const slice = pages.slice(pages.length - 7, pages.length);
+      console.log(slice +"3")
       return slice;
     }
   };
@@ -52,7 +57,7 @@ const Paginated = () => {
     for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
       pages.push(i);
     }
-  }
+  } 
   
   const indexOfLastProduct = actualPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -60,7 +65,6 @@ const Paginated = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
   return (
     <div>
       <div>

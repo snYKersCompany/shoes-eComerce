@@ -1,10 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { filterAdds } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
 const FilterCategory = () => {
   const dispatch = useDispatch();
+
+  const { categories } = useSelector((state) => state.products);
 
   function handleFilterCategories(e) {
     e.preventDefault();
@@ -22,10 +24,13 @@ const FilterCategory = () => {
       <option value="none" hidden>
         Category
       </option>
-      <option></option>
-      <option value="basketball">Basketball</option>
-      <option value="lifestyle">Lifestyle</option>
-      <option value="3">Three</option>
+      {categories &&
+        categories.map((e, i) => (
+          <option key={i} value={e}>
+            {e}
+          </option>
+        ))}
+        
     </Form.Select>
   );
 };

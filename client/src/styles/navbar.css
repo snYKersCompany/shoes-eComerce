@@ -1,0 +1,35 @@
+@media screen and (max-width: 760px) {
+  .logo {
+    position: absolute;
+    visibility: hidden;
+    width:0 ;
+  }
+}
+
+
+.ContainerNavImg{
+  height: 100%;
+  position: relative;
+}
+
+.NavImg{
+  display: flex !important;
+  transform: scale(1.6);
+}
+
+.ContainerGeneralNav{
+  height: 80px;
+}
+
+/* .ContainerGeneralNav:hover{
+  cursor: pointer;
+} */
+
+
+/* .nav-link {
+    display: hidden;
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+} */
