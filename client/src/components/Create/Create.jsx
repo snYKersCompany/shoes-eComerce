@@ -1,74 +1,41 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Carousel from "react-bootstrap/Carousel";
 import { useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
-import "./Create.css";
+import "../../styles/create.css";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
-// import {useSelector, useDispatch} from "react-redux"
-// import { useEffect } from "react";
-// import { getAllProductsCategories } from "../../redux/features/products/productsActions";
 
 
 const Create = () => {
 
-//   const dispatch = useDispatch() 
-  
-  
-//   const {productCategories} = useSelector((state) => state.products)
-
-//   useEffect(()=>{
-//     dispatch(getAllProductsCategories())
-//   },[dispatch])
-
-//   console.log(productCategories)
-
   const [error, setError] = useState({
-    name: false,
-    description: false,
-    brand: false,
-    size: "Select almost 1 color",
-    color: "Select almost 1 color",
-    price: false,
-    stock: false,
-    release: false,
-    img: false,
+    name: " ",
+    description: " ",
+    brand: " ",
+    price: " ",
+    color: " ",
+    gender: " ",
+    size: "Select almost 1 size",
+    categories: "Select almost 1 category",
+    stock: " ",
+    release: " ",
+    img: " ",
   });
 
-// let prueba={
-  //     name: "Nike Air Force 1",
-  //     stock: "49",
-//     brand: "Nike",
-//     color: [  <---- cambiar por categoría
-//         "White",
-//         "Black"
-//     ],
-//     stock: {
-  //         "6.5" : 10 unidades disponibles,
-  //         "8.5"
-  //   }
-  //
-//     price: "85.00",
-//     description: "son una nuevas zapas que en la vida has visto",
-//     release: "2017-02-09",
-//     img: [
-//         "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e777c881-5b62-4250-92a6-362967f54cca/calzado-air-force-1-07-b19lqD.png"
-//     ],
-//     radio: false
-// }
-
   const [form, setform] = useState({
-    name: "",
-    description: "",
-    brand: "",
-    size: "",
-    color: "",
-    price: "",
-    stock: "",
-    release: "",
-    img: "",
+    name: "", //string
+    description: "", //string
+    brand: "", //string
+    price: "", //Number
+    categories: "", //Array(String)
+    size: "", //Array(String)  ---> no incluido en el form de manera directa
+    color: "", // String
+    gender: "", //String
+    stock: "", // Object = {size: stock}  --> acá se introduce las tallas disponibles y el stock de cada una
+    release: "", // Date
+    img: "", //String
   });
   //eslint-disable-next-line
   const [controller, setController] = useState({
@@ -85,14 +52,9 @@ const Create = () => {
     },
     radio: true, //hasta que se puedan subir imágenes a la nube
     release: (date) =>
-    date.split("-")[0] < 1900 || date.split("-")[0] > 2100 ? false : true,
+      date.split("-")[0] < 1900 || date.split("-")[0] > 2100 ? false : true,
   });
 
-  //carousel
-  const [index, setIndex] = useState(0);
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
   //validations
   let handleName = (e) => {
     if (
@@ -159,59 +121,197 @@ const Create = () => {
     ) {
       return setform({ ...form }); //sin doble espacios
     }
-    setform({ ...form, price: e.target.value });
+    setform({ ...form, price: Number(e.target.value) });
     controller.price.test(e.target.value) === true &&
     controller.price.test(e.target.value) === false
       ? setError({ ...error, price: false })
       : setError({ ...error, price: "Invalid response" });
   };
 
-
-  let handleSize = (e) => {
-    if (e.target.value === "All") {
-      setform({ ...form, size: sizes.map((el) => el.toString()) });
-      setError({ ...error, size: false });
-    } else {
-      let a = form.size
-        ? form.size.filter((size) => size === e.target.value)
-        : null;
-      a === null || a.length < 1
-        ? setform({ ...form, size: [...form.size, e.target.value] })
-        : setform(form);
-      setError({ ...error, size: false });
+  let handleGender = (e) => {
+    e.target.value === "none"
+      ? setError({ ...error, gender: "choose a gender" })
+      : setError({ ...error, gender: false });
+    if(e.target.value === "Unisex"){
+      setform({ ...form, gender: [e.target.value, "Men", "Women"] });
+    }
+    else{
+      setform({ ...form, gender: [e.target.value ]});
     }
   };
 
   let handleColor = (e) => {
-    if (e.target.value === "All") {
-      setform({ ...form, color: colors });
-      setError({ ...error, color: false });
-    } else {
-      let a = form.color
-        ? form.color.filter((color) => color === e.target.value)
-        : null;
-      a === null || a.length < 1
-        ? setform({ ...form, color: [...form.color, e.target.value] })
-        : setform(form);
-      setError({ ...error, color: false });
-    }
+    e.target.value === "none"
+      ? setError({ ...error, color: "choose a color" })
+      : setError({ ...error, color: false });
+    setform({ ...form, color: e.target.value });
   };
 
-  let handleStock = (e) => {
-    if (
-      e.target.value[e.target.value.length - 2] === " " &&
-      e.target.value[e.target.value.length - 1] === " "
-    ) {
-      return setform({ ...form }); //sin doble espacios
+  let handleSize = (value) => {
+    let a = form.size;
+    a.length >= 1 ? (a = a.filter((el) => el === value)) : (a = []);
+    a.length < 1
+      ? setform({ ...form, size: [...form.size, value] })
+      : setform({ ...form, size: form.size.filter((el) => el !== value) });
+    form.size.length === 1 && value === form.size[0]
+      ? setError({ ...error, size: "Select almost 1 size" })
+      : setError({ ...error, size: false });
+  };
+
+  let handleCategory = (value) => {
+    let a = form.categories;
+    a.length >= 1 ? (a = a.filter((el) => el === value)) : (a = []);
+    a.length < 1
+      ? setform({ ...form, categories: [...form.categories, value] })
+      : setform({
+          ...form,
+          categories: form.categories.filter((el) => el !== value),
+        });
+    form.categories.length === 1 && value === form.categories[0]
+      ? setError({ ...error, categories: "Select almost 1 category" })
+      : setError({ ...error, categories: false });
+  };
+
+  let handleStock = (e, el) => {
+    if (el === 6) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 6: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 6: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
     }
-    setform({ ...form, stock: e.target.value });
-    controller.price.test(e.target.value) === true &&
-    controller.price.test(e.target.value) === false
-      ? setError({ ...error, stock: false })
-      : setError({ ...error, stock: "Invalid response" });
-    e.target.value<1 || e.target.value>10000000
-      ? setError({ ...error, stock: "Invalid response" })
-      : setError({ ...error, stock: false });
+
+    if (el === 6.5) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 6.5: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 6.5: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 7) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 7: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 7: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 7.5) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 7.5: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 7.5: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 8) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 8: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 8: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 8.5) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 8.5: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 8.5: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 9) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 9: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 9: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 9.5) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 9.5: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 9.5: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 10) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 10: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 10: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
+
+    if (el === 10.5) {
+      setform({
+        ...form,
+        stock: { ...form.stock, 10.5: Number(e.target.value) },
+      });
+      let control = { ...form.stock, 10.5: Number(e.target.value) };
+      Object.values(control).includes(0)
+        ? setError({
+            ...error,
+            stock: "All the sizes must have an stock most of 0",
+          })
+        : setError({ ...error, stock: false });
+    }
   };
 
   let handleRelease = (e) => {
@@ -230,44 +330,45 @@ const Create = () => {
   };
 
   let handleImgForm = () => {
-    setform({...form, img: [...form.img, auxImg]})
+    setform({ ...form, img: auxImg });
+    auxImg.length > 1
+      ? setError({ ...error, img: false })
+      : setError({ ...error, img: "Upload a image" });
   };
-  let deleteSize = (e) => {
-    let filtered = form.size.filter((size) => size !== e.target.value);
-    setform({ ...form, size: filtered });
-    filtered.length === 0
-      ? setError({ ...error, size: "Select almost 1 size" })
-      : setError({ ...error, size: false });
-  };
+  let submitForm = (e) => {
+    e.preventDefault();
 
-  let deleteColor = (e) => {
-    let filtered = form.color.filter((color) => color !== e.target.value);
-    setform({ ...form, color: filtered });
-    filtered.length === 0
-      ? setError({ ...error, color: "Select almost 1 color" })
-      : setError({ ...error, size: false });
+    !Object.values(form).includes("") &&
+    Object.values(error).filter((el) => el !== false).length < 1
+      ? console.log("Felicidades", form, error)
+      : // dispatch(PutShoes(form))
+        console.log("Fallaste", form, error);
   };
 
-  let submitForm = (e) =>{
-    e.preventDefault()
-    
-    !Object.values(form).includes('') && Object.values(error).filter(el=>el !== false).length<1?
-      
-    console.log('Felicidades', form, error)
-    // dispatch(PutShoes(form))
-    :
-    console.log('Fallaste', form, error)
-
-  }
+  console.log(Object.values(form).filter(el => el === " ").length>=1)
+  console.log(Object.values(error).filter(el=>el !== false).length>=1)
 
   const user = { admin: true };
   const sizes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5];
-  const colors = ["Yellow", "Blue", "Red", "White", "Gray", "Pink", "Black"];
+  const categories = [
+    //modificar con la ruta categories
+    "lifestyle",
+    "basketball",
+    "skateboarding",
+    "running",
+    "other",
+  ];
+
+  console.log(error);
+  console.log(form);
 
   return user.admin === true ? (
     <div className="containerGeneralFormCreate">
       <div className="d-flex containerFormCreate">
-        <Form className="d-flex flex-wrap w-100 FormCreateContainerResponsive" onSubmit={(e)=>submitForm(e)}>
+        <Form
+          className="d-flex flex-wrap w-100 FormCreateContainerResponsive"
+          onSubmit={(e) => submitForm(e)}
+        >
           <div className="d-flex flex-column">
             <Form.Group className="d-flex mb-3 flex-column justify-content-start">
               <Form.Label className="d-flex">Name:</Form.Label>
@@ -278,7 +379,7 @@ const Create = () => {
                 onChange={(e) => handleName(e)}
                 value={form.name}
               />
-              <label className="FormCreateError" >{error.name}</label>
+              <label className="FormCreateError">{error.name}</label>
             </Form.Group>
 
             <Form.Group className="d-flex mb-3 flex-column justify-content-start">
@@ -291,7 +392,7 @@ const Create = () => {
                 onChange={(e) => handleDescription(e)}
                 value={form.description}
               />
-                <label className="FormCreateError">{error.description}</label>
+              <label className="FormCreateError">{error.description}</label>
             </Form.Group>
 
             <div className="d-flex justify-content-between">
@@ -304,7 +405,18 @@ const Create = () => {
                   onChange={(e) => handleBrand(e)}
                   value={form.brand}
                 />
-                  <label className="FormCreateError">{error.brand}</label>
+                <label className="FormCreateError">{error.brand}</label>
+              </Form.Group>
+
+              <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2 color-warning">
+                <Form.Label className="d-flex">Release Date:</Form.Label>
+                <Form.Control
+                  type="date"
+                  className="d-flex FormCreateInputReleased "
+                  onChange={(e) => handleRelease(e)}
+                  value={form.release}
+                />
+                <label className="FormCreateError">{error.release}</label>
               </Form.Group>
 
               <Form.Group className="d-flex mb-3 flex-column justify-content-start">
@@ -320,170 +432,143 @@ const Create = () => {
               </Form.Group>
             </div>
 
-            <Form.Group className="d-flex w-100 flex-wrap align-items-center">
-              <div className="FormCreateInputSize  ">
-                <Form.Label className="d-flex">Sizes:</Form.Label>
+            <div className="d-flex justify-content-between ">
+              <Form.Group className="d-flex mb-3 flex-column w-100 ">
+                <Form.Label className="d-flex">Color:</Form.Label>
                 <Form.Select
-                  className="d-flex FormCreateInputSize"
                   defaultValue={"none"}
-                  onChange={(e) => handleSize(e)}
+                  className={
+                    form.color === ""
+                      ? "border border-danger"
+                      : "border border-success"
+                  }
+                  onChange={(e) => handleColor(e)}
                 >
                   <option value="none" hidden>
-                    Select the sizes{" "}
+                    Choose a color
                   </option>
-                  {sizes.map((size, i) => (
-                    <option key={size} value={size}>
-                      {size}
-                    </option>
-                  ))}
-                  <option value="All">All</option>
+                  <option value="Yellow">Yellow</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Red">Red</option>
+                  <option value="White">White</option>
+                  <option value="Black">Black</option>
+                  <option value="Green">Green</option>
+                  <option value="Brown">Brown</option>
                 </Form.Select>
-              </div>
-              <div className="d-flex flex-wrap w75 align-items-center FormCreateContainerChilds">
-                {form.size.length ? (
-                  form.size.map((size) => (
-                    <div
-                      key={size + "div"}
-                      style={{
-                        order: sizes.findIndex((el) => el === Number(size)),
-                      }}
-                      className={`d-flex align-items-center FormCreateChildrensSize`}
-                    >
-                      <label key={size}>{size}</label>
-                      <button
-                        onClick={(size) => deleteSize(size)}
-                        key={size + "btn"}
-                        value={size}
-                        className={"FormCreateChildrensSizeButton"}
-                      >
-                        x
-                      </button>
-                    </div>
-                  ))
-                ) : (
-                  <label className="d-flex justify-content-center w-100 fs-6 text-muted">
-                    {error.size}
-                  </label>
-                )}
+                <label className="FormCreateError">{error.color}</label>
+              </Form.Group>
+
+              <Form.Group className="d-flex mb-3 mx-2 flex-column justify-content-start w-100">
+                <Form.Label className="d-flex">Gender</Form.Label>
+                <Form.Select
+                  defaultValue={"none"}
+                  className={
+                    form.gender === ""
+                      ? "border border-danger"
+                      : "border border-success"
+                  }
+                  onChange={(e) => handleGender(e)}
+                >
+                  <option value="none" hidden>
+                    Choose a genre
+                  </option>
+                  <option value="Women">Women</option>
+                  <option value="Men">Men</option>
+                  <option value="Unisex">Unisex</option>
+                </Form.Select>
+                <label className="FormCreateError">{error.gender}</label>
+              </Form.Group>
+            </div>
+
+            <Form.Group className="d-flex w-100 flex-wrap align-items-center">
+              <Form.Label className="d-flex w-100 ">Categories:</Form.Label>
+
+              <div
+                className={`d-flex w-100 flex-wrap FormCreateCheckContainer justify-content-evenly ${
+                  form.categories.length
+                    ? "border border-success"
+                    : "border border-danger"
+                }`}
+              >
+                {categories.map((category) => (
+                  <Form.Check
+                    key={category}
+                    className=" me-3"
+                    label={category}
+                    name="categories"
+                    onChange={() => handleCategory(category)}
+                  />
+                ))}
               </div>
             </Form.Group>
 
             <Form.Group className="d-flex w-100 flex-wrap align-items-center">
-              <div className="FormCreateInputColors">
-                <Form.Label className="d-flex">Colors:</Form.Label>
-                <Form.Select
-                  className="d-flex FormCreateInputColors"
-                  defaultValue={"none"}
-                  onChange={(e) => handleColor(e)}
-                >
-                  <option value="none" hidden>
-                    Select the Colors
-                  </option>
-                  {colors.map((color) => (
-                    <option key={color} value={color}>
-                      {color}
-                    </option>
-                  ))}
-                  <option value="All">All</option>
-                </Form.Select>
-              </div>
-              <div className="d-flex flex-wrap w100 align-items-center FormCreateContainerChilds">
-                {form.color.length ? (
-                  form.color.map((color) => (
-                    <div
-                      key={color + "div"}
-                      className={`d-flex align-items-center FormCreateChildrensSize FormCreateChildrensSize${color} `}
-                    >
-                      <label key={color}>{color}</label>
-                      <button
-                        onClick={(color) => deleteColor(color)}
-                        key={color + "btn"}
-                        value={color}
-                        className={"FormCreateChildrensSizeButton"}
-                      >
-                        x
-                      </button>
-                    </div>
-                  ))
-                ) : (
-                  <label className="d-flex justify-content-center w-100 fs-6 text-muted">
-                    {error.color}
-                  </label>
-                )}
+              <Form.Label className="d-flex w-100 mt-2">Sizes:</Form.Label>
+              <div
+                className={`d-flex w-100 flex-wrap FormCreateCheckContainer justify-content-evenly ${
+                  form.size.length
+                    ? "border border-success"
+                    : "border border-danger"
+                }`}
+              >
+                {sizes.map((size, i) => (
+                  <Form.Check
+                    key={i}
+                    className="d-flex me-3"
+                    label={size}
+                    value={size}
+                    onChange={() => handleSize(size)}
+                    name="sizes"
+                  />
+                ))}
               </div>
             </Form.Group>
-            <div className="d-flex justify-content-evenly">
-              <Form.Group className="d-flex flex-column justify-content-center">
-                <Form.Label className="d-flex">Available Stock:</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="95"
-                  className="d-flex FormCreateInputStock"
-                  onChange={(e) => handleStock(e)}
-                  value={form.stock}
-                />
-                <label className="FormCreateError">{error.stock}</label>
-              </Form.Group>
-              <Form.Group className="d-flex flex-column justify-content-center">
-                <Form.Label className="d-flex">Release Date:</Form.Label>
-                <Form.Control
-                  type="date"
-                  className="d-flex FormCreateInputReleased "
-                  onChange={(e) => handleRelease(e)}
-                  value={form.release}
-                />
-                <label className="FormCreateError">{error.release}</label>
-              </Form.Group>
+            {form.size.length >= 1 ? <label>Stock:</label> : <></>}
+            <div className="d-flex flex-wrap ContainerStockCreate ">
+              {form.size.length >= 1 ? (
+                form.size.map((el, i) => (
+                  <Form.Group
+                    key={i}
+                    style={{ order: el * 2 }}
+                    className="d-flex justify-content-center align-items-center m-2 "
+                  >
+                    <Form.Label className="d-flex align-items-center CenterLabelCreate">
+                      Size {el}:
+                    </Form.Label>
+                    <Form.Control
+                      key={i}
+                      type="number"
+                      min={0}
+                      placeholder="Stock"
+                      className="d-flex FormCreateInputStock"
+                      onChange={(e) => handleStock(e, el)}
+                    />
+                  </Form.Group>
+                ))
+              ) : (
+                <></>
+              )}
+              <label className="FormCreateError">{error.stock}</label>
             </div>
           </div>
-          <div className=" containerFormCreateImgs align-items-center justify-content-center d-flex h-100 w-100 ">
+          <div className=" containerFormCreateImgs align-items-center justify-content-center d-flex h-100 w-100 flex-column ">
             <Form.Group className="d-flex flex-column justify-content-center align-items-center w-100">
               {controller.radio === true ? (
-                form.img.length>=1?
-                  <Carousel
-                    variant="dark"
-                    activeIndex={index}
-                    onSelect={handleSelect}
-                    className="d-flex w-100 FormCreateCarousel"
-                  >
-                  {form.img?.length>=1 && form.img.map((img,i)=>
-                      <Carousel.Item key={i}>
-                        <img
-                          className="d-flex w-100 containerFormCreateImgs"
-                          src={img}
-                          alt="First slide"
-                        />
-                      </Carousel.Item>
-                  
-                  )}
-                  </Carousel>
-                
-                  :
-                <img
-                  src="https://static.thenounproject.com/png/559530-200.png"
-                  alt={"Slide"}
+                form.img.length >= 1 ? (
+                  <img
+                    className="d-flex w-100 containerFormCreateImgs"
+                    src={form.img}
+                    alt="Img Upload"
                   />
-              ) : 
-              <></>
-              // (
-              //   <Carousel
-              //     variant="dark"
-              //     activeIndex={index}
-              //     onSelect={handleSelect}
-              //     className="d-flex FormCreateCarousel"
-              //   >
-              //     {form.img.map((img) => (
-              //       <Carousel.Item>
-              //         <img
-              //           className="d-block w-100"
-              //           src={img}
-              //           alt="First slide"
-              //         />
-              //       </Carousel.Item>
-              //     ))}
-              //   </Carousel>
-              // )
-            }
+                ) : (
+                  <img
+                    src="https://static.thenounproject.com/png/559530-200.png"
+                    alt="add Img"
+                  />
+                )
+              ) : (
+                <></>
+              )}
               <ButtonGroup>
                 <ToggleButton
                   key={1}
@@ -525,14 +610,26 @@ const Create = () => {
                 </FormGroup>
               ) : (
                 <Form.Group className="mt-3 d-flex flex-column">
-                  <Form.Label>Sin funcionalidad hasta que esté vinculado con cloudinary</Form.Label>
+                  <Form.Label>
+                    Sin funcionalidad hasta que esté vinculado con cloudinary
+                  </Form.Label>
                   <Form.Control type="file" multiple />
                 </Form.Group>
               )}
+            <div className="d-flex mt-5">
+
+              {Boolean(Object.values(form).filter(el => el === " ").length>=1) === false && Boolean(Object.values(error).filter(el=>el !== false).length>=1) === false? 
+              <Button className="d-flex formCreateButtonSubmit" type="sumbit" >
+               Send
+              </Button>
+              :
+              <Button className="d-flex formCreateButtonSubmit" type="sumbit" disabled>
+               Send
+              </Button>
+              }
+            </div>
+
             </Form.Group>
-          </div>
-          <div className="d-flex formCreateButtonSubmitDiv">
-                <Button className="d-flex formCreateButtonSubmit" type="sumbit">Enviar</Button>
           </div>
         </Form>
       </div>

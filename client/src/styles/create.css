@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 200px 0;
+    margin: 80px 0;
 }
 .containerFormCreate{
     background-color: whitesmoke;
@@ -11,6 +11,13 @@
     border-radius: 6px;
     margin: 7px;
 }
+
+.FormCreateCheckContainer{
+    background-color: white;
+    padding: 5px;
+    border: solid 1px rgb(204, 204, 204);
+    border-radius: 8px;
+}
 .FormCreateChildrensSize{
     background-color: rgb(253, 253, 253);
     outline: solid 1px rgb(201, 199, 199);
@@ -18,7 +25,13 @@
     margin: 2px 4px;
     border-radius: 12px;
 }
-
+.CenterLabelCreate{
+    margin-top: 2px !important;
+    margin-right: 5px;
+}
+.ContainerStockCreate{
+    width: 605px !important; 
+}
 .FormCreateInputSize{
     width: 170px;
     margin-right: 5px;
