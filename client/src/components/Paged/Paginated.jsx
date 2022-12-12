@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/features/products/productsActions";
+import { getAllProducts, getCategories } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
@@ -13,8 +13,10 @@ const Paginated = () => {
   const { filters } = useSelector((state) => state.products);
 
 
+
   useEffect(() => {
     dispatch(getAllProducts(filters));
+    dispatch(getCategories())
   }, [dispatch, filters]);
 
   let pages = []; // el número de páginas de mi componente
