@@ -37,7 +37,7 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
             {rating !== 0 ? (
               <>
                 rating:{" "}
-                {[...Array(rating)].map((i) => (
+                {[...Array(rating)].map((index, i) => (
                   <BsFillStarFill key={i} />
                 ))}
               </>
