@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+///JSX
+import Alert from "./Alert";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal"; // eslint-disable-line
+import Card from "react-bootstrap/Card";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -39,34 +41,44 @@ const Register = () => {
 
   return (
     <>
-      {error && <p>{error}</p>}
-      <Form onSubmit={(e) => handleSubmit(e)}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="email"
-            type="email"
-            placeholder="Enter email"
-          />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            onChange={(e) => handleChange(e)}
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Group>
-        <Form.Group controlId="formBasicCheckbox"></Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <Card className="text-center" style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>Register</Card.Title>
+          {error && <Alert message={error} />}
+          <Form onSubmit={(e) => handleSubmit(e)}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                onChange={(e) => handleChange(e)}
+                name="email"
+                type="email"
+                placeholder="Enter email"
+              />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                onChange={(e) => handleChange(e)}
+                name="password"
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox"></Form.Group>
+            <Button variant="primary" type="submit">
+              Register
+            </Button>
+          </Form>
+          <Link to="/login">
+            <Button variant="primary">
+              Already have an account? Login here
+            </Button>
+          </Link>
+        </Card.Body>
+      </Card>
     </>
   );
 };
