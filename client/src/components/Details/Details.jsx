@@ -17,6 +17,7 @@ const Details = () => {
     dispatch(getProductsDetails(id));
   }, [dispatch, id]);
 
+  console.log(productDetail)
   return (
     <div className="details d-flex flex-column">
       <div className="d-flex justify-content-center DetailsContainerGeneral">
@@ -60,15 +61,9 @@ const Details = () => {
         <p className="fw-bold fs-5">Ranges:</p>
         {/* productDetail.ranges */}
         <ListGroup horizontal className="horizontalWrapper">
-          {/* {productDetail.range.map((r) => (
-            <ListGroup.Item className="horizontalItem">{r}</ListGroup.Item>
-          ))} */}
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
-          <ListGroup.Item className="horizontalItem">11.5</ListGroup.Item>
+          {productDetail.range?.map((r) => (
+            <ListGroup.Item className="horizontalItem" key={r}>{r}</ListGroup.Item>
+          ))}
         </ListGroup>
 
         <p className="fw-bold fs-5">
