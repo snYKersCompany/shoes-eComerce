@@ -4,7 +4,7 @@ import {
   productsDetails,
   filterAdd,
   searchByQuery,
-  categories
+  categories,
 } from "./productsSlice";
 
 function filterQuery(filters) {
@@ -40,17 +40,6 @@ export const getProductsDetails = (_id) => async (dispatch) => {
   }
 };
 
-// export const getAllProductsCategories = () => async (dispatch) => {
-//   try {
-//     const categories = await axios("http://localhost:3001/api/categories/");
-//     console.log(categories.data);
-
-//     return dispatch(getAllProductsCategories(categories.data));
-//   } catch (error) {
-//     return error;
-//   }
-// };
-
 export const createProduct = (payload) => async () => {
   try {
     const post = await axios.post(
@@ -85,8 +74,8 @@ export const getProductByQuery = (payload) => async (dispatch) => {
 };
 
 export const getCategories = () => async (dispatch) => {
-  try{
-    const response = await axios(`http://localhost:3001/api/categories`)
-    return dispatch(categories(response.data))
-  }catch(error){}
-}
+  try {
+    const response = await axios(`http://localhost:3001/api/categories`);
+    return dispatch(categories(response.data));
+  } catch (error) {}
+};
