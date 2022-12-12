@@ -7,13 +7,11 @@ import "../../styles/create.css";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch } from "react-redux";
-import { createProduct} from "../../redux/features/products/productsActions";
+import { createProduct } from "../../redux/features/products/productsActions";
 import { Link } from "react-router-dom";
 
-
 const Create = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [error, setError] = useState({
     name: " ",
@@ -44,7 +42,7 @@ const Create = () => {
   });
   //eslint-disable-next-line
   const [controller, setController] = useState({
-    general: false, // cambia la pantalla cuando hace el dispatch para no agregar varias veces el mismo artículo 
+    general: false, // cambia la pantalla cuando hace el dispatch para no agregar varias veces el mismo artículo
     //eslint-disable-next-line
     name: /[{}<>=@\/\\]/g,
     //eslint-disable-next-line
@@ -138,7 +136,7 @@ const Create = () => {
     e.target.value === "none"
       ? setError({ ...error, gender: "choose a gender" })
       : setError({ ...error, gender: false });
-      setform({ ...form, gender: [e.target.value ]});
+    setform({ ...form, gender: [e.target.value] });
   };
 
   let handleColor = (e) => {
@@ -340,7 +338,7 @@ const Create = () => {
     e.preventDefault();
 
     let formToSend = {
-      name:form.name,
+      name: form.name,
       brand: form.brand,
       category: form.categories,
       color: form.color,
@@ -351,15 +349,15 @@ const Create = () => {
       original_picture: form.img,
       release_date: form.release,
       price: form.price,
-      description: form.description
-    }
-    setController({...controller, general: false})
+      description: form.description,
+    };
+    setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
+    
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
       ? dispatch(createProduct(formToSend))
       : console.log("Algo Falló");
   };
-
 
   const user = { admin: true };
   const sizes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5];
@@ -372,289 +370,304 @@ const Create = () => {
     "other",
   ];
 
-
   return user.admin === true ? (
-      controller.general === false?
-    <div className="containerGeneralFormCreate">
-      <div className="d-flex containerFormCreate">
-        <Form
-          className="d-flex flex-wrap w-100 FormCreateContainerResponsive"
-          onSubmit={(e) => submitForm(e)}
-        >
-          <div className="d-flex flex-column">
-            <Form.Group className="d-flex mb-3 flex-column justify-content-start">
-              <Form.Label className="d-flex">Name:</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Insert the name of the product"
-                className="d-flex"
-                onChange={(e) => handleName(e)}
-                value={form.name}
-              />
-              <label className="FormCreateError">{error.name}</label>
-            </Form.Group>
-
-            <Form.Group className="d-flex mb-3 flex-column justify-content-start">
-              <Form.Label className="d-flex">Description:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={5}
-                placeholder="Insert the description of the product"
-                className="d-flex"
-                onChange={(e) => handleDescription(e)}
-                value={form.description}
-              />
-              <label className="FormCreateError">{error.description}</label>
-            </Form.Group>
-
-            <div className="d-flex justify-content-between">
-              <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2">
-                <Form.Label className="d-flex">Brand:</Form.Label>
+    controller.general === false ? (
+      <div className="containerGeneralFormCreate">
+        <div className="d-flex containerFormCreate">
+          <Form
+            className="d-flex flex-wrap w-100 FormCreateContainerResponsive"
+            onSubmit={(e) => submitForm(e)}
+          >
+            <div className="d-flex flex-column">
+              <Form.Group className="d-flex mb-3 flex-column justify-content-start">
+                <Form.Label className="d-flex">Name:</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Insert the brand"
+                  placeholder="Insert the name of the product"
                   className="d-flex"
-                  onChange={(e) => handleBrand(e)}
-                  value={form.brand}
+                  onChange={(e) => handleName(e)}
+                  value={form.name}
                 />
-                <label className="FormCreateError">{error.brand}</label>
-              </Form.Group>
-
-              <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2 color-warning">
-                <Form.Label className="d-flex">Release Date:</Form.Label>
-                <Form.Control
-                  type="date"
-                  className="d-flex FormCreateInputReleased "
-                  onChange={(e) => handleRelease(e)}
-                  value={form.release}
-                />
-                <label className="FormCreateError">{error.release}</label>
+                <label className="FormCreateError">{error.name}</label>
               </Form.Group>
 
               <Form.Group className="d-flex mb-3 flex-column justify-content-start">
-                <Form.Label className="d-flex">Price:</Form.Label>
+                <Form.Label className="d-flex">Description:</Form.Label>
                 <Form.Control
-                  type="number"
-                  placeholder="$65.00"
+                  as="textarea"
+                  rows={5}
+                  placeholder="Insert the description of the product"
                   className="d-flex"
-                  onChange={(e) => handlePrice(e)}
-                  value={form.price}
+                  onChange={(e) => handleDescription(e)}
+                  value={form.description}
                 />
-                <label className="FormCreateError">{error.price}</label>
-              </Form.Group>
-            </div>
-
-            <div className="d-flex justify-content-between ">
-              <Form.Group className="d-flex mb-3 flex-column w-100 ">
-                <Form.Label className="d-flex">Color:</Form.Label>
-                <Form.Select
-                  defaultValue={"none"}
-                  className={
-                    form.color === ""
-                      ? "border border-danger"
-                      : "border border-success"
-                  }
-                  onChange={(e) => handleColor(e)}
-                >
-                  <option value="none" hidden>
-                    Choose a color
-                  </option>
-                  <option value="Yellow">Yellow</option>
-                  <option value="Blue">Blue</option>
-                  <option value="Red">Red</option>
-                  <option value="White">White</option>
-                  <option value="Black">Black</option>
-                  <option value="Green">Green</option>
-                  <option value="Brown">Brown</option>
-                </Form.Select>
-                <label className="FormCreateError">{error.color}</label>
+                <label className="FormCreateError">{error.description}</label>
               </Form.Group>
 
-              <Form.Group className="d-flex mb-3 mx-2 flex-column justify-content-start w-100">
-                <Form.Label className="d-flex">Gender</Form.Label>
-                <Form.Select
-                  defaultValue={"none"}
-                  className={
-                    form.gender === ""
-                      ? "border border-danger"
-                      : "border border-success"
-                  }
-                  onChange={(e) => handleGender(e)}
-                >
-                  <option value="none" hidden>
-                    Choose a genre
-                  </option>
-                  <option value="Women">Women</option>
-                  <option value="Men">Men</option>
-                  <option value="Unisex">Unisex</option>
-                </Form.Select>
-                <label className="FormCreateError">{error.gender}</label>
-              </Form.Group>
-            </div>
-
-            <Form.Group className="d-flex w-100 flex-wrap align-items-center">
-              <Form.Label className="d-flex w-100 ">Categories:</Form.Label>
-
-              <div
-                className={`d-flex w-100 flex-wrap FormCreateCheckContainer justify-content-evenly ${
-                  form.categories.length
-                    ? "border border-success"
-                    : "border border-danger"
-                }`}
-              >
-                {categories.map((category) => (
-                  <Form.Check
-                    key={category}
-                    className=" me-3"
-                    label={category}
-                    name="categories"
-                    onChange={() => handleCategory(category)}
-                  />
-                ))}
-              </div>
-            </Form.Group>
-
-            <Form.Group className="d-flex w-100 flex-wrap align-items-center">
-              <Form.Label className="d-flex w-100 mt-2">Sizes:</Form.Label>
-              <div
-                className={`d-flex w-100 flex-wrap FormCreateCheckContainer justify-content-evenly ${
-                  form.size.length
-                    ? "border border-success"
-                    : "border border-danger"
-                }`}
-              >
-                {sizes.map((size, i) => (
-                  <Form.Check
-                    key={i}
-                    className="d-flex me-3"
-                    label={size}
-                    value={size}
-                    onChange={() => handleSize(size)}
-                    name="sizes"
-                  />
-                ))}
-              </div>
-            </Form.Group>
-            {form.size.length >= 1 ? <label>Stock:</label> : <></>}
-            <div className="d-flex flex-wrap ContainerStockCreate ">
-              {form.size.length >= 1 ? (
-                form.size.map((el, i) => (
-                  <Form.Group
-                    key={i}
-                    style={{ order: el * 2 }}
-                    className="d-flex justify-content-center align-items-center m-2 "
-                  >
-                    <Form.Label className="d-flex align-items-center CenterLabelCreate">
-                      Size {el}:
-                    </Form.Label>
-                    <Form.Control
-                      key={i}
-                      type="number"
-                      min={0}
-                      placeholder="Stock"
-                      className="d-flex FormCreateInputStock"
-                      onChange={(e) => handleStock(e, el)}
-                    />
-                  </Form.Group>
-                ))
-              ) : (
-                <></>
-              )}
-              <label className="FormCreateError">{error.stock}</label>
-            </div>
-          </div>
-          <div className=" containerFormCreateImgs align-items-center justify-content-center d-flex h-100 w-100 flex-column ">
-            <Form.Group className="d-flex flex-column justify-content-center align-items-center w-100">
-              {controller.radio === true ? (
-                form.img.length >= 1 ? (
-                  <img
-                    className="d-flex w-100 containerFormCreateImgs"
-                    src={form.img}
-                    alt="Img Upload"
-                  />
-                ) : (
-                  <img
-                    src="https://static.thenounproject.com/png/559530-200.png"
-                    alt="add Img"
-                  />
-                )
-              ) : (
-                <></>
-              )}
-              <ButtonGroup>
-                <ToggleButton
-                  key={1}
-                  type="radio"
-                  variant={"outline-success"}
-                  value={controller.radio}
-                  onClick={() => setController({ ...controller, radio: true })}
-                  checked={controller.radio === true}
-                >
-                  {"Image Adress"}
-                </ToggleButton>
-
-                <ToggleButton
-                  key={2}
-                  type="radio"
-                  variant={"outline-danger"}
-                  value={controller.radio}
-                  onClick={() => setController({ ...controller, radio: false })}
-                  checked={controller.radio === false}
-                >
-                  {"Search Files"}
-                </ToggleButton>
-              </ButtonGroup>
-
-              {controller.radio === true ? (
-                <FormGroup className="d-flex w-100 mt-3">
+              <div className="d-flex justify-content-between">
+                <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2">
+                  <Form.Label className="d-flex">Brand:</Form.Label>
                   <Form.Control
                     type="text"
-                    className="d-flex FormCreateInputUrl"
-                    onChange={(e) => handleImg(e)}
-                    placeholder="Insert the URL of your image"
+                    placeholder="Insert the brand"
+                    className="d-flex"
+                    onChange={(e) => handleBrand(e)}
+                    value={form.brand}
                   />
-                  <Button
-                    className="d-flex mx-1"
-                    onClick={() => handleImgForm()}
-                  >
-                    Upload
-                  </Button>
-                </FormGroup>
-              ) : (
-                <Form.Group className="mt-3 d-flex flex-column">
-                  <Form.Label>
-                    Sin funcionalidad hasta que esté vinculado con cloudinary
-                  </Form.Label>
-                  <Form.Control type="file" multiple />
+                  <label className="FormCreateError">{error.brand}</label>
                 </Form.Group>
-              )}
-            <div className="d-flex mt-5">
 
-              {Boolean(Object.values(form).filter(el => el === " ").length>=1) === false && Boolean(Object.values(error).filter(el=>el !== false).length>=1) === false? 
-              <Button className="d-flex formCreateButtonSubmit" type="sumbit" >
-               Send
-              </Button>
-              :
-              <Button className="d-flex formCreateButtonSubmit" type="sumbit" disabled>
-               Send
-              </Button>
-              }
+                <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2 color-warning">
+                  <Form.Label className="d-flex">Release Date:</Form.Label>
+                  <Form.Control
+                    type="date"
+                    className="d-flex FormCreateInputReleased "
+                    onChange={(e) => handleRelease(e)}
+                    value={form.release}
+                  />
+                  <label className="FormCreateError">{error.release}</label>
+                </Form.Group>
+
+                <Form.Group className="d-flex mb-3 flex-column justify-content-start">
+                  <Form.Label className="d-flex">Price:</Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="$65.00"
+                    className="d-flex"
+                    onChange={(e) => handlePrice(e)}
+                    value={form.price}
+                  />
+                  <label className="FormCreateError">{error.price}</label>
+                </Form.Group>
+              </div>
+
+              <div className="d-flex justify-content-between ">
+                <Form.Group className="d-flex mb-3 flex-column w-100 ">
+                  <Form.Label className="d-flex">Color:</Form.Label>
+                  <Form.Select
+                    defaultValue={"none"}
+                    className={
+                      form.color === ""
+                        ? "border border-danger"
+                        : "border border-success"
+                    }
+                    onChange={(e) => handleColor(e)}
+                  >
+                    <option value="none" hidden>
+                      Choose a color
+                    </option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Red">Red</option>
+                    <option value="White">White</option>
+                    <option value="Black">Black</option>
+                    <option value="Green">Green</option>
+                    <option value="Brown">Brown</option>
+                  </Form.Select>
+                  <label className="FormCreateError">{error.color}</label>
+                </Form.Group>
+
+                <Form.Group className="d-flex mb-3 mx-2 flex-column justify-content-start w-100">
+                  <Form.Label className="d-flex">Gender</Form.Label>
+                  <Form.Select
+                    defaultValue={"none"}
+                    className={
+                      form.gender === ""
+                        ? "border border-danger"
+                        : "border border-success"
+                    }
+                    onChange={(e) => handleGender(e)}
+                  >
+                    <option value="none" hidden>
+                      Choose a genre
+                    </option>
+                    <option value="Women">Women</option>
+                    <option value="Men">Men</option>
+                    <option value="Unisex">Unisex</option>
+                  </Form.Select>
+                  <label className="FormCreateError">{error.gender}</label>
+                </Form.Group>
+              </div>
+
+              <Form.Group className="d-flex w-100 flex-wrap align-items-center">
+                <Form.Label className="d-flex w-100 ">Categories:</Form.Label>
+
+                <div
+                  className={`d-flex w-100 flex-wrap FormCreateCheckContainer justify-content-evenly ${
+                    form.categories.length
+                      ? "border border-success"
+                      : "border border-danger"
+                  }`}
+                >
+                  {categories.map((category) => (
+                    <Form.Check
+                      key={category}
+                      className=" me-3"
+                      label={category}
+                      name="categories"
+                      onChange={() => handleCategory(category)}
+                    />
+                  ))}
+                </div>
+              </Form.Group>
+
+              <Form.Group className="d-flex w-100 flex-wrap align-items-center">
+                <Form.Label className="d-flex w-100 mt-2">Sizes:</Form.Label>
+                <div
+                  className={`d-flex w-100 flex-wrap FormCreateCheckContainer justify-content-evenly ${
+                    form.size.length
+                      ? "border border-success"
+                      : "border border-danger"
+                  }`}
+                >
+                  {sizes.map((size, i) => (
+                    <Form.Check
+                      key={i}
+                      className="d-flex me-3"
+                      label={size}
+                      value={size}
+                      onChange={() => handleSize(size)}
+                      name="sizes"
+                    />
+                  ))}
+                </div>
+              </Form.Group>
+              {form.size.length >= 1 ? <label>Stock:</label> : <></>}
+              <div className="d-flex flex-wrap ContainerStockCreate ">
+                {form.size.length >= 1 ? (
+                  form.size.map((el, i) => (
+                    <Form.Group
+                      key={i}
+                      style={{ order: el * 2 }}
+                      className="d-flex justify-content-center align-items-center m-2 "
+                    >
+                      <Form.Label className="d-flex align-items-center CenterLabelCreate">
+                        Size {el}:
+                      </Form.Label>
+                      <Form.Control
+                        key={i}
+                        type="number"
+                        min={0}
+                        placeholder="Stock"
+                        className="d-flex FormCreateInputStock"
+                        onChange={(e) => handleStock(e, el)}
+                      />
+                    </Form.Group>
+                  ))
+                ) : (
+                  <></>
+                )}
+                <label className="FormCreateError">{error.stock}</label>
+              </div>
             </div>
+            <div className=" containerFormCreateImgs align-items-center justify-content-center d-flex h-100 w-100 flex-column ">
+              <Form.Group className="d-flex flex-column justify-content-center align-items-center w-100">
+                {controller.radio === true ? (
+                  form.img.length >= 1 ? (
+                    <img
+                      className="d-flex w-100 containerFormCreateImgs"
+                      src={form.img}
+                      alt="Img Upload"
+                    />
+                  ) : (
+                    <img
+                      src="https://static.thenounproject.com/png/559530-200.png"
+                      alt="add Img"
+                    />
+                  )
+                ) : (
+                  <></>
+                )}
+                <ButtonGroup>
+                  <ToggleButton
+                    key={1}
+                    type="radio"
+                    variant={"outline-success"}
+                    value={controller.radio}
+                    onClick={() =>
+                      setController({ ...controller, radio: true })
+                    }
+                    checked={controller.radio === true}
+                  >
+                    {"Image Adress"}
+                  </ToggleButton>
 
-            </Form.Group>
-          </div>
-        </Form>
+                  <ToggleButton
+                    key={2}
+                    type="radio"
+                    variant={"outline-danger"}
+                    value={controller.radio}
+                    onClick={() =>
+                      setController({ ...controller, radio: false })
+                    }
+                    checked={controller.radio === false}
+                  >
+                    {"Search Files"}
+                  </ToggleButton>
+                </ButtonGroup>
+
+                {controller.radio === true ? (
+                  <FormGroup className="d-flex w-100 mt-3">
+                    <Form.Control
+                      type="text"
+                      className="d-flex FormCreateInputUrl"
+                      onChange={(e) => handleImg(e)}
+                      placeholder="Insert the URL of your image"
+                    />
+                    <Button
+                      className="d-flex mx-1"
+                      onClick={() => handleImgForm()}
+                    >
+                      Upload
+                    </Button>
+                  </FormGroup>
+                ) : (
+                  <Form.Group className="mt-3 d-flex flex-column">
+                    <Form.Label>
+                      Sin funcionalidad hasta que esté vinculado con cloudinary
+                    </Form.Label>
+                    <Form.Control type="file" multiple />
+                  </Form.Group>
+                )}
+                <div className="d-flex mt-5">
+                  {Boolean(
+                    Object.values(form).filter((el) => el === " ").length >= 1
+                  ) === false &&
+                  Boolean(
+                    Object.values(error).filter((el) => el !== false).length >=
+                      1
+                  ) === false ? (
+                    <Button
+                      className="d-flex formCreateButtonSubmit"
+                      type="sumbit"
+                    >
+                      Send
+                    </Button>
+                  ) : (
+                    <Button
+                      className="d-flex formCreateButtonSubmit"
+                      type="sumbit"
+                      disabled
+                    >
+                      Send
+                    </Button>
+                  )}
+                </div>
+              </Form.Group>
+            </div>
+          </Form>
+        </div>
       </div>
-    </div>
-    :
-    <div className="SuccessContainerGeneralCreate">
-      <div className="SuccessContainerCreate">
-        <h3 className="SuccessCreateText">Your product was upload</h3>
-        <Link to="/home">
-          <button className="SuccessCreateButton">Back</button>
-        </Link>
+    ) : (
+      <div className="SuccessContainerGeneralCreate">
+        <div className="SuccessContainerCreate">
+          <h3 className="SuccessCreateText">Your product was upload</h3>
+          <Link to="/home">
+            <button className="SuccessCreateButton">Back</button>
+          </Link>
+        </div>
       </div>
-    </div>
+    )
   ) : (
     <div>
       <p>Acceso denegado</p>

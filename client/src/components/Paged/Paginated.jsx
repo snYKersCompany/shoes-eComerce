@@ -1,28 +1,26 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, getCategories } from "../../redux/features/products/productsActions";
+import {
+  getAllProducts,
+  getCategories,
+} from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
 import { Link } from "react-router-dom";
-
 
 const Paginated = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products); //cambiar nombre
   const { filters } = useSelector((state) => state.products);
 
-
-
   useEffect(() => {
     dispatch(getAllProducts(filters));
-    dispatch(getCategories())
+    dispatch(getCategories());
   }, [dispatch, filters]);
 
   let pages = []; // el número de páginas de mi componente
-
-
 
   //logica de recorrido del páginado
   const slicedPaged = () => {
@@ -30,14 +28,11 @@ const Paginated = () => {
       const slice = pages.slice(0, 7);
       return slice;
     }
-    if (actualPage >3 && pages[actualPage + 3] !== undefined) {
+    if (actualPage > 3 && pages[actualPage + 3] !== undefined) {
       const slice = pages.slice(actualPage - 4, actualPage + 3);
-      console.log(slice +"2")
       return slice;
-
     } else if (actualPage > 3 && pages[actualPage + 4] === undefined) {
       const slice = pages.slice(pages.length - 7, pages.length);
-      console.log(slice +"3")
       return slice;
     }
   };
@@ -53,13 +48,12 @@ const Paginated = () => {
     setActualPage(numberpage);
   };
 
-
   if (products.length > 0) {
     for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
       pages.push(i);
     }
-  } 
-  
+  }
+
   const indexOfLastProduct = actualPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const productsSliced = products.slice(
@@ -72,7 +66,7 @@ const Paginated = () => {
         {/* filters funciona pero no hace el paginado */}
         <div></div>
         <Filters setActualPage={setActualPage} />
-        
+
         {products.length >= 1 ? (
           pages.length < 8 ? (
             <Pagination className="d-flex justify-content-center mt-3">
@@ -160,10 +154,12 @@ const Paginated = () => {
         )}
       </div>
       <div className=" d-flex w-100 justify-content-end pe-3">
-          <Link to={"/create"}>
-            <button className="d- flex p-2 border border-none rounded border-primary">Add Product (Demo)</button>
-          </Link>
-        </div>
+        <Link to={"/create"}>
+          <button className="d- flex p-2 border border-none rounded border-primary">
+            Add Product (Demo)
+          </button>
+        </Link>
+      </div>
       <CardsContainer productsSliced={productsSliced} />
     </div>
   );
