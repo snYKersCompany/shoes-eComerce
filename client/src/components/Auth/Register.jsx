@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 ///JSX
-import Alert from "./Alert";
+import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
+//style
+import "../../styles/register.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,57 +31,82 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(user.email, user.password);
+      await signUp(user.emial, user.password);
       navigate("/home");
     } catch (error) {
+      console.log("catch");
       console.log(error.code);
-      if (error.code === "auth/invalid-email") {
-        setError("Correo invalido");
+      console.log(error.message);
+      if (error.code === "auth/admin-restricted-operation") {
+        setError("Introduce an email and password");
       }
-      setError(error.message);
+      if (error.code === "auth/internal-error") {
+        setError("Introduce a password");
+      }
+      if (error.code === "auth/weak-password") {
+        setError("Password must be 6 or longer");
+      }
+      if (error.code === "auth/email-already-in-use") {
+        setError("This email is already in use, please use another");
+      }
+      if (error.code === "auth/email-already-in-use") {
+        setError("This email is already in use, please use another");
+      }
+      if (error.code === "auth/missing-email") {
+        setError("Introduce an email");
+      }
     }
   };
 
   return (
     <>
-      <Card className="text-center" style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Register</Card.Title>
-          {error && <Alert message={error} />}
-          <Form onSubmit={(e) => handleSubmit(e)}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                onChange={(e) => handleChange(e)}
-                name="email"
-                type="email"
-                placeholder="Enter email"
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                onChange={(e) => handleChange(e)}
-                name="password"
-                type="password"
-                placeholder="Password"
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicCheckbox"></Form.Group>
-            <Button variant="primary" type="submit">
-              Register
-            </Button>
-          </Form>
-          <Link to="/login">
-            <Button variant="primary">
-              Already have an account? Login here
-            </Button>
-          </Link>
-        </Card.Body>
-      </Card>
+      <CardGroup>
+        <Card className="text-center text-white" style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>Register</Card.Title>
+            {error && <AlertMSJ message={error} />}
+            <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  className="ph-center"
+                  onChange={(e) => handleChange(e)}
+                  name="email"
+                  type="email"
+                  placeholder="Enter email"
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+              <Form.Group controlId="formBasicPassword" className="mb-4">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  size="40"
+                  maxlength="256"
+                  className="ph-center"
+                  onChange={(e) => handleChange(e)}
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
+              </Form.Group>
+              <Form.Group controlId="formBasicCheckbox"></Form.Group>
+              <Button variant="primary" type="submit">
+                Register
+              </Button>
+            </Form>
+            <Link to="/login">
+              <Button variant="primary" className="mt-4">
+                Already have an account? Login here
+              </Button>
+            </Link>
+          </Card.Body>
+          <Card.Footer className="text-muted">
+            <Link to="/home">Go Home</Link>
+          </Card.Footer>
+        </Card>
+      </CardGroup>
     </>
   );
 };

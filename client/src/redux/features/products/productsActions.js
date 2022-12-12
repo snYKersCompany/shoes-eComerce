@@ -5,19 +5,19 @@ import {
   filterAdd,
   searchByQuery,
   categories,
+  clearFilter,
 } from "./productsSlice";
 
 function filterQuery(filters) {
   let filter = Object.entries(filters);
   let query = filter.map((el) => el[0] + "=" + el[1]).join("&");
-
   return query;
 }
 
 export const getAllProducts = (filters) => async (dispatch) => {
   try {
     let query = filterQuery(filters);
-    if (!query.length) {
+    if (!query.length || query === "all") {
       let product = await axios("http://localhost:3001/api/products/");
       return dispatch(getProducts(product.data.products));
     }
@@ -77,5 +77,15 @@ export const getCategories = () => async (dispatch) => {
   try {
     const response = await axios(`http://localhost:3001/api/categories`);
     return dispatch(categories(response.data));
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
+};
+
+export const clearFilters = () => async (dispatch) => {
+  try {
+    return dispatch(clearFilter({}));
+  } catch (error) {
+    return error;
+  }
 };
