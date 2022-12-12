@@ -28,14 +28,15 @@ const Login = () => {
     setUser({ ...user, [name]: value });
   };
 
+  //Funcion con try cath async
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       await logIn(user.email, user.password);
+      alert("You have been logged succesfully");
       navigate("/home");
     } catch (error) {
-      console.log(error.code);
       if (error.code === "auth/invalid-email") {
         setError("Correo invalido");
       }
@@ -70,7 +71,7 @@ const Login = () => {
   return (
     <>
       <CardGroup>
-        <Card className="text-center" style={{ width: "18rem" }}>
+        <Card className="text-center text-white" style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>Login</Card.Title>
             {forgotPassword && <p>{forgotPassword}</p>}
@@ -88,7 +89,7 @@ const Login = () => {
                   We'll never share your email with anyone else.
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formBasicPassword">
+              <Form.Group controlId="formBasicPassword" className="mb-4">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   onChange={(e) => handleChange(e)}
@@ -101,6 +102,7 @@ const Login = () => {
                 Login
               </Button>
               <Button
+                className="m-2"
                 variant="primary"
                 type="submit"
                 onClick={handleResetPassword}
@@ -108,11 +110,15 @@ const Login = () => {
                 Forgot Password ?
               </Button>
             </Form>
-            <Button variant="primary" onClick={handleGoogleLogin}>
+            <Button
+              className="m-2"
+              variant="primary"
+              onClick={handleGoogleLogin}
+            >
               Login with Google
             </Button>
             <Link to="/register">
-              <Button variant="primary">
+              <Button className="m-2" variant="primary">
                 Dont have an account? Register here
               </Button>
             </Link>

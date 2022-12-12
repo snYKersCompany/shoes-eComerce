@@ -32,18 +32,19 @@ const Register = () => {
       await signUp(user.email, user.password);
       navigate("/home");
     } catch (error) {
+      console.log("catch");
       console.log(error.code);
-      if (error.code === "auth/invalid-email") {
+      console.log(error.message);
+      if (error.code === "auth/admin-restricted-operation") {
         setError("Correo invalido");
       }
-      setError(error.message);
     }
   };
 
   return (
     <>
       <CardGroup>
-        <Card className="text-center" style={{ width: "18rem" }}>
+        <Card className="text-center text-white" style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>Register</Card.Title>
             {error && <AlertMSJ message={error} />}
@@ -60,7 +61,7 @@ const Register = () => {
                   We'll never share your email with anyone else.
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formBasicPassword">
+              <Form.Group controlId="formBasicPassword" className="mb-4">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   onChange={(e) => handleChange(e)}
@@ -75,7 +76,7 @@ const Register = () => {
               </Button>
             </Form>
             <Link to="/login">
-              <Button variant="primary">
+              <Button variant="primary" className="mt-4">
                 Already have an account? Login here
               </Button>
             </Link>
