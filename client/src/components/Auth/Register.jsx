@@ -82,6 +82,9 @@ const Register = () => {
               <Form.Group controlId="formBasicPassword" className="mb-4">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  size="40"
+                  maxlength="256"
+                  className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="password"
                   type="password"

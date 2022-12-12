@@ -9,6 +9,8 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import RestorePassword from "./RestorePassword";
+//styles
+import "../../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -89,6 +91,7 @@ const Login = () => {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
+                  className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="email"
                   type="email"
@@ -101,6 +104,7 @@ const Login = () => {
               <Form.Group controlId="formBasicPassword" className="mb-4">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="password"
                   type="password"
