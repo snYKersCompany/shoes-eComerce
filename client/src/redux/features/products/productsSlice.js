@@ -4,7 +4,8 @@ export const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    productDetail: [],
+    productDetail: {},
+    // guardar en el obj filter/order el objeto y su valor
     filters: {},
     orders: {},
     categories: [],

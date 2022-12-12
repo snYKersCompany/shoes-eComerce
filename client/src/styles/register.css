@@ -1,0 +1,7 @@
+.ph-center {
+  height: 100px;
+}
+.ph-center::-webkit-input-placeholder {
+  text-align: center;
+  line-height: 100px; /* Centrado vertical */
+}
