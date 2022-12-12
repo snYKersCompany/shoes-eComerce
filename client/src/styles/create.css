@@ -142,6 +142,29 @@
     display: flex;
     height: fit-content !important;
 }
+.SuccessContainerGeneralCreate{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SuccessContainerCreate{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px rgb(194, 193, 193);
+    background-color: white;
+    padding: 50px;
+    border-radius: 12px;
+}
+
+.SuccessCreateButton{
+    border: solid 1px gray;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
 
 @media (max-width:1000px) {
     .FormCreateContainerResponsive{

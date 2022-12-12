@@ -23,15 +23,18 @@ const Paginated = () => {
 
   //logica de recorrido del páginado
   const slicedPaged = () => {
-    if (actualPage <= 2) {
+    if (actualPage <= 3) {
       const slice = pages.slice(0, 7);
       return slice;
     }
-    if (actualPage > 3 && pages[actualPage + 3] !== undefined) {
+    if (actualPage >3 && pages[actualPage + 3] !== undefined) {
       const slice = pages.slice(actualPage - 4, actualPage + 3);
+      console.log(slice +"2")
       return slice;
+
     } else if (actualPage > 3 && pages[actualPage + 4] === undefined) {
       const slice = pages.slice(pages.length - 7, pages.length);
+      console.log(slice +"3")
       return slice;
     }
   };
@@ -49,7 +52,7 @@ const Paginated = () => {
 
 
   if (products.length > 0) {
-    for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(products.length / 7); i++) {
       pages.push(i);
     }
   }
@@ -60,7 +63,7 @@ const Paginated = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
+console.log(pages)
   return (
     <div>
       <div>

@@ -6,9 +6,14 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import "../../styles/create.css";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
+import { useDispatch } from "react-redux";
+import { createProduct} from "../../redux/features/products/productsActions";
+import { Link } from "react-router-dom";
 
 
 const Create = () => {
+
+  const dispatch = useDispatch()
 
   const [error, setError] = useState({
     name: " ",
@@ -39,6 +44,7 @@ const Create = () => {
   });
   //eslint-disable-next-line
   const [controller, setController] = useState({
+    general: false, // cambia la pantalla cuando hace el dispatch para no agregar varias veces el mismo artículo 
     //eslint-disable-next-line
     name: /[{}<>=@\/\\]/g,
     //eslint-disable-next-line
@@ -338,15 +344,27 @@ const Create = () => {
   let submitForm = (e) => {
     e.preventDefault();
 
+    let formToSend = {
+      name:form.name,
+      brand: form.brand,
+      category: form.categories,
+      color: form.color,
+      gender: form.gender,
+      stock: form.stock,
+      card_picture: form.img,
+      detail_picture: form.img,
+      original_picture: form.img,
+      release_date: form.release,
+      price: form.price,
+      description: form.description
+    }
+    setController({...controller, general: false})
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
-      ? console.log("Felicidades", form, error)
-      : // dispatch(PutShoes(form))
-        console.log("Fallaste", form, error);
+      ? dispatch(createProduct(formToSend))
+      : console.log("Algo Falló");
   };
 
-  console.log(Object.values(form).filter(el => el === " ").length>=1)
-  console.log(Object.values(error).filter(el=>el !== false).length>=1)
 
   const user = { admin: true };
   const sizes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5];
@@ -359,10 +377,9 @@ const Create = () => {
     "other",
   ];
 
-  console.log(error);
-  console.log(form);
 
   return user.admin === true ? (
+      controller.general === false?
     <div className="containerGeneralFormCreate">
       <div className="d-flex containerFormCreate">
         <Form
@@ -632,6 +649,15 @@ const Create = () => {
             </Form.Group>
           </div>
         </Form>
+      </div>
+    </div>
+    :
+    <div className="SuccessContainerGeneralCreate">
+      <div className="SuccessContainerCreate">
+        <h3 className="SuccessCreateText">Your product was upload</h3>
+        <Link to="/home">
+          <button className="SuccessCreateButton">Back</button>
+        </Link>
       </div>
     </div>
   ) : (
