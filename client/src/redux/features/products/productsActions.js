@@ -75,5 +75,5 @@ export const getCategories = () => async (dispatch) => {
   try {
     const response = await axios(`http://localhost:3001/api/categories`);
     return dispatch(categories(response.data));
-  } catch (error) {}
+  } catch (error) { return error }
 };
