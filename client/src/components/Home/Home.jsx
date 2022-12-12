@@ -2,7 +2,6 @@ import React from "react";
 import { useAuth } from "../../context/authContext";
 import NavBar from "../NavBar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
-import Filters from "../Filters/Filters.jsx";
 import Footer from "../Footer/Footer";
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
   return (
     <>
       <NavBar />
-      <Filters />
       <Paginated />
       <Footer />
     </>
