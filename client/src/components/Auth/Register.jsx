@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 ///JSX
@@ -10,8 +11,11 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 //style
 import "../../styles/register.css";
+//Actions
+import { createUser } from "../../redux/features/users/usersActions";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signUp } = useAuth();
 
@@ -31,8 +35,9 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(user.emial, user.password);
+      await signUp(user.email, user.password);
       navigate("/home");
+      dispatch(createUser(user.email, user.password));
     } catch (error) {
       console.log("catch");
       console.log(error.code);

@@ -47,7 +47,7 @@ export const productsSlice = createSlice({
 export const {
   getProducts,
   productsDetails,
-  createProducs,
+  createProducts,
   filterRating,
   filterAdd,
   searchByQuery,
