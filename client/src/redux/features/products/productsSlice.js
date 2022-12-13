@@ -30,6 +30,14 @@ export const productsSlice = createSlice({
     clearFilter: (state, action) => {
       state.filters = action.payload;
     },
+    addOrder: (state, action) => {
+      state.orders = { ...state.orders, ...action.payload };
+    },
+    deleteOrder: (state, action) => {
+      const orders = state.orders
+      delete orders[action.payload]
+      state.orders = orders;
+    },
     searchByQuery: (state, action) => {
       state.products = action.payload;
     },
@@ -45,6 +53,8 @@ export const {
   searchByQuery,
   categories,
   clearFilter,
+  addOrder,
+  deleteOrder,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

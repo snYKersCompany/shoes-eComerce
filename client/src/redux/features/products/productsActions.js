@@ -6,6 +6,8 @@ import {
   searchByQuery,
   categories,
   clearFilter,
+  addOrder,
+  deleteOrder,
 } from "./productsSlice";
 
 function filterQuery(filters) {
@@ -14,17 +16,16 @@ function filterQuery(filters) {
   return query;
 }
 
-export const getAllProducts = (filters) => async (dispatch) => {
+export const getAllProducts = (filters, orders) => async (dispatch) => {
   try {
     let query = filterQuery(filters);
-    if (!query.length || query === "all") {
-      let product = await axios("http://localhost:3001/api/products/");
-      return dispatch(getProducts(product.data.products));
-    }
-    if (query.length) {
-      let product = await axios(`http://localhost:3001/api/products?${query}`);
-      return dispatch(getProducts(product.data.products));
-    }
+    
+    let orderBy = JSON.stringify(orders)
+    if(orderBy.length === 2) orderBy = ``
+    else orderBy = `orderBy=${orderBy}`
+    
+    let product = await axios(`http://localhost:3001/api/products?${query}&${orderBy}`);
+    return dispatch(getProducts(product.data.products));
   } catch (error) {
     return error;
   }
@@ -55,6 +56,22 @@ export const createProduct = (payload) => async () => {
 export const filterAdds = (filter) => async (dispatch) => {
   try {
     return dispatch(filterAdd(filter));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addOrders = (order) => async (dispatch) => {
+  try {
+    return dispatch(addOrder(order));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteOrders = (order) => async (dispatch) => {
+  try {
+    return dispatch(deleteOrder(order));
   } catch (error) {
     return error;
   }
