@@ -12,13 +12,12 @@ import { Link } from "react-router-dom";
 
 const Paginated = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.products); //cambiar nombre
-  const { filters } = useSelector((state) => state.products);
+  const { products, filters, orders } = useSelector((state) => state.products); //cambiar nombre
 
   useEffect(() => {
-    dispatch(getAllProducts(filters));
+    dispatch(getAllProducts(filters, orders));
     dispatch(getCategories());
-  }, [dispatch, filters]);
+  }, [dispatch, filters, orders]);
 
   let pages = []; // el número de páginas de mi componente
 
