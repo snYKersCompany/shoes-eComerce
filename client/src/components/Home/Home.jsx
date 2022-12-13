@@ -1,10 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/authContext";
-<<<<<<< HEAD
-import NavBar from "../Navbar/Navbar";
-=======
-import NavBar from "../NavBar/NavBar";
->>>>>>> dev
+import NavBar from "../NavBar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
