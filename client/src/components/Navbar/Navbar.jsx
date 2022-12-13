@@ -15,7 +15,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
 //style
-import '../../styles/navbar.css'
+import "../../styles/navbar.css";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -39,18 +39,20 @@ const NavBar = () => {
   return (
     <>
       <Navbar bg="dark" className="d-flex h-100 p-0">
-        <Container className="d-flex p-0 ContainerGeneralNav " >
-              <Navbar.Brand className="d-flex p-0 ContainerNavImg logo"> 
-                  <img
-                    alt="SNYKERS"
-                    src={logoBlanco}
-                    className="NavImg"
-                  />
-              </Navbar.Brand>
-            <SearchBar />
-          <Nav className="justify-content-end align-items-center" activeKey="/home">
+        <Container className="d-flex p-0 ContainerGeneralNav ">
+          <Navbar.Brand className="d-flex p-0 ContainerNavImg logo">
+            <img alt="SNYKERS" src={logoBlanco} className="NavImg" />
+          </Navbar.Brand>
+          <SearchBar />
+          <Nav
+            className="justify-content-end align-items-center"
+            activeKey="/home"
+          >
             <Dropdown as={NavItem}>
-              <Dropdown.Toggle as={NavLink} className='d-flex justify-content-center align-items-center'>
+              <Dropdown.Toggle
+                as={NavLink}
+                className="d-flex justify-content-center align-items-center"
+              >
                 <img
                   src={accBlanco}
                   width="40"
@@ -90,17 +92,15 @@ const NavBar = () => {
               </Dropdown.Menu>
             </Dropdown>
             <NavItem>
-              <Navbar.Brand href="#home">
-                <Link to="/">
-                  <img
-                    src={cartBlanco}
-                    width="40"
-                    height="40"
-                    className="d-inline-block align-top"
-                    alt="Cart"
-                  />
-                </Link>
-              </Navbar.Brand>
+              <Link to="/">
+                <img
+                  src={cartBlanco}
+                  width="40"
+                  height="40"
+                  className="d-inline-block align-top"
+                  alt="Cart"
+                />
+              </Link>
             </NavItem>
           </Nav>
         </Container>

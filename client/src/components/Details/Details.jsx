@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -17,10 +18,11 @@ const Details = () => {
     dispatch(getProductsDetails(id));
   }, [dispatch, id]);
 
-  console.log(productDetail)
+  console.log(productDetail);
   return (
     <div className="details d-flex flex-column">
       <div className="d-flex justify-content-center DetailsContainerGeneral">
+        <ScrollToTop />
         <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
           <div className="div1 col-6 d-flex flex-column align-items-start text-start DetailsHeader">
             <h2 className="fs-1 title ms-3 brand">
@@ -62,7 +64,9 @@ const Details = () => {
         {/* productDetail.ranges */}
         <ListGroup horizontal className="horizontalWrapper">
           {productDetail.range?.map((r) => (
-            <ListGroup.Item className="horizontalItem" key={r}>{r}</ListGroup.Item>
+            <ListGroup.Item className="horizontalItem" key={r}>
+              {r}
+            </ListGroup.Item>
           ))}
         </ListGroup>
 
