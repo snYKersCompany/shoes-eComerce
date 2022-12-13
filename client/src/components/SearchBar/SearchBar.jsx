@@ -21,12 +21,10 @@ export default function SearchBar() {
     e.preventDefault();
     dispatch(getProductByQuery(search)); //escucha? :check:
     setSearch("");
-    dispatch(getProductByQuery(search)); //escucha? :check:
-    setSearch("");
   };
 
   return (
-    <Form >
+    <Form onSubmit={(e) =>handleSubmit(e)}>
       <Form.Group className="d-flex">
         <Form.Control
           className="input-search"

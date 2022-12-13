@@ -23,14 +23,14 @@ export const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
     }
 
-
     //SING UP
     const signUp = async (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
     }
+
     //LOG IN
     const logIn = async (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
     }
     //LOG OUT
     const logOut = () => signOut(auth)

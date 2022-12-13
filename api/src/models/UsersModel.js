@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { uuid } = require('uuidv4');
+const bcrypt = require('bcryptjs');
 
 function validateName (str) {
   return (/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(str))
@@ -9,27 +10,44 @@ function validateEmail (str) {
   return (/\S+@\S+\.\S+/.test(str))
 }
 
-function validatePassword (str) {
-  return (/^[A-Za-z]\w{7,14}$/.test(str))
-}
-
 function validateAddress (str) {
   return str.length > 5;
 }
 
-const ProductsSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   _id: {type: String, default: uuid},
   name: {type: String, require: true, validate: [validateName, 'The field name cannot contain strange characters']},
+  username: {type: String, require: true},
   email: {type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format']},
-  password: {type: String, require: true, validate: [validatePassword, 'Password too weak']},
+  password: {type: String, require: true},
   phone: {type: String, require: true},
   address: {type: String, require: true, validate: [validateAddress, 'It must have more than 5 characters']},
   city: {type: String, require: true},
   image: {type: String, require: true},
-  admin: {type: Boolean, require: true, default: true},
+  // admin: {type: Boolean, require: true, default: true},
+  roles: [{
+    ref: "Role",
+    type: mongoose.Schema.Types.ObjectId
+  }],
   createdAt: {type: Date, default: Date.now}
+}, {
+  timestamps: false,
+  versionKey: false
 });
-const UsersModel = mongoose.model('users', ProductsSchema);
+
+userSchema.statics.encryptPassword = async (password) => {
+  if (!(/^[A-Za-z]\w{7,14}$/.test(password))) {
+    throw new Error(`The password is too weak`);
+  }
+  const salt = await bcrypt.genSalt(10)
+  return await bcrypt.hash(password, salt);
+}
+
+userSchema.statics.comparePassword = async (password, receivedPassword)=> {
+  return await bcrypt.compare(password, receivedPassword);
+}
+
+const UsersModel = mongoose.model('users', userSchema);
 
 module.exports = {
   UsersModel
