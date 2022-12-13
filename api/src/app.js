@@ -5,10 +5,12 @@ const morgan = require("morgan");
 const cors = require('cors');
 const routes = require("./routes/index.js");
 const pkg = require('../package.json');
+const { createRoles } = require('./libs/initialSetup');
 
 require("./db.js");
 
 const server = express();
+createRoles();
 server.set('pkg', pkg);
 server.name = "API";
 server.use(cors());

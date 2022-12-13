@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
