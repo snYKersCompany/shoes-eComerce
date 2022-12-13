@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../context/authContext";
-import NavBar from "../Navbar/NavBar";
+import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 

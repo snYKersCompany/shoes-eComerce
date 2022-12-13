@@ -1,19 +1,37 @@
-const { UsersModel } = require('../../models/ModelsDB.js');
+const { UsersModel, Roles } = require('../../models/ModelsDB.js');
+const jwt = require('jsonwebtoken');
+const SECRET = process.env.JWT_SECRET;
 
 const listUsers = async () => {
     const users = await UsersModel.find();
     return users;
 }
 
-const addUser = async (name, email, password, phone, address, city, image, admin) => {
-    if (!name && !email && !password && !phone && !address && !image & !admin) {
+const addUser = async (name, username, email, password, phone, address, city, image, admin, roles) => {
+    if (!name && !username && !email && !password && !phone && !address && !image & !admin) {
         throw new Error(`It must set all values`);
     }
-    const result = await UsersModel.findOne({email: email});
-    if (result) {
-        throw new Error(`The email was already found in the database`);
+    const user = new UsersModel({ 
+        name,
+        username,
+        email, 
+        password: await UsersModel.encryptPassword(password),
+        phone, 
+        address, 
+        city, 
+        image });        
+    if (roles) {
+        const rolesFound = await Roles.find({name: {$in: roles}})
+        user.roles = rolesFound.map(e => e._id);
     }
-    const user = await UsersModel.create({name, email, password, phone, address, city, image, admin});
+    else {
+        const role = await Roles.findOne({name: 'user'});
+        user.roles = [role._id];
+    }
+    await user.save();
+    jwt.sign({id: user._id}, SECRET, {
+        expiresIn: 86400
+    });
     return `${user.name} was successfully created`;
 }
 
@@ -52,7 +70,8 @@ const modifyUser = async (id, name, email, password, phone, address, city, image
 const postUsers = async (array) => {    
     array.map((e) => {
         UsersModel.create({
-            name: e.name, 
+            name: e.name,
+            username: e.username, 
             email: e.email, 
             password: e.password, 
             phone: e.phone, 
@@ -60,7 +79,10 @@ const postUsers = async (array) => {
             city: e.city, 
             image: e.image, 
             admin: e.admin
-        })
+        });
+        jwt.sign({id: e._id}, SECRET, {
+            expiresIn: 86400
+        });
     });
     Promise.all(array);    
     return `Users added successfully`;
