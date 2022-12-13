@@ -4,8 +4,7 @@ const getProducts = async ({rating, search, category, orderBy})=>{
     let parameters = {}
     if(rating) parameters.rating = rating
     if(category) parameters.category = category
-    
-    if(search) parameters = {name:{$regex:`(?i)${search}(?-i)`}}
+    if(search) parameters.name = {$regex:`(?i)${search}(?-i)`}
 
     let sort = null
     if(orderBy) sort = JSON.parse(orderBy)
