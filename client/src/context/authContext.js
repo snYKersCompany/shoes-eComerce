@@ -1,7 +1,7 @@
-import { createUser } from "../redux/features/users/usersActions"
 import React, { createContext, useContext, useState, useEffect } from "react"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth"
 import { auth } from '../utils/firebase/credentials'
+import { useDispatch } from "react-redux"
 export const authContext = createContext()
 
 //USEAUTH
@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
 
     //SING UP
     const signUp = async (email, password) => {
-        // const token = createUser(email, password)
         await createUserWithEmailAndPassword(auth, email, password)
     }
 

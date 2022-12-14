@@ -21,8 +21,8 @@ const Register = () => {
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
   const [error, setError] = useState("");
 
@@ -35,8 +35,8 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
+      dispatch(createUser(user));
       await signUp(user.email, user.password);
-      dispatch(createUser({ email: user.email, password: user.password }));
       navigate("/home");
     } catch (error) {
       console.log("catch");

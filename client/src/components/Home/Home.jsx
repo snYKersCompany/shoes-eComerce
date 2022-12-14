@@ -7,7 +7,6 @@ import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 //actions
-import { createUser } from "../../redux/features/users/usersActions";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,11 +15,11 @@ const Home = () => {
   //devuelve el user del contexto
   const { user } = useAuth(); // eslint-disable-line
 
-  // useEffect(() => {
-  //   if (user) {
-  //     dispatch(createUser(user.email, user.password, user.uid));
-  //   }
-  // }, [dispatch, user]);
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+    }
+  }, [user]);
 
   return (
     <>
