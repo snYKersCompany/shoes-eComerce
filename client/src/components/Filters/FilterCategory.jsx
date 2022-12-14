@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterAdds } from "../../redux/features/products/productsActions";
+import { deletefilters, filterAdds } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
 const FilterCategory = () => {
@@ -10,7 +10,8 @@ const FilterCategory = () => {
 
   function handleFilterCategories(e) {
     e.preventDefault();
-    dispatch(filterAdds({ category: e.target.value }));
+    if(e.target.value === "none") dispatch(deletefilters("category"))
+    else dispatch(filterAdds({ category: e.target.value }));
   }
 
   return (
@@ -21,7 +22,7 @@ const FilterCategory = () => {
         handleFilterCategories(e);
       }}
     >
-      <option value="none" hidden>
+      <option value="none">
         Category
       </option>
       {categories &&

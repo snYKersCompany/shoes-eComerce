@@ -8,6 +8,7 @@ import {
   clearFilter,
   addOrder,
   deleteOrder,
+  deletefilter,
 } from "./productsSlice";
 
 function filterQuery(filters) {
@@ -61,6 +62,22 @@ export const filterAdds = (filter) => async (dispatch) => {
   }
 };
 
+export const deletefilters = (filter) => async (dispatch) => {
+  try {
+    return dispatch(deletefilter(filter));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const clearFilters = () => async (dispatch) => {
+  try {
+    return dispatch(clearFilter({}));
+  } catch (error) {
+    return error;
+  }
+};
+
 export const addOrders = (order) => async (dispatch) => {
   try {
     return dispatch(addOrder(order));
@@ -97,10 +114,3 @@ export const getCategories = () => async (dispatch) => {
   }
 };
 
-export const clearFilters = () => async (dispatch) => {
-  try {
-    return dispatch(clearFilter({}));
-  } catch (error) {
-    return error;
-  }
-};

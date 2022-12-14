@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { filterAdds } from "../../redux/features/products/productsActions";
+import { deletefilters, filterAdds } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
 const FilterRating = ({ setActualPage }) => {
@@ -9,7 +9,8 @@ const FilterRating = ({ setActualPage }) => {
 
   function handleFilterRating(e) {
     e.preventDefault();
-    dispatch(filterAdds({ rating: e.target.value }));
+    if(e.target.value === "none") dispatch(deletefilters("rating"))
+    else dispatch(filterAdds({ rating: e.target.value }));
     setActualPage(1);
   }
 
@@ -21,16 +22,15 @@ const FilterRating = ({ setActualPage }) => {
         handleFilterRating(e);
       }}
     >
-      <option value="none" hidden>
+      <option value="none">
         Rating
       </option>
-      <option value="all">all</option>
       <option value="5">5</option>
       <option value="4">4</option>
       <option value="3">3</option>
       <option value="2">2</option>
       <option value="1">1</option>
-      <option value="0">New</option>
+      <option value="0">0</option>
     </Form.Select>
   );
 };

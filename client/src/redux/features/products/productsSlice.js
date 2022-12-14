@@ -27,6 +27,11 @@ export const productsSlice = createSlice({
     filterAdd: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
     },
+    deletefilter: (state, action) => {
+      const filters = state.filters
+      delete filters[action.payload]
+      state.filters = filters;
+    },
     clearFilter: (state, action) => {
       state.filters = action.payload;
     },
@@ -55,6 +60,7 @@ export const {
   clearFilter,
   addOrder,
   deleteOrder,
+  deletefilter,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
