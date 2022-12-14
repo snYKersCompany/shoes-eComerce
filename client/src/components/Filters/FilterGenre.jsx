@@ -23,5 +23,3 @@ const FilterGenre = ({ setActualPage }) =>{
         </Form.Select>
     )
 }
-
-export default FilterGenre
