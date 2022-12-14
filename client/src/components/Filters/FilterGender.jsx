@@ -13,8 +13,7 @@ const FilterGender = () => {
 
   const mapeo = products.map((e) => e.gender)
   const join = mapeo.join().split(',')
-  const toCaps = join.map(e=> e.toLowerCase())
-  const dry = [...new Set(toCaps)]
+  const dry = [...new Set(join)]
 
 
     function handleFilterCategories(e) {

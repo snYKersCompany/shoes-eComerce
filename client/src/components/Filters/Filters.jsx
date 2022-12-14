@@ -5,7 +5,8 @@ import FilterPrice from "./FilterPrice.jsx";
 import FilterRating from "./FilterRating.jsx";
 // import FilterOrder from "./FiltersOrder.jsx";
 import ClearFilters from "./ClearFilters.jsx";
-import FilterBrand from './FilterBrand'
+import FilterBrand from './FilterBrand';
+import OrderByAlphabet from './OrderByAlphabet';
 
 const Filters = ({ setActualPage }) => {
   return (
@@ -18,6 +19,7 @@ const Filters = ({ setActualPage }) => {
         {/* <FilterOrder /> */}
         <FilterBrand />
         <ClearFilters />
+        <OrderByAlphabet/>
         
       </div>
     </div>
