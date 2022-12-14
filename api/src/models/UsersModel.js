@@ -23,8 +23,7 @@ const userSchema = mongoose.Schema({
   phone: { type: String, require: false },
   address: { type: String, require: false, validate: [validateAddress, 'It must have more than 5 characters'] },
   city: { type: String, require: false },
-  image: { type: String, require: false },
-  // admin: {type: Boolean, require: true, default: true},
+  image: { type: String, require: false },  
   roles: [{
     ref: "Role",
     type: mongoose.Schema.Types.ObjectId
@@ -36,7 +35,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.statics.encryptPassword = async (password) => {
-  if (!(/^[A-Za-z]\w{7,14}$/.test(password))) {
+  if (!(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(password))) {
     throw new Error(`The password is too weak`);
   }
   const salt = await bcrypt.genSalt(10)
