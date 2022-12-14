@@ -6,19 +6,19 @@ const { verifyToken, isAdmin, checkRolesExisted, checkDuplicated } = require('..
 router.get('/', async (req, res) => {
     try {
         const users = await controllers.listUsers();
-        return res.status(200).json({users: users});
+        return res.status(200).json({ users: users });
     } catch (error) {
         next();
     }
 });
-
-router.post('/', [verifyToken, isAdmin, checkRolesExisted, checkDuplicated], async (req, res) => {
-    const { name, username, email, password, phone, address, city, image, admin, roles } = req.body;
+//middlewares of postUser: [verifyToken, isAdmin, checkRolesExisted, checkDuplicated]
+router.post('/', async (req, res) => {
+    const { email, password, roles } = req.body;
     try {
-        const message = await controllers.addUser(name, username, email, password, phone, address, city, image, admin, roles);
+        const message = await controllers.addUser(email, password, roles);
         return res.status(201).json(message);
     } catch (error) {
-        return res.status(400).json({error: error.message});
+        return res.status(400).json({ error: error.message });
     }
 });
 

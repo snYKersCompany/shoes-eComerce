@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 ///JSX
@@ -10,33 +11,46 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 //style
 import "../../styles/register.css";
+//Actions
+import { createUser } from "../../redux/features/users/usersActions";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signUp } = useAuth();
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
   const [error, setError] = useState("");
 
-  /////-----HANDLES-----/////
+  /////-----HANDLES-----/////  
   const handleChange = ({ target: { name, value } }) => {
+    if (name === 'password') {
+      validate(value);
+    }
     setUser({ ...user, [name]: value });
   };
 
+  function validate (password) {    
+    if (!(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/.test(password))) {
+      setError(`Password invalid, It must have 6 letters, 1 number and 1 character`);
+    }
+    else {
+      setError('');
+    }
+  }
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     setError("");
     try {
-      await signUp(user.emial, user.password);
+      dispatch(createUser(user));
+      await signUp(user.email, user.password);
       navigate("/home");
-    } catch (error) {
-      console.log("catch");
-      console.log(error.code);
-      console.log(error.message);
+    } catch (error) {      
       if (error.code === "auth/admin-restricted-operation") {
         setError("Introduce an email and password");
       }
@@ -54,7 +68,7 @@ const Register = () => {
       }
       if (error.code === "auth/missing-email") {
         setError("Introduce an email");
-      }
+      }      
     }
   };
 
@@ -83,7 +97,7 @@ const Register = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   size="40"
-                  maxlength="256"
+                  maxLength="256"
                   className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="password"
@@ -99,7 +113,7 @@ const Register = () => {
             <Link to="/login">
               <Button variant="primary" className="mt-4">
                 Already have an account? Login here
-              </Button>
+              </Button>              
             </Link>
           </Card.Body>
           <Card.Footer className="text-muted">
