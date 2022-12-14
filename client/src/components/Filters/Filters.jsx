@@ -17,6 +17,7 @@ const Filters = ({ setActualPage }) => {
         <FilterPrice />
         <FilterRating setActualPage={setActualPage} />
         {/* <FilterOrder /> */}
+        <FilterPrice setActualPage={setActualPage}/>
         <FilterBrand />
         <ClearFilters />
         <OrderByAlphabet/>
