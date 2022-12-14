@@ -17,7 +17,8 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
-          <Route path="/adminDashboardProducts" element={<AdminDashboardProducts />}></Route>
+          {/* Ruta creada para visualizar el componente AdminDashboardProducts*/}
+          {/* <Route path="/adminDashboardProducts" element={<AdminDashboardProducts />}></Route>  */}
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -31,7 +32,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/home/:id" element={<Details />} />
           <Route path="/home/:id" element={<Details />} />
         </Routes>
       </AuthProvider>
