@@ -1,8 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filterAdds } from "../../redux/features/products/productsActions";
+import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
-// import { BsGearWideConnected } from "react-icons/bs";
 import { addOrders } from "../../redux/features/products/productsActions";
 
 const OrderByAlphabet = () => {
