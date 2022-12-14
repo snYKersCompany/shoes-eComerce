@@ -37,7 +37,6 @@ const Register = () => {
     try {
       await signUp(user.email, user.password);
       navigate("/home");
-      dispatch(createUser(user.email, user.password));
     } catch (error) {
       console.log("catch");
       console.log(error.code);

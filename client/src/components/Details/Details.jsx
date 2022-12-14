@@ -9,7 +9,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
 import "../../styles/details.css";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar/Navbar";
 
 const Details = () => {
   const dispatch = useDispatch();
