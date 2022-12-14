@@ -16,11 +16,12 @@ const Home = () => {
   //devuelve el user del contexto
   const { user } = useAuth(); // eslint-disable-line
 
-  useEffect(() => {
-    if (user) {
-      dispatch(createUser(user.email, user.password, user.uid));
-    }
-  }, [dispatch, user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     dispatch(createUser(user.email, user.password, user.uid));
+  //   }
+  // }, [dispatch, user]);
+
   return (
     <>
       <ScrollToTop />

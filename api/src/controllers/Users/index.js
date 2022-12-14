@@ -12,14 +12,8 @@ const addUser = async (name, username, email, password, phone, address, city, im
     //     throw new Error(`It must set all values`);
     // }
     const user = new UsersModel({
-        name,
-        username,
         email,
         password: await UsersModel.encryptPassword(password),
-        phone,
-        address,
-        city,
-        image
     });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
@@ -33,7 +27,7 @@ const addUser = async (name, username, email, password, phone, address, city, im
     jwt.sign({ id: user._id }, SECRET, {
         expiresIn: 86400
     });
-    return `${user.name} was successfully created`;
+    return `${user.email} was successfully created`;
 }
 
 const findUser = async (id) => {

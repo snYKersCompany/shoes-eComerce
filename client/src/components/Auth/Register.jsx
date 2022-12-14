@@ -36,6 +36,7 @@ const Register = () => {
     setError("");
     try {
       await signUp(user.email, user.password);
+      dispatch(createUser({ email: user.email, password: user.password }));
       navigate("/home");
     } catch (error) {
       console.log("catch");
@@ -87,7 +88,7 @@ const Register = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   size="40"
-                  maxlength="256"
+                  maxLength="256"
                   className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="password"
