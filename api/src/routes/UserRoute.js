@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/Users');
+const { verifyToken, isAdmin, checkRolesExisted, checkDuplicated } = require('../middlewares');
 
 router.get('/', async (req, res) => {
     try {
@@ -11,11 +12,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
-    const { name, email, password, phone, address, city, image, admin } = req.body;
+router.post('/', [verifyToken, isAdmin, checkRolesExisted, checkDuplicated], async (req, res) => {
+    const { name, username, email, password, phone, address, city, image, admin, roles } = req.body;
     try {
-        const message = await controllers.addUser(name, email, password, phone, address, city, image, admin);
-        return res.status(200).json(message);
+        const message = await controllers.addUser(name, username, email, password, phone, address, city, image, admin, roles);
+        return res.status(201).json(message);
     } catch (error) {
         return res.status(400).json({error: error.message});
     }

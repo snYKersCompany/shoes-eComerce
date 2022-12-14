@@ -4,11 +4,14 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require('cors');
 const routes = require("./routes/index.js");
+const pkg = require('../package.json');
+const { createRoles } = require('./libs/initialSetup');
 
 require("./db.js");
 
 const server = express();
-
+createRoles();
+server.set('pkg', pkg);
 server.name = "API";
 server.use(cors());
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
@@ -25,7 +28,11 @@ server.use((req, res, next) => {
 
 server.use('/api', routes);
 server.get('/', (req, res) => {
-  return res.status(200).json({ message: `Application Snykers` });
+  return res.status(200).json({
+    author: server.get('pkg').author,
+    description: server.get('pkg').description,
+    version: server.get('pkg').version
+  });
 });
 
 // Error catching endware.

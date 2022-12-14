@@ -1,0 +1,40 @@
+.scroll_top {
+    position: fixed;
+    bottom: 50px;
+    right: 100px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: yellow;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.scroll_top img {
+    height: 30px;
+    width: 30px;
+}
+
+@media (max-width: 768px) {
+    .scroll_top {
+        bottom: 130px;
+        right: 30px;
+        height: 45px;
+        width: 45px;
+    }
+
+    .scroll_top img {
+        height: 25px;
+        width: 25px;
+    }
+}
+
+@media (max-width: 640px) {
+    .scroll_top {
+        bottom: 80px;
+    }
+}

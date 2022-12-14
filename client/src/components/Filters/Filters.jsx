@@ -3,7 +3,8 @@ import FilterCategory from "./FilterCategory.jsx";
 import FilterGenre from "./FilterGenre.jsx";
 import FilterPrice from "./FilterPrice.jsx";
 import FilterRating from "./FilterRating.jsx";
-import FilterOrder from "./FiltersOrder.jsx";
+// import FilterOrder from "./FiltersOrder.jsx";
+import ClearFilters from "./ClearFilters.jsx";
 
 const Filters = ({ setActualPage }) => {
   return (
@@ -13,7 +14,8 @@ const Filters = ({ setActualPage }) => {
         <FilterGenre />
         <FilterPrice />
         <FilterRating setActualPage={setActualPage} />
-        <FilterOrder />
+        {/* <FilterOrder /> */}
+        <ClearFilters />
       </div>
     </div>
   );
