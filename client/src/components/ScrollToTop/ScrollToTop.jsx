@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import scrollTop from "../../utils/images/arrow.png";
 import "../../styles/scrollToTop.css";
 
 const ScrollToTop = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const mounted = useRef(false);
 
   useEffect(() => {
+    mounted.current = true;
     window.addEventListener("scroll", () => {
       let isTop = window.scrollY < 100;
       if (isTop !== true) {
@@ -14,7 +16,7 @@ const ScrollToTop = () => {
         setShowScroll(false);
       }
       return () => {
-        isTop = true;
+        mounted.current = false;
       };
     });
   }, []);
