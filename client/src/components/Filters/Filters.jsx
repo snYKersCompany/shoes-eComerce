@@ -12,10 +12,10 @@ const Filters = ({ setActualPage }) => {
     <div className="d-flex justify-content-center flex-wrap">
       <div className="d-flex">
         <FilterCategory setActualPage={setActualPage} />
-        <FilterGenre />
-        <FilterPrice />
+        <FilterGenre setActualPage={setActualPage} />
         <FilterRating setActualPage={setActualPage} />
         {/* <FilterOrder /> */}
+        <FilterPrice setActualPage={setActualPage}/>
         <FilterBrand />
         <ClearFilters />
         

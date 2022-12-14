@@ -1,11 +1,16 @@
 const { ProductsModel } = require('../../models/ModelsDB');
 
-const getProducts = async ({rating, search, category, orderBy})=>{
+const getProducts = async ({rating, search, category, gender, priceMin, priceMax, orderBy, brand})=>{
     let parameters = {}
     if(rating) parameters.rating = rating
     if(category) parameters.category = category
+    if(gender) parameters.gender = gender
+    if(brand) parameters.brand = brand
+    if(priceMin) parameters.price = {$gte:parseInt(priceMin)}
+    if(priceMax) parameters.price = {...parameters.price, $lte:parseInt(priceMax)}
     if(search) parameters.name = {$regex:`(?i)${search}(?-i)`}
-
+    console.log(parseInt(priceMin))
+    
     let sort = null
     if(orderBy) sort = JSON.parse(orderBy)
 
