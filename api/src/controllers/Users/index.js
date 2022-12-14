@@ -7,10 +7,7 @@ const listUsers = async () => {
     return users;
 }
 
-const addUser = async (name, username, email, password, phone, address, city, image, admin, roles) => {
-    // if (!name && !username && !email && !password && !phone && !address && !image & !admin) {
-    //     throw new Error(`It must set all values`);
-    // }
+const addUser = async (email, password, roles) => {    
     const user = new UsersModel({
         email,
         password: await UsersModel.encryptPassword(password),

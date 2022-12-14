@@ -26,22 +26,31 @@ const Register = () => {
   });
   const [error, setError] = useState("");
 
-  /////-----HANDLES-----/////
+  /////-----HANDLES-----/////  
   const handleChange = ({ target: { name, value } }) => {
+    if (name === 'password') {
+      validate(value);
+    }
     setUser({ ...user, [name]: value });
   };
 
+  function validate (password) {    
+    if (!(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/.test(password))) {
+      setError(`Password invalid, It must have 6 letters, 1 number and 1 character`);
+    }
+    else {
+      setError('');
+    }
+  }
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     setError("");
     try {
       dispatch(createUser(user));
       await signUp(user.email, user.password);
       navigate("/home");
-    } catch (error) {
-      console.log("catch");
-      console.log(error.code);
-      console.log(error.message);
+    } catch (error) {      
       if (error.code === "auth/admin-restricted-operation") {
         setError("Introduce an email and password");
       }
@@ -59,7 +68,7 @@ const Register = () => {
       }
       if (error.code === "auth/missing-email") {
         setError("Introduce an email");
-      }
+      }      
     }
   };
 
@@ -104,7 +113,7 @@ const Register = () => {
             <Link to="/login">
               <Button variant="primary" className="mt-4">
                 Already have an account? Login here
-              </Button>
+              </Button>              
             </Link>
           </Card.Body>
           <Card.Footer className="text-muted">
