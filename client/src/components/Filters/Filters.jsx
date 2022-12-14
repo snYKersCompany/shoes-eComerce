@@ -14,7 +14,6 @@ const Filters = ({ setActualPage }) => {
       <div className="d-flex">
         <FilterCategory setActualPage={setActualPage} />
         <FilterGender />
-        <FilterPrice />
         <FilterRating setActualPage={setActualPage} />
         {/* <FilterOrder /> */}
         <FilterPrice setActualPage={setActualPage}/>
