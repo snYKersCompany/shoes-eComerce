@@ -26,8 +26,21 @@ const Register = () => {
 
   /////-----HANDLES-----/////
   const handleChange = ({ target: { name, value } }) => {
+    if (name === "password") {
+      validate(value);
+    }
     setUser({ ...user, [name]: value });
   };
+
+  function validate(password) {
+    if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/.test(password)) {
+      setError(
+        `Password invalid, It must have 6 letters, 1 number and 1 character`
+      );
+    } else {
+      setError("");
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +49,6 @@ const Register = () => {
       await signUp(user.email, user.password);
       navigate("/home");
     } catch (error) {
-      console.log(error.message);
       if (error.code === "auth/admin-restricted-operation") {
         setError("Introduce an email and password");
       }
