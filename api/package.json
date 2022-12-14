@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -L",
-<<<<<<< HEAD
     "start": "nodemon index.js",
-=======
-    "start": "node index.js",
->>>>>>> dev
     "test": "mocha -w ./tests/**/*.spec.js"
   },
   "author": "Snykers",
