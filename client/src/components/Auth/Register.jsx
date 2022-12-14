@@ -11,8 +11,6 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 //style
 import "../../styles/register.css";
-//Actions
-import { createUser } from "../../redux/features/users/usersActions";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -35,12 +33,9 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      dispatch(createUser(user));
       await signUp(user.email, user.password);
       navigate("/home");
     } catch (error) {
-      console.log("catch");
-      console.log(error.code);
       console.log(error.message);
       if (error.code === "auth/admin-restricted-operation") {
         setError("Introduce an email and password");
