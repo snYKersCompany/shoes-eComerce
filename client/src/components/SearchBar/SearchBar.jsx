@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getProductByQuery } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,6 +9,7 @@ import "../../styles/searchbar.css";
 
 export default function SearchBar() {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -20,11 +22,12 @@ export default function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getProductByQuery(search)); //escucha? :check:
+    navigate("/home");
     setSearch("");
   };
 
   return (
-    <Form onSubmit={(e) =>handleSubmit(e)}>
+    <Form onSubmit={(e) => handleSubmit(e)}>
       <Form.Group className="d-flex">
         <Form.Control
           className="input-search"

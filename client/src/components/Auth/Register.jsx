@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 ///JSX
@@ -10,15 +11,18 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 //style
 import "../../styles/register.css";
+//Actions
+import { createUser } from "../../redux/features/users/usersActions";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signUp } = useAuth();
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
   const [error, setError] = useState("");
 
@@ -31,7 +35,8 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(user.emial, user.password);
+      dispatch(createUser(user));
+      await signUp(user.email, user.password);
       navigate("/home");
     } catch (error) {
       console.log("catch");
@@ -83,7 +88,7 @@ const Register = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   size="40"
-                  maxlength="256"
+                  maxLength="256"
                   className="ph-center"
                   onChange={(e) => handleChange(e)}
                   name="password"
