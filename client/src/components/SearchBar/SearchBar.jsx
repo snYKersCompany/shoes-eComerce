@@ -13,6 +13,7 @@ export default function SearchBar() {
 
   const handleInput = (e) => {
     e.preventDefault();
+    console.log('esto es el input', e.target.value)
     setSearch(e.target.value);
   };
 
@@ -29,9 +30,9 @@ export default function SearchBar() {
           className="input-search"
           type="text"
           value={search}
-          placeholder="search"
           onChange={(e) => handleInput(e)}
-        />
+          placeholder="search"
+          />
         <Button variant="custom3" className="custom3">
           <BsSearch
             className="icon"
