@@ -32,7 +32,7 @@ export default function SearchBar() {
           value={search}
           onChange={(e) => handleInput(e)}
           placeholder="search"
-        />
+          />
         <Button variant="custom3" className="custom3">
           <BsSearch
             className="icon"
