@@ -10,12 +10,14 @@ import Create from './components/Create/Create';
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts"
 
 function App() {
   return (
     <div>
       <AuthProvider>
         <Routes>
+          <Route path="/adminDashboardProducts" element={<AdminDashboardProducts />}></Route>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
