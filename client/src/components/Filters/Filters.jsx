@@ -1,6 +1,6 @@
 import React from "react";
 import FilterCategory from "./FilterCategory.jsx";
-import FilterGenre from "./FilterGenre.jsx";
+import FilterGender from "./FilterGender.jsx";
 import FilterPrice from "./FilterPrice.jsx";
 import FilterRating from "./FilterRating.jsx";
 // import FilterOrder from "./FiltersOrder.jsx";
@@ -12,7 +12,7 @@ const Filters = ({ setActualPage }) => {
     <div className="d-flex justify-content-center flex-wrap">
       <div className="d-flex">
         <FilterCategory setActualPage={setActualPage} />
-        <FilterGenre />
+        <FilterGender />
         <FilterPrice />
         <FilterRating setActualPage={setActualPage} />
         {/* <FilterOrder /> */}
