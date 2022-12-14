@@ -1,0 +1,13 @@
+.container{
+    position: relative;
+}
+
+.customFilter{
+    position: fixed;
+}
+.displayDetails{
+    background-color: blue;
+    position:absolute;
+    width: 100%;
+    height: auto;
+}
