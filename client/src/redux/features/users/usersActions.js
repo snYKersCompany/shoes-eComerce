@@ -13,7 +13,6 @@ export const createUser = (payload) => async () => {
 export const getAllUsers = () => async (dispatch) => {
     try {
         const users = await axios.get("http://localhost:3001/api/users");
-        console.log(users.data.users)
         return dispatch(getAllUser(users.data.users));
     } catch (error) {
         return error;

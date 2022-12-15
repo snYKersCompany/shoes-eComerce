@@ -21,6 +21,9 @@ export const productsSlice = createSlice({
     productsDetails: (state, action) => {
       state.productDetail = action.payload;
     },
+    clearProductsDetails: (state, action) => {
+      state.productDetail = action.payload;
+    },
     createProducts: (state, action) => {
       state.products = action.payload;
     },
@@ -75,7 +78,8 @@ export const {
   deletefilter,
   filterBrands,
   filterRatings,
-  filterByGenders
+  filterByGenders,
+  clearProductsDetails
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

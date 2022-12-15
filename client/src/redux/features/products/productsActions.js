@@ -11,7 +11,8 @@ import {
   deletefilter,
   filterBrands,
   filterRatings,
-  filterByGenders
+  filterByGenders,
+  clearProductsDetails,
 } from "./productsSlice";
 
 function filterQuery(filters) {
@@ -45,6 +46,14 @@ export const getProductsDetails = (_id) => async (dispatch) => {
   }
 };
 
+export const clearProductsDetail = () => async (dispatch) => {
+  try {
+    return dispatch(clearProductsDetails({}));
+  } catch (error) {
+    return error;
+  }
+};
+
 export const createProduct = (payload) => async () => {
   try {
     const post = await axios.post(
@@ -52,6 +61,17 @@ export const createProduct = (payload) => async () => {
       payload
     );
     return post;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteProducts = (_id) => async () => {
+  try {
+    const delete_ = await axios.delete(
+      `http://localhost:3001/api/products/${_id}`
+    );
+    return delete_
   } catch (error) {
     return error;
   }
