@@ -13,9 +13,9 @@ router.get('/', async (req, res) => {
 });
 //middlewares of postUser: [verifyToken, isAdmin, checkRolesExisted, checkDuplicated]
 router.post('/', async (req, res) => {
-    const { email, password, roles } = req.body;
     try {
-        const message = await controllers.addUser(email, password, roles);
+        const { uid, email, roles } = req.body;
+        const message = await controllers.addUser(uid, email, roles);
         return res.status(201).json(message);
     } catch (error) {
         return res.status(400).json({ error: error.message });
@@ -47,6 +47,17 @@ router.put('/:id', async (req, res) => {
         const { id } = req.params;
         const { name, email, password, phone, address, city, image, admin } = req.body;
         const message = await controllers.modifyUser(id, name, email, password, phone, address, city, image, admin);
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+});
+
+router.post('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { favourite } = req.body;
+        const message = await controllers.postFavourites(id, favourite);
         return res.status(200).json(message);
     } catch (error) {
         return res.status(400).json({ error: error.message });

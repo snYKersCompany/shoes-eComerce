@@ -1,4 +1,4 @@
-const { UsersModel, Roles } = require('../../models/ModelsDB.js');
+const { UsersModel, Roles, ProductsModel } = require('../../models/ModelsDB.js');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
 
@@ -7,11 +7,12 @@ const listUsers = async () => {
     return users;
 }
 
-const addUser = async (email, password, roles) => {    
-    const user = new UsersModel({
-        email,
-        password: await UsersModel.encryptPassword(password),
-    });
+const addUser = async (uid, email, roles) => {
+    const result = await UsersModel.findById({ _id: uid });
+    if (result) {
+        return result;
+    }
+    const user = new UsersModel({ _id: uid, email: email });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
         user.roles = rolesFound.map(e => e._id);
@@ -21,10 +22,7 @@ const addUser = async (email, password, roles) => {
         user.roles = [role._id];
     }
     await user.save();
-    jwt.sign({ id: user._id }, SECRET, {
-        expiresIn: 86400
-    });
-    return `${user.email} was successfully created`;
+    return user;
 }
 
 const findUser = async (id) => {
@@ -59,6 +57,17 @@ const modifyUser = async (id, name, email, password, phone, address, city, image
     return `The user with an id ${id} was successfully modified`;
 }
 
+const postFavourites = async (id, favourite) => {
+    const user = await UsersModel.findById({ _id: id });
+    if (!user) {
+        throw new Error(`User was not found in the database`);
+    }
+    const product = await ProductsModel.findOne({ _id: favourite });
+    user.favourites = [product.id];
+    await user.save();
+    console.log(user);
+}
+
 const postUsers = async (array) => {
     array.map((e) => {
         UsersModel.create({
@@ -86,5 +95,6 @@ module.exports = {
     findUser,
     deleteUser,
     modifyUser,
-    postUsers
+    postUsers,
+    postFavourites
 }

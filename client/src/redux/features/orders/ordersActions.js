@@ -1,11 +1,27 @@
 import axios from "axios"
-import { getAllOrder } from "./ordersSlice";
+import { clearOrderDetail, getAllOrder, getOrderDetail } from "./ordersSlice";
 
 export const getAllOrders = () => async (dispatch) => {
     try {
         const orders = await axios.get("http://localhost:3001/api/orders");
-        console.log(orders.data.order)
         return dispatch(getAllOrder(orders.data.order));
+    } catch (error) {
+        return error;
+    }
+};
+
+export const getOrderDetails = (_id) => async (dispatch) => {
+    try {
+        const orders = await axios.get(`http://localhost:3001/api/orders/${_id}`);
+        return dispatch(getOrderDetail(orders.data));
+    } catch (error) {
+        return error;
+    }
+};
+
+export const clearOrderDetails = () => async (dispatch) => {
+    try {
+        return dispatch(clearOrderDetail({}));
     } catch (error) {
         return error;
     }

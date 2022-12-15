@@ -15,11 +15,11 @@ const Home = () => {
   //devuelve el user del contexto
   const { user } = useAuth(); // eslint-disable-line
 
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log(user);
+  //   }
+  // }, [user]);
 
   return (
     <>
