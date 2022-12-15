@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 import { useDispatch } from "react-redux";
 //JSX
-import NavBar from "../NavBar/Navbar";
+import NavBar from "../NavBar/NavBar";
 import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
