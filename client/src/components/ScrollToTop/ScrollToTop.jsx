@@ -6,6 +6,10 @@ const ScrollToTop = () => {
   const [showScroll, setShowScroll] = useState(false);
   const mounted = useRef(false);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   useEffect(() => {
     mounted.current = true;
     window.addEventListener("scroll", () => {
@@ -19,11 +23,7 @@ const ScrollToTop = () => {
         mounted.current = false;
       };
     });
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  });
 
   return (
     <div>
