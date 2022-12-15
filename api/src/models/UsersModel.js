@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const { uuid } = require('uuidv4');
 const bcrypt = require('bcryptjs');
-const findOrCreate = require ('mongoose-findorcreate');
 
 function validateName(str) {
   return (/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(str))
@@ -29,6 +28,10 @@ const userSchema = mongoose.Schema({
     ref: "Role",
     type: mongoose.Schema.Types.ObjectId
   }],
+  favourites: [{
+    ref: "products",
+    type: mongoose.Schema.Types.ObjectId
+  }],
   createdAt: { type: Date, default: Date.now }
 }, {
   timestamps: false,
@@ -46,8 +49,6 @@ userSchema.statics.encryptPassword = async (password) => {
 userSchema.statics.comparePassword = async (password, receivedPassword) => {
   return await bcrypt.compare(password, receivedPassword);
 }
-
-userSchema.plugin(findOrCreate);
 
 const UsersModel = mongoose.model('users', userSchema);
 

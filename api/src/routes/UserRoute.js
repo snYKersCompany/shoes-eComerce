@@ -53,6 +53,17 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.post('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { favourite } = req.body;
+        const message = await controllers.postFavourites(id, favourite);
+        return res.status(200).json(message);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+});
+
 router.post('/data/json', async (req, res) => {
     let { users } = req.body;
     try {
