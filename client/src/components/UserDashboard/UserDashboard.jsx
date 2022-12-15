@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../NavBar/Navbar";
+import NavBar from "../NavBar/NavBar";
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
