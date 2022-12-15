@@ -7,11 +7,12 @@ const listUsers = async () => {
     return users;
 }
 
-const addUser = async (email, password, roles) => {    
-    const user = new UsersModel({
-        email,
-        password: await UsersModel.encryptPassword(password),
-    });
+const addUser = async (id, email, roles) => {
+    if (id) {
+        const user = await UsersModel.findById({ _id: id });
+        return user;
+    }
+    const user = new UsersModel({ email: email });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
         user.roles = rolesFound.map(e => e._id);
@@ -20,11 +21,8 @@ const addUser = async (email, password, roles) => {
         const role = await Roles.findOne({ name: 'user' });
         user.roles = [role._id];
     }
-    await user.save();
-    jwt.sign({ id: user._id }, SECRET, {
-        expiresIn: 86400
-    });
-    return `${user.email} was successfully created`;
+    await user.save();    
+    return user;
 }
 
 const findUser = async (id) => {
