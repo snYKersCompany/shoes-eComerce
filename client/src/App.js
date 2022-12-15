@@ -10,7 +10,9 @@ import Create from './components/Create/Create';
 import UserDashboard from "./components/UserDashboard/UserDashboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts"
+// import AdminDashboardOrders from "./components/AdminDashboard/AdminDashboardOrders";
+// import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts" // Ruta de prueba
+// import AdminDashboardUsers from "./components/AdminDashboard/AdminDashboardUsers";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Routes>
           {/* Ruta creada para visualizar el componente AdminDashboardProducts*/}
           {/* <Route path="/adminDashboardProducts" element={<AdminDashboardProducts />}></Route>  */}
+          {/* <Route path="/adminDashboardUsers" element={<AdminDashboardUsers />}></Route> */}
+          {/* <Route path="/adminDashboardOrders" element={<AdminDashboardOrders />}></Route> */}
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
