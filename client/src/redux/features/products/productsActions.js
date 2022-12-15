@@ -4,11 +4,14 @@ import {
   productsDetails,
   filterAdd,
   searchByQuery,
-  categories,
+  filterByCategories,
   clearFilter,
   addOrder,
   deleteOrder,
   deletefilter,
+  filterBrands,
+  filterRatings,
+  filterByGenders
 } from "./productsSlice";
 
 function filterQuery(filters) {
@@ -20,11 +23,11 @@ function filterQuery(filters) {
 export const getAllProducts = (filters, orders) => async (dispatch) => {
   try {
     let query = filterQuery(filters);
-    
+
     let orderBy = JSON.stringify(orders)
-    if(orderBy.length === 2) orderBy = ``
+    if (orderBy.length === 2) orderBy = ``
     else orderBy = `orderBy=${orderBy}`
-    
+
     let product = await axios(`http://localhost:3001/api/products?${query}&${orderBy}`);
     return dispatch(getProducts(product.data.products));
   } catch (error) {
@@ -108,9 +111,43 @@ export const getProductByQuery = (payload) => async (dispatch) => {
 export const getCategories = () => async (dispatch) => {
   try {
     const response = await axios(`http://localhost:3001/api/categories`);
-    return dispatch(categories(response.data));
+    return dispatch(filterByCategories(response.data));
   } catch (error) {
     return error;
   }
 };
 
+
+export const getBrands = () => async (dispatch) => {
+  try {
+    const response = await axios(`http://localhost:3001/api/products`)
+    const mapeadito = await response.data.products.map(e => e.brand)
+    const dry = [...new Set(mapeadito)]
+    return dispatch(filterBrands(dry))
+  } catch (error) {
+    return error
+  }
+}
+
+export const getRatings = () => async (dispatch) => {
+  try {
+    const response = await axios(`http://localhost:3001/api/products`)
+    const mapeadito = response.data.products.map(e => e.rating)
+    const dry = [...new Set(mapeadito)].sort()
+    return dispatch(filterRatings(dry))
+  } catch (error) {
+    return error
+  }
+}
+
+export const getGenders = () => async (dispatch) => {
+  try{
+    const response = await axios(`http://localhost:3001/api/products`)
+    const mapeo = await response.data.products.map(e=> e.gender)
+    const join = mapeo.join().split(',')
+    const dry = [...new Set(join)]
+    return dispatch(filterByGenders(dry))
+  }catch(error){
+    return error
+  }
+}
