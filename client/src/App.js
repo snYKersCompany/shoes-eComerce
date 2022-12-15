@@ -6,10 +6,13 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Details from "./components/Details/Details";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import Create from './components/Create/Create';
+import Create from "./components/Create/Create";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts";
 import UserDashboard from "./components/UserDashboard/UserDashboard";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 // import AdminDashboardOrders from "./components/AdminDashboard/AdminDashboardOrders";
 // import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts" // Ruta de prueba
 // import AdminDashboardUsers from "./components/AdminDashboard/AdminDashboardUsers";
