@@ -24,6 +24,7 @@
     "express": "^4.18.1",
     "ioredis": "^5.2.3",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^2.2.16",
     "mongoose": "^6.8.0",
     "morgan": "^1.10.0",
     "op": "^0.0.6",

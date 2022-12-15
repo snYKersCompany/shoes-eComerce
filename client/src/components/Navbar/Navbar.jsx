@@ -33,9 +33,6 @@ const NavBar = () => {
     navigate("/home");
   };
 
-  if (loading) {
-    return <h1>Loading</h1>;
-  }
   return (
     <>
       <Navbar bg="dark" className="d-flex h-100 p-0">
@@ -64,29 +61,13 @@ const NavBar = () => {
               <Dropdown.Menu>
                 {!user ? (
                   <>
-                    <Dropdown.Item>
-                      <Link to="/login">
-                        <Dropdown.Item href="/login">Login</Dropdown.Item>
-                      </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item>
-                      <Link to="/register">
-                        <Dropdown.Item href="/register">Register</Dropdown.Item>
-                      </Link>
-                    </Dropdown.Item>
+                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                    <Dropdown.Item href="/register">Register</Dropdown.Item>
                   </>
                 ) : (
                   <>
-                    <Dropdown.Item>
-                      <Link to="/account">
-                        <Dropdown.Item href="/login">Account</Dropdown.Item>
-                      </Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item>
-                      <Dropdown.Item href="/register" onClick={handleLogOut}>
-                        LogOut
-                      </Dropdown.Item>
-                    </Dropdown.Item>
+                    <Dropdown.Item href="/account">Account</Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogOut}>LogOut</Dropdown.Item>
                   </>
                 )}
               </Dropdown.Menu>
