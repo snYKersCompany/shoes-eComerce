@@ -9,7 +9,9 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
 import "../../styles/details.css";
 //JSX
-import NavBar from "../NavBar/Navbar";
+import NavBar from "../NavBar/NavBar";
+import PayPalButton from "../Paypal/Paypal"
+
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -85,12 +87,7 @@ const Details = () => {
           <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
             Price: ${productDetail.price}
           </p>
-          <Button
-            variant="custom"
-            className="d-flex fw-bold align-items-center custom fs-5"
-          >
-            Buy Now!!
-          </Button>
+          <PayPalButton/>
         </section>
       </div>
     </>
