@@ -5,7 +5,6 @@ import "../../styles/scrollToTop.css";
 const ScrollToTop = () => {
   const [showScroll, setShowScroll] = useState(false);
 
-  useEffect(() => {
     window.addEventListener("scroll", () => {
       let isTop = window.scrollY < 100;
       if (isTop !== true) {
@@ -13,11 +12,7 @@ const ScrollToTop = () => {
       } else {
         setShowScroll(false);
       }
-      return () => {
-        isTop = true;
-      };
     });
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
