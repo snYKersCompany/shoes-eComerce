@@ -1,20 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
-import { addOrders } from "../../redux/features/products/productsActions";
+import { addOrders /*, deletefilters */ } from "../../redux/features/products/productsActions";
 
 const OrderByAlphabet = () => {
-  // 1 menor a mayor === e.target.value
-  //-1 mayor a menor === e.target.value
   const dispatch = useDispatch();
-
-  // const { products } = useSelector((state) => state.products);
-
-  // const name = products.map(e=> e.brand)
 
   function handleFilterCategories(e) {
     e.preventDefault();
-    console.log("esto es e.target.value", e.target.value);
+    // if(e.target.value === "none") dispatch(deletefilters("name"))
     dispatch(addOrders({ name: e.target.value }));
   }
 
