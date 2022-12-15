@@ -24,9 +24,10 @@ export const AuthProvider = ({ children }) => {
 
     //GOOGLE LOG IN
     const logInGoogle = async () => {
-        await setPersistence(auth, browserLocalPersistence)
         const googleProvider = new GoogleAuthProvider()
         return signInWithPopup(auth, googleProvider)
+        // await setPersistence(auth, browserLocalPersistence)
+
     }
 
     //SING UP
@@ -37,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     //LOG IN
     const logIn = async (email, password) => {
         await signInWithEmailAndPassword(auth, email, password)
-        await setPersistence(auth, browserLocalPersistence)
+        // await setPersistence(auth, browserLocalPersistence)
 
     }
     //LOG OUT
@@ -50,6 +51,7 @@ export const AuthProvider = ({ children }) => {
 
     //RECIBE UN FIREBASE USER Y DEVUELVO NUESTRO USER
     const getUserData = async (firebaseUser) => {
+        console.log("firebaseUser", firebaseUser)
         const user = formatUserData(firebaseUser)
         try {
             dispatch(findOrCreateUser(user))
@@ -58,8 +60,8 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
             return null
         }
-
     }
+
     //FORAMTEO DE FIREBASEUSER
     const formatUserData = (firebaseUser) => {
         const {
