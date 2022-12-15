@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { uuid } = require('uuidv4');
 const bcrypt = require('bcryptjs');
+const findOrCreate = require ('mongoose-findorcreate');
 
 function validateName(str) {
   return (/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(str))
@@ -16,14 +17,14 @@ function validateAddress(str) {
 
 const userSchema = mongoose.Schema({
   _id: { type: String, default: uuid },
-  name: { type: String, require: false, validate: [validateName, 'The field name cannot contain strange characters'] },
-  username: { type: String, require: false },
+  name: { type: String, validate: [validateName, 'The field name cannot contain strange characters'] },
+  username: { type: String },
   email: { type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format'] },
-  password: { type: String, require: true },
-  phone: { type: String, require: false },
-  address: { type: String, require: false, validate: [validateAddress, 'It must have more than 5 characters'] },
-  city: { type: String, require: false },
-  image: { type: String, require: false },  
+  password: { type: String },
+  phone: { type: String },
+  address: { type: String, validate: [validateAddress, 'It must have more than 5 characters'] },
+  city: { type: String },
+  image: { type: String },  
   roles: [{
     ref: "Role",
     type: mongoose.Schema.Types.ObjectId
@@ -45,6 +46,8 @@ userSchema.statics.encryptPassword = async (password) => {
 userSchema.statics.comparePassword = async (password, receivedPassword) => {
   return await bcrypt.compare(password, receivedPassword);
 }
+
+userSchema.plugin(findOrCreate);
 
 const UsersModel = mongoose.model('users', userSchema);
 
