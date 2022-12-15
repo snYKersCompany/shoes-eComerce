@@ -17,7 +17,6 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch()
     //STATES
-    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
 
     //GOOGLE LOG IN
@@ -78,19 +77,22 @@ export const AuthProvider = ({ children }) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
                 setUser(userData)
+                console.log("dispatch")
                 dispatch(findOrCreateUser(userData))
-                setLoading(false)
+                // setLoading(false)
             } else {
                 setUser(null)
                 console.log("user en else", user)
+                // setLoading(true)
             }
-            setLoading(true)
+            // setLoading(true)
+
         })
         return () => unsub()
     }, [])
     return (
         <>
-            < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user, loading }
+            < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user }
             }>
                 {children}
             </authContext.Provider >
