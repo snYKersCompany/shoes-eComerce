@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }) => {
         const userFormated = formatUserData(firebaseUser)
         try {
             dispatch(findOrCreateUser(userFormated))
+            console.log(userFormated)
         } catch (error) {
             console.log(error)
             return null
