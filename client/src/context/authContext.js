@@ -5,29 +5,26 @@ import { findOrCreateUser } from "../redux/features/users/usersActions"
 //FirebaseAuth
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence } from "firebase/auth"
 import { auth } from '../utils/firebase/credentials'
-export const authContext = createContext()
 
 //USEAUTH
+export const authContext = createContext()
 export const useAuth = () => {
-    const context = useContext(authContext);
-    if (!context) {
-        throw new Error("There ir no Auth provider");
-    }
-    return context;
+    const context = useContext(authContext)
+    return context
 };
 
 //AUTH PROVIDER
 export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch()
+    //STATES
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(loading);
+    const [user, setUser] = useState(null);
 
     //GOOGLE LOG IN
     const logInGoogle = async () => {
         const googleProvider = new GoogleAuthProvider()
+        // setPersistence(auth, browserLocalPersistence)
         return signInWithPopup(auth, googleProvider)
-        // await setPersistence(auth, browserLocalPersistence)
-
     }
 
     //SING UP
@@ -38,9 +35,9 @@ export const AuthProvider = ({ children }) => {
     //LOG IN
     const logIn = async (email, password) => {
         await signInWithEmailAndPassword(auth, email, password)
-        // await setPersistence(auth, browserLocalPersistence)
-
+        // setPersistence(auth, browserLocalPersistence)
     }
+
     //LOG OUT
     const logOut = () => signOut(auth)
 
@@ -50,16 +47,15 @@ export const AuthProvider = ({ children }) => {
     }
 
     //RECIBE UN FIREBASE USER Y DEVUELVO NUESTRO USER
-    const getUserData = async (firebaseUser) => {
-        console.log("firebaseUser", firebaseUser)
-        const user = formatUserData(firebaseUser)
+    const getUserData = (firebaseUser) => {
+        const userFormated = formatUserData(firebaseUser)
         try {
-            dispatch(findOrCreateUser(user))
-            console.log("user", user)
+            dispatch(findOrCreateUser(userFormated))
         } catch (error) {
             console.log(error)
             return null
         }
+        return userFormated
     }
 
     //FORAMTEO DE FIREBASEUSER
@@ -81,17 +77,21 @@ export const AuthProvider = ({ children }) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
                 setUser(userData)
+                setLoading(false)
             } else {
                 setUser(null)
+                console.log("user en else", user)
             }
-            setLoading(false)
+            setLoading(true)
         })
         return () => unsub()
     }, [])
-
     return (
-        <authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user, loading }}>
-            {children}
-        </authContext.Provider>
+        <>
+            < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user, loading }
+            }>
+                {children}
+            </authContext.Provider >
+        </>
     )
 }
