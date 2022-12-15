@@ -15,15 +15,14 @@ function validateAddress(str) {
 }
 
 const userSchema = mongoose.Schema({
-  _id: { type: String, default: uuid },
+  _id: { type: String, require: true },
   name: { type: String, validate: [validateName, 'The field name cannot contain strange characters'] },
   username: { type: String },
   email: { type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format'] },
-  password: { type: String },
   phone: { type: String },
   address: { type: String, validate: [validateAddress, 'It must have more than 5 characters'] },
   city: { type: String },
-  image: { type: String },  
+  image: { type: String },
   roles: [{
     ref: "Role",
     type: mongoose.Schema.Types.ObjectId

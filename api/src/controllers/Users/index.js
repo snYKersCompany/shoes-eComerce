@@ -7,12 +7,12 @@ const listUsers = async () => {
     return users;
 }
 
-const addUser = async (id, email, roles) => {
-    if (id) {
-        const user = await UsersModel.findById({ _id: id });
-        return user;
+const addUser = async (uid, email, roles) => {
+    const result = await UsersModel.findById({ _id: uid });
+    if (result) {
+        return result;
     }
-    const user = new UsersModel({ email: email });
+    const user = new UsersModel({ _id: uid, email: email });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
         user.roles = rolesFound.map(e => e._id);
@@ -21,7 +21,7 @@ const addUser = async (id, email, roles) => {
         const role = await Roles.findOne({ name: 'user' });
         user.roles = [role._id];
     }
-    await user.save();    
+    await user.save();
     return user;
 }
 
