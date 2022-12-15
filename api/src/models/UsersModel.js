@@ -15,7 +15,7 @@ function validateAddress(str) {
 }
 
 const userSchema = mongoose.Schema({
-  _id: { type: String, default: uuid },
+  _id: { type: String, require: true },
   name: { type: String, validate: [validateName, 'The field name cannot contain strange characters'] },
   username: { type: String },
   email: { type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format'] },

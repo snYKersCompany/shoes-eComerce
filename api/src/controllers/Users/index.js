@@ -8,9 +8,9 @@ const listUsers = async () => {
 }
 
 const addUser = async (uid, email, roles) => {
-    if (uid) {
-        const user = await UsersModel.findById({ _id: uid });
-        return user;
+    const result = await UsersModel.findById({ _id: uid });
+    if (result) {
+        return result;
     }
     const user = new UsersModel({ _id: uid, email: email });
     if (roles) {
