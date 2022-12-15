@@ -5,12 +5,8 @@ import Form from "react-bootstrap/Form";
 
 const FilterRating = ({ setActualPage }) => {
   const dispatch = useDispatch();
+  const { ratings } = useSelector((state) => state.products);
 
-  const { products } = useSelector((state) => state.products);
-
-  const map = products.map((e) => e.rating);
-  const dry = [...new Set(map)];
-  const sort = dry.sort();
 
   function handleFilterRating(e) {
     e.preventDefault();
@@ -30,8 +26,8 @@ const FilterRating = ({ setActualPage }) => {
       <option value="none">
         Rating
       </option>
-      {sort &&
-        sort.map((e, i) => (
+      {ratings &&
+        ratings.map((e, i) => (
           <option key={i} value={e}>
             {e}
           </option>

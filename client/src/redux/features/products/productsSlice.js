@@ -6,10 +6,13 @@ export const productsSlice = createSlice({
     products: [],
     productDetail: {},
     // guardar en el obj filter/order el objeto y su valor
+    // productsLoaded: [],
     filters: {},
     orders: {},
     categories: [],
-    // productsLoaded: [],
+    brands: [],
+    ratings: [],
+    genders: [],
   },
   reducers: {
     getProducts: (state, action) => {
@@ -21,8 +24,17 @@ export const productsSlice = createSlice({
     createProducts: (state, action) => {
       state.products = action.payload;
     },
-    categories: (state, action) => {
+    filterByCategories: (state, action) => {
       state.categories = action.payload;
+    },
+    filterBrands: (state, action) => {
+      state.brands = action.payload;
+    },
+    filterRatings: (state, action) => {
+      state.ratings = action.payload;
+    },
+    filterByGenders: (state, action) => {
+      state.genders = action.payload
     },
     filterAdd: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
@@ -52,15 +64,18 @@ export const productsSlice = createSlice({
 export const {
   getProducts,
   productsDetails,
-  createProducs,
+  createProducts,
   filterRating,
   filterAdd,
   searchByQuery,
-  categories,
+  filterByCategories,
   clearFilter,
   addOrder,
   deleteOrder,
   deletefilter,
+  filterBrands,
+  filterRatings,
+  filterByGenders
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
