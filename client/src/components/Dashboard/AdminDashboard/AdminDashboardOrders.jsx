@@ -3,7 +3,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllOrders, getOrderDetails } from '../../redux/features/orders/ordersActions';
+import { getAllOrders, getOrderDetails } from '../../../redux/features/orders/ordersActions';
 import { PDFViewer } from '@react-pdf/renderer';
 import DocPDF from './DocPDF';
 
@@ -17,7 +17,7 @@ function AdminDashboardOrders() {
         dispatch(getAllOrders())
     },[dispatch])
 
-    console.log(orderDetails)
+    // console.log(orderDetails)
 
     const handlerViewPdf = ({_id})=>{
         dispatch(getOrderDetails(_id))
@@ -81,7 +81,7 @@ function AdminDashboardOrders() {
                 variant="primary"
                 onClick={handlerButon}
                 >Back</Button> 
-                <PDFViewer style={{ width: "100%", height: "90vh"}}>
+                <PDFViewer style={{ width: "90vw", height: "90vh"}}>
                     {orderDetails?
                         <DocPDF orderDetails = {orderDetails}/>
                     :null}

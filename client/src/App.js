@@ -9,12 +9,13 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Create from "./components/Create/Create";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts";
-import UserDashboard from "./components/UserDashboard/UserDashboard";
+// import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts";
+import Dashboard from "./components/Dashboard/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 // import AdminDashboardOrders from "./components/AdminDashboard/AdminDashboardOrders";
-// import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts" // Ruta de prueba
+// import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts" 
+// Ruta de prueba
 // import AdminDashboardUsers from "./components/AdminDashboard/AdminDashboardUsers";
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
             path="/account"
             element={
               <ProtectedRoute>
-                <UserDashboard />
+                <Dashboard />
               </ProtectedRoute>
             }
           />

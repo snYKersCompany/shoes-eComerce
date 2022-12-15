@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { getAllUsers } from '../../redux/features/users/usersActions';
+import { getAllUsers } from '../../../redux/features/users/usersActions';
 
 function AdminDashboardUsers() {
     const dispatch = useDispatch()
@@ -12,7 +12,6 @@ function AdminDashboardUsers() {
     useEffect(()=>{
         dispatch(getAllUsers())
     },[dispatch])
-    console.log(users)
 
     const handlerDeleteUser = (_id)=>{
         console.log(_id)
