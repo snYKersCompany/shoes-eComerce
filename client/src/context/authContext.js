@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
                 setUser(userData)
+                dispatch(findOrCreateUser(userData))
                 setLoading(false)
             } else {
                 setUser(null)
