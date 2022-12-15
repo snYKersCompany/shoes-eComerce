@@ -7,7 +7,6 @@ import { getAllUsers } from '../../redux/features/users/usersActions';
 
 function AdminDashboardUsers() {
     const dispatch = useDispatch()
-
     const { users } = useSelector(state=>state.users)
 
     useEffect(()=>{
