@@ -20,7 +20,9 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
           <Button variant="custom" className="btnFav">
             <BsHeart className="d-flex justify-content-center card-top fav" />
           </Button>
-        ) : null}
+        ) : (
+          <div className="margintop">{null}</div>
+        )}
       </div>
 
       {/* Efecto Blur */}
