@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar";
 import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
+import Carrousel from "../Carrousel";
 //actions
 
 const Home = () => {
@@ -25,6 +26,7 @@ const Home = () => {
       {console.log(localStorage.getItem("carrito"))}
       <ScrollToTop />
       <NavBar />
+      <Carrousel />
       <Paginated />
       <Footer />
     </>
