@@ -7,8 +7,11 @@
 
 const PAYPAL_API = process.env.PAYPAL_API;
 
+const HOST = "http://localhost:3001/api/payments"
+
  module.exports = {
     PAYPAL_API_CLIENTE,
     PAYPAL_API_SECRET,
-    PAYPAL_API
+    PAYPAL_API,
+    HOST
 }
