@@ -14,14 +14,14 @@ const OrderByAlphabet = () => {
 
   return (
     <Form.Select
-      className="d-flex m-1 "
+      className="d-flex m-1 w-25 "
       defaultValue="none"
       onChange={(e) => {
         handleFilterCategories(e);
       }}
     >
       <option value="none" hidden>
-        Order Products
+        By Name
       </option>
       <option value="1">A to Z</option>
       <option value="-1">Z to A</option>
