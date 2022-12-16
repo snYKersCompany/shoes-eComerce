@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/details/:id', async (req, res) => {
     try {
         const {id} = req.params;  
         if (!id) throw new Error(`It needs an id property`);
@@ -21,6 +21,17 @@ router.get('/:id', async (req, res) => {
         return res.status(200).json(products);
     } catch (error) {
         return res.status(404).send(error.message)
+    }
+});
+
+router.get('/favorites/:id', async (req, res) => {
+    try {
+        const {id} = req.query
+        const {favorite} = req.body
+        const products = null
+        return res.status(200).json({products: products});
+    } catch (error) {
+        return res.status(404).send(error.message)    
     }
 });
 
