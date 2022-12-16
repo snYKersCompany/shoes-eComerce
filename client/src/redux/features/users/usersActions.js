@@ -24,6 +24,7 @@ export const getUserDashboards = (_id) => async (dispatch) => {
     const users = await axios.get(
       `http://localhost:3001/api/users/dashboard/${_id}`
     );
+    console.log(users.data[0])
     return dispatch(getUserDashboard(users.data[0]));
   } catch (error) {
     return error;
