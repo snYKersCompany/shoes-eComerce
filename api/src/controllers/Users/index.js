@@ -15,11 +15,11 @@ const addUser = async (uid, email, roles) => {
     const user = new UsersModel({ _id: uid, email: email });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
-        user.roles = rolesFound.map(e => e._id);
+        user.roles = rolesFound.map(e => e.name);
     }
     else {
         const role = await Roles.findOne({ name: 'user' });
-        user.roles = [role._id];
+        user.roles = role.name;
     }
     await user.save();
     return user;
@@ -34,6 +34,25 @@ const findUser = async (id) => {
         return `The user with an id ${id} was not found in the database`
     }
     return user;
+}
+
+const getUserFavouritesProducts = async (id) => {
+    if (!id) throw new Error(`It needs an id property`);
+    const user = await UsersModel.aggregate([
+        { $match:{_id:id} },
+        {
+        $lookup:{
+            from: "products",
+            localField: "favourites",
+            foreignField: "_id",
+            as: "productsFavourites"
+            }
+        }
+    ])
+    if (!user) {
+        return `The user with an id ${id} was not found in the database`
+    }
+    return user
 }
 
 const deleteUser = async (id) => {
@@ -89,6 +108,7 @@ const postUsers = async (array) => {
     return `Users added successfully`;
 }
 
+
 module.exports = {
     listUsers,
     addUser,
@@ -96,5 +116,6 @@ module.exports = {
     deleteUser,
     modifyUser,
     postUsers,
-    postFavourites
+    postFavourites,
+    getUserFavouritesProducts
 }

@@ -13,12 +13,14 @@ import "../../styles/card.css";
 
 const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
   return (
-
     <Card className="d-flex card ">
       <div className="d-flex justify-content-end me-4 mt-4">
-        <Button variant="custom" className="btnFav">
-          <BsHeart className="d-flex justify-content-center card-top fav" />
-        </Button>
+        {window.location.pathname === "/" ||
+        window.location.pathname === "/home" ? (
+          <Button variant="custom" className="btnFav">
+            <BsHeart className="d-flex justify-content-center card-top fav" />
+          </Button>
+        ) : null}
       </div>
 
       {/* Efecto Blur */}
@@ -26,13 +28,12 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
         <div className="circle1"></div>
         <div className="circle2"></div>
       </div>
-    
 
       <div className="cardContainer">
         <img className="cardImage1" src={card_picture} alt={name + "img"} />
         <img className="cardImage2" src={card_picture} alt={name + "img"} />
       </div>
-    
+
       <Card.Body className="d-flex flex-column justify-content-center align-items-center CardBody1">
         <div className="d-flex ">
           <Card.Text className=" fs-1 brand">{brand}</Card.Text>
@@ -42,19 +43,21 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
             {name}
           </Card.Title>
           <Card.Text className="text-gold fs-5 mb-0">
-              {rating !== 0 ? (
-                <>
-                  {/* Rating:{" "} */}
-                  {[...Array(rating)].map((index, i) => (
-                    <BsFillStarFill key={i} className={"starsCards"} />
-                  ))}
-                </>
-              ) : (
-                // <BsStar/>
-                <>New</>
-              )}
+            {rating !== 0 ? (
+              <>
+                {/* Rating:{" "} */}
+                {[...Array(rating)].map((index, i) => (
+                  <BsFillStarFill key={i} className={"starsCards"} />
+                ))}
+              </>
+            ) : (
+              // <BsStar/>
+              <>New</>
+            )}
           </Card.Text>
-          <Card.Text className="text-white fs-2 mb-0 priceCard">${price}</Card.Text>
+          <Card.Text className="text-white fs-2 mb-0 priceCard">
+            ${price}
+          </Card.Text>
           <Link to={`/home/${_id}`} className="link">
             <button className="btnCard ">More Info</button>
           </Link>
