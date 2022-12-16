@@ -14,8 +14,7 @@ async function verifyToken (req, res, next) {
         const user = await UsersModel.findById(req.userId, {password: 0});
         if (!user) {
             return res.status(404).json({error: `User was not found in the database`});
-        }
-        console.log(user);
+        }        
         next();
     } catch (error) {
         return res.status(400).json({error: `The token was invalid or unauthorized`});

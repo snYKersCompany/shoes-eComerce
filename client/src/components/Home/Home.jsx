@@ -22,6 +22,7 @@ const Home = () => {
 
   return (
     <>
+      {console.log(localStorage.getItem("carrito"))}
       <ScrollToTop />
       <NavBar />
       <Paginated />

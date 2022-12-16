@@ -36,6 +36,25 @@ const findUser = async (id) => {
     return user;
 }
 
+const getUserFavouritesProducts = async (id) => {
+    if (!id) throw new Error(`It needs an id property`);
+    const user = await UsersModel.aggregate([
+        { $match:{_id:id} },
+        {
+        $lookup:{
+            from: "products",
+            localField: "favourites",
+            foreignField: "_id",
+            as: "productsFavourites"
+            }
+        }
+    ])
+    if (!user) {
+        return `The user with an id ${id} was not found in the database`
+    }
+    return user
+}
+
 const deleteUser = async (id) => {
     if (!id) {
         throw new Error(`It needs an id property`);
@@ -89,6 +108,7 @@ const postUsers = async (array) => {
     return `Users added successfully`;
 }
 
+
 module.exports = {
     listUsers,
     addUser,
@@ -96,5 +116,6 @@ module.exports = {
     deleteUser,
     modifyUser,
     postUsers,
-    postFavourites
+    postFavourites,
+    getUserFavouritesProducts
 }
