@@ -5,12 +5,14 @@ import UserDashboard from "./UserDashboard/UserDashboard";
 import "../../styles/userDashboard.css";
 
 const Dashboard = () => {
-  let user = { role: ["6397b0b5a0730c95052cae5a"] };
+  let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
+
+  //SI HAY USER ---> Verificacion de rol
+
   return (
     <>
       <NavBar />
-
-      {user.role[0] === "6397b0b5a0730c95052cae5a" ? (
+      {userMONGO.role[0] === "6397b0b5a0730c95052cae5a" ? (
         <AdminDashboard />
       ) : (
         <UserDashboard />

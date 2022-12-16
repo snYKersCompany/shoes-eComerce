@@ -18,11 +18,12 @@ export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch()
     //STATES
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true)
 
     //GOOGLE LOG IN
     const logInGoogle = async () => {
         const googleProvider = new GoogleAuthProvider()
-        // setPersistence(auth, browserLocalPersistence)
+        setPersistence(auth, browserLocalPersistence)
         return signInWithPopup(auth, googleProvider)
     }
 
@@ -34,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     //LOG IN
     const logIn = async (email, password) => {
         await signInWithEmailAndPassword(auth, email, password)
-        // setPersistence(auth, browserLocalPersistence)
+        setPersistence(auth, browserLocalPersistence)
     }
 
     //LOG OUT
@@ -63,11 +64,11 @@ export const AuthProvider = ({ children }) => {
             uid, email
         } = firebaseUser;
 
-        const user = {
+        const userCredentials = {
             uid: uid,
             email: email
         }
-        return user
+        return userCredentials
     }
 
     //VIEWER
@@ -76,19 +77,18 @@ export const AuthProvider = ({ children }) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
                 setUser(userData)
-                // setLoading(false)
+                setLoading(false)
             } else {
                 setUser(null)
-                // setLoading(true)
+                setLoading(false)
             }
-            // setLoading(true)
-
         })
         return () => unsub()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <>
-            < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user }
+            < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user, loading }
             }>
                 {children}
             </authContext.Provider >
