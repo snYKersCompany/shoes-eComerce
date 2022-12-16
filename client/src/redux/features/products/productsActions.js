@@ -38,7 +38,7 @@ export const getAllProducts = (filters, orders) => async (dispatch) => {
 
 export const getProductsDetails = (_id) => async (dispatch) => {
   try {
-    const products = await axios("http://localhost:3001/api/products/" + _id);
+    const products = await axios("http://localhost:3001/api/products/details/" + _id);
 
     return dispatch(productsDetails(products.data[0]));
   } catch (error) {
