@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const UserProfile = () => {
   const { userDashboard } = useSelector((state) => state.users);
@@ -14,6 +14,7 @@ const UserProfile = () => {
           <th>Mail</th>
           <th>Phone</th>
           <th>Roles</th>
+          <th>Address</th>
         </tr>
       </thead>
       <tbody>
@@ -40,6 +41,7 @@ const UserProfile = () => {
                 : "complete phone information"}
             </td>
             <td>{userDashboard.roles && userDashboard.roles}</td>
+            <td>{userDashboard.address}</td>
           </tr>
         }
       </tbody>
