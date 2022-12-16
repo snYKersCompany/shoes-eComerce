@@ -9,8 +9,11 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
 import "../../styles/details.css";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar/Navbar";
 import PayPalButton from "../Paypal/Paypal"
+import NavItem from "react-bootstrap/NavItem";
+import { Link } from 'react-router-dom';
+import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 
 
 const Details = () => {
@@ -23,6 +26,12 @@ const Details = () => {
   }, [dispatch, id]);
 
   console.log(productDetail);
+  
+  function setProduct (e) {
+    localStorage.setItem('carrito', `[{id: ${productDetail._id}}]`);
+    alert(`The product ${productDetail.name} was successfully added`);
+  }
+
   return (
     <>
       <NavBar />
@@ -88,6 +97,17 @@ const Details = () => {
             Price: ${productDetail.price}
           </p>
           <PayPalButton/>
+          <NavItem>
+              <Link to="/" onClick={(e) => setProduct(e)}>
+                <img
+                  src={cartBlanco}
+                  width="40"
+                  height="40"
+                  className="d-inline-block align-top"
+                  alt="Cart"                  
+                />                
+              </Link>
+            </NavItem>
         </section>
       </div>
     </>
