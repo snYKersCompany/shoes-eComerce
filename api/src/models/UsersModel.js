@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema({
   image: { type: String },
   roles: [{
     ref: "Role",
-    type: mongoose.Schema.Types.ObjectId
+    type: String
   }],
   favourites: [{
     ref: "products",
