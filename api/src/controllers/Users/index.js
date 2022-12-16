@@ -15,11 +15,11 @@ const addUser = async (uid, email, roles) => {
     const user = new UsersModel({ _id: uid, email: email });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
-        user.roles = rolesFound.map(e => e._id);
+        user.roles = rolesFound.map(e => e.name);
     }
     else {
         const role = await Roles.findOne({ name: 'user' });
-        user.roles = [role._id];
+        user.roles = role.name;
     }
     await user.save();
     return user;
