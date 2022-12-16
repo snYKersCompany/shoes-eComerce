@@ -1,19 +1,13 @@
-.navSection {
-    border: solid 1px black;
-}
+.navSection {}
 
-.section {
-    border: solid 1px red;
-}
+.section {}
 
 @media (max-width:1000px) {
-    .section{
-    }
-
-    .navSection{
+    .navSection {
         margin-bottom: 31px;
         position: fixed !important;
     }
+
     .userDashBoard {
         flex-direction: column-reverse !important;
         order: 2;
