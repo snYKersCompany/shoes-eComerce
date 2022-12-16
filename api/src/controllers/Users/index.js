@@ -76,6 +76,22 @@ const modifyUser = async (id, name, email, password, phone, address, city, image
     return `The user with an id ${id} was successfully modified`;
 }
 
+const addFavoriteProducts = async (_id, favorite)=>{
+    if(!favorite) throw new Error('Falta el dato favorite')
+    if(!_id) throw new Error('Falta el dato _id')
+    await UsersModel.updateOne({_id}, {$addToSet:{favourites:favorite}})
+    const user = await UsersModel.findById(_id);
+    return user
+}
+
+const deleteFavoriteProducts = async (_id, favorite)=>{
+    if(!favorite) throw new Error('Falta el dato favorite')
+    if(!_id) throw new Error('Falta el dato _id')
+    await UsersModel.updateOne({_id}, {$pull:{favourites:favorite}})
+    const user = await UsersModel.findById(_id);
+    return user
+}
+
 const postFavourites = async (id, favourite) => {
     const user = await UsersModel.findById({ _id: id });
     if (!user) {
@@ -117,5 +133,7 @@ module.exports = {
     modifyUser,
     postUsers,
     postFavourites,
-    getUserFavouritesProducts
+    getUserFavouritesProducts,
+    addFavoriteProducts,
+    deleteFavoriteProducts
 }
