@@ -4,7 +4,8 @@ export const userSlice = createSlice({
     name: "users",
     initialState: {
         users: [],
-        userDetail: {}
+        userDetail: {},
+        userDashboard: {}
     },
     reducers: {
         postUser: (state, action) => {
@@ -12,13 +13,17 @@ export const userSlice = createSlice({
         },
         getAllUser: (state, action) => {
             state.users = action.payload
-        }
+        },
+        getUserDashboard: (state, action) => {
+            state.userDashboard = action.payload
+        },
     }
 })
 
 export const {
     postUser,
     getAllUser,
+    getUserDashboard,
 } = userSlice.actions
 
 export default userSlice.reducer

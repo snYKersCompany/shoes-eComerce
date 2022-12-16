@@ -7,41 +7,39 @@ import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 
-
 const UserDashboard = () => {
-
   return (
     <>
-
       <h3 className="d-flex justify-content-center ">Hello User</h3>
-      
+
       <div className="userDashBoardContainer d-flex">
         <div className="userDashBoard d-flex">
           <Tab.Container
             className="d-flex tabContainer"
             defaultActiveKey="first"
           >
-            
-              <Nav variant="pills" className="navSection d-flex flex-column datevuelta ">
-                <Nav.Item className="d-flex">
-                  <Nav.Link eventKey="profile" className="d-flex">
-                    <CgUserList className="d-flex"/> Profile
-                  </Nav.Link>
-                </Nav.Item>
+            <Nav
+              variant="pills"
+              className="navSection d-flex flex-column datevuelta "
+            >
+              <Nav.Item className="d-flex">
+                <Nav.Link eventKey="profile" className="d-flex">
+                  <CgUserList className="d-flex" /> Profile
+                </Nav.Link>
+              </Nav.Item>
 
-                <Nav.Item className="d-flex">
-                  <Nav.Link eventKey="favorites" className="d-flex">
-                    <CgHeart className="d-flex"/> Favorites
-                  </Nav.Link>
-                </Nav.Item>
-                
-                <Nav.Item className="d-flex">
-                  <Nav.Link eventKey="orders" className="d-flex">
-                    <CgList className="d-flex"/> Orders
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-            
+              <Nav.Item className="d-flex">
+                <Nav.Link eventKey="favorites" className="d-flex">
+                  <CgHeart className="d-flex" /> Favorites
+                </Nav.Link>
+              </Nav.Item>
+
+              <Nav.Item className="d-flex">
+                <Nav.Link eventKey="orders" className="d-flex">
+                  <CgList className="d-flex" /> Orders
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
 
             <div className="section">
               <Tab.Content>
@@ -56,10 +54,7 @@ const UserDashboard = () => {
                 </Tab.Pane>
               </Tab.Content>
             </div>
-
-
           </Tab.Container>
-
         </div>
       </div>
     </>
