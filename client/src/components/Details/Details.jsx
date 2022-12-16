@@ -10,8 +10,6 @@ import { BsFillStarFill } from "react-icons/bs";
 import "../../styles/details.css";
 //JSX
 import NavBar from "../NavBar/NavBar";
-import PayPalButton from "../Paypal/Paypal";
-import NavBar from "../NavBar/NavBar";
 import PayPalButton from "../Paypal/ButtonPaypal"
 import NavItem from "react-bootstrap/NavItem";
 import { Link } from "react-router-dom";
