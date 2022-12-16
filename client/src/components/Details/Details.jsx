@@ -10,11 +10,12 @@ import { BsFillStarFill } from "react-icons/bs";
 import "../../styles/details.css";
 //JSX
 import NavBar from "../NavBar/NavBar";
+import PayPalButton from "../Paypal/Paypal";
+import NavBar from "../NavBar/NavBar";
 import PayPalButton from "../Paypal/ButtonPaypal"
 import NavItem from "react-bootstrap/NavItem";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
-
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -26,9 +27,9 @@ const Details = () => {
   }, [dispatch, id]);
 
   console.log(productDetail);
-  
-  function setProduct (e) {
-    localStorage.setItem('carrito', `[{id: ${productDetail._id}}]`);
+
+  function setProduct(e) {
+    localStorage.setItem("carrito", `[{id: ${productDetail._id}}]`);
     alert(`The product ${productDetail.name} was successfully added`);
   }
 
@@ -96,18 +97,18 @@ const Details = () => {
           <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
             Price: ${productDetail.price}
           </p>
-          <PayPalButton/>
+          <PayPalButton />
           <NavItem>
-              <Link to="/" onClick={(e) => setProduct(e)}>
-                <img
-                  src={cartBlanco}
-                  width="40"
-                  height="40"
-                  className="d-inline-block align-top"
-                  alt="Cart"                  
-                />                
-              </Link>
-            </NavItem>
+            <Link to="/" onClick={(e) => setProduct(e)}>
+              <img
+                src={cartBlanco}
+                width="40"
+                height="40"
+                className="d-inline-block align-top"
+                alt="Cart"
+              />
+            </Link>
+          </NavItem>
         </section>
       </div>
     </>
