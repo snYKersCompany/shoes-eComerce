@@ -12,6 +12,10 @@ export const userSlice = createSlice({
         },
         getAllUser: (state, action) => {
             state.users = action.payload
+        },
+        userByID: (state, action) => {
+            state.userDetail = action.payload
+            console.log('esto es userDetails en Slicer', state.userDetail)
         }
     }
 })
@@ -19,6 +23,7 @@ export const userSlice = createSlice({
 export const {
     postUser,
     getAllUser,
+    userByID
 } = userSlice.actions
 
 export default userSlice.reducer

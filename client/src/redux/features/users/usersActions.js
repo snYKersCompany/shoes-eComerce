@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getAllUser } from "./usersSlice";
+import { getAllUser, userByID } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
     try {
@@ -18,3 +18,14 @@ export const getAllUsers = () => async (dispatch) => {
         return error;
     }
 };
+
+export const getUserById = (_id) => async (dispatch) => {
+    try{
+        const userId = await axios(`http://localhost:3001/api/users/${_id}`)
+        console.log('esto es getUserById ACTION -->',userId.data)
+        return dispatch(userByID(userId.data))
+    }
+    catch(error){
+        return error
+    }
+}
