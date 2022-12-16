@@ -51,10 +51,6 @@ export const AuthProvider = ({ children }) => {
         const userFormated = formatUserData(firebaseUser)
         try {
             dispatch(findOrCreateUser(userFormated))
-<<<<<<< HEAD
-            console.log('esto es userFormated', userFormated)
-=======
->>>>>>> dev
         } catch (error) {
             console.log(error)
             return null
@@ -81,19 +77,10 @@ export const AuthProvider = ({ children }) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
                 setUser(userData)
-<<<<<<< HEAD
-                dispatch(findOrCreateUser(userData))
-                // setLoading(false)
-            } else {
-                setUser(null)
-                // console.log("user en else", user)
-                // setLoading(true)
-=======
                 setLoading(false)
             } else {
                 setUser(null)
                 setLoading(false)
->>>>>>> dev
             }
         })
         return () => unsub()

@@ -1,12 +1,7 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
-<<<<<<< HEAD
-import AdminDashboard from "./AdminDashboard/AdminDashboard"
-import UserDashboard from "./UserDashboard/UserDashboard"
-=======
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard/UserDashboard";
->>>>>>> dev
 import "../../styles/userDashboard.css";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -28,7 +23,7 @@ const Dashboard = () => {
   return (
     <>
       <NavBar />
-      {userMONGO.role[0] !== "6397b0b5a0730c95052cae5a" ? (
+      {userMONGO.role[0] === "6397b0b5a0730c95052cae5a" ? (
         <AdminDashboard />
       ) : (
         <UserDashboard />
