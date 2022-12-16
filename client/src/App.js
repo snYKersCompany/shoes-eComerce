@@ -13,6 +13,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Preview from "./components/Paypal/Preview/Preview";
 // import AdminDashboardOrders from "./components/AdminDashboard/AdminDashboardOrders";
 // import AdminDashboardProducts from "./components/AdminDashboard/AdminDashboardProducts" 
 // Ruta de prueba
@@ -41,6 +42,7 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
+          <Route path="/preview" element={<Preview />} />
         </Routes>
       </AuthProvider>
     </div >
