@@ -1,7 +1,7 @@
 import React from "react";
 import CardsContainer from "../../CardsContainer/CardsContainer";
 //JSX
-import NavBar from "../../NavBar/NavBar";
+import CardPreview from "./CardPreview";
 //BS
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -21,6 +21,7 @@ const PreviewModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <h1>Esto es el body</h1>
+        <CardPreview />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
