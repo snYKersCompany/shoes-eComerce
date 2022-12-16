@@ -43,7 +43,7 @@ function App() {
           <Route path="/home/:id" element={<Details />} />
         </Routes>
       </AuthProvider>
-    </div>
+    </div >
   );
 }
 

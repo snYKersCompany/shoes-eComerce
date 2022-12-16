@@ -22,10 +22,20 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/details/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const user = await controllers.findUser(id);
+        return res.status(200).json(user);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+});
+
+router.get('/dashboard/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await controllers.getUserFavouritesProducts(id);
         return res.status(200).json(user);
     } catch (error) {
         return res.status(400).json({ error: error.message });
