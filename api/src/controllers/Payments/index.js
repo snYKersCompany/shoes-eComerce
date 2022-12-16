@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { PAYPAL_API, PAYPAL_API_CLIENTE, PAYPAL_API_SECRET } = require("../../../config")
+const { PAYPAL_API, PAYPAL_API_CLIENTE, PAYPAL_API_SECRET, HOST } = require("../../../config")
 
 const createOrder = async (req, res) => {
     try {
@@ -18,8 +18,8 @@ const createOrder = async (req, res) => {
                 brand_name: "Snyckers.com",
                 landing_page: "LOGIN",
                 user_action: "PAY_NOW",
-                return_url: "https://localhost:3001/capture-order",
-                cancel_url: "https://localhost:3001/cancel-order"
+                return_url: `${HOST}/capture-order`,
+                cancel_url: `${HOST}/cancel-order`
             }
         };
 
@@ -51,13 +51,23 @@ const createOrder = async (req, res) => {
 
 
 
-const captureOrder = (req, res) => {
-    res.send("Creating order")
+const captureOrder = async (req, res) => {
+
+    const { token, PayerID } = req.query
+
+    const result = await axios.post(`${PAYPAL_API}/v2/checkout/orders/${token}/capture`, {}, {
+        auth: {
+            username: PAYPAL_API_CLIENTE,
+            password: PAYPAL_API_SECRET
+        }
+    })
+    console.log(result.data)
+    res.send(result.data)
 };
 
 
 const cancelOrder = (req, res) => {
-    res.send("Creating order")
+    res.send("CANCEL ORDER")
 };
 
 

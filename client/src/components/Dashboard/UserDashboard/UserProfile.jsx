@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserProfile = () => {
-  return <div> test userProfile</div>;
+const UserOrders = () => {
+  return <div>userProfile</div>;
 };
 
-export default UserProfile;
+export default UserOrders;
