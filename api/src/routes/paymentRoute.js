@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { createOrder, captureOrder, cancelOrder } = require('../controllers/Payments/index');
 
-router.get('/create-order', createOrder)
+router.post('/create-order', createOrder)
 
 router.get('/capture-order', captureOrder)
 

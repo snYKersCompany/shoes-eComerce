@@ -11,21 +11,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unbounded:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
-@keyframes btn{
-    0%{background: linear-gradient(85.99deg, #f8bf97 7.66%, #f65aca 99.12%)  }
-    100%{background: linear-gradient(85.99deg, #f8bf97 7.66%, #f65aca 99.12%)   ;}
+@keyframes btn {
+    0% {
+        background: linear-gradient(85.99deg, #f8bf97 7.66%, #f65aca 99.12%)
+    }
+
+    100% {
+        background: linear-gradient(85.99deg, #f8bf97 7.66%, #f65aca 99.12%);
+    }
 }
 
-.card{
-width: 400px;
-height: 740px !important;
-left: 0px;
-top: 0px;
-font-family: 'Bebas Neue', cursive;
-background: linear-gradient(192.03deg, #091E51 6.17%, #1D1C41 93.05%);
-border-radius: 25px !important;
-margin: 8px;
-overflow: hidden;
+.card {
+    width: 400px;
+    height: 740px !important;
+    left: 0px;
+    top: 0px;
+    font-family: 'Bebas Neue', cursive;
+    background: linear-gradient(192.03deg, #091E51 6.17%, #1D1C41 93.05%);
+    border-radius: 25px !important;
+    margin: 8px;
+    overflow: hidden;
 }
 
 .brand {
@@ -33,7 +38,7 @@ overflow: hidden;
     color: #B11BA4;
 }
 
-.name{
+.name {
     font-family: 'Lato', sans-serif;
     margin: 0 !important;
 
@@ -45,13 +50,14 @@ overflow: hidden;
     object-fit: contain;
 }
 
-.cardImage1{
+.cardImage1 {
     position: absolute;
     z-index: 1;
     transform: rotate(28deg) scale(1.05);
     object-fit: contain;
 }
-.cardImage2{
+
+.cardImage2 {
     margin-left: 70px;
     margin-top: -60px;
     z-index: 2;
@@ -64,9 +70,11 @@ overflow: hidden;
     font-weight: 900px;
     font-family: 'Lato', sans-serif;
 }
-.starsCards{
+
+.starsCards {
     margin: 0 1px;
 }
+
 .fav {
     color: gold;
     font-size: 3rem;
@@ -81,7 +89,7 @@ overflow: hidden;
     z-index: 1;
 }
 
-.btnCard{
+.btnCard {
     background: linear-gradient(85.99deg, #FC964C 7.66%, #CB33A0 99.12%);
     border-radius: 7px;
     color: white;
@@ -89,11 +97,11 @@ overflow: hidden;
     width: 160px;
     height: 50px;
     border: none;
-    animation-duration: 8000ms; 
+    animation-duration: 8000ms;
     /* arreglar animation */
 }
 
-.btnCard:hover{
+.btnCard:hover {
     animation-name: btn;
 }
 
@@ -102,7 +110,7 @@ overflow: hidden;
     cursor: default;
 }
 
-.circle1{
+.circle1 {
     margin-top: -170px;
     margin-left: -180px;
     height: 515px !important;
@@ -113,7 +121,11 @@ overflow: hidden;
 
 
 
-.circleContainer{
+.circleContainer {
     margin-top: 50px;
     position: absolute;
+}
+
+.margintop {
+    margin-top: 2rem !important;
 }
