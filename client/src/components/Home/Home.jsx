@@ -7,6 +7,7 @@ import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
+import Carrousel from "../Carrousel";
 //actions
 
 const Home = () => {
@@ -27,6 +28,7 @@ const Home = () => {
       {console.log(localStorage.getItem("carrito"))}
       <ScrollToTop />
       <NavBar />
+      <Carrousel />
       <Paginated />
       <Footer />
     </>
