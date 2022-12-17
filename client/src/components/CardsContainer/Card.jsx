@@ -10,16 +10,41 @@ import {
 } from "react-icons/bs"; // eslint-disable-line
 
 import "../../styles/card.css";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { addUserProductFavorites, deleteUserProductFavorites } from "../../redux/features/users/usersActions";
 
-const CardProduct = ({ _id, name, price, card_picture, brand, rating }) => {
+const CardProduct = ({ _id, name, price, card_picture, brand, rating, checkHeart }) => {
+  const dispatch = useDispatch()
+  console.log("Esto es checkHeart", checkHeart)
+  const {userDashboard} = useSelector((state) => state.users);
+
+  
+  const [check, setCheck] = useState(checkHeart)
+  useEffect(()=>{
+    setCheck(checkHeart)
+  },[checkHeart])
+
+  const handlerOnClick= ()=>{
+    if(check) dispatch(deleteUserProductFavorites(userDashboard._id, {"favorite":_id}))
+    if(!check) dispatch(addUserProductFavorites(userDashboard._id, {"favorite":_id}))
+  }
+
   return (
     <Card className="d-flex card ">
       <div className="d-flex justify-content-end me-4 mt-4">
         {window.location.pathname === "/" ||
         window.location.pathname === "/home" ? (
-          <Button variant="custom" className="btnFav">
-            <BsHeart className="d-flex justify-content-center card-top fav" />
-          </Button>
+          <>
+            <Button variant="custom" className="btnFav" onClick={handlerOnClick}>
+              {check?
+              <BsFillHeartFill className="d-flex justify-content-center card-top fav"/>
+              :
+              <BsHeart className="d-flex justify-content-center card-top fav"/>
+              }
+            </Button>
+          </>
         ) : (
           <div className="margintop">{null}</div>
         )}
