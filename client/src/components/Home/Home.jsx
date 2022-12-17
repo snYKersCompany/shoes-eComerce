@@ -17,11 +17,11 @@ const Home = () => {
   const { user } = useAuth(); // eslint-disable-line
 
   useEffect(() => {
-    dispatch(getUserDashboards())
+    
     if (user) {
       console.log(user);
     }
-  }, [user, dispatch]);
+  }, [user]);
 
   return (
     <>
