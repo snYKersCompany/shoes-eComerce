@@ -29,3 +29,17 @@ export const getUserDashboards = (_id) => async (dispatch) => {
     return error;
   }
 };
+
+
+export const modifyUser = (_id, payload) => async (dispatch) => {
+  console.log('esto es _id en actions', _id)
+  console.log('esto es payload en actions', payload)
+  // try{
+  //   // const modified = await axios.put(`http://localhost:3001/api/users/${_id}`, payload)
+  //   console.log('esto es el console.log de _id', _id)
+  //   console.log('esto es el console.log de payload', payload)
+  //   // console.log('esto es modified.data', modified.data)
+  // } catch(error){
+  //   return error
+  // }
+}
