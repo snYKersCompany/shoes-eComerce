@@ -27,7 +27,7 @@ const FilterPrice = ({ setActualPage }) =>{
 
     return(
         <>
-            <Form.Label htmlFor="inputPassword5">Price: </Form.Label>
+            <Form.Label htmlFor="inputPassword5" className="paragraph">Price: </Form.Label>
             <Form.Control
                 type="text"
                 aria-describedby="passwordHelpBlock"
