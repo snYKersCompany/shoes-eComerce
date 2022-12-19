@@ -73,7 +73,9 @@ const modifyUser = async (id, name, email, password, phone, address, city, image
         throw new Error(`The user with an id ${id} was not found in the database`);
     }
     await UsersModel.updateOne({ _id: id }, { $set: { name, email, password, phone, address, city, image, admin } });
-    return `The user with an id ${id} was successfully modified`;
+    // return `The user with an id ${id} was successfully modified`;
+    const updateUser = await getUserFavouritesProducts(id)
+    return updateUser
 }
 
 const addFavoriteProducts = async (_id, favorite)=>{

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clearUser, getAllUser, getUser, getUserDashboard, updateUserDashboard } from "./usersSlice";
+import { clearUser, getAllUser, getUser, getUserDashboard, updateUserDashboard, putUser } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
   try {
@@ -25,7 +25,6 @@ export const getUserDashboards = (_id) => async (dispatch) => {
     const users = await axios.get(
       `http://localhost:3001/api/users/dashboard/${_id}`
     );
-    console.log("Esto es getUserDashboards",users)
     return dispatch(getUserDashboard(users.data[0]));
   } catch (error) {
     return error;
@@ -54,7 +53,7 @@ export const deleteUserProductFavorites = (_id, favorite) => async (dispatch) =>
   }
 };
 
-export const getUsers = (user) => async (dispatch) => {
+export const getOneUser = (user) => async (dispatch) => {
   try {
     return dispatch(getUser(user));
   } catch (error) {
@@ -70,3 +69,12 @@ export const clearUsers = () => async (dispatch) => {
   }
 };
 
+export const putUserInformation = (user, change) => async (dispatch) => {
+  try{
+    const response = await axios.put(`http://localhost:3001/api/users/update/${user}`, change)
+    return dispatch(getUserDashboard(response.data[0]))
+  } catch(error){
+    return error
+  }
+
+}

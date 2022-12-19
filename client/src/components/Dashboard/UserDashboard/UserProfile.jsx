@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import { modifyUser } from "../../../redux/features/users/usersActions";
+import { putUserInformation } from "../../../redux/features/users/usersActions";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 function UserProfile() {
-  const { userDashboard } = useSelector((state) => state.users);
+  const { userDashboard, user } = useSelector((state) => state.users); //user se usa para el _id // userDashboard es para las props
   const [modify, setModify] = useState(false);
-  const { _id } = useParams()
 
-  console.log(_id)
-  
+
   const [change, setChange] = useState({
     name: "",
     username: "",
@@ -23,10 +19,6 @@ function UserProfile() {
     address: "",
     city: "",
   });
-   
-
-
-
 
   const dispatch = useDispatch();
 
@@ -34,12 +26,13 @@ function UserProfile() {
     setModify(true);
   };
 
-  console.log(modify);
+  // console.log(modify);
 
-
-  const handleSubmitForm = (e)=> {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
-    dispatch(modifyUser(_id, change))
+
+    dispatch(putUserInformation(user, change));
+    // dispatch(getUserDashboards(user))
     setChange({
       name: "",
       username: "",
@@ -47,22 +40,18 @@ function UserProfile() {
       phone: "",
       address: "",
       city: "",
-    })
-    setModify(false)
-  }
-
+    });
+    setModify(false);
+  };
 
   const handleChange = (e) => {
     setChange({
       ...change,
-      [e.target.name] : e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  console.log(change);
-
-
-
+  // console.log(change);
 
   return modify === false ? (
     <>
@@ -120,73 +109,68 @@ function UserProfile() {
     </>
   ) : (
     <Form onSubmit={(e) => handleSubmitForm(e)}>
-
-
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label> New Name</Form.Label>
-          <Form.Control 
-          type="string" 
-          placeholder="Enter new name" 
-          name='name'
-          onChange={(e)=> handleChange(e)}
+          <Form.Control
+            type="string"
+            placeholder="Enter new name"
+            name="name"
+            onChange={(e) => handleChange(e)}
           />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label> New user name</Form.Label>
-          <Form.Control 
-          type="string" 
-          placeholder="Enter new user name" 
-          name='username'
-          onChange={(e)=> handleChange(e)}
+          <Form.Control
+            type="string"
+            placeholder="Enter new user name"
+            name="username"
+            onChange={(e) => handleChange(e)}
           />
         </Form.Group>
       </Row>
 
-
-
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label> New Email</Form.Label>
-          <Form.Control 
-          type="string" 
-          placeholder="Enter new email" 
-          name='email'
-          onChange={(e)=> handleChange(e)}
+          <Form.Control
+            type="string"
+            placeholder="Enter new email"
+            name="email"
+            onChange={(e) => handleChange(e)}
           />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label> New Phone</Form.Label>
-          <Form.Control 
-          type="string" 
-          placeholder="Enter new phone"  
-          name='phone'
-          onChange={(e)=> handleChange(e)}
+          <Form.Control
+            type="string"
+            placeholder="Enter new phone"
+            name="phone"
+            onChange={(e) => handleChange(e)}
           />
         </Form.Group>
       </Row>
 
-
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>New Address</Form.Label>
-          <Form.Control 
-          type="string" 
-          placeholder="Enter new address" 
-          name='address'
-          onChange={(e)=> handleChange(e)}
+          <Form.Control
+            type="string"
+            placeholder="Enter new address"
+            name="address"
+            onChange={(e) => handleChange(e)}
           />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>New City</Form.Label>
-          <Form.Control 
-          type="string" 
-          placeholder="Enter new city" 
-          name='city'
-          onChange={(e)=> handleChange(e)}
+          <Form.Control
+            type="string"
+            placeholder="Enter new city"
+            name="city"
+            onChange={(e) => handleChange(e)}
           />
         </Form.Group>
       </Row>
