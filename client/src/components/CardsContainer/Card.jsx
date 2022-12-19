@@ -17,7 +17,7 @@ import { addUserProductFavorites, deleteUserProductFavorites } from "../../redux
 
 const CardProduct = ({ _id, name, price, card_picture, brand, rating, checkHeart }) => {
   const dispatch = useDispatch()
-  console.log("Esto es checkHeart", checkHeart)
+  // console.log("Esto es checkHeart", checkHeart)
   const {userDashboard} = useSelector((state) => state.users);
 
   

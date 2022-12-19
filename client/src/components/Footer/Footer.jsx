@@ -29,14 +29,14 @@ import "../../styles/footer.css";
 const Footer = () => {
   //hardCoding asi no se rompe
   let user = {
-    roll: {
+    rol: {
       admin: "admin",
       regular: "regular",
     },
   };
   //
 
-  return user && user.roll.regular ? (
+  return user && user.rol.regular ? (
     <CDBFooter className="shadow">
       <CDBBox
         display="flex"

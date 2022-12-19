@@ -27,6 +27,7 @@ const Details = () => {
   console.log(productDetail);
 
   function setProduct(e) {
+    console.log("setProduct")
     localStorage.setItem("carrito", `[{id: ${productDetail._id}}]`);
     alert(`The product ${productDetail.name} was successfully added`);
   }
