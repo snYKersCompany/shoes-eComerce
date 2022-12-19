@@ -1,7 +1,9 @@
+require('dotenv').config();
 const axios = require("axios");
 const { PAYPAL_API, PAYPAL_API_CLIENTE, PAYPAL_API_SECRET, HOST } = require("../../../config")
 
 const createOrder = async (req, res) => {
+    // const { amount, description } = req.body;
     try {
         const order = {
             intent: "CAPTURE",
@@ -11,7 +13,7 @@ const createOrder = async (req, res) => {
                         currency_code: "USD",
                         value: "100"
                     },
-                    description: "Shoes Snyckers",
+                    description: "Snykers shoes",
                 },
             ],
             application_context: {
@@ -41,15 +43,12 @@ const createOrder = async (req, res) => {
             headers: {
                 Authorization: `Bearer ${access_token}`
             }
-        });
-        console.log(result.data)
-        res.send(result.data)
-    } catch (error) {
-        res.send(error)
+        });        
+        res.send(result.data);
+    } catch (error) {        
+        res.send(error);
     }
 };
-
-
 
 const captureOrder = async (req, res) => {
 
@@ -61,13 +60,12 @@ const captureOrder = async (req, res) => {
             password: PAYPAL_API_SECRET
         }
     })
-    console.log(result.data)
-    res.send(result.data)
+    const message = await axios.post(`http://localhost:3001/api/orders/create`, result.data);
+    res.status(200).send(message);
 };
 
-
 const cancelOrder = (req, res) => {
-    res.send("CANCEL ORDER")
+    res.status(200).send("The order was cancelled");
 };
 
 
