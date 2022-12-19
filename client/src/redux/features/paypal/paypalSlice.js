@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { create } from "domain";
 
 export const paypalSlice = createSlice({
     name: "paypal",
