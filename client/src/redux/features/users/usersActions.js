@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAllUser, getUserDashboard } from "./usersSlice";
+import { clearUser, getAllUser, getUser, getUserDashboard, updateUserDashboard } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
   try {
@@ -21,25 +21,52 @@ export const getAllUsers = () => async (dispatch) => {
 
 export const getUserDashboards = (_id) => async (dispatch) => {
   try {
+    if(!_id) return dispatch(getUserDashboard({}));
     const users = await axios.get(
       `http://localhost:3001/api/users/dashboard/${_id}`
     );
+    console.log("Esto es getUserDashboards",users)
     return dispatch(getUserDashboard(users.data[0]));
   } catch (error) {
     return error;
   }
 };
 
+export const addUserProductFavorites = (_id, favorite) => async (dispatch) => {
+  try {
+    if(!_id) return
+    const users = await axios.put(`http://localhost:3001/api/users/addFavorite/${_id}`, favorite);
+    console.log(users.data)
+    return dispatch(updateUserDashboard(users.data));
+  } catch (error) {
+    return error;
+  }
+};
 
-export const modifyUser = (_id, payload) => async (dispatch) => {
-  console.log('esto es _id en actions', _id)
-  console.log('esto es payload en actions', payload)
-  // try{
-  //   // const modified = await axios.put(`http://localhost:3001/api/users/${_id}`, payload)
-  //   console.log('esto es el console.log de _id', _id)
-  //   console.log('esto es el console.log de payload', payload)
-  //   // console.log('esto es modified.data', modified.data)
-  // } catch(error){
-  //   return error
-  // }
-}
+export const deleteUserProductFavorites = (_id, favorite) => async (dispatch) => {
+  try {
+    if(!_id) return
+    const users = await axios.put(`http://localhost:3001/api/users/deleteFavorite/${_id}`, favorite);
+    console.log(users.data)
+    return dispatch(updateUserDashboard(users.data));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getUsers = (user) => async (dispatch) => {
+  try {
+    return dispatch(getUser(user));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const clearUsers = () => async (dispatch) => {
+  try {
+    return dispatch(clearUser({}));
+  } catch (error) {
+    return error;
+  }
+};
+

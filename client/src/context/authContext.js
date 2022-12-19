@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 //Actions
-import { findOrCreateUser } from "../redux/features/users/usersActions"
+import { findOrCreateUser, getUserDashboards } from "../redux/features/users/usersActions"
 //FirebaseAuth
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence } from "firebase/auth"
 import { auth } from '../utils/firebase/credentials'
@@ -76,9 +76,12 @@ export const AuthProvider = ({ children }) => {
         const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
+                console.log(userData.uid) // Revisar si esta accion (getUserDashboards) hace que la seguridad sea mas fragil
+                dispatch(getUserDashboards(userData.uid))   // AGREGADO POR EL BIEN DE LA TRAMA
                 setUser(userData)
                 setLoading(false)
             } else {
+                dispatch(getUserDashboards())
                 setUser(null)
                 setLoading(false)
             }

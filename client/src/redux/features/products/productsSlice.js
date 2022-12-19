@@ -13,6 +13,7 @@ export const productsSlice = createSlice({
     brands: [],
     ratings: [],
     genders: [],
+    search: '',
   },
   reducers: {
     getProducts: (state, action) => {
@@ -58,6 +59,15 @@ export const productsSlice = createSlice({
       delete orders[action.payload]
       state.orders = orders;
     },
+    clearOrder: (state, action) => {
+      state.orders = action.payload;
+    },
+    addSearch: (state, action) => {
+      state.search = action.payload;
+    },
+    clearSearch: (state, action) => {
+      state.search = action.payload;
+    },
     searchByQuery: (state, action) => {
       state.products = action.payload;
     },
@@ -75,11 +85,14 @@ export const {
   clearFilter,
   addOrder,
   deleteOrder,
+  clearOrder,
   deletefilter,
   filterBrands,
   filterRatings,
   filterByGenders,
-  clearProductsDetails
+  clearProductsDetails,
+  addSearch,
+  clearSearch,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;
