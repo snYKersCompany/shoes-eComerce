@@ -2,11 +2,11 @@ import React from "react";
 import NavBar from "../NavBar/NavBar";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard/UserDashboard";
-import "../../styles/userDashboard.css";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
 import { useAuth } from "../../context/authContext";
+import "../../styles/userDashboard.css";
 
 const Dashboard = () => {
   let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
@@ -23,7 +23,7 @@ const Dashboard = () => {
   return (
     <>
       <NavBar />
-      {userMONGO.role[0] === "6397b0b5a0730c95052cae5a" ? (
+      {userMONGO.role[0] !== "6397b0b5a0730c95052cae5a" ? (
         <AdminDashboard />
       ) : (
         <UserDashboard />
