@@ -1,21 +1,33 @@
-.navSection {}
+.userDashBoard{
+    display: flex;
+    width: 100vw !important;
+    overflow: hidden;
+    height: 87vh ; 
+}
 
-.section {}
+.navSection {
+    background: white;
+    flex-wrap:  wrap;
+    width: 140px;
+}
+
+.navSection div a {
+    width: 95%;
+}
+
+
+.section {
+    width: 100%;
+    overflow-x: scroll;
+    background: white;
+}
 
 @media (max-width:1000px) {
     .navSection {
-        margin-bottom: 31px;
-        position: fixed !important;
-    }
-
-    .userDashBoard {
-        flex-direction: column-reverse !important;
-        order: 2;
-    }
-
-    .datevuelta {
+        width: 100%;
         flex-direction: row !important;
+    }    
+    .userDashBoard {
+        flex-direction: column !important;
     }
-
-
 }
