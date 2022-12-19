@@ -12,12 +12,15 @@ import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import MiddleViewCard from "./components/ModalMiddleView/MiddleViewCard";
 
 function App() {
   return (
     <div>
       <AuthProvider>
         <Routes>
+          {/* Ruta gregada solo para hacer pruebas */}
+          {/* <Route path="/middleViewCard" element={<MiddleViewCard />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />

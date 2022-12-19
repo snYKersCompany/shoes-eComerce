@@ -15,16 +15,16 @@ import { Link } from "react-router-dom";
 
 const Paginated = () => {
   const dispatch = useDispatch();
-  const { products, filters, orders } = useSelector((state) => state.products); //cambiar nombre
+  const { products, filters, orders, search } = useSelector((state) => state.products); //cambiar nombre
 
   useEffect(() => {
-    dispatch(getAllProducts(filters, orders));
+    dispatch(getAllProducts(filters, orders, search));
     dispatch(getCategories());
     dispatch(getBrands())
     dispatch(getRatings())
     dispatch(getGenders())
-  }, [dispatch, filters, orders]);
-
+  }, [dispatch, filters, orders, search]);
+console.log(search)
   let pages = []; // el número de páginas de mi componente
 
   //logica de recorrido del páginado

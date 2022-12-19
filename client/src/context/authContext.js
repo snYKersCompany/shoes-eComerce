@@ -81,6 +81,7 @@ export const AuthProvider = ({ children }) => {
                 setUser(userData)
                 setLoading(false)
             } else {
+                dispatch(getUserDashboards())
                 setUser(null)
                 setLoading(false)
             }
