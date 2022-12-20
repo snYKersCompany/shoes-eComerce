@@ -45,7 +45,7 @@ router.post('/create', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/modify/:id', async (req, res) => {
     try {
         const {id} = req.params  
         const updateData = req.body

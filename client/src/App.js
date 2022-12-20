@@ -16,10 +16,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-<<<<<<< HEAD
-// import MiddleViewCard from "./components/ModalMiddleView/MiddleViewCard";
-=======
->>>>>>> dev
 
 function App() {
   return (
