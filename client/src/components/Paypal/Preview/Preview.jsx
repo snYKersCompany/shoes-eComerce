@@ -17,7 +17,7 @@ const PreviewModal = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            You added products to the cart
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
