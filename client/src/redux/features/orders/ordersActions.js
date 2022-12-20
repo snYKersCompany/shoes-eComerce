@@ -27,4 +27,11 @@ export const clearOrderDetails = () => async (dispatch) => {
     }
 };
 
-
+export const getCreateOrderDB = (payload) => {
+    try {
+        const order = axios.post("http://localhost:3001/api/orders/create", payload)
+        return order.data
+    } catch (error) {
+        return error
+    }
+}

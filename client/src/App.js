@@ -13,7 +13,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import MiddleViewCard from "./components/ModalMiddleView/MiddleViewCard";
 
 function App() {
   return (
