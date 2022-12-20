@@ -31,6 +31,10 @@ const userSchema = mongoose.Schema({
     ref: "products",
     type: mongoose.Schema.Types.ObjectId
   }],
+  orders: [{
+    ref: "orders",
+    type: mongoose.Schema.Types.ObjectId
+  }],
   createdAt: { type: Date, default: Date.now }
 }, {
   timestamps: false,

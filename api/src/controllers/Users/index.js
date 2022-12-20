@@ -73,7 +73,25 @@ const modifyUser = async (id, name, email, password, phone, address, city, image
         throw new Error(`The user with an id ${id} was not found in the database`);
     }
     await UsersModel.updateOne({ _id: id }, { $set: { name, email, password, phone, address, city, image, admin } });
-    return `The user with an id ${id} was successfully modified`;
+    // return `The user with an id ${id} was successfully modified`;
+    const updateUser = await getUserFavouritesProducts(id)
+    return updateUser
+}
+
+const addFavoriteProducts = async (_id, favorite)=>{
+    if(!favorite) throw new Error('Falta el dato favorite')
+    if(!_id) throw new Error('Falta el dato _id')
+    await UsersModel.updateOne({_id}, {$addToSet:{favourites:favorite}})
+    const user = await UsersModel.findById(_id);
+    return user
+}
+
+const deleteFavoriteProducts = async (_id, favorite)=>{
+    if(!favorite) throw new Error('Falta el dato favorite')
+    if(!_id) throw new Error('Falta el dato _id')
+    await UsersModel.updateOne({_id}, {$pull:{favourites:favorite}})
+    const user = await UsersModel.findById(_id);
+    return user
 }
 
 const postFavourites = async (id, favourite) => {
@@ -117,5 +135,7 @@ module.exports = {
     modifyUser,
     postUsers,
     postFavourites,
-    getUserFavouritesProducts
+    getUserFavouritesProducts,
+    addFavoriteProducts,
+    deleteFavoriteProducts
 }

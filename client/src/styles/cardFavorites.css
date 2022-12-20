@@ -1,0 +1,11 @@
+@media (max-width: 400px) {
+    .titleFav {
+        /* margin-top: -2rem; */
+    }
+
+    .favSize {
+        /* transform: scale(0.9); */
+        width: 100vw;
+        object-fit: contain;
+    }
+}
