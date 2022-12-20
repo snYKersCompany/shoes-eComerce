@@ -10,6 +10,7 @@ import Create from "./components/Create/Create";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Preview from "./components/Paypal/Preview/Preview"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import MiddleViewCard from "./components/ModalMiddleView/MiddleViewCard";
@@ -35,6 +36,7 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
+          <Route path="/preview" element={<Preview />} />
         </Routes>
       </AuthProvider>
     </div >
