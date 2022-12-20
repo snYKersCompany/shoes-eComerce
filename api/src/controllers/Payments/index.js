@@ -13,15 +13,19 @@ const createOrder = async (req, res) => {
                         currency_code: "USD",
                         value: "100"
                     },
+<<<<<<< HEAD
                     description: "Snykers shoes",
+=======
+                    description: "Shoes Snykers",
+>>>>>>> dev
                 },
             ],
             application_context: {
                 brand_name: "Snyckers.com",
                 landing_page: "LOGIN",
                 user_action: "PAY_NOW",
-                return_url: `${HOST}/capture-order`,
-                cancel_url: `${HOST}/cancel-order`
+                return_url: "http://localhost:3000/order-completed",
+                cancel_url: "http://localhost:3000/order-canceled"
             }
         };
 
