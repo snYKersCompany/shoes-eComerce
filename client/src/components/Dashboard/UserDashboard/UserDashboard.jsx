@@ -12,15 +12,15 @@ const UserDashboard = () => {
     <>
       <h3 className="d-flex justify-content-center ">Hello User</h3>
 
-      <div className="userDashBoardContainer d-flex">
-        <div className="userDashBoard d-flex">
+      <div className="userDashBoardContainer">
+        <div className="userDashBoard d-flex w-100">
           <Tab.Container
             className="d-flex tabContainer"
             defaultActiveKey="first"
           >
             <Nav
               variant="pills"
-              className="navSection d-flex flex-column datevuelta "
+              className="navSection d-flex flex-column "
             >
               <Nav.Item className="d-flex">
                 <Nav.Link eventKey="profile" className="d-flex">
@@ -41,7 +41,7 @@ const UserDashboard = () => {
               </Nav.Item>
             </Nav>
 
-            <div className="section">
+            <div className="section d-flex">
               <Tab.Content>
                 <Tab.Pane eventKey="profile">
                   <UserProfile />
