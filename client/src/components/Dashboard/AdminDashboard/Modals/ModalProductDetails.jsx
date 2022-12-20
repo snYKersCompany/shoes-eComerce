@@ -4,6 +4,8 @@ import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { clearProductsDetail } from "../../../../redux/features/products/productsActions";
 import ViewEditProduct from "./ViewEditProduct";
+import ListGroup from "react-bootstrap/ListGroup";
+
 import "../../../../styles/modalProduct.css";
 
 const ModalProductDetails = (props) => {
@@ -11,9 +13,11 @@ const ModalProductDetails = (props) => {
 
   const { productDetail } = useSelector((state) => state.products);
 
+  console.log()
   const handlerOnClick = () => {
     dispatch(clearProductsDetail({}));
   };
+
 
   const [stock, setStock] = useState(true);
 
@@ -26,6 +30,8 @@ const ModalProductDetails = (props) => {
       className="d-flex justify-content-center modalBackground"
     >
       <div className="modalBackground2 ">
+      <ListGroup horizontal className={`horizontalWrapper`}>
+          </ListGroup>
         <div className="header text-white align-items-center justify-content-center">
           <Modal.Title
             id="contained-modal-title-vcenter"
@@ -48,7 +54,7 @@ const ModalProductDetails = (props) => {
               setStock(!stock);
             }}
           >
-            Stock
+            {stock? "Stock" : "Back"}
           </Button>
           <Button className="modalBtn ms-3" onClick={() => handlerOnClick()}>
             Close

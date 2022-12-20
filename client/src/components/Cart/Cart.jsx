@@ -14,10 +14,10 @@ const Cart = () => {
 
   //precio total
   let priceTotal = 0;
-
+    
   {
     products.length >= 1
-      ? products.map((el, i) => {
+      ? products.map((el) => {
           priceTotal += el.totalPrice;
         })
       : (priceTotal += 0);

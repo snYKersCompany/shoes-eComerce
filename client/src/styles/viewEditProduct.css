@@ -61,6 +61,17 @@
     border: none;
 }
 
+.VEPStock{
+}
+
+.containerInputVEP{
+    margin: 0 40px;
+}
+
+.inputVEP{
+    width: 40px !important;
+}
+
 /* 
 .circle1 {
     position: absolute;
