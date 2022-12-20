@@ -2,7 +2,6 @@ import React from "react";
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
-import Review from './Review'
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
@@ -41,11 +40,11 @@ const UserDashboard = () => {
                 </Nav.Link>
               </Nav.Item>
 
-              <Nav.Item className="d-flex">
+              {/* <Nav.Item className="d-flex">
                 <Nav.Link eventKey="review" className="d-flex">
                   <CgList className="d-flex" /> Review
                 </Nav.Link>
-              </Nav.Item>
+              </Nav.Item> */}
             </Nav>
 
             <div className="section">
@@ -53,17 +52,14 @@ const UserDashboard = () => {
                 <Tab.Pane eventKey="profile">
                   <UserProfile />
                 </Tab.Pane>
-                <Tab.Pane
+                {/* <Tab.Pane
                   eventKey="favorites"
                   className="d-flex justify-content-center align-content-center"
                 >
                   <UserFavorites />
-                </Tab.Pane>
-                <Tab.Pane eventKey="orders">
+                </Tab.Pane> */}
+                <Tab.Pane eventKey="orders" className=''>
                   <UserOrders />
-                </Tab.Pane>
-                <Tab.Pane eventKey="review">
-                  <Review />
                 </Tab.Pane>
               </Tab.Content>
             </div>
