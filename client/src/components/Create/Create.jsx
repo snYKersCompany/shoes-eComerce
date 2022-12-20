@@ -173,6 +173,17 @@ const Create = () => {
 
   let handleStock = (e, el) => {
     if (el === 6) {
+
+      let stock={
+        10: "30",
+        10.5: "30",
+        11: "30",
+        11.5: "30",
+        12: "30",
+        12.5: "30",
+        13: "30",
+      }
+
       setform({
         ...form,
         stock: { ...form.stock, 6: Number(e.target.value) },
@@ -189,7 +200,7 @@ const Create = () => {
     if (el === 6.5) {
       setform({
         ...form,
-        stock: { ...form.stock, 6.5: Number(e.target.value) },
+        stock: { ...form.stock, el: Number(e.target.value) },
       });
       let control = { ...form.stock, 6.5: Number(e.target.value) };
       Object.values(control).includes(0)
