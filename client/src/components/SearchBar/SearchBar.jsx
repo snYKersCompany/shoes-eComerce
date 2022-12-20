@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getProductByQuery } from "../../redux/features/products/productsActions";
+import { addSearchs, clearFilters, clearOrders, getProductByQuery } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { BsSearch } from "react-icons/bs";
@@ -22,6 +22,9 @@ export default function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getProductByQuery(search)); //escucha? :check:
+    dispatch(clearFilters())
+    dispatch(clearOrders())
+    dispatch(addSearchs(search));
     navigate("/home");
     setSearch("");
   };
