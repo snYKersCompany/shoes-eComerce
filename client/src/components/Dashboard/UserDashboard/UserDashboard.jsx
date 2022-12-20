@@ -2,6 +2,7 @@ import React from "react";
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
+import Review from './Review'
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
@@ -39,6 +40,12 @@ const UserDashboard = () => {
                   <CgList className="d-flex" /> Orders
                 </Nav.Link>
               </Nav.Item>
+
+              <Nav.Item className="d-flex">
+                <Nav.Link eventKey="review" className="d-flex">
+                  <CgList className="d-flex" /> Review
+                </Nav.Link>
+              </Nav.Item>
             </Nav>
 
             <div className="section">
@@ -54,6 +61,9 @@ const UserDashboard = () => {
                 </Tab.Pane>
                 <Tab.Pane eventKey="orders">
                   <UserOrders />
+                </Tab.Pane>
+                <Tab.Pane eventKey="review">
+                  <Review />
                 </Tab.Pane>
               </Tab.Content>
             </div>
