@@ -36,3 +36,13 @@
     height: 100%;
     margin-right: 20px ;
 }
+.changeDataLabel{
+    font-size: 16px;
+    color: rgb(55, 55, 252);
+    font-family: Helvetica;
+    text-decoration: underline;
+}
+
+.changeDataLabel:hover{
+    cursor: pointer;
+}

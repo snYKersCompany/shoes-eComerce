@@ -18,6 +18,9 @@ import NavLink from "react-bootstrap/NavLink";
 import "../../styles/navbar.css";
 
 const NavBar = () => {
+
+
+  
   const navigate = useNavigate();
 
   //devuelve toda la info del contexto
@@ -73,7 +76,7 @@ const NavBar = () => {
               </Dropdown.Menu>
             </Dropdown>
             <NavItem>
-              <Link to="/">
+              <Link to="/cart">
                 <img
                   src={cartBlanco}
                   width="40"
