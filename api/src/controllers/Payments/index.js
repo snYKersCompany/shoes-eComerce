@@ -18,8 +18,8 @@ const createOrder = async (req, res) => {
                 brand_name: "Snyckers.com",
                 landing_page: "LOGIN",
                 user_action: "PAY_NOW",
-                return_url: `http://localhost:3000/home`,
-                cancel_url: `http://localhost:3000/home`
+                return_url: "http://localhost:3000/order-completed",
+                cancel_url: "http://localhost:3000/order-canceled"
             }
         };
 
