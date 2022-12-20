@@ -4,7 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import CardCart from "./CardCart";
 import PayPalButton from "../Paypal/ButtonPaypal";
 
-const Cart = () => {
+const Cart = () => { 
   let productsCart = localStorage.getItem("carrito");
   const [products, setProducts] = useState(
     productsCart.length > 1 ? JSON.parse(productsCart) : false
