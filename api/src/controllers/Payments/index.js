@@ -11,7 +11,7 @@ const createOrder = async (req, res) => {
                         currency_code: "USD",
                         value: "100"
                     },
-                    description: "Shoes Snyckers",
+                    description: "Shoes Snykers",
                 },
             ],
             application_context: {
