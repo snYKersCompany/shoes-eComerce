@@ -2,18 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
+import { Link } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import Button from "react-bootstrap/Button";
+import PayPalButton from "../Paypal/ButtonPaypal";
+import Button from "react-bootstrap/Button"; // eslint-disable-line
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
-import { BsFillStarFill } from "react-icons/bs";
-import "../../styles/details.css";
-//JSX
-import NavBar from "../NavBar/NavBar";
-import PayPalButton from "../Paypal/ButtonPaypal"
 import NavItem from "react-bootstrap/NavItem";
-import { Link } from "react-router-dom";
+import { BsFillStarFill } from "react-icons/bs";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
+import "../../styles/details.css";
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -27,7 +26,7 @@ const Details = () => {
   console.log(productDetail);
 
   function setProduct(e) {
-    console.log("setProduct")
+    console.log("setProduct");
     localStorage.setItem("carrito", `[{id: ${productDetail._id}}]`);
     alert(`The product ${productDetail.name} was successfully added`);
   }
@@ -35,6 +34,7 @@ const Details = () => {
   return (
     <>
       <NavBar />
+      <ScrollToTop />
       <div className="details d-flex flex-column">
         <div className="d-flex justify-content-center DetailsContainerGeneral">
           <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
@@ -58,7 +58,7 @@ const Details = () => {
                 alt={productDetail.name}
               />
               <p className="fs-6 me-3 text-secondary">
-                Colection <br />
+                Collection <br />
                 {productDetail.collection}
               </p>
               <p className="released fs-4 me-3">
