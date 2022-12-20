@@ -9,27 +9,41 @@ import {
   BsStar, // eslint-disable-line
 } from "react-icons/bs"; // eslint-disable-line
 
-import "../../styles/card.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { addUserProductFavorites, deleteUserProductFavorites } from "../../redux/features/users/usersActions";
+import {
+  addUserProductFavorites,
+  deleteUserProductFavorites,
+} from "../../redux/features/users/usersActions";
+import "../../styles/card.css";
 
-const CardProduct = ({ _id, name, price, card_picture, brand, rating, checkHeart }) => {
-  const dispatch = useDispatch()
+const CardProduct = ({
+  _id,
+  name,
+  price,
+  card_picture,
+  brand,
+  rating,
+  checkHeart,
+}) => {
+  const dispatch = useDispatch();
   // console.log("Esto es checkHeart", checkHeart)
-  const {userDashboard} = useSelector((state) => state.users);
+  const { userDashboard } = useSelector((state) => state.users);
 
-  
-  const [check, setCheck] = useState(checkHeart)
-  useEffect(()=>{
-    setCheck(checkHeart)
-  },[checkHeart])
+  const [check, setCheck] = useState(checkHeart);
+  useEffect(() => {
+    setCheck(checkHeart);
+  }, [checkHeart]);
 
-  const handlerOnClick= ()=>{
-    if(check) dispatch(deleteUserProductFavorites(userDashboard._id, {"favorite":_id}))
-    if(!check) dispatch(addUserProductFavorites(userDashboard._id, {"favorite":_id}))
-  }
+  const handlerOnClick = () => {
+    if (check)
+      dispatch(
+        deleteUserProductFavorites(userDashboard._id, { favorite: _id })
+      );
+    if (!check)
+      dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));
+  };
 
   return (
     <Card className="d-flex card ">
@@ -37,12 +51,16 @@ const CardProduct = ({ _id, name, price, card_picture, brand, rating, checkHeart
         {window.location.pathname === "/" ||
         window.location.pathname === "/home" ? (
           <>
-            <Button variant="custom" className="btnFav" onClick={handlerOnClick}>
-              {check?
-              <BsFillHeartFill className="d-flex justify-content-center card-top fav"/>
-              :
-              <BsHeart className="d-flex justify-content-center card-top fav"/>
-              }
+            <Button
+              variant="custom"
+              className="btnFav"
+              onClick={handlerOnClick}
+            >
+              {check ? (
+                <BsFillHeartFill className="d-flex justify-content-center card-top fav" />
+              ) : (
+                <BsHeart className="d-flex justify-content-center card-top fav" />
+              )}
             </Button>
           </>
         ) : (
