@@ -41,7 +41,9 @@ const NavBar = () => {
       <Navbar bg="dark" className="d-flex h-100 p-0">
         <Container className="d-flex p-0 ContainerGeneralNav ">
           <Navbar.Brand className="d-flex p-0 ContainerNavImg logo">
-            <img alt="SNYKERS" src={logoBlanco} className="NavImg" />
+            <Link to={"/home"} className="NavImg">
+              <img alt="SNYKERS" src={logoBlanco}  />
+            </Link>
           </Navbar.Brand>
           <SearchBar />
           <Nav

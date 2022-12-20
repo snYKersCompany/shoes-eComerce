@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { VscEdit } from "react-icons/vsc";
 import "../../../../styles/viewEditProduct.css";
 
 const ViewEditProduct = ({ productDetail, setStock, stock }) => {
+  
+  let [control, setControl] = useState(-1) 
+
+  const handleEdit = (e, child) => {
+    e.preventDefault()
+    console.log(child);
+    setControl(child)
+  }
+
+  // const [form, setform] = useState({
+  //   name: "", //string
+  //   description: "", //string
+  //   brand: "", //string
+  //   price: "", //Number
+  //   categories: "", //Array(String)
+  //   size: "", //Array(String)  ---> no incluido en el form de manera directa
+  //   color: "", // String
+  //   gender: "", //String
+  //   stock: "", // Object = {size: stock}  --> acá se introduce las tallas disponibles y el stock de cada una
+  //   release: "", // Date
+  //   img: "", //String
+  // });
+
+
+
+
   return (
     <div className="viewEditContainer d-flex text-green">
-      <div className="circle1"></div>
+      
       <form className="viewEdit d-flex ">
         <section className="left d-flex flex-column align-items-center justify-content-center">
           <img
@@ -188,20 +214,6 @@ const ViewEditProduct = ({ productDetail, setStock, stock }) => {
               </fieldset>
             </div>
 
-            <fieldset className="d-flex flex-column mb-3">
-              Stock
-              <label>
-                <input
-                  type="number"
-                  name="ranges"
-                  value={productDetail.range}
-                  className="input"
-                />
-                <button className="ms-1 input2">
-                  <VscEdit className="input3" />
-                </button>
-              </label>
-            </fieldset>
 
             <fieldset className="d-flex flex-column mb-3">
               Price
@@ -220,11 +232,51 @@ const ViewEditProduct = ({ productDetail, setStock, stock }) => {
             </fieldset>
           </section>
         ) : (
-          <button
-            onClick={() => {
-              setStock(true);
-            }}
-          ></button>
+          <section className="VEPStock d-flex flex-wrap">
+             {productDetail.stock ? (
+              Object.entries(productDetail.stock).map((r) =>
+                  <div className="d-flex containerInputVEP" style={{"order": r[0]*2}}>
+
+                  <fieldset
+                    key={r[0]}
+                    value={r[0]}
+                    
+                    className="d-flex"
+                    > 
+                      Size {r[0]}:
+                     
+                      {
+                        control !== r[0]?
+                        <label>
+                          <label className={"ms-2"} style={{"color": "white"}}>
+                          {r[1]}
+                          </label>
+                          <button className="ms-1 input2">
+                            <VscEdit className="input3" onClick={(e) => handleEdit(e, r[0])}/>
+                          </button>
+                        </label>
+                        :
+                        <label>
+                          <input
+                          type="number"
+                          name="ranges"
+                          value={r[1]}
+                          className="input ms-3 inputVEP"
+                          />
+                          <button className="ms-1 input2">
+                            <VscEdit className="input3" onClick={(e) => handleEdit(e, -1)}/>
+                          </button>
+                        </label>
+                      }
+
+
+                  </fieldset>
+                  </div>
+              )
+            ) : (
+              <></>
+            )}
+          </section>
         )}
       </form>
     </div>
