@@ -35,7 +35,7 @@ router.get('/details/:id', async (req, res) => {
 router.get('/dashboard/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const user = await controllers.getUserFavouritesProducts(id);
+        const user = await controllers.getUserDashboard(id);
         return res.status(200).json(user);
     } catch (error) {
         return res.status(400).json({ error: error.message });
@@ -55,8 +55,8 @@ router.delete('/:id', async (req, res) => {
 router.put('/update/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, email, password, phone, address, city, image, admin } = req.body;
-        const message = await controllers.modifyUser(id, name, email, password, phone, address, city, image, admin);
+        const { name, username, email, password, phone, address, city, image, admin } = req.body;
+        const message = await controllers.modifyUser(id, name, username, email, password, phone, address, city, image, admin);
         return res.status(200).json(message);
     } catch (error) {
         return res.status(400).json({ error: error.message });

@@ -12,7 +12,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import MiddleViewCard from "./components/ModalMiddleView/MiddleViewCard";
+// import MiddleViewCard from "./components/ModalMiddleView/MiddleViewCard";
 
 function App() {
   return (
