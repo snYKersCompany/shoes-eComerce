@@ -186,7 +186,7 @@ const Details = () => {
               Price: ${productDetail.price}
             </p>
             {/* <PayPalButton /> */}
-            <Preview />
+            <Preview onClick={(e) => setProduct(e)} />
           </section>
         ) : (
           <></>
