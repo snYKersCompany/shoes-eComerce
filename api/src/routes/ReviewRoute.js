@@ -4,7 +4,7 @@ const router = express.Router()
 
 router.get('/', getReviews)
 
-router.get('/_id', getReview)
+router.get('/:_id', getReview)
 
 router.post('/', postReviews)
 
