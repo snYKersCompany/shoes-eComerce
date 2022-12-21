@@ -76,6 +76,7 @@ const UserOrders = () => {
   ]
 
   const purchasesMade = [  //
+
     {
       name: 'Nike Turbo 2.0',
       quantity: '1',
@@ -129,6 +130,7 @@ const UserOrders = () => {
           <td key='price'>{e.price}</td>
           <Button onClick={(e) => toPurchaseDetails(e)}>detail</Button>
           </tr>
+          
         ))}
 
       </tbody>

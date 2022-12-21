@@ -19,6 +19,7 @@ import "../../styles/navbar.css";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  
 
   //devuelve toda la info del contexto
   const authContext = useAuth(); // eslint-disable-line

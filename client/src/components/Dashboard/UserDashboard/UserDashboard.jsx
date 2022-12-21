@@ -52,12 +52,12 @@ const UserDashboard = () => {
                 <Tab.Pane eventKey="profile">
                   <UserProfile />
                 </Tab.Pane>
-                {/* <Tab.Pane
+                <Tab.Pane
                   eventKey="favorites"
                   className="d-flex justify-content-center align-content-center"
                 >
                   <UserFavorites />
-                </Tab.Pane> */}
+                </Tab.Pane>
                 <Tab.Pane eventKey="orders" className=''>
                   <UserOrders />
                 </Tab.Pane>
