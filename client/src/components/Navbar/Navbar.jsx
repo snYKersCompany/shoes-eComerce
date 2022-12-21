@@ -9,7 +9,7 @@ import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 import accBlanco from "../../utils/images/navbar/accBlanco.svg";
 //BS
 import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
+import NavB from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown"; 
 import NavItem from "react-bootstrap/NavItem";
@@ -37,13 +37,13 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar bg="dark" className="d-flex h-100 p-0">
+      <NavB bg="dark" className="d-flex h-100 p-0">
         <Container className="d-flex p-0 ContainerGeneralNav ">
-          <Navbar.Brand className="d-flex p-0 ContainerNavImg logo">
+          <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
             <Link to={"/home"} className="NavImg">
               <img alt="SNYKERS" src={logoBlanco}  />
             </Link>
-          </Navbar.Brand>
+          </NavB.Brand>
           <SearchBar />
           <Nav
             className="justify-content-end align-items-center"
@@ -89,7 +89,7 @@ const NavBar = () => {
             </NavItem>
           </Nav>
         </Container>
-      </Navbar>
+      </NavB>
     </>
   );
 };
