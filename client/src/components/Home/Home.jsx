@@ -26,7 +26,7 @@ const Home = () => {
       <ScrollToTop />
       <NavBar />
       <Carrousel />
-      <Paginated />
+      <Paginated />      
       <Footer />
     </>
   );
