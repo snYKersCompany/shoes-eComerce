@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 ///JSX
@@ -11,14 +11,17 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 //style
 import "../../styles/register.css";
+//actions
+import { putUserInformation } from "../../redux/features/users/usersActions";
 
 const Register = () => {
+  const { userDashboard } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { signUp } = useAuth();
+  const { signUp, user } = useAuth();
 
   /////-----STATES-----/////
-  const [user, setUser] = useState({
+  const [userIN, setUser] = useState({
     username: "",
     email: "",
     password: "",
@@ -30,7 +33,7 @@ const Register = () => {
     if (name === "password") {
       validate(value);
     }
-    setUser({ ...user, [name]: value });
+    setUser({ ...userIN, [name]: value });
   };
 
   function validate(password) {
@@ -43,11 +46,17 @@ const Register = () => {
     }
   }
 
+  console.log("user en 0", user);
+  console.log(userDashboard);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(user.email, user.password);
+      const userUID = await signUp(userIN.email, userIN.password);
+      console.log("user ID antes del dispatch", userUID);
+      dispatch(putUserInformation(userUID, { username: userIN.username }));
+      alert("Your register went succesfully :D");
       navigate("/home");
     } catch (error) {
       if (error.code === "auth/admin-restricted-operation") {

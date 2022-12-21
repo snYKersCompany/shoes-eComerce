@@ -29,7 +29,13 @@ export const AuthProvider = ({ children }) => {
 
     //SING UP
     const signUp = async (email, password) => {
-        await createUserWithEmailAndPassword(auth, email, password)
+        try {
+            const response = await createUserWithEmailAndPassword(auth, email, password)
+            return response.user.uid
+        } catch (error) {
+            console.log("error", error)
+            return null
+        }
     }
 
     //LOG IN
@@ -66,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         } = firebaseUser;
 
         const userCredentials = {
-            username: displayName,
+            username: displayName || "",
             uid: uid,
             email: email
         }
@@ -77,7 +83,6 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
-                console.log(firebaseUser)
                 const userData = await getUserData(firebaseUser)
                 // console.log(userData.uid) // Revisar si esta accion (getUserDashboards) hace que la seguridad sea mas fragil
                 dispatch(getUserDashboards(userData.uid))   // AGREGADO POR EL BIEN DE LA TRAMA
