@@ -5,7 +5,10 @@ import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard/UserDashboard";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getUserDashboards, getOneUser } from "../../redux/features/users/usersActions";
+import {
+  getUserDashboards,
+  getOneUser,
+} from "../../redux/features/users/usersActions";
 import { useAuth } from "../../context/authContext";
 import "../../styles/userDashboard.css";
 
@@ -16,10 +19,9 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
 
-  
   useEffect(() => {
     dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
-    dispatch(getOneUser(user.uid))
+    dispatch(getOneUser(user.uid));
   }, [dispatch, user.uid]);
 
   return (

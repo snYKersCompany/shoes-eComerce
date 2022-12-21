@@ -28,18 +28,17 @@ function MiddleViewCard() {
         <Col className="d-flex obj1">
           <img src={product.card_picture} className="img1" alt={product.name} />
           <span>
-            <h2>Agregaste a tu carrito</h2>
-            <p>...Nombre... de talle ...Nro...</p>
+            <h2>You added to the cart</h2>
+            <h4>{product.name}</h4>
           </span>
         </Col>
         <Col md="auto" className="d-flex obj2">
-          <p>
-            ...Nro... productos en tu carrito: <b>${product.price} * Nro</b>
-          </p>
+          <h4>
+            {product.has_stock} products added in your cart: {product.price}$
+          </h4>
           <img src={product.card_picture} className="img2" alt={product.name} />
         </Col>
-        <Col xs lg="2" className="d-flex obj3">
-          {/* <Button variant="primary btn">ver Carrito</Button>{' '} */}
+        <Col xs lg="2" md="auto" className="d-flex obj3">
           <Link to="/cart">
             <Button variant="secondary customBtn">Go Cart</Button>
           </Link>

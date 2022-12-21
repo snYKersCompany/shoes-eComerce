@@ -13,9 +13,9 @@ const createOrder = async (req, res) => {
                         currency_code: "USD",
                         value: "100"
                     },
-                return_url: "http://localhost:3000/order-completed",
-            }
-        ]
+                    return_url: "http://localhost:3000/order-completed",
+                }
+            ]
         };
 
         const params = new URLSearchParams();
@@ -36,15 +36,14 @@ const createOrder = async (req, res) => {
             headers: {
                 Authorization: `Bearer ${access_token}`
             }
-        });        
+        });
         res.send(result.data);
-    } catch (error) {        
+    } catch (error) {
         res.send(error);
     }
 };
 
 const captureOrder = async (req, res) => {
-
     const { token, PayerID } = req.query
 
     const result = await axios.post(`${PAYPAL_API}/v2/checkout/orders/${token}/capture`, {}, {
@@ -57,8 +56,18 @@ const captureOrder = async (req, res) => {
     res.status(200).send(message);
 };
 
-const cancelOrder = (req, res) => {
-    res.status(200).send("The order was cancelled");
+const cancelOrder = async (req, res) => {
+    res.status(200).send("order canceled")
+    // const { token, PayerID } = req.query
+
+    // const result = await axios.post(`${PAYPAL_API}/v2/checkout/orders/${token}/cancel`, {}, {
+    //     auth: {
+    //         username: PAYPAL_API_CLIENTE,
+    //         password: PAYPAL_API_SECRET
+    //     }
+    // })
+    // const message = await axios.post(`http://localhost:3001/api/orders/cancel`, result.data);
+    // res.status(200).send(message);
 };
 
 
