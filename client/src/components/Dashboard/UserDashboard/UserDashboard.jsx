@@ -44,6 +44,12 @@ const UserDashboard = () => {
                   <CgList className="d-flex" /> Orders
                 </Nav.Link>
               </Nav.Item>
+
+              {/* <Nav.Item className="d-flex">
+                <Nav.Link eventKey="review" className="d-flex">
+                  <CgList className="d-flex" /> Review
+                </Nav.Link>
+              </Nav.Item> */}
             </Nav>
 
             <div className="section d-flex">
@@ -66,9 +72,13 @@ const UserDashboard = () => {
                 <></>
                 }
                 </Tab.Pane>
+
+
+
                 
                 <Tab.Pane eventKey="orders">
                 {control === "orders"?
+
                   <UserOrders />
                 :  
                 <></>
