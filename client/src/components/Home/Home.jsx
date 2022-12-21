@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
@@ -22,7 +22,6 @@ const Home = () => {
 
   return (
     <>
-      {console.log(localStorage.getItem("carrito"))}
       <ScrollToTop />
       <NavBar />
       <Carrousel />
