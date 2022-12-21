@@ -5,7 +5,7 @@ import { useAuth } from "../../context/authContext";
 import SearchBar from "../SearchBar/SearchBar";
 //SVG
 import logoBlanco from "../../utils/images/logoBlanco.svg";
-import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
+import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; 
 import accBlanco from "../../utils/images/navbar/accBlanco.svg";
 //BS
 import Container from "react-bootstrap/Container";
