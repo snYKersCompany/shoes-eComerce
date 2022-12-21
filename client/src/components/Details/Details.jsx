@@ -75,7 +75,7 @@ const Details = () => {
   }
 
   //Fin local Storage
-
+  
   return (
     <>
       <NavBar />

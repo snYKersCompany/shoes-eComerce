@@ -74,6 +74,7 @@ const postProduct = async (dataProduct)=>{
 //  Recibe la data que queramos actualizar y el id del producto 
 const putProductById = async (updateData, _id)=>{
     await getProducts(_id)
+    console.log(updateData)
 
     const {name, brand, category, color, gender, stock, card_picture, detail_picture, original_picture, release_date, price, description} = updateData;
 
