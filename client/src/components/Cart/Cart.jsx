@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../Navbar/Navbar";
 import CardCart from "./CardCart";
 import PayPalButton from "../Paypal/ButtonPaypal";
 
