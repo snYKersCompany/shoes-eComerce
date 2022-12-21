@@ -9,7 +9,6 @@ import "../../../styles/review.css";
 function Review() {
 
     //FALTAN LAS ESTRELLAS
-    // 
 
 
   return (
@@ -21,6 +20,7 @@ function Review() {
         <Modal.Header closeButton>
           <Modal.Title>Make your review!</Modal.Title>
         </Modal.Header>
+        
 
 
         {/* body pas cribi */}
