@@ -61,12 +61,12 @@ export const AuthProvider = ({ children }) => {
     //FORAMTEO DE FIREBASEUSER
     const formatUserData = (firebaseUser) => {
         const {
-            displayName,
+            // displayName,
             uid, email
         } = firebaseUser;
 
         const userCredentials = {
-            username: displayName,
+            // username: displayName,
             uid: uid,
             email: email
         }
