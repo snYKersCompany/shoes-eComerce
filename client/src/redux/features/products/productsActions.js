@@ -24,30 +24,32 @@ function filterQuery(filters) {
   return query;
 }
 
-export const getAllProducts = (filters={}, orders={}, search="") => async (dispatch) => {
-  try {
-    let query = filterQuery(filters);
-    console.log(filters)
-    console.log(orders)
-    console.log(search)
+export const getAllProducts =
+  (filters = {}, orders = {}, search = "") =>
+  async (dispatch) => {
+    try {
+      let query = filterQuery(filters);
+      console.log(filters);
+      console.log(orders);
+      console.log(search);
 
-    let orderBy = JSON.stringify(orders)
-    if (orderBy.length === 2) orderBy = ``
-    else orderBy = `orderBy=${orderBy}`
+      let orderBy = JSON.stringify(orders);
+      if (orderBy.length === 2) orderBy = ``;
+      else orderBy = `orderBy=${orderBy}`;
 
-    let searchBy = ""
-    if(search.length) searchBy = `search=${search}`
+      let searchBy = "";
+      if (search.length) searchBy = `search=${search}`;
 
-    let product = await axios(`https://snykers.onrender.com/api/products?${query}&${orderBy}&${searchBy}`);
-    return dispatch(getProducts(product.data.products));
-  } catch (error) {
-    return error;
-  }
-};
+      let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
+      return dispatch(getProducts(product.data.products));
+    } catch (error) {
+      return error;
+    }
+  };
 
 export const getProductsDetails = (_id) => async (dispatch) => {
   try {
-    const products = await axios("https://snykers.onrender.com/api/products/details/" + _id);
+    const products = await axios("/products/details/" + _id);
 
     return dispatch(productsDetails(products.data[0]));
   } catch (error) {
@@ -65,10 +67,7 @@ export const clearProductsDetail = () => async (dispatch) => {
 
 export const createProduct = (payload) => async () => {
   try {
-    const post = await axios.post(
-      "https://snykers.onrender.com/api/products/create",
-      payload
-    );
+    const post = await axios.post("/products/create", payload);
     return post;
   } catch (error) {
     return error;
@@ -77,10 +76,8 @@ export const createProduct = (payload) => async () => {
 
 export const deleteProducts = (_id) => async () => {
   try {
-    const delete_ = await axios.delete(
-      `https://snykers.onrender.com/api/products/${_id}`
-    );
-    return delete_
+    const delete_ = await axios.delete(`/products/${_id}`);
+    return delete_;
   } catch (error) {
     return error;
   }
@@ -152,9 +149,7 @@ export const clearSearchs = () => async (dispatch) => {
 
 export const getProductByQuery = (payload) => async (dispatch) => {
   try {
-    const response = await axios(
-      "https://snykers.onrender.com/api/products?search=" + payload
-    );
+    const response = await axios("/products?search=" + payload);
     return dispatch(searchByQuery(response.data.products));
   } catch (error) {
     return error;
@@ -163,56 +158,55 @@ export const getProductByQuery = (payload) => async (dispatch) => {
 
 export const getCategories = () => async (dispatch) => {
   try {
-    const response = await axios(`https://snykers.onrender.com/api/categories`);
+    const response = await axios(`/categories`);
     return dispatch(filterByCategories(response.data));
   } catch (error) {
     return error;
   }
 };
 
-
 export const getBrands = () => async (dispatch) => {
   try {
-    const response = await axios(`https://snykers.onrender.com/api/products`)
-    const mapeadito = await response.data.products.map(e => e.brand)
-    const dry = [...new Set(mapeadito)]
-    return dispatch(filterBrands(dry))
+    const response = await axios(`/products`);
+    const mapeadito = await response.data.products.map((e) => e.brand);
+    const dry = [...new Set(mapeadito)];
+    return dispatch(filterBrands(dry));
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 
 export const getRatings = () => async (dispatch) => {
   try {
-    const response = await axios(`https://snykers.onrender.com/api/products`)
-    const mapeadito = response.data.products.map(e => e.rating)
-    const dry = [...new Set(mapeadito)].sort()
-    return dispatch(filterRatings(dry))
+    const response = await axios(`/products`);
+    const mapeadito = response.data.products.map((e) => e.rating);
+    const dry = [...new Set(mapeadito)].sort();
+    return dispatch(filterRatings(dry));
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 
 export const getGenders = () => async (dispatch) => {
-  try{
-    const response = await axios(`https://snykers.onrender.com/api/products`)
-    const mapeo = await response.data.products.map(e=> e.gender)
-    const join = mapeo.join().split(',')
-    const dry = [...new Set(join)]
-    return dispatch(filterByGenders(dry))
-  }catch(error){
-    return error
+  try {
+    const response = await axios(`/products`);
+    const mapeo = await response.data.products.map((e) => e.gender);
+    const join = mapeo.join().split(",");
+    const dry = [...new Set(join)];
+    return dispatch(filterByGenders(dry));
+  } catch (error) {
+    return error;
   }
-}
+};
 
 export const putProduct = (_id, body) => async (dispatch) => {
   try {
-    const response = await axios.put(`https://snykers.onrender.com/api/products/modify/${_id}`, body)
-    console.log("Esto es putProduct")
-    console.log({_id, body})
-    console.log(response.data)
-    return dispatch(productsDetails(response.data[0]))
+    const response = await axios.put(`/products/modify/${_id}`, body);
+    console.log("Esto es putProduct");
+    console.log({ _id, body });
+    console.log(response.data);
+    return dispatch(productsDetails(response.data[0]));
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
