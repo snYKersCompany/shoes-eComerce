@@ -71,8 +71,11 @@ export const clearUsers = () => async (dispatch) => {
 
 export const putUserInformation = (user, change) => async (dispatch) => {
   try{
+    console.log(change)
     const response = await axios.put(`http://localhost:3001/api/users/update/${user}`, change)
+    console.log(response.data)
     return dispatch(getUserDashboard(response.data[0]))
+    return
   } catch(error){
     return error
   }

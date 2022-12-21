@@ -8,7 +8,7 @@ import { getProductsDetails } from "../../redux/features/products/productsAction
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 
-export default function ButtonPaypal() {
+export default function ButtonPaypal({priceTotal, info}) {
 
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -23,7 +23,8 @@ export default function ButtonPaypal() {
       purchase_units: [
         {
           amount: {
-            value: productDetail.price
+            value: priceTotal,
+            items: info.products
           },
         },
       ],

@@ -99,6 +99,10 @@
     color: goldenrod;
 }
 
+.inputCardCart{
+    width: 40px !important;
+}
+
 @media (min-width:650px) {
     .DetailsContainerImg {
         width: 420px;

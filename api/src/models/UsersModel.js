@@ -35,6 +35,10 @@ const userSchema = mongoose.Schema({
     ref: "orders",
     type: mongoose.Schema.Types.ObjectId
   }],
+  reviews: [{
+    ref: "reviews",
+    type: mongoose.Schema.Types.ObjectId
+  }],
   createdAt: { type: Date, default: Date.now }
 }, {
   timestamps: false,

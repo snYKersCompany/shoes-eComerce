@@ -1,7 +1,7 @@
 import React from "react";
 import CardsContainer from "../../CardsContainer/CardsContainer";
 //JSX
-import CardPreview from "./CardPreview";
+import MiddleViewCard from "./MiddleViewCard";
 //BS
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -20,8 +20,7 @@ const PreviewModal = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h1>Esto es el body</h1>
-        <CardPreview />
+        <MiddleViewCard />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

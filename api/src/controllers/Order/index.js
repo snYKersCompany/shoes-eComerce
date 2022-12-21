@@ -1,51 +1,81 @@
 const { OrderModel } = require('../../models/ModelsDB');
 
-const createOrder = async (_idProduct, state, voucher, date) => {
+const createOrder = async (req, res) => {
     try {
-        const order = await OrderModel.create({_idProduct, state, voucher, date });
-        return order;
+        const { products, totalPrice } = req.body;
+
+        if(!products || !totalPrice) throw new Error("Faltan datos importantes")
+
+        const newOrder = new OrderModel({products, totalPrice})
+        await newOrder.save()
+
+        return res.status(200).json(newOrder);
     } catch (error) {
-        console.log("Failed to create payment order")
+        return res.status(404).json({ error: error.message });
     }
 };
 
-const getOrder = async () => {
-    const order = await OrderModel.find();
-    return order;
+const getOrders = async (req, res) => {
+    try {
+        const order = await OrderModel.find();
+        return res.status(200).json({ order: order });
+    } catch (error) {
+        return res.status(404).json({ error: error.message });
+    }
 };
 
-const findOrder = async (id) => {
-    if (!id) {
-        return `The ID ${id} you are looking for does not exist`;
+const findOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) throw new Error(`The ID ${id} you are looking for does not exist`);
+        
+        const order = await OrderModel.findById(id);
+        if (!order) throw new Error(`the order with the id ${id} does not exist`)
+
+        return res.status(200).json(order);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
     }
-    const order = await OrderModel.findById(id);
-    if (!order) {
-        return `the order with the id ${id} does not exist`
-    }
-    return order;
 };
 
-const deleteOrder = async (id) => {
-    if (!id) {
-        return "The ID you are looking for does not exist";
+const deleteOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) throw new Error("The ID you are looking for does not exist");
+        
+        const result = await OrderModel.deleteOne({ _id: id });
+        
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
     }
-    await OrderModel.deleteOne({ _id: id });
-    return `the order with the id ${id} has been deleted`;
 };
 
-const putOrder = async (id ,state, voucher) => {
-    let order = await OrderModel.findById(id);
-    if (!order) {
-       return `The order with an id ${id} not found`;
+const putOrder = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { voucher } = req.body;
+
+        let order = await OrderModel.findById(id);
+        if (!order) throw new Error(`The order with an id ${id} not found`);
+
+        if(!voucher) throw new Error(`Falta El Dato Voucher`);
+         
+        let state = ""
+        if(voucher.status === "COMPLETED") state = "aprobed"
+        else state = "cancelled"
+
+        const updateOrder = await OrderModel.updateOne({_id: id}, {$set: {state, voucher}});
+        return res.status(200).json(updateOrder);
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
     }
-    await OrderModel.updateOne({_id: id}, {$set: {state, voucher}});
-    return `The order with an id ${id} was successfully modified`;
 }
 
 
 module.exports = {
     createOrder,
-    getOrder,
+    getOrders,
     deleteOrder,
     findOrder,
     putOrder,

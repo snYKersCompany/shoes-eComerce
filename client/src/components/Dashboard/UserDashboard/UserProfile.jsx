@@ -178,6 +178,7 @@ function UserProfile() {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+      <Button variant="danger" onClick={()=>setModify(false)}>Cancel</Button>
     </Form>
   );
 }
