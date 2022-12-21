@@ -61,10 +61,12 @@ export const AuthProvider = ({ children }) => {
     //FORAMTEO DE FIREBASEUSER
     const formatUserData = (firebaseUser) => {
         const {
+            displayName,
             uid, email
         } = firebaseUser;
 
         const userCredentials = {
+            username: displayName,
             uid: uid,
             email: email
         }
@@ -75,6 +77,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
+                console.log(firebaseUser)
                 const userData = await getUserData(firebaseUser)
                 // console.log(userData.uid) // Revisar si esta accion (getUserDashboards) hace que la seguridad sea mas fragil
                 dispatch(getUserDashboards(userData.uid))   // AGREGADO POR EL BIEN DE LA TRAMA

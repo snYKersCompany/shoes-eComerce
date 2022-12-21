@@ -19,6 +19,7 @@ const Register = () => {
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -78,6 +79,18 @@ const Register = () => {
             <Card.Title>Register</Card.Title>
             {error && <AlertMSJ message={error} />}
             <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId="formBasicUsername" className="mb-4">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  size="40"
+                  maxLength="256"
+                  className="ph-center"
+                  onChange={(e) => handleChange(e)}
+                  name="username"
+                  type="username"
+                  placeholder="Username"
+                />
+              </Form.Group>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
