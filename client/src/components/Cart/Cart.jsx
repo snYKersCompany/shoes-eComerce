@@ -1,13 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../Navbar/Navbar";
 import CardCart from "./CardCart";
 import PayPalButton from "../Paypal/ButtonPaypal";
 
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
+
+
   const [products, setProducts] = useState(
-    productsCart.length > 1 ? JSON.parse(productsCart) : false
+    productsCart?.length > 1 ? JSON.parse(productsCart) : false
   );
   // {productsCart.length>1? map:}
   //intera el objeto del local storage para renderizar todas las cards
