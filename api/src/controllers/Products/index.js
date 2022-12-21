@@ -1,4 +1,6 @@
 const { ProductsModel } = require('../../models/ModelsDB');
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId;
 
 const getProducts = async ({rating, search, category, gender, priceMin, priceMax, orderBy, brand})=>{
     let parameters = {}
@@ -19,12 +21,19 @@ const getProducts = async ({rating, search, category, gender, priceMin, priceMax
 }
 
 const getProductsById = async (_id)=>{
-    try {
-        const products = await ProductsModel.find(_id?{_id}:null)
-        return products;
-    } catch (error) {
-        throw new Error(`The user with an id ${_id} was not found in the database`);
-    }
+
+    const products = await ProductsModel.aggregate([
+        { $match: {_id:ObjectId(_id)} },
+        {
+        $lookup:{
+            from: "reviews",
+            localField: "reviews",
+            foreignField: "_id",
+            as: "reviews"
+            }
+        }
+    ])
+    return products;
 }
 
 const postProduct = async (dataProduct)=>{
@@ -58,12 +67,14 @@ const postProduct = async (dataProduct)=>{
     if(release_date) parameters.release_date = release_date;
     if(description) parameters.description = description;
     const product = new ProductsModel(parameters)
+    console.log(product)
     return await product.save()
 }
 
 //  Recibe la data que queramos actualizar y el id del producto 
 const putProductById = async (updateData, _id)=>{
     await getProducts(_id)
+    console.log(updateData)
 
     const {name, brand, category, color, gender, stock, card_picture, detail_picture, original_picture, release_date, price, description} = updateData;
 

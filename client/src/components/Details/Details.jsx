@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
-// import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-// import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import PayPalButton from "../Paypal/ButtonPaypal";
+import Button from "react-bootstrap/Button"; // eslint-disable-line
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
-import { BsFillStarFill } from "react-icons/bs";
-import "../../styles/details.css";
-//JSX
-import NavBar from "../NavBar/NavBar";
-import PayPalButton from "../Paypal/ButtonPaypal"
 import NavItem from "react-bootstrap/NavItem";
-import { Link } from "react-router-dom";
+import { BsFillStarFill } from "react-icons/bs";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
+import "../../styles/details.css";
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -26,42 +25,61 @@ const Details = () => {
 
   //local Storage
 
-  const [size, setSize] = useState("") 
-  const [stock, setStock] = useState("") 
+  const [size, setSize] = useState("");
+  const [stock, setStock] = useState("");
 
-  const handleSize = (size,stock) => {
-    setSize(size)
-    let aux = []
-    stock>100 ? stock=100 : stock= Number(stock)
-    for(let i = 1; i!=stock ;i++){
-      aux.push(i)
+  const handleSize = (size, stock) => {
+    setSize(size);
+    let aux = [];
+    stock > 100 ? (stock = 100) : (stock = Number(stock));
+    for (let i = 1; i != stock; i++) {
+      aux.push(i);
     }
-    setStock(aux)
-  }
+    setStock(aux);
+  };
 
-
-  
-  const [count, setCount] = useState(false)
+  const [count, setCount] = useState(false);
 
   function setProduct() {
-    if(localStorage.getItem("carrito")?.length>1){
-      let cart = {id: productDetail._id, name:productDetail.name, description: productDetail.description, img: productDetail.detail_picture, size, price: productDetail.price, count, totalPrice: productDetail.price*count}
-      localStorage.setItem("carrito", JSON.stringify(JSON.parse(localStorage.getItem("carrito")).concat([cart])));
-    } 
-    else{
-      let cart = {id: productDetail._id, name: productDetail.name,description: productDetail.description, img: productDetail.detail_picture, size, price: productDetail.price, count, totalPrice: productDetail.price*count}
-       localStorage.setItem("carrito", JSON.stringify([cart]));
+    if (localStorage.getItem("carrito")?.length > 1) {
+      let cart = {
+        id: productDetail._id,
+        name: productDetail.name,
+        description: productDetail.description,
+        img: productDetail.detail_picture,
+        size,
+        price: productDetail.price,
+        count,
+        totalPrice: productDetail.price * count,
+      };
+      localStorage.setItem(
+        "carrito",
+        JSON.stringify(
+          JSON.parse(localStorage.getItem("carrito")).concat([cart])
+        )
+      );
+    } else {
+      let cart = {
+        id: productDetail._id,
+        name: productDetail.name,
+        description: productDetail.description,
+        img: productDetail.detail_picture,
+        size,
+        price: productDetail.price,
+        count,
+        totalPrice: productDetail.price * count,
+      };
+      localStorage.setItem("carrito", JSON.stringify([cart]));
     }
     alert(`The product ${productDetail.name} was successfully added`);
   }
 
   //Fin local Storage
-
-
-
+  
   return (
     <>
       <NavBar />
+      <ScrollToTop />
       <div className="details d-flex flex-column">
         <div className="d-flex justify-content-center DetailsContainerGeneral">
           <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
@@ -85,7 +103,7 @@ const Details = () => {
                 alt={productDetail.name}
               />
               <p className="fs-6 me-3 text-secondary">
-                Colection <br />
+                Collection <br />
                 {productDetail.collection}
               </p>
               <p className="released fs-4 me-3">
@@ -104,20 +122,36 @@ const Details = () => {
           <p className="fw-bold fs-5">Ranges:</p>
           {/* productDetail.ranges */}
           <ListGroup horizontal className={`horizontalWrapper`}>
-            {productDetail.stock? 
-              Object.entries(productDetail.stock).map((r) => (
-                r[1] !== 0?
-                <ListGroup.Item onClick={() => handleSize(r[0], r[1] )}  key={r[0]} value={r[0]} style={{"order": r[0]*2}} className={`${size === r[0]? "horizontalItem bg-warning": "horizontalItem"}`}>
-                  {r[0]}
-                </ListGroup.Item>
-                :
-                <ListGroup.Item disabled key={r[0]} style={{"order": r[0]*2}} className={`horizontalItem bg-warning"}`}>
-                  {r[0]}
-                </ListGroup.Item>
-              ))
-              :
+            {productDetail.stock ? (
+              Object.entries(productDetail.stock).map((r) =>
+                r[1] !== 0 ? (
+                  <ListGroup.Item
+                    onClick={() => handleSize(r[0], r[1])}
+                    key={r[0]}
+                    value={r[0]}
+                    style={{ order: r[0] * 2 }}
+                    className={`${
+                      size === r[0]
+                        ? "horizontalItem bg-warning"
+                        : "horizontalItem"
+                    }`}
+                  >
+                    {r[0]}
+                  </ListGroup.Item>
+                ) : (
+                  <ListGroup.Item
+                    disabled
+                    key={r[0]}
+                    style={{ order: r[0] * 2 }}
+                    className={`horizontalItem bg-warning"}`}
+                  >
+                    {r[0]}
+                  </ListGroup.Item>
+                )
+              )
+            ) : (
               <></>
-            }
+            )}
           </ListGroup>
 
           <p className="fw-bold fs-5">
@@ -129,37 +163,43 @@ const Details = () => {
         </section>
         <section className="d-flex justify-content-center m-3">
           <label>Count: </label>
-          <select defaultValue={"null"} onChange={(e) => setCount(Number(e.target.value))} >
-            <option hidden key={"null"}>select the units</option>
-              {stock.length >= 1 && stock.map(und =>
-                <option value={und} key={und}>{und}</option>
-                )}
+          <select
+            defaultValue={"null"}
+            onChange={(e) => setCount(Number(e.target.value))}
+          >
+            <option hidden key={"null"}>
+              select the units
+            </option>
+            {stock.length >= 1 &&
+              stock.map((und) => (
+                <option value={und} key={und}>
+                  {und}
+                </option>
+              ))}
           </select>
         </section>
-        
 
-          {count !== false?
-        <section className="d-flex mb-2 flex-row justify-content-center align-items-center">
-          <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
-            Price: ${productDetail.price}
-          </p>
-          {/* <PayPalButton /> */}
-          <NavItem>
-            <Link to="/" onClick={(e) => setProduct(e)}>
-              <img
-                src={cartBlanco}
-                width="40"
-                height="40"
-                className="d-inline-block align-top"
-                alt="Cart"
+        {count !== false ? (
+          <section className="d-flex mb-2 flex-row justify-content-center align-items-center">
+            <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
+              Price: ${productDetail.price}
+            </p>
+            {/* <PayPalButton /> */}
+            <NavItem>
+              <Link to="/" onClick={(e) => setProduct(e)}>
+                <img
+                  src={cartBlanco}
+                  width="40"
+                  height="40"
+                  className="d-inline-block align-top"
+                  alt="Cart"
                 />
-            </Link>
-          </NavItem>
-        </section>
-        :
-        <></>
-          }
-
+              </Link>
+            </NavItem>
+          </section>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

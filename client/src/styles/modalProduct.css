@@ -1,0 +1,18 @@
+.modalBackground {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modalBackground2 {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, rgba(27, 31, 101, 1) 100%, rgba(2, 0, 36, 1) 100%);
+}
+
+.modalBtn {
+    background: linear-gradient(85.99deg, #FC964C 7.66%, #CB33A0 99.12%);
+    border-radius: 7px;
+    color: white;
+    border: none;
+}
+
+.text-yellow {
+    color: yellow;
+}

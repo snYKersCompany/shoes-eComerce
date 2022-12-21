@@ -4,7 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import CardCart from "./CardCart";
 import PayPalButton from "../Paypal/ButtonPaypal";
 
-const Cart = () => { 
+const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
   const [products, setProducts] = useState(
     productsCart.length > 1 ? JSON.parse(productsCart) : false
@@ -17,7 +17,7 @@ const Cart = () => {
 
   {
     products.length >= 1
-      ? products.map((el, i) => {
+      ? products.map((el) => {
           priceTotal += el.totalPrice;
         })
       : (priceTotal += 0);
@@ -46,7 +46,6 @@ const Cart = () => {
     <>
       <NavBar />
       <div className="d-flex p-5 justify-content-center align-items-center flex-column">
-        <p>Hola</p>
         {products.length >= 1 ? (
           products.map((el, i) => {
             return (
