@@ -36,10 +36,11 @@ const findUser = async (id) => {
     return user;
 }
 
-const getUserFavouritesProducts = async (id) => {
-    if (!id) throw new Error(`It needs an id property`);
+const getUserDashboard = async (_id) => {
+    if (!_id) throw new Error(`It needs an id property`);
+    console.log({_id})
     const user = await UsersModel.aggregate([
-        { $match:{_id:id} },
+        { $match:{_id:_id} },
         {
         $lookup:{
             from: "products",
@@ -47,10 +48,27 @@ const getUserFavouritesProducts = async (id) => {
             foreignField: "_id",
             as: "productsFavourites"
             }
-        }
+        },
+        {
+        $lookup:{
+            from: "roles",
+            localField: "roles",
+            foreignField: "_id",
+            as: "roles"
+            }
+        },
+        {
+        $lookup:{
+            from: "reviews",
+            localField: "reviews",
+            foreignField: "_id",
+            as: "reviews"
+            }
+        },
+        { $unwind: "$roles"}
     ])
     if (!user) {
-        return `The user with an id ${id} was not found in the database`
+        return `The user with an id ${_id} was not found in the database`
     }
     return user
 }
@@ -67,14 +85,25 @@ const deleteUser = async (id) => {
     return `The user with an id ${id} was successfully deleted`;
 }
 
-const modifyUser = async (id, name, email, password, phone, address, city, image, admin) => {
+const modifyUser = async (id, name, username, email, password, phone, address, city, image, admin) => {
     let user = await UsersModel.findById(id);
     if (!user) {
         throw new Error(`The user with an id ${id} was not found in the database`);
     }
-    await UsersModel.updateOne({ _id: id }, { $set: { name, email, password, phone, address, city, image, admin } });
+
+    let parameters = {}
+    if(name.length) parameters.name = name;
+    if(username.length) parameters.username = username;
+    if(email.length) parameters.email = email;
+    // if(password.length) parameters.password = password;
+    if(phone.length) parameters.phone = phone;
+    if(address.length) parameters.address = address;
+    if(city.length) parameters.city = city;
+    // if(image.length) parameters.image = image;
+    console.log(parameters)
+    await UsersModel.updateOne({ _id: id }, { $set: parameters });
     // return `The user with an id ${id} was successfully modified`;
-    const updateUser = await getUserFavouritesProducts(id)
+    const updateUser = await getUserDashboard(id)
     return updateUser
 }
 
@@ -135,7 +164,7 @@ module.exports = {
     modifyUser,
     postUsers,
     postFavourites,
-    getUserFavouritesProducts,
+    getUserDashboard,
     addFavoriteProducts,
     deleteFavoriteProducts
 }

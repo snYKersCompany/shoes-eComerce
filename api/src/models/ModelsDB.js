@@ -3,6 +3,7 @@ const { UsersModel } = require('./UsersModel');
 const { OrderModel } = require('./OrderModel');
 const { CategoryModel } = require('./CategoryModel');
 const { Roles } = require('./RolesModel');
+const { ReviewModel } = require('./ReviewModel')
 
 
 
@@ -11,5 +12,6 @@ module.exports = {
     UsersModel,
     OrderModel,
     CategoryModel,
-    Roles
+    Roles,
+    ReviewModel
 }

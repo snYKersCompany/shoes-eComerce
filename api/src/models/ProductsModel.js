@@ -20,7 +20,10 @@ const ProductsSchema = mongoose.Schema({
   rating: { type: Number, default: 0 }, //  Tienen que tener su ruta aparte
   description: { type: String, default: "Descripcion predeterminada" },
   sales: { type: Number, default: 0 }, //  Tienen que tener su ruta aparte
-  review: { type: Object, default: {} }, //  Tienen que tener su ruta aparte
+  reviews: [{
+    ref: "reviews",
+    type: mongoose.Schema.Types.ObjectId
+  }], //  Tienen que tener su ruta aparte
 });
 const ProductsModel = mongoose.model("products", ProductsSchema); //export
 

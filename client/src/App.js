@@ -22,8 +22,6 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
-          {/* Ruta gregada solo para hacer pruebas */}
-          {/* <Route path="/middleViewCard" element={<MiddleViewCard />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -51,7 +51,6 @@ function AdminDashboardAccount() {
     });
   };
 
-  // console.log(change);
 
   return modify === false ? (
     <>
@@ -109,7 +108,7 @@ function AdminDashboardAccount() {
           <Form.Label>Rol: </Form.Label>
           <Form.Control
             type="password"
-            placeholder={userDashboard.roles}
+            placeholder={userDashboard.roles?userDashboard.roles.name:null}
             disabled
           />
         </Form.Group>
@@ -187,6 +186,7 @@ function AdminDashboardAccount() {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+      <Button variant="danger" onClick={()=>setModify(false)}>Cancel</Button>
     </Form>
   );
 }
