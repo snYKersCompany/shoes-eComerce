@@ -38,7 +38,7 @@ export const getAllProducts = (filters={}, orders={}, search="") => async (dispa
     let searchBy = ""
     if(search.length) searchBy = `search=${search}`
 
-    let product = await axios(`http://localhost:3001/api/products?${query}&${orderBy}&${searchBy}`);
+    let product = await axios(`https://snykers.onrender.com/api/products?${query}&${orderBy}&${searchBy}`);
     return dispatch(getProducts(product.data.products));
   } catch (error) {
     return error;
@@ -47,7 +47,7 @@ export const getAllProducts = (filters={}, orders={}, search="") => async (dispa
 
 export const getProductsDetails = (_id) => async (dispatch) => {
   try {
-    const products = await axios("http://localhost:3001/api/products/details/" + _id);
+    const products = await axios("https://snykers.onrender.com/api/products/details/" + _id);
 
     return dispatch(productsDetails(products.data[0]));
   } catch (error) {
@@ -66,7 +66,7 @@ export const clearProductsDetail = () => async (dispatch) => {
 export const createProduct = (payload) => async () => {
   try {
     const post = await axios.post(
-      "http://localhost:3001/api/products/create",
+      "https://snykers.onrender.com/api/products/create",
       payload
     );
     return post;
@@ -78,7 +78,7 @@ export const createProduct = (payload) => async () => {
 export const deleteProducts = (_id) => async () => {
   try {
     const delete_ = await axios.delete(
-      `http://localhost:3001/api/products/${_id}`
+      `https://snykers.onrender.com/api/products/${_id}`
     );
     return delete_
   } catch (error) {
@@ -153,7 +153,7 @@ export const clearSearchs = () => async (dispatch) => {
 export const getProductByQuery = (payload) => async (dispatch) => {
   try {
     const response = await axios(
-      "http://localhost:3001/api/products?search=" + payload
+      "https://snykers.onrender.com/api/products?search=" + payload
     );
     return dispatch(searchByQuery(response.data.products));
   } catch (error) {
@@ -163,7 +163,7 @@ export const getProductByQuery = (payload) => async (dispatch) => {
 
 export const getCategories = () => async (dispatch) => {
   try {
-    const response = await axios(`http://localhost:3001/api/categories`);
+    const response = await axios(`https://snykers.onrender.com/api/categories`);
     return dispatch(filterByCategories(response.data));
   } catch (error) {
     return error;
@@ -173,7 +173,7 @@ export const getCategories = () => async (dispatch) => {
 
 export const getBrands = () => async (dispatch) => {
   try {
-    const response = await axios(`http://localhost:3001/api/products`)
+    const response = await axios(`https://snykers.onrender.com/api/products`)
     const mapeadito = await response.data.products.map(e => e.brand)
     const dry = [...new Set(mapeadito)]
     return dispatch(filterBrands(dry))
@@ -184,7 +184,7 @@ export const getBrands = () => async (dispatch) => {
 
 export const getRatings = () => async (dispatch) => {
   try {
-    const response = await axios(`http://localhost:3001/api/products`)
+    const response = await axios(`https://snykers.onrender.com/api/products`)
     const mapeadito = response.data.products.map(e => e.rating)
     const dry = [...new Set(mapeadito)].sort()
     return dispatch(filterRatings(dry))
@@ -195,7 +195,7 @@ export const getRatings = () => async (dispatch) => {
 
 export const getGenders = () => async (dispatch) => {
   try{
-    const response = await axios(`http://localhost:3001/api/products`)
+    const response = await axios(`https://snykers.onrender.com/api/products`)
     const mapeo = await response.data.products.map(e=> e.gender)
     const join = mapeo.join().split(',')
     const dry = [...new Set(join)]
@@ -207,7 +207,7 @@ export const getGenders = () => async (dispatch) => {
 
 export const putProduct = (_id, body) => async (dispatch) => {
   try {
-    const response = await axios.put(`http://localhost:3001/api/products/modify/${_id}`, body)
+    const response = await axios.put(`https://snykers.onrender.com/api/products/modify/${_id}`, body)
     console.log("Esto es putProduct")
     console.log({_id, body})
     console.log(response.data)
