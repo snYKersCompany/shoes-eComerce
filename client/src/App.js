@@ -10,8 +10,6 @@ import Create from "./components/Create/Create";
 import CancelPayment from "./components/Paypal/CancelPayment";
 import CapturePayment from "./components/Paypal/CapturePayment";
 import Cart from "./components/Cart/Cart";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
 import "bootstrap/dist/css/bootstrap.min.css";
