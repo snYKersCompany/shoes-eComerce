@@ -31,7 +31,8 @@ export const AuthProvider = ({ children }) => {
     const signUp = async (email, password) => {
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password)
-            return response.user.uid
+            console.log(response)
+            return response
         } catch (error) {
             console.log("error", error)
             return null

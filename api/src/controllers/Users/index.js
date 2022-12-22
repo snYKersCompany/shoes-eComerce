@@ -7,12 +7,12 @@ const listUsers = async () => {
     return users;
 }
 
-const addUser = async (uid, email, roles) => {
+const addUser = async (uid, email, username, roles) => {
     const result = await UsersModel.findById({ _id: uid });
     if (result) {
         return result;
     }
-    const user = new UsersModel({ _id: uid, email: email });
+    const user = new UsersModel({ _id: uid, email: email, username: username });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
         user.roles = rolesFound.map(e => e.name);

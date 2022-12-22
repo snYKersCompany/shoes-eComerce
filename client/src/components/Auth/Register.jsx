@@ -54,8 +54,11 @@ const Register = () => {
     setError("");
     try {
       const userUID = await signUp(userIN.email, userIN.password);
-      console.log("user ID antes del dispatch", userUID);
-      dispatch(putUserInformation(userUID, { username: userIN.username }));
+      console.log("user ID antes del dispatch", userUID.user.uid);
+      console.log("input de username", userIN.username);
+      // dispatch(
+      //   putUserInformation(userUID.user.uid, { username: userIN.username })
+      // );
       alert("Your register went succesfully :D");
       navigate("/home");
     } catch (error) {
