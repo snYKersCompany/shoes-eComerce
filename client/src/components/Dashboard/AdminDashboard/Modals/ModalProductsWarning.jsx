@@ -14,9 +14,10 @@ const ModalProductWarning = (props) => {
   const dispatch = useDispatch();
 
   const handlerOnClick = () => {
+    console.log(props)
     dispatch(deleteProducts(props.show));
     props.onHide();
-    dispatch(getAllProducts(filters, orders));
+    dispatch(getAllProducts());
   };
 
   return (

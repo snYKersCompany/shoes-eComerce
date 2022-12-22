@@ -76,8 +76,8 @@ export const createProduct = (payload) => async () => {
 
 export const deleteProducts = (_id) => async () => {
   try {
-    const delete_ = await axios.delete(`/products/${_id}`);
-    return delete_;
+    const del = await axios.delete(`/products/${_id}`);
+    return del;
   } catch (error) {
     return error;
   }
