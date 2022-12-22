@@ -90,9 +90,10 @@ const modifyUser = async (id, name, username, email, password, phone, address, c
     if (!user) {
         throw new Error(`The user with an id ${id} was not found in the database`);
     }
-
+    console.log(username.length)
     let parameters = {}
     if(name.length) parameters.name = name;
+    console.log(parameters)
     if(username.length) parameters.username = username;
     if(email.length) parameters.email = email;
     // if(password.length) parameters.password = password;
@@ -100,7 +101,6 @@ const modifyUser = async (id, name, username, email, password, phone, address, c
     if(address.length) parameters.address = address;
     if(city.length) parameters.city = city;
     // if(image.length) parameters.image = image;
-    console.log(parameters)
     await UsersModel.updateOne({ _id: id }, { $set: parameters });
     // return `The user with an id ${id} was successfully modified`;
     const updateUser = await getUserDashboard(id)
@@ -111,7 +111,7 @@ const addFavoriteProducts = async (_id, favorite)=>{
     if(!favorite) throw new Error('Falta el dato favorite')
     if(!_id) throw new Error('Falta el dato _id')
     await UsersModel.updateOne({_id}, {$addToSet:{favourites:favorite}})
-    const user = await UsersModel.findById(_id);
+    const user = await getUserDashboard(_id);
     return user
 }
 
@@ -119,7 +119,7 @@ const deleteFavoriteProducts = async (_id, favorite)=>{
     if(!favorite) throw new Error('Falta el dato favorite')
     if(!_id) throw new Error('Falta el dato _id')
     await UsersModel.updateOne({_id}, {$pull:{favourites:favorite}})
-    const user = await UsersModel.findById(_id);
+    const user = await getUserDashboard(_id);
     return user
 }
 
