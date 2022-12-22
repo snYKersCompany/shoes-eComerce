@@ -1,63 +1,96 @@
-import React from "react";
-import "../../../styles/ordersDetails.css";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CardProductDetail from "./CardProductDetail";
+import { getOrderDetails } from "../../../redux/features/orders/ordersActions";
 import Button from "react-bootstrap/Button";
+import "../../../styles/orderDetails.css";
 
-const OrderDetails = ({ setOrderDetails }) => {
-  //state de la orden
-  const product = {
-    _id: "6390b2bd95ee24ce5a09c667",
-    sales: 0,
-    name: "Air Jordan",
-    brand: "Nike",
-    card_picture:
-      "https://image.goat.com/375/attachments/product_template_pictures/images/011/119/994/original/218099_00.png.png",
-    price: 53,
-    has_stock: 3,
-    count: 1,
-    size: 10.5,
-  };
+const OrderDetails = ({ setOrderDetails, id }) => {
+  const dispatch = useDispatch();
+  const { orderDetails } = useSelector((state) => state.orders);
+
+  useEffect(() => {
+    dispatch(getOrderDetails(id));
+  }, [dispatch, id]);
 
   return (
-    <>
-      <div className="d-flex containerCardCart justify-content-evenly">
-        <div className="d-flex h-100 text-center align-items-center">
-          <img
-            src={product.card_picture}
-            alt={product.name}
-            className="imgCardCart"
-          />
-          <div className="d-flex flex-column ">
-            <h3 className="text-green">{product.brand}</h3>
-            <h3 className="text-white">{product.name}</h3>
-          </div>
-          <div
-            className="d-flex marg h-75 bg-line"
-            style={{ width: "3px" }}
-          ></div>
-        </div>
-        <div className="d-flex h-100 flex-column justify-content-center div2">
-          <h3 className="text-green">Size: {product.size}</h3>
-          <h3 className="text-white">Count: {product.count}</h3>
-        </div>
-        <div>
-          <h3 className="text-yellow">Price: ${product.price}</h3>
-          <h3 className="text-total">
-            Total: ${product.price * product.count}
-          </h3>
-        </div>
+    <div className="orderDetailsContainer d-flex flex-column ">
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        {orderDetails.products?.map((p, i) => {
+          return (
+            <CardProductDetail
+              key={i}
+              name={p.name}
+              brand={p.brand}
+              card_picture={p.card_picture}
+              size={p.size}
+              count={p.count}
+              price={p.price}
+              totalPrice={p.totalPrice}
+            />
+          );
+        })}
       </div>
-      <>
+
+      <div className="d-flex justify-content-evenly align-content-center align-items-center">
         <Button
-          variant="primary"
+          variant="custom"
+          className="modalBtn d-inline"
           onClick={() => {
             setOrderDetails();
           }}
         >
           Back
         </Button>
-      </>
-    </>
+        <h3 className="text-white bg-dark">
+          Final Amount: ${orderDetails.finalAmount}
+        </h3>
+      </div>
+    </div>
   );
 };
 
 export default OrderDetails;
+
+//state de la orden
+// let order = {
+//   finalAmount: 458,
+//   products: [
+//     {
+//       id: "63972933f60a0fb9ec9dfe44",
+//       name: "Air Jordan",
+//       brand: "nike",
+//       description: "text",
+//       card_picture:
+//         "https://image.goat.com/750/attachments/product_template_pictures/images/020/806/444/original/507844_00.png.png",
+//       size: "4.5",
+//       price: 53,
+//       count: 5,
+//       totalPrice: 265,
+//     },
+//     {
+//       id: "63972933f60a0fb9ec9dfe46",
+//       name: "Air Jordan",
+//       brand: "nike",
+//       description: "text",
+//       card_picture:
+//         "https://image.goat.com/750/attachments/product_template_pictures/images/008/870/353/original/235806_00.png.png",
+//       size: "11.5",
+//       price: 73,
+//       count: 2,
+//       totalPrice: 146,
+//     },
+//     {
+//       id: "63972933f60a0fb9ec9dfe47",
+//       name: "Air Jordan",
+//       brand: "nike",
+//       description: "text",
+//       card_picture:
+//         "https://image.goat.com/750/attachments/product_template_pictures/images/010/223/048/original/13607_00.png.png",
+//       size: "11",
+//       price: 73,
+//       count: 1,
+//       totalPrice: 73,
+//     },
+//   ],
+// };
