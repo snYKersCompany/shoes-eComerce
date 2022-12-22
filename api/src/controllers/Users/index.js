@@ -36,12 +36,13 @@ const findUser = async (id) => {
     return user;
 }
 
-const getUserDashboard = async (_id) => {
-    if (!_id) throw new Error(`It needs an id property`);
-    console.log({ _id })
+const getUserDashboard = async (id) => {
+    if (!id) throw new Error(`It needs an id property`);
+    console.log(id)
+    let user = await UsersModel.findById(id);
 
-    const user = await UsersModel.aggregate([
-        { $match: { _id: _id } },
+    user = await UsersModel.aggregate([
+        { $match: { _id: id } },
         {
             $lookup: {
                 from: "products",
@@ -66,10 +67,11 @@ const getUserDashboard = async (_id) => {
                 as: "reviews"
             }
         },
-        { $unwind: "$roles" }
+        // { $unwind: "$roles" }
     ])
+
     if (!user) {
-        return `The user with an id ${_id} was not found in the database`
+        return `The user with an id ${id} was not found in the database`
     }
     return user
 }
