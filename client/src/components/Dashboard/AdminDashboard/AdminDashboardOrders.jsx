@@ -36,7 +36,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>_id</th>
+              <th>ID</th>
               <th>User</th>
               <th>Date</th>
               <th>Status</th>
