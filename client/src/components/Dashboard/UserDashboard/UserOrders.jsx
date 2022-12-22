@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {useParams} from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
 import Button from "react-bootstrap/esm/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -10,33 +10,27 @@ import Modal from "react-bootstrap/Modal";
 
 import "../../../styles/review.css";
 
-
 import { purchasesMade, product, paproba } from "./pruebas";
-import { postReview } from '../../../redux/features/reviews/reviewsActions'
+import { postReview } from "../../../redux/features/reviews/reviewsActions";
 
-import  StarsReview  from "../../StarsReview/StarsReview";
-import InputChangeRating from '../../StarsReview/InputChangeRating'
+import StarsReview from "../../StarsReview/StarsReview";
+import InputChangeRating from "../../StarsReview/InputChangeRating";
 
 const UserOrders = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { userDashboard, user } = useSelector((state) => state.users);
-  const { id } = useParams()
+  const { id } = useParams();
 
-//para manejarnos entre los tabs
+  //para manejarnos entre los tabs
   const [toOrderDetail, setToOrderDetail] = useState(false);
   const [toReview, setToReview] = useState(false);
 
   //para manejar el input
   const [reviewInput, setReviewInput] = useState("");
 
-console.log('esto es id', id)
-
- 
-
+  console.log("esto es id", id);
 
   const captureUserName = userDashboard.name;
-
 
   //PARA NAVEGAR
   const toPurchaseDetails = (e) => {
@@ -60,44 +54,52 @@ console.log('esto es id', id)
   };
   //TERMINA PARA NAVEGAR
 
+
+
+
+  //ESTRELLLLITASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+  const [avgRating, setAvgRating] = useState(0);
+
+  const handleRating = (input) => {
+    setAvgRating(input);
+  };
+
   const handlerInputReview = (e) => {
     setReviewInput({
       ...reviewInput,
       [e.target.inputReview]: e.target.value,
     });
   };
+  console.log('esto es avgRating, las estrellitas esas hermosas pero robadas', avgRating)
 
-
-const paraMandarAlBack = (e) => {
-  e.preventDefault();
-  dispatch(postReview({
-    _idProduct:paproba._id,
-    _idUser:user,
-    rating:3,
-    description: Object.values(reviewInput).toString()
-  }))
-}
-console.log('esto es y reviewInput en el comp', Object.values(reviewInput).toString())
+  //TERMINAN LAS ESTRELLITAS
 
 
 
-
-//ESTRELLLLITASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS 
-
-
-const [avgRating, setAvgRating] = useState(0);
-
-const handleRating = (input) => {
-  setAvgRating(input);
-};
-
+  //ACTION DE POST REVIEW
+  const paraMandarAlBack = (e) => {
+    e.preventDefault();
+    dispatch(
+      postReview({
+        _idProduct: paproba._id,
+        _idUser: user,
+        rating: avgRating,
+        description: Object.values(reviewInput).toString(),
+      })
+    );
+  };
+  console.log(
+    "esto es y reviewInput en el comp",
+    Object.values(reviewInput).toString()
+  );
 
 
 
 
 
-
-//aca estamos en las ordenes
+  
+  //aca estamos en las ordenes
   return toOrderDetail === false ? (
     <Table striped bordered hover>
       <thead>
@@ -123,8 +125,8 @@ const handleRating = (input) => {
           ))}
       </tbody>
     </Table>
-    //aca estamos en los productos de cada orden
-  ) : toReview === false ? (
+  ) : //aca estamos en los productos de cada orden
+  toReview === false ? (
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -135,20 +137,20 @@ const handleRating = (input) => {
       </thead>
       <tbody>
         {
-            <tr>
-              <td>{paproba.name}</td>
-              <td>{paproba.quantity}</td> {/*esto es del ticket */}
-              <td>{paproba.price}</td>
-              <Button onClick={(e) => toProductReview(e)}>
-                make your review
-              </Button>
-            </tr>
-          }
+          <tr>
+            <td>{paproba.name}</td>
+            <td>{paproba.quantity}</td> {/*esto es del ticket */}
+            <td>{paproba.price}</td>
+            <Button onClick={(e) => toProductReview(e)}>
+              make your review
+            </Button>
+          </tr>
+        }
         <Button onClick={(e) => backToOrders(e)}>Back</Button>
       </tbody>
     </Table>
-    //aca estamos en la review de cada producto de cada orden de compra
   ) : (
+    //aca estamos en la review de cada producto de cada orden de compra
     <div
       className="modal show"
       style={{ display: "block", position: "initial" }}
@@ -164,7 +166,6 @@ const handleRating = (input) => {
             <FloatingLabel controlId="floatingTextarea" className="mb-3">
               {captureUserName}
             </FloatingLabel>
-
 
             <InputChangeRating rating={avgRating} handleRating={handleRating} />
             <StarsReview stars={avgRating} />
@@ -187,7 +188,9 @@ const handleRating = (input) => {
           <Button variant="secondary" onClick={(e) => backToOrderDetails(e)}>
             back
           </Button>
-          <Button variant="primary" onClick={(e) => paraMandarAlBack(e)}>send review</Button>
+          <Button variant="primary" onClick={(e) => paraMandarAlBack(e)}>
+            send review
+          </Button>
           {/* <button type='submit' onSubmit={(e) => paraMandarAlBack(e)}>a ver</button> */}
         </Modal.Footer>
       </Modal.Dialog>
