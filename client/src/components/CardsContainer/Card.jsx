@@ -11,7 +11,6 @@ import {
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import {
   addUserProductFavorites,
   deleteUserProductFavorites,
@@ -32,24 +31,19 @@ const CardProduct = ({
   const { userDashboard } = useSelector((state) => state.users);
 
   const [check, setCheck] = useState(checkHeart);
-  useEffect(() => {
-    setCheck(checkHeart);
-  }, [checkHeart]);
-
+  // useEffect(() => {
+  //   setCheck(checkHeart);
+  // }, [checkHeart]);
+  console.log(typeof checkHeart)
   const handlerOnClick = () => {
-    if (check)
-      dispatch(
-        deleteUserProductFavorites(userDashboard._id, { favorite: _id })
-      );
-    if (!check)
-      dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));
+    if (check) dispatch(deleteUserProductFavorites(userDashboard._id, { favorite: _id }));
+    if (!check) dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));
+    if(typeof checkHeart === "boolean") setCheck(!check);
   };
 
   return (
     <Card className="d-flex card ">
       <div className="d-flex justify-content-end me-4 mt-4">
-        {window.location.pathname === "/" ||
-        window.location.pathname === "/home" ? (
           <>
             <Button
               variant="custom"
@@ -63,9 +57,7 @@ const CardProduct = ({
               )}
             </Button>
           </>
-        ) : (
-          <div className="margintop">{null}</div>
-        )}
+        
       </div>
 
       {/* Efecto Blur */}

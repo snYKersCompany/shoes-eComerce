@@ -1,26 +1,26 @@
-.customContainer{
-    background-color: #bababa;
-    border-radius: 20px;
+.customContainer {
+  background-color: #bababa;
+  border-radius: 20px;
 }
-.img1{
-    height: 6em;
-    width: 6em;
-    margin: auto;
+.img1 {
+  height: 6em;
+  width: 6em;
+  margin: 0.5em;
 }
-.img2{
-    height: 3.5em;
-    width: 3.5em;
+.img2 {
+  height: 3.5em;
+  width: 3.5em;
 }
-/* .obj1{
-    background-color: rebeccapurple;
-} */
-.obj2{
-    /* background-color: red; */
-    align-items: center;
+.obj1 {
+  align-items: center;
 }
-/* .obj3{
-    background-color: gold;
-} */
-.customBtn{
-    margin: auto;
+.obj2 {
+  /* background-color: red; */
+  align-items: center;
+}
+.obj3 {
+  align-items: center;
+}
+.customBtn {
+  margin: auto;
 }
