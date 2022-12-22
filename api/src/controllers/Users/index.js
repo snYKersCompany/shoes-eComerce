@@ -25,20 +25,10 @@ const addUser = async (uid, email, roles) => {
     return user;
 }
 
-const findUser = async (id) => {
-    if (!id) {
+const findUser = async (_id) => {
+    if (!_id) {
         throw new Error(`It needs an id property`);
     }
-    const user = await UsersModel.findById(id);
-    if (!user) {
-        return `The user with an id ${id} was not found in the database`
-    }
-    return user;
-}
-
-const getUserDashboard = async (_id) => {
-    if (!_id) throw new Error(`It needs an id property`);
-    console.log({_id})
     const user = await UsersModel.aggregate([
         { $match:{_id:_id} },
         {
@@ -70,6 +60,43 @@ const getUserDashboard = async (_id) => {
     if (!user) {
         return `The user with an id ${_id} was not found in the database`
     }
+    return user;
+}
+
+const getUserDashboard = async (_id) => {
+    if (!_id) throw new Error(`It needs an id property`);
+    console.log({_id})
+    const user = await UsersModel.aggregate([
+        { $match:{email:"cristhianverarivas22@gmail.com"} },
+        {
+        $lookup:{
+            from: "products",
+            localField: "favourites",
+            foreignField: "_id",
+            as: "productsFavourites"
+            }
+        },
+        {
+        $lookup:{
+            from: "roles",
+            localField: "roles",
+            foreignField: "_id",
+            as: "roles"
+            }
+        },
+        {
+        $lookup:{
+            from: "reviews",
+            localField: "reviews",
+            foreignField: "_id",
+            as: "reviews"
+            }
+        },
+    ])
+    if (!user) {
+        return `The user with an id ${_id} was not found in the database`
+    }
+    console.log(user)
     return user
 }
 

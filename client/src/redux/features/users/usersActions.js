@@ -77,6 +77,7 @@ export const clearUsers = () => async (dispatch) => {
 export const putUserInformation = (user, change) => async (dispatch) => {
   try {
     console.log(change);
+    console.log(user);
     const response = await axios.put(`/users/update/${user}`, change);
     console.log(response.data);
     return dispatch(getUserDashboard(response.data[0]));
