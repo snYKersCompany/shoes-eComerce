@@ -1,5 +1,4 @@
 import Button from 'react-bootstrap/Button';
-import CloseButton from 'react-bootstrap/CloseButton';
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +6,7 @@ import { getAllOrders, getOrderDetails } from '../../../redux/features/orders/or
 import { PDFViewer } from '@react-pdf/renderer';
 import DocPDF from './DocPDF';
 
-function AdminDashboardOrders() {
+function AdminDashboardOrders({setOrderDetails}) {
     const dispatch = useDispatch()
     const [viewPdf, setViewPdf] = useState(true)
 
@@ -27,6 +26,7 @@ function AdminDashboardOrders() {
 
     const handlerDetailPopUp = (str)=>{
         console.log(str)
+        setOrderDetails()
     }
 
     const handlerDeleteOrder = (_id)=>{
@@ -36,7 +36,7 @@ function AdminDashboardOrders() {
     const handlerButon = ()=>{
         setViewPdf(!viewPdf)
     }
-
+    console.log(orders)
     return (
         <>
             {viewPdf?
@@ -46,18 +46,16 @@ function AdminDashboardOrders() {
                             <th>_id</th>
                             <th>Fecha</th>
                             <th>User</th>
-                            <th>Direccion</th>
                             <th>Estado de compra</th>
                             <th>Comprobante</th>
-                            <th></th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map(order=><tr key={order._id}>
+                        {orders.map((order, i)=><tr key={i}>
                             <td>{order._id}</td>
                             <td>{order.date}</td>
                             <td>User</td>
-                            <td>User City</td>
                             <td>{order.state}</td>
                             <td>
                                 <Button 
@@ -69,8 +67,7 @@ function AdminDashboardOrders() {
                                 <Button 
                                 variant="primary"
                                 onClick={()=>{handlerDetailPopUp("Detail PopUp")}}
-                                >Detail PopUp</Button>{' '}
-                                <CloseButton onClick={()=>{handlerDeleteOrder(order._id)}}/>
+                                >Details</Button>{' '}
                             </td>
                         </tr>)}
                     </tbody>
