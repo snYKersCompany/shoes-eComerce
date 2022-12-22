@@ -23,6 +23,9 @@ const UserFavorites = () => {
                     card_picture={el.card_picture}
                     brand={el.brand}
                     rating={el.rating}
+                    checkHeart={userDashboard.favourites?.some(
+                      (idProduct) => idProduct === el._id
+                    )}
                   />
                 );
               })

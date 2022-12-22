@@ -29,7 +29,6 @@ function App() {
           <Route path="/create" element={<Create />} />
           <Route path="/order-canceled" element={< CancelPayment />} />
           <Route path="/order-completed" element={< CapturePayment />} />
-
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/account"

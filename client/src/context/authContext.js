@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 //Actions
 import { findOrCreateUser, getUserDashboards } from "../redux/features/users/usersActions"
 //FirebaseAuth
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth"
 import { auth } from '../utils/firebase/credentials'
 
 //USEAUTH
@@ -23,19 +23,25 @@ export const AuthProvider = ({ children }) => {
     //GOOGLE LOG IN
     const logInGoogle = async () => {
         const googleProvider = new GoogleAuthProvider()
-        setPersistence(auth, browserLocalPersistence)
+        //setPersistence(auth, browserLocalPersistence)
         return signInWithPopup(auth, googleProvider)
     }
 
     //SING UP
     const signUp = async (email, password) => {
-        await createUserWithEmailAndPassword(auth, email, password)
+        try {
+            const response = await createUserWithEmailAndPassword(auth, email, password)
+            return response
+        } catch (error) {
+            console.log("error", error)
+            return null
+        }
     }
 
     //LOG IN
     const logIn = async (email, password) => {
         await signInWithEmailAndPassword(auth, email, password)
-        setPersistence(auth, browserLocalPersistence)
+        // setPersistence(auth, browserLocalPersistence)
     }
 
     //LOG OUT
@@ -61,10 +67,12 @@ export const AuthProvider = ({ children }) => {
     //FORAMTEO DE FIREBASEUSER
     const formatUserData = (firebaseUser) => {
         const {
+            displayName,
             uid, email
         } = firebaseUser;
 
         const userCredentials = {
+            username: displayName || "",
             uid: uid,
             email: email
         }
@@ -76,7 +84,6 @@ export const AuthProvider = ({ children }) => {
         const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
-                // console.log(userData.uid) // Revisar si esta accion (getUserDashboards) hace que la seguridad sea mas fragil
                 dispatch(getUserDashboards(userData.uid))   // AGREGADO POR EL BIEN DE LA TRAMA
                 setUser(userData)
                 setLoading(false)

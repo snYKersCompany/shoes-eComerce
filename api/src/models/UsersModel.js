@@ -10,19 +10,18 @@ function validateEmail(str) {
   return (/\S+@\S+\.\S+/.test(str))
 }
 
-function validateAddress(str) {
-  return str.length > 5;
-}
-
 const userSchema = mongoose.Schema({
   _id: { type: String, require: true },
   name: { type: String, validate: [validateName, 'The field name cannot contain strange characters'] },
   username: { type: String },
   email: { type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format'] },
-  phone: { type: String },
-  address: { type: String, validate: [validateAddress, 'It must have more than 5 characters'] },
-  city: { type: String },
-  image: { type: String },
+  phone: { type: String, default: "" },
+  address: { type: String, /*validate: [validateAddress, 'It must have more than 5 characters']*/ },
+  city: { type: String, default: "" },
+  image: { type: String, default: "https://cdn-icons-png.flaticon.com/512/25/25634.png"},
+  status:{ type: Boolean, default: true },
+  state:{ type: String },
+  cauntry:{ type:String, default: "" },
   roles: [{
     ref: "Role",
     type: String

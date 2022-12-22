@@ -3,9 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 export const userSlice = createSlice({
     name: "users",
     initialState: {
-        user: {}, // trae menos info que userDashboard 
         users: [],
-        userDetail: {},
         userDashboard: {} // es principalmente para traer favs
     },
     reducers: {
@@ -16,7 +14,7 @@ export const userSlice = createSlice({
             state.users = action.payload
         },
         getUserDashboard: (state, action) => {
-            state.userDashboard = action.payload 
+            state.userDashboard = action.payload
         },
         updateUserDashboard: (state, action) => {
             state.userDashboard = action.payload
