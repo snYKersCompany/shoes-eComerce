@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
   image: { type: String, default: "https://cdn-icons-png.flaticon.com/512/25/25634.png"},
   status:{ type: Boolean, default: true },
   state:{ type: String },
-  cauntry:{ type:String, default: "" },
+  country:{ type:String, default: "" },
   roles: [{
     ref: "Role",
     type: String
