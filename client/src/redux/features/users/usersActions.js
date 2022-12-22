@@ -40,20 +40,19 @@ export const addUserProductFavorites = (_id, favorite) => async (dispatch) => {
   try {
     if (!_id) return;
     const users = await axios.put(`/users/addFavorite/${_id}`, favorite);
-    console.log(users.data);
-    return dispatch(updateUserDashboard(users.data));
+    console.log(users.data[0]);
+    return dispatch(updateUserDashboard(users.data[0]));
   } catch (error) {
     return error;
   }
 };
 
-export const deleteUserProductFavorites =
-  (_id, favorite) => async (dispatch) => {
+export const deleteUserProductFavorites = (_id, favorite) => async (dispatch) => {
     try {
       if (!_id) return;
       const users = await axios.put(`/users/deleteFavorite/${_id}`, favorite);
-      console.log(users.data);
-      return dispatch(updateUserDashboard(users.data));
+      console.log(users.data[0]);
+      return dispatch(updateUserDashboard(users.data[0]));
     } catch (error) {
       return error;
     }
