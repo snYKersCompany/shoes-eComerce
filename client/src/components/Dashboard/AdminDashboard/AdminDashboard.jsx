@@ -14,7 +14,7 @@ const UserDashboard = () => {
   const [orderDetails, setOrderDetails] = useState(true);
   return (
     <>
-      <h3 className="d-flex justify-content-center ">Hello Admin</h3>
+      <h3 className="d-flex justify-content-center ">Hello Admin!!</h3>
 
       <div className="userDashBoardContainer d-flex">
         <div className="userDashBoard d-flex">
