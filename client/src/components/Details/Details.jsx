@@ -21,9 +21,11 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(getProductsDetails(id));
+
   }, [dispatch, id]);
 
   //local Storage
+
 
   const [size, setSize] = useState("");
   const [stock, setStock] = useState("");

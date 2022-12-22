@@ -50,6 +50,7 @@ export const getAllProducts =
 export const getProductsDetails = (_id) => async (dispatch) => {
   try {
     const products = await axios("/products/details/" + _id);
+    console.log('esto es product detail', products.data[0])
 
     return dispatch(productsDetails(products.data[0]));
   } catch (error) {
