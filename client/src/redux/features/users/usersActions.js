@@ -5,7 +5,6 @@ import {
   getUser,
   getUserDashboard,
   updateUserDashboard,
-  putUser,
 } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
@@ -48,15 +47,15 @@ export const addUserProductFavorites = (_id, favorite) => async (dispatch) => {
 };
 
 export const deleteUserProductFavorites = (_id, favorite) => async (dispatch) => {
-    try {
-      if (!_id) return;
-      const users = await axios.put(`/users/deleteFavorite/${_id}`, favorite);
-      console.log(users.data[0]);
-      return dispatch(updateUserDashboard(users.data[0]));
-    } catch (error) {
-      return error;
-    }
-  };
+  try {
+    if (!_id) return;
+    const users = await axios.put(`/users/deleteFavorite/${_id}`, favorite);
+    console.log(users.data[0]);
+    return dispatch(updateUserDashboard(users.data[0]));
+  } catch (error) {
+    return error;
+  }
+};
 
 export const getOneUser = (user) => async (dispatch) => {
   try {
@@ -78,8 +77,8 @@ export const putUserInformation = (user, change) => async (dispatch) => {
   try {
     console.log(change);
     const response = await axios.put(`/users/update/${user}`, change);
-    console.log(response.data);
-    return dispatch(getUserDashboard(response.data[0]));
+    console.log("cambios para el user ", response.data);
+    return dispatch(updateUserDashboard(response.data[0]));
   } catch (error) {
     return error;
   }

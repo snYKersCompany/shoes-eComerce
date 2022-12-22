@@ -11,14 +11,17 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 //style
 import "../../styles/register.css";
+//actions
+import { putUserInformation } from "../../redux/features/users/usersActions";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { signUp } = useAuth();
+  const { signUp, user } = useAuth();
 
   /////-----STATES-----/////
-  const [user, setUser] = useState({
+  const [userIN, setUser] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -29,7 +32,7 @@ const Register = () => {
     if (name === "password") {
       validate(value);
     }
-    setUser({ ...user, [name]: value });
+    setUser({ ...userIN, [name]: value });
   };
 
   function validate(password) {
@@ -42,13 +45,22 @@ const Register = () => {
     }
   }
 
+  console.log("user register principio", user);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(user.email, user.password);
+      const userUID = await signUp(userIN.email, userIN.password);
+      alert("Your register went succesfully :D");
       navigate("/home");
+      dispatch(
+        putUserInformation(userUID.user.uid, { username: userIN.username })
+      );
     } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        setError("This email is already in use, please use another");
+      }
       if (error.code === "auth/admin-restricted-operation") {
         setError("Introduce an email and password");
       }
@@ -78,6 +90,18 @@ const Register = () => {
             <Card.Title>Register</Card.Title>
             {error && <AlertMSJ message={error} />}
             <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId="formBasicUsername" className="mb-4">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  size="40"
+                  maxLength="256"
+                  className="ph-center"
+                  onChange={(e) => handleChange(e)}
+                  name="username"
+                  type="username"
+                  placeholder="Username"
+                />
+              </Form.Group>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
