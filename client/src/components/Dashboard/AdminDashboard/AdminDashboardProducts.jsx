@@ -54,7 +54,7 @@ function AdminDashboardProducts() {
             <th>Brand</th>
             <th>Name</th>
             <th>Price</th>
-            <th>View/Edit</th>
+            <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
