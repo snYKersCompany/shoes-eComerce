@@ -7,9 +7,12 @@ import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
+import { useState } from "react";
+import OrderDetailsPopUp from "./OrdersDetailsPopUp";
 
 const UserDashboard = () => {
 
+  const [orderDetails, setOrderDetails] = useState(true)
   return (
     <>
 
@@ -52,7 +55,11 @@ const UserDashboard = () => {
             <div className="section">
               <Tab.Content>
                 <Tab.Pane eventKey="orders">
-                  <AdminDashboardOrders/>
+                  {orderDetails?
+                  <AdminDashboardOrders setOrderDetails={()=>setOrderDetails(false)}/>
+                  : 
+                  <OrderDetailsPopUp setOrderDetails={()=>setOrderDetails(true)}/>
+                  }
                 </Tab.Pane>
                 <Tab.Pane eventKey="products">
                   <AdminDashboardProducts/>
