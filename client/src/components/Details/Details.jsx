@@ -5,7 +5,6 @@ import { getProductsDetails } from "../../redux/features/products/productsAction
 import { Link } from "react-router-dom";
 import NavBar from "../Navbar/Navbar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import PayPalButton from "../Paypal/ButtonPaypal";
 import Button from "react-bootstrap/Button"; // eslint-disable-line
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";

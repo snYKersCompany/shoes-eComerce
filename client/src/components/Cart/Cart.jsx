@@ -1,8 +1,20 @@
 import React from "react";
 import { useState } from "react";
+import Button from "react-bootstrap/esm/Button";
 import NavBar from "../Navbar/Navbar";
 import CardCart from "./CardCart";
-import PayPalButton from "../Paypal/ButtonPaypal";
+
+import CheckoutForm from "../Stripe/CheckoutForm";
+//STRIPE
+import {loadStripe} from '@stripe/stripe-js';
+
+
+//Elements engloba a los demas componentes, para que tengan acceso a la coneccion de Stripe.
+import {Elements} from '@stripe/react-stripe-js';
+
+//Nos conectamos a stripe, con la clave publica (Acomodar en una variable de entorno)
+const stripePromise = loadStripe("pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa")
+
 
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
@@ -68,7 +80,9 @@ const Cart = () => {
           <>nada</>
         )}
         <h2>Total: ${priceTotal}</h2>
-        <PayPalButton priceTotal={priceTotal} info={InfoToSend} />
+        <Elements stripe={stripePromise}>
+          <CheckoutForm priceTotal={priceTotal} info={InfoToSend}/>
+          </Elements> 
       </div>
     </>
   );
