@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 //Actions
 import { findOrCreateUser, getUserDashboards } from "../redux/features/users/usersActions"
 //FirebaseAuth
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth"
 import { auth } from '../utils/firebase/credentials'
 
 //USEAUTH
@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     //GOOGLE LOG IN
     const logInGoogle = async () => {
         const googleProvider = new GoogleAuthProvider()
-        setPersistence(auth, browserLocalPersistence)
+        //setPersistence(auth, browserLocalPersistence)
         return signInWithPopup(auth, googleProvider)
     }
 
@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }) => {
     const signUp = async (email, password) => {
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password)
-            console.log(response)
             return response
         } catch (error) {
             console.log("error", error)
@@ -42,7 +41,7 @@ export const AuthProvider = ({ children }) => {
     //LOG IN
     const logIn = async (email, password) => {
         await signInWithEmailAndPassword(auth, email, password)
-        setPersistence(auth, browserLocalPersistence)
+        // setPersistence(auth, browserLocalPersistence)
     }
 
     //LOG OUT
@@ -85,7 +84,6 @@ export const AuthProvider = ({ children }) => {
         const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
                 const userData = await getUserData(firebaseUser)
-                // console.log(userData.uid) // Revisar si esta accion (getUserDashboards) hace que la seguridad sea mas fragil
                 dispatch(getUserDashboards(userData.uid))   // AGREGADO POR EL BIEN DE LA TRAMA
                 setUser(userData)
                 setLoading(false)

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
-import { useSelector } from "react-redux";
 //JSX
 import NavBar from "../Navbar/Navbar";
 import Paginated from "../Paged/Paginated.jsx";
@@ -12,11 +11,10 @@ import Carrousel from "../Carrousel";
 const Home = () => {
   //devuelve el user del contexto
   const { user } = useAuth();
-  console.log("este es el user en home", user);
 
   useEffect(() => {
     if (user) {
-      console.log("este es el user en home", user);
+      console.log("user de firebase en home", user);
     }
   }, [user]);
 

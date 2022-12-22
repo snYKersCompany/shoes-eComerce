@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
 ///JSX
@@ -15,7 +15,6 @@ import "../../styles/register.css";
 import { putUserInformation } from "../../redux/features/users/usersActions";
 
 const Register = () => {
-  const { userDashboard } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signUp, user } = useAuth();
@@ -46,22 +45,22 @@ const Register = () => {
     }
   }
 
-  console.log("user en 0", user);
-  console.log(userDashboard);
+  console.log("user register principio", user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       const userUID = await signUp(userIN.email, userIN.password);
-      console.log("user ID antes del dispatch", userUID.user.uid);
-      console.log("input de username", userIN.username);
+      alert("Your register went succesfully :D");
+      navigate("/home");
       dispatch(
         putUserInformation(userUID.user.uid, { username: userIN.username })
       );
-      alert("Your register went succesfully :D");
-      navigate("/home");
     } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        setError("This email is already in use, please use another");
+      }
       if (error.code === "auth/admin-restricted-operation") {
         setError("Introduce an email and password");
       }
