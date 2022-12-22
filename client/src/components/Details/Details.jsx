@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
 import { Link } from "react-router-dom";
-import NavBar from "../Navbar/Navbar";
+import NavBar from "../NavBar/NavBar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import PayPalButton from "../Paypal/ButtonPaypal";
 import Button from "react-bootstrap/Button"; // eslint-disable-line
