@@ -4,8 +4,8 @@ import "../../styles/cardsContainer.css";
 import { useSelector } from "react-redux";
 
 const CardsContainer = ({ productsSliced }) => {
-  const { userDashboard } = useSelector((state) => state.users);
-  console.log(userDashboard);
+  // const { userDashboard } = useSelector((state) => state.users);
+  // console.log(userDashboard);
 
   return (
     <div className="cardsGroupContainer">
@@ -20,9 +20,9 @@ const CardsContainer = ({ productsSliced }) => {
               card_picture={product.card_picture}
               price={product.price}
               rating={product.rating}
-              checkHeart={userDashboard.favourites?.some(
-                (idProduct) => idProduct === product._id
-              )}
+              // checkHeart={userDashboard.favourites?.some(
+              //   (idProduct) => idProduct === product._id
+              // )}
             />
           ))}
         </div>
