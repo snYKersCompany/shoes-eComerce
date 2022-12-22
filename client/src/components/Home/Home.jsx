@@ -9,14 +9,12 @@ import Carrousel from "../Carrousel";
 //actions
 
 const Home = () => {
-  
   //devuelve el user del contexto
-  const { user } = useAuth(); // eslint-disable-line
+  const { user } = useAuth();
 
   useEffect(() => {
-    
     if (user) {
-      console.log(user);
+      console.log("user de firebase en home", user);
     }
   }, [user]);
 
