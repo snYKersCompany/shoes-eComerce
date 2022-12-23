@@ -7,7 +7,6 @@ import PayPalButton from "../Paypal/ButtonPaypal";
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
 
-
   const [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : false
   );
