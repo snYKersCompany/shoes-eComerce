@@ -19,8 +19,8 @@ router.get("/", async (req, res) => {
 //middlewares of postUser: [verifyToken, isAdmin, checkRolesExisted, checkDuplicated]
 router.post("/", async (req, res) => {
   try {
-    const { uid, email, roles } = req.body;
-    const message = await controllers.addUser(uid, email, roles);
+    const { uid, email, username, roles } = req.body;
+    const message = await controllers.addUser(uid, email, username, roles);
     return res.status(201).json(message);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -60,29 +60,8 @@ router.delete("/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      name,
-      username,
-      email,
-      password,
-      phone,
-      address,
-      city,
-      image,
-      admin,
-    } = req.body;
-    const message = await controllers.modifyUser(
-      id,
-      name,
-      username,
-      email,
-      password,
-      phone,
-      address,
-      city,
-      image,
-      admin
-    );
+    const data = req.body;
+    const message = await controllers.modifyUser({id, ...data});
     return res.status(200).json(message);
   } catch (error) {
     return res.status(400).json({ error: error.message });

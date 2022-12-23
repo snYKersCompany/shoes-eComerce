@@ -2,11 +2,11 @@ const { OrderModel } = require('../../models/ModelsDB');
 
 const createOrder = async (req, res) => {
     try {
-        const { products, totalPrice } = req.body;
+        const { products, finalAmount } = req.body;
 
-        if(!products || !totalPrice) throw new Error("Faltan datos importantes")
+        if(!products || !finalAmount) throw new Error("Faltan datos importantes")
 
-        const newOrder = new OrderModel({products, totalPrice})
+        const newOrder = new OrderModel({products, finalAmount})
         await newOrder.save()
 
         return res.status(200).json(newOrder);

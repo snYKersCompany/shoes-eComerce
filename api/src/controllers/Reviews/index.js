@@ -24,6 +24,7 @@ const getReviews = async (req, res)=>{
 }
 
 const postReviews = async (req, res)=>{
+    console.log('llegue')
     try {
         const { _idProduct, _idUser, rating, description } = req.body;
         if(!_idProduct || !_idUser || !rating) throw new Error("Faltan Datos Importantes")

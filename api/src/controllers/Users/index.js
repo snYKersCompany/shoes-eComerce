@@ -7,12 +7,12 @@ const listUsers = async () => {
     return users;
 }
 
-const addUser = async (uid, email, roles) => {
+const addUser = async (uid, email, username, roles) => {
     const result = await UsersModel.findById({ _id: uid });
     if (result) {
         return result;
     }
-    const user = new UsersModel({ _id: uid, email: email });
+    const user = new UsersModel({ _id: uid, email: email, username: username });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
         user.roles = rolesFound.map(e => e.name);
@@ -29,76 +29,53 @@ const findUser = async (_id) => {
     if (!_id) {
         throw new Error(`It needs an id property`);
     }
-    const user = await UsersModel.aggregate([
-        { $match:{_id:_id} },
-        {
-        $lookup:{
-            from: "products",
-            localField: "favourites",
-            foreignField: "_id",
-            as: "productsFavourites"
-            }
-        },
-        {
-        $lookup:{
-            from: "roles",
-            localField: "roles",
-            foreignField: "_id",
-            as: "roles"
-            }
-        },
-        {
-        $lookup:{
-            from: "reviews",
-            localField: "reviews",
-            foreignField: "_id",
-            as: "reviews"
-            }
-        },
-        { $unwind: "$roles"}
-    ])
+    const user = await UsersModel.findById(id);
     if (!user) {
-        return `The user with an id ${_id} was not found in the database`
+        return `The user with an id ${id} was not found in the database`
     }
     return user;
 }
 
-const getUserDashboard = async (_id) => {
-    if (!_id) throw new Error(`It needs an id property`);
-    console.log({_id})
-    const user = await UsersModel.aggregate([
-        { $match:{email:"cristhianverarivas22@gmail.com"} },
+const getUserDashboard = async (id) => {
+    if (!id) throw new Error(`It needs an id property`);
+    console.log(id)
+    let user = await UsersModel.findById(id);
+
+    user = await UsersModel.aggregate([
+        { $match: { _id: id } },
         {
-        $lookup:{
-            from: "products",
-            localField: "favourites",
-            foreignField: "_id",
-            as: "productsFavourites"
+            $lookup: {
+                from: "products",
+                localField: "favourites",
+                foreignField: "_id",
+                as: "productsFavourites"
             }
         },
+        // {
+        //     $lookup: {
+        //         from: "roles",
+        //         localField: "roles",
+        //         foreignField: "_id",
+        //         as: "roles"
+        //     }
+        // },
         {
-        $lookup:{
-            from: "roles",
-            localField: "roles",
-            foreignField: "_id",
-            as: "roles"
+            $lookup: {
+                from: "reviews",
+                localField: "reviews",
+                foreignField: "_id",
+                as: "reviews"
             }
         },
-        {
-        $lookup:{
-            from: "reviews",
-            localField: "reviews",
-            foreignField: "_id",
-            as: "reviews"
-            }
-        },
+        { $unwind: "$roles" }
     ])
+
     if (!user) {
-        return `The user with an id ${_id} was not found in the database`
+        return `The user with an id ${id} was not found in the database`
     }
-    console.log(user)
-    return user
+    return user;
 }
+
 
 const deleteUser = async (id) => {
     if (!id) {
@@ -112,21 +89,24 @@ const deleteUser = async (id) => {
     return `The user with an id ${id} was successfully deleted`;
 }
 
-const modifyUser = async (id, name, username, email, password, phone, address, city, image, admin) => {
+const modifyUser = async ({id, name, username, email, country, phone, address, city, state, image}) => {
     let user = await UsersModel.findById(id);
     if (!user) {
         throw new Error(`The user with an id ${id} was not found in the database`);
     }
     console.log(username.length)
     let parameters = {}
-    if(name.length) parameters.name = name;
-    console.log(parameters)
-    if(username.length) parameters.username = username;
-    if(email.length) parameters.email = email;
+
+    if (name && name.length) parameters.name = name;
+    if (username && username.length) parameters.username = username;
+    if (email && email.length) parameters.email = email;
     // if(password.length) parameters.password = password;
-    if(phone.length) parameters.phone = phone;
-    if(address.length) parameters.address = address;
-    if(city.length) parameters.city = city;
+    if (phone && phone.length) parameters.phone = phone;
+    if (address && address.length) parameters.address = address;
+    if (city && city.length) parameters.city = city;
+    if (country && country.length) parameters.country = country;
+    if (state && state.length) parameters.state = state;
+    if (image && image.length) parameters.image = image;
     // if(image.length) parameters.image = image;
     await UsersModel.updateOne({ _id: id }, { $set: parameters });
     // return `The user with an id ${id} was successfully modified`;
@@ -134,18 +114,18 @@ const modifyUser = async (id, name, username, email, password, phone, address, c
     return updateUser
 }
 
-const addFavoriteProducts = async (_id, favorite)=>{
-    if(!favorite) throw new Error('Falta el dato favorite')
-    if(!_id) throw new Error('Falta el dato _id')
-    await UsersModel.updateOne({_id}, {$addToSet:{favourites:favorite}})
+const addFavoriteProducts = async (_id, favorite) => {
+    if (!favorite) throw new Error('Falta el dato favorite')
+    if (!_id) throw new Error('Falta el dato _id')
+    await UsersModel.updateOne({ _id }, { $addToSet: { favourites: favorite } })
     const user = await getUserDashboard(_id);
     return user
 }
 
-const deleteFavoriteProducts = async (_id, favorite)=>{
-    if(!favorite) throw new Error('Falta el dato favorite')
-    if(!_id) throw new Error('Falta el dato _id')
-    await UsersModel.updateOne({_id}, {$pull:{favourites:favorite}})
+const deleteFavoriteProducts = async (_id, favorite) => {
+    if (!favorite) throw new Error('Falta el dato favorite')
+    if (!_id) throw new Error('Falta el dato _id')
+    await UsersModel.updateOne({ _id }, { $pull: { favourites: favorite } })
     const user = await getUserDashboard(_id);
     return user
 }

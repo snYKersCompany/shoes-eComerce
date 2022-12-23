@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
 import { Link } from "react-router-dom";
-import NavBar from "../Navbar/Navbar";
+import NavBar from "../NavBar/NavBar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import PayPalButton from "../Paypal/ButtonPaypal";
 import Button from "react-bootstrap/Button"; // eslint-disable-line
@@ -13,6 +13,7 @@ import NavItem from "react-bootstrap/NavItem";
 import { BsFillStarFill } from "react-icons/bs";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 import "../../styles/details.css";
+import Preview from "../Paypal/Preview/Preview";
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,11 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(getProductsDetails(id));
+
   }, [dispatch, id]);
 
   //local Storage
+
 
   const [size, setSize] = useState("");
   const [stock, setStock] = useState("");
@@ -75,7 +78,7 @@ const Details = () => {
   }
 
   //Fin local Storage
-  
+
   return (
     <>
       <NavBar />
@@ -185,17 +188,7 @@ const Details = () => {
               Price: ${productDetail.price}
             </p>
             {/* <PayPalButton /> */}
-            <NavItem>
-              <Link to="/" onClick={(e) => setProduct(e)}>
-                <img
-                  src={cartBlanco}
-                  width="40"
-                  height="40"
-                  className="d-inline-block align-top"
-                  alt="Cart"
-                />
-              </Link>
-            </NavItem>
+            <Preview onClick={(e) => setProduct(e)} />
           </section>
         ) : (
           <></>
