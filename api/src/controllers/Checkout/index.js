@@ -27,5 +27,5 @@ const createCheckout = async (req, res) => {
 
 
 module.exports = {
-    createCheckout
+  createCheckout
 };

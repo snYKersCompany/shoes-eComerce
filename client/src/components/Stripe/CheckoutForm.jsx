@@ -12,25 +12,21 @@ import {
 
 import axios from "axios";
 
-const CheckoutForm = () => {
+
+const CheckoutForm = ({InfoToSend}) => {
+
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const {  productsDetails } = useSelector((state) => state.products);
 
-  // NUMERO DE TARJETA FICTICIA PARA PROBAR PAGO : 4242 4242 4242 4242 
-  //                                               02 / 23
-  //                                               123
-  //                                               21313
+  useEffect(() => {
+    
+    dispatch(getProductsDetails(id));
+    console.log( productsDetails);
+  }, [dispatch, id]);
 
-  
-  //Intento de volver el precio dinamico.
-
-  // const dispatch = useDispatch();
-  // const { id } = useParams();
-  // const { productDetail } = useSelector((state) => state.products);
-
-  // useEffect(() => {
-  //   dispatch(getProductsDetails(id));
-  // }, [dispatch, id]);
  
 
   const [loading, setLoading] = useState(false);
@@ -52,7 +48,7 @@ const CheckoutForm = () => {
           "http://localhost:3001/api/checkouts/payments",
           {
             id,
-            amount:10000, // CAMBIAR PRECIO DINAMINO
+            amount:  InfoToSend.finalAmount,
           }
         );
         console.log(data);
