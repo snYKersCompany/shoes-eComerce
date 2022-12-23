@@ -1,34 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getProductsDetails } from "../../redux/features/products/productsActions";
+import { useNavigate } from "react-router";
 import "../../styles/Stripe.css";
-
-import {
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
+import AlertMSJ from "../Auth/AlertMSJ";
 
-
-const CheckoutForm = ({InfoToSend}) => {
-
+const CheckoutForm = ({ priceTotal, products }) => {
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const {  productsDetails } = useSelector((state) => state.products);
-
-  useEffect(() => {
-    
-    dispatch(getProductsDetails(id));
-    console.log( productsDetails);
-  }, [dispatch, id]);
-
- 
-
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -40,46 +21,52 @@ const CheckoutForm = ({InfoToSend}) => {
     });
     setLoading(true);
 
-    if (!error) {
-  
-      const { id } = paymentMethod;
-      try {
+    try {
+      if (error) {
+        throw new Error(error);
+      } else {
+        const { id } = paymentMethod;
         const { data } = await axios.post(
           "http://localhost:3001/api/checkouts/payments",
           {
             id,
-            amount:  InfoToSend.finalAmount,
+            amount: priceTotal,
           }
         );
-        console.log(data);
-
+        navigate("/order-completed");
         elements.getElement(CardElement).clear();
-      } catch (error) {
-        console.log(error);
+        setLoading(false);
+        setLoading(false);
       }
-      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      <AlertMSJ message={error.message} />;
     }
   };
 
   console.log(!stripe || loading);
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <>
+      {error && <AlertMSJ message={error} />}
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <CardElement />
+        </div>
 
-      <div className="form-group">
-        <CardElement />
-      </div>
-
-      <button disabled={!stripe} className="button btn btn-success">
-        {loading ? (
-          <div >
-            <span className="sr-only">Loading...</span>
-          </div>
-        ) : (
-          "Buy"
-        )}
-      </button>
-    </form>
+        <button disabled={!stripe} className="button btn btn-success">
+          {loading ? (
+            <div>
+              <span>Loading</span>
+            </div>
+          ) : (
+            <div>
+              <span>Buy</span>
+            </div>
+          )}
+        </button>
+      </form>
+    </>
   );
 };
 
