@@ -1,6 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+//Providers
 import { AuthProvider } from "./context/authContext";
+//JSX
 import Home from "./components/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
@@ -11,6 +13,7 @@ import CapturePayment from "./components/Paypal/CapturePayment";
 import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
+//styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
