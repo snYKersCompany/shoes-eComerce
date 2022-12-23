@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import Button from "react-bootstrap/esm/Button";
-import Navbar from "../Navbar/Navbar";
+import NavBar from "../NavBar/NavBar";
 import CardCart from "./CardCart";
 
 import CheckoutForm from "../Stripe/CheckoutForm";
@@ -57,7 +56,7 @@ const Cart = () => {
 
   return (
     <>
-      <Navbar />
+      <NavBar />
       <div className="d-flex p-5 justify-content-center align-items-center flex-column">
         {products.length >= 1 ? (
           products.map((el, i) => {
