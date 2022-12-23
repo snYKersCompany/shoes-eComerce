@@ -1,0 +1,7 @@
+.FormCreateError{
+    color: rgb(248, 68, 68);
+    margin-top: 4px;
+    display: flex;
+    font-size: 12px;
+    border-color: rgb(248, 68, 68);
+}

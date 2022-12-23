@@ -3,6 +3,7 @@ import { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import CardCart from "./CardCart";
 
+
 import CheckoutForm from "../Stripe/CheckoutForm";
 //STRIPE
 import { loadStripe } from "@stripe/stripe-js";
