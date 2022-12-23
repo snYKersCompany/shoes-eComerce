@@ -12,7 +12,7 @@ import NavItem from "react-bootstrap/NavItem"; // eslint-disable-line
 import { BsFillStarFill } from "react-icons/bs";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
 import "../../styles/details.css";
-import Preview from "../Paypal/Preview/Preview";
+import Preview from "../Payments/Preview/Preview";
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -184,7 +184,6 @@ const Details = () => {
             <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
               Price: ${productDetail.price}
             </p>
-            {/* <PayPalButton /> */}
             <Preview onClick={(e) => setProduct(e)} />
           </section>
         ) : (

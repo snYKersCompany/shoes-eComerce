@@ -3,7 +3,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import "../../../styles/MiddleViewCard.css";
-import { Link } from "react-router-dom";
 
 function MiddleViewCard() {
   const product = {
@@ -26,22 +25,21 @@ function MiddleViewCard() {
     >
       <Row style={{ width: "65em" }}>
         <Col className="d-flex obj1">
-          <img src={product.card_picture} className="img1" alt={product.name} />
+          <img src={product.card_picture} className="img1" />
           <span>
-            <h3 className="">You added to the cart</h3>
-            <h5>{product.name}</h5>
+            <h2>Agregaste a tu carrito</h2>
+            <p>...Nombre... de talle ...Nro...</p>
           </span>
         </Col>
         <Col md="auto" className="d-flex obj2">
-          <h5>
-            {product.has_stock} products added in your cart: {product.price}$
-          </h5>
-          <img src={product.card_picture} className="img2" alt={product.name} />
+          <p>
+            ...Nro... productos en tu carrito: <b>${product.price} * Nro</b>
+          </p>
+          <img src={product.card_picture} className="img2" />
         </Col>
-        <Col xs lg="2" md="auto" className="d-flex obj3">
-          <Link to="/cart">
-            <Button variant="secondary customBtn">Go Cart</Button>
-          </Link>
+        <Col xs lg="2" className="d-flex obj3">
+          {/* <Button variant="primary btn">ver Carrito</Button>{' '} */}
+          <Button variant="secondary customBtn">Ir al carrito</Button>{" "}
         </Col>
       </Row>
     </Container>
