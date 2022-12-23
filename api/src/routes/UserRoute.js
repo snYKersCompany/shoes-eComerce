@@ -60,29 +60,8 @@ router.delete("/:id", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      name,
-      username,
-      email,
-      password,
-      phone,
-      address,
-      city,
-      image,
-      admin,
-    } = req.body;
-    const message = await controllers.modifyUser(
-      id,
-      name,
-      username,
-      email,
-      password,
-      phone,
-      address,
-      city,
-      image,
-      admin
-    );
+    const data = req.body;
+    const message = await controllers.modifyUser({id, ...data});
     return res.status(200).json(message);
   } catch (error) {
     return res.status(400).json({ error: error.message });

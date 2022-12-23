@@ -25,8 +25,8 @@ const addUser = async (uid, email, username, roles) => {
     return user;
 }
 
-const findUser = async (id) => {
-    if (!id) {
+const findUser = async (_id) => {
+    if (!_id) {
         throw new Error(`It needs an id property`);
     }
     const user = await UsersModel.findById(id);
@@ -51,14 +51,14 @@ const getUserDashboard = async (id) => {
                 as: "productsFavourites"
             }
         },
-        {
-            $lookup: {
-                from: "roles",
-                localField: "roles",
-                foreignField: "_id",
-                as: "roles"
-            }
-        },
+        // {
+        //     $lookup: {
+        //         from: "roles",
+        //         localField: "roles",
+        //         foreignField: "_id",
+        //         as: "roles"
+        //     }
+        // },
         {
             $lookup: {
                 from: "reviews",
@@ -67,14 +67,15 @@ const getUserDashboard = async (id) => {
                 as: "reviews"
             }
         },
-        // { $unwind: "$roles" }
+        { $unwind: "$roles" }
     ])
 
     if (!user) {
         return `The user with an id ${id} was not found in the database`
     }
-    return user
+    return user;
 }
+
 
 const deleteUser = async (id) => {
     if (!id) {
@@ -88,7 +89,7 @@ const deleteUser = async (id) => {
     return `The user with an id ${id} was successfully deleted`;
 }
 
-const modifyUser = async (id, name, username, email, password, phone, address, city, image, admin) => {
+const modifyUser = async ({id, name, username, email, country, phone, address, city, state, image}) => {
     let user = await UsersModel.findById(id);
     if (!user) {
         throw new Error(`The user with an id ${id} was not found in the database`);
@@ -103,6 +104,9 @@ const modifyUser = async (id, name, username, email, password, phone, address, c
     if (phone && phone.length) parameters.phone = phone;
     if (address && address.length) parameters.address = address;
     if (city && city.length) parameters.city = city;
+    if (country && country.length) parameters.country = country;
+    if (state && state.length) parameters.state = state;
+    if (image && image.length) parameters.image = image;
     // if(image.length) parameters.image = image;
     await UsersModel.updateOne({ _id: id }, { $set: parameters });
     // return `The user with an id ${id} was successfully modified`;

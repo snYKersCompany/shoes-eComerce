@@ -24,7 +24,8 @@ const userSchema = mongoose.Schema({
   country:{ type:String, default: "" },
   roles: [{
     ref: "Role",
-    type: String
+    type: String,
+    default: "user"
   }],
   favourites: [{
     ref: "products",
