@@ -6,7 +6,7 @@ import {
   getCategories,
   getBrands,
   getRatings,
-  getGenders
+  getGenders,
 } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Filters from "../Filters/Filters";
@@ -15,16 +15,18 @@ import { Link } from "react-router-dom";
 
 const Paginated = () => {
   const dispatch = useDispatch();
-  const { products, filters, orders, search } = useSelector((state) => state.products); //cambiar nombre
+  const { products, filters, orders, search } = useSelector(
+    (state) => state.products
+  ); //cambiar nombre
 
   useEffect(() => {
     dispatch(getAllProducts(filters, orders, search));
     dispatch(getCategories());
-    dispatch(getBrands())
-    dispatch(getRatings())
-    dispatch(getGenders())
+    dispatch(getBrands());
+    dispatch(getRatings());
+    dispatch(getGenders());
   }, [dispatch, filters, orders, search]);
-console.log(search)
+  console.log(search);
   let pages = []; // el número de páginas de mi componente
 
   //logica de recorrido del páginado
@@ -158,13 +160,13 @@ console.log(search)
           <></>
         )}
       </div>
-      <div className=" d-flex w-100 justify-content-end pe-3">
+      {/* <div className=" d-flex w-100 justify-content-end pe-3">
         <Link to={"/create"}>
           <button className="d- flex p-2 border border-none rounded border-primary">
             Add Product (Demo)
           </button>
         </Link>
-      </div>
+      </div> */}
       <CardsContainer productsSliced={productsSliced} />
     </div>
   );

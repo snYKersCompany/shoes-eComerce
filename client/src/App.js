@@ -6,6 +6,8 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Details from "./components/Details/Details";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import CancelPayment from "./components/Paypal/CancelPayment";
+import CapturePayment from "./components/Paypal/CapturePayment";
 import Create from "./components/Create/Create";
 import Cart from "./components/Cart/Cart";
 import CheckoutForm from "./components/Stripe/CheckoutForm";
@@ -38,6 +40,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/order-canceled" element={<CancelPayment />} />
+          <Route path="/order-completed" element={<CapturePayment />} />
           <Route path="/cart" element={<Cart />} />
           <Route
             path="/account"

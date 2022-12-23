@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
-import { Link } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
+import { Link } from "react-router-dom"; // eslint-disable-line
+import NavBar from "../Navbar/Navbar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import PayPalButton from "../Paypal/ButtonPaypal"; // eslint-disable-line
 import Button from "react-bootstrap/Button"; // eslint-disable-line
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
-import NavItem from "react-bootstrap/NavItem";
+import NavItem from "react-bootstrap/NavItem"; // eslint-disable-line
 import { BsFillStarFill } from "react-icons/bs";
-import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
+import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
 import "../../styles/details.css";
 import Preview from "../Paypal/Preview/Preview";
 
@@ -21,11 +22,9 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(getProductsDetails(id));
-
   }, [dispatch, id]);
 
   //local Storage
-
 
   const [size, setSize] = useState("");
   const [stock, setStock] = useState("");
@@ -34,7 +33,7 @@ const Details = () => {
     setSize(size);
     let aux = [];
     stock > 100 ? (stock = 100) : (stock = Number(stock));
-    for (let i = 1; i != stock; i++) {
+    for (let i = 1; i !== stock; i++) {
       aux.push(i);
     }
     setStock(aux);

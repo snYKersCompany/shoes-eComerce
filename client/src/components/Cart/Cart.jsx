@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import NavBar from "../Navbar/Navbar";
 import Button from "react-bootstrap/esm/Button";
 import NavBar from "../Navbar/Navbar";
 import CardCart from "./CardCart";
@@ -18,7 +19,6 @@ const stripePromise = loadStripe("pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY
 
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
-
 
   const [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : false

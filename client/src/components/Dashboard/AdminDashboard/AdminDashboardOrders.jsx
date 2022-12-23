@@ -23,7 +23,8 @@ function AdminDashboardOrders({ setOrderDetails }) {
     setViewPdf(!viewPdf);
   };
 
-  const handlerDetails = () => {
+  const handlerDetails = (id) => {
+    dispatch(getOrderDetails(id));
     setOrderDetails();
   };
 
@@ -65,7 +66,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
                   <Button
                     variant="primary"
                     onClick={() => {
-                      handlerDetails();
+                      handlerDetails(order._id);
                     }}
                   >
                     Details
