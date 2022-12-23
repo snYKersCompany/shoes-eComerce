@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductsDetails } from "../../redux/features/products/productsActions";
-import { Link } from "react-router-dom"; // eslint-disable-line
+//JSX
 import NavBar from "../NavBar/NavBar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
-import Button from "react-bootstrap/Button"; // eslint-disable-line
+import Preview from "../Paypal/Preview/Preview";
 import Image from "react-bootstrap/Image";
+//BS
 import ListGroup from "react-bootstrap/ListGroup";
-import NavItem from "react-bootstrap/NavItem"; // eslint-disable-line
 import { BsFillStarFill } from "react-icons/bs";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
+//actions
+import { getProductsDetails } from "../../redux/features/products/productsActions";
+//styles
 import "../../styles/details.css";
-import Preview from "../Payments/Preview/Preview";
 
 const Details = () => {
   const dispatch = useDispatch();
