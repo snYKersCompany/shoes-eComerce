@@ -3,17 +3,21 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const cors = require('cors');
+const Stripe = require("stripe")
 const routes = require("./routes/index.js");
 const pkg = require('../package.json');
 const { createRoles } = require('./libs/initialSetup');
 
 require("./db.js");
 
+//Clave secreta, acomodarla en una variable de entorno.
+const stripe = new Stripe("sk_test_51MHXZUEgY6MBu39VO7dnnFFp94Te9eBqnmjhuLQK2wSZMeQhn4GmIx8otuyuodQfhum25D3YYFiocNC0qvhKybup00huDmqVys")
+
 const server = express();
 createRoles();
 server.set('pkg', pkg);
 server.name = "API";
-server.use(cors());
+server.use(cors({origin: "http://localhost:3000"}));
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());
