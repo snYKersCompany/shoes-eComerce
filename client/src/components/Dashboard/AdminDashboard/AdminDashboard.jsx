@@ -8,7 +8,7 @@ import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 import { useState } from "react";
-import OrderDetailsPopUp from "./OrdersDetails";
+import OrderDetails from "./OrdersDetails";
 
 const UserDashboard = () => {
   const [orderDetails, setOrderDetails] = useState(true);
@@ -59,7 +59,7 @@ const UserDashboard = () => {
                       setOrderDetails={() => setOrderDetails(false)}
                     />
                   ) : (
-                    <OrderDetailsPopUp
+                    <OrderDetails
                       setOrderDetails={() => setOrderDetails(true)}
                     />
                   )}
