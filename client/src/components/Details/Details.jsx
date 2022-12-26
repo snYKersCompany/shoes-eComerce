@@ -185,7 +185,7 @@ const Details = () => {
             <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
               Price: ${productDetail.price}
             </p>
-            <Preview product={productDetail} setProduct={setProduct} />
+            <Preview setProduct={setProduct} />
           </section>
         ) : (
           <></>

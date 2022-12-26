@@ -7,9 +7,11 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const PreviewModal = (props) => {
-  let lastProduct = JSON.parse(localStorage.getItem("carrito")).at(-1);
+  let cart = JSON.parse(localStorage.getItem("carrito"));
+  console.log(cart.length);
+  let lastProduct = cart.length > 1 ? cart.length - 1 : cart;
 
-  console.log("preview Modal", lastProduct);
+  console.log("preview Modal", cart);
   return (
     <div className="d-flex flex-wrap justify-content-center">
       <Modal
