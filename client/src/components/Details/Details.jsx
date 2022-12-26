@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Preview from "../Paypal/Preview/Preview";
-import Image from "react-bootstrap/Image";
 //BS
+import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
