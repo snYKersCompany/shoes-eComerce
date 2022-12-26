@@ -29,6 +29,7 @@ export const getUserDashboards = (_id) => async (dispatch) => {
   try {
     if (!_id) return dispatch(getUserDashboard({}));
     const users = await axios.get(`/users/dashboard/${_id}`);
+    // console.log(users.data[0])
     return dispatch(getUserDashboard(users.data[0]));
   } catch (error) {
     return error;
@@ -76,6 +77,7 @@ export const clearUsers = () => async (dispatch) => {
 export const putUserInformation = (user, change) => async (dispatch) => {
   try {
     console.log(change);
+    console.log(user);
     const response = await axios.put(`/users/update/${user}`, change);
     console.log("cambios para el user ", response.data);
     return dispatch(updateUserDashboard(response.data[0]));

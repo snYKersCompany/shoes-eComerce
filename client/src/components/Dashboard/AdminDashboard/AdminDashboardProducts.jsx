@@ -13,6 +13,7 @@ import { FiTrash } from "react-icons/fi";
 import { useState } from "react";
 import ModalProductDetails from "./Modals/ModalProductDetails";
 import ModalProductWarning from "./Modals/ModalProductsWarning";
+import ModalFormCreate from "./Modals/ModalFormCreate";
 
 function AdminDashboardProducts() {
   const dispatch = useDispatch();
@@ -44,8 +45,8 @@ function AdminDashboardProducts() {
 
   return (
     <>
-      <Filters setActualPage={setActualPage} className="customFilter" />
-      <Button variant="primary">Add Products</Button>
+      <Filters setActualPage={setActualPage} className="customFilter" />      
+      <ModalFormCreate />
 
       <Table striped bordered hover>
         <thead>

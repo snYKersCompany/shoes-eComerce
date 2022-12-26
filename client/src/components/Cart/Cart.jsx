@@ -1,12 +1,13 @@
-import React from "react";
-import { useState } from "react";
-import NavBar from "../Navbar/Navbar";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+//JSX
+import NavBar from "../NavBar/NavBar";
 import CardCart from "./CardCart";
-import PayPalButton from "../Paypal/ButtonPaypal";
+import Payment from "../Paypal/Payment";
+//BS
 
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
-
 
   const [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : false
@@ -17,13 +18,11 @@ const Cart = () => {
   //precio total
   let priceTotal = 0;
 
-  {
-    products.length >= 1
-      ? products.map((el) => {
-          priceTotal += el.totalPrice;
-        })
-      : (priceTotal += 0);
-  }
+  products.length >= 1
+    ? products.map((el) => {
+        priceTotal += el.totalPrice;
+      })
+    : (priceTotal += 0);
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
@@ -40,9 +39,11 @@ const Cart = () => {
     setProducts(filtered);
   };
 
-  console.log(products);
+  console.log("products in cart", products);
 
   //fin precio total
+  console.log("Cart priceTotal", priceTotal);
+  console.log("Cart products", products);
 
   return (
     <>
@@ -65,10 +66,13 @@ const Cart = () => {
             );
           })
         ) : (
-          <>nada</>
+          <>You have no products in your cart</>
         )}
         <h2>Total: ${priceTotal}</h2>
-        <PayPalButton priceTotal={priceTotal} info={InfoToSend} />
+        <Payment
+          finalAmount={InfoToSend.finalAmount}
+          products={InfoToSend.products}
+        />
       </div>
     </>
   );

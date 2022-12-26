@@ -33,6 +33,7 @@ const getProductsById = async (_id)=>{
             }
         }
     ])
+
     return products;
 }
 
