@@ -2,33 +2,23 @@ import React, { useState } from "react";
 import { VscEdit } from "react-icons/vsc";
 import "../../../../styles/viewEditProduct.css";
 
+
 const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
   
   //Muestra stock o no
   let [control, setControl] = useState(-1) 
+  let [edit, setEdit] = useState("")
 
+  //reemplazar hardcodeo en create y update con rutas y redux
+  const categories = ["lifestyle","basketball","skateboarding","running","other"]
 
 
   //Deshabilita o habilita la edición de un campo
   const handleEdit = (e, child, state) => {
     e.preventDefault()
-    console.log(child)
-    switch (child) {
-      case "category":
-        state?
-        setform({...form, categories: ""})
-        :
-        setform({...form, categories: productDetail.categories})
-      
-
-
-      default:
-        break;
-    }
-
-    setControl(child)
+    setEdit(child) // con esto se habilita la edición de un solo componente
+    setControl(child)//cambia de ventana entre stock y datos normales
   }
-  
   
   
   const [form, setform] = useState(productDetail)
@@ -49,20 +39,21 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
   //   img: "", //String
   // });
 
+  console.log(form)
 
   const [error, setError] = useState({
-    name: " ",
-    description: " ",
-    brand: " ",
-    price: " ",
-    color: " ",
-    gender: " ",
-    size: "Select almost 1 size",
-    categories: "Select almost 1 category",
-    stock: " ",
-    release: " ",
-    img: " ",
+    name: false,
+    description: false,
+    brand: false,
+    price: false,
+    color: false,
+    gender: false,
+    category: false,
+    stock: false,
+    release: false,
+    img: false,
   });
+  console.log(error)
 
   //eslint-disable-next-line
   const [controller, setController] = useState({
@@ -72,11 +63,6 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
     //eslint-disable-next-line
     brand: /[{}<>=@\/\\]/g,
     price: /^\d*((,||\.)\d)+$/g,
-    sizes: (e) => {
-      let a = [...form.size, e.target.value];
-      return a.length > 1 ? true : false;
-    },
-    radio: true, //hasta que se puedan subir imágenes a la nube
     release: (date) =>
       date.split("-")[0] < 1900 || date.split("-")[0] > 2100 ? false : true,
   });
@@ -94,6 +80,12 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
       controller.brand.test(e.target.value) === false
       ? setError({ ...error, brand: false })
       : setError({ ...error, brand: "Invalid character" });
+      if (e.target.value.length < 3 || e.target.value.length > 50) {
+        setError({
+          ...error,
+          brand: "Must be between 2 and 50 characters in length",
+        });
+      }
     };
     
     let handleName = (e) => {
@@ -144,22 +136,87 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
       ? setError({ ...error, gender: "choose a gender" })
       : setError({ ...error, gender: false });
     setform({ ...form, gender: [e.target.value] });
+    setEdit("")
   };
 
-  // let handleCategory = (value) => {
-  //   let a = form.categories;
-  //   a.length >= 1 ? (a = a.filter((el) => el === value)) : (a = []);
-  //   a.length < 1
-  //     ? setform({ ...form, categories: [...form.categories, value] })
-  //     : setform({
-  //         ...form,
-  //         categories: form.categories.filter((el) => el !== value),
-  //       });
-  //   form.categories.length === 1 && value === form.categories[0]
-  //     ? setError({ ...error, categories: "Select almost 1 category" })
-  //     : setError({ ...error, categories: false });
-  // };
+  let handleRelease = (e) => {
+    controller.release(e.target.value)
+      ? setError({ ...error, release: false })
+      : setError({
+          ...error,
+          release: "Invalid Date",
+        });
+    setform({ ...form, release_date: e.target.value });
+  };
+  const [auxImg, setAuxImg] = useState();
 
+  let handleImg = (e) => {
+    setform({...form, detail_picture:e.target.value});
+  };
+
+  let handleImgForm = () => {
+    setform({ ...form, img: auxImg });
+    auxImg.length > 1
+      ? setError({ ...error, img: false })
+      : setError({ ...error, img: "Upload a image" });
+  };
+
+  let handleCategory = (e) => {
+    console.log(e.target.value)
+   e.target.value === "none"
+      ? setError({ ...error, category: "choose a gender" })
+      : setError({ ...error, category: false });
+    setform({ ...form, category: [e.target.value] });
+    setEdit("")
+  };
+
+  let handleColor = (e) => {
+    if (
+      e.target.value[e.target.value.length - 2] === " " &&
+      e.target.value[e.target.value.length - 1] === " "
+    ) {
+      return setform({ ...form }); //sin doble espacios
+    }
+    setform({ ...form, color: e.target.value });
+    controller.name.test(e.target.value) === false &&
+    controller.name.test(e.target.value) === false
+      ? setError({ ...error, color: false })
+      : setError({ ...error, color: "Invalid character" });
+    if (e.target.value.length < 3 || e.target.value.length > 60) {
+      setError({
+        ...error,
+        color: "Must be between 3 and 60 characters in length",
+      });
+    }
+  };
+
+  let handleCollection = (e) => {
+    if (
+      e.target.value[e.target.value.length - 2] === " " &&
+      e.target.value[e.target.value.length - 1] === " "
+    ) {
+      return setform({ ...form }); //sin doble espacios
+    }
+    setform({ ...form, collection: e.target.value });
+    controller.name.test(e.target.value) === false &&
+    controller.name.test(e.target.value) === false
+      ? setError({ ...error, collection: false })
+      : setError({ ...error, collection: "Invalid character" });
+    if (e.target.value.length < 2 || e.target.value.length > 80) {
+      setError({
+        ...error,
+        collection: "Must be between 3 and 80 characters in length",
+      });
+    }
+  };
+
+  let handlePrice = (e) => {
+    setform({ ...form, price: Number(e.target.value) });
+    controller.price.test(e.target.value) === true &&
+    controller.price.test(e.target.value) === false
+      ? setError({ ...error, price: false })
+      : setError({ ...error, price: "Invalid response" });
+  };
 
   
 
@@ -168,17 +225,17 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
   return (
     <div className="viewEditContainer d-flex text-green">
       
-      <form className="viewEdit d-flex ">
+      <form className="viewEdit d-flex " onSubmit={(e) => e.preventDefault()}>
         <section className="left d-flex flex-column align-items-center justify-content-center">
           <img
             className="imageCard1"
-            src={productDetail.detail_picture}
-            alt={productDetail.name}
+            src={form.detail_picture}
+            alt={form.name}
           />
           <img
             className="imageCard2"
-            src={productDetail.detail_picture}
-            alt={productDetail.name}
+            src={form.detail_picture}
+            alt={form.name}
           />
           <fieldset className="d-flex flex-column mb-3">
             Image
@@ -187,8 +244,9 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
                 className="input"
                 type="text"
                 name="image"
-                placeholder="https://image.goat.com/750/attachments/product_template_pictures/images/011/119/994/original/218099_00.png.png"
-                value={productDetail.detail_picture}
+                placeholder="Insert URL from your image"
+                value={form.detail_picture}
+                onChange={(e) => handleImg(e)}
               />
               <button className="input2 ms-1">
                 <VscEdit className="input3" />
@@ -200,6 +258,18 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
         {viewStock ? (
           <section className="right d-flex flex-column">
             <div className="d-flex">
+              {edit !== "brand"?
+              <fieldset className="d-flex flex-column mb-3">
+              Brand
+              <label className="VEPlabelAux">
+                {form.brand}
+                <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"brand",true)}>
+                  <VscEdit className="input3" />
+                </button>
+              </label>
+              <label>{error.brand}</label>
+            </fieldset>
+              :
               <fieldset className="d-flex flex-column mb-3">
                 Brand
                 <label>
@@ -210,15 +280,27 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
                     value={form.brand}
                     onChange={(e) => handleBrand(e)}
                     placeholder="Insert a Brand"
-                  />
-                  <button className="ms-1 me-3 input2">
+                    />
+                  <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"",false)}>
                     <VscEdit className="input3" />
                   </button>
                 </label>
                 <label>{error.brand}</label>
               </fieldset>
-
-              <fieldset className="d-flex flex-column mb-3">
+            }
+            {edit !== "name"?
+            <fieldset className="d-flex flex-column mb-3">
+              Name
+              <label className="VEPlabelAux">
+                {form.name}
+                <button className="ms-1 input2" onClick={(e) => handleEdit(e,"name",true)}>
+                  <VscEdit className="input3" />
+                </button>
+              </label>
+              <label>{error.name}</label>
+            </fieldset>
+            :  
+            <fieldset className="d-flex flex-column mb-3">
                 Name
                 <label>
                   <input
@@ -228,106 +310,181 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
                     onChange={(e) => handleName(e)}
                     value={form.name}
                     placeholder="Insert a name"
-                  />
-                  <button className="ms-1 input2">
+                    />
+                  <button className="ms-1 input2" onClick={(e) => handleEdit(e,"",false)}>
                     <VscEdit className="input3" />
                   </button>
                 </label>
                 <label>{error.name}</label>
               </fieldset>
+          }
             </div>
-
-            <fieldset className="d-flex flex-column mb-3">
+          {edit !== "description"?
+          <fieldset className="d-flex flex-column mb-3">
+          Description
+          <label className="d-flex VEPlabelAux">
+            <div className="descriptionVEP w-75">
+              {form.description}
+            </div>
+            <button className="ms-1 input2" onClick={(e) => handleEdit(e,"description", false)}>
+              <VscEdit className="input3" />
+            </button>
+          </label>
+          <label>{error.description}</label>
+        </fieldset>
+          :
+          <fieldset className="d-flex flex-column mb-3">
               Description
               <label>
-                <input
-                  className="input"
-                  type="text"
+                <textarea
+                  className="input w-75"
                   name="description"
                   value={form.description}
                   onChange={(e)=>handleDescription(e)}
-                  placeholder="This Nike Air Jordan 1 Retro High OG &#39;Shadow&#39; 2018 is a retro re-release of an original 1985 colorway. The shoe features a black and medium grey leather upper with a white midsole and black outsole. It also features OG Nike Air branding on the tongue and the Wings logo on the ankle collar. It was last retroed in 2013, and a low-top version dropped in 2015."
-                />
-                <button className="ms-1 input2">
+                  placeholder="Insert a description"
+                  />
+                <button className="ms-1 input2" onClick={(e) => handleEdit(e,"", false)}>
                   <VscEdit className="input3" />
                 </button>
               </label>
               <label>{error.description}</label>
             </fieldset>
+          }
 
             <div className="d-flex">
+              {edit !== "gender"?
+              <fieldset className="d-flex flex-column mb-3">
+              Gender
+              <label className="VEPlabelAux">
+                {form.gender}
+                <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"gender", false)}>
+                  <VscEdit className="input3"  />
+                </button>
+              </label>
+              
+            </fieldset>
+              :
               <fieldset className="d-flex flex-column mb-3">
                 Gender
                 <label>
-                  <input
-                    className="input"
-                    type="text"
-                    name="gender"
-                    value={form.gender}
-                    placeholder="women"
-                  />
-                  <button className="ms-1 me-3 input2">
-                    <VscEdit className="input3" />
+                  <select onChange={(e)=> handleGender(e)} defaultValue={"none"}>
+                    <option value="none" hidden>Choose a gender</option>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="unisex">Unisex</option>
+                  </select>
+                  <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"", false)}>
+                    <VscEdit className="input3"  />
                   </button>
                 </label>
               </fieldset>
+              }
 
-              <fieldset className="d-flex flex-column mb-3">
-                Category
-                {form.categories !== ""?
-                <label>
-                  <label>{form.categories}</label>
-                  <button className="ms-1 input2">
-                    <VscEdit className="input3" onClick={(e)=> handleEdit(e, "category", true)} />
-                  </button>
-                </label>
+                {edit !== "category"?
+                  <fieldset className="d-flex flex-column mb-3">
+                    Category
+                    <label className="VEPlabelAux">
+                      {form.category}
+                      <button className="ms-1 input2" onClick={(e)=> handleEdit(e, "category", true)}>
+                        <VscEdit className="input3" />
+                      </button>
+                    </label>
+                  </fieldset>
                 :
-                <>
-                <select></select>
-                  <button className="ms-1 input2">
-                    <VscEdit className="input3" onClick={(e)=> handleEdit(e, "category", false)} />
-                  </button>
-                </>
+                  <fieldset className="d-flex flex-column mb-3">
+                  Category
+                  <label>
+                    <select onChange={(e)=> handleCategory(e)} defaultValue={"none"}>
+                      <option value="none" hidden>Choose a Category</option>
+                      {categories.map((category,i) =>{
+                        return <option value={category} key={i}>{category}</option>
+                      })}
+                    </select>
+                    <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"", false)}>
+                      <VscEdit className="input3"  />
+                    </button>
+                  </label>
+                </fieldset>
                 }
                 
-              </fieldset>
             </div>
 
             <div className="d-flex">
+              {edit !== "color"?
+              <fieldset className="d-flex flex-column mb-3">
+              Color
+              <label className="VEPlabelAux">
+                {form.color}
+                <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"color",true)}>
+                  <VscEdit className="input3" />
+                </button>
+              </label>
+              <label>{error.color}</label>
+            </fieldset>
+              :
               <fieldset className="d-flex flex-column mb-3">
                 Color
-                <label>
+                <label className="d-flex">
                   <input
                     className="input"
                     type="text"
                     name="color"
-                    value={productDetail.color}
-                    placeholder="Red"
-                  />
-                  <button className="ms-1 me-3 input2">
+                    value={form.color}
+                    onChange={(e) => handleColor(e)}
+                    placeholder="Insert a color"
+                    />
+                  <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"",false)}>
                     <VscEdit className="input3" />
                   </button>
                 </label>
+                <label>{error.color}</label>
               </fieldset>
+            }
 
+              {edit !== "collection" ?
+              <fieldset className="d-flex flex-column mb-3">
+              Collection
+              <label className="VEPlabelAux">
+                {form.collection}
+                <button className="ms-1 input2" onClick={(e) => handleEdit(e,"collection",false)}>
+                  <VscEdit className="input3" />
+                </button>
+              </label>
+              <label>{error.collection}</label>
+            </fieldset>
+            :  
               <fieldset className="d-flex flex-column mb-3">
                 Collection
-                <label>
+                <label className="d-flex">
                   <input
                     className="input"
                     type="text"
                     name="colection"
-                    value={productDetail.collection}
-                    placeholder="retro"
-                  />
-                  <button className="ms-1 input2">
+                    onChange={(e) => handleCollection(e)}
+                    value={form.collection}
+                    placeholder="Insert a Collection"
+                    />
+                  <button className="ms-1 input2" onClick={(e) => handleEdit(e,"",false)}>
                     <VscEdit className="input3" />
                   </button>
                 </label>
+                <label>{error.collection}</label>
               </fieldset>
+                  }
             </div>
 
             <div className="d-flex">
+              {edit !== "date"?
+              <fieldset className="d-flex flex-column mb-3">
+              Release Date
+              <label className="VEPlabelAux">
+                {form.release_date}
+                <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"date",true)}>
+                  <VscEdit className="input3" />
+                </button>
+              </label>
+            </fieldset>
+              :
               <fieldset className="d-flex flex-column mb-3">
                 Release Date
                 <label>
@@ -335,32 +492,36 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
                     className="input"
                     type="date"
                     name="release_date"
-                    value={productDetail.release_date}
-                  />
-                  <button className="ms-1 me-3 input2">
+                    placeholder="Insert a date"
+                    onChange={(e) => handleRelease(e)}
+                    value={form.release_date}
+                    />
+                  <button className="ms-1 me-3 input2" onClick={(e) => handleEdit(e,"",false)}>
                     <VscEdit className="input3" />
                   </button>
                 </label>
               </fieldset>
+              }
 
               <fieldset className="d-flex flex-column mb-3">
                 Rating
-                <label>
-                  <input
-                    className="input"
-                    type="number"
-                    name="rating"
-                    value={productDetail.rating}
-                    placeholder="3"
-                  />
-                  <button className="ms-1 input2">
-                    <VscEdit className="input3" />
-                  </button>
+                <label className="VEPlabelAux">
+                  {form.rating}
                 </label>
               </fieldset>
             </div>
 
-
+            {edit !== "price"?
+            <fieldset className="d-flex flex-column mb-3">
+            Price
+            <label className="VEPlabelAux">
+              {form.price}
+              <button className="ms-1 input2" onClick={(e)=> handleEdit(e,"price", true)}>
+                <VscEdit className="input3" />
+              </button>
+            </label>
+          </fieldset>
+            :
             <fieldset className="d-flex flex-column mb-3">
               Price
               <label>
@@ -368,14 +529,16 @@ const ViewEditProduct = ({ productDetail, setStock, viewStock }) => {
                   className="input"
                   type="number"
                   name="price"
-                  value={productDetail.price}
-                  placeholder="150"
-                />
-                <button className="ms-1 input2">
+                  value={form.price}
+                  onChange = {(e) => handlePrice(e)}
+                  placeholder="Insert a price"
+                  />
+                <button className="ms-1 input2" onClick={(e)=> handleEdit(e,"", false)}>
                   <VscEdit className="input3" />
                 </button>
               </label>
             </fieldset>
+            } 
           </section>
         ) : (
           <section className="VEPStock d-flex flex-wrap">
