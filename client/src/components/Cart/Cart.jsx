@@ -1,20 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+//JSX
 import NavBar from "../NavBar/NavBar";
 import CardCart from "./CardCart";
-
-
-import CheckoutForm from "../Stripe/CheckoutForm";
-//STRIPE
-import { loadStripe } from "@stripe/stripe-js";
-
-//Elements engloba a los demas componentes, para que tengan acceso a la coneccion de Stripe.
-import { Elements } from "@stripe/react-stripe-js";
-
-//Nos conectamos a stripe, con la clave publica (Acomodar en una variable de entorno)
-const stripePromise = loadStripe(
-  "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
-);
+import Payment from "../Paypal/Stripe/Payment";
+//BS
 
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
@@ -52,6 +42,8 @@ const Cart = () => {
   console.log("products in cart", products);
 
   //fin precio total
+  console.log("Cart priceTotal", priceTotal);
+  console.log("Cart products", products);
 
   return (
     <>
@@ -77,12 +69,7 @@ const Cart = () => {
           <>You have no products in your cart</>
         )}
         <h2>Total: ${priceTotal}</h2>
-        <Elements stripe={stripePromise}>
-          <CheckoutForm
-            priceTotal={InfoToSend.finalAmount}
-            products={InfoToSend.products}
-          />
-        </Elements>
+        <Payment priceTotal={priceTotal} products={products} />
       </div>
     </>
   );

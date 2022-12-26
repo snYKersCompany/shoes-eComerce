@@ -17,6 +17,13 @@ import Preview from "./components/Paypal/Preview/Preview";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
+//Stripe
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const stripePromise = loadStripe(
+  "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
+);
+
 function App() {
   return (
     <div>
@@ -28,7 +35,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CancelPayment />} />
           <Route path="/order-completed" element={<CapturePayment />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Elements stripe={stripePromise}><Cart /></Elements>} />
           <Route
             path="/account"
             element={
@@ -41,7 +48,7 @@ function App() {
           <Route path="/preview" element={<Preview />} />
         </Routes>
       </AuthProvider>
-    </div>
+    </div >
   );
 }
 
