@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Preview from "../Paypal/Preview/Preview";
-import Image from "react-bootstrap/Image";
 //BS
+import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
@@ -185,7 +185,7 @@ const Details = () => {
             <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
               Price: ${productDetail.price}
             </p>
-            <Preview setProduct={setProduct} />
+            <Preview product={productDetail} setProduct={setProduct} />
           </section>
         ) : (
           <></>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CardsContainer from "../../CardsContainer/CardsContainer";
 //JSX
 import MiddleViewCard from "./MiddleViewCard";
@@ -6,7 +6,10 @@ import MiddleViewCard from "./MiddleViewCard";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-const PreviewModal = (props, { product }) => {
+const PreviewModal = (props) => {
+  let lastProduct = JSON.parse(localStorage.getItem("carrito")).at(-1);
+
+  console.log("preview Modal", lastProduct);
   return (
     <div className="d-flex flex-wrap justify-content-center">
       <Modal
@@ -21,7 +24,7 @@ const PreviewModal = (props, { product }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MiddleViewCard product={product} />
+          <MiddleViewCard product={lastProduct} />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
@@ -32,24 +35,24 @@ const PreviewModal = (props, { product }) => {
 };
 
 const Preview = ({ product, setProduct }) => {
-  const [modalShow, setModalShow] = React.useState(false);
+  console.log("preview", product);
+  const [modalShow, setModalShow] = useState(false);
+  const [previewProduct, setPreviewProduct] = useState({});
 
   const handleAddToCart = (e) => {
     setModalShow(true);
     setProduct(e);
+    setPreviewProduct(product);
   };
 
+  console.log(previewProduct);
   return (
     <>
       <Button variant="primary" onClick={(e) => handleAddToCart(e)}>
         Add to cart
       </Button>
 
-      <PreviewModal
-        product={setProduct}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+      <PreviewModal show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };

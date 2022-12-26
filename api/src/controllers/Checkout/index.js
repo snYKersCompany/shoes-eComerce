@@ -25,7 +25,7 @@ const createCheckout = async (req, res) => {
     line_items,
     mode: 'payment',
     success_url: 'http://localhost:3000/order-completed',
-    cancel_url: 'http://localhost:3000//order-canceled',
+    cancel_url: 'http://localhost:3000/order-canceled',
   });
 
   res.send({ url: session.url });
