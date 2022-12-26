@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //JSX
 import NavBar from "../NavBar/NavBar";
 import CardCart from "./CardCart";
-import Payment from "../Paypal/Stripe/Payment";
+import Payment from "../Paypal/Payment";
 //BS
 
 const Cart = () => {
