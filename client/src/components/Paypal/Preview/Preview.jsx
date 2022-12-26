@@ -7,9 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const PreviewModal = (props) => {
-  let cart = JSON.parse(localStorage.getItem("carrito"));
-  console.log(cart.length);
-  let lastProduct = cart.length > 1 ? cart.length - 1 : cart;
+  let cart = JSON.parse(localStorage.getItem("carrito")) || [];
 
   console.log("preview Modal", cart);
   return (
@@ -26,7 +24,7 @@ const PreviewModal = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MiddleViewCard product={lastProduct} />
+          <MiddleViewCard product={cart.at(-1)} />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
@@ -36,18 +34,14 @@ const PreviewModal = (props) => {
   );
 };
 
-const Preview = ({ product, setProduct }) => {
-  console.log("preview", product);
+const Preview = ({ setProduct }) => {
   const [modalShow, setModalShow] = useState(false);
-  const [previewProduct, setPreviewProduct] = useState({});
 
   const handleAddToCart = (e) => {
     setModalShow(true);
     setProduct(e);
-    setPreviewProduct(product);
   };
 
-  console.log(previewProduct);
   return (
     <>
       <Button variant="primary" onClick={(e) => handleAddToCart(e)}>
