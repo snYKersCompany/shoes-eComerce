@@ -8,8 +8,8 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Details from "./components/Details/Details";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import CancelPayment from "./components/Paypal/CancelPayment";
-import CapturePayment from "./components/Paypal/CapturePayment";
+import CheckoutCancel from "./components/Paypal/CheckoutCancel";
+import CheckoutSuccess from "./components/Paypal/CheckoutSuccess";
 import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
@@ -33,8 +33,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/order-canceled" element={<CancelPayment />} />
-          <Route path="/order-completed" element={<CapturePayment />} />
+          <Route path="/order-canceled" element={<CheckoutCancel />} />
+          <Route path="/order-completed" element={<CheckoutSuccess />} />
           <Route path="/cart" element={<Elements stripe={stripePromise}><Cart /></Elements>} />
           <Route
             path="/account"

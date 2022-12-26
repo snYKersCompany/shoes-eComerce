@@ -1,23 +1,36 @@
+require("dotenv").config()
 const Stripe = require("stripe");
-const stripe = new Stripe("sk_test_51MHXZUEgY6MBu39VO7dnnFFp94Te9eBqnmjhuLQK2wSZMeQhn4GmIx8otuyuodQfhum25D3YYFiocNC0qvhKybup00huDmqVys");
+const stripe = Stripe(process.env.STRIPE_KEY);
 
 
 const createCheckout = async (req, res) => {
-  const { amount } = req.body;
+  const line_items = req.body.products.map((item) => {
+    return {
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+          images: [item.img],
+          metadata: {
+            id: item.id
+          }
+        },
+        unit_amount: item.price * 100,
+      },
+      quantity: item.count,
+    }
+  })
 
-  // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: amount,
-    currency: "usd",
-    automatic_payment_methods: {
-      enabled: true,
-    },
+  const session = await stripe.checkout.sessions.create({
+    line_items,
+    mode: 'payment',
+    success_url: 'http://localhost:3000/order-completed',
+    cancel_url: 'http://localhost:3000//order-canceled',
   });
 
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  });
-}
+  res.send({ url: session.url });
+};
+
 
 module.exports = {
   createCheckout

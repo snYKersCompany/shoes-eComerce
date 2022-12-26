@@ -1,55 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 //BS
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-//JSX
-import CheckoutForm from "./CheckoutForm";
+//utils
+import { useAuth } from "../../../context/authContext";
+import axios from "axios";
 
-const PaymentModal = (props, { products, pricetotal }) => {
-  console.log("PaymentModal priceTotal", pricetotal);
-  console.log("PaymentModal products", products);
-  return (
-    <div className="d-flex flex-wrap justify-content-center">
-      <Modal
-        {...props}
-        size="xl"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <CheckoutForm products={products} pricetotal={pricetotal} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
-  );
-};
-
-const Payment = ({ products, priceTotal }) => {
-  const [modalShow, setModalShow] = React.useState(false);
+const Payment = ({ products, finalAmount }) => {
+  console.log("Payment finalAmount", finalAmount);
+  console.log("Payment products", products);
 
   const handleClick = () => {
-    setModalShow(true);
+    axios
+      .post("http://localhost:3001/api/checkouts", {
+        products,
+      })
+      .then((res) => {
+        if (res.data.url) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
-
-  console.log("Payment priceTotal", priceTotal);
-  console.log("Payment products", products);
 
   return (
     <>
       <Button variant="secondary customBtn" onClick={() => handleClick()}>
         Pay
       </Button>
-
-      <PaymentModal
-        products={products}
-        pricetotal={priceTotal}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
     </>
   );
 };

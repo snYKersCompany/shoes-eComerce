@@ -69,7 +69,10 @@ const Cart = () => {
           <>You have no products in your cart</>
         )}
         <h2>Total: ${priceTotal}</h2>
-        <Payment priceTotal={priceTotal} products={products} />
+        <Payment
+          finalAmount={InfoToSend.finalAmount}
+          products={InfoToSend.products}
+        />
       </div>
     </>
   );
