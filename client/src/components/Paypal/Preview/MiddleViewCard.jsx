@@ -16,21 +16,16 @@ function MiddleViewCard({ product }) {
         <Col className="d-flex obj1">
           <img src={product.img} className="img1" alt={product.name} />
           <span>
-            <h3 className="">You added to the cart</h3>
             <h5>{product.name}</h5>
           </span>
         </Col>
         <Col md="auto" className="d-flex obj2">
           <h5>
-            {product.count} {product.name} added to your cart:{" "}
+            {product.count} {product.name} product added to your cart:{" "}
             {product.totalPrice}$
           </h5>
         </Col>
-        <Col xs lg="2" md="auto" className="d-flex obj3">
-          <Link to="/cart">
-            <Button variant="secondary customBtn">Go Cart</Button>
-          </Link>
-        </Col>
+        <Col xs lg="2" md="auto" className="d-flex obj3"></Col>
       </Row>
     </Container>
   );
