@@ -13,13 +13,14 @@ const ModalProductDetails = (props) => {
 
   const { productDetail } = useSelector((state) => state.products);
 
-  console.log()
+
+
   const handlerOnClick = () => {
     dispatch(clearProductsDetail({}));
   };
 
 
-  const [stock, setStock] = useState(true);
+  const [viewStock, setViewStock] = useState(true);
 
   return (
     <Modal
@@ -43,7 +44,7 @@ const ModalProductDetails = (props) => {
 
         <div className="">
           <Modal.Body className="d-flex ">
-            <ViewEditProduct productDetail={productDetail} stock={stock} />
+            <ViewEditProduct productDetail={productDetail} viewStock={viewStock} />
           </Modal.Body>
         </div>
 
@@ -51,10 +52,10 @@ const ModalProductDetails = (props) => {
           <Button
             className="modalBtn ms-3"
             onClick={() => {
-              setStock(!stock);
+              setViewStock(!viewStock);
             }}
           >
-            {stock? "Stock" : "Back"}
+            {viewStock? "Stock" : "Back"}
           </Button>
           <Button className="modalBtn ms-3" onClick={() => handlerOnClick()}>
             Close
