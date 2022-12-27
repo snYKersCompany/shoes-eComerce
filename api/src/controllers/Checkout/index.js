@@ -1,29 +1,35 @@
+require("dotenv").config()
 const Stripe = require("stripe");
-const stripe = new Stripe("sk_test_51MHXZUEgY6MBu39VO7dnnFFp94Te9eBqnmjhuLQK2wSZMeQhn4GmIx8otuyuodQfhum25D3YYFiocNC0qvhKybup00huDmqVys");
+const stripe = Stripe(process.env.STRIPE_KEY);
 
 
 const createCheckout = async (req, res) => {
-    // you can get more data to find in a database, and so on
-    const { id, amount} = req.body;
-    console.log(req.body)
-
-    try {
-      const payment = await stripe.paymentIntents.create({
-        amount: amount,
-        currency: "USD",
-        description: "nombre del producto",
-        payment_method: id,
-        confirm: true, //confirm the payment at the same time
-      });
-  
-      console.log(payment);
-  
-      return res.status(200).json({ message: "Successful Payment" });
-    } catch (error) {
-      console.log(error);
-      return res.json({ message: error.raw.message });
+  const line_items = req.body.products.map((item) => {
+    return {
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+          images: [item.img],
+          metadata: {
+            id: item.id
+          }
+        },
+        unit_amount: item.price * 100,
+      },
+      quantity: item.count,
     }
-  };
+  })
+
+  const session = await stripe.checkout.sessions.create({
+    line_items,
+    mode: 'payment',
+    success_url: 'http://localhost:3000/order-completed',
+    cancel_url: 'http://localhost:3000/order-canceled',
+  });
+
+  res.send({ url: session.url });
+};
 
 
 module.exports = {
