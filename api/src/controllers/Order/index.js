@@ -75,10 +75,30 @@ const putOrder = async (req, res) => {
   }
 };
 
+
+const alphabetSequence = async (req, res) => {
+  const { payload } = req.body
+  try{
+    
+    if(payload === 'new'){
+      let newestOrder = await OrderModel.find({}).sort({date: 1})
+      console.log('entro al if, esto es newestOrder-->', newestOrder)
+      res.status(200).json(newestOrder)
+    } else{
+      let oldestOrder = await OrderModel.find({}).sort({date: -1})
+      console.log('entro al else, esto es oldestOrder-->', oldestOrder)
+      res.status(200).json(oldestOrder)
+    }
+  }catch(error){
+    return res.status(404).json({error: error.message})
+  }
+};
+
 module.exports = {
   createOrder,
   getOrders,
   deleteOrder,
   findOrder,
   putOrder,
+  alphabetSequence
 };

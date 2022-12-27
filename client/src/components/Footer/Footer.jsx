@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import {
   CDBFooter,
   CDBFooterLink, // eslint-disable-line
@@ -27,18 +29,9 @@ import firebase from "../../utils/images/footer/firebase.png";
 import "../../styles/footer.css";
 
 const Footer = () => {
-  // //hardCoding asi no se rompe
-  // let user = {
-  //   rol: {
-  //     admin: "admin",
-  //     regular: "regular",
-  //   },
-  // };
+  const { userDashboard } = useSelector((state) => state.users);
 
-  let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
-
-
-  return userMONGO.role[0] !== "6397b0b5a0730c95052cae5a" ? (
+  return userDashboard.roles !== "admin" ? (
     <CDBFooter className="shadow">
       <CDBBox
         display="flex"
@@ -56,13 +49,13 @@ const Footer = () => {
 
         <CDBBox display="flex">
           <CDBBtn flat color="dark" className="mx-3 p-2">
-            <a href={twAPP} target='_blank' rel='noreferrer noopener'>
+            <a href={twAPP} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="twitter" />
             </a>
           </CDBBtn>
 
           <CDBBtn flat color="dark" className="p-2">
-            <a href={igAPP} target='_blank' rel='noreferrer noopener'>
+            <a href={igAPP} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="instagram" />
             </a>
           </CDBBtn>
@@ -93,12 +86,12 @@ const Footer = () => {
         {/* redes sociales */}
         <CDBBox display="flex">
           <CDBBtn flat color="dark" className="mx-3 p-2">
-            <a href={twAPP} target='_blank' rel='noreferrer noopener'>
+            <a href={twAPP} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="twitter" />
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="p-2">
-            <a href={igAPP} target='_blank' rel='noreferrer noopener'>
+            <a href={igAPP} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="instagram" />
             </a>
           </CDBBtn>
@@ -112,50 +105,42 @@ const Footer = () => {
         {/*integrantes */}
         <CDBBox display="flex">
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={juaniGH}
-             target='_blank' rel='noreferrer noopener'>
+            <a href={juaniGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={juaniGH}
-             target='_blank' rel='noreferrer noopener'>
+            <a href={juaniGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={martinGH}
-             target='_blank' rel='noreferrer noopener'>
+            <a href={martinGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={crisTGH}
-             target='_blank' rel='noreferrer noopener'>
+            <a href={crisTGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={walterGH}
-             target='_blank' rel='noreferrer noopener'>
+            <a href={walterGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={crisgGH}
-             target='_blank' rel='noreferrer noopener'>
+            <a href={crisgGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={rodrigoGH} 
-            target='_blank' rel='noreferrer noopener'>
+            <a href={rodrigoGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
           <CDBBtn flat color="dark" className="mx-3 p-1">
-            <a href={santiagoGH}
-             target='_blank' rel='noreferrer noopener'>
+            <a href={santiagoGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>
             </a>
           </CDBBtn>
@@ -177,7 +162,7 @@ const Footer = () => {
     </CDBFooter>
   );
 };
-  //
+//
 
 //   return user && user.rol.regular ? (
 //     <CDBFooter className="shadow">

@@ -12,4 +12,6 @@ router.delete('/:id', controllers.deleteOrder);
 
 router.put('/:id', controllers.putOrder);
 
+router.get('/', controllers.alphabetSequence)
+
 module.exports = router;

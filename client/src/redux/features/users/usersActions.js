@@ -76,12 +76,33 @@ export const clearUsers = () => async (dispatch) => {
 
 export const putUserInformation = (user, change) => async (dispatch) => {
   try {
-    console.log(change);
-    console.log(user);
+    // console.log(change);
+    // console.log(user);
     const response = await axios.put(`/users/update/${user}`, change);
-    console.log("cambios para el user ", response.data);
+    // console.log("cambios para el user ", response.data);
     return dispatch(updateUserDashboard(response.data[0]));
   } catch (error) {
     return error;
+  }
+};
+
+export const putUserStatus = (id) => async (dispatch) => {
+  
+  try{
+    const putStatusUser = await axios.put('ruta', id);//como son 2 valores los esperados
+                                                      //espero que se haga en el back
+    return putStatusUser
+  }catch(error){
+    return error;
+  }
+};
+
+export const deleteUser = (_id) => async (dispatch) => {
+  try{
+    const deleteOneUser = axios.delete(`/users/${_id}`)
+    console.log(deleteOneUser)
+    return deleteOneUser
+  }catch(error){
+    return error
   }
 };

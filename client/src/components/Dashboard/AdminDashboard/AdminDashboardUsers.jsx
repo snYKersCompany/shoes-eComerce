@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { getAllUsers } from "../../../redux/features/users/usersActions";
+import { getAllUsers, putUserStatus, deleteUser } from "../../../redux/features/users/usersActions";
 
 function AdminDashboardUsers() {
   const dispatch = useDispatch();
@@ -14,11 +14,17 @@ function AdminDashboardUsers() {
   }, [dispatch]);
 
   const handlerDeleteUser = (_id) => {
-    console.log(_id);
+    // console.log(_id);
+    dispatch(deleteUser(_id))
   };
 
   const handlerOrdersUser = (orders) => {
     console.log(orders);
+  };
+
+  const handleFormCheck = (payload) => {
+    console.log('putUserStatus',payload.target.checked)
+    // dispatch(putUserStatus(payload.target.checked))
   };
 
   return (
@@ -26,7 +32,7 @@ function AdminDashboardUsers() {
       <thead>
         <tr>
           <th>_id</th>
-          <th>Name</th>
+          <th>User Name</th>
           <th>Email</th>
           <th>Phone</th>
           <th>Number</th>
@@ -41,7 +47,7 @@ function AdminDashboardUsers() {
         {users.map((user) => (
           <tr key={user._id}>
             <td>{user._id}</td>
-            <td>{user.name}</td>
+            <td>{user.username}</td>
             <td>{user.email}</td>
             <td>{user.phone}</td>
             <td>Number</td>
@@ -53,7 +59,7 @@ function AdminDashboardUsers() {
               <Form.Check
                 type="switch"
                 id="custom-switch"
-                onClick={(e) => console.log(e.target.checked)}
+                onClick={(e) => handleFormCheck(e)}
               />
             </td>
             <td>

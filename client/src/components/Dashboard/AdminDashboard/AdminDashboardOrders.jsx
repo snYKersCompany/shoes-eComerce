@@ -4,6 +4,7 @@ import {
   getAllOrders,
   getOrderDetails,
 } from "../../../redux/features/orders/ordersActions";
+import  OrderDate  from './ordersAndfilters/Sequence'
 import { PDFViewer } from "@react-pdf/renderer";
 import DocPDF from "./DocPDF";
 import Button from "react-bootstrap/Button";
@@ -13,6 +14,11 @@ function AdminDashboardOrders({ setOrderDetails }) {
   const dispatch = useDispatch();
   const [viewPdf, setViewPdf] = useState(true);
   const { orders, orderDetails } = useSelector((state) => state.orders);
+
+
+  // console.log('esto es orders', orders)
+  // console.log('esto es orderDetail', orderDetails)
+
 
   useEffect(() => {
     dispatch(getAllOrders());
@@ -33,6 +39,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
   };
   return (
     <>
+    <OrderDate/>
       {viewPdf ? (
         <Table striped bordered hover>
           <thead>
@@ -40,6 +47,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
               <th>ID</th>
               <th>User</th>
               <th>Date</th>
+              <th>Final purchase amount</th>
               <th>Status</th>
               <th>voucher</th>
               <th>Details</th>
@@ -49,8 +57,9 @@ function AdminDashboardOrders({ setOrderDetails }) {
             {orders.map((order, i) => (
               <tr key={i}>
                 <td>{order._id}</td>
-                <td>User</td>
+                <td>user</td>
                 <td>{order.date}</td>
+                <td>$ {order.finalAmount ? order.finalAmount : order.totalPrice}</td>
                 <td>{order.state}</td>
                 <td>
                   <Button
