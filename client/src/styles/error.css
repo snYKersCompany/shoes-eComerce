@@ -1,0 +1,22 @@
+.error {
+    background: url(../utils/images/e4042.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+    width: auto;
+}
+
+.divError {
+    background: rgba(0, 0, 0);
+    border-radius: 20%;
+    padding: 1rem;
+}
+
+.btn-404 {
+    text-decoration: none;
+    padding: 0.5rem;
+    background: linear-gradient(85.99deg, #FC964C 7.66%, #CB33A0 99.12%);
+    color: white;
+    border-radius: 20%;
+}
