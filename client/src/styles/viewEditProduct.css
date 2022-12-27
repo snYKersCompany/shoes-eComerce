@@ -61,8 +61,8 @@
     border: none;
 }
 
-.VEPStock{
-}
+/* .VEPStock{
+} */
 
 .containerInputVEP{
     margin: 0 40px;
@@ -71,6 +71,16 @@
 .inputVEP{
     width: 40px !important;
 }
+
+.descriptionVEP{
+    height: 50px;
+    overflow-y: scroll;
+}
+.VEPlabelAux{
+    color: yellow;
+}
+
+
 
 /* 
 .circle1 {

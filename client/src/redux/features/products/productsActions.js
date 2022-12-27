@@ -203,10 +203,7 @@ export const getGenders = () => async (dispatch) => {
 export const putProduct = (_id, body) => async (dispatch) => {
   try {
     const response = await axios.put(`/products/modify/${_id}`, body);
-    console.log("Esto es putProduct");
-    console.log({ _id, body });
-    console.log(response.data);
-    return dispatch(productsDetails(response.data[0]));
+    return response
   } catch (error) {
     return error;
   }
