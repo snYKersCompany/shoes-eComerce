@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 ///JSX
 import AlertMSJ from "./AlertMSJ";
 //BS
@@ -17,7 +18,15 @@ import { putUserInformation } from "../../redux/features/users/usersActions";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { signUp, user } = useAuth();
+  const { signUp, user } = useAuth(); // eslint-disable-line
+
+  const [shown, setShown] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const switchShown = () => setShown(!shown);
+  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
+
+  const [forgotPassword, setForgotPassword] = useState("");  // eslint-disable-line
 
   /////-----STATES-----/////
   const [userIN, setUser] = useState({
@@ -28,24 +37,57 @@ const Register = () => {
   const [error, setError] = useState("");
 
   /////-----HANDLES-----/////
-  const handleChange = ({ target: { name, value } }) => {
-    if (name === "password") {
-      validate(value);
-    }
-    setUser({ ...userIN, [name]: value });
-  };
-
- function validate(password) {
-    if (!/^(?=\w\d)(?=\w[A-Z])(?=\w*[a-z])\S{6,16}$/.test(password)) {
+  function validateUserName(username) {
+    if (
+      !/^[a-zA-Z0-9_-]{4,16}$/.test(username) //mas de 4letras, numeros, guiones, y guionbajo
+    ) {
       setError(
-        "Password invalid, It must have 6 letters, 1 number and 1 character"
+        `UserName invalid, It must have minimum 4 letters and maximum 16 letters, numbers, hyphens and underscores`
       );
     } else {
       setError("");
     }
   }
 
-  console.log("user register principio", user);
+  function validateEmail(email) {
+    if (
+      !/^[a-z0-9_-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(
+        email
+      ) //example alguien.alguie@algunlugar.es
+    ) {
+      setError(
+        `error, special characters are invalid, need @ or . or .com/ar/es etc`
+      );
+    } else {
+      setError("");
+    }
+  }
+
+  function validatePassword(password) {
+    if (
+      !/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password)
+    ) {
+      setError(
+        `Password invalid, It must have 6 letters, 1 number and 1 character`
+      );
+    } else {
+      setError("");
+    }
+  }
+
+  const handleChange = ({ target: { name, value } }) => {
+    if (name === "username") {
+      validateUserName(value);
+    }
+    if (name === "email") {
+      validateEmail(value);
+    }
+    if (name === "password") {
+      validatePassword(value);
+    }
+
+    setUser({ ...userIN, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,6 +142,7 @@ const Register = () => {
                   name="username"
                   type="username"
                   placeholder="Username"
+                  required
                 />
               </Form.Group>
               <Form.Group controlId="formBasicEmail">
@@ -110,23 +153,37 @@ const Register = () => {
                   name="email"
                   type="email"
                   placeholder="Enter email"
+                  required
                 />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formBasicPassword" className="mb-4">
+
+              <Form.Group
+                onChange={onChange}
+                controlId="formBasicPassword"
+                className="mb-4"
+              >
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  size="40"
-                  maxLength="256"
-                  className="ph-center"
-                  onChange={(e) => handleChange(e)}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                />
+                <div className="d-flex" justify-content-center>
+                  <Form.Control
+                    size="40"
+                    maxLength="256"
+                    className="ph-center"
+                    onChange={(e) => handleChange(e)}
+                    name="password"
+                    type={shown ? "text" : "password"}
+                    placeholder="Password"
+                    required
+                    value={password}
+                  />
+                  <Button className="d-flex" onClick={switchShown}>
+                    {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
+                  </Button>
+                </div>
               </Form.Group>
+
               <Form.Group controlId="formBasicCheckbox"></Form.Group>
               <Button variant="primary" type="submit">
                 Register

@@ -6,11 +6,21 @@ import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
+import { useParams } from "react-router-dom";
 
 const UserDashboard = () => {
-
+ 
+  const { section } = useParams();
+  
   const [control,setControl] = useState("")
+  
 
+  if (section) {
+   if (section !== control){
+    setControl(section)
+  }
+  };
+  console.log(control.toString())
 
 
   return (
@@ -21,7 +31,7 @@ const UserDashboard = () => {
         <div className="userDashBoard d-flex w-100">
           <Tab.Container
             className="d-flex tabContainer"
-            defaultActiveKey="first"
+            defaultActiveKey={control}
           >
             <Nav
               variant="pills"

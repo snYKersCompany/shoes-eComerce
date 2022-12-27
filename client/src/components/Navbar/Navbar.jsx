@@ -63,14 +63,17 @@ const NavBar = () => {
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                {!user ? (
+                {!user ? 
                   <>
                     <Dropdown.Item href="/login">Login</Dropdown.Item>
                     <Dropdown.Item href="/register">Register</Dropdown.Item>
+                    
                   </>
-                ) : (
+                 : (
                   <>
-                    <Dropdown.Item href="/account">Account</Dropdown.Item>
+                    <Dropdown.Item href="/account/profile">Profile</Dropdown.Item>
+                    <Dropdown.Item href="/account/favorites">Favorites</Dropdown.Item>
+                    <Dropdown.Item href="/account/orders">Orders</Dropdown.Item>
                     <Dropdown.Item onClick={handleLogOut}>LogOut</Dropdown.Item>
                   </>
                 )}

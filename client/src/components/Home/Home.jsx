@@ -18,6 +18,7 @@ const Home = () => {
     }
   }, [user]);
 
+  console.log("user en home", user);
   return (
     <>
       <ScrollToTop />
