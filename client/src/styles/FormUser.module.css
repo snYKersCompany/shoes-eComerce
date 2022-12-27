@@ -21,11 +21,11 @@ p.danger {
 input.danger {
     border: 2px solid red;
 }
-.confirmation {
-    margin-right: 50px;
+.confirm {
+    margin-top: 25px;
     text-align: center;
     font-size: 20px;
-    color: #03045e;
+    color: #edede9;
 }
 button {
     background: #1e9bff;
