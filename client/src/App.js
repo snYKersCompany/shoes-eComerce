@@ -45,7 +45,7 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
-          <Route path="/preview" element={<Preview />} />
+          <Route path="/preview" element={<Preview />} />          
         </Routes>
       </AuthProvider>
     </div >
