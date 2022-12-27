@@ -20,10 +20,7 @@ const Payment = ({ products, finalAmount }) => {
   }, [user]);
   // console.log("Payment products", products);
 
-  const handleClick = () => {
-    if (!user) {
-      navigate("/login");
-    }
+  const handleClick = () => {    
     axios
       .post("http://localhost:3001/api/checkouts", {
         products,

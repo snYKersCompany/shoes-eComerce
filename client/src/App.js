@@ -14,6 +14,7 @@ import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
 import Error404 from "./components/Error404/Error404";
+import FormUser from "./components/Create/CreateUser";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -54,7 +55,8 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
-          <Route path="/preview" element={<Preview />} />          
+          <Route path="/preview" element={<Preview />} />
+          <Route path = '/create-user' element = {<FormUser />}/>
         </Routes>
       </AuthProvider>
     </div>
