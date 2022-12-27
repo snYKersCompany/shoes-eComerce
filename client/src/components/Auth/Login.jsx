@@ -97,7 +97,7 @@ const Login = () => {
             <Form onSubmit={(e) => handleSubmit(e)}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <div className="d-flex" justify-content-center>
+                 <div className="d-flex justify-content-center" >
                 <Form.Control
                   className="ph-center d-flex "
                   onChange={(e) => handleChange(e)}
@@ -106,7 +106,7 @@ const Login = () => {
                   placeholder="Enter email"
                 />
                 <span className="d-flex"style={{"width" : "43px"}}></span>
-                </div>
+                 </div> 
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
@@ -118,7 +118,7 @@ const Login = () => {
               <Form.Group onChange={onChange} controlId="formBasicPassword" className="mb-4">
               
                 <Form.Label >Password</Form.Label>
-                <div className="d-flex" justify-content-center>
+                <div className="d-flex justify-content-center" >
                 <Form.Control
                   className="ph-center d-flex w-80"
                   onChange={(e) => handleChange(e)}

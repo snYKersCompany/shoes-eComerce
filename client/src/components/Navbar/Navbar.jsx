@@ -14,10 +14,12 @@ import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown"; 
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
+import { useSelector } from "react-redux";
 //style
 import "../../styles/navbar.css";
 
 const NavBar = () => {
+  const { userDashboard } = useSelector((state) => state.users);
 
   const navigate = useNavigate();
   
@@ -41,7 +43,7 @@ const NavBar = () => {
         <Container className="d-flex p-0 ContainerGeneralNav ">
           <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
             <Link to={"/home"} className="NavImg">
-              <img alt="SNYKERS" src={logoBlanco}  />
+              <img alt="SNYKERS" src={logoBlanco} />
             </Link>
           </NavB.Brand>
           <SearchBar />
@@ -63,17 +65,32 @@ const NavBar = () => {
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                {!user ? 
+                {!user ? (
                   <>
                     <Dropdown.Item href="/login">Login</Dropdown.Item>
                     <Dropdown.Item href="/register">Register</Dropdown.Item>
-                    
                   </>
-                 : (
+                ) : userDashboard.roles === "user" ? (
                   <>
-                    <Dropdown.Item href="/account/profile">Profile</Dropdown.Item>
-                    <Dropdown.Item href="/account/favorites">Favorites</Dropdown.Item>
+                    <Dropdown.Item href="/account/profile">
+                      Profile
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/account/favorites">
+                      Favorites
+                    </Dropdown.Item>
                     <Dropdown.Item href="/account/orders">Orders</Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogOut}>LogOut</Dropdown.Item>
+                  </>
+                ) : (
+                  <>
+                    <Dropdown.Item href="/account/orders">Orders</Dropdown.Item>
+                    <Dropdown.Item href="/account/products">
+                      Products
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/account/users">Users</Dropdown.Item>
+                    <Dropdown.Item href="/account/profile">
+                      Profile
+                    </Dropdown.Item>
                     <Dropdown.Item onClick={handleLogOut}>LogOut</Dropdown.Item>
                   </>
                 )}

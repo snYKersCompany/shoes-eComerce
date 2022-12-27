@@ -3,8 +3,9 @@ import React from "react";
 import NavBar from "../NavBar/NavBar";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard/UserDashboard";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+
 import {
   getUserDashboards,
   getOneUser,
@@ -13,7 +14,7 @@ import { useAuth } from "../../context/authContext";
 import "../../styles/userDashboard.css";
 
 const Dashboard = () => {
-  let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
+  const { userDashboard } = useSelector((state) => state.users);
   //SI HAY USER ---> Verificacion de rol
 
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const Dashboard = () => {
   return (
     <>
       <NavBar />
-      {userMONGO.role[0] !== "6397b0b5a0730c95052cae5a" ? (
+      {userDashboard.roles === "admin" ? (
         <AdminDashboard />
       ) : (
         <UserDashboard />

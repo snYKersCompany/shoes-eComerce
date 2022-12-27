@@ -9,6 +9,8 @@ import "../../../styles/userDashboard.css";
 import { useParams } from "react-router-dom";
 
 const UserDashboard = () => {
+
+  console.log(UserDashboard)
  
   const { section } = useParams();
   
