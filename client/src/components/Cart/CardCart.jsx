@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "../../styles/cardCart.css";
+import { current } from "@reduxjs/toolkit";
 
 const CardCart = ({
-  setControl,
-  control,
   i,
   img,
   count,
@@ -14,53 +13,47 @@ const CardCart = ({
   id,
   handleDelete,
 }) => {
-  const [modCount, setModCount] = useState(count);
+  const [quantity, setQuantity] = useState(count);
 
-  const restCount = () => {
-    setModCount(modCount - 1);
-    let storage = JSON.parse(localStorage.getItem("carrito"));
-    let filtro = storage.filter((product) => {
-      let noRepeat = id !== product.id;
-      return noRepeat;
-    });
-    console.log("storage", storage);
-
-    let productModified = {
-      ...storage[i],
-      count: modCount - 1,
-    };
-    console.log("product modified", productModified);
-    let modified = [...filtro, productModified];
-    console.log(modified);
-
-    console.log("filtro", filtro);
-    return localStorage.setItem("carrito", JSON.stringify(modified));
-  };
-
-  const addCount = () => {
-    setModCount(modCount + 1);
-    let storage = JSON.parse(localStorage.getItem("carrito"));
-    let filtro = storage.filter((product) => {
-      let noRepeat = product.id !== id;
-      return noRepeat;
+  const addQuantity = () => {
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
+    const product = currentCart.find((cartProduct) => cartProduct.id === id);
+    const filteredCart = currentCart.filter((product) => {
+      let filtered = product.id !== id;
+      return filtered;
     });
 
-    console.log("storage", storage);
-    console.log("i", i);
-    let productModified = {
-      ...storage[i],
-      count: modCount + 1,
-    };
-    console.log("product modified", productModified);
-    let modified = [...filtro, (storage[i] = productModified)];
-    console.log(modified);
-
-    console.log("filtro", filtro);
-    localStorage.setItem("carrito", JSON.stringify(modified));
-    setControl(!control);
+    const newCart = [
+      ...filteredCart,
+      (currentCart[product.id] = {
+        ...product,
+        count: newQuantity,
+      }),
+    ];
+    localStorage.setItem("carrito", JSON.stringify(newCart));
   };
 
-  console.log("cardCart count", count);
+  const restQuantity = () => {
+    const newQuantity = quantity === 1 ? 1 : quantity - 1;
+    setQuantity(newQuantity);
+    const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
+    const product = currentCart.find((cartProduct) => cartProduct.id === id);
+    const filteredCart = currentCart.filter((product) => {
+      let filtered = product.id !== id;
+      return filtered;
+    });
+
+    const newCart = [
+      ...filteredCart,
+      (currentCart[product.id] = {
+        ...product,
+        count: newQuantity,
+      }),
+    ];
+    localStorage.setItem("carrito", JSON.stringify(newCart));
+  };
 
   return (
     <div className="d-flex containerCardCart justify-content-evenly">
@@ -76,11 +69,11 @@ const CardCart = ({
         <h3 className="fontSizeCardCart">Size: {size}</h3>
       </div>
       <div className="fontSizeCardCart">
-        <span className="modifyCount" onClick={restCount}>
+        <span className="modifyCount" onClick={restQuantity}>
           -
         </span>
-        <h4>Amount: {modCount}</h4>
-        <span className="modifyCount" onClick={addCount}>
+        <h4>Amount: {quantity}</h4>
+        <span className="modifyCount" onClick={addQuantity}>
           +
         </span>
       </div>
