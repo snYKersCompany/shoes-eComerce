@@ -3,11 +3,18 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 //utils
 import axios from "axios";
+import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Payment = ({ products, finalAmount }) => {
   console.log("Payment products", products);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleClick = () => {
+    if (!user) {
+      navigate("/login");
+    }
     axios
       .post("http://localhost:3001/api/checkouts", {
         products,
