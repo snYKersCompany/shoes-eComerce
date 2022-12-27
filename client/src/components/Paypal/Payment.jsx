@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 //BS
 import Button from "react-bootstrap/Button";
 //utils
-import { useAuth } from "../../context/authContext";
 import axios from "axios";
 
 const Payment = ({ products, finalAmount }) => {
-  console.log("Payment finalAmount", finalAmount);
   console.log("Payment products", products);
 
   const handleClick = () => {
@@ -27,7 +25,7 @@ const Payment = ({ products, finalAmount }) => {
   return (
     <>
       <Button variant="secondary customBtn" onClick={() => handleClick()}>
-        Pay
+        Buy
       </Button>
     </>
   );
