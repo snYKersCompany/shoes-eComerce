@@ -7,6 +7,8 @@ import Payment from "../Paypal/Payment";
 //BS
 
 const Cart = () => {
+  const [control, setControl] = useState(false);
+
   let productsCart = localStorage.getItem("carrito");
 
   const [products, setProducts] = useState(
@@ -49,10 +51,14 @@ const Cart = () => {
     <>
       <NavBar />
       <div className="d-flex p-5 justify-content-center align-items-center flex-column">
-        {products.length >= 1 ? (
-          products.map((el, i) => {
-            return (
+        {products.map((el, i) => {
+          return (
+            <>
               <CardCart
+                control={control}
+                setControl={setControl}
+                i={i}
+                key={i}
                 id={el.id}
                 name={el.name}
                 total={el.totalPrice}
@@ -60,19 +66,22 @@ const Cart = () => {
                 img={el.img}
                 price={el.price}
                 size={el.size}
-                key={i}
                 handleDelete={handleDelete}
               />
-            );
-          })
+            </>
+          );
+        })}
+        {products.length >= 1 ? (
+          <>
+            <h2>Total: ${priceTotal}</h2>
+            <Payment
+              finalAmount={InfoToSend.finalAmount}
+              products={InfoToSend.products}
+            />
+          </>
         ) : (
           <>You have no products in your cart</>
         )}
-        <h2>Total: ${priceTotal}</h2>
-        <Payment
-          finalAmount={InfoToSend.finalAmount}
-          products={InfoToSend.products}
-        />
       </div>
     </>
   );
