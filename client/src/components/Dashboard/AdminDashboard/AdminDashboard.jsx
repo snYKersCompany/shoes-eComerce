@@ -9,9 +9,26 @@ import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 import { useState } from "react";
 import OrderDetails from "./OrdersDetails";
+import { useParams } from "react-router-dom";
 
-const UserDashboard = () => {
+
+const AdminDashboard = () => {
+
   const [orderDetails, setOrderDetails] = useState(true);
+  
+  const { section } = useParams();
+  
+  const [control,setControl] = useState("")
+  
+
+  if (section) {
+   if (section !== control){
+    setControl(section)
+  }
+  };
+  console.log(control.toString())
+
+
   return (
     <>
       <h3 className="d-flex justify-content-center ">Hello Admin!!</h3>
@@ -20,32 +37,32 @@ const UserDashboard = () => {
         <div className="userDashBoard d-flex">
           <Tab.Container
             className="d-flex tabContainer"
-            defaultActiveKey="orders"
+            defaultActiveKey={control}
           >
             <Nav
               variant="pills"
               className="navSection d-flex flex-column datevuelta "
             >
               <Nav.Item className="d-flex">
-                <Nav.Link eventKey="orders" className="d-flex">
+                <Nav.Link eventKey="orders" className="d-flex" onClick={()=> setControl("orders")}>
                   <CgUserList className="d-flex" /> Orders
                 </Nav.Link>
               </Nav.Item>
 
               <Nav.Item className="d-flex">
-                <Nav.Link eventKey="products" className="d-flex">
+                <Nav.Link eventKey="products" className="d-flex" onClick={()=> setControl("products")}>
                   <CgHeart className="d-flex" /> Products
                 </Nav.Link>
               </Nav.Item>
 
               <Nav.Item className="d-flex">
-                <Nav.Link eventKey="users" className="d-flex">
+                <Nav.Link eventKey="users" className="d-flex" onClick={()=> setControl("users")}>
                   <CgList className="d-flex" /> Users
                 </Nav.Link>
               </Nav.Item>
 
               <Nav.Item className="d-flex">
-                <Nav.Link eventKey="account" className="d-flex">
+                <Nav.Link eventKey="profile" className="d-flex" onClick={()=> setControl("profile")}>
                   <CgList className="d-flex" /> Profile
                 </Nav.Link>
               </Nav.Item>
@@ -65,12 +82,16 @@ const UserDashboard = () => {
                   )}
                 </Tab.Pane>
                 <Tab.Pane eventKey="products">
+                {control === "products"?
                   <AdminDashboardProducts />
+                :
+                <></>
+                }
                 </Tab.Pane>
                 <Tab.Pane eventKey="users">
                   <AdminDashboardUsers />
                 </Tab.Pane>
-                <Tab.Pane eventKey="account">
+                <Tab.Pane eventKey="profile">
                   <AdminDashboardAccount />
                 </Tab.Pane>
               </Tab.Content>
@@ -82,4 +103,4 @@ const UserDashboard = () => {
   );
 };
 
-export default UserDashboard;
+export default AdminDashboard;

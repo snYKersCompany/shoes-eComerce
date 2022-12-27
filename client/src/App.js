@@ -46,7 +46,7 @@ function App() {
             }
           />
           <Route
-            path="/account"
+            path="/account/:section"
             element={
               <ProtectedRoute>
                 <Dashboard />
