@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import CardsContainer from "../../CardsContainer/CardsContainer";
+import { Link } from "react-router-dom";
 //JSX
 import MiddleViewCard from "./MiddleViewCard";
+import PreviewCarrousel from "./PreviewCarrousel";
 //BS
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Details from "../../Details/Details";
 
 const PreviewModal = (props) => {
   let cart = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -28,6 +30,9 @@ const PreviewModal = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
+          <Link to="/cart">
+            <Button variant="secondary customBtn">Go Cart</Button>
+          </Link>
         </Modal.Footer>
       </Modal>
     </div>
