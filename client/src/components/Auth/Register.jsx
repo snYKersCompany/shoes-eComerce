@@ -17,7 +17,7 @@ import { putUserInformation } from "../../redux/features/users/usersActions";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { signUp, user } = useAuth();
+  const { signUp, user } = useAuth(); // eslint-disable-line
 
   /////-----STATES-----/////
   const [userIN, setUser] = useState({
@@ -28,15 +28,36 @@ const Register = () => {
   const [error, setError] = useState("");
 
   /////-----HANDLES-----/////
-  const handleChange = ({ target: { name, value } }) => {
-    if (name === "password") {
-      validate(value);
+  function validateUserName(username) {
+    if (
+      !/^[a-zA-Z0-9_-]{4,16}$/.test(username) //mas de 4letras, numeros, guiones, y guionbajo
+    ) {
+      setError(
+        `UserName invalid, It must have minimum 4 letters and maximum 16 letters, numbers, hyphens and underscores`
+      );
+    } else {
+      setError("");
     }
-    setUser({ ...userIN, [name]: value });
-  };
+  }
 
-  function validate(password) {
-    if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/.test(password)) {
+  function validateEmail(email) {
+    if (
+      !/^[a-z0-9_-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(
+        email
+      ) //example alguien.alguie@algunlugar.es
+    ) {
+      setError(
+        `error, special characters are invalid, need @ or . or .com/ar/es etc`
+      );
+    } else {
+      setError("");
+    }
+  }
+
+  function validatePassword(password) {
+    if (
+      !/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password)
+    ) {
       setError(
         `Password invalid, It must have 6 letters, 1 number and 1 character`
       );
@@ -45,7 +66,19 @@ const Register = () => {
     }
   }
 
-  console.log("user register principio", user);
+  const handleChange = ({ target: { name, value } }) => {
+    if (name === "username") {
+      validateUserName(value);
+    }
+    if (name === "email") {
+      validateEmail(value);
+    }
+    if (name === "password") {
+      validatePassword(value);
+    }
+
+    setUser({ ...userIN, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,6 +133,7 @@ const Register = () => {
                   name="username"
                   type="username"
                   placeholder="Username"
+                  required
                 />
               </Form.Group>
               <Form.Group controlId="formBasicEmail">
@@ -110,6 +144,7 @@ const Register = () => {
                   name="email"
                   type="email"
                   placeholder="Enter email"
+                  required
                 />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
@@ -125,6 +160,7 @@ const Register = () => {
                   name="password"
                   type="password"
                   placeholder="Password"
+                  required
                 />
               </Form.Group>
               <Form.Group controlId="formBasicCheckbox"></Form.Group>
