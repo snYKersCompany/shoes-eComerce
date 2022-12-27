@@ -48,10 +48,10 @@ function AdminDashboardOrders({ setOrderDetails }) {
           <tbody>
             {orders.map((order, i) => (
               <tr key={i}>
-                <td>{order._id}</td>
-                <td>User</td>
-                <td>{order.date}</td>
-                <td>{order.state}</td>
+                <td key={order._id}>{order._id}</td>
+                <td key={i+"user"}>User</td>
+                <td key={order.date}>{order.date}</td>
+                <td key={order.state}>{order.state}</td>
                 <td>
                   <Button
                     variant="primary"

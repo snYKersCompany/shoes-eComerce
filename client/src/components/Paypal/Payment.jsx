@@ -3,13 +3,22 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 //utils
 import axios from "axios";
+import { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
 
 const Payment = ({ products, finalAmount }) => {
-  console.log("Payment products", products);
+
   const { user } = useAuth();
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      console.log("user de firebase en home", user);
+    }
+  }, [user]);
+  // console.log("Payment products", products);
 
   const handleClick = () => {
     if (!user) {
@@ -31,9 +40,21 @@ const Payment = ({ products, finalAmount }) => {
 
   return (
     <>
+      {user?
       <Button variant="secondary customBtn" onClick={() => handleClick()}>
         Buy
       </Button>
+      :
+      <> 
+      <label>Apparently you are not logged in yet</label>
+      <label>Login to continue with your purchase</label>
+      <Link to={"/login"}>
+      <Button variant="secondary customBtn">
+        Login
+      </Button>
+      </Link>
+      </>
+      }
     </>
   );
 };
