@@ -13,6 +13,7 @@ import CheckoutSuccess from "./components/Paypal/CheckoutSuccess";
 import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
+import Error404 from "./components/Error404/Error404";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -30,12 +31,20 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<Error404 />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
-          <Route path="/cart" element={<Elements stripe={stripePromise}><Cart /></Elements>} />
+          <Route
+            path="/cart"
+            element={
+              <Elements stripe={stripePromise}>
+                <Cart />
+              </Elements>
+            }
+          />
           <Route
             path="/account"
             element={
@@ -48,7 +57,7 @@ function App() {
           <Route path="/preview" element={<Preview />} />          
         </Routes>
       </AuthProvider>
-    </div >
+    </div>
   );
 }
 
