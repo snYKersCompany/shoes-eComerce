@@ -41,7 +41,7 @@ export const getAllProducts =
       if (search.length) searchBy = `search=${search}`;
 
       let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
-      return dispatch(getProducts(product.data.products));
+      dispatch(getProducts(product.data.products))
     } catch (error) {
       return error;
     }
