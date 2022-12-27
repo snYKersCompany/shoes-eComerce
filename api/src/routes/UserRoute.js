@@ -10,7 +10,8 @@ const {
 
 router.get("/", async (req, res) => {
   try {
-    const users = await controllers.listUsers();
+    const { orderSearch } = req.query;
+    const users = await controllers.listUsers(JSON.parse(orderSearch));
     return res.status(200).json({ users: users });
   } catch (error) {
     next();

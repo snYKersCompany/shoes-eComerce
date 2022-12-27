@@ -104,6 +104,7 @@ const Create = () => {
     }
   };
 
+  //  ============ Reducible ============
   let handleBrand = (e) => {
     if (
       e.target.value[e.target.value.length - 2] === " " &&
@@ -131,7 +132,9 @@ const Create = () => {
       ? setError({ ...error, price: false })
       : setError({ ...error, price: "Invalid response" });
   };
+  //  ============================================
 
+  //    ============ Reducible ============
   let handleGender = (e) => {
     e.target.value === "none"
       ? setError({ ...error, gender: "choose a gender" })
@@ -145,7 +148,9 @@ const Create = () => {
       : setError({ ...error, color: false });
     setform({ ...form, color: e.target.value });
   };
+  //  =====================================
 
+  //  ============ Reducible ============
   let handleSize = (value) => {
     let a = form.size;
     a.length >= 1 ? (a = a.filter((el) => el === value)) : (a = []);
@@ -170,158 +175,15 @@ const Create = () => {
       ? setError({ ...error, categories: "Select almost 1 category" })
       : setError({ ...error, categories: false });
   };
+  //  =============================================
 
-  let handleStock = (e, el) => {
-    if (el === 6) {
-
-      let stock={
-        10: "30",
-        10.5: "30",
-        11: "30",
-        11.5: "30",
-        12: "30",
-        12.5: "30",
-        13: "30",
-      }
-
-      setform({
-        ...form,
-        stock: { ...form.stock, 6: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 6: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 6.5) {
-      setform({
-        ...form,
-        stock: { ...form.stock, el: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 6.5: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 7) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 7: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 7: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 7.5) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 7.5: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 7.5: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 8) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 8: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 8: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 8.5) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 8.5: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 8.5: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 9) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 9: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 9: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 9.5) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 9.5: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 9.5: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 10) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 10: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 10: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
-
-    if (el === 10.5) {
-      setform({
-        ...form,
-        stock: { ...form.stock, 10.5: Number(e.target.value) },
-      });
-      let control = { ...form.stock, 10.5: Number(e.target.value) };
-      Object.values(control).includes(0)
-        ? setError({
-            ...error,
-            stock: "All the sizes must have an stock most of 0",
-          })
-        : setError({ ...error, stock: false });
-    }
+  let handleStock = (e, el) => { 
+    setform({ ...form, stock: { ...form.stock, [el]: Number(e.target.value) }});
+    let control = { ...form.stock, [el]: Number(e.target.value) };
+    Object.values(control).includes(0)
+      ? setError({ ...error, stock: "All the sizes must have an stock most of 0" })
+      : setError({ ...error, stock: false });
+         
   };
 
   let handleRelease = (e) => {
@@ -477,7 +339,7 @@ const Create = () => {
                   </Form.Select>
                   <label className="FormCreateError">{error.color}</label>
                 </Form.Group>
-
+                    
                 <Form.Group className="d-flex mb-3 mx-2 flex-column justify-content-start w-100">
                   <Form.Label className="d-flex">Gender</Form.Label>
                   <Form.Select
@@ -589,6 +451,7 @@ const Create = () => {
                 ) : (
                   <></>
                 )}
+                {/* ============ Reducible ============ */}
                 <ButtonGroup>
                   <ToggleButton
                     key={1}
@@ -616,6 +479,7 @@ const Create = () => {
                     {"Search Files"}
                   </ToggleButton>
                 </ButtonGroup>
+                {/* ===================================== */}
 
                 {controller.radio === true ? (
                   <FormGroup className="d-flex w-100 mt-3">
@@ -641,7 +505,7 @@ const Create = () => {
                   </Form.Group>
                 )}
                 <div className="d-flex mt-5">
-                  {Boolean(
+                  {Boolean(     //   ============ Reducible ============
                     Object.values(form).filter((el) => el === " ").length >= 1
                   ) === false &&
                   Boolean(
@@ -661,8 +525,8 @@ const Create = () => {
                       disabled
                     >
                       Send
-                    </Button>
-                  )}
+                    </Button> // =======================================
+                  )}    
                 </div>
               </Form.Group>
             </div>

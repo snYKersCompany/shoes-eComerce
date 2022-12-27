@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addOrder, addSearch, clearSearch } from "../products/productsSlice";
 import {
   clearUser,
   getAllUser,
@@ -16,10 +17,36 @@ export const findOrCreateUser = (payload) => async () => {
   }
 };
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = (body={}) => async (dispatch) => {
   try {
-    const users = await axios.get("/users");
+    console.log(JSON.stringify(body))
+    const jsonBody = JSON.stringify(body)
+    const users = await axios.get(`/users?orderSearch=${jsonBody}`);
     return dispatch(getAllUser(users.data.users));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addSearchs = (search) => async (dispatch) => {
+  try {
+    return dispatch(addSearch(search));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const clearSearchs = () => async (dispatch) => {
+  try {
+    return dispatch(clearSearch({}));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addOrders = (order) => async (dispatch) => {
+  try {
+    return dispatch(addOrder(order));
   } catch (error) {
     return error;
   }
@@ -46,6 +73,7 @@ export const addUserProductFavorites = (_id, favorite) => async (dispatch) => {
     return error;
   }
 };
+
 
 export const deleteUserProductFavorites = (_id, favorite) => async (dispatch) => {
   try {
