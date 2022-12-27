@@ -6,8 +6,7 @@ const Error404 = () => {
   return (
     <div className="error d-flex flex-column justify-content-center align-items-center">
       <div className="divError d-flex flex-column justify-content-center align-items-center">
-        <h3 className="text-white">Ooopps!!</h3>
-        <h3 className="text-white">Looks like you lost</h3>
+        <h3 className="text-gold">Ooopps page not found!!</h3>
         <Link to="/home" className="d-flex text-decoration-none">
           <button className="btn-404">Go Back</button>
         </Link>
