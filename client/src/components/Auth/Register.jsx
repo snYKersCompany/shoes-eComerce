@@ -35,10 +35,10 @@ const Register = () => {
     setUser({ ...userIN, [name]: value });
   };
 
-  function validate(password) {
-    if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/.test(password)) {
+ function validate(password) {
+    if (!/^(?=\w\d)(?=\w[A-Z])(?=\w*[a-z])\S{6,16}$/.test(password)) {
       setError(
-        `Password invalid, It must have 6 letters, 1 number and 1 character`
+        "Password invalid, It must have 6 letters, 1 number and 1 character"
       );
     } else {
       setError("");
