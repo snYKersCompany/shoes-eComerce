@@ -2,8 +2,25 @@ const { UsersModel, Roles, ProductsModel } = require('../../models/ModelsDB.js')
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
 
-const listUsers = async () => {
-    const users = await UsersModel.find();
+const listUsers = async ({search, orderBy}) => {
+    let parameters = {}
+    if(search) {
+        parameters.$or = [
+            {username: {$regex:`(?i)${search}(?-i)`}},
+            {phone: {$regex:`(?i)${search}(?-i)`}},
+            {address: {$regex:`(?i)${search}(?-i)`}},
+            {email: {$regex:`(?i)${search}(?-i)`}},
+            {city: {$regex:`(?i)${search}(?-i)`}},
+            {country: {$regex:`(?i)${search}(?-i)`}}
+        ]
+    }
+
+    console.log(search)
+
+    let sort = {}
+    if(orderBy) sort = orderBy
+    console.log(sort)
+    const users = await UsersModel.find(parameters).sort(sort);
     return users;
 }
 

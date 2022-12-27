@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
 import { useNavigate, Link } from "react-router-dom";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 ///JSX
 import AlertMSJ from "./AlertMSJ";
 //BS
@@ -18,6 +19,14 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signUp, user } = useAuth(); // eslint-disable-line
+
+  const [shown, setShown] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const switchShown = () => setShown(!shown);
+  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
+
+  const [forgotPassword, setForgotPassword] = useState("");  // eslint-disable-line
 
   /////-----STATES-----/////
   const [userIN, setUser] = useState({
@@ -150,19 +159,31 @@ const Register = () => {
                   We'll never share your email with anyone else.
                 </Form.Text>
               </Form.Group>
-              <Form.Group controlId="formBasicPassword" className="mb-4">
+
+              <Form.Group
+                onChange={onChange}
+                controlId="formBasicPassword"
+                className="mb-4"
+              >
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  size="40"
-                  maxLength="256"
-                  className="ph-center"
-                  onChange={(e) => handleChange(e)}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  required
-                />
+                <div className="d-flex" justify-content-center>
+                  <Form.Control
+                    size="40"
+                    maxLength="256"
+                    className="ph-center"
+                    onChange={(e) => handleChange(e)}
+                    name="password"
+                    type={shown ? "text" : "password"}
+                    placeholder="Password"
+                    required
+                    value={password}
+                  />
+                  <Button className="d-flex" onClick={switchShown}>
+                    {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
+                  </Button>
+                </div>
               </Form.Group>
+
               <Form.Group controlId="formBasicCheckbox"></Form.Group>
               <Button variant="primary" type="submit">
                 Register
