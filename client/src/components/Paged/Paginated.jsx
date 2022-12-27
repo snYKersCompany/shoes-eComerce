@@ -68,6 +68,7 @@ const Paginated = () => {
     indexOfLastProduct
   );
   return (
+    products[0] !== "void"?
     <div>
       <div>
         {/* filters funciona pero no hace el paginado */}
@@ -167,8 +168,21 @@ const Paginated = () => {
           </button>
         </Link>
       </div> */}
+      {productsSliced.length>0?
       <CardsContainer productsSliced={productsSliced} />
+      :
+      <div className="d-flex justify-content-center align-items-center" style={{"min-height": "70vh"}} >
+        <img  src="https://cdn-icons-png.flaticon.com/512/755/755014.png" 
+        style={{"width":"200px", "height": "220px"}}
+        />
+        <div className="d-flex flex-wrap align-items-center text-center" style={{"width": "300px", "color": "#d62828", "font-weight":"bold"}}>
+          <label style={{"font-weight":"bold", "font-size": "20px"}}>Sorry, this product is not available in our stock</label>
+        </div>
+      </div>
+    }
     </div>
+    :
+    <div></div>
   );
 };
 
