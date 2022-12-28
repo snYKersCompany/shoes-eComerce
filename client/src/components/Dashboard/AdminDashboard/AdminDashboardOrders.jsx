@@ -4,7 +4,6 @@ import {
   getAllOrders,
   getOrderDetails,
 } from "../../../redux/features/orders/ordersActions";
-import  OrderDate  from './ordersAndfilters/Sequence'
 import { PDFViewer } from "@react-pdf/renderer";
 import DocPDF from "./DocPDF";
 import Button from "react-bootstrap/Button";
@@ -71,7 +70,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
               <th onClick={()=> handleSortOrders('username')}>User {sortOrder==="username"?sortDirection:""}</th>
               <th onClick={()=> handleSortOrders('date')}>Date {sortOrder==="date"?sortDirection:""}</th>
               <th onClick={()=> handleSortOrders('finalAmount')}>Final purchase amount {sortOrder==="finalAmount"?sortDirection:""}</th>
-              <th onClick={()=> handleSortOrders('status')}>Status {sortOrder==="status"?sortDirection:""}</th>
+              <th onClick={()=> handleSortOrders('state')}>State {sortOrder==="state"?sortDirection:""}</th>
               <th>voucher</th>
               <th>Details</th>
             </tr>

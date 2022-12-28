@@ -16,10 +16,16 @@ const createOrder = async (req, res) => {
 };
 
 const getOrders = async (req, res) => {
-  const { ordersSort } =req.query
+  const { ordersSort } = req.query
   try {
-    const order = await OrderModel.find();
-    return res.status(200).json({ order: order });
+    if(!ordersSort){
+      const order = await OrderModel.find(); //?
+    return res.status(200).json({ order: order })
+  }
+  else {
+    const order = await sortAdminDashboard(JSON.parse(ordersSort))
+    return res.status(200).json({order: order})
+  }
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
