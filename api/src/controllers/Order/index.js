@@ -16,6 +16,7 @@ const createOrder = async (req, res) => {
 };
 
 const getOrders = async (req, res) => {
+  const { ordersSort } =req.query
   try {
     const order = await OrderModel.find();
     return res.status(200).json({ order: order });
@@ -76,23 +77,13 @@ const putOrder = async (req, res) => {
 };
 
 
-const alphabetSequence = async (req, res) => {
-  const { payload } = req.body
-  try{
-    
-    if(payload === 'new'){
-      let newestOrder = await OrderModel.find({}).sort({date: 1})
-      console.log('entro al if, esto es newestOrder-->', newestOrder)
-      res.status(200).json(newestOrder)
-    } else{
-      let oldestOrder = await OrderModel.find({}).sort({date: -1})
-      console.log('entro al else, esto es oldestOrder-->', oldestOrder)
-      res.status(200).json(oldestOrder)
-    }
-  }catch(error){
-    return res.status(404).json({error: error.message})
-  }
+const sortAdminDashboard = async ({orderBy}) => {
+  let sort = {};
+  if(orderBy) sort = orderBy
+  const sortedOrders = await OrderModel.find().sort(sort)
+  return sortedOrders
 };
+
 
 module.exports = {
   createOrder,
@@ -100,5 +91,4 @@ module.exports = {
   deleteOrder,
   findOrder,
   putOrder,
-  alphabetSequence
 };

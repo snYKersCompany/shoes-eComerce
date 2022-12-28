@@ -15,7 +15,7 @@ const listUsers = async ({search, orderBy}) => {
         ]
     }
 
-    console.log(search)
+    console.log('parado en el controlador',search)
 
     let sort = {}
     if(orderBy) sort = orderBy

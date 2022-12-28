@@ -11,6 +11,7 @@ const {
 router.get("/", async (req, res) => {
   try {
     const { orderSearch } = req.query;
+    console.log('parado en routes', orderSearch)
     const users = await controllers.listUsers(JSON.parse(orderSearch));
     return res.status(200).json({ users: users });
   } catch (error) {

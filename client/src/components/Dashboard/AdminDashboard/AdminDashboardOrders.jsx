@@ -18,11 +18,35 @@ function AdminDashboardOrders({ setOrderDetails }) {
 
   // console.log('esto es orders', orders)
   // console.log('esto es orderDetail', orderDetails)
+  const [sortOrder, setSortOrder] = useState('');
+  const [valueOrder, setValueOrder] = useState(-1);
+  const [sortDirection, setSortDirection] = useState("↑↓")
+
 
 
   useEffect(() => {
-    dispatch(getAllOrders());
-  }, [dispatch]);
+    const sort = {};
+
+    if(sortOrder.length) sort.orderBy = {[sortOrder]:valueOrder}
+    console.log('en el comp AdmDashBOrders', sort)
+
+
+    dispatch(getAllOrders(sort));
+  }, [dispatch, sortOrder, valueOrder]);
+
+  const handleSortOrders = (column)=>{
+    setSortOrder(column);
+    setValueOrder(valueOrder * -1)
+    if(valueOrder > 0) setSortDirection("↑")
+    else setSortDirection("↓")
+  };
+
+
+
+
+
+
+
 
   const handlerViewPdf = ({ _id }) => {
     dispatch(getOrderDetails(_id));
@@ -39,16 +63,15 @@ function AdminDashboardOrders({ setOrderDetails }) {
   };
   return (
     <>
-    <OrderDate/>
       {viewPdf ? (
         <Table striped bordered hover>
           <thead>
             <tr>
               <th>ID</th>
-              <th>User</th>
-              <th>Date</th>
-              <th>Final purchase amount</th>
-              <th>Status</th>
+              <th onClick={()=> handleSortOrders('username')}>User {sortOrder==="username"?sortDirection:""}</th>
+              <th onClick={()=> handleSortOrders('date')}>Date {sortOrder==="date"?sortDirection:""}</th>
+              <th onClick={()=> handleSortOrders('finalAmount')}>Final purchase amount {sortOrder==="finalAmount"?sortDirection:""}</th>
+              <th onClick={()=> handleSortOrders('status')}>Status {sortOrder==="status"?sortDirection:""}</th>
               <th>voucher</th>
               <th>Details</th>
             </tr>

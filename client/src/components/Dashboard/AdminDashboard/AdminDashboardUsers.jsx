@@ -23,7 +23,9 @@ function AdminDashboardUsers() {
     if(search.length) orderSearch.search = search
 
 
-    console.log(orderSearch)
+    console.log('parado en el componente de rodra',orderSearch)
+
+
     dispatch(getAllUsers(orderSearch));
   }, [dispatch, orderUser, valueOrder, search]);
 
@@ -43,7 +45,7 @@ function AdminDashboardUsers() {
     if(valueOrder>0)  setDirectionOrder("↑")
     else  setDirectionOrder("↓")
 
-    console.log({orderBy:{[column]:valueOrder * -1}})
+    // console.log({orderBy:{[column]:valueOrder * -1}})
   }
   
   return (

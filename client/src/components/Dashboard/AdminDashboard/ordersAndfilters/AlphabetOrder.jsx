@@ -8,7 +8,7 @@ const AlphabetOrder = () => {
   const { orders } = useSelector((state) => state.orders);
   const dates = orders.map((e) => e.date.split("T"));
 
-  console.log(dates);
+  // console.log(dates);
 
   const orderDates = () => {};
 
