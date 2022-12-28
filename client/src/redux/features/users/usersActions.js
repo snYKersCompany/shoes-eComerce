@@ -127,7 +127,7 @@ export const putUserStatus = (id) => async (dispatch) => {
 
 export const deleteUser = (_id) => async (dispatch) => {
   try{
-    const deleteOneUser = axios.delete(`/users/${_id}`)
+    const deleteOneUser = await axios.delete(`/users/${_id}`)
     console.log(deleteOneUser)
     return deleteOneUser
   }catch(error){

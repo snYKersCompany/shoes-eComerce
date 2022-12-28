@@ -79,7 +79,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
             {orders.map((order, i) => (
               <tr key={i}>
                 <td key={order._id}>{order._id}</td>
-                <td key={i+"user"}>User</td>
+                <td key={i+"user"}>{order.username ? order.username : 'user'}</td>
                 <td key={order.date}>{order.date}</td>
                 <td key={i+'amount'}>{order.finalAmount ? order.finalAmount : order.totalPrice}</td>
                 <td key={order.state}>{order.state}</td>

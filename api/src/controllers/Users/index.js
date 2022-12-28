@@ -15,11 +15,15 @@ const listUsers = async ({search, orderBy}) => {
         ]
     }
 
-    // console.log('parado en el controlador',search)
+
+    console.log('esto es search', search)
+    console.log('esto es parameters', parameters)
 
     let sort = {}
     if(orderBy) sort = orderBy
+
     console.log(sort)
+
     const users = await UsersModel.find(parameters).sort(sort);
     return users;
 }

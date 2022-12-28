@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 
 const UserDashboard = () => {
 
-  console.log(UserDashboard)
+  // console.log(UserDashboard)
  
   const { section } = useParams();
   
@@ -22,7 +22,7 @@ const UserDashboard = () => {
     setControl(section)
   }
   };
-  console.log(control.toString())
+  // console.log(control.toString())
 
 
   return (
