@@ -1,4 +1,7 @@
 import React from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 import AdminDashboardOrders from "./AdminDashboardOrders";
 import AdminDashboardProducts from "./AdminDashboardProducts";
 import AdminDashboardUsers from "./AdminDashboardUsers";
@@ -7,7 +10,8 @@ import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
-import { useState } from "react";
+
+
 import OrderDetails from "./OrdersDetails";
 import { useParams } from "react-router-dom";
 
@@ -29,9 +33,10 @@ const AdminDashboard = () => {
   console.log(control.toString())
 
 
+  const {userDashboard} = useSelector(state=> state.users)
   return (
     <>
-      <h3 className="d-flex justify-content-center ">Hello Admin!!</h3>
+      <h3 className="d-flex justify-content-center ">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}! - your rol is: {userDashboard.roles}</h3>
 
       <div className="userDashBoardContainer d-flex">
         <div className="userDashBoard d-flex">
