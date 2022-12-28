@@ -4,7 +4,9 @@ export const userSlice = createSlice({
     name: "users",
     initialState: {
         users: [],
-        userDashboard: {} // es principalmente para traer favs
+        userDashboard: {}, // es principalmente para traer favs
+        orderBy:{},
+        search:""
     },
     reducers: {
         postUser: (state, action) => {
@@ -12,6 +14,15 @@ export const userSlice = createSlice({
         },
         getAllUser: (state, action) => {
             state.users = action.payload
+        },
+        addOrderBy: (state, action) => {
+            state.orderBy = action.payload
+        },
+        addSearch: (state, action) => {
+            state.search = action.payload
+        },
+        clearSearch: (state, action) => {
+            state.search = action.payload
         },
         getUserDashboard: (state, action) => {
             state.userDashboard = action.payload
