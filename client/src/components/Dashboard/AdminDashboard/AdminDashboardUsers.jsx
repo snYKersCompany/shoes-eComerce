@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { getAllUsers } from "../../../redux/features/users/usersActions";
-import { useState } from "react";
-import DashboardSearch from "../DashboardSearch";
+import { getAllUsers, deleteUser } from "../../../redux/features/users/usersActions";
+
+import DashboardSearch from '../DashboardSearch'
 
 function AdminDashboardUsers() {
   const dispatch = useDispatch();
@@ -23,12 +23,15 @@ function AdminDashboardUsers() {
     if(search.length) orderSearch.search = search
 
 
-    console.log(orderSearch)
+    console.log('parado en el componente de rodra',orderSearch)
+
+
     dispatch(getAllUsers(orderSearch));
   }, [dispatch, orderUser, valueOrder, search]);
 
   const handlerDeleteUser = (_id) => {
-    console.log(_id);
+    // console.log(_id);
+    dispatch(deleteUser(_id))
   };
 
   const handlerOrdersUser = (orders) => {
@@ -42,7 +45,7 @@ function AdminDashboardUsers() {
     if(valueOrder>0)  setDirectionOrder("↑")
     else  setDirectionOrder("↓")
 
-    console.log({orderBy:{[column]:valueOrder * -1}})
+    // console.log({orderBy:{[column]:valueOrder * -1}})
   }
   
   return (
@@ -81,7 +84,7 @@ function AdminDashboardUsers() {
               <Form.Check
                 type="switch"
                 id="custom-switch"
-                onClick={(e) => console.log(e.target.checked)}
+                // onClick={(e) => handleFormCheck(e)}
               />
             </td>
             <td>

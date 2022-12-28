@@ -34,7 +34,7 @@ const CardProduct = ({
   // useEffect(() => {
   //   setCheck(checkHeart);
   // }, [checkHeart]);
-  console.log(typeof checkHeart)
+  // console.log(typeof checkHeart)
   const handlerOnClick = () => {
     if (check) dispatch(deleteUserProductFavorites(userDashboard._id, { favorite: _id }));
     if (!check) dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));

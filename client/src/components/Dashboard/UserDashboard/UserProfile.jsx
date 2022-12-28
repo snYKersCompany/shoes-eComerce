@@ -88,15 +88,15 @@ function UserProfile() {
   }
   
   const lockers = [
-    {label:"User Name: ", form: "username", placeholder:"Only words", required:"Nesesita"},
-    {label:"E-mail: ", form: "email", placeholder:"fulano@gmail.com", required:"Nesesita"},
-    {label:"Phone: ", form: "phone", placeholder:"123456789", required:"Nesesita"},
-    {label:"Address: ", form: "address", placeholder:"av.siempreviva 742", required:"Nesesita"},
-    {label:"Other: ", form: "other", placeholder:"Timbre 3 puerta amarilla", required:"Nesesita"},
-    {label:"City: ", form: "city", placeholder:"Sidney", required:"Nesesita"},
-    {label:"Country: ", form: "country", placeholder:"Wakanda", required:"Nesesita"},
-    {label:"state: ", form: "state", placeholder:"California", required:"Nesesita"},
-    {label:"Image: ", form: "image", placeholder:"Hay que cambiar esto por una imagen", required:"Nesesita"}
+    {label:"User Name: ", form: "username", placeholder:"Only words", required:"Necesita"},
+    {label:"E-mail: ", form: "email", placeholder:"fulano@gmail.com", required:"Necesita"},
+    {label:"Phone: ", form: "phone", placeholder:"123456789", required:"Necesita"},
+    {label:"Address: ", form: "address", placeholder:"av.siempreviva 742", required:"Necesita"},
+    {label:"Other: ", form: "other", placeholder:"Timbre 3 puerta amarilla", required:"Necesita"},
+    {label:"City: ", form: "city", placeholder:"Sidney", required:"Necesita"},
+    {label:"Country: ", form: "country", placeholder:"Wakanda", required:"Necesita"},
+    {label:"state: ", form: "state", placeholder:"California", required:"Necesita"},
+    {label:"Image: ", form: "image", placeholder:"Hay que cambiar esto por una imagen", required:"Necesita"}
   ]
 
   // console.log(userDashboard)
