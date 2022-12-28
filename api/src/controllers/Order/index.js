@@ -2,11 +2,11 @@ const { OrderModel } = require("../../models/ModelsDB");
 
 const createOrder = async (req, res) => {
   try {
-    const { products, finalAmount } = req.body;
+    const { products, finalAmount, _idUser, username } = req.body;
 
-    if (!products || !finalAmount) throw new Error("Faltan datos importantes");
+    if (!products || !finalAmount || !_idUser || !username) throw new Error("Faltan datos importantes");
 
-    const newOrder = new OrderModel({ products, finalAmount });
+    const newOrder = new OrderModel({ products, finalAmount, _idUser, username });
     await newOrder.save();
 
     return res.status(200).json(newOrder);
@@ -18,14 +18,8 @@ const createOrder = async (req, res) => {
 const getOrders = async (req, res) => {
   const { ordersSort } = req.query
   try {
-    if(!ordersSort){
-      const order = await OrderModel.find(); //?
-    return res.status(200).json({ order: order })
-  }
-  else {
     const order = await sortAdminDashboard(JSON.parse(ordersSort))
     return res.status(200).json({order: order})
-  }
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
