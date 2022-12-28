@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    width: 90%;
-    max-width: 450px;
+    width: 75%;
+    max-width: 350px;
+    height: 70%;
     background-color: black;
     color: #fff;
     padding: 4.5em 3em;
@@ -13,6 +14,25 @@
     box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
     text-align: center;
     opacity: 0.8;
+    margin: 25px 0 0 25px;
+}
+.group {
+    --color: #5757577e;
+}
+.group input {
+    width: 100%;
+    background: none;
+    color: #edede9;
+    font-size: 1rem;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--color);
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;    
+}
+.group label {
+    color: #fff;
 }
 p.danger {
     color: red;
