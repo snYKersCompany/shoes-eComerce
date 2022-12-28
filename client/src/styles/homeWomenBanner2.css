@@ -1,0 +1,97 @@
+@font-face {
+  font-family: IntegralCF;
+  src: url(../utils/fonts/IntegralCF-Regular.otf);
+}
+
+@font-face {
+  font-family: Nulshock;
+  src: url(../utils/fonts/nulshock.otf);
+}
+
+.ContainerHWB2 {
+  background: url("https://i.etsystatic.com/26510180/r/il/8b62d4/2854010903/il_fullxfull.2854010903_1k87.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.HWB2-section1 {
+  border: 1px solid red;
+  background: orangered;
+  padding: 1rem;
+  clip-path: polygon(100% 0, 100% 77%, 82% 100%, 0 100%, 0 0);
+}
+
+.HWB2-shadow {
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.HWB2-section2 {
+  background: url("https://i.pinimg.com/originals/d5/e9/6f/d5e96f206213d8c3abf16707c25a1825.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20rem;
+  clip-path: polygon(14% 0, 100% 0, 100% 79%, 57% 100%, 0 100%, 0 18%);
+}
+
+.HWB2-name {
+  font-size: 3rem;
+  width: 20rem;
+  font-family: IntegralCF;
+}
+
+.HWB2-price {
+  font-size: 3rem;
+  font-family: Nulshock;
+}
+
+.box {
+  width: 35px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  transition: all 0.8s;
+  cursor: pointer;
+  position: relative;
+  background: rgb(13, 154, 193);
+  overflow: hidden;
+  font-family: IntegralCF;
+}
+
+.box:before {
+  content: "I";
+  position: absolute;
+  top: 0;
+  background: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  transition: transform 0.4s;
+}
+
+.box:nth-child(2)::before {
+  transform: translateY(-100%);
+  content: "N";
+}
+
+.box:nth-child(3)::before {
+  content: "F";
+}
+
+.box:nth-child(4)::before {
+  transform: translateY(-100%);
+  content: "O";
+}
+
+.HWB2-button:hover .box:before {
+  transform: translateY(0);
+}

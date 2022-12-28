@@ -1,0 +1,10 @@
+@font-face {
+  font-family: Nulshock;
+  src: url(../utils/fonts/nulshock.otf);
+}
+
+.HWT1-container {
+  background: yellow;
+  color: black;
+  font-family: Nulshock;
+}

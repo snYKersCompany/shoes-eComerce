@@ -1,0 +1,223 @@
+@font-face {
+    font-family: Roboto;
+    src: url(../utils/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: IntegralCF;
+    src: url(../utils/fonts/IntegralCF-Regular.otf);
+}
+
+@font-face {
+    font-family: Nulshock;
+    src: url(../utils/fonts/nulshock.otf);
+}
+
+.ContainerHWB1 {
+    background: url(../utils/images/HWB1.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.HWB1 {
+    margin: 0 3rem;
+}
+
+.HWB1-texts {
+    width: 33vw;
+    padding: 2rem;
+}
+
+.HWB1-hr {
+    background: white;
+    width: 6rem;
+    height: 0.2rem;
+    margin-bottom: -0.01rem;
+}
+
+.HWB1-text1 {
+    font-family: IntegralCF;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.HWB1-text2 {
+    font-family: Roboto;
+    margin-top: -1rem;
+}
+
+.HWB1-images {
+    width: 33vw;
+    padding: 2rem;
+
+}
+
+.HWB1-title {
+    margin-top: 1rem;
+    font-family: IntegralCF;
+    font-size: 3.2rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    text-align: center;
+}
+
+.HWB1-image1 {
+    position: absolute;
+    transform: rotate(90deg) scaleY(-1);
+    margin-right: 11rem;
+}
+
+.HWB1-image2 {
+    transform: rotate(90deg) scaleY(1);
+    margin-left: 11rem;
+}
+
+.HWB1-ofert {
+    /* width: 33vw; */
+    padding: 2rem;
+}
+
+.HWB1-ofertText {
+    font-family: Nulshock;
+    font-size: 2.5rem;
+}
+
+.HWB1-ofertPrice {
+    font-family: Nulshock;
+    font-size: 5rem;
+    margin-top: -3rem;
+}
+
+.HWB1-hr-marg {
+    margin-left: 12rem;
+}
+
+.HWB1-p-marg {
+    margin-left: 9rem;
+}
+
+.HWB1-button {
+    background: white;
+    color: black;
+    padding: 0.5rem 2rem;
+    font-family: IntegralCF;
+}
+
+.HWB1-button:hover {
+    background: black;
+    color: white;
+}
+
+.HWB1-stroke {
+    filter: drop-shadow(0 0 1px #000) drop-shadow(1px 1px 0 #000) drop-shadow(-1px 1px 0 #000) drop-shadow(1px -1px 0 #000);
+}
+
+.fancy {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    /* float: right; */
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 1.25em 2em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+}
+
+.fancy::before {
+    content: " ";
+    width: 1.5625rem;
+    height: 2px;
+    background: white;
+    top: 50%;
+    left: 1.5em;
+    position: absolute;
+    transform: translateY(-50%);
+    transform-origin: center;
+    transition: background 0.3s linear, width 0.3s linear;
+}
+
+.fancy .text {
+    font-size: 1.125em;
+    line-height: 1.33333em;
+    padding-left: 2em;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+}
+
+.fancy .top-key {
+    height: 2px;
+    width: 1.5625rem;
+    top: -2px;
+    left: 0.625rem;
+    position: absolute;
+    background: cyan;
+    transition: width 0.5s ease-out, left 0.3s ease-out;
+}
+
+.fancy .bottom-key-1 {
+    height: 2px;
+    width: 1.5625rem;
+    right: 1.875rem;
+    bottom: -2px;
+    position: absolute;
+    background: cyan;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.fancy .bottom-key-2 {
+    height: 2px;
+    width: 0.625rem;
+    right: 0.625rem;
+    bottom: -2px;
+    position: absolute;
+    background: cyan;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+}
+
+.fancy:hover {
+    color: white;
+    background: black;
+}
+
+.fancy:hover::before {
+    width: 0.9375rem;
+    background: white;
+}
+
+.fancy:hover .text {
+    color: white;
+    padding-left: 1.5em;
+}
+
+.fancy:hover .top-key {
+    left: -2px;
+    width: 0px;
+}
+
+.fancy:hover .bottom-key-1,
+.fancy:hover .bottom-key-2 {
+    right: 0;
+    width: 0;
+}
+
+.text-cyan {
+    color: cyan;
+}
