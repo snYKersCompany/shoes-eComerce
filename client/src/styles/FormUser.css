@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    width: 90%;
-    max-width: 450px;
+    width: 75%;
+    max-width: 350px;
+    height: 70%;
     background-color: black;
     color: #fff;
     padding: 4.5em 3em;
@@ -13,12 +14,31 @@
     box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
     text-align: center;
     opacity: 0.8;
+    margin: 25px 0 0 25px;
 }
-p.danger {
+.group {
+    --color: #5757577e;
+}
+.group input {
+    width: 100%;
+    background: none;
+    color: #edede9;
+    font-size: 1rem;
+    padding: .6em .3em;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--color);
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;    
+}
+.group label {
+    color: #fff;
+}
+.danger {
     color: red;
-    font-size: 12px;
+    font-size: 14px;    
 }
-input.danger {
+.danger input{
     border: 2px solid red;
 }
 .confirm {
@@ -27,7 +47,7 @@ input.danger {
     font-size: 20px;
     color: #edede9;
 }
-button {
+.button {
     background: #1e9bff;
     color: #edede9;
     box-shadow: 0 0 35px #0306b8;
@@ -37,16 +57,16 @@ button {
     border: none;
     border-radius: .5em;
 }
-button:hover {
+.button:hover {
     background: #030585;
     color: #edede9;
     box-shadow: 0 0 35px #03045e;
 }
-button:disabled{
+.button:disabled{
     background-color: black;
     box-shadow: 0 0 35px #ff1867;
 }
-button:disabled:hover{
+.button:disabled:hover{
     background: #0306b8;
     color: #edede9;
     box-shadow: 0 0 35px #ff1867;   
