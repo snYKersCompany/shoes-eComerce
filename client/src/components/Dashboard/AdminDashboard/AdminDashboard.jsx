@@ -27,7 +27,7 @@ const UserDashboard = () => {
               className="navSection d-flex flex-column datevuelta "
             >
               <Nav.Item className="d-flex">
-                <Nav.Link eventKey="orders" className="d-flex">
+                <Nav.Link eventKey="orders" className="d-flex" onClick={ e => console.log(e)}>
                   <CgUserList className="d-flex" /> Orders
                 </Nav.Link>
               </Nav.Item>
@@ -37,6 +37,8 @@ const UserDashboard = () => {
                   <CgHeart className="d-flex" /> Products
                 </Nav.Link>
               </Nav.Item>
+
+              
 
               <Nav.Item className="d-flex">
                 <Nav.Link eventKey="users" className="d-flex">
@@ -50,7 +52,6 @@ const UserDashboard = () => {
                 </Nav.Link>
               </Nav.Item>
             </Nav>
-
             <div className="section">
               <Tab.Content>
                 <Tab.Pane eventKey="orders">

@@ -6,10 +6,13 @@ import Button from "react-bootstrap/Button";
 import { getAllUsers } from "../../../redux/features/users/usersActions";
 import { useState } from "react";
 import DashboardSearch from "../DashboardSearch";
+import ModalUsersWarning from "./Modals/ModalUsersWarning";
 
-function AdminDashboardUsers() {
+function AdminDashboardUsers(props) {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
+
+  const [warning, setWarning] = useState(false);
   
   const [orderUser, setOrderUser] = useState("")
   const [valueOrder, setValueOrder] = useState(-1)
@@ -19,9 +22,10 @@ function AdminDashboardUsers() {
   useEffect(() => {
     const orderSearch = {}
 
+    console.log(props
+      )
     if(orderUser.length) orderSearch.orderBy = {[orderUser]:valueOrder}
     if(search.length) orderSearch.search = search
-
 
     console.log(orderSearch)
     dispatch(getAllUsers(orderSearch));
@@ -85,22 +89,15 @@ function AdminDashboardUsers() {
               />
             </td>
             <td>
-              <Button
-                variant="primary"
-                onClick={() => handlerDeleteUser(user._id)}
-              >
+              <Button variant="primary" onClick={() => setWarning(user._id)} >
                 Delete
-              </Button>{" "}
-              <Button
-                variant="secondary"
-                onClick={() => handlerOrdersUser("Numero De Orden")}
-              >
-                Orders
-              </Button>{" "}
+              </Button>
             </td>
           </tr>
         ))}
       </tbody>
+
+      <ModalUsersWarning show={warning} onHide={() => setWarning(false)}/>
     </Table>
   </>
   );
