@@ -31,6 +31,15 @@ const getOrders = async (req, res) => {
   }
 };
 
+
+const sortAdminDashboard = async ({orderBy}) => {
+  let sort = {};
+  if(orderBy) sort = orderBy
+  const sortedOrders = await OrderModel.find().sort(sort)
+  return sortedOrders
+};
+
+
 const findOrder = async (req, res) => {
   try {
     const { id } = req.params;
@@ -83,12 +92,7 @@ const putOrder = async (req, res) => {
 };
 
 
-const sortAdminDashboard = async ({orderBy}) => {
-  let sort = {};
-  if(orderBy) sort = orderBy
-  const sortedOrders = await OrderModel.find().sort(sort)
-  return sortedOrders
-};
+
 
 
 module.exports = {
