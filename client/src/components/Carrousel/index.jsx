@@ -6,8 +6,8 @@ import "../../styles/Carrousel.css";
 const Carrousel = () => {
   const { products } = useSelector((state) => state.products);
   function getRandomInt(max) {
-    console.log(Math.floor(Math.random() * max));
-    console.log(products.length);
+    // console.log(Math.floor(Math.random() * max));
+    // console.log(products.length);
     return Math.floor(Math.random() * max);
   }
   return (

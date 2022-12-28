@@ -7,13 +7,12 @@ import Payment from "../Paypal/Payment";
 //BS
 
 const Cart = () => {
-  const [control, setControl] = useState(false);
-
   let productsCart = localStorage.getItem("carrito");
 
   const [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : false
   );
+
   // {productsCart.length>1? map:}
   //intera el objeto del local storage para renderizar todas las cards
 
@@ -55,8 +54,6 @@ const Cart = () => {
           return (
             <>
               <CardCart
-                control={control}
-                setControl={setControl}
                 i={i}
                 key={i}
                 id={el.id}
@@ -80,7 +77,15 @@ const Cart = () => {
             />
           </>
         ) : (
-          <>You have no products in your cart</>
+          <>
+            <div>
+              <h1>Your cart is empty</h1>
+              <h1>Don`t you know which Snyker choose?</h1>
+              <Link to="/home">
+                <button>Discover new offerts</button>
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </>

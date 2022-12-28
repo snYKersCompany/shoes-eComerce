@@ -11,7 +11,9 @@ const {
 router.get("/", async (req, res) => {
   try {
     const { orderSearch } = req.query;
+    // console.log('parado en routes', orderSearch)
     const users = await controllers.listUsers(JSON.parse(orderSearch));
+    console.log('esto es users en controllers', users)
     return res.status(200).json({ users: users });
   } catch (error) {
     next();
@@ -50,9 +52,14 @@ router.get("/dashboard/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
+    const { orderSearch } = req.query;
     const { id } = req.params;
-    const message = await controllers.deleteUser(id);
-    return res.status(200).json(message);
+
+    await controllers.deleteUser(id);
+
+    const users = await controllers.listUsers(JSON.parse(orderSearch));
+    
+    return res.status(200).json({ users: users });
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
@@ -62,6 +69,7 @@ router.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const data = req.body;
+    
     const message = await controllers.modifyUser({id, ...data});
     return res.status(200).json(message);
   } catch (error) {

@@ -7,18 +7,23 @@ import {
   getAllProducts,
 } from "../../../../redux/features/products/productsActions";
 import "../../../../styles/modalProductsWarning.css";
+import { deleteUser } from "../../../../redux/features/users/usersActions";
 
 const ModalUsersWarning = (props) => {
 
   const dispatch = useDispatch();
 
   const handlerOnClick = () => {
-    console.log(props.show)
+    const orderName = Object.keys(props.order)[0]
+    const orderSearch = {}
+    
+    if(orderName.length) orderSearch.orderBy = props.order
+    if(props.search.length) orderSearch.search = props.search
 
+    dispatch(deleteUser(props.show, orderSearch))
     alert(`Inserte Accion para eliminar el User ${props.show}`)
-    // dispatch(deleteProducts(props.show));
+    
     props.onHide();
-    // dispatch(getAllProducts());
   };
 
   return (
