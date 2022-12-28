@@ -1,9 +1,9 @@
 body {
-    /* background: rgb(226, 230, 235); */
-    background: black;
+  background: rgb(226, 230, 235);
+  /* background: black; */
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
