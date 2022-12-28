@@ -17,6 +17,7 @@ const Dashboard = () => {
   const { userDashboard } = useSelector((state) => state.users);
   //SI HAY USER ---> Verificacion de rol
 
+  const {userDashboard} = useSelector(state=> state.users)
   const dispatch = useDispatch();
   const { user } = useAuth();
 
@@ -38,3 +39,12 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+
+
+      {/* {userMONGO.role[0] === "6397b0b5a0730c95052cae5a" ? (
+        <AdminDashboard />
+      ) : (
+        <UserDashboard />
+      )} */}
