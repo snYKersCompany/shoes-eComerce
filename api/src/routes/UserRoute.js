@@ -11,9 +11,14 @@ const {
 router.get("/", async (req, res) => {
   try {
     const { orderSearch } = req.query;
-    // console.log('parado en routes', orderSearch)
-    const users = await controllers.listUsers(JSON.parse(orderSearch));3
+
+    console.log('orderSearch req.query', orderSearch)
+
+    const arg = orderSearch ? JSON.parse(orderSearch) : {}
+    const users = await controllers.listUsers(arg);
+
     console.log('esto es users en controllers', users)
+    
     return res.status(200).json({ users: users });
   } catch (error) {
     next();

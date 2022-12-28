@@ -17,7 +17,7 @@ const Dashboard = () => {
   const { userDashboard } = useSelector((state) => state.users);
   //SI HAY USER ---> Verificacion de rol
 
-  const {userDashboard} = useSelector(state=> state.users)
+
   const dispatch = useDispatch();
   const { user } = useAuth();
 
