@@ -34,11 +34,11 @@
 .group label {
     color: #fff;
 }
-p.danger {
+.danger {
     color: red;
-    font-size: 12px;
+    font-size: 14px;    
 }
-input.danger {
+.danger input{
     border: 2px solid red;
 }
 .confirm {
@@ -47,7 +47,7 @@ input.danger {
     font-size: 20px;
     color: #edede9;
 }
-button {
+.button {
     background: #1e9bff;
     color: #edede9;
     box-shadow: 0 0 35px #0306b8;
@@ -57,16 +57,16 @@ button {
     border: none;
     border-radius: .5em;
 }
-button:hover {
+.button:hover {
     background: #030585;
     color: #edede9;
     box-shadow: 0 0 35px #03045e;
 }
-button:disabled{
+.button:disabled{
     background-color: black;
     box-shadow: 0 0 35px #ff1867;
 }
-button:disabled:hover{
+.button:disabled:hover{
     background: #0306b8;
     color: #edede9;
     box-shadow: 0 0 35px #ff1867;   
