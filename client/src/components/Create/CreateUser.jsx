@@ -13,8 +13,7 @@ export default function FormUser () {
 
     // Variables
     const CLOUD_NAME = "dhkhcgikf";
-    const UPLOAD_PRESET = "ml_default";
-    const API_KEY = '324469137631872';
+    const UPLOAD_PRESET = "dui1pixj";
 
     // Dependencies
     const dispatch = useDispatch();
@@ -44,11 +43,11 @@ export default function FormUser () {
             case 'country': return (!value) ? setError({ ...error, country: 'Please, provide a name of country' }) : setError({ ...error, country: '' });
         }
     }
-    async function upload () {
+    async function upload () {        
         const data = new FormData();
         data.append("file", file);
-        data.append("upload_preset", CLOUD_NAME);        
-        const response = await fetch(`https://api.cloudinary.com/v1_1/${UPLOAD_PRESET}/image/upload/`, 
+        data.append("upload_preset", UPLOAD_PRESET);
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`, 
             { method: "POST", body: data });
         const info = await response.json();
         console.log(info);
@@ -60,7 +59,7 @@ export default function FormUser () {
     function handleSubmit (event) {
         event.preventDefault();
         setSubmit(true);
-        axios.post(url, input).then(response => console.log(response.data));
+        // axios.post(url, input).then(response => console.log(response.data));
         setInput({});        
     }
     return(
