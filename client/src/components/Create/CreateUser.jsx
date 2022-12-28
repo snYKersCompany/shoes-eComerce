@@ -28,6 +28,7 @@ export default function FormUser () {
             }, 5000);
         }
     }, [submit]);
+
     function validateInput (value, name) {
         const expressionName = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/
         const expressionEmail = /\S+@\S+\.\S+/
@@ -43,6 +44,7 @@ export default function FormUser () {
             case 'country': return (!value) ? setError({ ...error, country: 'Please, provide a name of country' }) : setError({ ...error, country: '' });
         }
     }
+
     async function upload () {        
         const data = new FormData();
         data.append("file", file);
@@ -52,16 +54,19 @@ export default function FormUser () {
         const info = await response.json();
         console.log(info);
     }
+
     function handleChange (event) {
         setInput({ ...input, [event.target.name]: event.target.value });        
         validateInput(event.target.value, event.target.name);
     }
+
     function handleSubmit (event) {
         event.preventDefault();
         setSubmit(true);
         // axios.post(url, input).then(response => console.log(response.data));
         setInput({});        
     }
+    
     return(
         <div>
             <div className = "group">
