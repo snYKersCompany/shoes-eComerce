@@ -3,39 +3,30 @@ import { getProductsDetails } from "../../redux/features/products/productsAction
 import { useSelector, useDispatch } from "react-redux";
 import "../../styles/cardCart.css";
 
-const CardCart = ({
-  i,
-  img,
-  count,
-  size,
-  price,
-  name,
-  id,
-  handleDelete,
-  totalPrice,
-}) => {
+const CardCart = ({ i, img, count, size, price, name, id, handleDelete }) => {
   const { productDetail } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(count);
-  const productStock = productDetail.stock;
+  const [actualTotalPrice, setActualTotalPrice] = useState(quantity * price);
+  const [actualStock, setActualStock] = useState(productDetail.stock);
 
-  const getSizeProductStock = async () => {
-    const sizeProductStock = await productStock[size];
-    return sizeProductStock;
-  };
-
-  const sizeProductStock = getSizeProductStock();
-  console.log(sizeProductStock);
   useEffect(() => {
     dispatch(getProductsDetails(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, quantity]);
+
+  console.log(productDetail);
 
   const addQuantity = () => {
     const newQuantity =
-      quantity === productStock[size] ? productStock[size] : quantity + 1;
+      quantity === productDetail.stock[size] ? actualStock[size] : quantity + 1;
     setQuantity(newQuantity);
+    const newTotalPrice = price * newQuantity;
+    setActualTotalPrice(newTotalPrice);
+    console.log("new total price", actualTotalPrice);
+
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
     const product = currentCart.find((cartProduct) => cartProduct.id === id);
+
     const filteredCart = currentCart.filter((product) => {
       let filtered = product.id !== id;
       return filtered;
@@ -46,6 +37,7 @@ const CardCart = ({
       (currentCart[product.id] = {
         ...product,
         count: newQuantity,
+        totalPrice: actualTotalPrice,
       }),
     ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
@@ -96,7 +88,7 @@ const CardCart = ({
       </div>
       <div>
         <h3 className="fontSizeCardCart">Price: ${price}</h3>
-        <h3 className="fontSizeCardCart">Total: ${totalPrice}</h3>
+        <h3 className="fontSizeCardCart">Total: ${actualTotalPrice}</h3>
       </div>
 
       <div className="d-flex h-100">

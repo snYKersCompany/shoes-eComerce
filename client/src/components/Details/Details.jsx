@@ -41,8 +41,10 @@ const Details = () => {
   };
 
   const [count, setCount] = useState(false);
+  const [totalPrice, setTotalPrice] = useState();
 
   function setProduct() {
+    setTotalPrice(count * productDetail.price + productDetail.price);
     if (localStorage.getItem("carrito")?.length > 1) {
       let cart = {
         id: productDetail._id,
@@ -52,7 +54,7 @@ const Details = () => {
         size,
         price: productDetail.price,
         count,
-        totalPrice: productDetail.price * count,
+        totalPrice: count * productDetail.price + productDetail.price,
       };
       localStorage.setItem(
         "carrito",
@@ -69,7 +71,7 @@ const Details = () => {
         size,
         price: productDetail.price,
         count,
-        totalPrice: productDetail.price * count,
+        totalPrice: totalPrice,
       };
       localStorage.setItem("carrito", JSON.stringify([cart]));
     }

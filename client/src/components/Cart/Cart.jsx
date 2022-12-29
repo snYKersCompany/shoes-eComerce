@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 //JSX
 import NavBar from "../NavBar/NavBar";
@@ -9,26 +9,26 @@ import Payment from "../Paypal/Payment";
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
 
-  const [products, setProducts] = useState(
+  let [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : []
   );
+  console.log(products);
 
   // {productsCart.length>1? map:}
   //intera el objeto del local storage para renderizar todas las cards
+  let priceTotal = 0;
 
-  //precio total
-  let priceTotal =
-    products.length >= 1
-      ? products.map((el) => {
-          priceTotal += el.totalPrice;
-          return priceTotal;
-        })
-      : 0;
-  console.log(priceTotal);
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
+    finalAmout: (priceTotal =
+      products.length >= 1
+        ? products.map((el) => {
+            priceTotal += el.totalPrice;
+            return priceTotal;
+          })
+        : 0),
   };
-
+  console.log(InfoToSend.finalAmout);
   const handleDelete = (productId) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(
@@ -53,6 +53,7 @@ const Cart = () => {
                 name={el.name}
                 totalPrice={el.totalPrice}
                 count={el.count}
+                stock={el.stock}
                 img={el.img}
                 price={el.price}
                 size={el.size}
@@ -63,7 +64,7 @@ const Cart = () => {
         })}
         {products.length >= 1 ? (
           <>
-            <h2>Total: ${priceTotal}</h2>
+            <h2>Total: ${InfoToSend.finalAmout}</h2>
             <Payment products={InfoToSend.products} />
           </>
         ) : (
