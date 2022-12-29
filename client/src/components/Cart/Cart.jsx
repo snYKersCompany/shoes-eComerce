@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //JSX
 import NavBar from "../NavBar/NavBar";
@@ -17,17 +17,16 @@ const Cart = () => {
   //intera el objeto del local storage para renderizar todas las cards
 
   //precio total
-  let priceTotal = 0;
-
-  products.length >= 1
-    ? products.map((el) => {
-        priceTotal += el.totalPrice;
-      })
-    : (priceTotal += 0);
-
+  let priceTotal =
+    products.length >= 1
+      ? products.map((el) => {
+          priceTotal += el.totalPrice;
+          return priceTotal;
+        })
+      : 0;
+  console.log(priceTotal);
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmount: priceTotal,
   };
 
   const handleDelete = (productId) => {
@@ -65,10 +64,7 @@ const Cart = () => {
         {products.length >= 1 ? (
           <>
             <h2>Total: ${priceTotal}</h2>
-            <Payment
-              finalAmount={InfoToSend.finalAmount}
-              products={InfoToSend.products}
-            />
+            <Payment products={InfoToSend.products} />
           </>
         ) : (
           <>

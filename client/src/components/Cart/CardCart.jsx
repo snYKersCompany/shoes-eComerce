@@ -46,7 +46,6 @@ const CardCart = ({
       (currentCart[product.id] = {
         ...product,
         count: newQuantity,
-        totalPrice: price * newQuantity,
       }),
     ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
