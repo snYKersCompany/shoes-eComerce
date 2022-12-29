@@ -78,8 +78,7 @@ export default function FormUser () {
     }
 
     return(
-        <div>
-            <div className = "group">
+        <div className = "group">
                 <form onSubmit = {handleSubmit} className = "form" id = "Form">
                     <label htmlFor = "name">Name: </label>
                     <input id = "name" type = "text" name = "name" value = {input.name} className = {error.name && "danger"} onChange = {handleChange}/>
@@ -120,7 +119,6 @@ export default function FormUser () {
                     <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.name || !input.name || error.email || !input.email || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
                     {submit && <h2 className = "confirm">Data successfully set!</h2>}
                 </form>
-            </div>
-        </div>
+            </div>        
     )
 }
