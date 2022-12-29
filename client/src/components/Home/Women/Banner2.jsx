@@ -7,7 +7,7 @@ const Banner2 = () => {
       <div className="HWB2 d-flex justify-content-center align-items-center">
         <div className="HWB2-section1 d-flex flex-column me-5 align-items-center align-self-end text-center mb-5 HWB2-shadow">
           <p className="HWB2-name text-white">Nike OFF WHITE UNC</p>
-          <p className="HWB2-price text-green">$200</p>
+          <p className="HWB2-price text-yellow">$200</p>
           <div className="">
             <button className="HWB2-button d-flex">
               <div className="box">M</div>

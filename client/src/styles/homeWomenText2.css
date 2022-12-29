@@ -8,9 +8,10 @@
   src: url(../utils/fonts/IntegralCF-Regular.otf);
 }
 
-.HWT3-container {
+.HWT2-container {
   background: yellow;
   color: black;
+  margin-top: 10rem !important;
 }
 
 .HWT2-container {
@@ -29,5 +30,5 @@
 .HWT2-p2 {
   font-family: Roboto;
   font-style: italic;
-  color: rgb(98, 97, 97);
+  /* color: rgb(98, 97, 97); */
 }

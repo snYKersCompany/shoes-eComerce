@@ -3,7 +3,7 @@ import "../../../styles/homeWomenBanner3.css";
 
 const Banner3 = () => {
   return (
-    <div className="HWB3-container d-flex justify-content-center align-items-center mt-5 mb-5">
+    <div className="HWB3-container d-flex justify-content-center align-items-center">
       <div className="HWB3 d-flex justify-content-center align-items-center">
         <div className="HWB3-section1 d-flex justify-content-center align-items-center ">
           <p className="HWB3-text1 text-white HWB3-stroke">Adidas</p>
@@ -18,7 +18,7 @@ const Banner3 = () => {
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
-          <button className="HWB3-button mt-5"> Buy Now </button>
+          <button className="HWB3-button mt-3"> Buy Now </button>
         </div>
 
         <div className="HWB3-section3 d-flex justify-content-center align-items-center ms-5">

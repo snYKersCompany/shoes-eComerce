@@ -3,7 +3,7 @@ import "../../../styles/homeWomenText2.css";
 
 const Text2 = () => {
   return (
-    <div className="HWT2-container d-flex justify justify-content-center align-items-center mt-2 mb-2">
+    <div className="HWT2-container d-flex justify justify-content-center align-items-center">
       <div className="HWT2 d-flex flex-column justify-content-center align-items-center">
         <p className="d-flex text-black HWT2-p1"> WOMENS POWER </p>
         <p className="d-flex HWT2-p2">

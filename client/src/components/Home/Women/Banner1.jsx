@@ -20,7 +20,7 @@ const Banner1 = () => {
           <p className="HWB1-title d-flex justify-content-center align-items-center HWB1-stroke">
             New Article
           </p>
-          <div className="d-flex justify-content-center align-items-center">
+          <div className="d-flex justify-content-center align-items-center hov">
             <img
               className="HWB1-image1"
               src="https://image.goat.com/375/attachments/product_template_pictures/images/020/249/043/original/494127_00.png.png"
