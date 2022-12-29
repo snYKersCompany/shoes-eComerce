@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getProductsDetails } from "../../redux/features/products/productsActions";
+import { useSelector, useDispatch } from "react-redux";
 import "../../styles/cardCart.css";
 
 const CardCart = ({
@@ -12,10 +14,19 @@ const CardCart = ({
   handleDelete,
   totalPrice,
 }) => {
+  const { productDetail } = useSelector((state) => state.products);
+  const productStock = productDetail.stock[size];
+  console.log("productStock", productStock);
+
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(count);
 
+  useEffect(() => {
+    dispatch(getProductsDetails(id));
+  }, [dispatch, id]);
+
   const addQuantity = () => {
-    const newQuantity = quantity + 1;
+    const newQuantity = quantity === 1 ? 1 : quantity + 1;
     setQuantity(newQuantity);
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
     const product = currentCart.find((cartProduct) => cartProduct.id === id);
