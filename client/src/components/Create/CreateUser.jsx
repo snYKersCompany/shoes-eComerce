@@ -12,8 +12,8 @@ export default function FormUser () {
     const [file, setFile] = useState(null);
 
     // Variables
-    const CLOUD_NAME = "dhkhcgikf";
-    const UPLOAD_PRESET = "dui1pixj";
+    const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
+    const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
 
     // Dependencies
     const dispatch = useDispatch();
@@ -45,14 +45,15 @@ export default function FormUser () {
         }
     }
 
-    async function upload () {        
+    async function handleImage (event) {
+        setFile(event.target.files[0]);
         const data = new FormData();
-        data.append("file", file);
+        data.append("file", event.target.files[0]);
         data.append("upload_preset", UPLOAD_PRESET);
         const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`, 
             { method: "POST", body: data });
         const info = await response.json();
-        console.log(info);
+        setInput({ ...input, [event.target.name]: info.url });
     }
 
     function handleChange (event) {
@@ -62,11 +63,12 @@ export default function FormUser () {
 
     function handleSubmit (event) {
         event.preventDefault();
+        console.log(input);
         setSubmit(true);
         // axios.post(url, input).then(response => console.log(response.data));
         setInput({});        
     }
-    
+
     return(
         <div>
             <div className = "group">
@@ -103,8 +105,7 @@ export default function FormUser () {
                     <input id = "country" type = "text" name = "country" value = {input.country} className = {error.country && "danger"} onChange = {handleChange}/>
                     {!error.country ? null : <p className = "danger">{error.country}</p>}
 
-                    <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
-                    <button onClick={upload}>Upload</button>
+                    <input type="file" onChange={handleImage} name = "image" />                    
                     { file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)} /> : null }
 
                     {/* Submit Button */}
