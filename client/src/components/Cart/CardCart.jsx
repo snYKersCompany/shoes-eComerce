@@ -15,18 +15,24 @@ const CardCart = ({
   totalPrice,
 }) => {
   const { productDetail } = useSelector((state) => state.products);
-  const productStock = productDetail.stock[size];
-  console.log("productStock", productStock);
-
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(count);
+  const productStock = productDetail.stock;
 
+  const getSizeProductStock = async () => {
+    const sizeProductStock = await productStock[size];
+    return sizeProductStock;
+  };
+
+  const sizeProductStock = getSizeProductStock();
+  console.log(sizeProductStock);
   useEffect(() => {
     dispatch(getProductsDetails(id));
   }, [dispatch, id]);
 
   const addQuantity = () => {
-    const newQuantity = quantity === 1 ? 1 : quantity + 1;
+    const newQuantity =
+      quantity === productStock[size] ? productStock[size] : quantity + 1;
     setQuantity(newQuantity);
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
     const product = currentCart.find((cartProduct) => cartProduct.id === id);

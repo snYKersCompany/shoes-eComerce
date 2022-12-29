@@ -10,7 +10,7 @@ const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
 
   const [products, setProducts] = useState(
-    productsCart?.length > 1 ? JSON.parse(productsCart) : false
+    productsCart?.length > 1 ? JSON.parse(productsCart) : []
   );
 
   // {productsCart.length>1? map:}
