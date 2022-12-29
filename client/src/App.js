@@ -14,7 +14,6 @@ import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
 import Error404 from "./components/Error404/Error404";
-import FormUser from "./components/Create/CreateUser";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -23,6 +22,7 @@ import "./App.css";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Women from "./components/Home/Women";
+import ModalFormUser from "./components/Create/Modal/ModalFormUser";
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
 );
@@ -58,7 +58,7 @@ function App() {
           />
           <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
-          <Route path="/create-user" element={<FormUser />} />
+          <Route path="/create-user" element={<ModalFormUser />} />
         </Routes>
       </AuthProvider>
     </div>
