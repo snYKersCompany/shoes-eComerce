@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../../styles/FormUser.css";
-import axios from "axios";
+import Axios from "axios";
 import { useEffect } from "react";
+import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function FormUser () {
     // States
-    const [input, setInput] = useState({});
+    const [input, setInput] = useState({ name: '', email: '', phone: '', address: '', city: '', cp: '', state: '', country: '', image: '' });
     const [error, setError] = useState({});
     const [submit, setSubmit] = useState(false);
     const [file, setFile] = useState(null);
 
+    // Hooks
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { user } = useAuth();
+    
     // Variables
     const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
-    const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
-
-    // Dependencies
-    const dispatch = useDispatch();
-    const url = 'http://localhost:3001/api/users';
+    const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;    
 
     // Functions
     useEffect(() => {
@@ -52,26 +55,30 @@ export default function FormUser () {
         data.append("upload_preset", UPLOAD_PRESET);
         const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`, 
             { method: "POST", body: data });
-        const info = await response.json();
+        const info = await response.json();        
         setInput({ ...input, [event.target.name]: info.url });
     }
 
     function handleChange (event) {
         setInput({ ...input, [event.target.name]: event.target.value });        
-        validateInput(event.target.value, event.target.name);
+        validateInput(event.target.value, event.target.name);        
     }
 
-    function handleSubmit (event) {
-        event.preventDefault();
-        console.log(input);
-        setSubmit(true);
-        // axios.post(url, input).then(response => console.log(response.data));
-        setInput({});        
+    async function handleSubmit (event) {
+        if (user) {
+            event.preventDefault();
+            const response = await Axios.put(`http://localhost:3001/api/users/update/${user.uid}`, input);
+            console.log(response.data[0]);
+            setSubmit(true);
+            setInput({});
+        }
+        else {
+            navigate("/login");
+        }
     }
 
     return(
-        <div>
-            <div className = "group">
+        <div className = "group">
                 <form onSubmit = {handleSubmit} className = "form" id = "Form">
                     <label htmlFor = "name">Name: </label>
                     <input id = "name" type = "text" name = "name" value = {input.name} className = {error.name && "danger"} onChange = {handleChange}/>
@@ -112,7 +119,6 @@ export default function FormUser () {
                     <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.name || !input.name || error.email || !input.email || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
                     {submit && <h2 className = "confirm">Data successfully set!</h2>}
                 </form>
-            </div>
-        </div>
+            </div>        
     )
 }
