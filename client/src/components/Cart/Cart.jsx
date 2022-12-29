@@ -39,12 +39,6 @@ const Cart = () => {
     setProducts(filtered);
   };
 
-  console.log("products in cart", products);
-
-  //fin precio total
-  console.log("Cart priceTotal", priceTotal);
-  console.log("Cart products", products);
-
   return (
     <>
       <NavBar />
@@ -57,7 +51,7 @@ const Cart = () => {
                 key={i}
                 id={el.id}
                 name={el.name}
-                total={el.totalPrice}
+                totalPrice={el.totalPrice}
                 count={el.count}
                 img={el.img}
                 price={el.price}

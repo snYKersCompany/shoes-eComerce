@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "../../styles/cardCart.css";
-import { current } from "@reduxjs/toolkit";
 
 const CardCart = ({
   i,
   img,
   count,
   size,
-  total,
   price,
   name,
   id,
   handleDelete,
+  totalPrice,
 }) => {
   const [quantity, setQuantity] = useState(count);
 
@@ -30,6 +29,7 @@ const CardCart = ({
       (currentCart[product.id] = {
         ...product,
         count: newQuantity,
+        totalPrice: price * newQuantity,
       }),
     ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
@@ -50,6 +50,7 @@ const CardCart = ({
       (currentCart[product.id] = {
         ...product,
         count: newQuantity,
+        totalPrice: price * newQuantity,
       }),
     ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
@@ -79,7 +80,7 @@ const CardCart = ({
       </div>
       <div>
         <h3 className="fontSizeCardCart">Price: ${price}</h3>
-        <h3 className="fontSizeCardCart">Total: ${total}</h3>
+        <h3 className="fontSizeCardCart">Total: ${totalPrice}</h3>
       </div>
 
       <div className="d-flex h-100">
