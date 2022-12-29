@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   getProducts,
+  getCategory,
   productsDetails,
   filterAdd,
   searchByQuery,
@@ -28,11 +29,8 @@ export const getAllProducts =
   (filters = {}, orders = {}, search = "") =>
   async (dispatch) => {
     try {
+      console.log(filters);
       let query = filterQuery(filters);
-      // console.log(filters);
-      // console.log(orders);
-      // console.log(search);
-
       let orderBy = JSON.stringify(orders);
       if (orderBy.length === 2) orderBy = ``;
       else orderBy = `orderBy=${orderBy}`;
@@ -41,7 +39,26 @@ export const getAllProducts =
       if (search.length) searchBy = `search=${search}`;
 
       let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
-      dispatch(getProducts(product.data.products))
+      dispatch(getProducts(product.data.products));
+    } catch (error) {
+      return error;
+    }
+  };
+
+export const getCategorys =
+  (filters = {}, orders = {}, search = "") =>
+  async (dispatch) => {
+    try {
+      let query = filterQuery(filters);
+      let orderBy = JSON.stringify(orders);
+      if (orderBy.length === 2) orderBy = ``;
+      else orderBy = `orderBy=${orderBy}`;
+
+      let searchBy = "";
+      if (search.length) searchBy = `search=${search}`;
+
+      let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
+      dispatch(getCategory([product.data.products, filters]));
     } catch (error) {
       return error;
     }
@@ -50,7 +67,7 @@ export const getAllProducts =
 export const getProductsDetails = (_id) => async (dispatch) => {
   try {
     const products = await axios("/products/details/" + _id);
-    console.log('esto es product detail', products.data[0])
+    console.log("esto es product detail", products.data[0]);
 
     return dispatch(productsDetails(products.data[0]));
   } catch (error) {
@@ -203,7 +220,7 @@ export const getGenders = () => async (dispatch) => {
 export const putProduct = (_id, body) => async (dispatch) => {
   try {
     const response = await axios.put(`/products/modify/${_id}`, body);
-    return response
+    return response;
   } catch (error) {
     return error;
   }
