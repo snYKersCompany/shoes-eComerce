@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 //JSX
 import NavBar from "../NavBar/NavBar";
@@ -9,27 +9,26 @@ import Payment from "../Paypal/Payment";
 const Cart = () => {
   let productsCart = localStorage.getItem("carrito");
 
-  const [products, setProducts] = useState(
-    productsCart?.length > 1 ? JSON.parse(productsCart) : false
+  let [products, setProducts] = useState(
+    productsCart?.length > 1 ? JSON.parse(productsCart) : []
   );
+  console.log(products);
 
   // {productsCart.length>1? map:}
   //intera el objeto del local storage para renderizar todas las cards
-
-  //precio total
   let priceTotal = 0;
-
-  products.length >= 1
-    ? products.map((el) => {
-        priceTotal += el.totalPrice;
-      })
-    : (priceTotal += 0);
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmount: priceTotal,
+    finalAmout: (priceTotal =
+      products.length >= 1
+        ? products.map((el) => {
+            priceTotal += el.totalPrice;
+            return priceTotal;
+          })
+        : 0),
   };
-
+  console.log(InfoToSend.finalAmout);
   const handleDelete = (productId) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(
@@ -39,12 +38,6 @@ const Cart = () => {
     localStorage.setItem("carrito", JSON.stringify(filtered));
     setProducts(filtered);
   };
-
-  console.log("products in cart", products);
-
-  //fin precio total
-  console.log("Cart priceTotal", priceTotal);
-  console.log("Cart products", products);
 
   return (
     <>
@@ -58,8 +51,9 @@ const Cart = () => {
                 key={i}
                 id={el.id}
                 name={el.name}
-                total={el.totalPrice}
+                totalPrice={el.totalPrice}
                 count={el.count}
+                stock={el.stock}
                 img={el.img}
                 price={el.price}
                 size={el.size}
@@ -70,11 +64,8 @@ const Cart = () => {
         })}
         {products.length >= 1 ? (
           <>
-            <h2>Total: ${priceTotal}</h2>
-            <Payment
-              finalAmount={InfoToSend.finalAmount}
-              products={InfoToSend.products}
-            />
+            <h2>Total: ${InfoToSend.finalAmout}</h2>
+            <Payment products={InfoToSend.products} />
           </>
         ) : (
           <>
