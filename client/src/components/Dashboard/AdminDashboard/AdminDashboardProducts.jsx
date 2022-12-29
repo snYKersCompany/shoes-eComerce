@@ -60,9 +60,9 @@ function AdminDashboardProducts() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {products.map((product, inx) => (
             <tr
-              key={product._id}
+              key={inx}
               // onClick={()=>handlerDetails(product._id)}
             >
               <td>{product._id}</td>
