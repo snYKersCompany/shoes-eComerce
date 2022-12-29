@@ -22,11 +22,7 @@ const userSchema = mongoose.Schema({
   status:{ type: Boolean, default: true },
   state:{ type: String },
   country:{ type:String, default: "" },
-  roles: [{
-    ref: "Role",
-    type: String,
-    default: "user"
-  }],
+  roles: [{ type: String, default: "user" }],
   favourites: [{
     ref: "products",
     type: mongoose.Schema.Types.ObjectId

@@ -4,7 +4,6 @@ import Card from "../../CardsContainer/Card";
 import NoFavourites from "./NoFavourites";
 import "../../../styles/cardFavorites.css";
 
-
 const UserFavorites = () => {
   const { userDashboard } = useSelector((state) => state.users);
 
@@ -13,27 +12,27 @@ const UserFavorites = () => {
       <h3 className="text-center titleFav">Your Favorites</h3>
       <div className="d-flex flex-column containerFav">
         <div className="d-flex flex-wrap favSize justify-content-center">
-          { userDashboard.productsFavourites
-            ? userDashboard.productsFavourites.map((el) => {
-                return (
-                  <Card
-                    className="cardFav"
-                    key={el._id}
-                    _id={el._id}
-                    name={el.name}
-                    price={el.price}
-                    card_picture={el.card_picture}
-                    brand={el.brand}
-                    rating={el.rating}
-                    checkHeart={userDashboard.favourites?.some(
-                      (idProduct) => idProduct === el._id
-                    )}
-                  />
-                );
-              })
-             : userDashboard.productsFavourites === undefined ? <NoFavourites />
-             : null
-             }
+          {userDashboard.productsFavourites ? (
+            userDashboard.productsFavourites.map((el) => {
+              return (
+                <Card
+                  className="cardFav"
+                  key={el._id}
+                  _id={el._id}
+                  name={el.name}
+                  price={el.price}
+                  card_picture={el.card_picture}
+                  brand={el.brand}
+                  rating={el.rating}
+                  checkHeart={userDashboard.favourites?.some(
+                    (idProduct) => idProduct === el._id
+                  )}
+                />
+              );
+            })
+          ) : userDashboard.productsFavourites === undefined ? (
+            <NoFavourites />
+          ) : null}
         </div>
       </div>
     </div>

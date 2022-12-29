@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import '../../styles/FormUser.css';
-import axios from 'axios';
+import "../../styles/FormUser.css";
+import axios from "axios";
 import { useEffect } from "react";
 
 export default function FormUser () {

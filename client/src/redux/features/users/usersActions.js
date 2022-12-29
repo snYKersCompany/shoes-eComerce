@@ -114,10 +114,11 @@ export const putUserInformation = (user, change) => async (dispatch) => {
   }
 };
 
-export const putUserStatus = (id) => async (dispatch) => {
+export const putUserStatus = (id, body) => async (dispatch) => {
   
   try{
-    const putStatusUser = await axios.put('ruta', id);//como son 2 valores los esperados
+    console.log({body})
+    const putStatusUser = await axios.put(`/users/update/${id}`, body);//como son 2 valores los esperados
                                                       //espero que se haga en el back
     return putStatusUser
   }catch(error){
@@ -125,11 +126,12 @@ export const putUserStatus = (id) => async (dispatch) => {
   }
 };
 
-export const deleteUser = (_id) => async (dispatch) => {
+export const deleteUser = (_id, body={}) => async (dispatch) => {
   try{
-    const deleteOneUser = await axios.delete(`/users/${_id}`)
-    console.log(deleteOneUser)
-    return deleteOneUser
+    const jsonBody = JSON.stringify(body)
+    const deleteOneUser = await axios.delete(`/users/${_id}?orderSearch=${jsonBody}`)
+    console.log(deleteOneUser.data)
+    return dispatch(getAllUser(deleteOneUser.data.users));
   }catch(error){
     return error
   }
