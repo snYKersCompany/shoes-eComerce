@@ -1,35 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 //BS
 import Button from "react-bootstrap/Button";
 //utils
 import axios from "axios";
-import { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
-import { Link } from "react-router-dom";
 
 const Payment = ({ products }) => {
   const { user } = useAuth();
-
-  useEffect(() => {
-    if (user) {
-      console.log("user de firebase en home", user);
-    }
-  }, [user]);
-  // console.log("Payment products", products);
+  const { userDashboard } = useSelector((state) => state.data);
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    axios
-      .post("http://localhost:3001/api/checkouts", {
-        products,
-      })
-      .then((res) => {
-        if (res.data.url) {
-          window.location.href = res.data.url;
-        }
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    if (user) {
+      if (userDashboard) {
+        axios
+          .post("http://localhost:3001/api/chekcouts", {
+            products,
+          })
+          .then((res) => {
+            if (res.data.url) {
+              window.location.href = res.data.url;
+            }
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      } else {
+        navigate(`complete-data/${userDashboard.id}`);
+      }
+    } else {
+      navigate("/complete-register");
+    }
   };
 
   return (

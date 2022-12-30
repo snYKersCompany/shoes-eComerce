@@ -17,7 +17,6 @@ import Error404 from "./components/Error404/Error404";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
 //Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -57,6 +56,8 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
+          <Route path="/complete-register" element={<Details />} />
+          <Route path="/complete-data/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
           <Route path="/create-user" element={<ModalFormUser />} />
         </Routes>
