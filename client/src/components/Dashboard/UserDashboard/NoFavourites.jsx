@@ -1,14 +1,28 @@
 import React from 'react';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import '../../../styles/noFavourites.css'
 
-const NoFavourites = ()=> {
-    return (
-        <>
-        <h1>
-            HOLA, TENES QUE TENER MINIMO UN FAVORITO PARA QUE NO TE SALGA ESTE COMPONENTE. ES FACIL, TENES QUE IR AL HOME Y ARRIBITA VAS A TENER UN CORAZÓN. SI ESTAS LOGUEADO VAS A 
-            PODER HACER UN CLICK SOBRE ESE CORAZON Y SE TE VA A AGREGAR A TUS FAVORITOS. ASI QUE INTENTALO. NO SEAS PACHORRA, METELE ONDA, CHE
-        </h1>
-        </>
-    )
-};
+function NoFavourites() {
+  return (
+    <>
+      <Alert variant="success" className="noFavs">
+        <Alert.Heading className='leyenda-head'>Nothing here yet...</Alert.Heading>
+        <p className='leyenda-body'>
+          Oh snap!, it seems you don't have any favourite article yet!.
+        </p>
+        <p className='leyenda-body'>
+        In case you want to save for later your favourites articles from snYKers press the button below and check all our products!
+        </p>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button href='/home'>
+            Let's go!
+          </Button>
+        </div>
+      </Alert>
+    </>
+  );
+}
 
 export default NoFavourites;
