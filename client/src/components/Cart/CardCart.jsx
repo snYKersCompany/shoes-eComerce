@@ -35,23 +35,20 @@ const CardCart = ({
     if (quantity !== productDetail.stock[size]) {
       setPriceToSend(priceToSend + price);
     }
+    //DIFINICION DE PROPS
 
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
-    const product = currentCart.find((cartProduct) => cartProduct.id === id);
+    const newCart = [...currentCart];
+    const productIndex = newCart.findIndex(
+      (cartProduct) => cartProduct.idAux === idAux
+    );
 
-    const filteredCart = currentCart.filter((product) => {
-      let filtered = product.idAux === idAux;
-      return filtered;
-    });
+    newCart[productIndex] = {
+      ...newCart[productIndex],
+      count: newQuantity,
+      totalPrice: actualTotalPrice + price,
+    };
 
-    const newCart = [
-      ...filteredCart,
-      (currentCart[product.idAux] = {
-        ...product,
-        count: newQuantity,
-        totalPrice: actualTotalPrice + price,
-      }),
-    ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
   };
 
@@ -63,23 +60,19 @@ const CardCart = ({
     if (quantity > 1) {
       setPriceToSend(priceToSend - price);
     }
-
+    //DIFINICION DE PROPS
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
-    const product = currentCart.find((cartProduct) => cartProduct.id === id);
+    const newCart = [...currentCart];
+    const productIndex = newCart.findIndex(
+      (cartProduct) => cartProduct.idAux === idAux
+    );
 
-    const filteredCart = currentCart.filter((product) => {
-      let filtered = product.id !== id;
-      return filtered;
-    });
+    newCart[productIndex] = {
+      ...newCart[productIndex],
+      count: newQuantity,
+      totalPrice: actualTotalPrice - price,
+    };
 
-    const newCart = [
-      ...filteredCart,
-      (currentCart[product.id] = {
-        ...product,
-        count: newQuantity,
-        totalPrice: actualTotalPrice - price,
-      }),
-    ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
   };
 
