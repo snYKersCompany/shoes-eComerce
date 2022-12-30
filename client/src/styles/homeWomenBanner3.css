@@ -9,14 +9,16 @@
 }
 
 .HWB3-container {
-  background: url("https://sneakernews.com/wp-content/uploads/2019/05/adidas-yeezy-boost-350-v2-glow-release-date-info-1.jpg");
+  background: url(../utils/images/banner2back.jpg);
+  background-attachment: fixed;
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
+  margin-top: -8px !important;
 }
 
 .HWB3 {
-  height: 70vh;
+  height: 75vh;
 }
 
 .HWB3-section1,

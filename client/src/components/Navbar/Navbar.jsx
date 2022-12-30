@@ -6,7 +6,6 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa";
 import SearchBar from "../SearchBar/SearchBar";
 //SVG
-import logoBlanco from "../../utils/images/logoBlanco.svg";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
 import accBlanco from "../../utils/images/navbar/accBlanco.svg";
 //BS

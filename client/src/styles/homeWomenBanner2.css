@@ -9,15 +9,15 @@
 }
 
 .ContainerHWB2 {
-  background: url("https://i.etsystatic.com/26510180/r/il/8b62d4/2854010903/il_fullxfull.2854010903_1k87.jpg");
+  background: url(../utils/images/banner3back.jpg);
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-attachment: fixed;
 }
 
 .HWB2-section1 {
-  border: 1px solid red;
   background: orangered;
   padding: 1rem;
   clip-path: polygon(100% 0, 100% 77%, 82% 100%, 0 100%, 0 0);
@@ -28,12 +28,15 @@
 }
 
 .HWB2-section2 {
-  background: url("https://i.pinimg.com/originals/d5/e9/6f/d5e96f206213d8c3abf16707c25a1825.jpg");
-  background-position: top center;
+  background: url(../utils/images/banner2image.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   padding: 20rem;
   clip-path: polygon(14% 0, 100% 0, 100% 79%, 57% 100%, 0 100%, 0 18%);
+}
+.HWB2-section2:hover {
+  transform: scale(1.05);
+  transition: 1s;
 }
 
 .HWB2-name {
