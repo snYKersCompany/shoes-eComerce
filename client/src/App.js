@@ -57,8 +57,7 @@ function App() {
           <Route path="/home/:id" element={<Details />} />
           <Route path="/complete-register" element={<Details />} />
           <Route path="/complete-data/:id" element={<Details />} />
-          <Route path="/preview" element={<Preview />} />
-          <Route path="/create-user" element={<ModalFormUser />} />
+          <Route path="/preview" element={<Preview />} />          
         </Routes>
       </AuthProvider>
     </div>

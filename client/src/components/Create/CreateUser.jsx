@@ -30,15 +30,13 @@ export default function FormUser () {
                 document.getElementById("Form").reset();
             }, 5000);
         }
-    }, [submit]);
+    }, [submit, user]);
 
     function validateInput (value, name) {
-        const expressionName = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/
-        const expressionEmail = /\S+@\S+\.\S+/
+        const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/        
 
         switch (name) {
-            case 'name': return (!value || !expressionName.test(value)) ? setError({ ...error, name: 'It must set a valid name' }) : setError({ ...error, name: '' });
-            case 'email': return (!value || !expressionEmail.test(value)) ? setError({ ...error, email: 'Set a valid email' }) : setError({ ...error, email: '' });
+            case 'name': return (!value || !expression.test(value)) ? setError({ ...error, name: 'It must set a valid name' }) : setError({ ...error, name: '' });            
             case 'phone': return (!value) ? setError({ ...error, phone: 'Please, provide a phone number' }) : setError({ ...error, phone: '' });
             case 'address': return (!value) ? setError({ ...error, address: 'Please, provide an address' }) : setError({ ...error, address: '' });
             case 'city': return (!value) ? setError({ ...error, city: 'Please provide a name of city' }) : setError({ ...error, city: '' });
@@ -67,8 +65,7 @@ export default function FormUser () {
     async function handleSubmit (event) {
         if (user) {
             event.preventDefault();
-            const response = await Axios.put(`http://localhost:3001/api/users/update/${user.uid}`, input);
-            console.log(response.data[0]);
+            const response = await Axios.put(`http://localhost:3001/api/users/update/${user.uid}`, input);            
             setSubmit(true);
             setInput({});
         }
@@ -78,15 +75,15 @@ export default function FormUser () {
     }
 
     return(
-        <div className = "group">
+        <div className = "container">
+            <div className = "group">
                 <form onSubmit = {handleSubmit} className = "form" id = "Form">
+                    <label htmlFor = "email">Email: </label>
+                    {user ? <input placeholder = {user.email} id = "email" type = "text" name = "email" value = {input.email} className = {error.email && "danger"} onChange = {handleChange} readOnly/> : null}
+
                     <label htmlFor = "name">Name: </label>
                     <input id = "name" type = "text" name = "name" value = {input.name} className = {error.name && "danger"} onChange = {handleChange}/>
                     {!error.name ? null : <p className = "danger">{error.name}</p>}
-
-                    <label htmlFor = "email">Email: </label>
-                    <input id = "email" type = "text" name = "email" value = {input.email} className = {error.email && "danger"} onChange = {handleChange}/>
-                    {!error.email ? null : <p className = "danger">{error.email}</p>}
 
                     <label htmlFor = "phone">Phone: </label>
                     <input id = "phone" type = "text" name = "phone" value = {input.phone} className = {error.phone && "danger"} onChange = {handleChange}/>
@@ -116,9 +113,10 @@ export default function FormUser () {
                     { file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)} /> : null }
 
                     {/* Submit Button */}
-                    <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.name || !input.name || error.email || !input.email || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
+                    <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.name || !input.name || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
                     {submit && <h2 className = "confirm">Data successfully set!</h2>}
                 </form>
-            </div>        
+            </div>     
+        </div>   
     )
 }
