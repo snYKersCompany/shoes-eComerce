@@ -45,7 +45,6 @@ const Cart = () => {
       <div className="d-flex p-5 justify-content-center align-items-center flex-column">
         {products.map((el, i) => {
           return (
-            <>
               <CardCart
                 i={i}
                 key={i}
@@ -59,7 +58,6 @@ const Cart = () => {
                 size={el.size}
                 handleDelete={handleDelete}
               />
-            </>
           );
         })}
         {products.length >= 1 ? (
