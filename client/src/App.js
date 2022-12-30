@@ -22,7 +22,7 @@ import "./App.css";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Women from "./components/Home/Women";
-import ModalFormUser from "./components/Create/Modal/ModalFormUser";
+import FormUser from './components/Create/CreateUser';
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
 );
@@ -60,9 +60,8 @@ function App() {
           />
           <Route path="/home/:id" element={<Details />} />
           <Route path="/complete-register" element={<Details />} />
-          <Route path="/complete-data/:id" element={<Details />} />
-          <Route path="/preview" element={<Preview />} />
-          <Route path="/create-user" element={<ModalFormUser />} />
+          <Route path="/complete-data/:id" element={<FormUser />} />
+          <Route path="/preview" element={<Preview />} />          
         </Routes>
       </AuthProvider>
     </div>
