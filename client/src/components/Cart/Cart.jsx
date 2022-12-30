@@ -43,24 +43,22 @@ const Cart = () => {
       <div className="d-flex p-5 justify-content-center align-items-center flex-column">
         {products.map((el, i) => {
           return (
-            <>
-              <CardCart
-                i={i}
-                key={i}
-                id={el.id}
-                name={el.name}
-                totalPrice={el.totalPrice}
-                count={el.count}
-                stock={el.stock}
-                img={el.img}
-                price={el.price}
-                size={el.size}
-                handleDelete={handleDelete}
-                setPriceToSend={setPriceToSend}
-                priceToSend={priceToSend}
-                idAux={el.idAux}
-              />
-            </>
+            <CardCart
+              key={i}
+              i={i}
+              id={el.id}
+              name={el.name}
+              totalPrice={el.totalPrice}
+              count={el.count}
+              stock={el.stock}
+              img={el.img}
+              price={el.price}
+              size={el.size}
+              handleDelete={handleDelete}
+              setPriceToSend={setPriceToSend}
+              priceToSend={priceToSend}
+              idAux={el.idAux}
+            />
           );
         })}
         {products.length >= 1 ? (
