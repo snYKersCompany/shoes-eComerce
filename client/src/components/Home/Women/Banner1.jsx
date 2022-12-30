@@ -9,7 +9,7 @@ const Banner1 = () => {
       <div className="HWB1 d-flex">
         <div className="HWB1-texts text-white d-flex flex-column justify-content-center align-items-center ms-5">
           <p className="HWB1-text1 d-flex align-self-start HWB1-stroke text-cyan ms-2">
-            By Hirofumi Kojima
+            By Hirofumi Kojima.
           </p>
           <p className="HWB1-text2 HWB1-stroke2 fst-italic">
             {Atmos.description}
