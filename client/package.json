@@ -28,9 +28,7 @@
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
-  "engines": {
-    "node": "16.x"
-  },
+  
   "scripts": { 
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
