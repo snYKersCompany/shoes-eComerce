@@ -66,7 +66,7 @@ const Cart = () => {
         {products.length >= 1 ? (
           <>
             <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
-            <Payment products={InfoToSend.products} />
+            <Payment products={InfoToSend.products} />            
           </>
         ) : (
           <>
