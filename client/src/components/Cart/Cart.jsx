@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 //JSX
 import NavBar from "../NavBar/NavBar";
@@ -7,29 +7,25 @@ import Payment from "../Paypal/Payment";
 //BS
 
 const Cart = () => {
-  const [control, setControl] = useState(false);
-
+  let priceTotal = 0;
   let productsCart = localStorage.getItem("carrito");
 
   const [products, setProducts] = useState(
-    productsCart?.length > 1 ? JSON.parse(productsCart) : false
+    productsCart?.length > 1 ? JSON.parse(productsCart) : []
   );
-  // {productsCart.length>1? map:}
-  //intera el objeto del local storage para renderizar todas las cards
+  const [priceToSend, setPriceToSend] = useState(
+    products.length
+      ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
+      : priceTotal
+  );
 
-  //precio total
-  let priceTotal = 0;
-
-  products.length >= 1
-    ? products.map((el) => {
-        priceTotal += el.totalPrice;
-      })
-    : (priceTotal += 0);
+  useEffect(() => {}, [priceTotal]);
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmount: priceTotal,
+    finalAmout: priceToSend,
   };
+  console.log("price To send", InfoToSend.finalAmout);
 
   const handleDelete = (productId) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
@@ -41,12 +37,6 @@ const Cart = () => {
     setProducts(filtered);
   };
 
-  console.log("products in cart", products);
-
-  //fin precio total
-  console.log("Cart priceTotal", priceTotal);
-  console.log("Cart products", products);
-
   return (
     <>
       <NavBar />
@@ -55,32 +45,39 @@ const Cart = () => {
           return (
             <>
               <CardCart
-                control={control}
-                setControl={setControl}
                 i={i}
                 key={i}
                 id={el.id}
                 name={el.name}
-                total={el.totalPrice}
+                totalPrice={el.totalPrice}
                 count={el.count}
+                stock={el.stock}
                 img={el.img}
                 price={el.price}
                 size={el.size}
                 handleDelete={handleDelete}
+                setPriceToSend={setPriceToSend}
+                priceToSend={priceToSend}
+                idAux={el.idAux}
               />
             </>
           );
         })}
         {products.length >= 1 ? (
           <>
-            <h2>Total: ${priceTotal}</h2>
-            <Payment
-              finalAmount={InfoToSend.finalAmount}
-              products={InfoToSend.products}
-            />
+            <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
+            <Payment products={InfoToSend.products} />
           </>
         ) : (
-          <>You have no products in your cart</>
+          <>
+            <div>
+              <h1>Your cart is empty</h1>
+              <h1>Don`t you know which Snyker choose?</h1>
+              <Link to="/home">
+                <button>Discover new offerts</button>
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </>

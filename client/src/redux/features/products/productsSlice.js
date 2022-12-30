@@ -10,10 +10,12 @@ export const productsSlice = createSlice({
     filters: {},
     orders: {},
     categories: [],
+    category: {},
+    brand: {},
     brands: [],
     ratings: [],
     genders: [],
-    search: '',
+    search: "",
   },
   reducers: {
     getProducts: (state, action) => {
@@ -38,14 +40,14 @@ export const productsSlice = createSlice({
       state.ratings = action.payload;
     },
     filterByGenders: (state, action) => {
-      state.genders = action.payload
+      state.genders = action.payload;
     },
     filterAdd: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
     },
     deletefilter: (state, action) => {
-      const filters = state.filters
-      delete filters[action.payload]
+      const filters = state.filters;
+      delete filters[action.payload];
       state.filters = filters;
     },
     clearFilter: (state, action) => {
@@ -55,8 +57,8 @@ export const productsSlice = createSlice({
       state.orders = { ...state.orders, ...action.payload };
     },
     deleteOrder: (state, action) => {
-      const orders = state.orders
-      delete orders[action.payload]
+      const orders = state.orders;
+      delete orders[action.payload];
       state.orders = orders;
     },
     clearOrder: (state, action) => {
@@ -71,12 +73,18 @@ export const productsSlice = createSlice({
     searchByQuery: (state, action) => {
       state.products = action.payload;
     },
+    getCategory: (state, action) => {
+      //       tipo de filtro            valor del fitlro         //productos filtrados
+      //state=> category = {running:[{},{}]}
+      state[action.payload[1][0]][action.payload[1][1]] = action.payload[0];
+    },
   },
 });
 
 export const {
   getProducts,
   productsDetails,
+  getCategory,
   createProducts,
   filterRating,
   filterAdd,

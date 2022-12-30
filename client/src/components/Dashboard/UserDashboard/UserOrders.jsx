@@ -104,23 +104,26 @@ const UserOrders = () => {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th key="thid">ID</th>
-          <th key="thdate">date</th>
-          <th key="thstatus">status</th>
-          <th key="thcomprobante">ticket</th>
-          <th key="thprice">price</th>
+          <th >ID</th>
+          <th >date</th>
+          <th >status</th>
+          <th >ticket</th>
+          <th >price</th>
         </tr>
       </thead>
       <tbody>
         {product &&
-          product.map((e) => (
-            <tr>
-              <td key="id">{e.id}</td>
-              <td key="date">{e.date}</td>
-              <td key="status">{e.status}</td>
-              <td key="ticket">{e.ticket}</td>
-              <td key="price">{e.price}</td>
-              <Button onClick={(e) => toPurchaseDetails(e)}>detail</Button>
+          product.map((e,inx) => (
+            <tr key={inx}>
+              <td >{e.id}</td>
+              <td >{e.date}</td>
+              <td >{e.status}</td>
+              <td >{e.ticket}</td>
+              <td >{e.price}</td>
+              <td>
+                <Button onClick={(e) => toPurchaseDetails(e)}>detail</Button>
+
+              </td>
             </tr>
           ))}
       </tbody>

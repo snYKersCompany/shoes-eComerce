@@ -1,7 +1,8 @@
 body {
-    background: rgb(226, 230, 235);
+  background: rgb(36, 36, 36);
 }
+
 * {
-    margin:0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }

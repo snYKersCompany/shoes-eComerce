@@ -6,3 +6,6 @@ export const totalPrice = (products) => {
     }
     return price
 };
+
+
+

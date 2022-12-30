@@ -1,66 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getProductsDetails } from "../../redux/features/products/productsActions";
+import { useSelector, useDispatch } from "react-redux";
 import "../../styles/cardCart.css";
 
 const CardCart = ({
-  setControl,
-  control,
   i,
   img,
   count,
   size,
-  total,
   price,
   name,
   id,
   handleDelete,
+  idAux,
+  setPriceToSend,
+  priceToSend,
 }) => {
-  const [modCount, setModCount] = useState(count);
+  const { productDetail } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(count);
+  const [actualTotalPrice, setActualTotalPrice] = useState(quantity * price);
+  const [actualStock, setActualStock] = useState(productDetail.stock);
 
-  const restCount = () => {
-    setModCount(modCount - 1);
-    let storage = JSON.parse(localStorage.getItem("carrito"));
-    let filtro = storage.filter((product) => {
-      let noRepeat = id !== product.id;
-      return noRepeat;
-    });
-    console.log("storage", storage);
+  useEffect(() => {
+    dispatch(getProductsDetails(id));
+  }, [dispatch, id, quantity]);
 
-    let productModified = {
-      ...storage[i],
-      count: modCount - 1,
-    };
-    console.log("product modified", productModified);
-    let modified = [...filtro, productModified];
-    console.log(modified);
+  const addQuantity = () => {
+    const newQuantity =
+      quantity === productDetail.stock[size] ? actualStock[size] : quantity + 1;
+    setQuantity(newQuantity);
+    const newTotalPrice = newQuantity * price;
+    setActualTotalPrice(newTotalPrice);
+    if (quantity !== productDetail.stock[size]) {
+      setPriceToSend(priceToSend + price);
+    }
 
-    console.log("filtro", filtro);
-    return localStorage.setItem("carrito", JSON.stringify(modified));
-  };
+    const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
+    const product = currentCart.find((cartProduct) => cartProduct.id === id);
 
-  const addCount = () => {
-    setModCount(modCount + 1);
-    let storage = JSON.parse(localStorage.getItem("carrito"));
-    let filtro = storage.filter((product) => {
-      let noRepeat = product.id !== id;
-      return noRepeat;
+    const filteredCart = currentCart.filter((product) => {
+      let filtered = product.idAux === idAux;
+      return filtered;
     });
 
-    console.log("storage", storage);
-    console.log("i", i);
-    let productModified = {
-      ...storage[i],
-      count: modCount + 1,
-    };
-    console.log("product modified", productModified);
-    let modified = [...filtro, (storage[i] = productModified)];
-    console.log(modified);
-
-    console.log("filtro", filtro);
-    localStorage.setItem("carrito", JSON.stringify(modified));
-    setControl(!control);
+    const newCart = [
+      ...filteredCart,
+      (currentCart[product.idAux] = {
+        ...product,
+        count: newQuantity,
+        totalPrice: actualTotalPrice + price,
+      }),
+    ];
+    localStorage.setItem("carrito", JSON.stringify(newCart));
   };
 
-  console.log("cardCart count", count);
+  const restQuantity = () => {
+    const newQuantity = quantity === 1 ? 1 : quantity - 1;
+    setQuantity(newQuantity);
+    const newTotalPrice = newQuantity * price;
+    setActualTotalPrice(newTotalPrice);
+    if (quantity > 1) {
+      setPriceToSend(priceToSend - price);
+    }
+
+    const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
+    const product = currentCart.find((cartProduct) => cartProduct.id === id);
+
+    const filteredCart = currentCart.filter((product) => {
+      let filtered = product.id !== id;
+      return filtered;
+    });
+
+    const newCart = [
+      ...filteredCart,
+      (currentCart[product.id] = {
+        ...product,
+        count: newQuantity,
+        totalPrice: actualTotalPrice - price,
+      }),
+    ];
+    localStorage.setItem("carrito", JSON.stringify(newCart));
+  };
 
   return (
     <div className="d-flex containerCardCart justify-content-evenly">
@@ -76,17 +97,17 @@ const CardCart = ({
         <h3 className="fontSizeCardCart">Size: {size}</h3>
       </div>
       <div className="fontSizeCardCart">
-        <span className="modifyCount" onClick={restCount}>
+        <span className="modifyCount" onClick={restQuantity}>
           -
         </span>
-        <h4>Amount: {modCount}</h4>
-        <span className="modifyCount" onClick={addCount}>
+        <h4>Amount: {quantity}</h4>
+        <span className="modifyCount" onClick={addQuantity}>
           +
         </span>
       </div>
       <div>
         <h3 className="fontSizeCardCart">Price: ${price}</h3>
-        <h3 className="fontSizeCardCart">Total: ${total}</h3>
+        <h3 className="fontSizeCardCart">Total: ${actualTotalPrice}</h3>
       </div>
 
       <div className="d-flex h-100">

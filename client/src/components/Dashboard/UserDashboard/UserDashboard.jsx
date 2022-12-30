@@ -10,20 +10,21 @@ import { useParams } from "react-router-dom";
 
 const UserDashboard = () => {
 
-  console.log(UserDashboard)
+  // console.log(UserDashboard)
  
   const { section } = useParams();
   
   const [control,setControl] = useState("")
   
 
-  if (section) {
-   if (section !== control){
-    setControl(section)
-  }
-  };
-  console.log(control.toString())
+  // if (section.length) {
+  //  if (section !== control){
+  //   setControl(section)
+  // }
+  // };
+  // console.log(control.toString())
 
+  console.log('esto es control =====================================================>>>>>>', control)
 
   return (
     <>

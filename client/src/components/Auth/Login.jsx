@@ -43,7 +43,13 @@ const Login = () => {
     setError("");
     try {
       await logIn(user.email, user.password);
-      navigate("/home");
+      const products = JSON.parse(localStorage.getItem("carrito"));
+      if (products.length > 0) {
+        navigate("/cart");
+      }
+      else {
+        navigate("/home");
+      }
     } catch (error) {
       console.log("catch");
       console.log(error.code);

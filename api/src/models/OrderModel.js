@@ -13,6 +13,8 @@ const orderSchema = mongoose.Schema({
   finalAmount: { type: Number, required: true },
   date: { type: Date, default: new Date().toISOString() },
   voucher: { type: Object, default: {} },
+  _idUser:{ type:String, required: true },
+  username:{ type:String, required: true }
 });
 const OrderModel = mongoose.model("order", orderSchema); //export
 
