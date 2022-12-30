@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+
+/* Carrousel */
+.containerCarrousel {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.individualCardContainer {
+    scroll-snap-align: start;
+}
+
+/*Scroll*/
+.containerCarrousel::-webkit-scrollbar {
+    height: -1px;
+    color:black;
+    top: 30px;
+    
+
+}
+
+.containerCarrousel::-webkit-scrollbar-thumb {
+    background-color: rgb(73, 73, 73);
+    border-radius: 15px;
+    font-size: 1111111px;
+}
+
+
+/* Cards */
+.cardCarrousel{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 3px;
+    height: 200px;
+    border-radius: 15px;
+    background: rgb(156, 155, 163);
+    background: linear-gradient(0deg, rgb(6, 5, 8) 0%, rgba(255,0,0,1) 77%);
+}
+
+.imgCardCarrousel{
+    width: 200px;
+
+}
+
+.txt {
+    
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    margin-top: -50px;
+    
+}
+
+.carr-txt{
+    display: flex;
+    color: rgb(255, 254, 254);
+    margin-left: 80px;
+    font-size: 55px;
+    font-weight: 700;
+    font-family: "Dancing Script";
+    margin-top:40px;
+}

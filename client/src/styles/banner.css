@@ -1,0 +1,126 @@
+.mb1 {
+    display: flex;
+    width: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(100deg, rgba(0,0,0,1) 6%, rgba(0,0,0,1) 46%, rgba(0,0,0,1) 46%, rgba(114,7,7,1) 66%, rgba(227,14,14,0.927608543417367) 69%, rgba(79,5,5,1) 86%, rgba(172,11,11,1) 88%);
+    height: 540px;
+
+} 
+
+ .mb1-img {
+   width: 100%;
+   left: 600px;
+   top: 150px;
+   position: absolute;
+   width: 600px;
+   transform: scaleX(-1) rotate(15deg)
+}
+
+.mb1-img2{
+    width: 100%;
+    left: 610px;
+    top: 200px;
+    position: absolute;
+    width: 600px;
+    transform: scaleX(-1) rotate(15deg)
+} 
+
+.mb1-new{
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    left: 160px;
+    top: 50px;
+}
+
+.mb1-brand{
+   position: absolute;
+   color: rgba(227,14,14,0.927608543417367);
+   font-size: 100px;
+   left: 250px;
+   font-size:100px;
+   font-weight: 800;
+   top: 10px;
+}
+
+.mb1-brand1{
+    position: absolute;
+    color: white;
+    top: 150px;
+    left: 100px;
+    width: 300px;
+    font-size: 50px
+}
+
+.mb1-brand2{
+    position: absolute;
+    color: white;
+    top: 210px;
+    left: 100px;
+    width: 400px;
+    font-size: 50px
+}
+
+.mb1-price{
+    position: absolute;
+    color: white;
+    top: 370px;
+    left: 27px;
+    width: 350px;
+    font-size: 40px
+}
+
+.mb1-text {
+    position: absolute;
+    
+}
+
+.mb1-btn {
+    position: absolute;
+    top: 420px;
+    left: 270px;
+    width: 10em;
+    position: relative;
+    height: 3.5em;
+    border: 3px ridge rgba(227,14,14,0.927608543417367);
+    outline: none;
+    background-color: transparent;
+    color: white;
+    transition: 1s;
+    border-radius: 0.3em;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .mb1-btn::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 3%;
+    width: 95%;
+    height: 40%;
+    background-color: #000000;
+    transition: 0.5s;
+    transform-origin: center;
+  }
+  
+  .mb1-btn::before {
+    content: "";
+    transform-origin: center;
+    position: absolute;
+    top: 80%;
+    left: 3%;
+    width: 95%;
+    height: 40%;
+    background-color: #000000;
+    transition: 0.5s;
+  }
+  
+  .mb1-btn:hover::before,
+  .mb1-btn:hover::after {
+    transform: scale(0)
+  }
+  
+  .mb1-btn:hover {
+    box-shadow: inset 0px 0px 25px rgba(227,14,14,0.927608543417367);;
+  }

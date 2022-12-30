@@ -1,0 +1,64 @@
+.mb2-text {
+    background: rgb(0,9,244);
+background: radial-gradient(circle, rgba(0,9,244,1) 0%, rgba(0,0,0,1) 100%);
+    position: absolute;
+    width: 1349px;
+    height: 240px;
+    top: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg-text{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    width: 340px;
+    text-align: center;
+    
+    
+}
+
+.register-btn{
+    position: absolute;
+    left: 580px;
+    top: 310px;    
+}
+.register-btn {
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #ffffff;
+    position: relative;
+    font-weight: 1000;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+   }
+   
+   .register-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #020488;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 17, 248, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(34, 10, 245, 0.27);
+    transition: all 250ms
+   }
+   
+   .register-btn:hover {
+    color: #e8e8e8;
+   }
+   
+   .register-btn:hover::before {
+    width: 100%;
+   }

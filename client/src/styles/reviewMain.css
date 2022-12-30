@@ -1,0 +1,49 @@
+
+   .rev-txt{
+    display: flex;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    margin-top: 100px;
+    margin-left: 450px;
+    font-weight: 700;
+   }
+   
+
+.rev-contain {
+    display: flex;
+    flex-direction: row;
+    position:center;
+    width: 100%;
+    gap: 50px;
+    margin-top: 30px;
+    margin-left: 110px;
+    
+}
+
+   .card-rev {
+    left: 300px;
+    width: 250px;
+    background: #d1cdcd;
+    overflow: visible;
+    box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    border-radius: 30px 
+     }
+   
+   .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    padding: 0 1rem;
+   }
+   
+   /*Text*/
+   .text-title {
+    text-transform: uppercase;
+    font-size: .8em;
+    color: #000000;
+    letter-spacing: 0.06rem;
+   }
+   
+  
