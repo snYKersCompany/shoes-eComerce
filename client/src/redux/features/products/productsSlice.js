@@ -11,6 +11,7 @@ export const productsSlice = createSlice({
     orders: {},
     categories: [],
     category: {},
+    brand: {},
     brands: [],
     ratings: [],
     genders: [],
@@ -73,7 +74,8 @@ export const productsSlice = createSlice({
       state.products = action.payload;
     },
     getCategory: (state, action) => {
-      state.category[action.payload[1].category] = action.payload[0];
+      state[action.payload[2]][action.payload[1][action.payload[2]]] =
+        action.payload[0];
     },
   },
 });

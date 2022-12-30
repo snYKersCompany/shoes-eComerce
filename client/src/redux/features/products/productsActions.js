@@ -49,6 +49,7 @@ export const getCategorys =
   (filters = {}, orders = {}, search = "") =>
   async (dispatch) => {
     try {
+      const keyFilter = Object.keys(filters)[0];
       let query = filterQuery(filters);
       let orderBy = JSON.stringify(orders);
       if (orderBy.length === 2) orderBy = ``;
@@ -58,7 +59,7 @@ export const getCategorys =
       if (search.length) searchBy = `search=${search}`;
 
       let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
-      dispatch(getCategory([product.data.products, filters]));
+      dispatch(getCategory([product.data.products, filters, keyFilter]));
     } catch (error) {
       return error;
     }

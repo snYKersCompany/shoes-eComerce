@@ -8,7 +8,6 @@ import "../../../styles/homeWomenCarrousel1.css";
 const Carrousel1 = ({ name }) => {
   const dispatch = useDispatch();
   const { running } = useSelector((state) => state.products.category);
-  console.log(running);
   useEffect(() => {
     dispatch(getCategorys({ category: "running" }));
   }, [dispatch]);
