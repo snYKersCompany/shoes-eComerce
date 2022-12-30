@@ -5,7 +5,7 @@ import { getCategorys } from "../../../redux/features/products/productsActions";
 import CardCarrousel2 from "./CardCarrousel2";
 import "../../../styles/homeWomenCarrousel2.css";
 
-const Carrousel2 = ({ name }) => {
+const Carrousel2 = () => {
   const dispatch = useDispatch();
   const { nike } = useSelector((state) => state.products.brand);
   useEffect(() => {

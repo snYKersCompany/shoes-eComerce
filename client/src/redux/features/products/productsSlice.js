@@ -74,8 +74,9 @@ export const productsSlice = createSlice({
       state.products = action.payload;
     },
     getCategory: (state, action) => {
-      state[action.payload[2]][action.payload[1][action.payload[2]]] =
-        action.payload[0];
+      //       tipo de filtro            valor del fitlro         //productos filtrados
+      //state=> category = {running:[{},{}]}
+      state[action.payload[1][0]][action.payload[1][1]] = action.payload[0];
     },
   },
 });
