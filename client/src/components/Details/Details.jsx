@@ -51,10 +51,12 @@ const Details = () => {
         description: productDetail.description,
         img: productDetail.detail_picture,
         size,
+        idAux: productDetail._id + size,
         price: productDetail.price,
         count,
         totalPrice: productDetail.price * count,
       };
+
       localStorage.setItem(
         "carrito",
         JSON.stringify(
@@ -68,9 +70,10 @@ const Details = () => {
         description: productDetail.description,
         img: productDetail.detail_picture,
         size,
+        idAux: productDetail._id + size,
         price: productDetail.price,
         count,
-        totalPrice: totalPrice,
+        totalPrice: productDetail.price * count,
       };
       localStorage.setItem("carrito", JSON.stringify([cart]));
     }
@@ -78,7 +81,6 @@ const Details = () => {
   }
 
   //Fin local Storage
-
   return (
     <>
       <NavBar />

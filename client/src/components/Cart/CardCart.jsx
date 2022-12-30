@@ -12,7 +12,9 @@ const CardCart = ({
   name,
   id,
   handleDelete,
-  totalPrice,
+  idAux,
+  setPriceToSend,
+  priceToSend,
 }) => {
   const { productDetail } = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -30,18 +32,21 @@ const CardCart = ({
     setQuantity(newQuantity);
     const newTotalPrice = newQuantity * price;
     setActualTotalPrice(newTotalPrice);
+    if (quantity !== productDetail.stock[size]) {
+      setPriceToSend(priceToSend + price);
+    }
 
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
     const product = currentCart.find((cartProduct) => cartProduct.id === id);
 
     const filteredCart = currentCart.filter((product) => {
-      let filtered = product.id !== id;
+      let filtered = product.idAux === idAux;
       return filtered;
     });
 
     const newCart = [
       ...filteredCart,
-      (currentCart[product.id] = {
+      (currentCart[product.idAux] = {
         ...product,
         count: newQuantity,
         totalPrice: actualTotalPrice + price,
@@ -55,7 +60,9 @@ const CardCart = ({
     setQuantity(newQuantity);
     const newTotalPrice = newQuantity * price;
     setActualTotalPrice(newTotalPrice);
-    console.log("actual total price en rest", actualTotalPrice);
+    if (quantity > 1) {
+      setPriceToSend(priceToSend - price);
+    }
 
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
     const product = currentCart.find((cartProduct) => cartProduct.id === id);
