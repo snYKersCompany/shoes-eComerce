@@ -15,7 +15,7 @@ import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"; 
 //style
 import "../../styles/navbar.css";
 
