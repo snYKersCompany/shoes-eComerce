@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../../styles/homeWomenBanner3.css";
+import { YezzyGlow } from "../../../utils/womens";
 
 const Banner3 = () => {
   return (
-    <div className="HWB3-container d-flex justify-content-center align-items-center mt-5 mb-5">
+    <div className="HWB3-container d-flex justify-content-center align-items-center">
       <div className="HWB3 d-flex justify-content-center align-items-center">
         <div className="HWB3-section1 d-flex justify-content-center align-items-center ">
-          <p className="HWB3-text1 text-white HWB3-stroke">Adidas</p>
+          <p className="HWB3-text1 text-white HWB3-stroke">{YezzyGlow.brand}</p>
         </div>
 
         <div className="HWB3-section2 d-flex flex-column justify-content-center align-items-center me-5">
@@ -18,13 +20,13 @@ const Banner3 = () => {
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
-          <button className="HWB3-button mt-5"> Buy Now </button>
+          <Link to={`/home/${YezzyGlow._id}`}>
+            <button className="HWB3-button mt-3"> More Info </button>
+          </Link>
         </div>
 
         <div className="HWB3-section3 d-flex justify-content-center align-items-center ms-5">
-          <p className="HWB3-text2 text-white HWB3-stroke">
-            Yezzy Boost V2 GLOW
-          </p>
+          <p className="HWB3-text2 text-white HWB3-stroke">{YezzyGlow.name}</p>
         </div>
       </div>
     </div>
