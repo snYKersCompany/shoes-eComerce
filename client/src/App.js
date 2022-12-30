@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 //Providers
 import { AuthProvider } from "./context/authContext";
 //JSX
+import Basketball from "./components/Home/Basketball/index";
 import Home from "./components/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
@@ -34,6 +35,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/women" element={<Women />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
