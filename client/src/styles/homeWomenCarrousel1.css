@@ -1,0 +1,31 @@
+.HWC1-cardContainer {
+  display: flex;
+  width: 100%;
+  min-height: 150px;
+  background-color: transparent;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 20px;
+}
+
+.HWC1-title {
+  display: flex;
+  margin: 5px 0 -5px 20px;
+  font-size: 1.3rem;
+  font-family: "Bebas Neue", cursive;
+}
+
+.HWC1-card {
+  scroll-snap-align: start;
+  text-decoration: none;
+}
+
+/*Scroll*/
+.HWC1-cardContainer::-webkit-scrollbar {
+  height: 7px;
+}
+
+.HWC1-cardContainer::-webkit-scrollbar-thumb {
+  background: cyan;
+}

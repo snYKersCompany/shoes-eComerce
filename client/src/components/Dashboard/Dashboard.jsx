@@ -20,12 +20,22 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
 
+  
+  useEffect(() => {
+    dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
+    dispatch(getOneUser(user.uid));
+  }, [dispatch, user.uid]);
+  
+  console.log(userDashboard.roles)
+
+
   // useEffect(() => {
   //   dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
   //   dispatch(getOneUser(user.uid));
   // }, [dispatch, user.uid]);
 
   console.log(userDashboard);
+
   return (
     <>
       {userDashboard ? (
