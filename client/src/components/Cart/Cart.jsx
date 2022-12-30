@@ -7,28 +7,28 @@ import Payment from "../Paypal/Payment";
 //BS
 
 const Cart = () => {
+  let priceTotal = 0;
   let productsCart = localStorage.getItem("carrito");
 
   let [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : []
   );
-  console.log(products);
-
-  // {productsCart.length>1? map:}
-  //intera el objeto del local storage para renderizar todas las cards
-  let priceTotal = 0;
-
-  let InfoToSend = {
-    products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmout: (priceTotal =
+  const [priceToSend, setPriceToSend] = useState(
+    (priceTotal =
       products.length >= 1
         ? products.map((el) => {
             priceTotal += el.totalPrice;
             return priceTotal;
           })
-        : 0),
+        : 0)
+  );
+
+  let InfoToSend = {
+    products: JSON.parse(localStorage.getItem("carrito")),
+    finalAmout: priceToSend,
   };
-  console.log(InfoToSend.finalAmout);
+  console.log("price To send", InfoToSend.finalAmout);
+
   const handleDelete = (productId) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(

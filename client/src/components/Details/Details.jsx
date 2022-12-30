@@ -41,11 +41,9 @@ const Details = () => {
   };
 
   const [count, setCount] = useState(false);
-  const [totalPrice, setTotalPrice] = useState();
-  console.log("totalPrice", totalPrice);
+  const [totalPrice, setTotalPrice] = useState(productDetail.price * count);
 
   function setProduct() {
-    setTotalPrice(count * productDetail.price + productDetail.price);
     if (localStorage.getItem("carrito")?.length > 1) {
       let cart = {
         id: productDetail._id,
@@ -55,7 +53,7 @@ const Details = () => {
         size,
         price: productDetail.price,
         count,
-        totalPrice: count * productDetail.price,
+        totalPrice: productDetail.price * count,
       };
       localStorage.setItem(
         "carrito",
