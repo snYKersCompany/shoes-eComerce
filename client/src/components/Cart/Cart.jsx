@@ -7,28 +7,26 @@ import Payment from "../Paypal/Payment";
 //BS
 
 const Cart = () => {
+  let priceTotal = 0;
   let productsCart = localStorage.getItem("carrito");
 
-  let [products, setProducts] = useState(
+  const [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : []
   );
-  console.log(products);
+  const [priceToSend, setPriceToSend] = useState(
+    products.length
+      ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
+      : priceTotal
+  );
 
-  // {productsCart.length>1? map:}
-  //intera el objeto del local storage para renderizar todas las cards
-  let priceTotal = 0;
+  useEffect(() => {}, [priceTotal]);
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmout: (priceTotal =
-      products.length >= 1
-        ? products.map((el) => {
-            priceTotal += el.totalPrice;
-            return priceTotal;
-          })
-        : 0),
+    finalAmout: priceToSend,
   };
-  console.log(InfoToSend.finalAmout);
+  console.log("price To send", InfoToSend.finalAmout);
+
   const handleDelete = (productId) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(
@@ -58,13 +56,16 @@ const Cart = () => {
                 price={el.price}
                 size={el.size}
                 handleDelete={handleDelete}
+                setPriceToSend={setPriceToSend}
+                priceToSend={priceToSend}
+                idAux={el.idAux}
               />
             </>
           );
         })}
         {products.length >= 1 ? (
           <>
-            <h2>Total: ${InfoToSend.finalAmout}</h2>
+            <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
             <Payment products={InfoToSend.products} />
           </>
         ) : (
