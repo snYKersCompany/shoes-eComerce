@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addOrder, addSearch, clearSearch } from "../products/productsSlice";
 import {
   clearUser,
   getAllUser,
@@ -16,10 +17,36 @@ export const findOrCreateUser = (payload) => async () => {
   }
 };
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = (body={}) => async (dispatch) => {
   try {
-    const users = await axios.get("/users");
+    console.log('parado en las actions',JSON.stringify(body))
+    const jsonBody = JSON.stringify(body)
+    const users = await axios.get(`/users?orderSearch=${jsonBody}`);
     return dispatch(getAllUser(users.data.users));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addSearchs = (search) => async (dispatch) => {
+  try {
+    return dispatch(addSearch(search));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const clearSearchs = () => async (dispatch) => {
+  try {
+    return dispatch(clearSearch({}));
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addOrders = (order) => async (dispatch) => {
+  try {
+    return dispatch(addOrder(order));
   } catch (error) {
     return error;
   }
@@ -46,6 +73,7 @@ export const addUserProductFavorites = (_id, favorite) => async (dispatch) => {
     return error;
   }
 };
+
 
 export const deleteUserProductFavorites = (_id, favorite) => async (dispatch) => {
   try {
@@ -76,12 +104,35 @@ export const clearUsers = () => async (dispatch) => {
 
 export const putUserInformation = (user, change) => async (dispatch) => {
   try {
-    console.log(change);
-    console.log(user);
+    // console.log(change);
+    // console.log(user);
     const response = await axios.put(`/users/update/${user}`, change);
-    console.log("cambios para el user ", response.data);
+    // console.log("cambios para el user ", response.data);
     return dispatch(updateUserDashboard(response.data[0]));
   } catch (error) {
     return error;
+  }
+};
+
+export const putUserStatus = (id, body) => async (dispatch) => {
+  
+  try{
+    console.log({body})
+    const putStatusUser = await axios.put(`/users/update/${id}`, body);//como son 2 valores los esperados
+                                                      //espero que se haga en el back
+    return putStatusUser
+  }catch(error){
+    return error;
+  }
+};
+
+export const deleteUser = (_id, body={}) => async (dispatch) => {
+  try{
+    const jsonBody = JSON.stringify(body)
+    const deleteOneUser = await axios.delete(`/users/${_id}?orderSearch=${jsonBody}`)
+    console.log(deleteOneUser.data)
+    return dispatch(getAllUser(deleteOneUser.data.users));
+  }catch(error){
+    return error
   }
 };

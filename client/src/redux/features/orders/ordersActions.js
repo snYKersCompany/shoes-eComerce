@@ -1,9 +1,12 @@
 import axios from "axios";
 import { clearOrderDetail, getAllOrder, getOrderDetail } from "./ordersSlice";
 
-export const getAllOrders = () => async (dispatch) => {
+export const getAllOrders = (body={}) => async (dispatch) => {
   try {
-    const orders = await axios.get("/orders");
+    // console.log('esto es getAllOrders en actions',JSON.stringify(body))
+    const jsonBody = JSON.stringify(body)
+    const orders = await axios.get(`/orders?ordersSort=${jsonBody}`);
+    // console.log('esto es orders en getAllOrders actions', orders.data.order)
     return dispatch(getAllOrder(orders.data.order));
   } catch (error) {
     return error;
@@ -35,3 +38,5 @@ export const getCreateOrderDB = (payload) => {
     return error;
   }
 };
+
+

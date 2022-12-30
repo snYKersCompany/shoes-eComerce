@@ -1,12 +1,12 @@
 :root {
-    --main-bg-color: rgb(36, 36, 36);
+    --main-bg-color: rgb(70, 70, 70);
     /* --main-bg-color: rgb(255,255,255); */
   }
 
 /*Body*/
 
 .fakeBodyBskt{
-    background: var(--main-bg-color);
+    background: rgb(77, 1, 36);
 }
 
 
@@ -21,7 +21,9 @@
     flex-wrap: wrap-reverse;
     width: 100%;
     min-height: 400px;
-    background: linear-gradient(157deg, rgba(255,65,65,1) 0%, rgba(244,159,48,1) 40%, rgba(249,146,56,1) 65%, rgba(252,62,62,1) 100%);
+    /* background: linear-gradient(157deg, rgba(255,65,65,1) 0%, rgba(244,159,48,1) 40%, rgba(249,146,56,1) 65%, rgba(252,62,62,1) 100%); */
+    background: linear-gradient(180deg, rgba(87,24,69,1) 0%, #c70039 88%);
+
     justify-content: center;
     overflow: hidden;
 }
@@ -106,19 +108,31 @@
         }
 
         .containerCarrouselBskt::-webkit-scrollbar-thumb{
-            background-color: rgba(146, 146, 146, 0.568);
+            background: linear-gradient(176deg, rgba(144,12,62,1) 18%, rgba(199,0,57,1) 100%);
+            /* background-color: #db109b95; */
             border-radius: 12px;
         }
 
 
     /* Cards */
-    .cardCarrouselBskt{
+    .cardCarrouselBskt1{
         flex-direction: column;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: rgb(89, 89, 94);
-        /* background: linear-gradient(51deg, rgba(240,188,67,1) 0%, rgba(249,140,56,1) 40%, rgba(255,99,99,1) 97%); */
+        background: linear-gradient(180deg, #5a1744 1%, rgb(157, 9, 44) 90%);
+        margin: 10px 6px;
+        height: 260px;
+        border-radius: 5px;
+        width: 300px;
+        color: rgb(255, 255, 255);
+    }
+    .cardCarrouselBskt2{
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(0deg, #f64934 1%, #d41438 100%);
         margin: 10px 6px;
         height: 260px;
         border-radius: 5px;
@@ -145,14 +159,20 @@
 
     }
 
+.prueba45{
 
+}
 /* Text */
 .containerTextBskt{
     justify-self: center;
     min-height:250px;
     width: 100vw;
     /* background: linear-gradient(55deg, rgb(194, 35, 175) 0%, rgba(48,75,244,1) 40%, rgba(153,56,249,1) 65%, rgb(246, 35, 35) 97%) ; */
-    background-color: black;
+    /* background-color: black; */
+    /* background: linear-gradient(176deg, rgba(144,12,62,1) 18%, rgba(199,0,57,1) 100%); */
+    background: linear-gradient(0deg, rgba(87,24,69,1) 0%, rgba(144,12,62,1) 88%);
+    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -180,12 +200,15 @@
     color: azure;
 }
 .containerTextBsktp{
-    display: flex;
     text-align: center;
     width: 100%;
     font-size: 1.1rem;
     color: azure;
     font-style: italic;
+}
+
+.containerTextBsktp span{
+    color: #1eff00
 }
 
 
@@ -199,6 +222,8 @@
     width: 100%;
     min-height: 400px;
     justify-content: center;
+    background: linear-gradient(176deg, rgba(199,0,57,1) 18%, rgba(255,87,51,1) 100%);
+
 }
 .containerBannerAuxBsktInvertedInv{
     margin-top: 10px;
@@ -207,6 +232,9 @@
     min-height: 400px;
     justify-content: center;
     flex-direction: row-reverse;
+    /* background: linear-gradient(176deg, rgba(199,0,57,1) 18%, rgba(255,87,51,1) 100%); */
+    background: linear-gradient(176deg, rgba(255,87,51,1) 18%, rgb(213, 165, 9) 100%);
+
 }
 
 .imgBannerAuxBskt{

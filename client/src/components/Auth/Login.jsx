@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 ///JSX
 import AlertMSJ from "./AlertMSJ";
 //BS
@@ -15,6 +16,12 @@ import "../../styles/login.css";
 const Login = () => {
   const navigate = useNavigate();
   const { logIn, logInGoogle, resetPassword } = useAuth();
+
+  const [shown, setShown] = useState(false);
+  const [password, setPassword] = useState('');
+    
+  const switchShown = () => setShown(!shown);
+  const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
   /////-----STATES-----/////
   const [user, setUser] = useState({
@@ -36,7 +43,13 @@ const Login = () => {
     setError("");
     try {
       await logIn(user.email, user.password);
-      navigate("/home");
+      const products = JSON.parse(localStorage.getItem("carrito"));
+      if (products.length > 0) {
+        navigate("/cart");
+      }
+      else {
+        navigate("/home");
+      }
     } catch (error) {
       console.log("catch");
       console.log(error.code);
@@ -90,27 +103,45 @@ const Login = () => {
             <Form onSubmit={(e) => handleSubmit(e)}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
+                 <div className="d-flex justify-content-center" >
                 <Form.Control
-                  className="ph-center"
+                  className="ph-center d-flex "
                   onChange={(e) => handleChange(e)}
                   name="email"
                   type="email"
                   placeholder="Enter email"
                 />
+                <span className="d-flex"style={{"width" : "43px"}}></span>
+                 </div> 
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
+                
               </Form.Group>
-              <Form.Group controlId="formBasicPassword" className="mb-4">
-                <Form.Label>Password</Form.Label>
+              
+
+              
+              <Form.Group onChange={onChange} controlId="formBasicPassword" className="mb-4">
+              
+                <Form.Label >Password</Form.Label>
+                <div className="d-flex justify-content-center" >
                 <Form.Control
-                  className="ph-center"
+                  className="ph-center d-flex w-80"
                   onChange={(e) => handleChange(e)}
                   name="password"
-                  type="password"
                   placeholder="Password"
+                  type={shown ? "text" : "password"}
+                  value={password}
                 />
+                
+                <Button  className="d-flex" onClick={switchShown}>
+                  {shown ? <AiFillEye/> : <AiFillEyeInvisible/> }
+                </Button>
+                </div>
               </Form.Group>
+              
+             
+
               <Button variant="primary" type="submit">
                 Login
               </Button>

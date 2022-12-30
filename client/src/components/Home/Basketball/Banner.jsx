@@ -5,7 +5,9 @@ import "./basketball.css"
 const Banner= ({inverted, tittle, content, img, color, secondColor}) =>{    
 
     return(
-        <div className={`${!inverted?"containerBannerAuxBskt":"containerBannerAuxBsktInvertedInv"}`}  style={{"background-color": color}}>
+        <div className={` ${inverted?"containerBannerAuxBskt":"containerBannerAuxBsktInvertedInv"}`}  
+        // style={{"background-color": color}}
+        >
             <div className="imgBannerAuxBskt" >
                 <img src={img} alt="summer season" />
             </div>

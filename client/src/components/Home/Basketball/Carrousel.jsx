@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import CardBasketball from "./CardCarrousel";
 
 
-const Carrousel = ({name, category, gender="men"}) => {
+const Carrousel = ({name, category, gender="men", color}) => {
 
     const dispatch = useDispatch();
     let { products} = useSelector((state) => state.products)
@@ -25,15 +25,15 @@ const Carrousel = ({name, category, gender="men"}) => {
     return(
         <>
         <h3 className="titleCarrouselBskt">{name}</h3>
-        <div className="containerCarrouselBskt">
+        <div className={`containerCarrouselBskt`}>
             {products[0]!=='void' && products?.length >1?
             products.slice(0,25).map(el =>
                 <div className="individualCardContainerBskt">
-                    <CardBasketball name={el.name} img={el.card_picture}  />
+                    <CardBasketball name={el.name} img={el.card_picture} color={color}   />
                 </div>
             )
             :
-            <CardBasketball name={"nada aún"}/>
+            <CardBasketball name={"nada aún"} color={color}/>
         }
         </div>
         </>

@@ -22,6 +22,8 @@ import "./App.css";
 //Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Women from "./components/Home/Women";
+import ModalFormUser from "./components/Create/Modal/ModalFormUser";
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
 );
@@ -31,8 +33,10 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
+          <Route path="/women" element={<Women />} />
           <Route path="/" element={<Home />} />
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
@@ -48,7 +52,7 @@ function App() {
             }
           />
           <Route
-            path="/account"
+            path="/account/:section"
             element={
               <ProtectedRoute>
                 <Dashboard />
@@ -56,7 +60,8 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
-          <Route path="/preview" element={<Preview />} />          
+          <Route path="/preview" element={<Preview />} />
+          <Route path="/create-user" element={<ModalFormUser />} />
         </Routes>
       </AuthProvider>
     </div>

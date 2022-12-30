@@ -26,7 +26,7 @@ const Paginated = () => {
     dispatch(getRatings());
     dispatch(getGenders());
   }, [dispatch, filters, orders, search]);
-  console.log(search);
+  // console.log(search);
   let pages = []; // el número de páginas de mi componente
 
   //logica de recorrido del páginado

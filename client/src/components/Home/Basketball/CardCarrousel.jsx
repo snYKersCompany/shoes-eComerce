@@ -1,8 +1,8 @@
 import React from "react";
 import "./basketball.css"
-const CardBasketball = ({name, img}) => {
+const CardBasketball = ({name, img, color}) => {
     return(
-        <div className="cardCarrouselBskt" >
+        <div className={`cardCarrouselBskt${color}`} >
             <div className="containerImgCardCarrouselBskt">
                 <img src={img} className="imgCardCarrouselBskt" />   
             </div>

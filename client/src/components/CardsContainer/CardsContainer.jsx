@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const CardsContainer = ({ productsSliced }) => {
   const { userDashboard } = useSelector((state) => state.users);
-  console.log(userDashboard);
 
   return (
     <div className="cardsGroupContainer">

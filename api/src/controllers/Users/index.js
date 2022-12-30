@@ -2,8 +2,25 @@ const { UsersModel, Roles, ProductsModel } = require('../../models/ModelsDB.js')
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
 
-const listUsers = async () => {
-    const users = await UsersModel.find();
+const listUsers = async ({search, orderBy}) => {
+    let parameters = {}
+    if(search) {
+        parameters.$or = [
+            {username: {$regex:`(?i)${search}(?-i)`}},
+            {phone: {$regex:`(?i)${search}(?-i)`}},
+            {address: {$regex:`(?i)${search}(?-i)`}},
+            {email: {$regex:`(?i)${search}(?-i)`}},
+            {city: {$regex:`(?i)${search}(?-i)`}},
+            {country: {$regex:`(?i)${search}(?-i)`}}
+        ]
+    }
+
+    let sort = {}
+    if(orderBy) sort = orderBy
+    // console.log({search, orderBy})
+    // console.log({sort, parameters})
+    const users = await UsersModel.find(parameters).sort(sort);
+    // console.log({users})
     return users;
 }
 
@@ -85,27 +102,26 @@ const deleteUser = async (id) => {
     if (!user) {
         return `The user with an id ${id} was not found in the database`;
     }
-    await UsersModel.deleteOne({ _id: id });
-    return `The user with an id ${id} was successfully deleted`;
+    const deleteUser = await UsersModel.deleteOne({ _id: id });
+    console.log(deleteUser)
+    return deleteUser;
 }
 
-const modifyUser = async ({id, name, username, email, country, phone, address, city, state, image}) => {
+const modifyUser = async ({id, name, username, status, roles, email, country, phone, address, city, state, image}) => {
     let user = await UsersModel.findById(id);
-    if (!user) {
-        throw new Error(`The user with an id ${id} was not found in the database`);
-    }
-    console.log(username.length)
+    if (!user) throw new Error(`The user with an id ${id} was not found in the database`);
+    
     let parameters = {}
-
     if (name && name.length) parameters.name = name;
     if (username && username.length) parameters.username = username;
     if (email && email.length) parameters.email = email;
-    // if(password.length) parameters.password = password;
+    if (typeof status === 'boolean') parameters.status = status;
     if (phone && phone.length) parameters.phone = phone;
     if (address && address.length) parameters.address = address;
     if (city && city.length) parameters.city = city;
     if (country && country.length) parameters.country = country;
     if (state && state.length) parameters.state = state;
+    if (roles && roles.length) parameters.roles = roles;
     if (image && image.length) parameters.image = image;
     // if(image.length) parameters.image = image;
     await UsersModel.updateOne({ _id: id }, { $set: parameters });
@@ -138,7 +154,7 @@ const postFavourites = async (id, favourite) => {
     const product = await ProductsModel.findOne({ _id: favourite });
     user.favourites = [product.id];
     await user.save();
-    console.log(user);
+    // console.log(user);
 }
 
 const postUsers = async (array) => {
