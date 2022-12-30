@@ -44,8 +44,8 @@ const Cart = () => {
         {products.map((el, i) => {
           return (
             <CardCart
-              i={i}
               key={i}
+              i={i}
               id={el.id}
               name={el.name}
               totalPrice={el.totalPrice}
