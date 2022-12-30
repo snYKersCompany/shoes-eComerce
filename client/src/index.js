@@ -7,7 +7,7 @@ import { store } from "./redux/store";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 axios.defaults.baseURL = "https://snykers.onrender.com/api"; 
-// axios.defaults.baseURL = "http://localhost:3001/api"
+// axios.defaults.baseURL = "http://localhost:3001/api"   
 
 ReactDOM.render(
   <React.StrictMode>
