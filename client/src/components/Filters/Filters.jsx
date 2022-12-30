@@ -7,6 +7,7 @@ import FilterRating from "./FilterRating.jsx";
 import ClearFilters from "./ClearFilters.jsx";
 import FilterBrand from './FilterBrand';
 import OrderByAlphabet from './OrderByAlphabet';
+import Example from "./FilterContainer.jsx";
 
 const Filters = ({ setActualPage }) => {
   return (
@@ -19,14 +20,14 @@ const Filters = ({ setActualPage }) => {
           <FilterRating setActualPage={setActualPage} />
           <FilterBrand />
           <ClearFilters />
-          
         </div>        
         {/* <FilterOrder /> */}
         <div className="d-flex">
           <OrderByAlphabet/>
           <FilterPrice setActualPage={setActualPage}/>
         </div>
-        
+        <Example /> 
+
       </div>
     </div>
   );

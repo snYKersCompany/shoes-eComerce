@@ -13,6 +13,10 @@ import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
 import { Link } from "react-router-dom";
 
+
+
+import FilterContainer from '../Filters/FilterContainer'
+
 const Paginated = () => {
   const dispatch = useDispatch();
   const { products, filters, orders, search } = useSelector(
@@ -73,8 +77,8 @@ const Paginated = () => {
       <div>
         {/* filters funciona pero no hace el paginado */}
         <div></div>
-        <Filters setActualPage={setActualPage} />
-
+        {/* <Filters setActualPage={setActualPage} /> */}
+        <FilterContainer setActualPage={setActualPage}/>
         {products.length >= 1 ? (
           pages.length < 8 ? (
             <Pagination className="d-flex justify-content-center mt-3">

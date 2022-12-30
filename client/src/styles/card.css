@@ -17,7 +17,9 @@
     left: 0px;
     top: 0px;
     font-family: 'Bebas Neue', cursive;
-    background: linear-gradient(192.03deg, #091E51 6.17%, #1D1C41 93.05%);
+    /* background: linear-gradient(192.03deg, #091E51 6.17%, #1D1C41 93.05%); */
+    background: linear-gradient(45deg, #042653, #081116,#042653 80%);
+
     border-radius: 25px !important;
     margin: 8px;
     overflow: hidden;
