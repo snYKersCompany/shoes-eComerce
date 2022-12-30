@@ -9,7 +9,7 @@ import { useAuth } from "../../context/authContext";
 
 const Payment = ({ products }) => {
   const { user } = useAuth();
-  const { userDashboard } = useSelector((state) => state.data);
+  const { userDashboard } = useSelector((state) => state.users);
   const navigate = useNavigate();
 
   const handleClick = () => {
