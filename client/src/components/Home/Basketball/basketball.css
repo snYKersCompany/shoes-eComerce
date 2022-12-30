@@ -1,0 +1,286 @@
+:root {
+    --main-bg-color: rgb(36, 36, 36);
+    /* --main-bg-color: rgb(255,255,255); */
+  }
+
+/*Body*/
+
+.fakeBodyBskt{
+    background: var(--main-bg-color);
+}
+
+
+
+/* Banner Principal */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unbounded:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+
+.containerBannerBskt{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+    min-height: 400px;
+    background: linear-gradient(157deg, rgba(255,65,65,1) 0%, rgba(244,159,48,1) 40%, rgba(249,146,56,1) 65%, rgba(252,62,62,1) 100%);
+    justify-content: center;
+    overflow: hidden;
+}
+
+.containerInfoBannerBskt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 700px;
+}
+
+
+.titleBannerBskt{
+    display: flex;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 1rem;
+}
+
+.spanBannerBskt{
+    padding-left: 20px;
+    display: flex;
+    color: rgb(255, 255, 255);
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+.buttonBannerBskt{
+    display: flex;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 200;
+    width: fit-content;
+    margin: 1.2rem 0;
+    padding: 6px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 25px;
+    color: white;
+    background-color: rgb(255, 108, 82);
+}
+
+.containerImgBannerBskt{
+    display: flex;
+    margin-top: -50px;
+    height: 500px;
+}
+
+.imgBannerBskt{
+    display: flex;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+    /* Carrousel */
+    .titleCarrouselBskt{
+        display: flex;
+        margin: 7px 0 0 10px;
+        font-size: 27px;
+        color: azure;
+        font-family: 'Bebas Neue', cursive ;
+    }
+
+    .containerCarrouselBskt{
+        width: 100%;
+        height: max-content;
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+    }
+
+    .individualCardContainerBskt{
+        scroll-snap-align: start;
+    }
+
+        /*Scroll*/
+        .containerCarrouselBskt::-webkit-scrollbar{
+            height: 7px;
+        }
+
+        .containerCarrouselBskt::-webkit-scrollbar-thumb{
+            background-color: rgba(146, 146, 146, 0.568);
+            border-radius: 12px;
+        }
+
+
+    /* Cards */
+    .cardCarrouselBskt{
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(89, 89, 94);
+        /* background: linear-gradient(51deg, rgba(240,188,67,1) 0%, rgba(249,140,56,1) 40%, rgba(255,99,99,1) 97%); */
+        margin: 10px 6px;
+        height: 260px;
+        border-radius: 5px;
+        width: 300px;
+        color: rgb(255, 255, 255);
+    }
+
+    .containerImgCardCarrouselBskt{
+        display: flex;
+        height: 185px;
+    }
+
+    .imgCardCarrouselBskt{
+        width: 250px;
+        object-fit: cover;
+    }
+    .containerTextCardCarrouselBskt{
+        height: 60px;
+        justify-content: center;
+        text-align: center;
+        width: 90%;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 1.3rem;
+
+    }
+
+
+/* Text */
+.containerTextBskt{
+    justify-self: center;
+    min-height:250px;
+    width: 100vw;
+    /* background: linear-gradient(55deg, rgb(194, 35, 175) 0%, rgba(48,75,244,1) 40%, rgba(153,56,249,1) 65%, rgb(246, 35, 35) 97%) ; */
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgTextBskt{
+    display: flex;
+    min-height: 300px;
+    padding: 15rem 17rem;
+    background-position: center;
+    background-size: cover;
+}
+
+.infoTextBskt{
+    padding-left: 20px;
+    width: 40%;
+    display: flex;
+}
+.containerTextBskth3{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive ;
+    font-size: 2rem;    
+    color: azure;
+}
+.containerTextBsktp{
+    display: flex;
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+    color: azure;
+    font-style: italic;
+}
+
+
+
+
+
+/* Generic Banner 1  */
+.containerBannerAuxBskt{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    min-height: 400px;
+    justify-content: center;
+}
+.containerBannerAuxBsktInvertedInv{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    min-height: 400px;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.imgBannerAuxBskt{
+    display: flex;
+}
+
+.imgBannerAuxBskt img{
+    width: 50vw;
+    /* margin-left: -1vw; */
+    height: 400px;
+    object-fit: cover;
+}
+
+.infoBannerAuxBskt{
+    width: 40%;
+    margin: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.tittleBannerAuxBskt{
+    font-family: 'Bebas Neue', cursive;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.contentBannerAuxBskt{
+    display: flex;
+    width: 100%;
+    font-size: 1.1rem;
+    font-style: italic;
+    text-align: center;
+    justify-content: center;
+}
+
+.containerBtnBannerAuxBskt{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnBannerAuxBskt{
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 200;
+    width: fit-content;
+    padding: 6px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 25px;
+}
+
+
+
+
+/*Ni idea de porque rompen las dimensiones*/
+
+@media (max-width:1465px) {
+    .containerImgBannerBskt{
+        /* transform: scale(0.8); */
+    }
+}
+
+
+@media (max-width:1220px) {
+    .imgTextBskt{
+        padding: 0;
+        visibility: hidden;
+    }
+
+    .infoTextBskt{
+        width: 80%;
+    }
+}
