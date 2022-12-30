@@ -9,7 +9,7 @@ import Preview from "../Paypal/Preview/Preview";
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
-import {  TbStarOff } from "react-icons/tb";
+import { TbStarOff } from "react-icons/tb";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
 //actions
 import { getProductsDetails } from "../../redux/features/products/productsActions";
@@ -41,8 +41,10 @@ const Details = () => {
   };
 
   const [count, setCount] = useState(false);
+  const [totalPrice, setTotalPrice] = useState();
 
   function setProduct() {
+    setTotalPrice(count * productDetail.price + productDetail.price);
     if (localStorage.getItem("carrito")?.length > 1) {
       let cart = {
         id: productDetail._id,
@@ -52,7 +54,7 @@ const Details = () => {
         size,
         price: productDetail.price,
         count,
-        totalPrice: productDetail.price * count,
+        totalPrice: count * productDetail.price + productDetail.price,
       };
       localStorage.setItem(
         "carrito",
@@ -69,7 +71,7 @@ const Details = () => {
         size,
         price: productDetail.price,
         count,
-        totalPrice: productDetail.price * count,
+        totalPrice: totalPrice,
       };
       localStorage.setItem("carrito", JSON.stringify([cart]));
     }
@@ -155,22 +157,21 @@ const Details = () => {
               <></>
             )}
           </ListGroup>
-          
-           {productDetail.rating === 0 ? 
-          <h1 className="fw-bold fs-5" >
-          None Rating:
-          <br />
-          <TbStarOff />
-          </h1>
-          :
-          <p className="fw-bold fs-5">
-            Rating: <br />
-            {[...Array(productDetail.rating)].map((i, index) => (
-              <BsFillStarFill key={index} className="star " />
-            ))}
-          </p>
-          }      
-              
+
+          {productDetail.rating === 0 ? (
+            <h1 className="fw-bold fs-5">
+              None Rating:
+              <br />
+              <TbStarOff />
+            </h1>
+          ) : (
+            <p className="fw-bold fs-5">
+              Rating: <br />
+              {[...Array(productDetail.rating)].map((i, index) => (
+                <BsFillStarFill key={index} className="star " />
+              ))}
+            </p>
+          )}
         </section>
         <section className="d-flex justify-content-center m-3">
           <label>Count: </label>
