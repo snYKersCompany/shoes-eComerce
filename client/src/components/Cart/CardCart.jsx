@@ -1,25 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getProductsDetails } from "../../redux/features/products/productsActions";
+import { useSelector, useDispatch } from "react-redux";
 import "../../styles/cardCart.css";
-import { current } from "@reduxjs/toolkit";
 
-const CardCart = ({
-  i,
-  img,
-  count,
-  size,
-  total,
-  price,
-  name,
-  id,
-  handleDelete,
-}) => {
+const CardCart = ({ i, img, count, size, price, name, id, handleDelete }) => {
+  const { productDetail } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(count);
+  const [actualTotalPrice, setActualTotalPrice] = useState(quantity * price);
+  const [actualStock, setActualStock] = useState(productDetail.stock);
+
+  useEffect(() => {
+    dispatch(getProductsDetails(id));
+  }, [dispatch, id, quantity]);
+
+  console.log(productDetail);
 
   const addQuantity = () => {
-    const newQuantity = quantity + 1;
+    const newQuantity =
+      quantity === productDetail.stock[size] ? actualStock[size] : quantity + 1;
     setQuantity(newQuantity);
+    const newTotalPrice = price * newQuantity;
+    setActualTotalPrice(newTotalPrice);
+    console.log("new total price", actualTotalPrice);
+
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
     const product = currentCart.find((cartProduct) => cartProduct.id === id);
+
     const filteredCart = currentCart.filter((product) => {
       let filtered = product.id !== id;
       return filtered;
@@ -30,6 +37,7 @@ const CardCart = ({
       (currentCart[product.id] = {
         ...product,
         count: newQuantity,
+        totalPrice: actualTotalPrice,
       }),
     ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
@@ -50,6 +58,7 @@ const CardCart = ({
       (currentCart[product.id] = {
         ...product,
         count: newQuantity,
+        totalPrice: price * newQuantity,
       }),
     ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
@@ -79,7 +88,7 @@ const CardCart = ({
       </div>
       <div>
         <h3 className="fontSizeCardCart">Price: ${price}</h3>
-        <h3 className="fontSizeCardCart">Total: ${total}</h3>
+        <h3 className="fontSizeCardCart">Total: ${actualTotalPrice}</h3>
       </div>
 
       <div className="d-flex h-100">

@@ -7,10 +7,7 @@ import { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 import { Link } from "react-router-dom";
 
-
-
-const Payment = ({ products, finalAmount }) => {
-
+const Payment = ({ products }) => {
   const { user } = useAuth();
 
   useEffect(() => {
@@ -20,7 +17,7 @@ const Payment = ({ products, finalAmount }) => {
   }, [user]);
   // console.log("Payment products", products);
 
-  const handleClick = () => {    
+  const handleClick = () => {
     axios
       .post("http://localhost:3001/api/checkouts", {
         products,
@@ -37,21 +34,19 @@ const Payment = ({ products, finalAmount }) => {
 
   return (
     <>
-      {user?
-      <Button variant="secondary customBtn" onClick={() => handleClick()}>
-        Buy
-      </Button>
-      :
-      <> 
-      <label>Apparently you are not logged in yet</label>
-      <label>Login to continue with your purchase</label>
-      <Link to={"/login"}>
-      <Button variant="secondary customBtn">
-        Login
-      </Button>
-      </Link>
-      </>
-      }
+      {user ? (
+        <Button variant="secondary customBtn" onClick={() => handleClick()}>
+          Buy
+        </Button>
+      ) : (
+        <>
+          <label>Apparently you are not logged in yet</label>
+          <label>Login to continue with your purchase</label>
+          <Link to={"/login"}>
+            <Button variant="secondary customBtn">Login</Button>
+          </Link>
+        </>
+      )}
     </>
   );
 };

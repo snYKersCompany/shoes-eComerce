@@ -17,13 +17,14 @@ const UserDashboard = () => {
   const [control,setControl] = useState("")
   
 
-  if (section) {
-   if (section !== control){
-    setControl(section)
-  }
-  };
+  // if (section.length) {
+  //  if (section !== control){
+  //   setControl(section)
+  // }
+  // };
   // console.log(control.toString())
 
+  console.log('esto es control =====================================================>>>>>>', control)
 
   return (
     <>
