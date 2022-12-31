@@ -14,7 +14,7 @@ const Payment = ({ products }) => {
 
   const handleClick = () => {
     if (user) {
-      if (userDashboard) {
+      if (userDashboard.phone) {
         axios
           .post("http://localhost:3001/api/chekcouts", {
             products,
@@ -28,28 +28,18 @@ const Payment = ({ products }) => {
             console.log(err.message);
           });
       } else {
-        navigate(`complete-data/${userDashboard.id}`);
+        navigate(`/complete-data/${userDashboard._id}`);
       }
     } else {
-      navigate("/complete-register");
+      navigate.push("/complete-register");
     }
   };
 
   return (
     <>
-      {user ? (
-        <Button variant="secondary customBtn" onClick={() => handleClick()}>
-          Buy
-        </Button>
-      ) : (
-        <>
-          <label>Apparently you are not logged in yet</label>
-          <label>Login to continue with your purchase</label>
-          <Link to={"/login"}>
-            <Button variant="secondary customBtn">Login</Button>
-          </Link>
-        </>
-      )}
+      <Button variant="secondary customBtn" onClick={() => handleClick()}>
+        Buy
+      </Button>
     </>
   );
 };
