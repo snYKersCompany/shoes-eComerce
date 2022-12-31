@@ -33,14 +33,10 @@ export default function FormUserUpdate () {
     }, [submit, user]);
 
     function validateInput (value, name) {
-        const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/
-        const expressionEmail = /\S+@\S+\.\S+/
-        const expressionPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+        const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/        
 
         switch (name) {
-            case 'email': return (!value || !expressionEmail.test(value)) ? setError({ ...error, email: 'It must set a valid email' }) : setError({ ...error, email: '' });
-            case 'password': return (!value || !expressionPassword.test(value)) ? setError({ ...error, password: 'Set a valid password, 8 characters, 1 letter and 1 number' }) : setError({ ...error, password: ''});
-            case 'name': return (!value || !expression.test(value)) ? setError({ ...error, name: 'It must set a valid name' }) : setError({ ...error, name: '' });
+            case 'name': return (!value || !expression.test(value)) ? setError({ ...error, name: 'It must set a valid name' }) : setError({ ...error, name: '' });            
             case 'phone': return (!value) ? setError({ ...error, phone: 'Please, provide a phone number' }) : setError({ ...error, phone: '' });
             case 'address': return (!value) ? setError({ ...error, address: 'Please, provide an address' }) : setError({ ...error, address: '' });
             case 'city': return (!value) ? setError({ ...error, city: 'Please provide a name of city' }) : setError({ ...error, city: '' });
@@ -59,18 +55,17 @@ export default function FormUserUpdate () {
             { method: "POST", body: data });
         const info = await response.json();        
         setInput({ ...input, [event.target.name]: info.url });
-        console.log(info.url);
     }
 
     function handleChange (event) {
         setInput({ ...input, [event.target.name]: event.target.value });        
-        validateInput(event.target.value, event.target.name);
+        validateInput(event.target.value, event.target.name);        
     }
 
     async function handleSubmit (event) {
         if (user) {
             event.preventDefault();
-            const response = await Axios.post(`http://localhost:3001/api/users`, input);
+            const response = await Axios.put(`http://localhost:3001/api/users/update/${user.uid}`, input);
             console.log(response);
             setSubmit(true);
             setInput({});
@@ -85,12 +80,7 @@ export default function FormUserUpdate () {
             <div className = "group">
                 <form onSubmit = {handleSubmit} className = "form" id = "Form">
                     <label htmlFor = "email">Email: </label>
-                    <input id = "email" type = "text" name = "email" value = {input.email} className = {error.email && "danger"} onChange = {handleChange}/>
-                    {!error.email ? null : <p className = "danger">{error.email}</p>}
-
-                    <label htmlFor = "password">Password: </label>
-                    <input id = "password" type = "password" name = "password" value = {input.password} className = {error.password && "danger"} onChange = {handleChange}/>
-                    {!error.password ? null : <p className = "danger">{error.password}</p>}
+                    {user ? <input placeholder = {user.email} id = "email" type = "text" name = "email" value = {input.email} className = {error.email && "danger"} onChange = {handleChange} readOnly/> : null}
 
                     <label htmlFor = "name">Name: </label>
                     <input id = "name" type = "text" name = "name" value = {input.name} className = {error.name && "danger"} onChange = {handleChange}/>
@@ -124,7 +114,7 @@ export default function FormUserUpdate () {
                     { file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)} /> : null }
 
                     {/* Submit Button */}
-                    <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.email || !input.email || error.password || !input.password || error.name || !input.name || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
+                    <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.name || !input.name || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
                     {submit && <h2 className = "confirm">Data successfully set!</h2>}
                 </form>
             </div>     
