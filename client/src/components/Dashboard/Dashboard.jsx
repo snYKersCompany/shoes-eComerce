@@ -1,6 +1,6 @@
 import React from "react";
 
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard/UserDashboard";
 import { useDispatch, useSelector } from "react-redux";

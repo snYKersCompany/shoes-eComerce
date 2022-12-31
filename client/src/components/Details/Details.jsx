@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Preview from "../Paypal/Preview/Preview";
 //BS

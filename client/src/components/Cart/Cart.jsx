@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import CardCart from "./CardCart";
 import Payment from "../Paypal/Payment";
 //BS
