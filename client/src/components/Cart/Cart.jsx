@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import CardCart from "./CardCart";
 import Payment from "../Paypal/Payment";
 //BS
@@ -61,22 +61,10 @@ const Cart = () => {
             />
           );
         })}
-        {products.length >= 1 ? (
-          <>
-            <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
-            <Payment products={InfoToSend.products} />            
-          </>
-        ) : (
-          <>
-            <div>
-              <h1>Your cart is empty</h1>
-              <h1>Don`t you know which Snyker choose?</h1>
-              <Link to="/home">
-                <button>Discover new offerts</button>
-              </Link>
-            </div>
-          </>
-        )}
+        <>
+          <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
+          <Payment products={InfoToSend.products} />
+        </>
       </div>
     </>
   );

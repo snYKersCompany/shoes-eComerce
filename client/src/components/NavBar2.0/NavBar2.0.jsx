@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react"; // eslint-disable-line
+import React from "react"; 
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 //JSX
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa";
 import SearchBar from "../SearchBar/SearchBar";
-//SVG
-import cartBlanco from "../../utils/images/navbar/cartBlanco.svg";
-import accBlanco from "../../utils/images/navbar/accBlanco.svg";
 //BS
 import Container from "react-bootstrap/Container";
 import NavB from "react-bootstrap/Navbar";
@@ -15,11 +12,11 @@ import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
-import { useSelector } from "react-redux"; 
+import { useSelector } from "react-redux";
 //style
 import "../../styles/navbar.css";
 
-const NavBar = () => {
+const NavBar2 = () => {
   const { userDashboard } = useSelector((state) => state.users);
 
   const navigate = useNavigate();
@@ -80,7 +77,7 @@ const NavBar = () => {
                       <Dropdown.Item href="/login">Login</Dropdown.Item>
                       <Dropdown.Item href="/register">Register</Dropdown.Item>
                     </>
-                  ) : userDashboard.roles === "user" ? (
+                  ) : userDashboard?.roles === "user" ? (
                     <>
                       <Dropdown.Item href="/account/profile">
                         Profile
@@ -131,4 +128,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavBar2;
