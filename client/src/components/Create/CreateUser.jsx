@@ -26,7 +26,7 @@ export default function FormUser() {
 
   // Hooks
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   const { signUp } = useAuth();
 
   // Variables
@@ -34,13 +34,14 @@ export default function FormUser() {
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
 
   // Functions
-  useEffect(() => {
+  useEffect(() => {    
     if (submit === true) {
       setTimeout(() => {
         document.getElementById("Form").reset();
+        // navigate("/");
       }, 5000);
     }
-  }, [submit, input]);
+  }, [submit]);
 
   function validateInput(value, name) {
     const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
@@ -93,25 +94,20 @@ export default function FormUser() {
     }
   }
 
-  function handleChange(event) {
-    if (event.target.name === "image") {
-
-    }
-    setInput({ ...input, [event.target.name]: event.target.value });
-    validateInput(event.target.value, event.target.name);
-  }
-
-  async function handleImage(event) {
+  async function handleImage (event) {
     setFile(event.target.files[0]);
     const data = new FormData();
     data.append("file", event.target.files[0]);
     data.append("upload_preset", UPLOAD_PRESET);
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`,
-      { method: "POST", body: data }
-    );
-    const info = await response.json();
-    setInput({ ...input, [event.target.name]: info.url });
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`, 
+        { method: "POST", body: data });
+    const info = await response.json();        
+    setInput({ ...input, [event.target.name]: info.url });    
+}
+
+  function handleChange(event) {    
+    setInput({ ...input, [event.target.name]: event.target.value });
+    validateInput(event.target.value, event.target.name);
   }
 
   async function handleSubmit(event) {
@@ -134,8 +130,8 @@ export default function FormUser() {
       country: "",
       image: "",
     });
-    console.log("Response: ", response, "Input: ", input);
-    // navigate("/");
+    setFile(null);
+    console.log("Response: ", response.data);
   }
 
   return (
@@ -252,7 +248,7 @@ export default function FormUser() {
           />
           {!error.country ? null : <p className="danger">{error.country}</p>}
 
-          <input type="file" onChange={handleImage} name="image" />
+          <input type="file" onChange={handleImage} name="image"/>
           {file ? (
             <img alt="Preview" height="60" src={URL.createObjectURL(file)} />
           ) : null}
