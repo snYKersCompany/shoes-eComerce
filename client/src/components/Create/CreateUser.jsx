@@ -44,8 +44,7 @@ export default function FormUserCreate() {
   useEffect(() => {
     if (submit === true) {
       setTimeout(() => {
-        document.getElementById("Form").reset();
-        // navigate("/");
+        document.getElementById("Form").reset();        
       }, 5000);
     }
   }, [submit]);
