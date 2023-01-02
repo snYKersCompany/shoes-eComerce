@@ -44,11 +44,24 @@ export default function FormUserCreate() {
   useEffect(() => {
     if (submit === true) {
       setTimeout(() => {
-        document.getElementById("Form").reset();
-        // navigate("/");
-      }, 5000);
+        setFile(null);
+        setInput({
+          email: "",
+          username: "",
+          password: "",
+          name: "",
+          phone: "",
+          address: "",
+          city: "",
+          cp: "",
+          state: "",
+          country: "",
+          image: "",
+        });
+        document.getElementById("Form").reset();        
+      }, 3000);
     }
-  }, [submit]);
+  }, [submit, file]);
 
   function validateInput(value, name) {
     const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
@@ -66,11 +79,7 @@ export default function FormUserCreate() {
           : setError({ ...error, username: "" });
       case "password":
         return !value || !expressionPassword.test(value)
-          ? setError({
-              ...error,
-              password:
-                "Set a valid password, it must a least 8 characters, 1 letter and 1 number",
-            })
+          ? setError({ ...error, password: "Set a valid password, it must a least 8 characters, 1 letter and 1 number", })
           : setError({ ...error, password: "" });
       case "name":
         return !value || !expression.test(value)
@@ -120,7 +129,7 @@ export default function FormUserCreate() {
 
   function handleChange(event) {
     setInput({ ...input, [event.target.name]: event.target.value });
-    validateInput(event.target.value, event.target.name);
+    validateInput(event.target.value, event.target.name);    
   }
 
   async function handleSubmit(event) {
@@ -128,35 +137,22 @@ export default function FormUserCreate() {
     let data = await signUp(input.email, input.password);
     const uid = data.user.uid;
     const user = { ...input, uid };
-    const response = await axios.post(`/users`, user);
+    const response = await axios.post(`http://localhost:3001/api/users`, user);    
     setSubmit(true);
-    setInput({
-      email: "",
-      username: "",
-      password: "",
-      name: "",
-      phone: "",
-      address: "",
-      city: "",
-      cp: "",
-      state: "",
-      country: "",
-      image: "",
-    });
-    setFile(null);
+    console.log("Response: ", response.data, "File", file);
     axios
-      .post("/checkouts", {
+      .post("http://localhost:3001/api/checkouts", {
         products,
       })
       .then((res) => {
         if (res.data.url) {
+          window.location.reload(true);
           window.location.href = res.data.url;
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log({error: err.message});
       });
-    console.log("Response: ", response.data);
   }
 
   return (

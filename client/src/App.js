@@ -45,7 +45,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<FormUserCreate />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
           
@@ -66,8 +66,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/home/:id" element={<Details />} />
-          <Route path="/complete-register" element={<FormUserCreate />} />
+          <Route path="/home/:id" element={<Details />} />          
           <Route path="/complete-data/:id" element={<FormUserUpdate />} />
           <Route path="/preview" element={<Preview />} />
         </Routes>
