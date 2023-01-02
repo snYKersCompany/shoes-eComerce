@@ -9,9 +9,12 @@ import {
   getGenders,
 } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
-import Filters from "../Filters/Filters";
+// import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+
+
+import '../../styles/filterContainer.css'
 
 
 
@@ -52,7 +55,7 @@ const Paginated = () => {
   //states
   const [actualPage, setActualPage] = useState(1);
   // eslint-disable-next-line
-  const [productsPerPage, setProductsPerPage] = useState(9);
+  const [productsPerPage, setProductsPerPage] = useState(12);
 
   //función recorredora del paginado
   const currentPage = (numberpage) => {
@@ -78,7 +81,7 @@ const Paginated = () => {
         {/* filters funciona pero no hace el paginado */}
         <div></div>
         {/* <Filters setActualPage={setActualPage} /> */}
-        <FilterContainer setActualPage={setActualPage}/>
+       
         {products.length >= 1 ? (
           pages.length < 8 ? (
             <Pagination className="d-flex justify-content-center mt-3">
@@ -172,11 +175,19 @@ const Paginated = () => {
           </button>
         </Link>
       </div> */}
+       
+
+       
       {productsSliced.length>0?
-      <CardsContainer productsSliced={productsSliced} />
+   <div className="d-flex flex-column">
+    <div className="d-flex align-self-start filterMargin "> 
+    <FilterContainer setActualPage={setActualPage}/>
+    </div>  
+    <CardsContainer productsSliced={productsSliced} /> 
+    </div>
       :
       <div className="d-flex justify-content-center align-items-center" style={{"min-height": "70vh"}} >
-        <img  src="https://cdn-icons-png.flaticon.com/512/755/755014.png" 
+        <img  src="https://cdn-icons-png.flaticon.com/512/755/755014.png" alt='not found'
         style={{"width":"200px", "height": "220px"}}
         />
         <div className="d-flex flex-wrap align-items-center text-center" style={{"width": "300px", "color": "#d62828", "font-weight":"bold"}}>
@@ -184,9 +195,93 @@ const Paginated = () => {
         </div>
       </div>
     }
+
+{/* <Pagination className="d-flex justify-content-center mt-3">
+              {actualPage !== 1 ? (
+                <Pagination.Prev onClick={() => currentPage(actualPage - 1)} />
+              ) : (
+                <Pagination.Prev disabled />
+              )}
+
+              {pages.map((page) =>
+                page === actualPage ? (
+                  <Pagination.Item
+                    key={page}
+                    active
+                    onClick={() => currentPage(page)}
+                  >
+                    {page}
+                  </Pagination.Item>
+                ) : (
+                  <Pagination.Item key={page} onClick={() => currentPage(page)}>
+                    {page}
+                  </Pagination.Item>
+                )
+              )}
+              {actualPage !== pages[pages.length - 1] ? (
+                <Pagination.Next onClick={() => currentPage(actualPage + 1)} />
+              ) : (
+                <Pagination.Next disabled />
+              )}
+            </Pagination>
+          ) : ( */}
+            <Pagination className="d-flex justify-content-center mt-3">
+              {/* {First and Prev} */}
+              {actualPage !== 1 ? (
+                <>
+                  <Pagination.First onClick={() => currentPage(1)} />
+                  <Pagination.Prev
+                    onClick={() => currentPage(actualPage - 1)}
+                  />
+                </>
+              ) : (
+                <>
+                  <Pagination.First disabled />
+                  <Pagination.Prev disabled />
+                </>
+              )}
+
+              {/* {pages } */}
+              {slicedPaged().map((page) =>
+                page === actualPage ? (
+                  <Pagination.Item
+                    key={page}
+                    active
+                    onClick={() => currentPage(page)}
+                  >
+                    {page}
+                  </Pagination.Item>
+                ) : 
+                (
+                  <Pagination.Item key={page} onClick={() => currentPage(page)}>
+                    {page}
+                  </Pagination.Item>
+                )
+              )}
+
+              {/* {Next and Last}*/}
+              {actualPage !== pages[pages.length - 1] ? (
+                <>
+                  <Pagination.Next
+                    onClick={() => currentPage(actualPage + 1)}
+                  />
+                  <Pagination.Last
+                    onClick={() => currentPage(pages[pages.length - 1])}
+                  />
+                </>
+              ) : (
+                <>
+                  <Pagination.Next disabled />
+                  <Pagination.Last disabled />
+                </>
+              )}
+            </Pagination>
+          )
     </div>
     :
     <div></div>
+
+    
   );
 };
 

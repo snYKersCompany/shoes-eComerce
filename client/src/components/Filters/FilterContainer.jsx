@@ -12,6 +12,8 @@ import FilterRating from "./FilterRating.jsx";
 import ClearFilters from "./ClearFilters.jsx";
 import FilterBrand from "./FilterBrand";
 import OrderByAlphabet from "./OrderByAlphabet";
+import '../../styles/filterContainer.css';
+
 
 
 function FilterContainer({ setActualPage, name, ...props }) {
@@ -24,8 +26,8 @@ function FilterContainer({ setActualPage, name, ...props }) {
   return (
     <>
     <p>looking for something particular?, use our filters</p>
-      <Button variant="primary" onClick={handleShow} className="me-2">
-        filters
+      <Button variant='custom' onClick={handleShow} className="btnCard1">
+        Filters
       </Button>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>

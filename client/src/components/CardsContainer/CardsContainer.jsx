@@ -10,7 +10,7 @@ const CardsContainer = ({ productsSliced }) => {
   return (
     <div className="cardsGroupContainer">
       <div className="cardsGroup">
-        <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center mb-5">
           {productsSliced?.map((product, i) => (
             <Card
               key={i}
