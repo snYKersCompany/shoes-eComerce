@@ -6,6 +6,7 @@ const categoryMiddleware = require('./CategoryRoute');
 const authRoutes = require('./Auth.Routes');
 const reviewMiddleware = require('./ReviewRoute')
 const checkoutRoute = require('./CheckoutRoute')
+const paypalMiddleware = require('./PaypalRoute')
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/categories', categoryMiddleware);
 router.use('/auth', authRoutes);
 router.use('/reviews', reviewMiddleware)
 router.use('/checkouts', checkoutRoute)
+router.use('/paypal', paypalMiddleware)
 
 module.exports = router;

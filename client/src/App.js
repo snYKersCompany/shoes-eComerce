@@ -26,6 +26,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import Women from "./components/Home/Women";
 import FormUserUpdate from './components/Create/UpdateUser';
 import FormUserCreate from './components/Create/CreateUser';
+import PaypalEjemplo from "./components/Paypal/Paypal";
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
 );
@@ -36,6 +37,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/main" element={<Main />} />
+          <Route path="/execute-payment" element={<PaypalEjemplo />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
