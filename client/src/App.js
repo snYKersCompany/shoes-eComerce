@@ -22,11 +22,11 @@ import "./App.css";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Women from "./components/Home/Women";
-import FormUserUpdate from './components/Create/CreateUser';
+import FormUserUpdate from './components/Create/UpdateUser';
 import FormUserCreate from './components/Create/CreateUser';
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
-); 
+);
 
 function App() {
   return (

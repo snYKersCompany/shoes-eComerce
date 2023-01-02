@@ -13,25 +13,29 @@ const Payment = ({ products }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (user) {
-      if (userDashboard.phone) {
-        axios
-          .post("/checkouts", {
-            products,
-          })
-          .then((res) => {
-            if (res.data.url) {
-              window.location.href = res.data.url;
-            }
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
+    try {
+      if (user) {
+        if (userDashboard.phone) {
+          axios
+            .post("/checkouts", {
+              products,
+            })
+            .then((res) => {
+              if (res.data.url) {
+                window.location.href = res.data.url;
+              }
+            })
+            .catch((err) => {
+              console.log(err.message);
+            });
+        } else {
+          navigate(`/complete-data/${userDashboard._id}`);
+        }
       } else {
-        navigate(`/complete-data/${userDashboard._id}`);
+        navigate("/complete-register");
       }
-    } else {
-      navigate("/complete-register");
+    } catch (error) {
+      console.log(error)
     }
   };
 

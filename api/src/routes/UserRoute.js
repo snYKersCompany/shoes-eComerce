@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
     const users = await controllers.listUsers(arg);
 
     console.log('esto es users en controllers', users)
-    
+
     return res.status(200).json({ users: users });
   } catch (error) {
     next();
@@ -27,8 +27,8 @@ router.get("/", async (req, res) => {
 //middlewares of postUser: [verifyToken, isAdmin, checkRolesExisted, checkDuplicated]
 router.post("/", async (req, res) => {
   try {
-    const { uid, email, username, password, name, phone, address, city, cp, state, country, image, roles } = req.body;
-    const message = await controllers.addUser(uid, email, username, password, name, phone, address, city, cp, state, country, image, roles );
+    const { uid, email, username, name, phone, address, city, cp, state, country, image, roles } = req.body;
+    const message = await controllers.addUser(uid, email, username, name, phone, address, city, cp, state, country, image, roles);
     return res.status(201).json(message);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -63,7 +63,7 @@ router.delete("/:id", async (req, res) => {
     await controllers.deleteUser(id);
 
     const users = await controllers.listUsers(JSON.parse(orderSearch));
-    
+
     return res.status(200).json({ users: users });
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -74,8 +74,8 @@ router.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const data = req.body;
-    
-    const message = await controllers.modifyUser({id, ...data});
+
+    const message = await controllers.modifyUser({ id, ...data });
     return res.status(200).json(message);
   } catch (error) {
     return res.status(400).json({ error: error.message });

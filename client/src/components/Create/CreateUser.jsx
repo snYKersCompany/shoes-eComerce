@@ -1,11 +1,11 @@
-import Axios from "axios";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import "../../styles/FormUser.css";
 
-export default function FormUser() {    
+export default function FormUserCreate() {
   // States
   const [input, setInput] = useState({
     email: "",
@@ -18,7 +18,7 @@ export default function FormUser() {
     cp: "",
     state: "",
     country: "",
-    image: ""    
+    image: "",
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
@@ -26,7 +26,7 @@ export default function FormUser() {
 
   // Hooks
   const dispatch = useDispatch();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const { signUp } = useAuth();
 
   // Variables
@@ -34,7 +34,7 @@ export default function FormUser() {
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
 
   // Functions
-  useEffect(() => {    
+  useEffect(() => {
     if (submit === true) {
       setTimeout(() => {
         document.getElementById("Form").reset();
@@ -51,16 +51,20 @@ export default function FormUser() {
     switch (name) {
       case "email":
         return !value || !expressionEmail.test(value)
-        ? setError({ ...error, email: "It must set a valid email" })
-        : setError({ ...error, email: "" })
+          ? setError({ ...error, email: "It must set a valid email" })
+          : setError({ ...error, email: "" });
       case "username":
         return !value
-        ? setError({ ...error, username: "Please, provide a username" })
-        : setError({ ...error, username: "" })
+          ? setError({ ...error, username: "Please, provide a username" })
+          : setError({ ...error, username: "" });
       case "password":
         return !value || !expressionPassword.test(value)
-        ? setError({ ...error, password: "Set a valid password, it must a least 8 characters, 1 letter and 1 number" })
-        : setError({ ...error, password: "" })
+          ? setError({
+              ...error,
+              password:
+                "Set a valid password, it must a least 8 characters, 1 letter and 1 number",
+            })
+          : setError({ ...error, password: "" });
       case "name":
         return !value || !expression.test(value)
           ? setError({ ...error, name: "It must set a valid name" })
@@ -94,28 +98,30 @@ export default function FormUser() {
     }
   }
 
-  async function handleImage (event) {
+  async function handleImage(event) {
     setFile(event.target.files[0]);
     const data = new FormData();
     data.append("file", event.target.files[0]);
     data.append("upload_preset", UPLOAD_PRESET);
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`, 
-        { method: "POST", body: data });
-    const info = await response.json();        
-    setInput({ ...input, [event.target.name]: info.url });    
-}
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`,
+      { method: "POST", body: data }
+    );
+    const info = await response.json();
+    setInput({ ...input, [event.target.name]: info.url });
+  }
 
-  function handleChange(event) {    
+  function handleChange(event) {
     setInput({ ...input, [event.target.name]: event.target.value });
     validateInput(event.target.value, event.target.name);
   }
 
   async function handleSubmit(event) {
-    event.preventDefault();    
+    event.preventDefault();
     let data = await signUp(input.email, input.password);
-    const uid = data.user.uid;    
+    const uid = data.user.uid;
     const user = { ...input, uid };
-    const response = await Axios.post(`http://localhost:3001/api/users`, user);    
+    const response = await axios.post(`http://localhost:3001/api/users`, user);
     setSubmit(true);
     setInput({
       email: "",
@@ -139,15 +145,15 @@ export default function FormUser() {
       <div className="group">
         <form onSubmit={handleSubmit} className="form" id="Form">
           <label htmlFor="email">Email: </label>
-          <input              
-              id="email"
-              type="text"
-              name="email"
-              value={input.email}
-              className={error.email && "danger"}
-              onChange={handleChange}              
-            />
-          {!error.email ? null : <p className = "danger">{error.email}</p>}
+          <input
+            id="email"
+            type="text"
+            name="email"
+            value={input.email}
+            className={error.email && "danger"}
+            onChange={handleChange}
+          />
+          {!error.email ? null : <p className="danger">{error.email}</p>}
 
           <label htmlFor="username">Username: </label>
           <input
@@ -161,15 +167,15 @@ export default function FormUser() {
           {!error.username ? null : <p className="danger">{error.username}</p>}
 
           <label htmlFor="password">Password: </label>
-          <input              
-              id="password"
-              type="password"
-              name="password"
-              value={input.password}
-              className={error.password && "danger"}
-              onChange={handleChange}              
-            />
-          {!error.password ? null : <p className = "danger">{error.password}</p>}
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={input.password}
+            className={error.password && "danger"}
+            onChange={handleChange}
+          />
+          {!error.password ? null : <p className="danger">{error.password}</p>}
 
           <label htmlFor="name">Name: </label>
           <input
@@ -248,7 +254,7 @@ export default function FormUser() {
           />
           {!error.country ? null : <p className="danger">{error.country}</p>}
 
-          <input type="file" onChange={handleImage} name="image"/>
+          <input type="file" onChange={handleImage} name="image" />
           {file ? (
             <img alt="Preview" height="60" src={URL.createObjectURL(file)} />
           ) : null}
