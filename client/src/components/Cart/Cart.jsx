@@ -19,7 +19,9 @@ const Cart = () => {
       : priceTotal
   );
 
-  useEffect(() => {}, [priceTotal]);
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
@@ -61,10 +63,12 @@ const Cart = () => {
             />
           );
         })}
-        <>
+        {products.length ? (
           <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
-          <Payment products={InfoToSend.products} />
-        </>
+        ) : (
+          <h2 style={{ color: "white" }}>Total: $0</h2>
+        )}
+        <Payment products={InfoToSend.products} />
       </div>
     </>
   );
