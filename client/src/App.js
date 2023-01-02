@@ -15,7 +15,7 @@ import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
 import Error404 from "./components/Error404/Error404";
-import Main from "./components/Home/Main/";
+import Main from "./components/Home/Main";
 
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
