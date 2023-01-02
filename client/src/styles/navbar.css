@@ -28,9 +28,14 @@
   cursor: pointer;
   
 }
-
 .navToggle{
+  padding: 0 !important;
+
+}
+.navToggle::after{
   color: var(--main-bg-color) !important;
+  width: 0;
+  border: none !important;
 }
 
 .navToggle:hover{
@@ -40,12 +45,21 @@
 .cartNav{
   font-size: 2rem;
   color: aliceblue !important;
-  margin-left: -15px;
+  margin-left: 4px;
 }
 
 .linkNav{
   color: white;
-  margin: 0 5px;
+  margin: 0 7px;
+}
+
+.linkNav:hover{
+  color: rgb(216, 216, 216);
+  margin: 0 7px;
+}
+
+.noneDecoration{
+  text-decoration: none;
 }
 
 .accountNav{
@@ -69,10 +83,11 @@
   display: flex;
   height: 60px;
   width: 100vw !important;
+  justify-content: space-evenly ;
+  align-items: center;
 }
 
 .navBarContainerGeneral{
-  justify-content: space-evenly ;
   display: flex;
   width: 100%;
   background-color: var(--main-bg-color) !important;
