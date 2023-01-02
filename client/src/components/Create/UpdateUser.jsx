@@ -5,13 +5,23 @@ import Axios from "axios";
 import { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { getUserDashboards } from "../../redux/features/users/usersActions";
 
 export default function FormUserUpdate () {
+    const { _id } = useParams();
+    const { userDashboard } = useSelector((state) => state.users);
     // States
     const [input, setInput] = useState({ name: '', email: '', phone: '', address: '', city: '', cp: '', state: '', country: '', image: '' });
     const [error, setError] = useState({});
     const [submit, setSubmit] = useState(false);
     const [file, setFile] = useState(null);
+
+    //STRIPE y LOCALSTORAGE
+    let productsCart = localStorage.getItem("carrito");
+
+    const [products, setProducts] = useState(
+        productsCart?.length > 1 ? JSON.parse(productsCart) : []
+    );
 
     // Hooks
     const dispatch = useDispatch();
@@ -24,6 +34,7 @@ export default function FormUserUpdate () {
 
     // Functions
     useEffect(() => {
+        dispatch(getUserDashboards(_id));
         if (submit === true) {
             setTimeout(() => {
                 setSubmit(false);
@@ -68,6 +79,18 @@ export default function FormUserUpdate () {
             const response = await Axios.put(`http://localhost:3001/api/users/update/${user.uid}`, input);
             console.log(response);
             setSubmit(true);
+            Axios
+            .post("http://localhost:3001/api/checkouts", {
+                products,
+            })
+            .then((res) => {
+                if (res.data.url) {
+                    window.location.href = res.data.url;
+                }
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
             setInput({});
         }
         else {

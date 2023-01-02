@@ -24,12 +24,27 @@ const listUsers = async ({search, orderBy}) => {
     return users;
 }
 
-const addUser = async (uid, email, username, roles) => {
+const addUser = async (uid, email, username, password, name, phone, address, city, cp, state, country, image, roles) => {
     const result = await UsersModel.findById({ _id: uid });
     if (result) {
         return result;
     }
-    const user = new UsersModel({ _id: uid, email: email, username: username });
+    const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!expression.test(password)) {
+        throw new Error(`The password is too weak`);
+    }
+    const user = new UsersModel({ _id: uid,
+        email: email, 
+        username: username, 
+        password: await UsersModel.encryptPassword(password),
+        name: name, 
+        phone: phone, 
+        address: address, 
+        city: city, 
+        cp: cp, 
+        state: state, 
+        country: country, 
+        image: image });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
         user.roles = rolesFound.map(e => e.name);
