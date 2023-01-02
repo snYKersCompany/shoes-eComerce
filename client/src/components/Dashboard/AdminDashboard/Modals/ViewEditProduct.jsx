@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import { putProduct } from "../../../../redux/features/products/productsActions";
 
 
-const ViewEditProduct = ({ productDetail, viewStock }) => {
+
+const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
   const dispatch = useDispatch()
 
 
@@ -444,6 +445,7 @@ const ViewEditProduct = ({ productDetail, viewStock }) => {
 
   let handleUpdate = () =>{
     dispatch(putProduct(productDetail._id,form))
+    handlerOnClick()
   }
 
 
@@ -452,11 +454,7 @@ const ViewEditProduct = ({ productDetail, viewStock }) => {
       
       <form className="viewEdit d-flex " onSubmit={(e) => e.preventDefault()}>
         <section className="left d-flex flex-column align-items-center justify-content-center">
-          {Object.values(error).filter(el => el !== false).length>0?
-          <button className="d-flex mb-5 p-1" disabled>save</button>
-         :
-          <button className="d-flex mb-5 p-1" onClick={() => handleUpdate(form) }>save</button>
-        }
+         
          
           <img
             className="imageCard1"
@@ -500,6 +498,11 @@ const ViewEditProduct = ({ productDetail, viewStock }) => {
             </label>
           </fieldset>
           }
+           {Object.values(error).filter(el => el !== false).length>0?
+          <button className="modalBtn p-2" disabled>save</button>
+         :
+          <button className="modalBtn p-2" onClick={() => handleUpdate(form) }>save</button>
+        }
         </section>
 
         {viewStock ? (

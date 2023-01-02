@@ -37,7 +37,7 @@ const NavBar2 = () => {
   return (
     <>
       <div className="d-flex h-100 p-0 navBarContainerGeneral">
-        <Container className="d-flex  ContainerGeneralNav ">
+        <div className="d-flex  ContainerGeneralNav ">
           <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
             <Link to={"/home"} className="NavImg">
               <label className="brandNav">snYKers</label>
@@ -53,11 +53,22 @@ const NavBar2 = () => {
           >
             <div className="d-flex ">
               <div className="d-flex align-items-center">
+              
+              <Link to={"/home"} className="noneDecoration">
+                <NavItem className="linkNav">All</NavItem>
+              </Link>
 
-              <NavItem className="linkNav">Home</NavItem>
-              <NavItem className="linkNav">All</NavItem>
-              <NavItem className="linkNav">Women</NavItem>
-              <NavItem className="linkNav">Basket</NavItem>
+              <Link to={"/basketball"} className="noneDecoration">
+                <NavItem className="linkNav">Basket</NavItem>
+              </Link>
+
+              <Link to={"/home"} className="noneDecoration">
+                <NavItem className="linkNav">Home</NavItem>
+              </Link>
+
+              <Link  to={"/women"} className="noneDecoration">
+                <NavItem className="linkNav">Women</NavItem>
+              </Link>
               </div>
               
               <div className="d-flex align-items-center ms-2">
@@ -77,7 +88,7 @@ const NavBar2 = () => {
                       <Dropdown.Item href="/login">Login</Dropdown.Item>
                       <Dropdown.Item href="/register">Register</Dropdown.Item>
                     </>
-                  ) : userDashboard.roles === "user" ? (
+                  ) : userDashboard?.roles === "user" ? (
                     <>
                       <Dropdown.Item href="/account/profile">
                         Profile
@@ -122,7 +133,7 @@ const NavBar2 = () => {
             </div>
 
           </Nav>
-        </Container>
+        </div>
       </div>
     </>
   );

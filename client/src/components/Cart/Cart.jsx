@@ -17,22 +17,30 @@ const Cart = () => {
     products.length
       ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
       : priceTotal
-  );
 
-  useEffect(() => {}, [priceTotal]);
+      );
+      // console.log(products.reduce((acc, product) => (acc = acc + product.totalPrice), 0))
+
+  useEffect(() => {
+    console.log(products);
+  });
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
     finalAmout: priceToSend,
   };
-  console.log("price To send", InfoToSend.finalAmout);
 
-  const handleDelete = (productId) => {
+  console.log("price To send", priceToSend);
+
+
+
+  const handleDelete = (productId, TotalPrice) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(
       products.filter((el) => el.id + el.size !== productId),
       productId
     );
+    setPriceToSend(priceToSend - TotalPrice)
     localStorage.setItem("carrito", JSON.stringify(filtered));
     setProducts(filtered);
   };
@@ -61,10 +69,12 @@ const Cart = () => {
             />
           );
         })}
-        <>
+        {products.length ? (
           <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
-          <Payment products={InfoToSend.products} />
-        </>
+        ) : (
+          <h2 style={{ color: "white" }}>Total: $0</h2>
+        )}
+        <Payment products={InfoToSend.products} />
       </div>
     </>
   );
