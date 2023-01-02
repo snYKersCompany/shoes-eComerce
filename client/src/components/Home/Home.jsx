@@ -8,6 +8,10 @@ import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import Carrousel from "../Carrousel";
 //actions
 
+
+
+import  '../../styles/palHome.css'
+
 const Home = () => {
   //devuelve el user del contexto
   const { user } = useAuth();
@@ -20,11 +24,14 @@ const Home = () => {
 
   return (
     <>
+    <NavBar />
+    <div className="elHome">
       <ScrollToTop />
-      <NavBar />
-      <Carrousel />
+      
+      {/* <Carrousel /> */}
       <Paginated />
       <Footer />
+      </div>
     </>
   );
 };
