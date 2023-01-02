@@ -7,6 +7,14 @@
 
 } 
 
+.mb1-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  width: 50vw;
+}
+
  .mb1-img {
    width: 100%;
    left: 600px;
@@ -19,68 +27,44 @@
 .mb1-img2{
     width: 100%;
     left: 610px;
-    top: 200px;
+    top: 230px;
     position: absolute;
     width: 600px;
     transform: scaleX(-1) rotate(15deg)
 } 
 
 .mb1-new{
-    position: absolute;
     color: white;
     font-size: 40px;
-    left: 160px;
-    top: 50px;
 }
 
 .mb1-brand{
-   position: absolute;
+  text-align: center;
    color: rgba(227,14,14,0.927608543417367);
    font-size: 100px;
-   left: 250px;
    font-size:100px;
    font-weight: 800;
-   top: 10px;
 }
 
 .mb1-brand1{
-    position: absolute;
+   text-align: start;
     color: white;
-    top: 150px;
-    left: 100px;
     width: 300px;
-    font-size: 50px
+    font-size: 50px;
+    font-weight: 500;
 }
 
-.mb1-brand2{
-    position: absolute;
-    color: white;
-    top: 210px;
-    left: 100px;
-    width: 400px;
-    font-size: 50px
-}
 
 .mb1-price{
-    position: absolute;
-    color: white;
-    top: 370px;
-    left: 27px;
+  margin-top: 20px;
+   text-align: center;
+    color: rgb(255, 153, 0);
     width: 350px;
-    font-size: 40px
+    font-size: 40px;
+    font-weight: 800;
 }
-
-.mb1-text {
-    position: absolute;
-    
-}
-
 .mb1-btn {
-    position: absolute;
-    top: 420px;
-    left: 270px;
     width: 10em;
-    position: relative;
     height: 3.5em;
     border: 3px ridge rgba(227,14,14,0.927608543417367);
     outline: none;
@@ -94,9 +78,6 @@
   
   .mb1-btn::after {
     content: "";
-    position: absolute;
-    top: -10px;
-    left: 3%;
     width: 95%;
     height: 40%;
     background-color: #000000;
@@ -107,9 +88,6 @@
   .mb1-btn::before {
     content: "";
     transform-origin: center;
-    position: absolute;
-    top: 80%;
-    left: 3%;
     width: 95%;
     height: 40%;
     background-color: #000000;

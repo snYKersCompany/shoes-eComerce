@@ -1,33 +1,30 @@
 
    .rev-txt{
     display: flex;
+    justify-content: center;
     color: rgb(255, 255, 255);
-    width: 100%;
-    margin-top: 100px;
-    margin-left: 450px;
     font-weight: 700;
+    margin-top: 50px;
    }
    
 
 .rev-contain {
     display: flex;
+    justify-content: center;
     flex-direction: row;
-    position:center;
     width: 100%;
     gap: 50px;
     margin-top: 30px;
-    margin-left: 110px;
-    
 }
 
    .card-rev {
-    left: 300px;
     width: 250px;
     background: #d1cdcd;
-    overflow: visible;
+    overflow: hidden;
     box-shadow: 0 5px 20px 2px rgba(0, 0, 0, 0.1);
     display: flex;
-    border-radius: 30px 
+    border-radius: 30px; 
+   
      }
    
    .card-info {

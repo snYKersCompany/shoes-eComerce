@@ -6,9 +6,11 @@
 .mb3-container{
     width: 100%;
     display: flex;
-    margin-top: 100px;
-}
+    justify-content: center;
+    margin-top: 60px;
 
+
+}
 
 .mb3{
     background: rgb(0,0,0);
@@ -18,20 +20,17 @@
 }
 
 .mb3-image{
-  
-    margin-left: 250px;
+  display: flex;
+  justify-content: center;
 }
 
 .mb3-image1{
-    left: 600px;
     width: 450px;
     transform: scaleX(-1) rotate(15deg);
-    object-fit: cover;
+
 }
 
 .mb3-image2{
-    left: 600px;
     width: 450px;
     transform: rotate(15deg);
-    object-fit: cover;
 }

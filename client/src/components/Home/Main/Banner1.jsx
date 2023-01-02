@@ -6,15 +6,16 @@ const Banner = () => {
   return (
     <div className="mb1-container">
       <div className="mb1">
-        <button className="mb1-btn">
+        <div className="mb1-text">
+          <div className="d-flex align-items-center">
+          <p className="mb1-new">new</p>
+          <h3 className="mb1-brand">Nike</h3>
+          </div>
+          <p className="mb1-brand1">Air Force 1 '07 LV8 Overbranding'</p>
+          <p className="mb1-price">USD$33</p>
+          <button className="mb1-btn">
           MORE INFO
         </button>
-        <div className="mb1-text">
-          <h1 className="mb1-new">new</h1>
-          <h1 className="mb1-brand">Nike</h1>
-          <h1 className="mb1-brand1">Air Force 1</h1>
-          <h1 className="mb1-brand2">'07 LV8 Overbranding'</h1>
-          <h3 className="mb1-price">USD$33</h3>
         </div>
         <div className="mb1-image">
           <img

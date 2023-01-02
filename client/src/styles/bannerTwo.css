@@ -1,13 +1,13 @@
-.mb2-text {
+.mb2-container {
     background: rgb(0,9,244);
-background: radial-gradient(circle, rgba(0,9,244,1) 0%, rgba(0,0,0,1) 100%);
-    position: absolute;
-    width: 1349px;
-    height: 240px;
-    top: 1100px;
+    background: radial-gradient(circle, rgba(0,9,244,1) 0%, rgba(0,0,0,1) 100%);
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    height: 260px;
 }
 
 .reg-text{
@@ -20,9 +20,8 @@ background: radial-gradient(circle, rgba(0,9,244,1) 0%, rgba(0,0,0,1) 100%);
 }
 
 .register-btn{
-    position: absolute;
-    left: 580px;
-    top: 310px;    
+      display: flex;
+
 }
 .register-btn {
     padding: 15px 25px;

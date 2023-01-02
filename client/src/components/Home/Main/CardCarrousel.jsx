@@ -4,9 +4,9 @@ import "../../../styles/carrouselMain.css";
 const CardCarrousel = ({name, img}) => {
     return(
         <div className="cardCarrousel" >
-        <div>
-        <img src={img} className="imgCardCarrousel" />   
+        <div className="img-back">
         </div >
+        <img src={img} className="imgCardCarrousel" /> 
         <label className="d-flex txt">{name}</label>
     </div>
     )

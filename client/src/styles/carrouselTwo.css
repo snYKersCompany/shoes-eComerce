@@ -20,12 +20,11 @@
 .carr-txt2{
     display: flex;
     color: rgb(255, 255, 255);
-    margin-left: 80px;
-    margin-top: 360px;
-    font-size: 55px;
+    font-size: 45px;
     font-weight: 700;
     font-family: "Dancing Script";
-    margin-left: 80px;
+    margin-top: 50px;
+    margin-left: 35px;
 }
 
 .carr-imgTwo{

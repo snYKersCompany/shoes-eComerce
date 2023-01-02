@@ -3,49 +3,57 @@
 
 /* Carrousel */
 .containerCarrousel {
-    width: 100%;
-    min-height: 300px;
     display: flex;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    overflow-y: hidden;
 }
 
 .individualCardContainer {
     scroll-snap-align: start;
+
+
 }
 
 /*Scroll*/
 .containerCarrousel::-webkit-scrollbar {
-    height: -1px;
     color:black;
-    top: 30px;
-    
+    height: 5px;
 
 }
 
 .containerCarrousel::-webkit-scrollbar-thumb {
-    background-color: rgb(73, 73, 73);
-    border-radius: 15px;
-    font-size: 1111111px;
+    background-color: rgb(175, 8, 8);
+    border-radius: 10px;
 }
 
 
 /* Cards */
-.cardCarrousel{
+.cardCarrousel {
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px 3px;
+    margin: 5px 3px;
     height: 200px;
     border-radius: 15px;
-    background: rgb(156, 155, 163);
-    background: linear-gradient(0deg, rgb(6, 5, 8) 0%, rgba(255,0,0,1) 77%);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 26%, rgba(94,81,81,1) 55%, rgba(0,0,0,1) 84%);
+    z-index: -1 !important;
+    overflow: hidden;
+    
 }
-
 .imgCardCarrousel{
     width: 200px;
+    /* transform: scaleY(-1) rotate(-75deg) */
+    z-index: 3 !important;
+    transform:  scaleX(-1) rotate(10deg);
 
+}
+
+.img-back{
+    background-color: white;
+    /* clip-path: polygon(100% 69%, 71% 69%, 90% 67%, 68% 61%, 98% 54%, 75% 54%, 99% 40%, 80% 39%, 98% 32%, 56% 42%, 98% 25%, 63% 33%, 97% 16%, 0% 24%, 33% 31%, 0 39%, 31% 42%, 0 49%, 13% 49%, 1% 59%, 25% 54%, 0 72%, 10% 68%, 3% 78%, 22% 70%, 4% 84%); */
+    /* transform:  rotate(90deg); */
 }
 
 .txt {
@@ -60,8 +68,8 @@
     display: flex;
     color: rgb(255, 254, 254);
     margin-left: 80px;
-    font-size: 55px;
+    font-size: 2rem;
     font-weight: 700;
     font-family: "Dancing Script";
-    margin-top:40px;
+    margin-top:20px;
 }
