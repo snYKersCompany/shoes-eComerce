@@ -21,6 +21,7 @@
     flex-wrap: wrap-reverse;
     width: 100%;
     min-height: 400px;
+    margin: 10px 0;
     /* background: linear-gradient(157deg, rgba(255,65,65,1) 0%, rgba(244,159,48,1) 40%, rgba(249,146,56,1) 65%, rgba(252,62,62,1) 100%); */
     background: linear-gradient(180deg, rgba(87,24,69,1) 0%, #c70039 88%);
 
@@ -159,9 +160,7 @@
 
     }
 
-.prueba45{
 
-}
 /* Text */
 .containerTextBskt{
     justify-self: center;
@@ -217,7 +216,7 @@
 
 /* Generic Banner 1  */
 .containerBannerAuxBskt{
-    margin-top: 10px;
+    margin: 12px 0;
     display: flex;
     width: 100%;
     min-height: 400px;

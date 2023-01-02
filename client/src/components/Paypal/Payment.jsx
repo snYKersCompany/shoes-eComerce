@@ -16,7 +16,7 @@ const Payment = ({ products }) => {
     if (user) {
       if (userDashboard.phone) {
         axios
-          .post("http://localhost:3001/api/chekcouts", {
+          .post("/checkouts", {
             products,
           })
           .then((res) => {
@@ -31,7 +31,7 @@ const Payment = ({ products }) => {
         navigate(`/complete-data/${userDashboard._id}`);
       }
     } else {
-      navigate.push("/complete-register");
+      navigate("/complete-register");
     }
   };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import CardCart from "./CardCart";
 import Payment from "../Paypal/Payment";
 //BS
@@ -18,23 +18,26 @@ const Cart = () => {
       ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
       : priceTotal
   );
+  // console.log(products.reduce((acc, product) => (acc = acc + product.totalPrice), 0))
 
   useEffect(() => {
     console.log(products);
-  }, [products]);
+  });
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
     finalAmout: priceToSend,
   };
-  console.log("price To send", InfoToSend.finalAmout);
 
-  const handleDelete = (productId) => {
+  console.log("price To send", priceToSend);
+
+  const handleDelete = (productId, TotalPrice) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(
       products.filter((el) => el.id + el.size !== productId),
       productId
     );
+    setPriceToSend(priceToSend - TotalPrice);
     localStorage.setItem("carrito", JSON.stringify(filtered));
     setProducts(filtered);
   };
