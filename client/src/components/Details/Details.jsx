@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Preview from "../Paypal/Preview/Preview";
 //BS
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
-import {  TbStarOff } from "react-icons/tb";
+import { TbStarOff } from "react-icons/tb";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
 //actions
 import { getProductsDetails } from "../../redux/features/products/productsActions";
@@ -41,6 +41,7 @@ const Details = () => {
   };
 
   const [count, setCount] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(productDetail.price * count);
 
   function setProduct() {
     if (localStorage.getItem("carrito")?.length > 1) {
@@ -50,10 +51,12 @@ const Details = () => {
         description: productDetail.description,
         img: productDetail.detail_picture,
         size,
+        idAux: productDetail._id + size,
         price: productDetail.price,
         count,
         totalPrice: productDetail.price * count,
       };
+
       localStorage.setItem(
         "carrito",
         JSON.stringify(
@@ -67,6 +70,7 @@ const Details = () => {
         description: productDetail.description,
         img: productDetail.detail_picture,
         size,
+        idAux: productDetail._id + size,
         price: productDetail.price,
         count,
         totalPrice: productDetail.price * count,
@@ -77,7 +81,6 @@ const Details = () => {
   }
 
   //Fin local Storage
-
   return (
     <>
       <NavBar />
@@ -155,22 +158,21 @@ const Details = () => {
               <></>
             )}
           </ListGroup>
-          
-           {productDetail.rating === 0 ? 
-          <h1 className="fw-bold fs-5" >
-          None Rating:
-          <br />
-          <TbStarOff />
-          </h1>
-          :
-          <p className="fw-bold fs-5">
-            Rating: <br />
-            {[...Array(productDetail.rating)].map((i, index) => (
-              <BsFillStarFill key={index} className="star " />
-            ))}
-          </p>
-          }      
-              
+
+          {productDetail.rating === 0 ? (
+            <h1 className="fw-bold fs-5">
+              None Rating:
+              <br />
+              <TbStarOff />
+            </h1>
+          ) : (
+            <p className="fw-bold fs-5">
+              Rating: <br />
+              {[...Array(productDetail.rating)].map((i, index) => (
+                <BsFillStarFill key={index} className="star " />
+              ))}
+            </p>
+          )}
         </section>
         <section className="d-flex justify-content-center m-3">
           <label>Count: </label>

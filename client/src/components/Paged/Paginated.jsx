@@ -77,7 +77,7 @@ const Paginated = () => {
   return (
     products[0] !== "void"?
     <div>
-      <div>
+      <div >
         {/* filters funciona pero no hace el paginado */}
         <div></div>
         {/* <Filters setActualPage={setActualPage} /> */}

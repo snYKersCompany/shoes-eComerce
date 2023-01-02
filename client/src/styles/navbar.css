@@ -1,3 +1,13 @@
+:root{
+  --main-bg-color: #212529;
+}
+
+
+@font-face {
+  font-family: NexaSlabThin;
+  src: url(../../src/utils/fonts/NexaSlabThin.ttf);
+}
+
 @media screen and (max-width: 760px) {
   .logo {
     position: absolute;
@@ -6,6 +16,56 @@
   }
 }
 
+.brandNav{
+  font-family: NexaSlabThin;
+  color: white;
+  display: flex;
+  font-size: 2.2rem;
+  height: 100%;
+  align-items: center;
+}
+.brandNav:hover{
+  cursor: pointer;
+  
+}
+.navToggle{
+  padding: 0 !important;
+
+}
+.navToggle::after{
+  color: var(--main-bg-color) !important;
+  width: 0;
+  border: none !important;
+}
+
+.navToggle:hover{
+  color: transparent !important;
+}
+
+.cartNav{
+  font-size: 2rem;
+  color: aliceblue !important;
+  margin-left: 4px;
+}
+
+.linkNav{
+  color: white;
+  margin: 0 7px;
+}
+
+.linkNav:hover{
+  color: rgb(216, 216, 216);
+  margin: 0 7px;
+}
+
+.noneDecoration{
+  text-decoration: none;
+}
+
+.accountNav{
+  font-size: 1.5rem;
+  color: aliceblue !important;
+}
 
 .ContainerNavImg{
   height: 100%;
@@ -14,11 +74,23 @@
 
 .NavImg{
   display: flex !important;
-  transform: scale(1.6);
+  height: 100%;
+  text-decoration: none !important;
+  align-items: center;
 }
 
 .ContainerGeneralNav{
-  height: 80px;
+  display: flex;
+  height: 60px;
+  width: 100vw !important;
+  justify-content: space-evenly ;
+  align-items: center;
+}
+
+.navBarContainerGeneral{
+  display: flex;
+  width: 100%;
+  background-color: var(--main-bg-color) !important;
 }
 
 /* .ContainerGeneralNav:hover{
