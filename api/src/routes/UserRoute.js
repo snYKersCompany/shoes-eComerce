@@ -27,8 +27,8 @@ router.get("/", async (req, res) => {
 //middlewares of postUser: [verifyToken, isAdmin, checkRolesExisted, checkDuplicated]
 router.post("/", async (req, res) => {
   try {
-    const { uid, email, username, roles } = req.body;
-    const message = await controllers.addUser(uid, email, username, roles);
+    const { uid, email, username, password, name, phone, address, city, cp, state, country, image, roles } = req.body;
+    const message = await controllers.addUser(uid, email, username, password, name, phone, address, city, cp, state, country, image, roles );
     return res.status(201).json(message);
   } catch (error) {
     return res.status(400).json({ error: error.message });

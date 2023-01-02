@@ -3,7 +3,19 @@ import { getProductsDetails } from "../../redux/features/products/productsAction
 import { useSelector, useDispatch } from "react-redux";
 import "../../styles/cardCart.css";
 
-const CardCart = ({ i, img, count, size, price, name, id, handleDelete }) => {
+const CardCart = ({
+  i,
+  img,
+  count,
+  size,
+  price,
+  name,
+  id,
+  handleDelete,
+  idAux,
+  setPriceToSend,
+  priceToSend,
+}) => {
   const { productDetail } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(count);
@@ -14,53 +26,53 @@ const CardCart = ({ i, img, count, size, price, name, id, handleDelete }) => {
     dispatch(getProductsDetails(id));
   }, [dispatch, id, quantity]);
 
-  console.log(productDetail);
-
   const addQuantity = () => {
     const newQuantity =
       quantity === productDetail.stock[size] ? actualStock[size] : quantity + 1;
     setQuantity(newQuantity);
-    const newTotalPrice = price * newQuantity;
+    const newTotalPrice = newQuantity * price;
     setActualTotalPrice(newTotalPrice);
-    console.log("new total price", actualTotalPrice);
+    if (quantity !== productDetail.stock[size]) {
+      setPriceToSend(priceToSend + price);
+    }
+    //DIFINICION DE PROPS
 
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
-    const product = currentCart.find((cartProduct) => cartProduct.id === id);
+    const newCart = [...currentCart];
+    const productIndex = newCart.findIndex(
+      (cartProduct) => cartProduct.idAux === idAux
+    );
 
-    const filteredCart = currentCart.filter((product) => {
-      let filtered = product.id !== id;
-      return filtered;
-    });
+    newCart[productIndex] = {
+      ...newCart[productIndex],
+      count: newQuantity,
+      totalPrice: actualTotalPrice + price,
+    };
 
-    const newCart = [
-      ...filteredCart,
-      (currentCart[product.id] = {
-        ...product,
-        count: newQuantity,
-        totalPrice: actualTotalPrice,
-      }),
-    ];
     localStorage.setItem("carrito", JSON.stringify(newCart));
   };
 
   const restQuantity = () => {
     const newQuantity = quantity === 1 ? 1 : quantity - 1;
     setQuantity(newQuantity);
+    const newTotalPrice = newQuantity * price;
+    setActualTotalPrice(newTotalPrice);
+    if (quantity > 1) {
+      setPriceToSend(priceToSend - price);
+    }
+    //DIFINICION DE PROPS
     const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
-    const product = currentCart.find((cartProduct) => cartProduct.id === id);
-    const filteredCart = currentCart.filter((product) => {
-      let filtered = product.id !== id;
-      return filtered;
-    });
+    const newCart = [...currentCart];
+    const productIndex = newCart.findIndex(
+      (cartProduct) => cartProduct.idAux === idAux
+    );
 
-    const newCart = [
-      ...filteredCart,
-      (currentCart[product.id] = {
-        ...product,
-        count: newQuantity,
-        totalPrice: price * newQuantity,
-      }),
-    ];
+    newCart[productIndex] = {
+      ...newCart[productIndex],
+      count: newQuantity,
+      totalPrice: actualTotalPrice - price,
+    };
+
     localStorage.setItem("carrito", JSON.stringify(newCart));
   };
 

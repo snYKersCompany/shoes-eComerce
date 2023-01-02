@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import '../../styles/checkoutSuccess.css';
 import { executePayment } from "../../redux/features/orders/ordersActions";
 import { useDispatch } from "react-redux";

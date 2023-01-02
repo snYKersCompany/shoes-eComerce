@@ -1,3 +1,6 @@
+.container {
+  margin-top: 50px;
+}
 .form {
   display: flex;
   flex-direction: column;
@@ -12,7 +15,7 @@
   border-radius: 7px;
   box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
   text-align: center;
-  opacity: 0.8;
+  opacity: 0.8;  
 }
 .group {
   --color: #5757577e;

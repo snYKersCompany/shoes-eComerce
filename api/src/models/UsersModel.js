@@ -13,11 +13,13 @@ function validateEmail(str) {
 const userSchema = mongoose.Schema({
   _id: { type: String, require: true },
   name: { type: String, validate: [validateName, 'The field name cannot contain strange characters'] },
-  username: { type: String },
+  username: { type: String, default: "" },
+  password: { type: String, require: true },
   email: { type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format'] },
   phone: { type: String, default: "" },
   address: { type: String, /*validate: [validateAddress, 'It must have more than 5 characters']*/ },
   city: { type: String, default: "" },
+  cp: { type: String, default: "" },
   image: { type: String, default: "https://cdn-icons-png.flaticon.com/512/25/25634.png"},
   status:{ type: Boolean, default: true },
   state:{ type: String },
@@ -42,7 +44,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.statics.encryptPassword = async (password) => {
-  if (!(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(password))) {
+  if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))) {
     throw new Error(`The password is too weak`);
   }
   const salt = await bcrypt.genSalt(10)

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 //JSX
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../NavBar2.0/NavBar2.0";
 import Paginated from "../Paged/Paginated.jsx";
 import Footer from "../Footer/Footer";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";

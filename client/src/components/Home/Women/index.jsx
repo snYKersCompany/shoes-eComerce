@@ -5,7 +5,7 @@ import Banner3 from "./Banner3";
 import Carrousel1 from "./Carrousel1";
 import Carrousel2 from "./Carrousel2";
 import Footer from "../../Footer/Footer";
-import NavBar from "../../NavBar/NavBar";
+import NavBar from "../../NavBar2.0/NavBar2.0";
 import ScrollToTop from "../../ScrollToTop/ScrollToTop";
 import Text1 from "./Text1";
 import Text2 from "./Text2";
