@@ -65,7 +65,7 @@ const Cart = () => {
         {products.length >= 1 ? (
           <>
             <h2>Total: ${InfoToSend.finalAmout}</h2>
-            <Payment products={InfoToSend.products} />
+            <Payment products={InfoToSend.products} finalAmout={InfoToSend.finalAmout[0]}/>
           </>
         ) : (
           <>

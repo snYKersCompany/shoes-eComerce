@@ -21,8 +21,9 @@ import "./App.css";
 //Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import Women from "./components/Home/Women";
+// import Women from "./components/Home/Women";
 import ModalFormUser from "./components/Create/Modal/ModalFormUser";
+import PaypalEjemplo from "./components/Paypal/Paypal";
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
 );
@@ -32,10 +33,11 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
+          <Route path="/execute-payment" element={<PaypalEjemplo />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
-          <Route path="/women" element={<Women />} />
+          {/* <Route path="/women" element={<Women />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />

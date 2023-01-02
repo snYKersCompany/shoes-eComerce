@@ -59,9 +59,7 @@ const AdminDashboard = () => {
                   <CgHeart className="d-flex" /> Products
                 </Nav.Link>
               </Nav.Item>
-
               
-
               <Nav.Item className="d-flex">
                 <Nav.Link eventKey="users" className="d-flex" onClick={()=> setControl("users")}>
                   <CgList className="d-flex" /> Users
@@ -88,11 +86,7 @@ const AdminDashboard = () => {
                   )}
                 </Tab.Pane>
                 <Tab.Pane eventKey="products">
-                {control === "products"?
                   <AdminDashboardProducts />
-                :
-                <></>
-                }
                 </Tab.Pane>
                 <Tab.Pane eventKey="users">
                   <AdminDashboardUsers />

@@ -8,6 +8,7 @@ const routes = require("./routes/index.js");
 const pkg = require('../package.json');
 const { createRoles } = require('./libs/initialSetup');
 
+
 require("./db.js");
 
 //Clave secreta, acomodarla en una variable de entorno.
@@ -17,7 +18,8 @@ const server = express();
 createRoles();
 server.set('pkg', pkg);
 server.name = "API";
-server.use(cors({origin: "http://localhost:3000"}));
+// server.use(cors({origin: "http://localhost:3000"}));
+server.use(cors());
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.json({ limit: '50mb' }));
 server.use(cookieParser());

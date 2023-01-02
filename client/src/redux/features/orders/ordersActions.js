@@ -39,4 +39,32 @@ export const getCreateOrderDB = (payload) => {
   }
 };
 
+//    ===============================================
+export const createPayment = async (body) => {
+  try{
+      const vaucher = await axios.post(`http://localhost:3001/api/paypal/create-payment`, body)
+      // console.log('esto es ==> createPayment')
+      // console.log(vaucher.data.data)
+      // const url = vaucher.data.data.links.find(link => link.rel === "approve")
+      // window.location.href = url
+
+      return vaucher.data.data
+  }catch(error){
+      return error
+  }
+};
+
+export const executePayment = async (token) => {
+  try{
+      const vaucher = await axios.get(`http://localhost:3001/api/paypal/execute-payment${token}`)
+      console.log('esto es ==> executePayment')
+      console.log(token)
+      console.log(vaucher.data.data)
+
+      return vaucher.data.data
+  }catch(error){
+      return error
+  }
+};
+//    ===============================================
 
