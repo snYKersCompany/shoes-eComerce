@@ -10,3 +10,11 @@
     font-weight: bold;
     font-style:italic;
 }
+
+
+.dislike {
+    display: flex;
+    position: absolute;
+    margin-left: 900px;
+    /* padding-right: 15px; */
+}
