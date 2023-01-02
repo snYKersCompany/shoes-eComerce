@@ -10,8 +10,10 @@ import { getUserDashboards } from "../../redux/features/users/usersActions";
 export default function FormUserUpdate() {
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
+  console.log("username dashboard", userDashboard);
   // States
   const [input, setInput] = useState({
+    username: "",
     name: "",
     email: "",
     phone: "",
@@ -153,6 +155,20 @@ export default function FormUserUpdate() {
             />
           ) : null}
 
+          <label htmlFor="username">Username: </label>
+          {user ? (
+            <input
+              // placeholder={userDashboard.username}
+              id="username"
+              type="text"
+              name="username"
+              value={input.username}
+              className={error.username && "danger"}
+              onChange={handleChange}
+              readOnly
+            />
+          ) : null}
+
           <label htmlFor="name">Name: </label>
           <input
             id="name"
@@ -242,6 +258,8 @@ export default function FormUserUpdate() {
             onClick={handleSubmit}
             className="button"
             disabled={
+              error.username ||
+              !input.username ||
               error.name ||
               !input.name ||
               error.phone ||

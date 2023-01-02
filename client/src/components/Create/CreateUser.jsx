@@ -6,6 +6,13 @@ import { useAuth } from "../../context/authContext";
 import "../../styles/FormUser.css";
 
 export default function FormUserCreate() {
+  //STRIPE y LOCALSTORAGE
+  let productsCart = localStorage.getItem("carrito");
+
+  const [products, setProducts] = useState(
+    productsCart?.length > 1 ? JSON.parse(productsCart) : []
+  );
+
   // States
   const [input, setInput] = useState({
     email: "",
@@ -121,7 +128,7 @@ export default function FormUserCreate() {
     let data = await signUp(input.email, input.password);
     const uid = data.user.uid;
     const user = { ...input, uid };
-    const response = await axios.post(`http://localhost:3001/api/users`, user);
+    const response = await axios.post(`/users`, user);
     setSubmit(true);
     setInput({
       email: "",
@@ -137,6 +144,18 @@ export default function FormUserCreate() {
       image: "",
     });
     setFile(null);
+    axios
+      .post("/checkouts", {
+        products,
+      })
+      .then((res) => {
+        if (res.data.url) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
     console.log("Response: ", response.data);
   }
 

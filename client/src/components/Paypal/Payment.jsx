@@ -15,27 +15,27 @@ const Payment = ({ products }) => {
   const handleClick = () => {
     try {
       if (user) {
-        if (userDashboard.phone) {
-          axios
-            .post("/checkouts", {
-              products,
-            })
-            .then((res) => {
-              if (res.data.url) {
-                window.location.href = res.data.url;
-              }
-            })
-            .catch((err) => {
-              console.log(err.message);
-            });
-        } else {
-          navigate(`/complete-data/${userDashboard._id}`);
-        }
+        axios
+          .post("/checkouts", {
+            products,
+          })
+          .then((res) => {
+            if (res.data.url) {
+              window.location.href = res.data.url;
+            }
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+        // if (userDashboard.phone) {
+        // } else {
+        //   navigate(`/complete-data/${userDashboard._id}`);
+        // }
       } else {
         navigate("/complete-register");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
