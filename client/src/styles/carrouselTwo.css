@@ -2,6 +2,7 @@
     display: flex;
     background-color: rgb(0, 0, 0); 
     width: 100%;    
+    margin-bottom: 10rem;
 
 }
 .cont-two {
@@ -12,6 +13,7 @@
     justify-items: center;
     justify-content: space-evenly;
     width: 100%;    
+    
 }
 .carr-textTwo {
     color: rgb(255, 255, 255);
@@ -19,12 +21,12 @@
 
 .carr-txt2{
     display: flex;
-    color: rgb(255, 255, 255);
-    font-size: 45px;
-    font-weight: 700;
-    font-family: "Dancing Script";
-    margin-top: 50px;
-    margin-left: 35px;
+    color:  rgb(255, 255, 255);
+    margin-left: 30px;
+    font-size: 1.8rem;
+    font-family: Bebas Neue, cursive;
+    margin-top: 7px;
+    margin-bottom: -3px;
 }
 
 .carr-imgTwo{

@@ -1,22 +1,21 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 const BannerThree = () => {
   return (
     <div className="mb3-container">
     <div className="mb3">
-      <div className="mb1-text">
-        
+      <div className="mb3-text">
+      <p>Adidas</p>
+      <p>Yeezy Boost Wave Runner</p>
       </div>
-      <div className="mb3-image">
-        <img className="mb3-image1"
-          src="https://image.goat.com/375/attachments/product_template_pictures/images/014/507/851/original/195483_00.png.png"
-        />
-        <img className="mb3-image2"
-          src="https://image.goat.com/375/attachments/product_template_pictures/images/014/507/851/original/195483_00.png.png"
-        />
+         <div >
+      <Link to={`/home/63b2df4c46a59de39735142a`}>
+      <button className="mb3-btn" >MORE INFO</button>
+      </Link>
+      </div>
       </div>
     </div>
-  </div>
   );
 };
 

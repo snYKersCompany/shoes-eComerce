@@ -18,7 +18,7 @@ const Carrousel = () => {
 
     return(
         <>
-        <h1 className="carr-txt">Find your style...</h1>
+        <h1 className="carr-txt">Find your style</h1>
         
         <div className="containerCarrousel">
             {products[0]!=='void' && products?.length >1?

@@ -15,6 +15,7 @@ import ScrollToTop from "../../ScrollToTop/ScrollToTop";
 import CarrouselTwo from "./Carrousel2"
 import ReviewMain from "./ReviewMain"
 import BannerThree from "./Banner3"
+import Footer from "../../Footer/Footer"
 
 
 const Main = () => {
@@ -25,11 +26,12 @@ const Main = () => {
     <NavBar />
     <Banner />
     <Carrousel />
-    <BannerTwo />
     <div className="carrousel-two">
     <CarrouselTwo />
     <ReviewMain/>
     <BannerThree/>
+    <BannerTwo />
+    <Footer/>
     </div>
     </div>
     </>

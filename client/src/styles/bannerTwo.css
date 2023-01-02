@@ -1,20 +1,25 @@
 .mb2-container {
-    background: rgb(0,9,244);
-    background: radial-gradient(circle, rgba(0,9,244,1) 0%, rgba(0,0,0,1) 100%);
+    background: yellow;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 30px;
-    height: 260px;
+    height: 190px;
+
 }
 
+.mb2-btn{
+    text-decoration: none;
+}
+
+
 .reg-text{
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 30px;
     width: 340px;
     text-align: center;
+    
     
     
 }
@@ -47,7 +52,7 @@
     height: 100%;
     width: 0;
     border-radius: 15px;
-    background-color: #020488;
+    background-color: #000000;
     z-index: -1;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 17, 248, 0.27);
     box-shadow: 4px 8px 19px -3px rgba(34, 10, 245, 0.27);

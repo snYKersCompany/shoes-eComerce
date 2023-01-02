@@ -21,7 +21,7 @@ const CarrouselTwo= () => {
  
   return (
     <>
-    <h1 className="carr-txt2">The best imported brands...</h1>
+    <h1 className="carr-txt2">The best imported brands</h1>
     <div>
         <Carousel className="carr-two">
           <Carousel.Item>

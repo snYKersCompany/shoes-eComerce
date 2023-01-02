@@ -7,7 +7,7 @@ const CardCarrousel = ({name, img}) => {
         <div className="img-back">
         </div >
         <img src={img} className="imgCardCarrousel" /> 
-        <label className="d-flex txt">{name}</label>
+        <p className="d-flex txt">{name}</p>
     </div>
     )
 }

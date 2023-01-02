@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -10,8 +11,10 @@ const BannerTwo = () => {
           Register now to be aware of the offers we have for you
         </h1>
       </div>
-      <div>
+      <div className="mb2-btn">
+        <Link className="mb2-btn" to={`/register`}>
         <button className="register-btn">REGISTER NOW!</button>
+        </Link>
       </div>
     </div>
   );
