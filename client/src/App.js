@@ -15,6 +15,8 @@ import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
 import Error404 from "./components/Error404/Error404";
+import Main from "./components/Home/Main";
+
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -22,7 +24,7 @@ import "./App.css";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Women from "./components/Home/Women";
-import FormUserUpdate from './components/Create/CreateUser';
+import FormUserUpdate from './components/Create/UpdateUser';
 import FormUserCreate from './components/Create/CreateUser';
 import PaypalEjemplo from "./components/Paypal/Paypal";
 const stripePromise = loadStripe(
@@ -34,6 +36,7 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
+          <Route path="/main" element={<Main />} />
           <Route path="/execute-payment" element={<PaypalEjemplo />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -45,6 +48,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
+          
+
           <Route
             path="/cart"
             element={

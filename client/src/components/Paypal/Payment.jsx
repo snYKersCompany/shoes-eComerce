@@ -24,19 +24,29 @@ const Payment = ({ products, finalAmout }) => {
   // console.log("Payment products", products);
 
   const handleClick = async () => {
-    if (user) {
-      if (userDashboard.phone) {
-        axios.post("http://localhost:3001/api/chekcouts", {products,})
-          .then((res) => {
-            if (res.data.url) window.location.href = res.data.url;
-          })
-          .catch((err) => console.log(err.message));
-      } else {
-        navigate(`/complete-data/${userDashboard._id}`);
+    try {
+      if(paymentMethod === "stripe"){
+        if (user) {
+          axios.post("http://localhost:3001/api/chekcouts", {products,})
+            .then((res) => {
+              if (res.data.url) window.location.href = res.data.url;
+            })
+              .catch((err) => console.log(err.message));
+        } else { navigate("/register") }
       }
-    } else {
-      navigate.push("/complete-register");
-    }
+      
+      if(paymentMethod === "paypal") {
+        const body = {
+          finalAmout,
+          products,
+          user
+        }
+        console.log(body)
+        const voucher = await createPayment(body)
+        const {href} = voucher.links.find(link => link.rel === "approve")
+        window.location.href = href
+      }
+    } catch (error) { console.log(error) }
 
 
     // console.log(paymentMethod)
@@ -46,24 +56,6 @@ const Payment = ({ products, finalAmout }) => {
     //     .then((res) => { if (res.data.url) window.location.href = res.data.url })
     //     .catch((err) => console.log(err.message) );
     // }
-    
-    if(paymentMethod === "paypal") {
-      const body = {
-        finalAmout,
-        products,
-        user
-      }
-      console.log("Datos para crear Order");
-      console.log(body)
-
-      const voucher = await createPayment(body)
-      console.log({voucher})
-
-      const {href} = voucher.links.find(link => link.rel === "approve")
-      console.log(href)
-
-      window.location.href = href
-    }
     
   };
 

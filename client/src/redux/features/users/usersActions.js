@@ -9,6 +9,7 @@ import {
 } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
+  console.log(payload)
   try {
     const post = await axios.post("/users", payload);
     return post;
@@ -17,9 +18,9 @@ export const findOrCreateUser = (payload) => async () => {
   }
 };
 
-export const getAllUsers = (body={}) => async (dispatch) => {
+export const getAllUsers = (body = {}) => async (dispatch) => {
   try {
-    console.log('parado en las actions',JSON.stringify(body))
+    console.log('parado en las actions', JSON.stringify(body))
     const jsonBody = JSON.stringify(body)
     const users = await axios.get(`/users?orderSearch=${jsonBody}`);
     return dispatch(getAllUser(users.data.users));
@@ -115,24 +116,24 @@ export const putUserInformation = (user, change) => async (dispatch) => {
 };
 
 export const putUserStatus = (id, body) => async (dispatch) => {
-  
-  try{
-    console.log({body})
+
+  try {
+    console.log({ body })
     const putStatusUser = await axios.put(`/users/update/${id}`, body);//como son 2 valores los esperados
-                                                      //espero que se haga en el back
+    //espero que se haga en el back
     return putStatusUser
-  }catch(error){
+  } catch (error) {
     return error;
   }
 };
 
-export const deleteUser = (_id, body={}) => async (dispatch) => {
-  try{
+export const deleteUser = (_id, body = {}) => async (dispatch) => {
+  try {
     const jsonBody = JSON.stringify(body)
     const deleteOneUser = await axios.delete(`/users/${_id}?orderSearch=${jsonBody}`)
     console.log(deleteOneUser.data)
     return dispatch(getAllUser(deleteOneUser.data.users));
-  }catch(error){
+  } catch (error) {
     return error
   }
 };

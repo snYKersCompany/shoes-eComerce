@@ -18,24 +18,31 @@ const Cart = () => {
       ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
       : priceTotal
   );
+  // console.log(products.reduce((acc, product) => (acc = acc + product.totalPrice), 0))
 
-  useEffect(() => {}, [priceTotal]);
+  useEffect(() => {
+    console.log(products);
+  });
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
     finalAmout: priceToSend,
   };
-  console.log("price To send", InfoToSend.finalAmout);
 
-  const handleDelete = (productId) => {
+  console.log("price To send", priceToSend);
+
+  const handleDelete = (productId, TotalPrice) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(
       products.filter((el) => el.id + el.size !== productId),
       productId
     );
+    setPriceToSend(priceToSend - TotalPrice);
     localStorage.setItem("carrito", JSON.stringify(filtered));
     setProducts(filtered);
   };
+
+  console.log(priceToSend)
 
   return (
     <>
@@ -61,10 +68,12 @@ const Cart = () => {
             />
           );
         })}
-        <>
+        {products.length ? (
           <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
-          <Payment products={InfoToSend.products} finalAmout={InfoToSend.finalAmout[0]}/>
-        </>
+        ) : (
+          <h2 style={{ color: "white" }}>Total: $0</h2>
+        )}
+        <Payment products={InfoToSend.products} finalAmout={priceToSend}/>
         {/* {products.length >= 1 ? (
           <>
             <h2>Total: ${InfoToSend.finalAmout}</h2>

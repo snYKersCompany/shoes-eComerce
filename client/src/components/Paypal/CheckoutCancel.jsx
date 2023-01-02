@@ -24,7 +24,7 @@ const CheckoutCancel = () => {
   return (
     <div>
       <NavBar />
-      <h1>The purchase has been canceled</h1>
+      <h1 className="text-white">The purchase has been canceled </h1>
       <Link to="/home">
         <button>Back to Snykers Shop</button>
       </Link>

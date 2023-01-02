@@ -24,18 +24,18 @@ const Carrousel = ({name, category, gender="men", color}) => {
 
     return(
         <>
-        <h3 className="titleCarrouselBskt">{name}</h3>
-        <div className={`containerCarrouselBskt`}>
-            {products[0]!=='void' && products?.length >1?
-            products.slice(0,25).map(el =>
-                <div className="individualCardContainerBskt">
-                    <CardBasketball name={el.name} img={el.card_picture} color={color}   />
-                </div>
-            )
-            :
-            <CardBasketball name={"nada aún"} color={color}/>
-        }
-        </div>
+            <h3 className="titleCarrouselBskt">{name}</h3>
+            <div className={`containerCarrouselBskt`}>
+                {products[0]!=='void' && products?.length >1?
+                products.slice(0,25).map(el =>
+                    <div className="individualCardContainerBskt">
+                        <CardBasketball name={el.name} img={el.card_picture} color={color}   />
+                    </div>
+                )
+                :
+                <CardBasketball name={"nada aún"} color={color}/>
+            }
+            </div>
         </>
     )
 }

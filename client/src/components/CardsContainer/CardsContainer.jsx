@@ -9,7 +9,7 @@ const CardsContainer = ({ productsSliced }) => {
   return (
     <div className="cardsGroupContainer">
       <div className="cardsGroup">
-        <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center mb-5">
           {productsSliced?.map((product, i) => (
             <Card
               key={i}
@@ -19,7 +19,7 @@ const CardsContainer = ({ productsSliced }) => {
               card_picture={product.card_picture}
               price={product.price}
               rating={product.rating}
-              checkHeart={userDashboard.favourites?.some(
+              checkHeart={userDashboard?.favourites?.some(
                 (idProduct) => idProduct === product._id
               )}
             />

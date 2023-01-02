@@ -36,7 +36,7 @@ const AdminDashboard = () => {
   const {userDashboard} = useSelector(state=> state.users)
   return (
     <>
-      <h3 className="d-flex justify-content-center ">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}! - your rol is: {userDashboard.roles}</h3>
+      <h3 className="d-flex justify-content-center text-light">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}! - your rol is: {userDashboard.roles}</h3>
 
       <div className="userDashBoardContainer d-flex">
         <div className="userDashBoard d-flex">

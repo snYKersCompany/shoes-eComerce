@@ -53,28 +53,33 @@ const CardCart = ({
   };
 
   const restQuantity = () => {
-    const newQuantity = quantity === 1 ? 1 : quantity - 1;
-    setQuantity(newQuantity);
-    const newTotalPrice = newQuantity * price;
-    setActualTotalPrice(newTotalPrice);
-    if (quantity > 1) {
-      setPriceToSend(priceToSend - price);
+    if(quantity-1 !== 0){
+
+      const newQuantity = quantity === 1 ? 1 : quantity - 1;
+      setQuantity(newQuantity);
+      const newTotalPrice = newQuantity * price;
+      setActualTotalPrice(newTotalPrice);
+      if (quantity > 1) {
+        console.log("Esto es quantity",quantity)
+        setPriceToSend(priceToSend - price);
+      }
+      //DIFINICION DE PROPS
+      const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
+      const newCart = [...currentCart];
+      const productIndex = newCart.findIndex(
+        (cartProduct) => cartProduct.idAux === idAux
+        );
+        
+        newCart[productIndex] = {
+          ...newCart[productIndex],
+          count: newQuantity,
+          totalPrice: actualTotalPrice - price,
+        };
+        
+        localStorage.setItem("carrito", JSON.stringify(newCart));
+      }
     }
-    //DIFINICION DE PROPS
-    const currentCart = JSON.parse(localStorage.getItem("carrito") || []);
-    const newCart = [...currentCart];
-    const productIndex = newCart.findIndex(
-      (cartProduct) => cartProduct.idAux === idAux
-    );
-
-    newCart[productIndex] = {
-      ...newCart[productIndex],
-      count: newQuantity,
-      totalPrice: actualTotalPrice - price,
-    };
-
-    localStorage.setItem("carrito", JSON.stringify(newCart));
-  };
+  ;
 
   return (
     <div className="d-flex containerCardCart justify-content-evenly">
@@ -109,7 +114,7 @@ const CardCart = ({
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Delete-button.svg/862px-Delete-button.svg.png"
             alt="delete"
             className="imgControlCardCart"
-            onClick={() => handleDelete(id + size)}
+            onClick={() => handleDelete(id + size, actualTotalPrice)}
           />
         </div>
       </div>
