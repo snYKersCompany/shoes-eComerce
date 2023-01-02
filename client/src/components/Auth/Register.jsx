@@ -26,7 +26,7 @@ const Register = () => {
   const switchShown = () => setShown(!shown);
   const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
-  const [forgotPassword, setForgotPassword] = useState("");  // eslint-disable-line
+  const [forgotPassword, setForgotPassword] = useState(""); // eslint-disable-line
 
   /////-----STATES-----/////
   const [userIN, setUser] = useState({
@@ -64,11 +64,9 @@ const Register = () => {
   }
 
   function validatePassword(password) {
-    if (
-      !/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(password)
-    ) {
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
       setError(
-        `Password invalid, It must have 6 letters, 1 number and 1 character`
+        `Password invalid, It must have 8 letters, 1 number and 1 character`
       );
     } else {
       setError("");
@@ -85,20 +83,27 @@ const Register = () => {
     if (name === "password") {
       validatePassword(value);
     }
-
+    setShown(false);
     setUser({ ...userIN, [name]: value });
   };
+  console.log(userIN.password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       const userUID = await signUp(userIN.email, userIN.password);
-      alert("Your register went succesfully :D");
       navigate("/home");
+      alert("Your register went succesfully :D");
       dispatch(
-        putUserInformation(userUID.user.uid, { username: userIN.username })
+        putUserInformation(userUID.user.uid, {
+          username: userIN.username,
+          password: userIN.password,
+        })
       );
+      setUser({ username: "", email: "", password: "" });
+      setPassword("");
+      setShown(false);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setError("This email is already in use, please use another");
@@ -176,7 +181,6 @@ const Register = () => {
                     type={shown ? "text" : "password"}
                     placeholder="Password"
                     required
-                    value={password}
                   />
                   <Button className="d-flex" onClick={switchShown}>
                     {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
@@ -185,9 +189,11 @@ const Register = () => {
               </Form.Group>
 
               <Form.Group controlId="formBasicCheckbox"></Form.Group>
-              <Button variant="primary" type="submit">
-                Register
-              </Button>
+              {error ? null : (
+                <Button variant="primary" type="submit">
+                  Register
+                </Button>
+              )}
             </Form>
             <Link to="/login">
               <Button variant="primary" className="mt-4">
