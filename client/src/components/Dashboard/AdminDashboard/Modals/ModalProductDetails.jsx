@@ -44,7 +44,7 @@ const ModalProductDetails = (props) => {
 
         <div className="">
           <Modal.Body className="d-flex ">
-            <ViewEditProduct productDetail={productDetail} viewStock={viewStock} />
+            <ViewEditProduct productDetail={productDetail} viewStock={viewStock} handlerOnClick={() => handlerOnClick()} />
           </Modal.Body>
         </div>
 
