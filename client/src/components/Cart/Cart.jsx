@@ -17,9 +17,8 @@ const Cart = () => {
     products.length
       ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
       : priceTotal
-
-      );
-      // console.log(products.reduce((acc, product) => (acc = acc + product.totalPrice), 0))
+  );
+  // console.log(products.reduce((acc, product) => (acc = acc + product.totalPrice), 0))
 
   useEffect(() => {
     console.log(products);
@@ -32,15 +31,13 @@ const Cart = () => {
 
   console.log("price To send", priceToSend);
 
-
-
   const handleDelete = (productId, TotalPrice) => {
     let filtered = products.filter((el) => el.id + el.size !== productId);
     console.log(
       products.filter((el) => el.id + el.size !== productId),
       productId
     );
-    setPriceToSend(priceToSend - TotalPrice)
+    setPriceToSend(priceToSend - TotalPrice);
     localStorage.setItem("carrito", JSON.stringify(filtered));
     setProducts(filtered);
   };

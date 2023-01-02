@@ -2,21 +2,21 @@ const { UsersModel, Roles, ProductsModel } = require('../../models/ModelsDB.js')
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
 
-const listUsers = async ({search, orderBy}) => {
+const listUsers = async ({ search, orderBy }) => {
     let parameters = {}
-    if(search) {
+    if (search) {
         parameters.$or = [
-            {username: {$regex:`(?i)${search}(?-i)`}},
-            {phone: {$regex:`(?i)${search}(?-i)`}},
-            {address: {$regex:`(?i)${search}(?-i)`}},
-            {email: {$regex:`(?i)${search}(?-i)`}},
-            {city: {$regex:`(?i)${search}(?-i)`}},
-            {country: {$regex:`(?i)${search}(?-i)`}}
+            { username: { $regex: `(?i)${search}(?-i)` } },
+            { phone: { $regex: `(?i)${search}(?-i)` } },
+            { address: { $regex: `(?i)${search}(?-i)` } },
+            { email: { $regex: `(?i)${search}(?-i)` } },
+            { city: { $regex: `(?i)${search}(?-i)` } },
+            { country: { $regex: `(?i)${search}(?-i)` } }
         ]
     }
 
     let sort = {}
-    if(orderBy) sort = orderBy
+    if (orderBy) sort = orderBy
     // console.log({search, orderBy})
     // console.log({sort, parameters})
     const users = await UsersModel.find(parameters).sort(sort);
@@ -24,27 +24,29 @@ const listUsers = async ({search, orderBy}) => {
     return users;
 }
 
-const addUser = async (uid, email, username, password, name, phone, address, city, cp, state, country, image, roles) => {
+const addUser = async (uid, email, username, name, phone, address, city, cp, state, country, image, roles) => {
     const result = await UsersModel.findById({ _id: uid });
     if (result) {
         return result;
     }
-    const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!expression.test(password)) {
-        throw new Error(`The password is too weak`);
-    }
-    const user = new UsersModel({ _id: uid,
-        email: email, 
-        username: username, 
-        password: await UsersModel.encryptPassword(password),
-        name: name, 
-        phone: phone, 
-        address: address, 
-        city: city, 
-        cp: cp, 
-        state: state, 
-        country: country, 
-        image: image });
+    // const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    // if (!expression.test(password)) {
+    //     throw new Error(`The password is too weak`);
+    // }
+    const user = new UsersModel({
+        _id: uid,
+        email: email,
+        username: username,
+        // password: await UsersModel.encryptPassword(password),
+        name: name,
+        phone: phone,
+        address: address,
+        city: city,
+        cp: cp,
+        state: state,
+        country: country,
+        image: image
+    });
     if (roles) {
         const rolesFound = await Roles.find({ name: { $in: roles } })
         user.roles = rolesFound.map(e => e.name);
@@ -122,13 +124,19 @@ const deleteUser = async (id) => {
     return deleteUser;
 }
 
-const modifyUser = async ({id, name, username, status, roles, email, country, phone, address, city, state, image}) => {
+const modifyUser = async ({ id, name, username, password, status, roles, email, country, phone, address, city, state, image }) => {
     let user = await UsersModel.findById(id);
     if (!user) throw new Error(`The user with an id ${id} was not found in the database`);
-    
+
+    const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!expression.test(password)) {
+        throw new Error(`The password is too weak`);
+    }
+
     let parameters = {}
     if (name && name.length) parameters.name = name;
     if (username && username.length) parameters.username = username;
+    if (password && password.length) parameters.password = password
     if (email && email.length) parameters.email = email;
     if (typeof status === 'boolean') parameters.status = status;
     if (phone && phone.length) parameters.phone = phone;

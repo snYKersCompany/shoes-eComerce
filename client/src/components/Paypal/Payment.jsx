@@ -13,8 +13,8 @@ const Payment = ({ products }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (user) {
-      if (userDashboard.phone) {
+    try {
+      if (user) {
         axios
           .post("/checkouts", {
             products,
@@ -27,11 +27,15 @@ const Payment = ({ products }) => {
           .catch((err) => {
             console.log(err.message);
           });
+        // if (userDashboard.phone) {
+        // } else {
+        //   navigate(`/complete-data/${userDashboard._id}`);
+        // }
       } else {
-        navigate(`/complete-data/${userDashboard._id}`);
+        navigate("/complete-register");
       }
-    } else {
-      navigate("/complete-register");
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -18,8 +18,8 @@ const Login = () => {
   const { logIn, logInGoogle, resetPassword } = useAuth();
 
   const [shown, setShown] = useState(false);
-  const [password, setPassword] = useState('');
-    
+  const [password, setPassword] = useState("");
+
   const switchShown = () => setShown(!shown);
   const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
@@ -43,13 +43,14 @@ const Login = () => {
     setError("");
     try {
       await logIn(user.email, user.password);
-      const products = JSON.parse(localStorage.getItem("carrito"));
-      if (products.length > 0) {
-        navigate("/cart");
-      }
-      else {
-        navigate("/home");
-      }
+      navigate("/home");
+      // const products = JSON.parse(localStorage.getItem("carrito"));
+      // if (products.length > 0) {
+      //   navigate("/cart");
+      // }
+      // else {
+      //   navigate("/home");
+      // }
     } catch (error) {
       console.log("catch");
       console.log(error.code);
@@ -103,44 +104,42 @@ const Login = () => {
             <Form onSubmit={(e) => handleSubmit(e)}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                 <div className="d-flex justify-content-center" >
-                <Form.Control
-                  className="ph-center d-flex "
-                  onChange={(e) => handleChange(e)}
-                  name="email"
-                  type="email"
-                  placeholder="Enter email"
-                />
-                <span className="d-flex"style={{"width" : "43px"}}></span>
-                 </div> 
+                <div className="d-flex justify-content-center">
+                  <Form.Control
+                    className="ph-center d-flex "
+                    onChange={(e) => handleChange(e)}
+                    name="email"
+                    type="email"
+                    placeholder="Enter email"
+                  />
+                  <span className="d-flex" style={{ width: "43px" }}></span>
+                </div>
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
-                
               </Form.Group>
-              
 
-              
-              <Form.Group onChange={onChange} controlId="formBasicPassword" className="mb-4">
-              
-                <Form.Label >Password</Form.Label>
-                <div className="d-flex justify-content-center" >
-                <Form.Control
-                  className="ph-center d-flex w-80"
-                  onChange={(e) => handleChange(e)}
-                  name="password"
-                  placeholder="Password"
-                  type={shown ? "text" : "password"}
-                  value={password}
-                />
-                
-                <Button  className="d-flex" onClick={switchShown}>
-                  {shown ? <AiFillEye/> : <AiFillEyeInvisible/> }
-                </Button>
+              <Form.Group
+                onChange={onChange}
+                controlId="formBasicPassword"
+                className="mb-4"
+              >
+                <Form.Label>Password</Form.Label>
+                <div className="d-flex justify-content-center">
+                  <Form.Control
+                    className="ph-center d-flex w-80"
+                    onChange={(e) => handleChange(e)}
+                    name="password"
+                    placeholder="Password"
+                    type={shown ? "text" : "password"}
+                    value={password}
+                  />
+
+                  <Button className="d-flex" onClick={switchShown}>
+                    {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
+                  </Button>
                 </div>
               </Form.Group>
-              
-             
 
               <Button variant="primary" type="submit">
                 Login
