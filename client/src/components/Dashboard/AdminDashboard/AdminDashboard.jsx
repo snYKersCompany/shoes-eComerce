@@ -88,11 +88,7 @@ const AdminDashboard = () => {
                   )}
                 </Tab.Pane>
                 <Tab.Pane eventKey="products">
-                {control === "products"?
                   <AdminDashboardProducts />
-                :
-                <></>
-                }
                 </Tab.Pane>
                 <Tab.Pane eventKey="users">
                   <AdminDashboardUsers />

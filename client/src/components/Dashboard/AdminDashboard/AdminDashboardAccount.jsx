@@ -77,8 +77,9 @@ function AdminDashboardAccount() {
         username: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,    //letras y espacios pueden llevar acentos 
         email: /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9.]+$/,
         phone: /^\d{7,14}$/,
-        address: /^[a-zA-Z0-9_-]{1,40}$/,
-        other: /^[a-zA-Z0-9_-]{1,255}$/,
+        // address: /^[a-zA-Z0-9_-]{1,40}$/,
+        address: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+        other: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
         city: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
         country: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
         state: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
