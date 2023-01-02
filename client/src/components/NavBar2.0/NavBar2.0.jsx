@@ -66,7 +66,7 @@ const NavBar2 = () => {
                 <NavItem className="linkNav">Home</NavItem>
               </Link>
 
-              <Link exact to={"/women"} className="noneDecoration">
+              <Link  to={"/women"} className="noneDecoration">
                 <NavItem className="linkNav">Women</NavItem>
               </Link>
               </div>
