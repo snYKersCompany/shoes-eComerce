@@ -164,9 +164,8 @@ const Footer = () => {
   // );
 
 return(
-  <div>
-    <h3 className="text-white">footer</h3>
-  </div>
+  <>
+  </>
 )
 
 };
