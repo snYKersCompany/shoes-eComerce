@@ -12,27 +12,15 @@ const Payment = ({ products }) => {
   const { userDashboard } = useSelector((state) => state.users);
   const navigate = useNavigate();
 
+  //metodo
+
   const handleClick = () => {
+    //seleccionas metodo
     try {
       if (user) {
-        axios
-          .post("/checkouts", {
-            products,
-          })
-          .then((res) => {
-            if (res.data.url) {
-              window.location.href = res.data.url;
-            }
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
-        // if (userDashboard.phone) {
-        // } else {
-        //   navigate(`/complete-data/${userDashboard._id}`);
-        // }
+        navigate("/checkout");
       } else {
-        navigate("/complete-register");
+        navigate("/register");
       }
     } catch (error) {
       console.log(error);
