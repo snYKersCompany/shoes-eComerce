@@ -7,10 +7,17 @@
   display: flex;
   width: 100%;
   background: rgb(0, 0, 0);
-  background: linear-gradient(100deg, rgba(0, 0, 0, 1) 6%, rgba(0, 0, 0, 1) 46%, rgba(0, 0, 0, 1) 46%, rgba(114, 7, 7, 1) 66%, rgba(227, 14, 14, 0.927608543417367) 69%, rgba(79, 5, 5, 1) 86%, rgba(172, 11, 11, 1) 88%);
+  background: linear-gradient(
+    100deg,
+    rgba(0, 0, 0, 1) 6%,
+    rgba(0, 0, 0, 1) 46%,
+    rgba(0, 0, 0, 1) 46%,
+    rgba(114, 7, 7, 1) 66%,
+    rgba(227, 14, 14, 0.927608543417367) 69%,
+    rgba(79, 5, 5, 1) 86%,
+    rgba(172, 11, 11, 1) 88%
+  );
   height: 540px;
-
-
 }
 
 .mb1-text {
@@ -64,7 +71,6 @@
   font-family: Nulshock;
 }
 
-
 .mb1-price {
   margin-top: 20px;
   text-align: center;
@@ -107,10 +113,9 @@
 
 .mb1-btn:hover::before,
 .mb1-btn:hover::after {
-  transform: scale(0)
+  transform: scale(0);
 }
 
 .mb1-btn:hover {
   box-shadow: inset 0px 0px 25px rgba(227, 14, 14, 0.927608543417367);
-  ;
 }
