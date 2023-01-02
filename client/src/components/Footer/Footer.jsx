@@ -103,7 +103,7 @@ const Footer = () => {
           </small>
         </CDBBox>
         {/*integrantes */}
-        <CDBBox display="flex">
+        <CDBBox display="flex flex-wrap">
           <CDBBtn flat color="dark" className="mx-3 p-1">
             <a href={juaniGH} target="_blank" rel="noreferrer noopener">
               <CDBIcon fab icon="github"></CDBIcon>

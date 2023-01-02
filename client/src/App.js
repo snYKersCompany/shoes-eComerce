@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 //Providers
 import { AuthProvider } from "./context/authContext";
 //JSX
+import Basketball from "./components/Home/Basketball/index";
 import Home from "./components/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
@@ -19,12 +20,12 @@ import Main from "./components/Home/Main/";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-
 //Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Women from "./components/Home/Women";
-import ModalFormUser from "./components/Create/Modal/ModalFormUser";
+import FormUserUpdate from './components/Create/CreateUser';
+import FormUserCreate from './components/Create/CreateUser';
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
 );
@@ -39,6 +40,8 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/women" element={<Women />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
@@ -62,8 +65,9 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
+          <Route path="/complete-register" element={<FormUserCreate />} />
+          <Route path="/complete-data/:id" element={<FormUserUpdate />} />
           <Route path="/preview" element={<Preview />} />
-          <Route path="/create-user" element={<ModalFormUser />} />
         </Routes>
       </AuthProvider>
     </div>
