@@ -1,0 +1,116 @@
+@font-face {
+  font-family: Nike;
+  src: url(../utils/fonts/Nike.otf);
+}
+
+.mb1 {
+  display: flex;
+  width: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(100deg, rgba(0, 0, 0, 1) 6%, rgba(0, 0, 0, 1) 46%, rgba(0, 0, 0, 1) 46%, rgba(114, 7, 7, 1) 66%, rgba(227, 14, 14, 0.927608543417367) 69%, rgba(79, 5, 5, 1) 86%, rgba(172, 11, 11, 1) 88%);
+  height: 540px;
+
+
+}
+
+.mb1-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+}
+
+.mb1-img {
+  width: 100%;
+  left: 600px;
+  top: 150px;
+  position: absolute;
+  width: 600px;
+  transform: scaleX(-1) rotate(15deg);
+  margin-top: 50px;
+}
+
+.mb1-img2 {
+  width: 100%;
+  left: 610px;
+  top: 230px;
+  position: absolute;
+  width: 600px;
+  transform: scaleX(-1) rotate(15deg);
+  margin-top: 50px;
+}
+
+.mb1-new {
+  color: white;
+  font-size: 30px;
+  font-family: Nulshock;
+}
+
+.mb1-brand {
+  text-align: center;
+  color: rgba(227, 14, 14, 0.927608543417367);
+  font-size: 100px;
+  font-size: 100px;
+  font-weight: 800;
+  font-family: Nike;
+}
+
+.mb1-brand1 {
+  text-align: start;
+  color: white;
+  width: 300px;
+  font-size: 45px;
+  font-family: Nulshock;
+}
+
+
+.mb1-price {
+  margin-top: 20px;
+  text-align: center;
+  color: rgb(255, 153, 0);
+  width: 350px;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.mb1-btn {
+  width: 10em;
+  height: 3.5em;
+  border: 3px ridge rgba(227, 14, 14, 0.927608543417367);
+  outline: none;
+  background-color: transparent;
+  color: white;
+  transition: 1s;
+  border-radius: 0.3em;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.mb1-btn::after {
+  content: "";
+  width: 95%;
+  height: 40%;
+  background-color: #000000;
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+.mb1-btn::before {
+  content: "";
+  transform-origin: center;
+  width: 95%;
+  height: 40%;
+  background-color: #000000;
+  transition: 0.5s;
+}
+
+.mb1-btn:hover::before,
+.mb1-btn:hover::after {
+  transform: scale(0)
+}
+
+.mb1-btn:hover {
+  box-shadow: inset 0px 0px 25px rgba(227, 14, 14, 0.927608543417367);
+  ;
+}
