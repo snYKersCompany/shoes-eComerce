@@ -33,8 +33,7 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
-          <Route path="/main" element={<Main />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Main />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/women" element={<Women />} />
