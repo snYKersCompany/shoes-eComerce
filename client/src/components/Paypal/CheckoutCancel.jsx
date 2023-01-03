@@ -8,6 +8,7 @@ import {
 } from "../../redux/features/orders/ordersActions";
 //JSX
 import NavBar from "../NavBar2.0/NavBar2.0";
+import Carrousel from "../Home/Main/Carrousel";
 
 const CheckoutCancel = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ const CheckoutCancel = () => {
     <div>
       <NavBar />
       <h1 className="text-white">The purchase has been canceled </h1>
-      <Link to="/home">
+      <Carrousel />
+      <Link to="/">
         <button>Back to Snykers Shop</button>
       </Link>
     </div>

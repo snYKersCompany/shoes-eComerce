@@ -28,6 +28,13 @@ const Register = () => {
 
   const [forgotPassword, setForgotPassword] = useState(""); // eslint-disable-line
 
+  //LOCAL STORAGE
+  let productsCart = localStorage.getItem("carrito");
+
+  const [products, setProducts] = useState(
+    productsCart?.length > 1 ? JSON.parse(productsCart) : []
+  );
+
   /////-----STATES-----/////
   const [userIN, setUser] = useState({
     username: "",
@@ -92,11 +99,15 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      const userUID = await signUp(userIN.email, userIN.password);
-      navigate("/home");
+      const userFB = await signUp(userIN.email, userIN.password);
+      if (products.length) {
+        navigate(`/checkout/${userFB.user.uid}`);
+      } else {
+        navigate("/home");
+      }
       alert("Your register went succesfully :D");
       dispatch(
-        putUserInformation(userUID.user.uid, {
+        putUserInformation(userFB.user.uid, {
           username: userIN.username,
           password: userIN.password,
         })
