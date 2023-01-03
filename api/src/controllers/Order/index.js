@@ -48,7 +48,7 @@ const findOrder = async (req, res) => {
     const { id } = req.params;
     if (!id) throw new Error(`The ID ${id} you are looking for does not exist`);
 
-    const order = await OrderModel.findById(id);
+    const order = await OrderModel.findOne({_id:id});
     if (!order) throw new Error(`the order with the id ${id} does not exist`);
 
     return res.status(200).json(order);

@@ -48,6 +48,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
 
 
   const handlerViewPdf = ({ _id }) => {
+    console.log(_id)
     dispatch(getOrderDetails(_id));
     setViewPdf(!viewPdf);
   };
@@ -60,6 +61,9 @@ function AdminDashboardOrders({ setOrderDetails }) {
   const handlerButon = () => {
     setViewPdf(!viewPdf);
   };
+
+  console.log(orders)
+
   return (
     <>
       {viewPdf ? (
@@ -69,7 +73,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
               <th>ID</th>
               <th onClick={()=> handleSortOrders('username')}>User {sortOrder==="username"?sortDirection:""}</th>
               <th onClick={()=> handleSortOrders('date')}>Date {sortOrder==="date"?sortDirection:""}</th>
-              <th onClick={()=> handleSortOrders('finalAmount')}>Final purchase amount {sortOrder==="finalAmount"?sortDirection:""}</th>
+              <th onClick={()=> handleSortOrders('finalAmout')}>Final purchase amount {sortOrder==="finalAmout"?sortDirection:""}</th>
               <th onClick={()=> handleSortOrders('state')}>State {sortOrder==="state"?sortDirection:""}</th>
               <th>voucher</th>
               <th>Details</th>
@@ -79,9 +83,9 @@ function AdminDashboardOrders({ setOrderDetails }) {
             {orders.map((order, i) => (
               <tr key={i}>
                 <td key={order._id}>{order._id}</td>
-                <td key={i+"user"}>{order.username ? order.username : 'user'}</td>
+                <td key={i+"user"}>{order.user ? order.user.username : 'user'}</td>
                 <td key={order.date}>{order.date}</td>
-                <td key={i+'amount'}>{order.finalAmount ? order.finalAmount : order.totalPrice}</td>
+                <td key={i+'amount'}>{order.finalAmout ? order.finalAmout : order.totalPrice}</td>
                 <td key={order.state}>{order.state}</td>
                 <td>
                   <Button

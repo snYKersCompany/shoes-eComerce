@@ -107,6 +107,11 @@ const deleteProductById = async (_id)=>{
     return product
 }
 
+function saleProducts (products){
+    
+}
+
+
 module.exports = {
     getProducts,
     getProductsById,
