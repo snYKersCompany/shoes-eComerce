@@ -42,6 +42,8 @@ const Cart = () => {
     setProducts(filtered);
   };
 
+  console.log(priceToSend)
+
   return (
     <>
       <NavBar />
@@ -71,7 +73,23 @@ const Cart = () => {
         ) : (
           <h2 style={{ color: "white" }}>Total: $0</h2>
         )}
-        <Payment products={InfoToSend.products} />
+        <Payment products={InfoToSend.products} finalAmout={priceToSend}/>
+        {/* {products.length >= 1 ? (
+          <>
+            <h2>Total: ${InfoToSend.finalAmout}</h2>
+            <Payment products={InfoToSend.products} finalAmout={InfoToSend.finalAmout[0]}/>
+          </>
+        ) : (
+          <>
+            <div>
+              <h1>Your cart is empty</h1>
+              <h1>Don`t you know which Snyker choose?</h1>
+              <Link to="/home">
+                <button>Discover new offerts</button>
+              </Link>
+            </div>
+          </>
+        )} */}
       </div>
     </>
   );

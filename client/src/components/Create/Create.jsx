@@ -515,6 +515,7 @@ const Create = () => {
                     <Button
                       className="d-flex formCreateButtonSubmit"
                       type="sumbit"
+                      disabled = {false}
                     >
                       Send
                     </Button>
@@ -522,7 +523,7 @@ const Create = () => {
                     <Button
                       className="d-flex formCreateButtonSubmit"
                       type="sumbit"
-                      disabled
+                      disabled = {true}
                     >
                       Send
                     </Button> // =======================================

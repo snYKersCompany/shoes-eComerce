@@ -2,12 +2,11 @@ const { OrderModel } = require("../../models/ModelsDB");
 
 const createOrder = async (req, res) => {
   try {
-    const { products, finalAmount, _idUser, username } = req.body;
+    const { products, finalAmout, user, data } = req.body;
 
-    if (!products || !finalAmount || !_idUser || !username) throw new Error("Faltan datos importantes");
+    if (!products || !finalAmout || !user || !data ) throw new Error("Faltan datos importantes");
 
-    const newOrder = new OrderModel({ products, finalAmount, _idUser, username });
-    await newOrder.save();
+    const newOrder = postNewOrder(products, finalAmout, user, data)
 
     return res.status(200).json(newOrder);
   } catch (error) {
@@ -15,10 +14,20 @@ const createOrder = async (req, res) => {
   }
 };
 
+async function postNewOrder (products, finalAmout, user, data){
+  const newOrder = new OrderModel({ products, finalAmout, user, voucher:data });
+  await newOrder.save();
+  return newOrder;
+}
+
 const getOrders = async (req, res) => {
-  const { ordersSort } = req.query
   try {
-    const order = await sortAdminDashboard(JSON.parse(ordersSort))
+    const { ordersSort } = req.query
+
+    let jsonOrdersSort = {}
+    if(ordersSort) jsonOrdersSort = JSON.parse(ordersSort)
+
+    const order = await sortAdminDashboard(jsonOrdersSort)
     return res.status(200).json({order: order})
   } catch (error) {
     return res.status(404).json({ error: error.message });
@@ -85,6 +94,20 @@ const putOrder = async (req, res) => {
   }
 };
 
+async function putOrderPaypal (token, _id, data){
+  let state = ''
+  if(data.status === 'COMPLETED') state = 'aprobed'
+  else state = 'cancelled'
+
+  const updateOrder = await OrderModel.updateOne({
+    'user.uid':_id, 'voucher.id':token
+  }, {
+    $set: {state, voucher: data}
+  })
+
+  return updateOrder;
+
+}
 
 
 
@@ -95,4 +118,6 @@ module.exports = {
   deleteOrder,
   findOrder,
   putOrder,
+  postNewOrder,
+  putOrderPaypal,
 };
