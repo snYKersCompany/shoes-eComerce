@@ -9,6 +9,7 @@ import { useAuth } from "../../../context/authContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Carrousel from "../../Home/Main/Carrousel";
+import "../../../styles/Preview.css";
 
 const PreviewModal = (props) => {
   let cart = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -37,7 +38,10 @@ const PreviewModal = (props) => {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-center">
+          <Modal.Title
+            id="contained-modal-title-center"
+            className="addedProducts"
+          >
             You added products to the cart
           </Modal.Title>
         </Modal.Header>
@@ -46,7 +50,9 @@ const PreviewModal = (props) => {
           <Carrousel />
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={props.onHide} variant="danger">
+            Close
+          </Button>
 
           {user ? (
             <Link to="/cart">

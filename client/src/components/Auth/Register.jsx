@@ -100,11 +100,7 @@ const Register = () => {
     setError("");
     try {
       const userFB = await signUp(userIN.email, userIN.password);
-      if (products.length) {
-        navigate(`/checkout/${userFB.user.uid}`);
-      } else {
-        navigate("/home");
-      }
+      navigate("/home");
       alert("Your register went succesfully :D");
       dispatch(
         putUserInformation(userFB.user.uid, {

@@ -43,7 +43,7 @@ const Cart = () => {
   console.log(priceToSend);
 
   return (
-    <>
+    <div className="noProductsContainer">
       <NavBar />
       {products.length ? (
         <div className="d-flex p-5 justify-content-center align-items-center flex-column">
@@ -73,15 +73,17 @@ const Cart = () => {
       ) : (
         <>
           <div className="noProductsContainer">
-            <h2>You dont have any products in your cart</h2>
+            <h2 className="noProducts">
+              You dont have any products in your cart
+            </h2>
             <Carrousel />
             <Link to="/home">
-              <Button className="button">Back to Snykers Shop</Button>
+              <Button variant="warning">Back to Snykers Shop</Button>
             </Link>
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
