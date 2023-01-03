@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 //JSX
 import NavBar from "../NavBar2.0/NavBar2.0";
 import CardCart from "./CardCart";
 import Payment from "../Paypal/Payment";
-//BS
+import Carrousel from "../Carrousel";
+//styles
+import "../../styles/Cart.css";
 
 const Cart = () => {
   let priceTotal = 0;
@@ -64,13 +66,19 @@ const Cart = () => {
               />
             );
           })}
-          <h2 style={{ color: "white" }}>Total: $0</h2>
+          <h2 style={{ color: "white" }}>Total: {priceToSend}</h2>
           <Payment />
         </div>
       ) : (
         <>
-          <h1>You dont have any products in your cart</h1>
-          <Payment />
+          <div className="noProductsContainer">
+            <h2>You dont have any products in your cart</h2>
+            <Payment InfoToSend={InfoToSend} />
+            <Carrousel />
+            <Link to="/home">
+              <button className="button">Back to Snykers Shop</button>
+            </Link>
+          </div>
         </>
       )}
     </>

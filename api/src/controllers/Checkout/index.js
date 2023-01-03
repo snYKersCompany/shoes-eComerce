@@ -1,10 +1,12 @@
 require("dotenv").config()
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_KEY);
+const { postNewOrder } = require("../../controllers/Order/index")
 
 
 const createCheckout = async (req, res) => {
   try {
+    const { finalAmount, products, user } = req.body;
     const line_items = req.body.products.map((item) => {
       return {
         price_data: {
@@ -25,13 +27,13 @@ const createCheckout = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: 'http://localhost:3000/order-completed',
-      cancel_url: 'http://localhost:3000/order-canceled',
-      // success_url: 'https://snykers.vercel.app/order-completed',
-      // cancel_url: 'https://snykers.vercel.app/order-canceled',
+      success_url: 'http://localhost:3000/order-completed?payment=stripe',
+      cancel_url: 'http://localhost:3000/order-canceled?payment=stripe',
+      // success_url: 'https://snykers.vercel.app/order-completed?payment=stripe',
+      // cancel_url: 'https://snykers.vercel.app/order-canceled?payment=stripe',
     });
 
-    //CREACION DE ORDEN
+    postNewOrder(products, finalAmount, user, { url: session.url })
 
     res.send({ url: session.url });
   } catch (error) {

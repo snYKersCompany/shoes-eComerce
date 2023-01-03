@@ -46,7 +46,7 @@ export default function FormUserUpdate() {
         document.getElementById("Form").reset();
       }, 5000);
     }
-  }, [submit, user, userDashboard, _id, dispatch]);
+  }, [submit, user, _id, dispatch]);
 
   function validateInput(value, name) {
     const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;

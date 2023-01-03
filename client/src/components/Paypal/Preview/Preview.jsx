@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 //JSX
 import MiddleViewCard from "./MiddleViewCard";
-import PreviewCarrousel from "./PreviewCarrousel";
 //BS
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Carrousel from "../../Home/Main/Carrousel";
 
 const PreviewModal = (props) => {
   let cart = JSON.parse(localStorage.getItem("carrito")) || [];
-  const { products } = useSelector((state) => state.products);
 
   console.log("preview Modal", cart);
   return (
@@ -28,7 +26,7 @@ const PreviewModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           <MiddleViewCard product={cart.at(-1)} />
-          {/* <PreviewCarrousel productsSliced={products} /> */}
+          <Carrousel />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>

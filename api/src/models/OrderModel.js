@@ -10,10 +10,10 @@ const orderSchema = mongoose.Schema({
     default: "pending",
     enum: ["pending", "aprobed", "cancelled"],
   },
-  finalAmout: { type: Number, required: true },
+  finalAmount: { type: Number, required: true },
   date: { type: Date, default: new Date().toISOString() },
   voucher: { type: Object, default: {} },
-  user:{ type:Object, required: true }
+  user: { type: Object, required: true }
 });
 const OrderModel = mongoose.model("order", orderSchema); //export
 

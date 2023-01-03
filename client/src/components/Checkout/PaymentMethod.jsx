@@ -26,17 +26,15 @@ const PaymentMethod = () => {
 
   const [paymentMethod, setPaymentMethod] = useState("");
 
-  useEffect(() => {
-    if (user) {
-      console.log("user de firebase en home", user);
-    }
-  }, [user]);
-
   const handleClick = async () => {
     try {
       if (paymentMethod === "stripe") {
         axios
-          .post("http://localhost:3001/api/chekcouts", { products })
+          .post("http://localhost:3001/api/checkouts", {
+            products: products,
+            finalAmount: priceToSend,
+            user,
+          })
           .then((res) => {
             if (res.data.url) window.location.href = res.data.url;
           })
