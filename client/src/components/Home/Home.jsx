@@ -8,29 +8,21 @@ import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import Carrousel from "../Carrousel";
 //actions
 
-
-
-import  '../../styles/palHome.css'
+import "../../styles/palHome.css";
 
 const Home = () => {
   //devuelve el user del contexto
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (user) {
-      console.log("user de firebase en home", user);
-    }
-  }, [user]);
-
   return (
     <>
-    <NavBar />
-    <div className="elHome">
-      <ScrollToTop />
-      
-      {/* <Carrousel /> */}
-      <Paginated />
-      <Footer />
+      <NavBar />
+      <div className="elHome">
+        <ScrollToTop />
+
+        {/* <Carrousel /> */}
+        <Paginated />
+        <Footer />
       </div>
     </>
   );
