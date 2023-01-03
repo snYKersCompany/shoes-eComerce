@@ -29,10 +29,10 @@ const addUser = async (uid, email, username, password, name, phone, address, cit
     if (result) {
         return result;
     }
-    const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!expression.test(password)) {        
-        throw new Error(`The password is too weak`);
-    }
+    // const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    // if (!expression.test(password)) {        
+    //     throw new Error(`The password is too weak`);
+    // }
     const user = new UsersModel({
         _id: uid,
         email: email,

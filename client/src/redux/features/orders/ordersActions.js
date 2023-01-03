@@ -55,5 +55,14 @@ export const executePayment = async (token) => {
     return error
   }
 };
-//    ===============================================
 
+export const changeStatusOrder = (id, payload,) => async (dispatch) => {
+  try {
+    const vaucher = await axios.put(`http://localhost:3001/api/orders/${id}`, { voucher: payload })
+    return vaucher.data
+  } catch (error) {
+    return error
+  }
+}
+
+//    ===============================================

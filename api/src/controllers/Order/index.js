@@ -78,21 +78,23 @@ const deleteOrder = async (req, res) => {
 
 const putOrder = async (req, res) => {
   try {
+    const { _id } = req.query
     const { id } = req.params;
     const { voucher } = req.body;
 
-    let order = await OrderModel.findById(id);
-    if (!order) throw new Error(`The order with an id ${id} not found`);
+    let idOrder = ""
+    if (_id) { idOrder = _id }
+    console.log(idOrder)
+    if (id) { idOrder = id }
+    let order = await OrderModel.findById(idOrder);
+    console.log(idOrder)
+    if (!order) throw new Error(`The order with an id ${idOrder} not found`);
 
     if (!voucher) throw new Error(`Falta El Dato Voucher`);
 
-    let state = "";
-    if (voucher.status === "COMPLETED") state = "aprobed";
-    else state = "cancelled";
-
     const updateOrder = await OrderModel.updateOne(
-      { _id: id },
-      { $set: { state, voucher } }
+      { _id: idOrder },
+      { $set: { state: voucher.state } }
     );
     return res.status(200).json(updateOrder);
   } catch (error) {
