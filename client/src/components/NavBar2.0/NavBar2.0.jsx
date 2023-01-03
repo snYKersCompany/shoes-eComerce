@@ -39,7 +39,7 @@ const NavBar2 = () => {
       <div className="d-flex h-100 p-0 navBarContainerGeneral">
         <div className="d-flex  ContainerGeneralNav ">
           <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
-            <Link to={"/home"} className="NavImg">
+            <Link to={"/"} className="NavImg">
               <label className="brandNav">snYKers</label>
               {/* <img alt="SNYKERS" src={logoBlanco} /> */}
             </Link>
@@ -53,18 +53,20 @@ const NavBar2 = () => {
           >
             <div className="d-flex ">
               <div className="d-flex align-items-center">
+              <Link to={"/"} className="noneDecoration">
+                <NavItem className="linkNav">Home</NavItem>
+              </Link>
               
               <Link to={"/home"} className="noneDecoration">
                 <NavItem className="linkNav">All</NavItem>
               </Link>
 
+              
+
               <Link to={"/basketball"} className="noneDecoration">
                 <NavItem className="linkNav">Basket</NavItem>
               </Link>
 
-              <Link to={"/home"} className="noneDecoration">
-                <NavItem className="linkNav">Home</NavItem>
-              </Link>
 
               <Link  to={"/women"} className="noneDecoration">
                 <NavItem className="linkNav">Women</NavItem>
