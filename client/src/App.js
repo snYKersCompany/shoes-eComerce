@@ -17,7 +17,7 @@ import Preview from "./components/Paypal/Preview/Preview";
 import Error404 from "./components/Error404/Error404";
 import Main from "./components/Home/Main";
 import Women from "./components/Home/Women";
-import FormUserUpdate from './components/Checkout/UpdateUser';
+import Checkout from './components/Checkout/Checkout';
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -44,16 +44,11 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
-          <Route path="/checkout/:id" element={<FormUserUpdate />} />
-
-          <Route
-            path="/cart"
-            element={
-              <Elements stripe={stripePromise}>
-                <Cart />
-              </Elements>
-            }
-          />
+          <Route path="/checkout/:id" element={
+            <Elements stripe={stripePromise}>
+              <Checkout />
+            </Elements>} />
+          <Route path="/cart" element={<Cart />} />
           <Route
             path="/account/:section"
             element={
@@ -63,7 +58,6 @@ function App() {
             }
           />
           <Route path="/home/:id" element={<Details />} />
-          <Route path="/checkout/:id" element={<FormUserUpdate />} />
           <Route path="/preview" element={<Preview />} />
         </Routes>
       </AuthProvider>

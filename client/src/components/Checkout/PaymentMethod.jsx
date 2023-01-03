@@ -24,8 +24,6 @@ const PaymentMethod = () => {
       : priceTotal
   );
 
-  console.log("price To send", priceToSend);
-
   const [paymentMethod, setPaymentMethod] = useState("");
 
   useEffect(() => {
@@ -33,14 +31,8 @@ const PaymentMethod = () => {
       console.log("user de firebase en home", user);
     }
   }, [user]);
-  // console.log("Payment products", products);
 
   const handleClick = async () => {
-    if (user) {
-      navigate("/checkout/:id");
-    } else {
-      navigate("/register");
-    }
     try {
       if (paymentMethod === "stripe") {
         axios
@@ -92,3 +84,5 @@ const PaymentMethod = () => {
     </>
   );
 };
+
+export default PaymentMethod;

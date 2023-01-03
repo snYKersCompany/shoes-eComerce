@@ -18,11 +18,6 @@ const Cart = () => {
       ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
       : priceTotal
   );
-  // console.log(products.reduce((acc, product) => (acc = acc + product.totalPrice), 0))
-
-  useEffect(() => {
-    console.log(products);
-  });
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
@@ -47,34 +42,37 @@ const Cart = () => {
   return (
     <>
       <NavBar />
-      <div className="d-flex p-5 justify-content-center align-items-center flex-column">
-        {products.map((el, i) => {
-          return (
-            <CardCart
-              key={i}
-              i={i}
-              id={el.id}
-              name={el.name}
-              totalPrice={el.totalPrice}
-              count={el.count}
-              stock={el.stock}
-              img={el.img}
-              price={el.price}
-              size={el.size}
-              handleDelete={handleDelete}
-              setPriceToSend={setPriceToSend}
-              priceToSend={priceToSend}
-              idAux={el.idAux}
-            />
-          );
-        })}
-        {products.length ? (
-          <h2 style={{ color: "white" }}>Total: ${priceToSend}</h2>
-        ) : (
+      {products.length ? (
+        <div className="d-flex p-5 justify-content-center align-items-center flex-column">
+          {products.map((el, i) => {
+            return (
+              <CardCart
+                key={i}
+                i={i}
+                id={el.id}
+                name={el.name}
+                totalPrice={el.totalPrice}
+                count={el.count}
+                stock={el.stock}
+                img={el.img}
+                price={el.price}
+                size={el.size}
+                handleDelete={handleDelete}
+                setPriceToSend={setPriceToSend}
+                priceToSend={priceToSend}
+                idAux={el.idAux}
+              />
+            );
+          })}
           <h2 style={{ color: "white" }}>Total: $0</h2>
-        )}
-        <Payment />
-      </div>
+          <Payment />
+        </div>
+      ) : (
+        <>
+          <h1>You dont have any products in your cart</h1>
+          <Payment />
+        </>
+      )}
     </>
   );
 };

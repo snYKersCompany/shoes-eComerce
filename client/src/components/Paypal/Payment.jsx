@@ -11,18 +11,9 @@ const Payment = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [paymentMethod, setPaymentMethod] = useState("");
-
-  useEffect(() => {
-    if (user) {
-      console.log("user de firebase en home", user);
-    }
-  }, [user]);
-  // console.log("Payment products", products);
-
   const handleClick = async () => {
     if (user) {
-      navigate("/checkout/:id");
+      navigate(`/checkout/${user.uid}`);
     } else {
       navigate("/register");
     }
@@ -53,7 +44,7 @@ const Payment = () => {
 
   return (
     <>
-      <Form>
+      {/* <Form>
         {["paypal", "stripe"].map((type) => (
           <div key={`inline-${type}`} className="mb-3">
             <Form.Check
@@ -66,12 +57,8 @@ const Payment = () => {
             />
           </div>
         ))}
-      </Form>
-      <Button
-        variant="secondary customBtn"
-        onClick={() => handleClick()}
-        disabled={!paymentMethod.length}
-      >
+      </Form> */}
+      <Button variant="secondary customBtn" onClick={() => handleClick()}>
         Buy
       </Button>
     </>

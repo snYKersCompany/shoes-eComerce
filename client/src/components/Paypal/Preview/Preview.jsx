@@ -28,7 +28,7 @@ const PreviewModal = (props) => {
         </Modal.Header>
         <Modal.Body>
           <MiddleViewCard product={cart.at(-1)} />
-          <PreviewCarrousel productsSliced={products} />
+          {/* <PreviewCarrousel productsSliced={products} /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
