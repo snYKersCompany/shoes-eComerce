@@ -39,7 +39,9 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
     release_date: productDetail.release_date,
     rating: productDetail.rating,
     price: productDetail.price,
-    img: productDetail.detail_picture,
+    detail_picture: productDetail.detail_picture,
+    original_picture: productDetail.detail_picture,
+    card_picture: productDetail.detail_picture,
     stock: productDetail.stock
   })
   //          ↆ
@@ -170,7 +172,7 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
   };
 
   let handleImgForm = (e) => {
-    setform({ ...form, img: e.target.value });
+    setform({ ...form, card_picture: e.target.value, original_picture: e.target.value, detail_picture: e.target.value });
   };
 
   let handleCategory = (e) => {
@@ -458,12 +460,12 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
          
           <img
             className="imageCard1"
-            src={form.img}
+            src={form.original_picture}
             alt={form.name}
           />
           <img
             className="imageCard2"
-            src={form.img}
+            src={form.original_picture}
             alt={form.name}
           />
 
@@ -474,7 +476,7 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
             </label>
 
           <label className="VEPlabelAux">
-            {form.img.substr(0,27)+"..."} 
+            {form.detail_picture.substr(0,27)+"..."} 
             <button className="input2 ms-1" onClick={(e) => handleEdit(e,"img",false)}>
               <VscEdit className="input3" />
             </button>

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
 
 export default function FormUserUpdate() {
+  const { user } = useAuth();
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
   console.log("username dashboard", userDashboard);
@@ -28,17 +29,9 @@ export default function FormUserUpdate() {
   const [submit, setSubmit] = useState(false);
   const [file, setFile] = useState(null);
 
-  //STRIPE y LOCALSTORAGE
-  let productsCart = localStorage.getItem("carrito");
-
-  const [products, setProducts] = useState(
-    productsCart?.length > 1 ? JSON.parse(productsCart) : []
-  );
-
   // Hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user } = useAuth();
 
   // Variables
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
@@ -53,7 +46,7 @@ export default function FormUserUpdate() {
         document.getElementById("Form").reset();
       }, 5000);
     }
-  }, [submit, user, userDashboard, _id, dispatch]);
+  }, [submit, user, _id, dispatch]);
 
   function validateInput(value, name) {
     const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
@@ -119,18 +112,7 @@ export default function FormUserUpdate() {
       );
       console.log(response);
       setSubmit(true);
-      axios
-        .post("/checkouts", {
-          products,
-        })
-        .then((res) => {
-          if (res.data.url) {
-            window.location.href = res.data.url;
-          }
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+
       setInput({});
     } else {
       navigate("/login");
