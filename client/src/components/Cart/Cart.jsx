@@ -26,7 +26,7 @@ const Cart = () => {
 
   let InfoToSend = {
     products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmout: priceToSend,
+    finalAmount: priceToSend,
   };
 
   console.log("price To send", priceToSend);
@@ -41,6 +41,8 @@ const Cart = () => {
     localStorage.setItem("carrito", JSON.stringify(filtered));
     setProducts(filtered);
   };
+
+  console.log(priceToSend);
 
   return (
     <>
@@ -71,7 +73,7 @@ const Cart = () => {
         ) : (
           <h2 style={{ color: "white" }}>Total: $0</h2>
         )}
-        <Payment products={InfoToSend.products} />
+        <Payment />
       </div>
     </>
   );

@@ -7,9 +7,24 @@ import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { createPayment } from "../../redux/features/orders/ordersActions";
 
-const Payment = () => {
+const PaymentMethod = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  //STRIPE PAYPAL Y  LOCALSTORAGE
+  let priceTotal = 0;
+  let productsCart = localStorage.getItem("carrito");
+
+  const [products, setProducts] = useState(
+    productsCart?.length > 1 ? JSON.parse(productsCart) : []
+  );
+  const [priceToSend, setPriceToSend] = useState(
+    products.length
+      ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
+      : priceTotal
+  );
+
+  console.log("price To send", priceToSend);
 
   const [paymentMethod, setPaymentMethod] = useState("");
 
@@ -26,29 +41,29 @@ const Payment = () => {
     } else {
       navigate("/register");
     }
-    // try {
-    //   if (paymentMethod === "stripe") {
-    //     axios
-    //       .post("http://localhost:3001/api/chekcouts", { products })
-    //       .then((res) => {
-    //         if (res.data.url) window.location.href = res.data.url;
-    //       })
-    //       .catch((err) => console.log(err.message));
-    //   }
-    //   if (paymentMethod === "paypal") {
-    //     const body = {
-    //       finalAmout,
-    //       products,
-    //       user,
-    //     };
-    //     console.log(body);
-    //     const voucher = await createPayment(body);
-    //     const { href } = voucher.links.find((link) => link.rel === "approve");
-    //     window.location.href = href;
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      if (paymentMethod === "stripe") {
+        axios
+          .post("http://localhost:3001/api/chekcouts", { products })
+          .then((res) => {
+            if (res.data.url) window.location.href = res.data.url;
+          })
+          .catch((err) => console.log(err.message));
+      }
+      if (paymentMethod === "paypal") {
+        const body = {
+          finalAmount: priceToSend,
+          products,
+          user,
+        };
+        console.log(body);
+        const voucher = await createPayment(body);
+        const { href } = voucher.links.find((link) => link.rel === "approve");
+        window.location.href = href;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -77,5 +92,3 @@ const Payment = () => {
     </>
   );
 };
-
-export default Payment;
