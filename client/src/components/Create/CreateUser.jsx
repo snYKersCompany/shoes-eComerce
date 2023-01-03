@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import "../../styles/FormUser.css";
+import FileUploader from "./FileUploader";
 
 export default function FormUserCreate() {
   //STRIPE y LOCALSTORAGE
@@ -30,6 +31,7 @@ export default function FormUserCreate() {
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
   const [file, setFile] = useState(null);
+  const [image, setImage] = useState("https://cdn-icons-png.flaticon.com/512/25/25634.png");
 
   // Hooks
   const dispatch = useDispatch();
@@ -41,27 +43,17 @@ export default function FormUserCreate() {
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
 
   // Functions
-  useEffect(() => {
+  useEffect(() => {    
     if (submit === true) {
       setTimeout(() => {
-        setFile(null);
-        setInput({
-          email: "",
-          username: "",
-          password: "",
-          name: "",
-          phone: "",
-          address: "",
-          city: "",
-          cp: "",
-          state: "",
-          country: "",
-          image: "",
-        });
         document.getElementById("Form").reset();        
       }, 3000);
     }
-  }, [submit, file]);
+    /* if (image) {
+      setInput({ ...input, ["image"]: image });
+      console.log(image);
+    } */
+  }, [submit]);
 
   function validateInput(value, name) {
     const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
@@ -114,19 +106,6 @@ export default function FormUserCreate() {
     }
   }
 
-  async function handleImage(event) {
-    setFile(event.target.files[0]);
-    const data = new FormData();
-    data.append("file", event.target.files[0]);
-    data.append("upload_preset", UPLOAD_PRESET);
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`,
-      { method: "POST", body: data }
-    );
-    const info = await response.json();
-    setInput({ ...input, [event.target.name]: info.url });
-  }
-
   function handleChange(event) {
     setInput({ ...input, [event.target.name]: event.target.value });
     validateInput(event.target.value, event.target.name);    
@@ -137,22 +116,35 @@ export default function FormUserCreate() {
     let data = await signUp(input.email, input.password);
     const uid = data.user.uid;
     const user = { ...input, uid };
-    const response = await axios.post(`http://localhost:3001/api/users`, user);    
-    setSubmit(true);
-    console.log("Response: ", response.data, "File", file);
-    axios
+    const response = await axios.post(`http://localhost:3001/api/users`, user);
+    /* axios
       .post("http://localhost:3001/api/checkouts", {
         products,
       })
       .then((res) => {
-        if (res.data.url) {
-          window.location.reload(true);
+        if (res.data.url) {          
           window.location.href = res.data.url;
         }
       })
       .catch((err) => {
         console.log({error: err.message});
-      });
+      }); */
+    setSubmit(true);
+    setInput({
+      email: "",
+      username: "",
+      password: "",
+      name: "",
+      phone: "",
+      address: "",
+      city: "",
+      cp: "",
+      state: "",
+      country: "",
+      image: "",
+    });
+    setFile(null);
+    console.log(response.data);
   }
 
   return (
@@ -267,9 +259,9 @@ export default function FormUserCreate() {
             className={error.country && "danger"}
             onChange={handleChange}
           />
-          {!error.country ? null : <p className="danger">{error.country}</p>}
-
-          <input type="file" onChange={handleImage} name="image" />
+          {!error.country ? null : <p className="danger">{error.country}</p>}          
+          
+          {/* <FileUploader onFileSelect = {(file) => setFile(file)} onFileInput = {(image) => setImage(image)}/> */}
           {file ? (
             <img alt="Preview" height="60" src={URL.createObjectURL(file)} />
           ) : null}
