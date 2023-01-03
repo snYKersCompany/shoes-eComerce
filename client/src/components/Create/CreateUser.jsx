@@ -30,18 +30,14 @@ export default function FormUserCreate() {
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
-  const [file, setFile] = useState(null);
-  const [image, setImage] = useState("https://cdn-icons-png.flaticon.com/512/25/25634.png");
+  // const [file, setFile] = useState(null);
+  // const [image, setImage] = useState("https://cdn-icons-png.flaticon.com/512/25/25634.png");
 
   // Hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { signUp } = useAuth();
-
-  // Variables
-  const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
-  const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
-
+  
   // Functions
   useEffect(() => {    
     if (submit === true) {
@@ -49,7 +45,7 @@ export default function FormUserCreate() {
         document.getElementById("Form").reset();        
       }, 3000);
     }
-    /* if (image) {
+    /* if (file && image) {
       setInput({ ...input, ["image"]: image });
       console.log(image);
     } */
@@ -117,7 +113,7 @@ export default function FormUserCreate() {
     const uid = data.user.uid;
     const user = { ...input, uid };
     const response = await axios.post(`http://localhost:3001/api/users`, user);
-    /* axios
+    axios
       .post("http://localhost:3001/api/checkouts", {
         products,
       })
@@ -128,7 +124,7 @@ export default function FormUserCreate() {
       })
       .catch((err) => {
         console.log({error: err.message});
-      }); */
+      });
     setSubmit(true);
     setInput({
       email: "",
