@@ -1,24 +1,22 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "../../styles/FormUser.css";
+import axios from "axios";
+import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
+import { getUserDashboards } from "../../redux/features/users/usersActions";
 
-export default function FormUserCreate() {
-  //STRIPE y LOCALSTORAGE
-  let productsCart = localStorage.getItem("carrito");
-
-  const [products, setProducts] = useState(
-    productsCart?.length > 1 ? JSON.parse(productsCart) : []
-  );
-
+export default function FormUserUpdate() {
+  const { user } = useAuth();
+  const { _id } = useParams();
+  const { userDashboard } = useSelector((state) => state.users);
+  console.log("username dashboard", userDashboard);
   // States
   const [input, setInput] = useState({
-    email: "",
     username: "",
-    password: "",
     name: "",
+    email: "",
     phone: "",
     address: "",
     city: "",
@@ -34,7 +32,6 @@ export default function FormUserCreate() {
   // Hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { signUp } = useAuth();
 
   // Variables
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
@@ -42,45 +39,19 @@ export default function FormUserCreate() {
 
   // Functions
   useEffect(() => {
+    dispatch(getUserDashboards(userDashboard._id));
     if (submit === true) {
       setTimeout(() => {
-        setFile(null);
-        setInput({
-          email: "",
-          username: "",
-          password: "",
-          name: "",
-          phone: "",
-          address: "",
-          city: "",
-          cp: "",
-          state: "",
-          country: "",
-          image: "",
-        });
-        document.getElementById("Form").reset();        
-      }, 3000);
+        setSubmit(false);
+        document.getElementById("Form").reset();
+      }, 5000);
     }
-  }, [submit, file]);
+  }, [submit, user, _id, dispatch]);
 
   function validateInput(value, name) {
     const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
-    const expressionEmail = /\S+@\S+\.\S+/;
-    const expressionPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
     switch (name) {
-      case "email":
-        return !value || !expressionEmail.test(value)
-          ? setError({ ...error, email: "It must set a valid email" })
-          : setError({ ...error, email: "" });
-      case "username":
-        return !value
-          ? setError({ ...error, username: "Please, provide a username" })
-          : setError({ ...error, username: "" });
-      case "password":
-        return !value || !expressionPassword.test(value)
-          ? setError({ ...error, password: "Set a valid password, it must a least 8 characters, 1 letter and 1 number", })
-          : setError({ ...error, password: "" });
       case "name":
         return !value || !expression.test(value)
           ? setError({ ...error, name: "It must set a valid name" })
@@ -110,7 +81,7 @@ export default function FormUserCreate() {
           ? setError({ ...error, country: "Please, provide a name of country" })
           : setError({ ...error, country: "" });
       default:
-        setError({});
+        return;
     }
   }
 
@@ -129,30 +100,23 @@ export default function FormUserCreate() {
 
   function handleChange(event) {
     setInput({ ...input, [event.target.name]: event.target.value });
-    validateInput(event.target.value, event.target.name);    
+    validateInput(event.target.value, event.target.name);
   }
 
   async function handleSubmit(event) {
-    event.preventDefault();
-    let data = await signUp(input.email, input.password);
-    const uid = data.user.uid;
-    const user = { ...input, uid };
-    const response = await axios.post(`http://localhost:3001/api/users`, user);    
-    setSubmit(true);
-    console.log("Response: ", response.data, "File", file);
-    axios
-      .post("http://localhost:3001/api/checkouts", {
-        products,
-      })
-      .then((res) => {
-        if (res.data.url) {
-          window.location.reload(true);
-          window.location.href = res.data.url;
-        }
-      })
-      .catch((err) => {
-        console.log({error: err.message});
-      });
+    if (user) {
+      event.preventDefault();
+      const response = await axios.put(
+        `http://localhost:3001/api/users/update/${user.uid}`,
+        input
+      );
+      console.log(response);
+      setSubmit(true);
+
+      setInput({});
+    } else {
+      navigate("/login");
+    }
   }
 
   return (
@@ -160,37 +124,32 @@ export default function FormUserCreate() {
       <div className="group">
         <form onSubmit={handleSubmit} className="form" id="Form">
           <label htmlFor="email">Email: </label>
-          <input
-            id="email"
-            type="text"
-            name="email"
-            value={input.email}
-            className={error.email && "danger"}
-            onChange={handleChange}
-          />
-          {!error.email ? null : <p className="danger">{error.email}</p>}
+          {user ? (
+            <input
+              placeholder={user.email}
+              id="email"
+              type="text"
+              name="email"
+              value={input.email}
+              className={error.email && "danger"}
+              onChange={handleChange}
+              readOnly
+            />
+          ) : null}
 
           <label htmlFor="username">Username: </label>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            value={input.username}
-            className={error.username && "danger"}
-            onChange={handleChange}
-          />
-          {!error.username ? null : <p className="danger">{error.username}</p>}
-
-          <label htmlFor="password">Password: </label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={input.password}
-            className={error.password && "danger"}
-            onChange={handleChange}
-          />
-          {!error.password ? null : <p className="danger">{error.password}</p>}
+          {user ? (
+            <input
+              // placeholder={userDashboard.username}
+              id="username"
+              type="text"
+              name="username"
+              value={input.username}
+              className={error.username && "danger"}
+              onChange={handleChange}
+              readOnly
+            />
+          ) : null}
 
           <label htmlFor="name">Name: </label>
           <input
@@ -281,12 +240,8 @@ export default function FormUserCreate() {
             onClick={handleSubmit}
             className="button"
             disabled={
-              error.email ||
-              !input.email ||
               error.username ||
               !input.username ||
-              error.password ||
-              !input.password ||
               error.name ||
               !input.name ||
               error.phone ||

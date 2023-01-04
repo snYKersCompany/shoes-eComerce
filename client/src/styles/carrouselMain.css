@@ -1,76 +1,73 @@
-
 /* Carrousel */
 .containerCarrousel {
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    overflow-y: hidden;
-    margin-bottom: 10rem;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
+  margin-bottom: 5rem;
 }
 
 .individualCardContainer {
-    scroll-snap-align: start;
-
-
+  scroll-snap-align: start;
 }
 
 /*Scroll*/
 .containerCarrousel::-webkit-scrollbar {
-    color:black;
-    height: 5px;
-
+  color: black;
+  height: 5px;
 }
 
 .containerCarrousel::-webkit-scrollbar-thumb {
-    background-color: rgb(175, 8, 8);
-    border-radius: 10px;
+  background-color: rgb(175, 8, 8);
+  border-radius: 10px;
 }
-
 
 /* Cards */
 .cardCarrousel {
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 5px 3px;
-    height: 220px;
-    border-radius: 15px;
-    background: linear-gradient(180deg, rgba(0,0,0,1) 26%, rgb(189, 14, 14) 55%, rgba(0,0,0,1) 84%);
-    z-index: -1 !important;
-    overflow: hidden;
-    
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 3px;
+  height: 220px;
+  border-radius: 15px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 26%,
+    rgb(189, 14, 14) 55%,
+    rgba(0, 0, 0, 1) 84%
+  );
+  z-index: -1 !important;
+  overflow: hidden;
 }
-.imgCardCarrousel{
-    width: 200px;
-    /* transform: scaleY(-1) rotate(-75deg) */
-    z-index: 3 !important;
-    transform:  scaleX(-1) rotate(10deg);
-
+.imgCardCarrousel {
+  width: 200px;
+  /* transform: scaleY(-1) rotate(-75deg) */
+  z-index: 3 !important;
+  transform: scaleX(-1) rotate(10deg);
 }
 
-.img-back{
-    background-color: white;
-    /* clip-path: polygon(100% 69%, 71% 69%, 90% 67%, 68% 61%, 98% 54%, 75% 54%, 99% 40%, 80% 39%, 98% 32%, 56% 42%, 98% 25%, 63% 33%, 97% 16%, 0% 24%, 33% 31%, 0 39%, 31% 42%, 0 49%, 13% 49%, 1% 59%, 25% 54%, 0 72%, 10% 68%, 3% 78%, 22% 70%, 4% 84%); */
-    /* transform:  rotate(90deg); */
+.img-back {
+  background-color: white;
+  /* clip-path: polygon(100% 69%, 71% 69%, 90% 67%, 68% 61%, 98% 54%, 75% 54%, 99% 40%, 80% 39%, 98% 32%, 56% 42%, 98% 25%, 63% 33%, 97% 16%, 0% 24%, 33% 31%, 0 39%, 31% 42%, 0 49%, 13% 49%, 1% 59%, 25% 54%, 0 72%, 10% 68%, 3% 78%, 22% 70%, 4% 84%); */
+  /* transform:  rotate(90deg); */
 }
 
 .txt {
-    
-    color: rgb(255, 255, 255);
-    font-size: 15px;
-    margin-top: -30px;
-    text-align: center;
-    font-weight: 500;
-    
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  margin-top: -30px;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: underline;
 }
 
-.carr-txt{
-    display: flex;
-    color:  rgb(255, 153, 0);
-    margin-left: 30px;
-    font-size: 1.8rem;
-    font-family: Bebas Neue, cursive;
-    margin-top: 7px;
-    margin-bottom: -3px;
+.carr-txt {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 1.8rem;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+  margin-bottom: -3px;
 }

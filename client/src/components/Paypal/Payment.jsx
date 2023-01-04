@@ -1,37 +1,17 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-//BS
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-//utils
-import axios from "axios";
 import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
-const Payment = ({ products }) => {
+const Payment = ({ InfoToSend }) => {
   const { user } = useAuth();
-  const { userDashboard } = useSelector((state) => state.users);
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (user) {
-      if (userDashboard.phone) {
-        axios
-          .post("/checkouts", {
-            products,
-          })
-          .then((res) => {
-            if (res.data.url) {
-              window.location.href = res.data.url;
-            }
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
-      } else {
-        navigate(`/complete-data/${userDashboard._id}`);
-      }
+      navigate(`/checkout/${user.uid}`);
     } else {
-      navigate("/complete-register");
+      navigate("/register");
     }
   };
 

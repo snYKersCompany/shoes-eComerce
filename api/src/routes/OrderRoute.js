@@ -10,6 +10,9 @@ router.get('/:id', controllers.findOrder);
 
 router.delete('/:id', controllers.deleteOrder);
 
-router.put('/:id', controllers.putOrder);
+router.put("/", controllers.putOrder)
+
+//se elimino el :id por id por query
+// router.put('/:id', controllers.putOrder);
 
 module.exports = router;

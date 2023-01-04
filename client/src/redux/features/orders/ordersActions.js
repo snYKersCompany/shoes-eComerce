@@ -1,12 +1,10 @@
 import axios from "axios";
 import { clearOrderDetail, getAllOrder, getOrderDetail } from "./ordersSlice";
 
-export const getAllOrders = (body={}) => async (dispatch) => {
+export const getAllOrders = (body = {}) => async (dispatch) => {
   try {
-    // console.log('esto es getAllOrders en actions',JSON.stringify(body))
     const jsonBody = JSON.stringify(body)
     const orders = await axios.get(`/orders?ordersSort=${jsonBody}`);
-    // console.log('esto es orders en getAllOrders actions', orders.data.order)
     return dispatch(getAllOrder(orders.data.order));
   } catch (error) {
     return error;
@@ -39,4 +37,32 @@ export const getCreateOrderDB = (payload) => {
   }
 };
 
+//    ===============================================
+export const createPayment = async (body) => {
+  try {
+    const vaucher = await axios.post(`http://localhost:3001/api/paypal/create-payment`, body)
+    return vaucher.data.data
+  } catch (error) {
+    return error
+  }
+};
 
+export const executePayment = async (token) => {
+  try {
+    const vaucher = await axios.get(`http://localhost:3001/api/paypal/execute-payment${token}`)
+    return vaucher.data.data
+  } catch (error) {
+    return error
+  }
+};
+
+export const changeStatusOrder = (id, payload,) => async (dispatch) => {
+  try {
+    const vaucher = await axios.put(`http://localhost:3001/api/orders/${id}`, { voucher: payload })
+    return vaucher.data
+  } catch (error) {
+    return error
+  }
+}
+
+//    ===============================================

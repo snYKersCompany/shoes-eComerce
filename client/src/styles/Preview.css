@@ -17,3 +17,10 @@
 .content {
   color: black;
 }
+
+.addedProducts {
+  display: flex;
+  color: rgb(255, 153, 0);
+  font-size: 4rem;
+  font-family: Bebas Neue, cursive;
+}

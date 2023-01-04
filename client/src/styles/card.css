@@ -51,6 +51,7 @@
     z-index: 1;
     transform: rotate(28deg) scale(1.05);
     object-fit: contain;
+    max-width: 380px;
 }
 
 .cardImage2 {
@@ -59,6 +60,8 @@
     z-index: 2;
     transform: scaleX(-1) scale(0.80) rotate(50deg);
     object-fit: contain;
+    max-width: 380px;
+
 }
 
 .text-gold {

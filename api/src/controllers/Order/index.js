@@ -2,12 +2,11 @@ const { OrderModel } = require("../../models/ModelsDB");
 
 const createOrder = async (req, res) => {
   try {
-    const { products, finalAmount, _idUser, username } = req.body;
+    const { products, finalAmount, user, data } = req.body;
 
-    if (!products || !finalAmount || !_idUser || !username) throw new Error("Faltan datos importantes");
+    if (!products || !finalAmount || !user || !data) throw new Error("Faltan datos importantes");
 
-    const newOrder = new OrderModel({ products, finalAmount, _idUser, username });
-    await newOrder.save();
+    const newOrder = postNewOrder(products, finalAmount, user, data)
 
     return res.status(200).json(newOrder);
   } catch (error) {
@@ -15,20 +14,36 @@ const createOrder = async (req, res) => {
   }
 };
 
-const getOrders = async (req, res) => {
-  const { ordersSort } = req.query
+async function postNewOrder(products, finalAmount = 0, user, data) {
   try {
-    const order = await sortAdminDashboard(JSON.parse(ordersSort))
-    return res.status(200).json({order: order})
+    console.log(products, finalAmount, user, data)
+    const newOrder = new OrderModel({ products, finalAmount, user, voucher: data });
+    await newOrder.save();
+    console.log(newOrder)
+    return newOrder;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getOrders = async (req, res) => {
+  try {
+    const { ordersSort } = req.query
+
+    let jsonOrdersSort = {}
+    if (ordersSort) jsonOrdersSort = JSON.parse(ordersSort)
+
+    const order = await sortAdminDashboard(jsonOrdersSort)
+    return res.status(200).json({ order: order })
   } catch (error) {
     return res.status(404).json({ error: error.message });
   }
 };
 
 
-const sortAdminDashboard = async ({orderBy}) => {
+const sortAdminDashboard = async ({ orderBy }) => {
   let sort = {};
-  if(orderBy) sort = orderBy
+  if (orderBy) sort = orderBy
   const sortedOrders = await OrderModel.find().sort(sort)
   return sortedOrders
 };
@@ -63,21 +78,23 @@ const deleteOrder = async (req, res) => {
 
 const putOrder = async (req, res) => {
   try {
+    const { _id } = req.query
     const { id } = req.params;
     const { voucher } = req.body;
 
-    let order = await OrderModel.findById(id);
-    if (!order) throw new Error(`The order with an id ${id} not found`);
+    let idOrder = ""
+    if (_id) { idOrder = _id }
+    console.log(idOrder)
+    if (id) { idOrder = id }
+    let order = await OrderModel.findById(idOrder);
+    console.log(idOrder)
+    if (!order) throw new Error(`The order with an id ${idOrder} not found`);
 
     if (!voucher) throw new Error(`Falta El Dato Voucher`);
 
-    let state = "";
-    if (voucher.status === "COMPLETED") state = "aprobed";
-    else state = "cancelled";
-
     const updateOrder = await OrderModel.updateOne(
-      { _id: id },
-      { $set: { state, voucher } }
+      { _id: idOrder },
+      { $set: { state: voucher.state } }
     );
     return res.status(200).json(updateOrder);
   } catch (error) {
@@ -85,6 +102,20 @@ const putOrder = async (req, res) => {
   }
 };
 
+async function putOrderPaypal(token, _id, data) {
+  let state = ''
+  if (data.status === 'COMPLETED') state = 'aprobed'
+  else state = 'cancelled'
+
+  const updateOrder = await OrderModel.updateOne({
+    'user.uid': _id, 'voucher.id': token
+  }, {
+    $set: { state, voucher: data }
+  })
+
+  return updateOrder;
+
+}
 
 
 
@@ -95,4 +126,6 @@ module.exports = {
   deleteOrder,
   findOrder,
   putOrder,
+  postNewOrder,
+  putOrderPaypal,
 };
