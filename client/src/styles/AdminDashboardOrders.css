@@ -1,0 +1,80 @@
+.AdminDashboard-userProfileGrid{
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 80px 1fr ;
+    grid-auto-rows: 1fr;
+}
+
+.AdminDashboard-userProfilefilters{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-items: end;
+    gap: 20px;
+}
+.AdminDashboard-userProfilefilters button{
+    background: transparent;
+    border :none;
+    color: fuchsia;
+    font-size: 2.2rem;
+
+}
+
+.AdminDashboard-userProfileOrders{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-self: center;
+    padding: 4px 0;
+    margin: 8px 0;
+    border: none;
+    width: 98%;
+    border-radius: 10px;
+}
+
+.AdminDashboard-orderInfo{
+    text-align: start;
+}
+
+.AdminDashboard-userProfile{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 4px;
+    width: fit-content;
+    font-size: 0.8rem;    
+}
+
+.AdminDashboard-orderInfo p{
+    display: flex;
+    margin-bottom: 2px;
+    margin-left: 14px;
+}
+
+.AdminDashboard-userProfile img {
+    border: none;
+    border-radius: 50%;
+}
+
+.AdminDashboard-userProfilefilters button {
+    height: 40px;
+    width: 60px;
+    margin: 15px;
+}
+
+.btnControllers-AdminDsh{
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: rgb(255, 0, 140) !important;
+}
+
+
+
+/* .AdminDashboard-userProfileOrders{
+    background-color: aqua;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
