@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { getUserDashboards, putUserInformation } from "../../../redux/features/users/usersActions";
+import { FiEdit3 } from "react-icons/fi";
+
 import "../../../styles/UserProfile.css"
 
 function UserProfile() {
@@ -12,7 +12,7 @@ function UserProfile() {
 
   const [change, setChange] = useState({
       username: userDashboard.username?userDashboard.username : "",
-      email: userDashboard.email?userDashboard.email : "",
+      // email: userDashboard.email?userDashboard.email : "",
       phone: userDashboard.phone?userDashboard.phone : "",
       address: userDashboard.address?userDashboard.address : "",
       city: userDashboard.city?userDashboard.city : "",
@@ -27,7 +27,7 @@ function UserProfile() {
 
     const [error, setError] = useState({
       username: false,
-      email: false,
+      // email: false,
       phone: false,
       address: false,
       other: false,
@@ -39,13 +39,11 @@ function UserProfile() {
     
     console.log({nombre:error.nombre, usuario:error.usuario})
     
-  // console.log(modify);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
 
     const formsFails = Object.entries(error).reduce((acc, curr) => curr[1]? acc = acc +" "+ curr[0]: acc ,"")
-    console.log(formsFails)
     if(formsFails.length) alert("Errores en el/los formulario/s:"+formsFails.toLocaleUpperCase())
     else{
       dispatch(putUserInformation(user, change));
@@ -61,7 +59,7 @@ function UserProfile() {
     const regex = ({
         usuario: /^[a-zA-Z0-9_-]{4,16}$/, //letras, numeros, guiones, y guionbajo
         username: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,    //letras y espacios pueden llevar acentos 
-        email: /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9.]+$/,
+        // email: /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9.]+$/,
         phone: /^\d{7,14}$/,
         address: /^[a-zA-Z0-9_-]{1,40}$/,
         other: /^[a-zA-Z0-9_-]{1,255}$/,
@@ -86,10 +84,15 @@ function UserProfile() {
     setState(false)
     setDisable(false)
   }
-  
+
+  const handleEdit = (e, form) => {
+    e.preventDefault();
+    setDisable(form);
+  };
+
   const lockers = [
     {label:"User Name: ", form: "username", placeholder:"Only words", required:"Necesita"},
-    {label:"E-mail: ", form: "email", placeholder:"fulano@gmail.com", required:"Necesita"},
+    // {label:"E-mail: ", form: "email", placeholder:"fulano@gmail.com", required:"Necesita"},
     {label:"Phone: ", form: "phone", placeholder:"123456789", required:"Necesita"},
     {label:"Address: ", form: "address", placeholder:"av.siempreviva 742", required:"Necesita"},
     {label:"Other: ", form: "other", placeholder:"Timbre 3 puerta amarilla", required:"Necesita"},
@@ -99,36 +102,62 @@ function UserProfile() {
     {label:"Image: ", form: "image", placeholder:"Hay que cambiar esto por una imagen", required:"Necesita"}
   ]
 
-  // console.log(userDashboard)
-  // console.log(change)
-  // console.log(error)
   return (
-    <>
-      <Form>
-        {lockers.map((f,idx)=><div key={idx}>
-          <Form.Group className="d-flex" >
-            <Form.Label>{f.label}</Form.Label>
-            <Form.Control
-              type="string"
-              placeholder={f.placeholder}
-              // defaultValue={change[f.form]}
-              onChange={(e) => handleChange(e, f.form)}
-              value = {change[f.form]}
-              disabled = {disable !== f.form}
-              className = {error[f.form]?"FormCreateError":""}
-            />
-            {f.form!=="email"?<Button onClick={()=>setDisable(f.form)}>Mod</Button>:null}
-          </Form.Group>
-          {error[f.form]?<p className="FormCreateError">{f.required}</p>:null}
-        </div>)}
+    <div className="FakeBodyAdminDashboard">
+    <div className="AdminAccount-container">
+      <div className="AdminAccount-background">
+        <img
+          src="https://media.discordapp.net/attachments/978746970460012584/1059462550363848794/snykers_bg.png?width=994&height=559"
+          alt="name"
+          className="AdminAccount-background-img"
+        />
+      </div>
+      <div className="AdminAccount-image">
+        <img
+          src={change.image || "https://cdn-icons-png.flaticon.com/512/25/25634.png"}
+          alt="name"
+          width="300px"
+          height="300px"
+        />
+      </div>
+      <div className="AdminAccount-name">
+        <h3>{change.username}</h3>
+      </div>
 
-      </Form>
-      {state ?<>
-        <Button onClick={handleSubmitForm}>Save</Button>
-        <Button onClick={handleCancel}>Cancel</Button>
-      </>
-      :null}
-    </>
+      <form className="AdminAccount-form">
+        {lockers.map((f, i) => (
+          <div key={i}>
+            <div className="d-flex flex-column p-2 align-items-start">
+              <label className="AdminAccount-labelForm">{f.label}</label>
+              <div className="d-flex">
+                <input
+                  type="string"
+                  placeholder={f.placeholder}
+                  defaultValue={change[f.form]}
+                  onChange={(e) => handleChange(e, f.form)}
+                  disabled={disable !== f.form}
+                  className={`${disable === f.form? "editfocus" : ""}   ${error[f.form] ? "FormCreateError AdminAccount-inputForm" : "AdminAccount-inputForm"}`}
+                />
+                <button className="AdminAccount-btnForm" onClick={(e) => handleEdit(e, f.form)}>
+                  <FiEdit3 />
+                </button>
+              </div>
+            </div>
+            {error[f.form] ? (
+              <p className="FormCreateError">{f.required}</p>
+            ) : null}
+          </div>
+        ))}
+      </form>
+  
+      {state ? (
+        <div className="AdminAccount-btnSave">
+          <button className="btnCard btnSave1" onClick={handleSubmitForm}>Save</button>
+          <button className="btnCard btnSave2" onClick={handleCancel}>Cancel</button>
+        </div>
+      ) : null}
+    </div>
+    </div>
   )
 }
 

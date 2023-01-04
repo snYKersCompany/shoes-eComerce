@@ -1,3 +1,9 @@
+.FakeBodyAdminDashboard{
+  background-color: rgb(36,36,36);
+  color: white;
+}
+
+
 .FormCreateError {
   color: rgb(248, 68, 68);
   margin-top: 4px;
@@ -8,33 +14,34 @@
 
 .AdminAccount-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, auto);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
   grid-auto-rows: 1fr;
   grid-auto-flow: column;
 }
 
 .AdminAccount-background {
-  grid-column: 1/3;
-  grid-row: 1/3;
+  grid-column: 1/4;
+  grid-row: 1/2;
 }
 
 .AdminAccount-image {
-  grid-column: 1/2;
-  grid-row: 2/4;
+  grid-column: 2/3;
+  grid-row: 1/2;
   display: grid;
   justify-items: center;
+  margin-bottom: -50px !important;
 }
 
 .AdminAccount-name {
   grid-column: 2/3;
-  grid-row: 3/4;
+  grid-row: 2/3;
   display: grid;
-  justify-items: start;
-  align-items: start;
-  margin-left: -17rem;
-  margin-top: -6rem;
+  justify-items: center;
+  align-items: center;
+  padding: 50px 0 0 0 ;
 }
+
 .AdminAccount-name h3 {
   font-size: 3rem;
   font-weight: 800;
@@ -42,21 +49,177 @@
 }
 
 .AdminAccount-form {
-  grid-column: 1/2;
-  grid-row: 4/5;
+  grid-column: 1/4;
+  grid-row: 3/4;
   grid-auto-flow: row;
   margin-top: 4rem;
   display: grid;
   justify-items: center;
   align-items: start;
 }
+
+.AdminAccount-btnSave{
+  grid-column: 2/3;
+  grid-row: 4/5;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-auto-flow: column;
+  padding-top: 20px;
+}
+
 /* ---------------------- */
 
+
+.AdminAccount-form{
+  margin-top: 20px ;
+  padding: 0;
+}
+
+
 .AdminAccount-background-img {
-  width: 90vw;
-  max-height: 300px;
+  width: 100%;
+  height: 250px;
   border-radius: 40px;
+  
 }
 .AdminAccount-image img {
+  background-color: aliceblue;
+  align-self: end;
   border-radius: 50%;
+  height: 190px;
+  width: 190px;
 }
+
+.AdminAccount-labelForm{
+  font-size: 1.3rem;
+}
+
+.AdminAccount-labelForm{
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.AdminAccount-inputForm{
+  background-color: rgba(112, 112, 112, 0);
+  outline: none;
+  color: rgb(255, 255, 255  );
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 1px solid rgb(180, 180, 180);
+}
+
+.editfocus{ 
+  background-color: rgba(112, 112, 112, 0);
+  color: rgb(213, 255, 145);
+}
+
+
+.AdminAccount-btnForm{
+  border: none;
+  margin-left: 2px;
+  font-size: 1.5rem;
+  padding: 0 4px;
+  background-color: transparent;
+  color: white;
+}
+
+.btnCard{
+  width: 90px !important;
+  font-size: 1.2rem;
+  height: 40px ;
+  margin-bottom: 40px;
+}
+
+.btnSave1{
+  justify-self: end;  
+  text-align: center;
+  margin-right: 30px ;
+}
+
+.btnSave2{
+  justify-self: start;  
+  text-align: center;
+  margin-left: 30px ;
+
+}
+
+/* Desktop */
+
+@media (min-width: 1024px) {
+  .AdminAccount-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, auto);
+    grid-auto-rows: 1fr;
+    grid-auto-flow: column;
+  }
+  
+  .AdminAccount-background {
+    grid-column: 1/5;
+    grid-row: 1/3;
+  }
+  
+  .AdminAccount-image {
+    grid-column: 1/3;
+    grid-row: 1/4;
+    display: grid;
+    justify-items: center;
+  }
+  
+  .AdminAccount-name {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    display: grid;
+    /* padding: 0; */
+    /* margin-top: 2rem ; */
+    /* margin-left: -14rem; */
+  }
+
+  .AdminAccount-name h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 0;
+  }
+  
+  .AdminAccount-form {
+    grid-column: 1/5;
+    grid-row: 4/5;
+    grid-auto-flow: row;
+    margin-top: 4rem;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+  }
+  
+  .AdminAccount-btnSave{
+    grid-column: 2/4;
+    grid-row: 5/6;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-auto-flow: column;
+    padding-top: 20px;
+  
+  }
+
+  .AdminAccount-image img {
+    background-color: aliceblue;
+    align-self: end;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+  }
+
+  .AdminAccount-name {
+    justify-items: start;
+    align-items: center;
+    padding: 50px 0 0 0 ;
+  }
+  
+}
+
+
+
+

@@ -115,7 +115,7 @@ function AdminDashboardAccount() {
 
   const lockers = [
     {
-      label: "User Name: ",
+      label: "Username: ",
       form: "username",
       placeholder: "Only words",
       required: "Nesesita",
@@ -177,6 +177,7 @@ function AdminDashboardAccount() {
   ];
 
   return (
+    <div className="FakeBodyAdminDashboard">
     <div className="AdminAccount-container">
       <div className="AdminAccount-background">
         <img
@@ -187,7 +188,7 @@ function AdminDashboardAccount() {
       </div>
       <div className="AdminAccount-image">
         <img
-          src="https://jonmircha.com/img/jonmircha.jpg"
+          src={change.image || "https://cdn-icons-png.flaticon.com/512/25/25634.png"}
           alt="name"
           width="300px"
           height="300px"
@@ -201,7 +202,7 @@ function AdminDashboardAccount() {
         {lockers.map((f, i) => (
           <div key={i}>
             <div className="d-flex flex-column p-2 align-items-start">
-              <label className="">{f.label}</label>
+              <label className="AdminAccount-labelForm">{f.label}</label>
               <div className="d-flex">
                 <input
                   type="string"
@@ -209,9 +210,9 @@ function AdminDashboardAccount() {
                   defaultValue={change[f.form]}
                   onChange={(e) => handleChange(e, f.form)}
                   disabled={disable !== f.form}
-                  className={error[f.form] ? "FormCreateError" : ""}
+                  className={`${disable === f.form? "editfocus" : ""}   ${error[f.form] ? "FormCreateError AdminAccount-inputForm" : "AdminAccount-inputForm"}`}
                 />
-                <button className="" onClick={(e) => handleEdit(e, f.form)}>
+                <button className="AdminAccount-btnForm" onClick={(e) => handleEdit(e, f.form)}>
                   <FiEdit3 />
                 </button>
               </div>
@@ -222,12 +223,14 @@ function AdminDashboardAccount() {
           </div>
         ))}
       </form>
+  
       {state ? (
-        <div className="">
-          <button onClick={handleSubmitForm}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
+        <div className="AdminAccount-btnSave">
+          <button className="btnCard btnSave1" onClick={handleSubmitForm}>Save</button>
+          <button className="btnCard btnSave2" onClick={handleCancel}>Cancel</button>
         </div>
       ) : null}
+    </div>
     </div>
   );
 }
