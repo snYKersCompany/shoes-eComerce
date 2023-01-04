@@ -10,9 +10,8 @@ import { useDispatch } from "react-redux";
 import { createProduct } from "../../redux/features/products/productsActions";
 import { Link } from "react-router-dom";
 
-const Create = () => {
+const Create = () => {  
   const dispatch = useDispatch();
-
   const [error, setError] = useState({
     name: " ",
     description: " ",
@@ -196,10 +195,27 @@ const Create = () => {
     setform({ ...form, release: e.target.value });
   };
   const [auxImg, setAuxImg] = useState();
+  const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
+  const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET_PRODUCT;
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState("");
 
   let handleImg = (e) => {
     setAuxImg(e.target.value);
   };
+
+  const handleImage = async (e) => {
+    setFile(e.target.files[0]);
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    data.append("upload_preset", UPLOAD_PRESET);
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: "POST", body: data }
+    );
+    const info = await response.json();
+    setAuxImg(e.target.value ? e.target.value : info.url);
+    console.log("Aux image: ", auxImg, "Info: ", info);
+  }
 
   let handleImgForm = () => {
     setform({ ...form, img: auxImg });
@@ -207,6 +223,7 @@ const Create = () => {
       ? setError({ ...error, img: false })
       : setError({ ...error, img: "Upload a image" });
   };
+
   let submitForm = (e) => {
     e.preventDefault();
 
@@ -491,17 +508,25 @@ const Create = () => {
                     />
                     <Button
                       className="d-flex mx-1"
-                      onClick={() => handleImgForm()}
+                      onClick={ handleImgForm }
                     >
                       Upload
                     </Button>
                   </FormGroup>
                 ) : (
                   <Form.Group className="mt-3 d-flex flex-column">
-                    <Form.Label>
-                      Sin funcionalidad hasta que esté vinculado con cloudinary
-                    </Form.Label>
-                    <Form.Control type="file" multiple />
+                    <Form.Control
+                    type = "file"
+                    className="d-flex FormCreateInputUrl"
+                    onChange = { (e) => handleImage(e) }
+                    name = "image"
+                    placeholder="Upload an image"
+                    />
+                    {file ? <img alt = "preview" height = "60" width = "60" src = {URL.createObjectURL(file)}/> : null}
+                    <Button
+                      className="d-flex mx-1"
+                      onClick={ handleImgForm }
+                    ></Button>
                   </Form.Group>
                 )}
                 <div className="d-flex mt-5">
