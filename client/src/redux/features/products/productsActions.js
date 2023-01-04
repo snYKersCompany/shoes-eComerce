@@ -29,7 +29,7 @@ export const getAllProducts =
   (filters = {}, orders = {}, search = "") =>
   async (dispatch) => {
     try {
-      console.log(filters);
+      // console.log(filters);
       let query = filterQuery(filters);
       let orderBy = JSON.stringify(orders);
       if (orderBy.length === 2) orderBy = ``;

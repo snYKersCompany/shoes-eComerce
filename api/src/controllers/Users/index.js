@@ -24,15 +24,15 @@ const listUsers = async ({ search, orderBy }) => {
     return users;
 }
 
-const addUser = async (uid, email, username, name, phone, address, city, cp, state, country, image, roles) => {
+const addUser = async (uid, email, username, password, name, phone, address, city, cp, state, country, image, roles) => {
     const result = await UsersModel.findById({ _id: uid });
     if (result) {
         return result;
     }
-    // const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    // if (!expression.test(password)) {
-    //     throw new Error(`The password is too weak`);
-    // }
+    const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!expression.test(password)) {        
+        throw new Error(`The password is too weak`);
+    }
     const user = new UsersModel({
         _id: uid,
         email: email,
@@ -72,7 +72,7 @@ const findUser = async (_id) => {
 
 const getUserDashboard = async (id) => {
     if (!id) throw new Error(`It needs an id property`);
-    console.log(id)
+    
     let user = await UsersModel.findById(id);
 
     user = await UsersModel.aggregate([
@@ -120,7 +120,7 @@ const deleteUser = async (id) => {
         return `The user with an id ${id} was not found in the database`;
     }
     const deleteUser = await UsersModel.deleteOne({ _id: id });
-    console.log(deleteUser)
+    
     return deleteUser;
 }
 
