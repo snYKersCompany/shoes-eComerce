@@ -6,8 +6,13 @@ import {
 } from "../../../redux/features/orders/ordersActions";
 import { PDFViewer } from "@react-pdf/renderer";
 import DocPDF from "./DocPDF";
-import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
+import {BiSearchAlt2} from "react-icons/bi"
+import {BsFileEarmarkArrowDown} from "react-icons/bs"
+import {CiFilter} from "react-icons/ci"
+import "../../../styles/AdminDashboardOrders.css"
+
+
+
 
 function AdminDashboardOrders({ setOrderDetails }) {
   const dispatch = useDispatch();
@@ -15,8 +20,8 @@ function AdminDashboardOrders({ setOrderDetails }) {
   const { orders, orderDetails } = useSelector((state) => state.orders);
 
 
-  // console.log('esto es orders', orders)
-  // console.log('esto es orderDetail', orderDetails)
+  console.log('esto es orders', orders)
+
   const [sortOrder, setSortOrder] = useState('');
   const [valueOrder, setValueOrder] = useState(-1);
   const [sortDirection, setSortDirection] = useState("↑↓")
@@ -27,7 +32,6 @@ function AdminDashboardOrders({ setOrderDetails }) {
     const sort = {};
 
     if(sortOrder.length) sort.orderBy = {[sortOrder]:valueOrder}
-    console.log('en el comp AdmDashBOrders', sort)
 
 
     dispatch(getAllOrders(sort));
@@ -60,64 +64,89 @@ function AdminDashboardOrders({ setOrderDetails }) {
   const handlerButon = () => {
     setViewPdf(!viewPdf);
   };
+
+  const functionColor = (state) =>{
+    switch (state) {
+      case "cancelled":
+          return "#FFA0A0"
+      case "cancelled":
+        return "#FFA0A0"
+      case "pending":
+        return "#FFDE69"
+      case "aprobed":
+        return "#B5FFB8"
+      default:
+        return "#ffffff"
+    }
+  }
+
   return (
-    <>
+    <div style={{"background":"rgb(36,36,36)"}}>
       {viewPdf ? (
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th onClick={()=> handleSortOrders('username')}>User {sortOrder==="username"?sortDirection:""}</th>
-              <th onClick={()=> handleSortOrders('date')}>Date {sortOrder==="date"?sortDirection:""}</th>
-              <th onClick={()=> handleSortOrders('finalAmount')}>Final purchase amount {sortOrder==="finalAmount"?sortDirection:""}</th>
-              <th onClick={()=> handleSortOrders('state')}>State {sortOrder==="state"?sortDirection:""}</th>
-              <th>voucher</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
+        <>
+        <div className="AdminDashboard-userProfileGrid">
+          
+          <div className="AdminDashboard-userProfilefilters">
+              <button className="d-flex align-items-center">
+                <span style={{"color": "white", "font-size": "1rem"}}>filter</span>
+                <CiFilter/>
+              </button>
+          </div>
+
             {orders.map((order, i) => (
-              <tr key={i}>
-                <td key={order._id}>{order._id}</td>
-                <td key={i+"user"}>{order.username ? order.username : 'user'}</td>
-                <td key={order.date}>{order.date}</td>
-                <td key={i+'amount'}>{order.finalAmount ? order.finalAmount : order.totalPrice}</td>
-                <td key={order.state}>{order.state}</td>
-                <td>
-                  <Button
-                    variant="primary"
-                    onClick={() => {
-                      handlerViewPdf(order);
-                    }}
-                  >
-                    Ticket
-                  </Button>
-                </td>
-                <td>
-                  <Button
-                    variant="primary"
-                    onClick={() => {
-                      handlerDetails(order._id);
-                    }}
-                  >
-                    Details
-                  </Button>
-                </td>
-              </tr>
+              <div key={i} className="AdminDashboard-userProfileOrders" style={{"background-color" : functionColor(order.state)}}>
+               
+                <div className="AdminDashboard-userProfile">
+                  <img src={`${order?.user?.image? order.user.image :"https://jonmircha.com/img/jonmircha.jpg" }`} alt="order-user" width={"150px"} />
+                  <label className="fw-light" key={order._id}>{order._id}</label>
+                </div>
+                
+                <div className="AdminDashboard-orderInfo">
+                    <p key={i+"user"} className="fw-bold">  {order?.user?.username ? order.user.username : 'prueba'}</p>
+                    <p key={order.date}>{order?.date.slice(0,10)}</p>
+                    <p className="fst-italic" key={order.state}>{order?.state}</p>
+                    <p className="fw-bold" key={i+'amount'}>{order?.finalAmount ? order.finalAmount : "$123"}</p>
+                </div>
+
+                <div  className="AdminDashboard-btnControllers">
+                    <button
+                    className="btnControllers-AdminDsh"
+                      onClick={() => {
+                        handlerViewPdf(order);
+                      }}
+                    >
+                      <BsFileEarmarkArrowDown />
+                    </button>
+                  
+                    <button
+                      onClick={() => {
+                        handlerDetails(order._id);
+                      }}
+                      className="btnControllers-AdminDsh"
+                    >
+                      <BiSearchAlt2 />
+                    </button>
+                </div>
+              
+              </div>
             ))}
-          </tbody>
-        </Table>
+
+      </div>
+        
+
+      </>
+
       ) : (
         <>
-          <Button variant="primary" onClick={handlerButon}>
+          <button variant="primary" onClick={handlerButon}>
             Back
-          </Button>
+          </button>
           <PDFViewer style={{ width: "90vw", height: "90vh" }}>
             {orderDetails ? <DocPDF orderDetails={orderDetails} /> : null}
           </PDFViewer>
         </>
       )}
-    </>
+    </div>
   );
 }
 
