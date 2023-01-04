@@ -7,6 +7,7 @@ import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const UserDashboard = () => {
 
@@ -24,11 +25,12 @@ const UserDashboard = () => {
   // };
   // console.log(control.toString())
 
-  console.log('esto es control =====================================================>>>>>>', control)
+  // console.log('esto es control =====================================================>>>>>>', control)
 
+  const {userDashboard} = useSelector(state=> state.users)
   return (
     <>
-      <h3 className="d-flex justify-content-center ">Hello User</h3>
+      <h3 className="d-flex justify-content-center ">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}!</h3>
 
       <div className="userDashBoardContainer">
         <div className="userDashBoard d-flex w-100">

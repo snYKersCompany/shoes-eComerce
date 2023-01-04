@@ -30,7 +30,6 @@ const AdminDashboard = () => {
     setControl(section)
   }
   };
-  console.log(control.toString())
 
 
   const {userDashboard} = useSelector(state=> state.users)

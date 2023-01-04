@@ -9,7 +9,6 @@ import {
 } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
-  console.log(payload)
   try {
     const post = await axios.post("/users", payload);
     return post;
@@ -20,7 +19,6 @@ export const findOrCreateUser = (payload) => async () => {
 
 export const getAllUsers = (body = {}) => async (dispatch) => {
   try {
-    console.log('parado en las actions', JSON.stringify(body))
     const jsonBody = JSON.stringify(body)
     const users = await axios.get(`/users?orderSearch=${jsonBody}`);
     return dispatch(getAllUser(users.data.users));

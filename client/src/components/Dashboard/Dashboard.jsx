@@ -1,5 +1,4 @@
 import React from "react";
-
 import NavBar from "../NavBar2.0/NavBar2.0";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard/UserDashboard";
@@ -23,16 +22,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
     dispatch(getOneUser(user.uid));
-  }, [dispatch, user.uid]);
-
-  // console.log(userDashboard.roles);
-
-  // useEffect(() => {
-  //   dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
-  //   dispatch(getOneUser(user.uid));
-  // }, [dispatch, user.uid]);
-
-  console.log(userDashboard);
+    }, [dispatch, user.uid]);
 
   return (
     <>

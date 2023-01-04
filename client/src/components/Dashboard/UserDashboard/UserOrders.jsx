@@ -71,7 +71,7 @@ const UserOrders = () => {
       [e.target.inputReview]: e.target.value,
     });
   };
-  console.log('esto es avgRating, las estrellitas esas hermosas pero robadas', avgRating)
+  // console.log('esto es avgRating, las estrellitas esas hermosas pero robadas', avgRating)
 
   //TERMINAN LAS ESTRELLITAS
 
@@ -89,12 +89,17 @@ const UserOrders = () => {
       })
     );
   };
-  console.log(
-    "esto es y reviewInput en el comp",
-    Object.values(reviewInput).toString()
-  );
 
 
+  // console.log(
+  //   "esto es y reviewInput en el comp",
+  //   Object.values(reviewInput).toString()
+  // );
+
+
+    const { orders } = useSelector(state=> state.orders)
+    
+  console.log('esto es orders ------------------->', orders)
 
 
 

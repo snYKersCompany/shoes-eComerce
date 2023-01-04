@@ -12,11 +12,17 @@ import Table from "react-bootstrap/Table";
 function AdminDashboardOrders({ setOrderDetails }) {
   const dispatch = useDispatch();
   const [viewPdf, setViewPdf] = useState(true);
+  
   const { orders, orderDetails } = useSelector((state) => state.orders);
 
+  const {userDashboard} = useSelector(state => state.users)
 
-  // console.log('esto es orders', orders)
-  // console.log('esto es orderDetail', orderDetails)
+  const userOrders = orders.filter(e=> e.user.email === userDashboard.email)
+
+  console.log('esto es ordernes de un comprado', userOrders)
+
+  // console.log('esto es orders ------->', orders)
+
   const [sortOrder, setSortOrder] = useState('');
   const [valueOrder, setValueOrder] = useState(-1);
   const [sortDirection, setSortDirection] = useState("↑↓")
@@ -25,11 +31,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
 
   useEffect(() => {
     const sort = {};
-
     if(sortOrder.length) sort.orderBy = {[sortOrder]:valueOrder}
-    console.log('en el comp AdmDashBOrders', sort)
-
-
     dispatch(getAllOrders(sort));
   }, [dispatch, sortOrder, valueOrder]);
 
@@ -39,13 +41,6 @@ function AdminDashboardOrders({ setOrderDetails }) {
     if(valueOrder > 0) setSortDirection("↑")
     else setSortDirection("↓")
   };
-
-
-
-
-
-
-
 
   const handlerViewPdf = ({ _id }) => {
     dispatch(getOrderDetails(_id));
