@@ -193,16 +193,15 @@ const Create = () => {
           release: "Invalid Date",
         });
     setform({ ...form, release: e.target.value });
-  };
-  const [auxImg, setAuxImg] = useState();
+  };  
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET_PRODUCT;
   const [file, setFile] = useState(null);
   const [image, setImage] = useState("");
 
-  let handleImg = (e) => {
+  /* let handleImg = (e) => {
     setAuxImg(e.target.value);
-  };
+  }; */
 
   const handleImage = async (e) => {
     setFile(e.target.files[0]);
@@ -213,15 +212,15 @@ const Create = () => {
     { method: "POST", body: data }
     );
     const info = await response.json();
-    setAuxImg(e.target.value ? e.target.value : info.url);
-    console.log("Aux image: ", auxImg, "Info: ", info);
+    setImage(info.url);
+    console.log("Aux image: ", image, "Info: ", info);
   }
 
   let handleImgForm = () => {
-    setform({ ...form, img: auxImg });
-    auxImg.length > 1
+    setform({ ...form, img: image });
+    image.length > 1
       ? setError({ ...error, img: false })
-      : setError({ ...error, img: "Upload a image" });
+      : setError({ ...error, img: "Upload an image" });
   };
 
   let submitForm = (e) => {
@@ -469,52 +468,8 @@ const Create = () => {
                   <></>
                 )}
                 {/* ============ Reducible ============ */}
-                <ButtonGroup>
-                  <ToggleButton
-                    key={1}
-                    type="radio"
-                    variant={"outline-success"}
-                    value={controller.radio}
-                    onClick={() =>
-                      setController({ ...controller, radio: true })
-                    }
-                    checked={controller.radio === true}
-                  >
-                    {"Image Adress"}
-                  </ToggleButton>
-
-                  <ToggleButton
-                    key={2}
-                    type="radio"
-                    variant={"outline-danger"}
-                    value={controller.radio}
-                    onClick={() =>
-                      setController({ ...controller, radio: false })
-                    }
-                    checked={controller.radio === false}
-                  >
-                    {"Search Files"}
-                  </ToggleButton>
-                </ButtonGroup>
-                {/* ===================================== */}
-
-                {controller.radio === true ? (
-                  <FormGroup className="d-flex w-100 mt-3">
-                    <Form.Control
-                      type="text"
-                      className="d-flex FormCreateInputUrl"
-                      onChange={(e) => handleImg(e)}
-                      placeholder="Insert the URL of your image"
-                    />
-                    <Button
-                      className="d-flex mx-1"
-                      onClick={ handleImgForm }
-                    >
-                      Upload
-                    </Button>
-                  </FormGroup>
-                ) : (
-                  <Form.Group className="mt-3 d-flex flex-column">
+                
+                <Form.Group className="mt-3 d-flex flex-column">
                     <Form.Control
                     type = "file"
                     className="d-flex FormCreateInputUrl"
@@ -528,7 +483,8 @@ const Create = () => {
                       onClick={ handleImgForm }
                     ></Button>
                   </Form.Group>
-                )}
+
+                {/* ===================================== */}
                 <div className="d-flex mt-5">
                   {Boolean(     //   ============ Reducible ============
                     Object.values(form).filter((el) => el === " ").length >= 1
