@@ -1,7 +1,62 @@
-.FormCreateError{
-    color: rgb(248, 68, 68);
-    margin-top: 4px;
-    display: flex;
-    font-size: 12px;
-    border-color: rgb(248, 68, 68);
+.FormCreateError {
+  color: rgb(248, 68, 68);
+  margin-top: 4px;
+  display: flex;
+  font-size: 12px;
+  border-color: rgb(248, 68, 68);
+}
+
+.AdminAccount-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, auto);
+  grid-auto-rows: 1fr;
+  grid-auto-flow: column;
+}
+
+.AdminAccount-background {
+  grid-column: 1/3;
+  grid-row: 1/3;
+}
+
+.AdminAccount-image {
+  grid-column: 1/2;
+  grid-row: 2/4;
+  display: grid;
+  justify-items: center;
+}
+
+.AdminAccount-name {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  display: grid;
+  justify-items: start;
+  align-items: start;
+  margin-left: -17rem;
+  margin-top: -6rem;
+}
+.AdminAccount-name h3 {
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.AdminAccount-form {
+  grid-column: 1/2;
+  grid-row: 4/5;
+  grid-auto-flow: row;
+  margin-top: 4rem;
+  display: grid;
+  justify-items: center;
+  align-items: start;
+}
+/* ---------------------- */
+
+.AdminAccount-background-img {
+  width: 90vw;
+  max-height: 300px;
+  border-radius: 40px;
+}
+.AdminAccount-image img {
+  border-radius: 50%;
 }
