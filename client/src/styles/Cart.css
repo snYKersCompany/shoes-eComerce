@@ -1,0 +1,37 @@
+.noProductsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  font-size: small;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  letter-spacing: 0.01em;
+}
+.button:hover {
+  background: #f5ebe0;
+  color: #000000;
+  box-shadow: 0 0 35px #03045e;
+}
+
+.noProducts {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 4em;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+  margin-bottom: 2rem;
+}
+
+@media (min-height: 720px) {
+  .mainView {
+    min-height: 95vh;
+  }
+}

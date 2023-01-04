@@ -1,9 +1,7 @@
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import "../../../styles/MiddleViewCard.css";
-import { Link } from "react-router-dom";
 
 function MiddleViewCard({ product }) {
   return (
