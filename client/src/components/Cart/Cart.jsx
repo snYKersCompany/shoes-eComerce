@@ -22,11 +22,6 @@ const Cart = () => {
       : priceTotal
   );
 
-  let InfoToSend = {
-    products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmount: priceToSend,
-  };
-
   const handleDelete = (productId, TotalPrice) => {
     let filtered = products.filter((el) => el.idAux !== productId);
     setPriceToSend(priceToSend - TotalPrice);
