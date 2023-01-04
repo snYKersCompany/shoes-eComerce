@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
 import {
   getUserDashboards,
   putUserInformation,
@@ -178,59 +176,73 @@ function AdminDashboardAccount() {
 
   return (
     <div className="FakeBodyAdminDashboard">
-    <div className="AdminAccount-container">
-      <div className="AdminAccount-background">
-        <img
-          src="https://media.discordapp.net/attachments/978746970460012584/1059462550363848794/snykers_bg.png?width=994&height=559"
-          alt="name"
-          className="AdminAccount-background-img"
-        />
-      </div>
-      <div className="AdminAccount-image">
-        <img
-          src={change.image || "https://cdn-icons-png.flaticon.com/512/25/25634.png"}
-          alt="name"
-          width="300px"
-          height="300px"
-        />
-      </div>
-      <div className="AdminAccount-name">
-        <h3>{change.username}</h3>
-      </div>
-
-      <form className="AdminAccount-form">
-        {lockers.map((f, i) => (
-          <div key={i}>
-            <div className="d-flex flex-column p-2 align-items-start">
-              <label className="AdminAccount-labelForm">{f.label}</label>
-              <div className="d-flex">
-                <input
-                  type="string"
-                  placeholder={f.placeholder}
-                  defaultValue={change[f.form]}
-                  onChange={(e) => handleChange(e, f.form)}
-                  disabled={disable !== f.form}
-                  className={`${disable === f.form? "editfocus" : ""}   ${error[f.form] ? "FormCreateError AdminAccount-inputForm" : "AdminAccount-inputForm"}`}
-                />
-                <button className="AdminAccount-btnForm" onClick={(e) => handleEdit(e, f.form)}>
-                  <FiEdit3 />
-                </button>
-              </div>
-            </div>
-            {error[f.form] ? (
-              <p className="FormCreateError">{f.required}</p>
-            ) : null}
-          </div>
-        ))}
-      </form>
-  
-      {state ? (
-        <div className="AdminAccount-btnSave">
-          <button className="btnCard btnSave1" onClick={handleSubmitForm}>Save</button>
-          <button className="btnCard btnSave2" onClick={handleCancel}>Cancel</button>
+      <div className="AdminAccount-container">
+        <div className="AdminAccount-background">
+          <img
+            src="https://wallpaper.dog/large/645620.jpg"
+            alt="name"
+            className="AdminAccount-background-img"
+          />
         </div>
-      ) : null}
-    </div>
+        <div className="AdminAccount-image">
+          <img
+            src={
+              change.image ||
+              "https://cdn-icons-png.flaticon.com/512/25/25634.png"
+            }
+            alt="name"
+            width="300px"
+            height="300px"
+          />
+        </div>
+        <div className="AdminAccount-name">
+          <h3>{change.username}</h3>
+        </div>
+
+        <form className="AdminAccount-form">
+          {lockers.map((f, i) => (
+            <div key={i}>
+              <div className="d-flex flex-column p-2 align-items-start">
+                <label className="AdminAccount-labelForm">{f.label}</label>
+                <div className="d-flex">
+                  <input
+                    type="string"
+                    placeholder={f.placeholder}
+                    defaultValue={change[f.form]}
+                    onChange={(e) => handleChange(e, f.form)}
+                    disabled={disable !== f.form}
+                    className={`${disable === f.form ? "editfocus" : ""}   ${
+                      error[f.form]
+                        ? "FormCreateError AdminAccount-inputForm"
+                        : "AdminAccount-inputForm"
+                    }`}
+                  />
+                  <button
+                    className="AdminAccount-btnForm"
+                    onClick={(e) => handleEdit(e, f.form)}
+                  >
+                    <FiEdit3 />
+                  </button>
+                </div>
+              </div>
+              {error[f.form] ? (
+                <p className="FormCreateError">{f.required}</p>
+              ) : null}
+            </div>
+          ))}
+        </form>
+
+        {state ? (
+          <div className="AdminAccount-btnSave">
+            <button className="btnCard btnSave1" onClick={handleSubmitForm}>
+              Save
+            </button>
+            <button className="btnCard btnSave2" onClick={handleCancel}>
+              Cancel
+            </button>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }
