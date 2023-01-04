@@ -62,8 +62,6 @@ function AdminDashboardOrders({ setOrderDetails }) {
     setViewPdf(!viewPdf);
   };
 
-  console.log(orders)
-
   return (
     <>
       {viewPdf ? (
