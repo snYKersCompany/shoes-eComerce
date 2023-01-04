@@ -1,6 +1,8 @@
 .customContainer {
   background-color: #bababa;
   border-radius: 20px;
+  margin-bottom: 2rem;
+  margin-top: 0rem;
 }
 .img1 {
   height: 6em;

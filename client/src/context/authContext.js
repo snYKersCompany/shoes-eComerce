@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }) => {
     //LOG IN
     const logIn = async (email, password) => {
         await signInWithEmailAndPassword(auth, email, password)
+        //dispatch(sendMail(user, template))
         // setPersistence(auth, browserLocalPersistence)
     }
 

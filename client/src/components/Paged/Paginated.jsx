@@ -12,13 +12,11 @@ import CardsContainer from "../CardsContainer/CardsContainer";
 // import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
 // import { Link } from "react-router-dom";
+import FilterContainer from "../Filters/FilterContainer";
 
 
-import '../../styles/filterContainer.css'
-
-
-
-import FilterContainer from '../Filters/FilterContainer'
+import "../../styles/filterContainer.css";
+import '../../styles/paginado.css'
 
 const Paginated = () => {
   const dispatch = useDispatch();
@@ -74,17 +72,21 @@ const Paginated = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-  return (
-    products[0] !== "void"?
+  return products[0] !== "void" ? (
     <div>
-      <div >
+      <div>
         {/* filters funciona pero no hace el paginado */}
         <div></div>
         {/* <Filters setActualPage={setActualPage} /> */}
-       
+
+        <div className="d-flex align-self-start filterMargin mb-5">
+          <FilterContainer setActualPage={setActualPage} />
+        </div>
+
         {products.length >= 1 ? (
           pages.length < 8 ? (
-            <Pagination className="d-flex justify-content-center mt-3">
+            <Pagination className="d-flex justify-content-center paginadoCustom">
+              
               {actualPage !== 1 ? (
                 <Pagination.Prev onClick={() => currentPage(actualPage - 1)} />
               ) : (
@@ -113,7 +115,7 @@ const Paginated = () => {
               )}
             </Pagination>
           ) : (
-            <Pagination className="d-flex justify-content-center mt-3">
+            <Pagination className="d-flex justify-content-center">
               {/* {First and Prev} */}
               {actualPage !== 1 ? (
                 <>
@@ -175,28 +177,33 @@ const Paginated = () => {
           </button>
         </Link>
       </div> */}
-       
-
-       
-      {productsSliced.length>0?
-   <div className="d-flex flex-column">
-    <div className="d-flex align-self-start filterMargin "> 
-    <FilterContainer setActualPage={setActualPage}/>
-    </div>  
-    <CardsContainer productsSliced={productsSliced} /> 
-    </div>
-      :
-      <div className="d-flex justify-content-center align-items-center" style={{"min-height": "70vh"}} >
-        <img  src="https://cdn-icons-png.flaticon.com/512/755/755014.png" alt='not found'
-        style={{"width":"200px", "height": "220px"}}
-        />
-        <div className="d-flex flex-wrap align-items-center text-center" style={{"width": "300px", "color": "#d62828", "font-weight":"bold"}}>
-          <label style={{"font-weight":"bold", "font-size": "20px"}}>Sorry, this product is not available in our stock</label>
+      {productsSliced.length > 0 ? (
+        <div>
+          <div className="d-flex flex-column">
+            <CardsContainer productsSliced={productsSliced} />
+          </div>
         </div>
-      </div>
-    }
-
-{/* <Pagination className="d-flex justify-content-center mt-3">
+      ) : (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ "min-height": "70vh" }}
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/755/755014.png"
+            alt="not found"
+            style={{ width: "200px", height: "220px" }}
+          />
+          <div
+            className="d-flex flex-wrap align-items-center text-center"
+            style={{ width: "300px", color: "#d62828", "font-weight": "bold" }}
+          >
+            <label style={{ "font-weight": "bold", "font-size": "20px" }}>
+              Sorry, this product is not available in our stock
+            </label>
+          </div>
+        </div>
+      )}
+      {/* <Pagination className="d-flex justify-content-center mt-3">
               {actualPage !== 1 ? (
                 <Pagination.Prev onClick={() => currentPage(actualPage - 1)} />
               ) : (
@@ -225,63 +232,56 @@ const Paginated = () => {
               )}
             </Pagination>
           ) : ( */}
-            <Pagination className="d-flex justify-content-center mt-3">
-              {/* {First and Prev} */}
-              {actualPage !== 1 ? (
-                <>
-                  <Pagination.First onClick={() => currentPage(1)} />
-                  <Pagination.Prev
-                    onClick={() => currentPage(actualPage - 1)}
-                  />
-                </>
-              ) : (
-                <>
-                  <Pagination.First disabled />
-                  <Pagination.Prev disabled />
-                </>
-              )}
+      <Pagination className="d-flex justify-content-center">
+        {/* {First and Prev} */}
+        {actualPage !== 1 ? (
+          <>
+            <Pagination.First onClick={() => currentPage(1)} />
+            <Pagination.Prev onClick={() => currentPage(actualPage - 1)} />
+          </>
+        ) : (
+          <>
+            <Pagination.First disabled />
+            <Pagination.Prev disabled />
+          </>
+        )}
 
-              {/* {pages } */}
-              {slicedPaged().map((page) =>
-                page === actualPage ? (
-                  <Pagination.Item
-                    key={page}
-                    active
-                    onClick={() => currentPage(page)}
-                  >
-                    {page}
-                  </Pagination.Item>
-                ) : 
-                (
-                  <Pagination.Item key={page} onClick={() => currentPage(page)}>
-                    {page}
-                  </Pagination.Item>
-                )
-              )}
-
-              {/* {Next and Last}*/}
-              {actualPage !== pages[pages.length - 1] ? (
-                <>
-                  <Pagination.Next
-                    onClick={() => currentPage(actualPage + 1)}
-                  />
-                  <Pagination.Last
-                    onClick={() => currentPage(pages[pages.length - 1])}
-                  />
-                </>
-              ) : (
-                <>
-                  <Pagination.Next disabled />
-                  <Pagination.Last disabled />
-                </>
-              )}
-            </Pagination>
+        {/* {pages } */}
+        {slicedPaged().map((page) =>
+          page === actualPage ? (
+            <Pagination.Item
+              key={page}
+              active
+              onClick={() => currentPage(page)}
+            >
+              {page}
+            </Pagination.Item>
+          ) : (
+            <Pagination.Item key={page} onClick={() => currentPage(page)}>
+              {page}
+            </Pagination.Item>
           )
-    </div>
-    :
-    <div></div>
+        )}
 
-    
+        {/* {Next and Last}*/}
+        {actualPage !== pages[pages.length - 1] ? (
+          <>
+            <Pagination.Next onClick={() => currentPage(actualPage + 1)} />
+            <Pagination.Last
+              onClick={() => currentPage(pages[pages.length - 1])}
+            />
+          </>
+        ) : (
+          <>
+            <Pagination.Next disabled />
+            <Pagination.Last disabled />
+          </>
+        )}
+      </Pagination>
+      )
+    </div>
+  ) : (
+    <div></div>
   );
 };
 

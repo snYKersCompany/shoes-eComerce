@@ -47,7 +47,7 @@ function App() {
             <Elements stripe={stripePromise}>
               <Checkout />
             </Elements>} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
           <Route
             path="/account/:section"
             element={
