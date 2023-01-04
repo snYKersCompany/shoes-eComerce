@@ -7,5 +7,4 @@ router.post('/signUp', [checkRolesExisted, checkDuplicated], controllers.signUp)
 
 router.post('/signIn', controllers.signIn)
 
-
 module.exports = router;
