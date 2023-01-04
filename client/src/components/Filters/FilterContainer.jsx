@@ -25,10 +25,11 @@ function FilterContainer({ setActualPage, name, ...props }) {
 
   return (
     <>
-    <p>looking for something particular?, use our filters</p>
+    <div>
       <Button variant='custom' onClick={handleShow} className="btnCard1">
         Filters
       </Button>
+      </div>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Filters</Offcanvas.Title>
