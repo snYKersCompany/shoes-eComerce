@@ -86,7 +86,8 @@ function AdminDashboardOrders({ setOrderDetails }) {
                   src={`${
                     order?.user?.image
                       ? order.user.image
-                      : "https://jonmircha.com/img/jonmircha.jpg" //https://cdn-icons-png.flaticon.com/512/25/25634.png, https://jonmircha.com/img/jonmircha.jpg
+                      : "https://cdn-icons-png.flaticon.com/512/25/25634.png"
+                    //https://jonmircha.com/img/jonmircha.jpg
                   }`}
                   alt="order-user"
                   width={"150px"}
