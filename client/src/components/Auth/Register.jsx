@@ -18,7 +18,7 @@ import { putUserInformation } from "../../redux/features/users/usersActions";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { signUp, user } = useAuth(); // eslint-disable-line
+  const { signUp } = useAuth(); // eslint-disable-line
 
   const [shown, setShown] = useState(false);
   const [password, setPassword] = useState("");
@@ -27,13 +27,6 @@ const Register = () => {
   const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
   const [forgotPassword, setForgotPassword] = useState(""); // eslint-disable-line
-
-  //LOCAL STORAGE
-  let productsCart = localStorage.getItem("carrito");
-
-  const [products, setProducts] = useState(
-    productsCart?.length > 1 ? JSON.parse(productsCart) : []
-  );
 
   /////-----STATES-----/////
   const [userIN, setUser] = useState({
@@ -99,11 +92,11 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      const userFB = await signUp(userIN.email, userIN.password);
-      navigate("/home");
+      const userUID = await signUp(userIN.email, userIN.password);
+      navigate("/");
       alert("Your register went succesfully :D");
       dispatch(
-        putUserInformation(userFB.user.uid, {
+        putUserInformation(userUID.user.uid, {
           username: userIN.username,
           password: userIN.password,
         })
@@ -178,7 +171,7 @@ const Register = () => {
                 className="mb-4"
               >
                 <Form.Label>Password</Form.Label>
-                <div className="d-flex" justify-content-center>
+                <div className="d-flex justify-content-center">
                   <Form.Control
                     size="40"
                     maxLength="256"

@@ -45,7 +45,7 @@ const userSchema = mongoose.Schema({
 
 userSchema.statics.encryptPassword = async (password) => {
   if (!(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password))) {
-    throw new Error(`The password is too weak`);
+    throw new Error(`Password invalid, It must have 8 letters, 1 number and 1 character`);
   }
   const salt = await bcrypt.genSalt(10)
   return await bcrypt.hash(password, salt);

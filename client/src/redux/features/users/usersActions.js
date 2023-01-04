@@ -9,7 +9,6 @@ import {
 } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
-  console.log(payload)
   try {
     const post = await axios.post("/users", payload);
     return post;

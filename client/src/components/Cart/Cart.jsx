@@ -27,20 +27,12 @@ const Cart = () => {
     finalAmount: priceToSend,
   };
 
-  console.log("price To send", priceToSend);
-
   const handleDelete = (productId, TotalPrice) => {
-    let filtered = products.filter((el) => el.id + el.size !== productId);
-    console.log(
-      products.filter((el) => el.id + el.size !== productId),
-      productId
-    );
+    let filtered = products.filter((el) => el.idAux !== productId);
     setPriceToSend(priceToSend - TotalPrice);
     localStorage.setItem("carrito", JSON.stringify(filtered));
     setProducts(filtered);
   };
-
-  console.log(priceToSend);
 
   return (
     <div className="noProductsContainer">

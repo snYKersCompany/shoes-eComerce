@@ -12,7 +12,10 @@ import { BsFillStarFill } from "react-icons/bs";
 import { TbStarOff } from "react-icons/tb";
 import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
 //actions
-import { getProductsDetails } from "../../redux/features/products/productsActions";
+import {
+  createProduct,
+  getProductsDetails,
+} from "../../redux/features/products/productsActions";
 //styles
 import "../../styles/details.css";
 
@@ -43,6 +46,12 @@ const Details = () => {
   const [count, setCount] = useState(false);
   const [totalPrice, setTotalPrice] = useState(productDetail.price * count);
 
+  let productsCart = localStorage.getItem("carrito");
+
+  const [products, setProducts] = useState(
+    productsCart?.length > 1 ? JSON.parse(productsCart) : []
+  );
+
   function setProduct() {
     if (localStorage.getItem("carrito")?.length > 1) {
       let cart = {
@@ -56,13 +65,18 @@ const Details = () => {
         count,
         totalPrice: productDetail.price * count,
       };
-
+      // const myFilteredCart = products.reduce(
+      //   (prev, curr) =>
+      //     prev.find((el) => el.idAux === curr.idAux) ? prev : [...prev, curr],
+      //   []
+      // );
       localStorage.setItem(
         "carrito",
         JSON.stringify(
           JSON.parse(localStorage.getItem("carrito")).concat([cart])
         )
       );
+      alert(`The product ${productDetail.name} was successfully added`);
     } else {
       let cart = {
         id: productDetail._id,
@@ -76,9 +90,16 @@ const Details = () => {
         totalPrice: productDetail.price * count,
       };
       localStorage.setItem("carrito", JSON.stringify([cart]));
+      alert(`The product ${productDetail.name} was successfully added`);
     }
-    alert(`The product ${productDetail.name} was successfully added`);
   }
+
+  const myFilteredCart = products.reduce(
+    (prev, curr) =>
+      prev.find((el) => el.idAux === curr.idAux) ? prev : [...prev, curr],
+    []
+  );
+  console.log(myFilteredCart);
 
   //Fin local Storage
   return (
