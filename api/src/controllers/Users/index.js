@@ -63,9 +63,9 @@ const findUser = async (_id) => {
     if (!_id) {
         throw new Error(`It needs an id property`);
     }
-    const user = await UsersModel.findById(id);
+    const user = await UsersModel.findById(_id);
     if (!user) {
-        return `The user with an id ${id} was not found in the database`
+        return `The user with an id ${_id} was not found in the database`
     }
     return user;
 }

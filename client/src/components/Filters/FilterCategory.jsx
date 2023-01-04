@@ -8,6 +8,8 @@ const FilterCategory = () => {
 
   const { categories } = useSelector((state) => state.products);
 
+  console.log(categories)
+
   function handleFilterCategories(e) {
     e.preventDefault();
     if(e.target.value === "none") dispatch(deletefilters("category"))
