@@ -29,12 +29,11 @@ const addUser = async (uid, email, username, password, name, phone, address, cit
     if (result) {
         return result;
     }
-
     const user = new UsersModel({
         _id: uid,
         email: email,
         username: username,
-        password: password,
+        password: await UsersModel.encryptPassword(password),
         name: name,
         phone: phone,
         address: address,
