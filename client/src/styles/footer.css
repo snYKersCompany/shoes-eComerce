@@ -1,23 +1,9 @@
-/* .image1 {
-width: 105px;
-height: 48px;
+.containerTodo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-
-.image2{
-    width: 45px;
-    height: 45px;
-} */
-
-
-/* .footerContainer { */
-    /* background-color: #050505;  este es el del background*/
-    /* background-color: blue; */
-    /* display: flex; */
-    /* position: fixed;
-    width: 100%;
-    margin-left: 1px; */
-/* 
-} */
 
 .first {
     display: flex;

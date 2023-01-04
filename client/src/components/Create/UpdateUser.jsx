@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../../styles/FormUser.css";
 import Axios from "axios";
 import { useEffect } from "react";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
+import { useParams } from "react-router-dom";
 
 export default function FormUserUpdate () {
     const { _id } = useParams();
