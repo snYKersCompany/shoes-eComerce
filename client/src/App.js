@@ -16,17 +16,14 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
 import Error404 from "./components/Error404/Error404";
 import Main from "./components/Home/Main";
-
+import Women from "./components/Home/Women";
+import Checkout from './components/Checkout/Checkout';
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 //Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import Women from "./components/Home/Women";
-import FormUserUpdate from './components/Create/UpdateUser';
-import FormUserCreate from './components/Create/CreateUser';
-import PaypalEjemplo from "./components/Paypal/Paypal";
 const stripePromise = loadStripe(
   "pk_test_51MHXZUEgY6MBu39VFoEgCPs7p60pA9GRQ50lY1Tt0g8KDajCchKvX33hZ3QUBrEkOr3N2wUr2Z3Sved9g6YdhbgM00knycrACa"
 );
@@ -36,28 +33,21 @@ function App() {
     <div>
       <AuthProvider>
         <Routes>
-          <Route path="/main" element={<Main />} />
-          <Route path="/execute-payment" element={<PaypalEjemplo />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Main />} />
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/women" element={<Women />} />
           <Route path="/" element={<Home />} />
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<FormUserCreate />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
-          
-
-          <Route
-            path="/cart"
-            element={
-              <Elements stripe={stripePromise}>
-                <Cart />
-              </Elements>
-            }
-          />
+          <Route path="/checkout/:id" element={
+            <Elements stripe={stripePromise}>
+              <Checkout />
+            </Elements>} />
+          <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
           <Route
             path="/account/:section"
             element={
@@ -66,8 +56,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/home/:id" element={<Details />} />          
-          <Route path="/complete-data/:id" element={<FormUserUpdate />} />
+          <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
         </Routes>
       </AuthProvider>

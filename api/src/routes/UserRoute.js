@@ -36,6 +36,7 @@ router.post("/", checkDuplicated, async (req, res) => {
 router.get("/details/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     const user = await controllers.findUser(id);
     return res.status(200).json(user);
   } catch (error) {

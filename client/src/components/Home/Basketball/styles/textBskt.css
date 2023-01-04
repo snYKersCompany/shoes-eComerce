@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unbounded:wght@800&display=swap');
+
+.containerTextBskt{
+    display: grid;
+    grid-template-columns: 1fr repeat(2,2fr) 1fr;
+        background: linear-gradient(0deg, rgba(87,24,69,1) 0%, rgba(144,12,62,1) 88%);
+}
+
+
+
+
+
+
+
+.imgTextBskt{
+    justify-items: flex-end;
+    max-width: 30rem;
+}
+
+/*
+.infoTextBskt{
+    padding-left: 20px;
+    width: 40%;
+    display: flex;
+}
+.containerTextBskth3{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive ;
+    font-size: 2rem;    
+    color: azure;
+}
+.containerTextBsktp{
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+    color: azure;
+    font-style: italic;
+}
+
+.containerTextBsktp span{
+    color: #1eff00
+} */
+
+
+

@@ -2,7 +2,7 @@
     display: flex;
     width: 100vw !important;
     overflow: hidden;
-    height: 87vh ; 
+    height: 95vh ; /*Cambiar para que no ropa el responsive*/
 }
 
 .navSection {

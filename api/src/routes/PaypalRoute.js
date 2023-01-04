@@ -7,9 +7,9 @@ const router = express.Router()
 
 const CLIENT = "ASSuTArS2TKZet8lZDi7sT1Uftx6WRFp-imJ-DKmoOj2QExOiRsHC6oo4RvIHjZ5sdPf28AGzReqObX7"
 const SECRET = "EJpQuzy3O8iusVbMbFoWf7QI4RdKfHGR2L3Zx17vLnN_I2ZR9_3IFx0z6JtvnloTsKp1ODOpkG-Dtnco"
-const PAYPAL_API = 'https://api-m.sandbox.paypal.com'; 
+const PAYPAL_API = 'https://api-m.sandbox.paypal.com';
 // const PAYPAL_API = 'https://api-m.paypal.com'; 
-const auth = { user: CLIENT, pass: SECRET};
+const auth = { user: CLIENT, pass: SECRET };
 
 
 const createPayment = (req, res)=>{
@@ -55,18 +55,18 @@ const createPayment = (req, res)=>{
         return res.status(400).json({ error: error.message });
     }
 }
-router.post('/create-payment', createPayment) 
+router.post('/create-payment', createPayment)
 
 
-const executePayment = (req, res)=>{
+const executePayment = (req, res) => {
     const token = req.query.token;
     const _id = req.query._id;
 
     request.post(`${PAYPAL_API}/v2/checkout/orders/${token}/capture`, {
         auth,
-        body:{},
+        body: {},
         json: true
-    }, (err, response)=>{
+    }, (err, response) => {
 
         const data = response.body
         
@@ -74,10 +74,10 @@ const executePayment = (req, res)=>{
         //  HACER VALIDACION PARA SAVER SI ES APROVE O CANCELED Y MODIFICAR LA ORDEN 
 
 
-        res.json({data: response.body})
+        res.json({ data: response.body })
     })
 }
 router.get('/execute-payment', executePayment)
-  
+
 
 module.exports = router;

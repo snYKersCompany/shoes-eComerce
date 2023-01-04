@@ -19,10 +19,14 @@
     font-family: 'Bebas Neue', cursive;
     /* background: linear-gradient(192.03deg, #091E51 6.17%, #1D1C41 93.05%); */
     background: linear-gradient(45deg, #042653, #081116,#042653 80%);
-
     border-radius: 25px !important;
     margin: 8px;
     overflow: hidden;
+}
+
+.card:hover{
+    box-shadow: inset 3px 3px 5px #ffffff, 0px 0px 10px rgb(255, 255, 255);
+    opacity: 1;
 }
 
 .brand {
@@ -47,6 +51,7 @@
     z-index: 1;
     transform: rotate(28deg) scale(1.05);
     object-fit: contain;
+    max-width: 380px;
 }
 
 .cardImage2 {
@@ -55,6 +60,8 @@
     z-index: 2;
     transform: scaleX(-1) scale(0.80) rotate(50deg);
     object-fit: contain;
+    max-width: 380px;
+
 }
 
 .text-gold {

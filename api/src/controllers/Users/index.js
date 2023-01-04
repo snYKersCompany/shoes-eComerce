@@ -29,15 +29,12 @@ const addUser = async (uid, email, username, password, name, phone, address, cit
     if (result) {
         return result;
     }
-    const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!expression.test(password)) {        
-        throw new Error(`The password is too weak`);
-    }
+
     const user = new UsersModel({
         _id: uid,
         email: email,
         username: username,
-        // password: await UsersModel.encryptPassword(password),
+        password: password,
         name: name,
         phone: phone,
         address: address,
@@ -63,9 +60,9 @@ const findUser = async (_id) => {
     if (!_id) {
         throw new Error(`It needs an id property`);
     }
-    const user = await UsersModel.findById(id);
+    const user = await UsersModel.findById(_id);
     if (!user) {
-        return `The user with an id ${id} was not found in the database`
+        return `The user with an id ${_id} was not found in the database`
     }
     return user;
 }
@@ -128,15 +125,15 @@ const modifyUser = async ({ id, name, username, password, status, roles, email, 
     let user = await UsersModel.findById(id);
     if (!user) throw new Error(`The user with an id ${id} was not found in the database`);
 
-    const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (!expression.test(password)) {
-        throw new Error(`The password is too weak`);
-    }
+    // const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    // if (expression.test(password)) {
+    //     throw new Error(`Password invalid, It must have 8 letters, 1 number and 1 character`);
+    // }
 
     let parameters = {}
     if (name && name.length) parameters.name = name;
     if (username && username.length) parameters.username = username;
-    if (password && password.length) parameters.password = password
+    if (password && password.length) parameters.password = password = await UsersModel.encryptPassword(password);
     if (email && email.length) parameters.email = email;
     if (typeof status === 'boolean') parameters.status = status;
     if (phone && phone.length) parameters.phone = phone;
