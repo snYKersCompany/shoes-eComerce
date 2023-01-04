@@ -10,9 +10,8 @@ import { useDispatch } from "react-redux";
 import { createProduct } from "../../redux/features/products/productsActions";
 import { Link } from "react-router-dom";
 
-const Create = () => {
+const Create = () => {  
   const dispatch = useDispatch();
-
   const [error, setError] = useState({
     name: " ",
     description: " ",
@@ -194,19 +193,39 @@ const Create = () => {
           release: "Invalid Date",
         });
     setform({ ...form, release: e.target.value });
-  };
-  const [auxImg, setAuxImg] = useState();
+  };  
+  const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
+  const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET_PRODUCT;
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState("");
 
-  let handleImg = (e) => {
+  /* let handleImg = (e) => {
     setAuxImg(e.target.value);
-  };
+  }; */
+
+  const handleImage = async (e) => {
+    setFile(e.target.files[0]);
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    data.append("upload_preset", UPLOAD_PRESET);
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: "POST", body: data }
+    );
+    const info = await response.json();
+    if (info.url) {
+      setImage(info.url);
+      setform({ ...form, [e.target.name]: info.url });
+    }
+    console.log("Info url: ", info.url);
+  }  
 
   let handleImgForm = () => {
-    setform({ ...form, img: auxImg });
-    auxImg.length > 1
+    setform({ ...form, img: image });
+    image.length > 1
       ? setError({ ...error, img: false })
-      : setError({ ...error, img: "Upload a image" });
+      : setError({ ...error, img: "Upload an image" });
   };
+
   let submitForm = (e) => {
     e.preventDefault();
 
@@ -224,12 +243,12 @@ const Create = () => {
       price: form.price,
       description: form.description,
     };
+    console.log("Form to send: ", formToSend );
     setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
-    
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
-      ? dispatch(createProduct(formToSend))
-      : console.log("Algo Falló");
+    ? dispatch(createProduct(formToSend))
+    : console.log("Algo Falló");
   };
 
   const user = { admin: true };
@@ -452,58 +471,23 @@ const Create = () => {
                   <></>
                 )}
                 {/* ============ Reducible ============ */}
-                <ButtonGroup>
-                  <ToggleButton
-                    key={1}
-                    type="radio"
-                    variant={"outline-success"}
-                    value={controller.radio}
-                    onClick={() =>
-                      setController({ ...controller, radio: true })
-                    }
-                    checked={controller.radio === true}
-                  >
-                    {"Image Adress"}
-                  </ToggleButton>
-
-                  <ToggleButton
-                    key={2}
-                    type="radio"
-                    variant={"outline-danger"}
-                    value={controller.radio}
-                    onClick={() =>
-                      setController({ ...controller, radio: false })
-                    }
-                    checked={controller.radio === false}
-                  >
-                    {"Search Files"}
-                  </ToggleButton>
-                </ButtonGroup>
-                {/* ===================================== */}
-
-                {controller.radio === true ? (
-                  <FormGroup className="d-flex w-100 mt-3">
+                
+                <Form.Group className="mt-3 d-flex flex-column">
                     <Form.Control
-                      type="text"
-                      className="d-flex FormCreateInputUrl"
-                      onChange={(e) => handleImg(e)}
-                      placeholder="Insert the URL of your image"
+                    type = "file"
+                    className="d-flex FormCreateInputUrl"
+                    onChange = { (e) => handleImage(e) }
+                    name = "img"
+                    placeholder="Upload an image"
                     />
+                    {file ? <img alt = "preview" height = "60" width = "60" src = {URL.createObjectURL(file)}/> : null}
                     <Button
                       className="d-flex mx-1"
-                      onClick={() => handleImgForm()}
-                    >
-                      Upload
-                    </Button>
-                  </FormGroup>
-                ) : (
-                  <Form.Group className="mt-3 d-flex flex-column">
-                    <Form.Label>
-                      Sin funcionalidad hasta que esté vinculado con cloudinary
-                    </Form.Label>
-                    <Form.Control type="file" multiple />
+                      onClick={ handleImgForm }
+                    ></Button>
                   </Form.Group>
-                )}
+
+                {/* ===================================== */}
                 <div className="d-flex mt-5">
                   {Boolean(     //   ============ Reducible ============
                     Object.values(form).filter((el) => el === " ").length >= 1
