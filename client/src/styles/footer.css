@@ -1,4 +1,4 @@
-.image1 {
+/* .image1 {
 width: 105px;
 height: 48px;
 }
@@ -6,4 +6,41 @@ height: 48px;
 .image2{
     width: 45px;
     height: 45px;
+} */
+
+
+/* .footerContainer { */
+    /* background-color: #050505;  este es el del background*/
+    /* background-color: blue; */
+    /* display: flex; */
+    /* position: fixed;
+    width: 100%;
+    margin-left: 1px; */
+/* 
+} */
+
+.first {
+    display: flex;
+    padding-top: 35rem !important ;
+    background-color: #212529;
+}
+
+.container {
+    position: relative;
+}
+
+.footer {
+    position: absolute !important;
+    bottom: 0;
+    /* width: 100% !important; */
+    padding-left: -1px;
+}
+
+.lastDiv {
+    text-align: center;
+    padding: 3px;
+}
+
+.aboutUS { 
+    font-size: 1.3vh;
 }
