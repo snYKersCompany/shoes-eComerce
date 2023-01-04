@@ -212,9 +212,12 @@ const Create = () => {
     { method: "POST", body: data }
     );
     const info = await response.json();
-    setImage(info.url);
-    console.log("Aux image: ", image, "Info: ", info);
-  }
+    if (info.url) {
+      setImage(info.url);
+      setform({ ...form, [e.target.name]: info.url });
+    }
+    console.log("Info url: ", info.url);
+  }  
 
   let handleImgForm = () => {
     setform({ ...form, img: image });
@@ -240,12 +243,12 @@ const Create = () => {
       price: form.price,
       description: form.description,
     };
+    console.log("Form to send: ", formToSend );
     setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
-    
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
-      ? dispatch(createProduct(formToSend))
-      : console.log("Algo Falló");
+    ? dispatch(createProduct(formToSend))
+    : console.log("Algo Falló");
   };
 
   const user = { admin: true };
@@ -474,7 +477,7 @@ const Create = () => {
                     type = "file"
                     className="d-flex FormCreateInputUrl"
                     onChange = { (e) => handleImage(e) }
-                    name = "image"
+                    name = "img"
                     placeholder="Upload an image"
                     />
                     {file ? <img alt = "preview" height = "60" width = "60" src = {URL.createObjectURL(file)}/> : null}
