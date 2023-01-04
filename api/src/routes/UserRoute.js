@@ -17,8 +17,6 @@ router.get("/", async (req, res) => {
     const arg = orderSearch ? JSON.parse(orderSearch) : {}
     const users = await controllers.listUsers(arg);
 
-    console.log('esto es users en controllers', users)
-
     return res.status(200).json({ users: users });
   } catch (error) {
     next();
@@ -38,6 +36,7 @@ router.post("/", checkDuplicated, async (req, res) => {
 router.get("/details/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     const user = await controllers.findUser(id);
     return res.status(200).json(user);
   } catch (error) {
