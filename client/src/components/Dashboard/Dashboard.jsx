@@ -14,7 +14,7 @@ import "../../styles/userDashboard.css";
 
 const Dashboard = () => {
   const { userDashboard } = useSelector((state) => state.users);
-  let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
+  // let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
   //SI HAY USER ---> Verificacion de rol
 
   const dispatch = useDispatch();
@@ -24,15 +24,6 @@ const Dashboard = () => {
     dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
     dispatch(getOneUser(user.uid));
   }, [dispatch, user.uid]);
-
-  // console.log(userDashboard.roles);
-
-  // useEffect(() => {
-  //   dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
-  //   dispatch(getOneUser(user.uid));
-  // }, [dispatch, user.uid]);
-
-  console.log(userDashboard);
 
   return (
     <>
