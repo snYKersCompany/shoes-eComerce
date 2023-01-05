@@ -92,7 +92,6 @@ const UserOrders = () => {
     );
   };
 
-
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
     <Table striped bordered hover>
