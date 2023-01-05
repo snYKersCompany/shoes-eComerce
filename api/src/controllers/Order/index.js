@@ -46,7 +46,7 @@ const sortAdminDashboard = async ({ orderBy }, _id) => {
   if (orderBy) sort = orderBy
 
   let parameters = {}
-  if(_id) parameters._id = _id
+  if(_id) parameters = {"user.uid":_id}
 
   const sortedOrders = await OrderModel.find(parameters).sort(sort)
   return sortedOrders

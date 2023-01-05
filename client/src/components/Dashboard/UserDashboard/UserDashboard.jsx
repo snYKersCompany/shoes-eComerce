@@ -27,7 +27,9 @@ const UserDashboard = () => {
   
 
   useEffect(() => {
-    if(userDashboard._id) dispatch(getAllOrders({}, userDashboard._id))
+    if(userDashboard._id) {
+      dispatch(getAllOrders({}, userDashboard._id))
+    }
   }, [dispatch, userDashboard._id])
 
   // if (section.length) {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -14,6 +15,7 @@ import { postReview } from "../../../redux/features/reviews/reviewsActions";
 
 const ProductsBought = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { userDashboard, user } = useSelector((state) => state.users);
   const captureUserName = userDashboard.name;
   const { orders } = useSelector((state) => state.orders);
@@ -25,12 +27,7 @@ const ProductsBought = () => {
 
   const [moveToReview, setMoveToReview] = useState(false);
 
-  const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
-  const userPurchases = userOrders.map((e) => e.products).flat()
-  const toShow = Array.from(new Set(userPurchases.map(e=> e)))
-
-
-    console.log(orders)
+  const userPurchases = orders.map((e) => e.products).flat();
 
   const handlerInputReview = (e) => {
     setReviewInput({
@@ -59,9 +56,19 @@ const ProductsBought = () => {
   };
 
   const toProductReview = (e, id) => {
+    console.log('entro')
+    e.preventDefault();
+    setAvgRating(0);
     setIdSingleProduct(id);
+    console.log('esto es el id del prod', id)
     setMoveToReview(true);
+    navigate('/account/bought')
   };
+
+  const backToProdBought = (e)=> {
+    e.preventDefault();
+    setMoveToReview(false);
+  }
 
   return moveToReview === false ? (
     <>
@@ -119,11 +126,11 @@ const ProductsBought = () => {
           </>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={(e) => e}>
-            back
-          </Button>
           <Button variant="primary" onClick={(e) => sendPostReview(e)}>
             send review
+          </Button>
+          <Button variant="secondary" onClick={(e) => backToProdBought(e)}>
+            back
           </Button>
         </Modal.Footer>
       </Modal.Dialog>
