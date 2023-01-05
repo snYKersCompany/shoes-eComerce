@@ -1,11 +1,15 @@
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/esm/Button";
-import Filters from "../../Filters/Filters";
+import FilterContainer from "../../Filters/FilterContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
   getAllProducts,
   getProductsDetails,
+  getCategories,
+  getBrands,
+  getRatings,
+  getGenders,
 } from "../../../redux/features/products/productsActions";
 import "../../../styles/AdminDashboardProducts.css";
 import { BiSearch } from "react-icons/bi";
@@ -24,6 +28,10 @@ function AdminDashboardProducts() {
 
   useEffect(() => {
     dispatch(getAllProducts(filters, orders));
+    dispatch(getCategories());
+    dispatch(getBrands());
+    dispatch(getRatings());
+    dispatch(getGenders());
   }, [dispatch, filters, orders]);
 
   function setActualPage(n) {}
@@ -43,9 +51,17 @@ function AdminDashboardProducts() {
 
   //Fin Modal
 
+  // useEffect(() => {
+  //   dispatch(getAllProducts(filters, orders, search));
+  //   dispatch(getCategories());
+  //   dispatch(getBrands());
+  //   dispatch(getRatings());
+  //   dispatch(getGenders());
+  // }, [dispatch, filters, orders, search]);
+
   return (
     <>
-      <Filters setActualPage={setActualPage} className="customFilter" />      
+      <FilterContainer setActualPage={setActualPage} className="customFilter" />
       <ModalFormCreate />
 
       <Table striped bordered hover>

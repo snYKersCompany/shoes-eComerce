@@ -19,6 +19,7 @@ import InputChangeRating from "../../StarsReview/InputChangeRating";
 const UserOrders = () => {
   const dispatch = useDispatch();
   const { userDashboard, user } = useSelector((state) => state.users);
+  const { orders } = useSelector((state) => state.orders);
   const { id } = useParams();
 
   //para manejarnos entre los tabs
@@ -28,13 +29,12 @@ const UserOrders = () => {
   //para manejar el input
   const [reviewInput, setReviewInput] = useState("");
 
-  console.log("esto es id", id);
-
   const captureUserName = userDashboard.name;
 
   //PARA NAVEGAR
   const toPurchaseDetails = (e) => {
     e.preventDefault();
+    console.log("ESTO ES EL OBJETO? ___________________>", e);
     setToOrderDetail(true);
   };
 
@@ -54,9 +54,6 @@ const UserOrders = () => {
   };
   //TERMINA PARA NAVEGAR
 
-
-
-
   //ESTRELLLLITASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 
   const [avgRating, setAvgRating] = useState(0);
@@ -71,11 +68,9 @@ const UserOrders = () => {
       [e.target.inputReview]: e.target.value,
     });
   };
-  console.log('esto es avgRating, las estrellitas esas hermosas pero robadas', avgRating)
+  // console.log('esto es avgRating, las estrellitas esas hermosas pero robadas', avgRating)
 
   //TERMINAN LAS ESTRELLITAS
-
-
 
   //ACTION DE POST REVIEW
   const paraMandarAlBack = (e) => {
@@ -83,46 +78,71 @@ const UserOrders = () => {
     dispatch(
       postReview({
         _idProduct: paproba._id,
-        _idUser: user,
+        _idUser: user, //este se mantiene
         rating: avgRating,
         description: Object.values(reviewInput).toString(),
       })
     );
   };
-  console.log(
-    "esto es y reviewInput en el comp",
-    Object.values(reviewInput).toString()
-  );
+
+  // const paraMandarAlBack = (e) => {
+  //   e.preventDefault();
+  //   dispatch(postReview({
+  //     _idProduct:
+  //   }))
+  // }
+
+  // console.log(
+  //   "esto es y reviewInput en el comp",
+  //   Object.values(reviewInput).toString()
+  // );
+
+  //conseguimos todas las ordenes del usuario
+  const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
+
+  console.log('orders', orders)
+  // console.log('dashboard', userDashboard)
+
+  console.log('USER ORDER',userOrders)
+
+  //conseguimos los productos de esa orden
+  const productsBought = userOrders.map((e) => e.products).flat();
+
+  console.log('PRODUCT BOUGHT',productsBought)
 
 
+  //agregar que se pueda postear solamente en las que tengan el estado de "aproved"
+  //podria llenar un estado con los valores que le llegan del array, si entra en la factura [0] que le llegue esa info y
+  //llene el estado, si entra en la factura en la position [1] que se llene el estado con la info  en de esa factura
+  //en el onclick que matchee con el id de la compra y ahi mapea la tabla de products: captura el id en el evento y mapeas dentro de userOrders
 
+  //en el onclick de userORders se ouede llenar un estado con los products que coincidan con el id capturado.
 
-
-  
+  const [aver, setAver] = useState();
+  console.log("a verrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", aver);
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th >ID</th>
-          <th >date</th>
-          <th >status</th>
-          <th >ticket</th>
-          <th >price</th>
+          <th>ID</th>
+          <th>date</th>
+          <th>status</th>
+          <th>ticket</th>
+          <th>price</th>
         </tr>
       </thead>
       <tbody>
-        {product &&
-          product.map((e,inx) => (
+        {userOrders &&
+          userOrders.map((e, inx) => (
             <tr key={inx}>
-              <td >{e.id}</td>
-              <td >{e.date}</td>
-              <td >{e.status}</td>
-              <td >{e.ticket}</td>
-              <td >{e.price}</td>
+              <td>{e._id}</td>
+              <td>{e.date}</td>
+              <td>{e.state}</td>
+              <td>{e.ticket ? e.ticket : "nothing"}</td>
+              <td>{e.finalAmount}</td>
               <td>
                 <Button onClick={(e) => toPurchaseDetails(e)}>detail</Button>
-
               </td>
             </tr>
           ))}
@@ -139,16 +159,19 @@ const UserOrders = () => {
         </tr>
       </thead>
       <tbody>
-        {
-          <tr>
-            <td>{paproba.name}</td>
-            <td>{paproba.quantity}</td> {/*esto es del ticket */}
-            <td>{paproba.price}</td>
-            <Button onClick={(e) => toProductReview(e)}>
-              make your review
-            </Button>
-          </tr>
-        }
+        {productsBought &&
+          productsBought.map((e, inx) => (
+            <tr key={inx}>
+              <td>{e.name}</td>
+              <td>{e.count}</td> {/*esto es del ticket */}
+              <td>{e.price}</td>
+              <td>
+                <Button onClick={(e) => toProductReview(e)}>
+                  make your review
+                </Button>
+              </td>
+            </tr>
+          ))}
         <Button onClick={(e) => backToOrders(e)}>Back</Button>
       </tbody>
     </Table>
