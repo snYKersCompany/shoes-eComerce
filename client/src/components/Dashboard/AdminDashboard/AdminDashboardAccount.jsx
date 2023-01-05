@@ -112,66 +112,16 @@ function AdminDashboardAccount() {
   };
 
   const lockers = [
-    {
-      label: "Username: ",
-      form: "username",
-      placeholder: "Only words",
-      required: "Nesesita",
-    },
-    // {
-    //   label: "E-mail: ",
-    //   form: "email",
-    //   placeholder: "fulano@gmail.com",
-    //   required: "Nesesita",
-    // },
-    {
-      label: "Phone: ",
-      form: "phone",
-      placeholder: "123456789",
-      required: "Nesesita",
-    },
-    {
-      label: "Address: ",
-      form: "address",
-      placeholder: "av.siempreviva 742",
-      required: "Nesesita",
-    },
-    // {
-    //   label: "Other: ",
-    //   form: "other",
-    //   placeholder: "Timbre 3 puerta amarilla",
-    //   required: "Nesesita",
-    // },
-    {
-      label: "City: ",
-      form: "city",
-      placeholder: "Sidney",
-      required: "Nesesita",
-    },
-    {
-      label: "Country: ",
-      form: "country",
-      placeholder: "Wakanda",
-      required: "Nesesita",
-    },
-    {
-      label: "State: ",
-      form: "state",
-      placeholder: "California",
-      required: "Nesesita",
-    },
-    // {
-    //   label: "Roles: ",
-    //   form: "roles",
-    //   placeholder: "Admin",
-    //   required: "Nesesita",
-    // },
-    {
-      label: "Image: ",
-      form: "image",
-      placeholder: "Hay que cambiar esto por una imagen",
-      required: "Nesesita",
-    },
+    { label: "Username: ", form: "username", placeholder: "Only words", required: "Nesesita",},
+    // { label: "E-mail: ", form: "email", placeholder: "fulano@gmail.com", required: "Nesesita",},
+    { label: "Phone: ", form: "phone", placeholder: "123456789", required: "Nesesita",},
+    { label: "Address: ", form: "address", placeholder: "av.siempreviva 742", required: "Nesesita" },
+    // { label: "Other: ", form: "other", placeholder: "Timbre 3 puerta amarilla", required: "Nesesita",},
+    { label: "City: ", form: "city", placeholder: "Sidney", required: "Nesesita",},
+    { label: "Country: ", form: "country", placeholder: "Wakanda", required: "Nesesita",},
+    { label: "State: ", form: "state", placeholder: "California", required: "Nesesita",},
+    // { label: "Roles: ", form: "roles", placeholder: "Admin", required: "Nesesita",},
+    { label: "Image: ", form: "image", placeholder: "Hay que cambiar esto por una imagen", required: "Nesesita",},
   ];
 
   return (
