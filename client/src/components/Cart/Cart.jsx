@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../NavBar2.0/NavBar2.0";
 import CardCart from "./CardCart";
 import Payment from "../Paypal/Payment";
-import Carrousel from "../Home/Main/Carrousel";
+import PaymentCarrousel from "../Paypal/PaymentCarrousel";
 //styles
 import Button from "react-bootstrap/Button";
 import "../../styles/Cart.css";
@@ -21,11 +21,6 @@ const Cart = () => {
       ? products.reduce((acc, product) => (acc = acc + product.totalPrice), 0)
       : priceTotal
   );
-
-  let InfoToSend = {
-    products: JSON.parse(localStorage.getItem("carrito")),
-    finalAmount: priceToSend,
-  };
 
   const handleDelete = (productId, TotalPrice) => {
     let filtered = products.filter((el) => el.idAux !== productId);
@@ -65,13 +60,19 @@ const Cart = () => {
       ) : (
         <>
           <div className="noProductsContainer">
-            <h2 className="noProducts">
-              You dont have any products in your cart
-            </h2>
-            <Carrousel />
-            <Link to="/home">
-              <Button variant="warning">Back to Snykers Shop</Button>
-            </Link>
+            <div className="noProductsTextContainer">
+              <h2 className="noProductsText">
+                You dont have any products in your cart
+              </h2>
+            </div>
+            <PaymentCarrousel />
+            <div className="noProductsBtnContainer">
+              <Link to="/">
+                <Button variant="warning" className="noProductsBtn">
+                  Back to Snykers Shop
+                </Button>
+              </Link>
+            </div>
           </div>
         </>
       )}

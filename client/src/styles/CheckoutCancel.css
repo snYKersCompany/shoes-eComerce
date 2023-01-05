@@ -1,4 +1,4 @@
-.noProductsText {
+.CheckoutCancelText {
   display: flex;
   color: rgb(255, 153, 0);
   margin-left: 30px;
@@ -8,29 +8,29 @@
   margin-bottom: 2rem;
 }
 
-.noProductsContainer {
+.checkoutCanceledContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: "Noto Sans", sans-serif;
 }
 
-.noProductsBtnContainer {
+.CheckoutCancelBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.CheckoutCancelBtnContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.noProductsTextContainer {
+.CheckoutCancelTextContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-@media (min-height: 720px) {
-  .mainView {
-    min-height: 95vh;
-  }
 }
