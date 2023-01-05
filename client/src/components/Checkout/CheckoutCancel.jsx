@@ -8,7 +8,10 @@ import {
 } from "../../redux/features/orders/ordersActions";
 //JSX
 import NavBar from "../NavBar2.0/NavBar2.0";
-import Carrousel from "../Home/Main/Carrousel";
+import PaymentCarrousel from "../Paypal/PaymentCarrousel";
+//STYLES
+import Button from "react-bootstrap/esm/Button";
+import "../../styles/CheckoutCancel.css";
 
 const CheckoutCancel = () => {
   const dispatch = useDispatch();
@@ -24,13 +27,17 @@ const CheckoutCancel = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="checkoutCanceledContainer">
       <NavBar />
-      <h1 className="text-white">The purchase has been canceled </h1>
-      <Carrousel />
-      <Link to="/">
-        <button>Back to Snykers Shop</button>
-      </Link>
+      <div className="CheckoutCancelTextContainer">
+        <h2 className="CheckoutCancelText">The purchase has been canceled</h2>
+      </div>
+      <PaymentCarrousel />
+      <div className="CheckoutCancelBtnContainer">
+        <Link to="/">
+          <Button variant="warning">Back to Snykers Shop</Button>
+        </Link>
+      </div>
     </div>
   );
 };
