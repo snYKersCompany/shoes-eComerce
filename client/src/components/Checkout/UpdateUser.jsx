@@ -12,6 +12,7 @@ export default function FormUserUpdate() {
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
   console.log("username dashboard: ", userDashboard);
+  
   // States
   const [input, setInput] = useState({
     username: "",
@@ -22,8 +23,7 @@ export default function FormUserUpdate() {
     city: "",
     cp: "",
     state: "",
-    country: "",
-    image: "",
+    country: ""    
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
@@ -66,7 +66,7 @@ export default function FormUserUpdate() {
           : setError({ ...error, address: "" });
       case "city":
         return !value
-          ? setError({ ...error, city: "Please provide a name of city" })
+          ? setError({ ...error, city: "Please, provide a name of city" })
           : setError({ ...error, city: "" });
       case "cp":
         return isNaN(parseInt(value))
@@ -74,7 +74,7 @@ export default function FormUserUpdate() {
           : setError({ ...error, cp: "" });
       case "state":
         return !value
-          ? setError({ ...error, state: "Please provide a name of State" })
+          ? setError({ ...error, state: "Please, provide a name of State" })
           : setError({ ...error, state: "" });
       case "country":
         return !value
@@ -85,19 +85,6 @@ export default function FormUserUpdate() {
     }
   }
 
-  /* async function handleImage(event) {
-    setFile(event.target.files[0]);
-    const data = new FormData();
-    data.append("file", event.target.files[0]);
-    data.append("upload_preset", UPLOAD_PRESET);
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`,
-      { method: "POST", body: data }
-    );
-    const info = await response.json();
-    setInput({ ...input, [event.target.name]: info.url });
-  } */
-
   function handleChange(event) {
     setInput({ ...input, [event.target.name]: event.target.value });
     validateInput(event.target.value, event.target.name);
@@ -106,13 +93,22 @@ export default function FormUserUpdate() {
   async function handleSubmit(event) {
     if (user) {
       event.preventDefault();
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:3001/api/users/update/${user.uid}`,
         input
-      );      
+      );
       setSubmit(true);
-
-      setInput({});
+      setInput({
+        username: "",
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        city: "",
+        cp: "",
+        state: "",
+        country: ""
+      });
     } else {
       navigate("/login");
     }
@@ -137,9 +133,9 @@ export default function FormUserUpdate() {
           ) : null}
 
           <label htmlFor="username">Username: </label>
-          {user ? (
+          {userDashboard ? (
             <input
-              // placeholder={userDashboard.username}
+              placeholder={userDashboard.username}
               id="username"
               type="text"
               name="username"
@@ -152,6 +148,7 @@ export default function FormUserUpdate() {
 
           <label htmlFor="name">Name: </label>
           <input
+            placeholder={userDashboard.name ? userDashboard.name : "You must complete this field"}
             id="name"
             type="text"
             name="name"
@@ -163,6 +160,7 @@ export default function FormUserUpdate() {
 
           <label htmlFor="phone">Phone: </label>
           <input
+            placeholder={userDashboard.phone ? userDashboard.phone : "You must complete this field"}
             id="phone"
             type="text"
             name="phone"
@@ -174,6 +172,7 @@ export default function FormUserUpdate() {
 
           <label htmlFor="address">Address: </label>
           <input
+            placeholder={userDashboard.address ? userDashboard.address : "You must complete this field"}
             id="address"
             type="text"
             name="address"
@@ -185,6 +184,7 @@ export default function FormUserUpdate() {
 
           <label htmlFor="city">City: </label>
           <input
+            placeholder={userDashboard.city ? userDashboard.city : "You must complete this field"}
             id="city"
             type="text"
             name="city"
@@ -196,6 +196,7 @@ export default function FormUserUpdate() {
 
           <label htmlFor="cp">CP: </label>
           <input
+            placeholder={userDashboard.cp ? userDashboard.cp : "You must complete this field"}
             id="cp"
             type="text"
             name="cp"
@@ -205,8 +206,9 @@ export default function FormUserUpdate() {
           />
           {!error.cp ? null : <p className="danger">{error.cp}</p>}
 
-          <label htmlFor="state">State: </label>
+          <label htmlFor="state">State: </label>            
           <input
+            placeholder={userDashboard.state ? userDashboard.state : "You must complete this field"}
             id="state"
             type="text"
             name="state"
@@ -218,6 +220,7 @@ export default function FormUserUpdate() {
 
           <label htmlFor="country">Country: </label>
           <input
+            placeholder={userDashboard.country ? userDashboard.country : "You must complete this field"}
             id="country"
             type="text"
             name="country"
@@ -227,20 +230,13 @@ export default function FormUserUpdate() {
           />
           {!error.country ? null : <p className="danger">{error.country}</p>}
 
-          {/* <input type="file" onChange={handleImage} name="image" />
-          {file ? (
-            <img alt="Preview" height="60" src={URL.createObjectURL(file)} />
-          ) : null} */}
-
           {/* Submit Button */}
           <button
             type="submit"
             value="CREATE"
             onClick={handleSubmit}
             className="button"
-            disabled={
-              error.username ||
-              !input.username ||
+            disabled={              
               error.name ||
               !input.name ||
               error.phone ||

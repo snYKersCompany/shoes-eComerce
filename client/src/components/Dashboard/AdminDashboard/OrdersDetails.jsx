@@ -43,8 +43,7 @@ const OrderDetails = ({ setOrderDetails, id }) => {
           Back
         </Button>
         <h3 className="text-white bg-dark">
-          {/* orderDetails.finalAmount */}
-          Final Amount: ${orderDetails.finalAmout}  
+          Final Amount: ${orderDetails.finalAmount}
         </h3>
       </div>
     </div>
