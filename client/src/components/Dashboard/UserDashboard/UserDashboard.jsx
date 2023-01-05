@@ -7,6 +7,7 @@ import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const UserDashboard = () => {
 
@@ -23,6 +24,7 @@ const UserDashboard = () => {
   // };
 
 
+  const {userDashboard} = useSelector(state=> state.users)
   return (
     <>
 
