@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 
 const UserDashboard = () => {
 
-  // console.log(UserDashboard)
  
   const { section } = useParams();
   
@@ -22,13 +21,10 @@ const UserDashboard = () => {
   //   setControl(section)
   // }
   // };
-  // console.log(control.toString())
 
-  console.log('esto es control =====================================================>>>>>>', control)
 
   return (
     <>
-      <h3 className="d-flex justify-content-center ">Hello User</h3>
 
       <div className="userDashBoardContainer">
         <div className="userDashBoard d-flex w-100">
