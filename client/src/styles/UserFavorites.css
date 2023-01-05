@@ -1,0 +1,37 @@
+.UserFavorites-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, auto);
+  width: 100vw;
+  background: rgb(36, 36, 36);
+}
+
+.UserFavorites {
+  display: grid;
+  /* grid-column: 1/2;
+  grid-row: 1/2; */
+
+  margin-top: 1rem;
+  margin-left: 0.8rem;
+}
+
+@media (min-width: 844px) {
+  .UserFavorites-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    width: 100vw;
+  }
+  .UserFavorites {
+    display: grid;
+    /* grid-column: 1/2;
+    grid-row: 1/2; */
+
+    margin-top: 1rem;
+    margin-left: 1rem;
+  }
+  .UserFavorites-card {
+    display: grid;
+    grid-auto-flow: column;
+  }
+}
