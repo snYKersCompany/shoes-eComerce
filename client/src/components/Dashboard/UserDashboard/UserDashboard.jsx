@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
+import ProductsBought from "./ProductsBough";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
@@ -60,11 +61,11 @@ const UserDashboard = () => {
                 </Nav.Link>
               </Nav.Item>
 
-              {/* <Nav.Item className="d-flex">
-                <Nav.Link eventKey="review" className="d-flex">
-                  <CgList className="d-flex" /> Review
+              <Nav.Item className="d-flex">
+                <Nav.Link eventKey="review" className="d-flex" onClick={()=> setControl("bought")}>
+                  <CgList className="d-flex" /> Products bought
                 </Nav.Link>
-              </Nav.Item> */}
+              </Nav.Item>
             </Nav>
 
             <div className="section d-flex">
@@ -95,6 +96,17 @@ const UserDashboard = () => {
                 {control === "orders"?
 
                   <UserOrders />
+                :  
+                <></>
+                }
+                </Tab.Pane>
+
+                <Tab.Pane
+                  eventKey="bought"
+                  className="d-flex justify-content-center align-content-center"
+                >
+                  {control === "bought"?
+                  <ProductsBought />
                 :  
                 <></>
                 }
