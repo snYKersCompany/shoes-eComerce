@@ -26,10 +26,10 @@ const Paginated = () => {
 
   useEffect(() => {
     dispatch(getAllProducts(filters, orders, search));
-    dispatch(getCategories());
-    dispatch(getBrands());
-    dispatch(getRatings());
-    dispatch(getGenders());
+    // dispatch(getCategories());
+    // dispatch(getBrands());
+    // dispatch(getRatings());
+    // dispatch(getGenders());
   }, [dispatch, filters, orders, search]);
   // console.log(search);
   let pages = []; // el número de páginas de mi componente

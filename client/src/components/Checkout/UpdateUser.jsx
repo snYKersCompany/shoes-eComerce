@@ -11,7 +11,7 @@ export default function FormUserUpdate() {
   const { user } = useAuth();
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
-  console.log("username dashboard", userDashboard);
+  console.log("username dashboard: ", userDashboard);
   // States
   const [input, setInput] = useState({
     username: "",
@@ -27,7 +27,7 @@ export default function FormUserUpdate() {
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
-  const [file, setFile] = useState(null);
+  // const [file, setFile] = useState(null);
 
   // Hooks
   const dispatch = useDispatch();
@@ -85,7 +85,7 @@ export default function FormUserUpdate() {
     }
   }
 
-  async function handleImage(event) {
+  /* async function handleImage(event) {
     setFile(event.target.files[0]);
     const data = new FormData();
     data.append("file", event.target.files[0]);
@@ -96,7 +96,7 @@ export default function FormUserUpdate() {
     );
     const info = await response.json();
     setInput({ ...input, [event.target.name]: info.url });
-  }
+  } */
 
   function handleChange(event) {
     setInput({ ...input, [event.target.name]: event.target.value });
@@ -109,8 +109,7 @@ export default function FormUserUpdate() {
       const response = await axios.put(
         `http://localhost:3001/api/users/update/${user.uid}`,
         input
-      );
-      console.log(response);
+      );      
       setSubmit(true);
 
       setInput({});
@@ -228,10 +227,10 @@ export default function FormUserUpdate() {
           />
           {!error.country ? null : <p className="danger">{error.country}</p>}
 
-          <input type="file" onChange={handleImage} name="image" />
+          {/* <input type="file" onChange={handleImage} name="image" />
           {file ? (
             <img alt="Preview" height="60" src={URL.createObjectURL(file)} />
-          ) : null}
+          ) : null} */}
 
           {/* Submit Button */}
           <button

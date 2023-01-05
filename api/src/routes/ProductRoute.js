@@ -18,7 +18,6 @@ router.get('/details/:_id', async (req, res) => {
         const {_id} = req.params;  
         if (!_id) throw new Error(`It needs an _id property`);
         const products = await getProductsById(_id)
-        console.log('back, ', products) 
         return res.status(200).json(products);
     } catch (error) {
         return res.status(404).send(error.message)

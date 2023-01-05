@@ -24,18 +24,15 @@ const getReviews = async (req, res)=>{
 }
 
 const postReviews = async (req, res)=>{
-    console.log('llegue')
     try {
         const { _idProduct, _idUser, rating, description } = req.body;
         if(!_idProduct || !_idUser || !rating) throw new Error("Faltan Datos Importantes")
 
         let parameters = {_idProduct, _idUser, rating}
         if(description) parameters.description = description;
-        console.log(parameters)
 
         const newReview = new ReviewModel(parameters)
 
-        console.log(newReview._id)
         await ProductsModel.updateOne({_id:_idProduct},{
             $addToSet:{reviews:newReview._id}
         })
