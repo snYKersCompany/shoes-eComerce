@@ -1,83 +1,55 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-///JSX
+import { useAuth } from "../../context/authContext";
 import AlertMSJ from "./AlertMSJ";
 import SuccessMSJ from "./SuccessMSJ";
-//BS
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
-//actions
-import { useAuth } from "../../context/authContext";
 
-const RestorePassword = () => {
+const RestorePassowrd = () => {
+  const emailRef = useRef();
+  const { resetPassword } = useAuth();
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-  const [userToReset, setUserToReset] = useState({
-    email: "",
-  });
+  const [loading, setLoading] = useState(false);
+  const [succes, setSuccess] = useState("");
 
-  //Auth
-  const { user, resetPassword } = useAuth();
-
-  const handleSubmit = async () => {
-    if (!userToReset.email) {
-      setError("You have to provide an Email");
-      try {
-        resetPassword(userToReset.email);
-        setError("");
-        setSuccess(
-          "We have sent you an email with a link to reset your password"
-        );
-      } catch (error) {
-        setError(error.message);
-      }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      setError("");
+      await resetPassword(emailRef.current.value);
+      setSuccess(" Check your inbox email and follow the instructions");
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
     }
-  };
 
-  const handleChange = ({ target: { name, value } }) => {
-    setUserToReset({ ...userToReset, [name]: value });
-    console.log(userToReset);
-  };
+    setLoading(false);
+  }
 
   return (
-    <>
-      <CardGroup>
-        <Card className="text-center text-white" style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Restore Password</Card.Title>
-            {success && <SuccessMSJ message={success} />}
-            {error && <AlertMSJ message={error} />}
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>d
-                <div className="d-flex justify-content-center">
-                  <Form.Control
-                    className="ph-center d-flex "
-                    onChange={(e) => handleChange(e)}
-                    name="email"
-                    type="email"
-                    placeholder="Enter email"
-                  />
-                  <span className="d-flex" style={{ width: "43px" }}></span>
-                </div>
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </Card.Body>
-          <Card.Footer className="text-muted">
-            <Link to="/">Go Home</Link>
-          </Card.Footer>
-        </Card>
-      </CardGroup>
-    </>
+    <div>
+      <section className="login">
+        <div className="loginContainer">
+          <h1>Recuperar contraseña</h1>
+          {succes && <SuccessMSJ message={succes} />}
+          {error && <AlertMSJ message={error} />}
+          <form onSubmit={handleSubmit}>
+            <label>Email</label>
+            <input type="email" autoFocus required ref={emailRef} />
+            <div className="btnContainer">
+              <button type="submit" disabled={loading}>
+                Restaurar password
+              </button>
+              <p>
+                <Link to="/home">
+                  <span>Regresear</span>
+                </Link>
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
   );
 };
 
-export default RestorePassword;
+export default RestorePassowrd;

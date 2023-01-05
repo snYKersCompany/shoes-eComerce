@@ -125,6 +125,7 @@ const Register = () => {
       if (error.code === "auth/missing-email") {
         setError("Introduce an email");
       }
+      //if (error.code === "")
     }
   };
 

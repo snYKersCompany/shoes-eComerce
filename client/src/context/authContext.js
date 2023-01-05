@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 //Actions
 import { findOrCreateUser, getUserDashboards } from "../redux/features/users/usersActions"
 //FirebaseAuth
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, deleteUser, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth"
 import { auth } from '../utils/firebase/credentials'
 
 //USEAUTH
@@ -27,9 +27,26 @@ export const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
     }
 
+    // const VeriyEmail = () => {
+    //throw new Error("This user is not verified")
+
+
+
+    //DELETE USER
+    const deleteUserFB = async (user) => {
+        try {
+            const deleted = await deleteUser(user)
+            return deleted
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+    }
+
     //SING UP
     const signUp = async (email, password) => {
         try {
+            //VeriyEmail(password)
             const response = await createUserWithEmailAndPassword(auth, email, password)
             return response
         } catch (error) {
@@ -49,8 +66,8 @@ export const AuthProvider = ({ children }) => {
     const logOut = () => signOut(auth)
 
     //RESET PASSWORD
-    const resetPassword = (email) => {
-        sendPasswordResetEmail(auth, email)
+    const resetPassword = async (email) => {
+        await sendPasswordResetEmail(auth, email)
     }
 
     //RECIBE UN FIREBASE USER Y DEVUELVO NUESTRO USER
@@ -99,7 +116,7 @@ export const AuthProvider = ({ children }) => {
     }, [])
     return (
         <>
-            < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user, loading }
+            < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user, loading, deleteUserFB }
             }>
                 {children}
             </authContext.Provider >

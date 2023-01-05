@@ -33,7 +33,7 @@ const addUser = async (uid, email, username, password, name, phone, address, cit
         _id: uid,
         email: email,
         username: username,
-        password: await UsersModel.encryptPassword(password),
+        // password: await UsersModel.encryptPassword(password),
         name: name,
         phone: phone,
         address: address,
@@ -68,7 +68,7 @@ const findUser = async (_id) => {
 
 const getUserDashboard = async (id) => {
     if (!id) throw new Error(`It needs an id property`);
-    
+
     let user = await UsersModel.findById(id);
 
     user = await UsersModel.aggregate([
@@ -116,7 +116,7 @@ const deleteUser = async (id) => {
         return `The user with an id ${id} was not found in the database`;
     }
     const deleteUser = await UsersModel.deleteOne({ _id: id });
-    
+
     return deleteUser;
 }
 

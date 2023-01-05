@@ -8,21 +8,23 @@ import {
 } from "../../../../redux/features/products/productsActions";
 import "../../../../styles/modalProductsWarning.css";
 import { deleteUser } from "../../../../redux/features/users/usersActions";
+import { useAuth } from "../../../../context/authContext";
 
 const ModalUsersWarning = (props) => {
-
   const dispatch = useDispatch();
 
+  const { deleteUserFB, user } = useAuth();
   const handlerOnClick = () => {
-    const orderName = Object.keys(props.order)[0]
-    const orderSearch = {}
-    
-    if(orderName.length) orderSearch.orderBy = props.order
-    if(props.search.length) orderSearch.search = props.search
+    const orderName = Object.keys(props.order)[0];
+    const orderSearch = {};
 
-    dispatch(deleteUser(props.show, orderSearch))
-    alert(`Inserte Accion para eliminar el User ${props.show}`)
-    
+    if (orderName.length) orderSearch.orderBy = props.order;
+    if (props.search.length) orderSearch.search = props.search;
+    dispatch(deleteUser(props.show, orderSearch));
+    deleteUserFB(user);
+
+    alert(`Inserte Accion para eliminar el User ${props.show}`);
+
     props.onHide();
   };
 

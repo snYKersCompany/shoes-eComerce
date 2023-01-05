@@ -9,7 +9,6 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
-import RestorePassword from "./RestorePassword";
 //styles
 import "../../styles/login.css";
 

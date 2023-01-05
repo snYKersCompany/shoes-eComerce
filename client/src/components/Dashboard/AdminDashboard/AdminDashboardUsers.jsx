@@ -6,7 +6,6 @@ import {
   getAllUsers,
   putUserStatus,
 } from "../../../redux/features/users/usersActions";
-
 import Table from "react-bootstrap/Table";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -14,7 +13,6 @@ import Button from "react-bootstrap/Button";
 function AdminDashboardUsers() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
-
   const [warning, setWarning] = useState(false);
 
   const [orderUser, setOrderUser] = useState("");
