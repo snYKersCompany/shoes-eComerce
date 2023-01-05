@@ -65,7 +65,6 @@ const Details = () => {
 
       if (products.findIndex((el) => el.idAux === cart.idAux) === 0) {
         setRepeated("true");
-        alert(`The product ${productDetail.name} is already in the cart`);
       } else {
         setRepeated("false");
         localStorage.setItem(
@@ -74,7 +73,6 @@ const Details = () => {
             JSON.parse(localStorage.getItem("carrito")).concat([cart])
           )
         );
-        alert(`The product ${productDetail.name} was successfully added`);
       }
     } else {
       let cart = {
@@ -90,7 +88,6 @@ const Details = () => {
       };
       setRepeated("false");
       localStorage.setItem("carrito", JSON.stringify([cart]));
-      alert(`The product ${productDetail.name} was successfully added`);
     }
   }
 

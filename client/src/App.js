@@ -18,6 +18,7 @@ import Error404 from "./components/Error404/Error404";
 import Main from "./components/Home/Main";
 import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
+import RestorePassword from "./components/Auth/RestorePassword";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/restore-password" element={<RestorePassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />

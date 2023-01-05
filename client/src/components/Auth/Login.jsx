@@ -15,7 +15,7 @@ import "../../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { logIn, logInGoogle, resetPassword } = useAuth();
+  const { logIn, logInGoogle } = useAuth();
 
   const [shown, setShown] = useState(false);
   const [password, setPassword] = useState("");
@@ -30,7 +30,6 @@ const Login = () => {
   });
 
   const [error, setError] = useState("");
-  const [forgotPassword, setForgotPassword] = useState("");
 
   /////-----HANDLES-----/////
   const handleChange = ({ target: { name, value } }) => {
@@ -43,14 +42,7 @@ const Login = () => {
     setError("");
     try {
       await logIn(user.email, user.password);
-      navigate("/home");
-      // const products = JSON.parse(localStorage.getItem("carrito"));
-      // if (products.length > 0) {
-      //   navigate("/cart");
-      // }
-      // else {
-      //   navigate("/home");
-      // }
+      navigate("/");
     } catch (error) {
       console.log("catch");
       console.log(error.code);
@@ -73,21 +65,15 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await logInGoogle();
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const handleResetPassword = async () => {
-    if (!user.email) {
-      return setError("Please enter your email");
-    }
+  const handleResetPassword = () => {
     try {
-      await resetPassword(user.email);
-      setForgotPassword(
-        "We have sent you an email with a link to reset your password"
-      );
+      navigate("/restore-password");
     } catch (error) {
       setError(error.message);
     }
@@ -99,7 +85,6 @@ const Login = () => {
         <Card className="text-center text-white" style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>Login</Card.Title>
-            {forgotPassword && <RestorePassword message={forgotPassword} />}
             {error && <AlertMSJ message={error} />}
             <Form onSubmit={(e) => handleSubmit(e)}>
               <Form.Group controlId="formBasicEmail">
@@ -167,7 +152,7 @@ const Login = () => {
             </Link>
           </Card.Body>
           <Card.Footer className="text-muted">
-            <Link to="/home">Go Home</Link>
+            <Link to="/">Go Home</Link>
           </Card.Footer>
         </Card>
       </CardGroup>

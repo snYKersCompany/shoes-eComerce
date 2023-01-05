@@ -86,7 +86,6 @@ const Register = () => {
     setShown(false);
     setUser({ ...userIN, [name]: value });
   };
-  console.log(userIN.password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -202,7 +201,7 @@ const Register = () => {
             </Link>
           </Card.Body>
           <Card.Footer className="text-muted">
-            <Link to="/home">Go Home</Link>
+            <Link to="/">Go Home</Link>
           </Card.Footer>
         </Card>
       </CardGroup>
