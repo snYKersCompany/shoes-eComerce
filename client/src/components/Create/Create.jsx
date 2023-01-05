@@ -197,7 +197,7 @@ const Create = () => {
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET_PRODUCT;
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");  
+  const [image, setImage] = useState("");
 
   const handleImage = async (e) => {
     setFile(e.target.files[0]);
@@ -211,7 +211,7 @@ const Create = () => {
     if (info.url) {
       setImage(info.url);
       setform({ ...form, [e.target.name]: info.url });
-    }    
+    }
   }  
 
   let handleImgForm = () => {
@@ -220,6 +220,7 @@ const Create = () => {
       ? setError({ ...error, img: false })
       : setError({ ...error, img: "Upload an image" });
   };
+  console.log("Input: ", form);
 
   let submitForm = (e) => {
     e.preventDefault();
@@ -478,7 +479,7 @@ const Create = () => {
                     <Button
                       className="d-flex mx-1"
                       onClick={ handleImgForm }
-                    ></Button>
+                    >Subir</Button>
                   </Form.Group>
 
                 {/* ===================================== */}
