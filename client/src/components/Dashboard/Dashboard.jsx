@@ -10,7 +10,6 @@ import {
 
 } from "../../redux/features/users/usersActions";
 import { useAuth } from "../../context/authContext";
-import { getAllOrders } from '../../redux/features/orders/ordersActions'
 import "../../styles/userDashboard.css";
 
 const Dashboard = () => {
@@ -24,7 +23,6 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getUserDashboards(user.uid)); //peticion con el id que viene de useAuth
     dispatch(getOneUser(user.uid));
-    dispatch(getAllOrders());
   }, [dispatch, user.uid]);
 
   return (

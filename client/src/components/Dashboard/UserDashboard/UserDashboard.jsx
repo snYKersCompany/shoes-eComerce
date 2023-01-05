@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch } from "react-redux";
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
@@ -9,15 +10,26 @@ import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+
+import { getAllOrders } from '../../../redux/features/orders/ordersActions'
+
+
+
 
 const UserDashboard = () => {
-
+  const dispatch = useDispatch()
   // console.log(UserDashboard)
- 
+  const {userDashboard} = useSelector(state=> state.users)
+
   const { section } = useParams();
   
   const [control,setControl] = useState("")
   
+
+  useEffect(() => {
+    if(userDashboard._id) dispatch(getAllOrders({}, userDashboard._id))
+  }, [dispatch, userDashboard._id])
 
   // if (section.length) {
   //  if (section !== control){
@@ -28,7 +40,6 @@ const UserDashboard = () => {
 
   // console.log('esto es control =====================================================>>>>>>', control)
 
-  const {userDashboard} = useSelector(state=> state.users)
   return (
     <>
       <h3 className="d-flex justify-content-center ">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}!</h3>
@@ -62,7 +73,7 @@ const UserDashboard = () => {
               </Nav.Item>
 
               <Nav.Item className="d-flex">
-                <Nav.Link eventKey="review" className="d-flex" onClick={()=> setControl("bought")}>
+                <Nav.Link eventKey="bought" className="d-flex" onClick={()=> setControl("bought")}>
                   <CgList className="d-flex" /> Products bought
                 </Nav.Link>
               </Nav.Item>

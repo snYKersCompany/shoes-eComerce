@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
 
 import InputChangeRating from "../../StarsReview/InputChangeRating";
 import StarsReview from "../../StarsReview/StarsReview";
@@ -15,15 +16,21 @@ const ProductsBought = () => {
   const dispatch = useDispatch();
   const { userDashboard, user } = useSelector((state) => state.users);
   const captureUserName = userDashboard.name;
-  const {orders} = useSelector(state => state.orders)
+  const { orders } = useSelector((state) => state.orders);
+
   const [avgRating, setAvgRating] = useState(0);
   const [reviewInput, setReviewInput] = useState("");
+
   const [idSingleProduct, setIdSingleProduct] = useState();
 
+  const [moveToReview, setMoveToReview] = useState(false);
+
+  const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
+  const userPurchases = userOrders.map((e) => e.products).flat()
+  const toShow = Array.from(new Set(userPurchases.map(e=> e)))
 
 
-
-    console.log('esto es orders en ProductsBought',orders)
+    console.log(orders)
 
   const handlerInputReview = (e) => {
     setReviewInput({
@@ -32,16 +39,11 @@ const ProductsBought = () => {
     });
   };
 
-
-
-
   //rating handler
   const handleRating = (input) => {
     setAvgRating(input);
   };
   //end of rating handler
-
-
 
   //ACTION DE POST REVIEW
   const sendPostReview = (e) => {
@@ -56,10 +58,39 @@ const ProductsBought = () => {
     );
   };
 
+  const toProductReview = (e, id) => {
+    setIdSingleProduct(id);
+    setMoveToReview(true);
+  };
 
-
-
-  return (
+  return moveToReview === false ? (
+    <>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>quantity</th>
+            <th>price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userPurchases &&
+            userPurchases.map((prd, inx) => (
+              <tr key={inx}>
+                <td>{prd.name}</td>
+                <td>{prd.count}</td>
+                <td>{prd.price}</td>
+                <td>
+                  <Button onClick={(e) => toProductReview(e, prd.id)}>
+                    make your review
+                  </Button>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </Table>
+    </>
+  ) : (
     <div
       className="modal show"
       style={{ display: "block", position: "initial" }}
