@@ -15,11 +15,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
   
   const { orders, orderDetails } = useSelector((state) => state.orders);
 
-  const {userDashboard} = useSelector(state => state.users)
 
-  const userOrders = orders.filter(e=> e.user.email === userDashboard.email)
-
-  console.log('esto es ordernes de un comprado', userOrders)
 
   // console.log('esto es orders ------->', orders)
 
