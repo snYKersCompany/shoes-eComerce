@@ -5,14 +5,13 @@ import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
+import Button from "react-bootstrap/esm/Button";
 import "../../styles/FormUser.css";
 
 export default function FormUserUpdate() {
   const { user } = useAuth();
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
-
-  console.log(userDashboard)
 
   // States
   const [input, setInput] = useState({
@@ -26,7 +25,8 @@ export default function FormUserUpdate() {
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
-
+  const [file, setFile] = useState(null);
+  const [image, setImage] = useState("");  
   // Hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function FormUserUpdate() {
         setSubmit(false);
         document.getElementById("Form").reset();
       }, 5000);
-    }
+    }    
   }, [submit, user, _id, dispatch, userDashboard._id]);
 
   function validateInput(value, name) {
@@ -78,10 +78,27 @@ export default function FormUserUpdate() {
     setInput({ ...input, [event.target.name]: event.target.value });
     validateInput(event.target.value, event.target.name);
   }
+  
+  const handleImage = async (e) => {
+    setFile(e.target.files[0]);
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    data.append("upload_preset", UPLOAD_PRESET);
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: "POST", body: data }
+    );
+    const info = await response.json();
+    if (info.url) {
+      setImage(info.url);
+      setInput({ ...input, [e.target.name]: info.url });      
+    }
+  }
+
+  console.log("Input: ", input);
 
   async function handleSubmit(event) {
     if (user) {
-      event.preventDefault();
+      event.preventDefault();      
       await axios.put(
         `users/update/${user.uid}`,
         input
@@ -95,8 +112,9 @@ export default function FormUserUpdate() {
         country: "",
         image: "",
       });
+      setFile(null);
+      setImage("");
       navigate("/cart");
-
     } else {
       navigate("/login");
     }
@@ -113,15 +131,11 @@ export default function FormUserUpdate() {
         />
       </div>
       <div className="Update-avatar">
-        <img
-          className="Update-avatar-image"
-          src="https://cdn-icons-png.flaticon.com/512/25/25634.png"
-          alt="namaeasd"
-          height="170px"
-        />
+        {file ? <img className = "Update-avatar-image" src = {URL.createObjectURL(file)} alt = "profile" height = "170px"/>
+        : <img className="Update-avatar-image" src="https://cdn-icons-png.flaticon.com/512/25/25634.png" alt="default" height="170px" /> }
       </div>
       <div className="Update-name">
-        <h3 className="text-white">Jon Mircha</h3>
+        <h3 className="text-white">{userDashboard.username}</h3>
       </div>
 
       <form onSubmit={handleSubmit} className="Update-form" id="Form">
@@ -131,22 +145,14 @@ export default function FormUserUpdate() {
           <label className="label-onlyread">{user.email}</label>
         ) : null}
 
-        <label htmlFor="username">Username: </label>
-        {userDashboard ? (
-          
-          <label className="label-onlyread">{user?.username }</label>
-
-        ) : null}
-
         <label htmlFor="image">Image: </label>
         <input
-          placeholder={"upload a image"}
-          id="update-image"
+          className="update-image"
+          onChange={(e) => handleImage(e)}
+          placeholder={"upload an image"}          
           type="file"
           name="image"
-          value={input.image}
-          className="update-image"
-          onChange={handleChange}
+          id = "image"          
         />
 
         <label htmlFor="phone">Phone: </label>
