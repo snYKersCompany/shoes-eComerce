@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "../../styles/FormUser.css";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
+import "../../styles/FormUser.css";
 
 export default function FormUserUpdate() {
   const { user } = useAuth();
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
-  console.log("username dashboard: ", userDashboard);
-  
+
   // States
   const [input, setInput] = useState({
     username: "",
@@ -23,19 +22,18 @@ export default function FormUserUpdate() {
     city: "",
     cp: "",
     state: "",
-    country: ""    
+    country: "",
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
-  // const [file, setFile] = useState(null);
 
   // Hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Variables
-  const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
-  const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;
+  const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME; // eslint-disable-line
+  const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET; // eslint-disable-line
 
   // Functions
   useEffect(() => {
@@ -46,7 +44,7 @@ export default function FormUserUpdate() {
         document.getElementById("Form").reset();
       }, 5000);
     }
-  }, [submit, user, _id, dispatch]);
+  }, [submit, user, _id, dispatch, userDashboard._id]);
 
   function validateInput(value, name) {
     const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
@@ -100,14 +98,15 @@ export default function FormUserUpdate() {
       setSubmit(true);
       setInput({
         username: "",
-        name: "",
-        email: "",
+        // name: "",
+        // email: "",
         phone: "",
         address: "",
         city: "",
-        cp: "",
+        // cp: "",
         state: "",
-        country: ""
+        country: "",
+        image: "",
       });
     } else {
       navigate("/login");
@@ -115,88 +114,123 @@ export default function FormUserUpdate() {
   }
 
   return (
-    <div className="container">
-      <div className="group">
-        <form onSubmit={handleSubmit} className="form" id="Form">
-          <label htmlFor="email">Email: </label>
-          {user ? (
-            <input
-              placeholder={user.email}
-              id="email"
-              type="text"
-              name="email"
-              value={input.email}
-              className={error.email && "danger"}
-              onChange={handleChange}
-              readOnly
-            />
-          ) : null}
+    <div className="Update-container">
+      <div className="Update-background">
+        <img
+          src="https://wallpaper.dog/large/645620.jpg"
+          alt="background"
+          height="300px"
+          width="100vw"
+        />
+      </div>
+      <div className="Update-avatar">
+        <img
+          className="Update-avatar-image"
+          src="https://cdn-icons-png.flaticon.com/512/25/25634.png"
+          alt="namaeasd"
+          height="170px"
+        />
+      </div>
+      <div className="Update-name">
+        <h3 className="text-white">Jon Mircha</h3>
+      </div>
 
-          <label htmlFor="username">Username: </label>
-          {userDashboard ? (
-            <input
-              placeholder={userDashboard.username}
-              id="username"
-              type="text"
-              name="username"
-              value={input.username}
-              className={error.username && "danger"}
-              onChange={handleChange}
-              readOnly
-            />
-          ) : null}
-
-          <label htmlFor="name">Name: </label>
+      <form onSubmit={handleSubmit} className="Update-form" id="Form">
+        <label htmlFor="email">Email: </label>
+        {user ? (
           <input
-            placeholder={userDashboard.name ? userDashboard.name : "You must complete this field"}
-            id="name"
+            placeholder={user.email}
+            id="email"
             type="text"
-            name="name"
-            value={input.name}
-            className={error.name && "danger"}
+            name="email"
+            value={input.email}
+            className={error.email && "danger"}
             onChange={handleChange}
+            readOnly
           />
-          {!error.name ? null : <p className="danger">{error.name}</p>}
+        ) : null}
 
-          <label htmlFor="phone">Phone: </label>
+        <label htmlFor="username">Username: </label>
+        {userDashboard ? (
           <input
-            placeholder={userDashboard.phone ? userDashboard.phone : "You must complete this field"}
-            id="phone"
+            placeholder={userDashboard.username}
+            id="username"
             type="text"
-            name="phone"
-            value={input.phone}
-            className={error.phone && "danger"}
+            name="username"
+            value={input.username}
+            className={error.username && "danger"}
             onChange={handleChange}
+            readOnly
           />
-          {!error.phone ? null : <p className="danger">{error.phone}</p>}
+        ) : null}
 
-          <label htmlFor="address">Address: </label>
-          <input
-            placeholder={userDashboard.address ? userDashboard.address : "You must complete this field"}
-            id="address"
-            type="text"
-            name="address"
-            value={input.address}
-            className={error.address && "danger"}
-            onChange={handleChange}
-          />
-          {!error.address ? null : <p className="danger">{error.address}</p>}
+        <label htmlFor="image">Image: </label>
+        <input
+          placeholder={"upload a image"}
+          id="update-image"
+          type="file"
+          name="image"
+          value={input.image}
+          className={error.name ? "danger" : "btn-fileUpdate"}
+          onChange={handleChange}
+        />
+        {/* {!error.name ? null : <p className="danger">{error.name}</p>} */}
 
-          <label htmlFor="city">City: </label>
-          <input
-            placeholder={userDashboard.city ? userDashboard.city : "You must complete this field"}
-            id="city"
-            type="text"
-            name="city"
-            value={input.city}
-            className={error.city && "danger"}
-            onChange={handleChange}
-          />
-          {!error.city ? null : <p className="danger">{error.city}</p>}
+        <label htmlFor="phone">Phone: </label>
+        <input
+          placeholder={
+            userDashboard.phone
+              ? userDashboard.phone
+              : "You must complete this field"
+          }
+          id="phone"
+          type="text"
+          name="phone"
+          value={input.phone}
+          className={error.phone && "danger"}
+          onChange={handleChange}
+        />
+        {!error.phone ? null : <p className="danger">{error.phone}</p>}
 
-          <label htmlFor="cp">CP: </label>
+        <label htmlFor="address">Address: </label>
+        <input
+          placeholder={
+            userDashboard.address
+              ? userDashboard.address
+              : "You must complete this field"
+          }
+          id="address"
+          type="text"
+          name="address"
+          value={input.address}
+          className={error.address && "danger"}
+          onChange={handleChange}
+        />
+        {!error.address ? null : <p className="danger">{error.address}</p>}
+
+        <label htmlFor="city">City: </label>
+        <input
+          placeholder={
+            userDashboard.city
+              ? userDashboard.city
+              : "You must complete this field"
+          }
+          id="city"
+          type="text"
+          name="city"
+          value={input.city}
+          className={error.city && "danger"}
+          onChange={handleChange}
+        />
+        {!error.city ? null : <p className="danger">{error.city}</p>}
+
+        {/* <label htmlFor="cp">CP: </label>
           <input
-            placeholder={userDashboard.cp ? userDashboard.cp : "You must complete this field"}
+            placeholder={
+              userDashboard.cp
+                ? userDashboard.cp
+                : "You must complete this field"
+            }
             id="cp"
             type="text"
             name="cp"
@@ -204,60 +238,67 @@ export default function FormUserUpdate() {
             className={error.cp && "danger"}
             onChange={handleChange}
           />
-          {!error.cp ? null : <p className="danger">{error.cp}</p>}
+          {!error.cp ? null : <p className="danger">{error.cp}</p>} */}
 
-          <label htmlFor="state">State: </label>            
-          <input
-            placeholder={userDashboard.state ? userDashboard.state : "You must complete this field"}
-            id="state"
-            type="text"
-            name="state"
-            value={input.state}
-            className={error.state && "danger"}
-            onChange={handleChange}
-          />
-          {!error.state ? null : <p className="danger">{error.state}</p>}
+        <label htmlFor="state">State: </label>
+        <input
+          placeholder={
+            userDashboard.state
+              ? userDashboard.state
+              : "You must complete this field"
+          }
+          id="state"
+          type="text"
+          name="state"
+          value={input.state}
+          className={error.state && "danger"}
+          onChange={handleChange}
+        />
+        {!error.state ? null : <p className="danger">{error.state}</p>}
 
-          <label htmlFor="country">Country: </label>
-          <input
-            placeholder={userDashboard.country ? userDashboard.country : "You must complete this field"}
-            id="country"
-            type="text"
-            name="country"
-            value={input.country}
-            className={error.country && "danger"}
-            onChange={handleChange}
-          />
-          {!error.country ? null : <p className="danger">{error.country}</p>}
+        <label htmlFor="country">Country: </label>
+        <input
+          placeholder={
+            userDashboard.country
+              ? userDashboard.country
+              : "You must complete this field"
+          }
+          id="country"
+          type="text"
+          name="country"
+          value={input.country}
+          className={error.country && "danger"}
+          onChange={handleChange}
+        />
+        {!error.country ? null : <p className="danger">{error.country}</p>}
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            value="CREATE"
-            onClick={handleSubmit}
-            className="button"
-            disabled={              
-              error.name ||
-              !input.name ||
-              error.phone ||
-              !input.phone ||
-              error.address ||
-              !input.address ||
-              error.city ||
-              !input.city ||
-              error.cp ||
-              !input.cp ||
-              error.state ||
-              !input.state ||
-              error.country ||
-              !input.country
-            }
-          >
-            Send data
-          </button>
-          {submit && <h2 className="confirm">Data successfully set!</h2>}
-        </form>
-      </div>
+        {/* Submit Button */}
+        <button
+          type="submit"
+          value="CREATE"
+          onClick={handleSubmit}
+          className="Update-button"
+          disabled={
+            error.name ||
+            !input.name ||
+            error.phone ||
+            !input.phone ||
+            error.address ||
+            !input.address ||
+            error.city ||
+            !input.city ||
+            error.cp ||
+            !input.cp ||
+            error.state ||
+            !input.state ||
+            error.country ||
+            !input.country
+          }
+        >
+          Send data
+        </button>
+        {submit && <h2 className="confirm">Data successfully set!</h2>}
+      </form>
     </div>
   );
 }
