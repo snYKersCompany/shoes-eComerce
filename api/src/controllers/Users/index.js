@@ -59,16 +59,16 @@ const findUser = async (_id) => {
     if (!_id) {
         throw new Error(`It needs an id property`);
     }
-    const user = await UsersModel.findById(id);
+    const user = await UsersModel.findById(_id);
     if (!user) {
-        return `The user with an id ${id} was not found in the database`
+        return `The user with an id ${_id} was not found in the database`
     }
     return user;
 }
 
 const getUserDashboard = async (id) => {
     if (!id) throw new Error(`It needs an id property`);
-    console.log(id)
+    
     let user = await UsersModel.findById(id);
 
     user = await UsersModel.aggregate([
@@ -116,7 +116,7 @@ const deleteUser = async (id) => {
         return `The user with an id ${id} was not found in the database`;
     }
     const deleteUser = await UsersModel.deleteOne({ _id: id });
-    console.log(deleteUser)
+    
     return deleteUser;
 }
 

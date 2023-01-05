@@ -36,6 +36,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
   };
 
   const handlerViewPdf = ({ _id }) => {
+    console.log(_id)
     dispatch(getOrderDetails(_id));
     setViewPdf(!viewPdf);
   };
