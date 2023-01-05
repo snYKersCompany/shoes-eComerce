@@ -20,7 +20,7 @@ const Carrousel2 = () => {
           {nike !== "void" && nike?.length > 2 ? (
             nike.slice(0, 25).map((el, i) => (
               <div className="HWC2-card" key={i}>
-                <Link to="#" className="text-decoration-none">
+                <Link to={`/home/${el._id}`} className="text-decoration-none">
                   <CardCarrousel2
                     img={el.card_picture}
                     name={el.name}

@@ -20,7 +20,7 @@ const Carrousel1 = ({ name }) => {
           {running !== "void" && running?.length > 1 ? (
             running.slice(0, 25).map((el, i) => (
               <div className="HWC1-card" key={i}>
-                <Link to="#" className="text-decoration-none">
+                <Link to={`/home/${el._id}`} className="text-decoration-none">
                   <CardCarrousel1 img={el.card_picture} />
                 </Link>
               </div>
