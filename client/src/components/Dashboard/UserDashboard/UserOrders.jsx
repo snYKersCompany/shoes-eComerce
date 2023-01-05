@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { CiFilter } from "react-icons/ci";
+
 
 import Button from "react-bootstrap/esm/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -9,6 +12,7 @@ import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 
 import "../../../styles/review.css";
+import "../../../styles/ordersAdminDashboard.css"
 
 import { purchasesMade, product, paproba } from "./pruebas";
 import { postReview } from "../../../redux/features/reviews/reviewsActions";
@@ -84,31 +88,28 @@ const UserOrders = () => {
       })
     );
   };
-
-  // const paraMandarAlBack = (e) => {
-  //   e.preventDefault();
-  //   dispatch(postReview({
-  //     _idProduct:
-  //   }))
-  // }
-
   // console.log(
   //   "esto es y reviewInput en el comp",
   //   Object.values(reviewInput).toString()
   // );
 
-  //conseguimos todas las ordenes del usuario
-  const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
-
-  console.log('orders', orders)
-  // console.log('dashboard', userDashboard)
-
-  console.log('USER ORDER',userOrders)
-
   //conseguimos los productos de esa orden
   const productsBought = userOrders.map((e) => e.products).flat();
 
-  console.log('PRODUCT BOUGHT',productsBought)
+  //color de la orden según el estado de la compra
+ const functionColor = (state) => {
+  state= state.toLowerCase()
+    switch (state) {
+      case "completed":
+        return "linear-gradient(318deg, rgba(185,255,186,1) 52%, rgba(0,0,0,1) 100%)";
+      case "pending":
+        return "linear-gradient(318deg, rgba(255,246,185,1) 52%, rgba(0,0,0,1) 100%)";
+      case "cancelled":
+        return "linear-gradient(318deg, rgba(245,172,172,1) 52%, rgba(0,0,0,1) 100%)";
+      default:
+        return "#ffffff";
+    }
+  };
 
 
   //agregar que se pueda postear solamente en las que tengan el estado de "aproved"
@@ -122,32 +123,63 @@ const UserOrders = () => {
   console.log("a verrrrrrrrrrrrrrrrrrrrrrrrrrrrrr", aver);
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>date</th>
-          <th>status</th>
-          <th>ticket</th>
-          <th>price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {userOrders &&
-          userOrders.map((e, inx) => (
-            <tr key={inx}>
-              <td>{e._id}</td>
-              <td>{e.date}</td>
-              <td>{e.state}</td>
-              <td>{e.ticket ? e.ticket : "nothing"}</td>
-              <td>{e.finalAmount}</td>
-              <td>
-                <Button onClick={(e) => toPurchaseDetails(e)}>detail</Button>
-              </td>
-            </tr>
+    <div className="userDashboard-userProfileGrid">
+     <div className="userDashboard-userProfilefilters">
+        <button className="d-flex align-items-center">
+          <span style={{ color: "white", fontSize: "1.2rem"}} className={"fw-light"}>
+            Filters
+          </span>
+          <CiFilter />
+        </button>
+      </div>
+
+        {product &&
+          product.map((order,i) => (
+            <div
+              key={i}
+              className="userDashboard-userProfileOrders"
+              style={{ background: functionColor(order.status) }}
+            >
+              <div className="userDashboard-userProfile">
+                <img
+                  src={`${
+                    order?.user?.image
+                      ? order.user.image
+                      : "https://jonmircha.com/img/jonmircha.jpg"
+                    //https://jonmircha.com/img/jonmircha.jpg
+                  }`}
+                  alt="order-user"
+                  width={"150px"}
+                />
+              <label className="fw-light" key={order.id}>
+                  {order.id}
+                </label>
+              </div>
+
+              <div className="userDashboard-orderInfo">
+                <p key={i + "user"} className="fw-bold orderInfo1">
+                  {" "}
+                  {order?.user?.username ? order.user.username : "prueba"}
+                </p>
+                <p className="orderInfo2" key={order.date}>
+                  {order?.date.slice(0, 10)}
+                </p>
+                <p className="fst-italic orderInfo3" key={order.state}>
+                  {order?.status}
+                </p>
+                <p className="fw-bold orderInfo4" key={i + "amount"}>
+                  ${order?.finalAmount ? order.finalAmount : "123"}
+                </p>
+              </div>
+
+
+              <button onClick={(e) => toPurchaseDetails(e)} className={"btnControllers1"}>
+               <BiSearchAlt2 />
+
+              </button>
+            </div>
           ))}
-      </tbody>
-    </Table>
+    </div>
   ) : //aca estamos en los productos de cada orden
   toReview === false ? (
     <Table striped bordered hover>

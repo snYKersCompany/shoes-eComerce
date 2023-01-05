@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 
 const UserDashboard = () => {
 
-  // console.log(UserDashboard)
  
   const { section } = useParams();
   
@@ -23,14 +22,11 @@ const UserDashboard = () => {
   //   setControl(section)
   // }
   // };
-  // console.log(control.toString())
 
-  // console.log('esto es control =====================================================>>>>>>', control)
 
   const {userDashboard} = useSelector(state=> state.users)
   return (
     <>
-      <h3 className="d-flex justify-content-center ">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}!</h3>
 
       <div className="userDashBoardContainer">
         <div className="userDashBoard d-flex w-100">
