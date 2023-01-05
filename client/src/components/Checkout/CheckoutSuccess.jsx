@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+//JSX
 import NavBar from "../NavBar2.0/NavBar2.0";
-import "../../styles/checkoutSuccess.css";
+//actions
 import {
   executePayment,
   changeStatusOrder,
 } from "../../redux/features/orders/ordersActions";
-import { useDispatch } from "react-redux";
+//styles
+import Button from "react-bootstrap/esm/Button";
+import "../../styles/CheckoutSuccess.css";
 
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
@@ -28,10 +32,12 @@ const CheckoutSuccess = () => {
     <>
       <NavBar />
       <div className="mainView">
-        <h2>Checkout Success</h2>
-        <h3>Thank you for your purchase!</h3>
-        <Link to="/home">
-          <button className="button">Back to Snykers Shop</button>
+        <h2 className="CheckoutSuccesText">Checkout Success</h2>
+        <h3 className="CheckoutSuccesText">Thank you for your purchase!</h3>
+        <Link to="/">
+          <Button variant="success" className="CheckoutSuccesBtn">
+            Back to Snykers Shop
+          </Button>
         </Link>
       </div>
     </>

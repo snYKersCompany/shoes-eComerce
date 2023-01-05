@@ -1,38 +1,44 @@
 .mainView {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 92vh;
-    min-height: 100%;
-    background-image: url('../components/Paypal/Images/img-1.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: black;
-    font-size: 10px;
-    font-family: 'Noto Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 92vh;
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+  font-size: 10px;
+  font-family: "Noto Sans", sans-serif;
 }
 
-.button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    font-size: small;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    letter-spacing: 0.01em;
-    background: #03045e;
-    color: #edede9;
-    box-shadow: 0 0 35px #03045e;
+.CheckoutSuccesText {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 4em;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+  margin-bottom: 2rem;
+}
+
+.CheckoutSuccesBtn {
+  margin-top: 15px;
+  padding: 10px 15px;
+  font-size: small;
+  border-radius: 10px;
+  letter-spacing: 0.01em;
+  font-family: Bebas Neue, cursive;
 }
 .button:hover {
-    background: #f5ebe0;
-    color: #000000;
-    box-shadow: 0 0 35px #03045e;
+  background: #f5ebe0;
+  color: #000000;
+  box-shadow: 0 0 35px #03045e;
 }
 
 @media (min-height: 720px) {
-    .mainView {
-        min-height: 95vh;
-    }    
+  .mainView {
+    min-height: 95vh;
+  }
 }
