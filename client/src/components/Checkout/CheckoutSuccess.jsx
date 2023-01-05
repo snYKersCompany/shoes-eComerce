@@ -10,7 +10,7 @@ import {
 } from "../../redux/features/orders/ordersActions";
 //styles
 import Button from "react-bootstrap/esm/Button";
-import "../../styles/CheckoutSuccess.css";
+import "../../styles/checkoutSuccess.css";
 
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
