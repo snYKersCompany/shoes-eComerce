@@ -197,11 +197,7 @@ const Create = () => {
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET_PRODUCT;
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");
-
-  /* let handleImg = (e) => {
-    setAuxImg(e.target.value);
-  }; */
+  const [image, setImage] = useState("");  
 
   const handleImage = async (e) => {
     setFile(e.target.files[0]);
@@ -215,8 +211,7 @@ const Create = () => {
     if (info.url) {
       setImage(info.url);
       setform({ ...form, [e.target.name]: info.url });
-    }
-    console.log("Info url: ", info.url);
+    }    
   }  
 
   let handleImgForm = () => {
@@ -228,7 +223,6 @@ const Create = () => {
 
   let submitForm = (e) => {
     e.preventDefault();
-
     let formToSend = {
       name: form.name,
       brand: form.brand,
@@ -243,7 +237,7 @@ const Create = () => {
       price: form.price,
       description: form.description,
     };
-    console.log("Form to send: ", formToSend );
+    console.log("Form: ", formToSend);
     setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1

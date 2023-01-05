@@ -21,8 +21,7 @@ const UserOrders = () => {
   const { userDashboard, user } = useSelector((state) => state.users);
   const { orders } = useSelector((state) => state.orders);
 
-  const [actualOrderProducts, setActualOrderProducts] = useState()
-
+  const [actualOrderProducts, setActualOrderProducts] = useState();
 
   // states to travel through tabs
   const [toOrderDetail, setToOrderDetail] = useState(false);
@@ -32,24 +31,22 @@ const UserOrders = () => {
   const [reviewInput, setReviewInput] = useState("");
   const [avgRating, setAvgRating] = useState(0);
   //fill w single product id
-  const [idSingleProduct, setIdSingleProduct] = useState()
+  const [idSingleProduct, setIdSingleProduct] = useState();
 
   //conseguimos todas las ordenes del usuario
   const captureUserName = userDashboard.name;
   const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
 
-
   //handlers to travel and set states
   const toPurchaseDetails = (e, prod) => {
     e.preventDefault();
-    setActualOrderProducts(prod)
+    setActualOrderProducts(prod);
     setToOrderDetail(true);
   };
 
-
   const toProductReview = (e, idOneProduct) => {
     e.preventDefault();
-    setAvgRating(0)
+    setAvgRating(0);
     setIdSingleProduct(idOneProduct);
     setToReview(true);
   };
@@ -70,7 +67,6 @@ const UserOrders = () => {
     setAvgRating(input);
   };
   //end of rating handler
-
 
   const handlerInputReview = (e) => {
     setReviewInput({
@@ -114,7 +110,9 @@ const UserOrders = () => {
               <td>{prd.ticket ? prd.ticket : "nothing"}</td>
               <td>{prd.finalAmount}</td>
               <td>
-                <Button onClick={(e) => toPurchaseDetails(e, prd.products)}>detail</Button>
+                <Button onClick={(e) => toPurchaseDetails(e, prd.products)}>
+                  detail
+                </Button>
               </td>
             </tr>
           ))}
@@ -144,11 +142,11 @@ const UserOrders = () => {
               </td>
             </tr>
           ))}
-          <tr>
-            <td>
-              <Button onClick={(e) => backToOrders(e)}>Back</Button>
-            </td>
-          </tr>
+        <tr>
+          <td>
+            <Button onClick={(e) => backToOrders(e)}>Back</Button>
+          </td>
+        </tr>
       </tbody>
     </Table>
   ) : (

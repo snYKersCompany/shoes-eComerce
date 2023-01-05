@@ -1,10 +1,13 @@
 import axios from "axios";
 import { clearOrderDetail, getAllOrder, getOrderDetail } from "./ordersSlice";
 
-export const getAllOrders = (body = {}) => async (dispatch) => {
+export const getAllOrders = (body = {}, _id = "") => async (dispatch) => {
   try {
     const jsonBody = JSON.stringify(body)
-    const orders = await axios.get(`/orders?ordersSort=${jsonBody}`);
+
+    let _idQuery = ""
+    if(_id.length) _idQuery = `&_id=${_id}`  
+    const orders = await axios.get(`/orders?ordersSort=${jsonBody}${_idQuery}`);
     return dispatch(getAllOrder(orders.data.order));
   } catch (error) {
     return error;
@@ -13,7 +16,6 @@ export const getAllOrders = (body = {}) => async (dispatch) => {
 
 export const getOrderDetails = (_id) => async (dispatch) => {
   try {
-    console.log(orders)
     const orders = await axios.get(`/orders/${_id}`);
     return dispatch(getOrderDetail(orders.data));
   } catch (error) {
