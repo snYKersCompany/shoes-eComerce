@@ -12,17 +12,17 @@ export default function FormUserUpdate() {
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
 
+  console.log(userDashboard)
+
   // States
   const [input, setInput] = useState({
     username: "",
-    name: "",
-    email: "",
     phone: "",
     address: "",
     city: "",
-    cp: "",
     state: "",
     country: "",
+    image: "",
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
@@ -47,13 +47,8 @@ export default function FormUserUpdate() {
   }, [submit, user, _id, dispatch, userDashboard._id]);
 
   function validateInput(value, name) {
-    const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/;
 
     switch (name) {
-      case "name":
-        return !value || !expression.test(value)
-          ? setError({ ...error, name: "It must set a valid name" })
-          : setError({ ...error, name: "" });
       case "phone":
         return !value
           ? setError({ ...error, phone: "Please, provide a phone number" })
@@ -66,10 +61,6 @@ export default function FormUserUpdate() {
         return !value
           ? setError({ ...error, city: "Please, provide a name of city" })
           : setError({ ...error, city: "" });
-      case "cp":
-        return isNaN(parseInt(value))
-          ? setError({ ...error, cp: "Please, provide a valid number of cp" })
-          : setError({ ...error, cp: "" });
       case "state":
         return !value
           ? setError({ ...error, state: "Please, provide a name of State" })
@@ -92,22 +83,20 @@ export default function FormUserUpdate() {
     if (user) {
       event.preventDefault();
       await axios.put(
-        `http://localhost:3001/api/users/update/${user.uid}`,
+        `users/update/${user.uid}`,
         input
       );
       setSubmit(true);
       setInput({
-        username: "",
-        // name: "",
-        // email: "",
         phone: "",
         address: "",
         city: "",
-        // cp: "",
         state: "",
         country: "",
         image: "",
       });
+      navigate("/cart");
+
     } else {
       navigate("/login");
     }
@@ -138,30 +127,15 @@ export default function FormUserUpdate() {
       <form onSubmit={handleSubmit} className="Update-form" id="Form">
         <label htmlFor="email">Email: </label>
         {user ? (
-          <input
-            placeholder={user.email}
-            id="email"
-            type="text"
-            name="email"
-            value={input.email}
-            className={error.email && "danger"}
-            onChange={handleChange}
-            readOnly
-          />
+
+          <label className="label-onlyread">{user.email}</label>
         ) : null}
 
         <label htmlFor="username">Username: </label>
         {userDashboard ? (
-          <input
-            placeholder={userDashboard.username}
-            id="username"
-            type="text"
-            name="username"
-            value={input.username}
-            className={error.username && "danger"}
-            onChange={handleChange}
-            readOnly
-          />
+          
+          <label className="label-onlyread">{user?.username }</label>
+
         ) : null}
 
         <label htmlFor="image">Image: </label>
@@ -171,10 +145,9 @@ export default function FormUserUpdate() {
           type="file"
           name="image"
           value={input.image}
-          className={error.name ? "danger" : "btn-fileUpdate"}
+          className="update-image"
           onChange={handleChange}
         />
-        {/* {!error.name ? null : <p className="danger">{error.name}</p>} */}
 
         <label htmlFor="phone">Phone: </label>
         <input
@@ -187,7 +160,7 @@ export default function FormUserUpdate() {
           type="text"
           name="phone"
           value={input.phone}
-          className={error.phone && "danger"}
+          className={error.phone && "danger-input"}
           onChange={handleChange}
         />
         {!error.phone ? null : <p className="danger">{error.phone}</p>}
@@ -203,7 +176,7 @@ export default function FormUserUpdate() {
           type="text"
           name="address"
           value={input.address}
-          className={error.address && "danger"}
+          className={error.address && "danger-input"}
           onChange={handleChange}
         />
         {!error.address ? null : <p className="danger">{error.address}</p>}
@@ -219,26 +192,10 @@ export default function FormUserUpdate() {
           type="text"
           name="city"
           value={input.city}
-          className={error.city && "danger"}
+          className={error.city && "danger-input"}
           onChange={handleChange}
         />
         {!error.city ? null : <p className="danger">{error.city}</p>}
-
-        {/* <label htmlFor="cp">CP: </label>
-          <input
-            placeholder={
-              userDashboard.cp
-                ? userDashboard.cp
-                : "You must complete this field"
-            }
-            id="cp"
-            type="text"
-            name="cp"
-            value={input.cp}
-            className={error.cp && "danger"}
-            onChange={handleChange}
-          />
-          {!error.cp ? null : <p className="danger">{error.cp}</p>} */}
 
         <label htmlFor="state">State: </label>
         <input
@@ -251,7 +208,7 @@ export default function FormUserUpdate() {
           type="text"
           name="state"
           value={input.state}
-          className={error.state && "danger"}
+          className={error.state && "danger-input"}
           onChange={handleChange}
         />
         {!error.state ? null : <p className="danger">{error.state}</p>}
@@ -267,7 +224,7 @@ export default function FormUserUpdate() {
           type="text"
           name="country"
           value={input.country}
-          className={error.country && "danger"}
+          className={error.country && "danger-input"}
           onChange={handleChange}
         />
         {!error.country ? null : <p className="danger">{error.country}</p>}
@@ -279,16 +236,12 @@ export default function FormUserUpdate() {
           onClick={handleSubmit}
           className="Update-button"
           disabled={
-            error.name ||
-            !input.name ||
             error.phone ||
             !input.phone ||
             error.address ||
             !input.address ||
             error.city ||
             !input.city ||
-            error.cp ||
-            !input.cp ||
             error.state ||
             !input.state ||
             error.country ||
