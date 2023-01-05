@@ -16,11 +16,8 @@ const listUsers = async ({ search, orderBy }) => {
     }
 
     let sort = {}
-    if (orderBy) sort = orderBy
-    // console.log({search, orderBy})
-    // console.log({sort, parameters})
-    const users = await UsersModel.find(parameters).sort(sort);
-    // console.log({users})
+    if (orderBy) sort = orderBy    
+    const users = await UsersModel.find(parameters).sort(sort);    
     return users;
 }
 
@@ -33,7 +30,7 @@ const addUser = async (uid, email, username, password, name, phone, address, cit
         _id: uid,
         email: email,
         username: username,
-        password: await UsersModel.encryptPassword(password),
+        password: password,
         name: name,
         phone: phone,
         address: address,
