@@ -17,6 +17,7 @@ import "../../../styles/AdminDashboardOrders.css"
 function AdminDashboardOrders({ setOrderDetails }) {
   const dispatch = useDispatch();
   const [viewPdf, setViewPdf] = useState(true);
+  
   const { orders, orderDetails } = useSelector((state) => state.orders);
 
 
@@ -52,7 +53,6 @@ function AdminDashboardOrders({ setOrderDetails }) {
 
 
   const handlerViewPdf = ({ _id }) => {
-    console.log(_id)
     dispatch(getOrderDetails(_id));
     setViewPdf(!viewPdf);
   };

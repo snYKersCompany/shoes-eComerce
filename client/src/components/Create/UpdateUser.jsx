@@ -12,10 +12,9 @@ export default function FormUserUpdate () {
     const { _id } = useParams();
     const { userDashboard } = useSelector((state) => state.users);
     // States
-    const [input, setInput] = useState({ name: '', email: '', phone: '', address: '', city: '', cp: '', state: '', country: '', image: '' });
+    const [input, setInput] = useState({ name: '', email: '', username: '', password: '', phone: '', address: '', city: '', cp: '', state: '', country: '', image: '' });
     const [error, setError] = useState({});
-    const [submit, setSubmit] = useState(false);
-    const [file, setFile] = useState(null);
+    const [submit, setSubmit] = useState(false);    
 
     //STRIPE y LOCALSTORAGE
     let productsCart = localStorage.getItem("carrito");
@@ -28,10 +27,6 @@ export default function FormUserUpdate () {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { user } = useAuth();
-    
-    // Variables
-    const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
-    const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET;    
 
     // Functions
     useEffect(() => {
@@ -45,10 +40,15 @@ export default function FormUserUpdate () {
     }, [submit, user]);
 
     function validateInput (value, name) {
-        const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/        
+        const expression = /^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/
+        const expressionEmail = /^[a-z0-9_-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+        const expressionPassword = /^[a-zA-Z0-9_-]{4,16}$/
 
         switch (name) {
-            case 'name': return (!value || !expression.test(value)) ? setError({ ...error, name: 'It must set a valid name' }) : setError({ ...error, name: '' });            
+            case 'name': return (!value || !expression.test(value)) ? setError({ ...error, name: 'It must set a valid name' }) : setError({ ...error, name: '' });
+            case 'email': return (!value || expressionEmail.test(value)) ? setError({ ...error, email: 'It must set a valid email' }) : setError({ ...error, email: '' });
+            case 'username': return (!value) ? setError({ ...error, username: 'Please, provide an username' }) : setError({ ...error, email: '' });
+            case 'password': return (!value || expressionPassword.test(value)) ? setError({ ...error, password: 'It must contains 8 characters, 1 number and 1 special character' }) : setError({ ...error, password: '' });
             case 'phone': return (!value) ? setError({ ...error, phone: 'Please, provide a phone number' }) : setError({ ...error, phone: '' });
             case 'address': return (!value) ? setError({ ...error, address: 'Please, provide an address' }) : setError({ ...error, address: '' });
             case 'city': return (!value) ? setError({ ...error, city: 'Please provide a name of city' }) : setError({ ...error, city: '' });
@@ -56,17 +56,6 @@ export default function FormUserUpdate () {
             case 'state': return (!value) ? setError({ ...error, state: 'Please provide a name of State' }) : setError({ ...error, state: '' });
             case 'country': return (!value) ? setError({ ...error, country: 'Please, provide a name of country' }) : setError({ ...error, country: '' });
         }
-    }
-
-    async function handleImage (event) {
-        setFile(event.target.files[0]);
-        const data = new FormData();
-        data.append("file", event.target.files[0]);
-        data.append("upload_preset", UPLOAD_PRESET);
-        const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload/`, 
-            { method: "POST", body: data });
-        const info = await response.json();        
-        setInput({ ...input, [event.target.name]: info.url });
     }
 
     function handleChange (event) {
@@ -77,8 +66,7 @@ export default function FormUserUpdate () {
     async function handleSubmit (event) {
         if (user) {
             event.preventDefault();
-            const response = await Axios.put(`http://localhost:3001/api/users/update/${user.uid}`, input);
-            console.log(response);
+            const response = await Axios.put(`http://localhost:3001/api/users/update/${user.uid}`, input);            
             setSubmit(true);
             Axios
             .post("http://localhost:3001/api/checkouts", {
@@ -92,6 +80,7 @@ export default function FormUserUpdate () {
             .catch((err) => {
                 console.log(err.message);
             });
+            console.log(response.data);
             setInput({});
         }
         else {
@@ -105,6 +94,14 @@ export default function FormUserUpdate () {
                 <form onSubmit = {handleSubmit} className = "form" id = "Form">
                     <label htmlFor = "email">Email: </label>
                     {user ? <input placeholder = {user.email} id = "email" type = "text" name = "email" value = {input.email} className = {error.email && "danger"} onChange = {handleChange} readOnly/> : null}
+
+                    <label htmlFor = "username">Username: </label>
+                    {user ? <input placeholder = {user.username} id = "username" type = "text" name = "username" value = {input.username} className = {error.username && "danger"} onChange = {handleChange} /> : null}
+                    {!error.username ? null : <p className = "danger">{error.username}</p>}
+
+                    <label htmlFor = "password">Password: </label>
+                    <input id = "password" type = "text" name = "password" value = {input.password} className = {error.password && "danger"} onChange = {handleChange}/>
+                    {!error.password ? null : <p className = "danger">{error.password}</p>}
 
                     <label htmlFor = "name">Name: </label>
                     <input id = "name" type = "text" name = "name" value = {input.name} className = {error.name && "danger"} onChange = {handleChange}/>
@@ -134,11 +131,8 @@ export default function FormUserUpdate () {
                     <input id = "country" type = "text" name = "country" value = {input.country} className = {error.country && "danger"} onChange = {handleChange}/>
                     {!error.country ? null : <p className = "danger">{error.country}</p>}
 
-                    <input type="file" onChange={handleImage} name = "image" />                    
-                    { file ? <img alt="Preview" height="60" src={URL.createObjectURL(file)} /> : null }
-
                     {/* Submit Button */}
-                    <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.name || !input.name || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
+                    <button type = "submit" value = "CREATE" onClick={handleSubmit} className = "button" disabled = {error.email || !input.email || error.username || !input.username || error.password || !input.password || error.name || !input.name || error.phone || !input.phone || error.address || !input.address || error.city || !input.city || error.cp || !input.cp || error.state || !input.state || error.country || !input.country}>Send data</button>
                     {submit && <h2 className = "confirm">Data successfully set!</h2>}
                 </form>
             </div>     

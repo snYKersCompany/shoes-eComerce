@@ -9,8 +9,8 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Details from "./components/Details/Details";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import CheckoutCancel from "./components/Paypal/CheckoutCancel";
-import CheckoutSuccess from "./components/Paypal/CheckoutSuccess";
+import CheckoutCancel from "./components/Checkout/CheckoutCancel";
+import CheckoutSuccess from "./components/Checkout/CheckoutSuccess";
 import Cart from "./components/Cart/Cart";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Preview from "./components/Paypal/Preview/Preview";
@@ -18,6 +18,7 @@ import Error404 from "./components/Error404/Error404";
 import Main from "./components/Home/Main";
 import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
+import FormUserUpdate from './components/Checkout/UpdateUser';
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -58,6 +59,7 @@ function App() {
           />
           <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
+          <Route path = '/update' element = {<FormUserUpdate />} />
         </Routes>
       </AuthProvider>
     </div>

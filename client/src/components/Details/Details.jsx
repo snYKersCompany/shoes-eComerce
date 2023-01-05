@@ -10,12 +10,8 @@ import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
 import { TbStarOff } from "react-icons/tb";
-import cartBlanco from "../../utils/images/navbar/cartBlanco.svg"; // eslint-disable-line
 //actions
-import {
-  createProduct,
-  getProductsDetails,
-} from "../../redux/features/products/productsActions";
+import { getProductsDetails } from "../../redux/features/products/productsActions";
 //styles
 import "../../styles/details.css";
 
@@ -44,13 +40,14 @@ const Details = () => {
   };
 
   const [count, setCount] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(productDetail.price * count);
+  const [repeated, setRepeated] = useState("false");
 
   let productsCart = localStorage.getItem("carrito");
 
   const [products, setProducts] = useState(
     productsCart?.length > 1 ? JSON.parse(productsCart) : []
   );
+  useEffect(() => {}, [products, repeated]);
 
   function setProduct() {
     if (localStorage.getItem("carrito")?.length > 1) {
@@ -65,18 +62,20 @@ const Details = () => {
         count,
         totalPrice: productDetail.price * count,
       };
-      // const myFilteredCart = products.reduce(
-      //   (prev, curr) =>
-      //     prev.find((el) => el.idAux === curr.idAux) ? prev : [...prev, curr],
-      //   []
-      // );
-      localStorage.setItem(
-        "carrito",
-        JSON.stringify(
-          JSON.parse(localStorage.getItem("carrito")).concat([cart])
-        )
-      );
-      alert(`The product ${productDetail.name} was successfully added`);
+
+      if (products.findIndex((el) => el.idAux === cart.idAux) === 0) {
+        setRepeated("true");
+        alert(`The product ${productDetail.name} is already in the cart`);
+      } else {
+        setRepeated("false");
+        localStorage.setItem(
+          "carrito",
+          JSON.stringify(
+            JSON.parse(localStorage.getItem("carrito")).concat([cart])
+          )
+        );
+        alert(`The product ${productDetail.name} was successfully added`);
+      }
     } else {
       let cart = {
         id: productDetail._id,
@@ -89,17 +88,11 @@ const Details = () => {
         count,
         totalPrice: productDetail.price * count,
       };
+      setRepeated("false");
       localStorage.setItem("carrito", JSON.stringify([cart]));
       alert(`The product ${productDetail.name} was successfully added`);
     }
   }
-
-  const myFilteredCart = products.reduce(
-    (prev, curr) =>
-      prev.find((el) => el.idAux === curr.idAux) ? prev : [...prev, curr],
-    []
-  );
-  console.log(myFilteredCart);
 
   //Fin local Storage
   return (
@@ -218,7 +211,7 @@ const Details = () => {
             <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
               Price: ${productDetail.price}
             </p>
-            <Preview setProduct={setProduct} />
+            <Preview setProduct={setProduct} repeated={repeated} />
           </section>
         ) : (
           <></>
