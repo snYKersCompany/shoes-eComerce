@@ -1,24 +1,31 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useAuth } from "../../context/authContext";
+import { putUserInformation } from "../../redux/features/users/usersActions";
 import AlertMSJ from "./AlertMSJ";
 import SuccessMSJ from "./SuccessMSJ";
 import NavBar from "../NavBar2.0/NavBar2.0";
 
-const RestorePassowrd = () => {
-  const { resetPassword } = useAuth();
+const NewPassword = () => {
+  const { user } = useAuth();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [succes, setSuccess] = useState("");
-  const [forgotenUser, setForgotenUser] = useState({
-    email: "",
+  const [newPassword, setNewPassword] = useState({
+    password: "",
   });
-
+  console.log(user);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setError("");
-      await resetPassword(forgotenUser.email);
-      setSuccess(" Check your inbox email and follow the instructions");
+      setSuccess("Password changed successfully");
+      navigate("/");
+      dispatch(
+        putUserInformation(user.uid, { password: newPassword.password })
+      );
     } catch (error) {
       console.log(error);
       setError(error.message);
@@ -26,30 +33,30 @@ const RestorePassowrd = () => {
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    setForgotenUser({ ...forgotenUser, [name]: value });
+    setNewPassword({ ...newPassword, [name]: value });
   };
 
   return (
     <div>
       <NavBar />
-      <section className="login">
-        <div className="loginContainer">
-          <h1 className="text-white">Restore password</h1>
+      <section className="newPassword">
+        <div className="passwordContainer">
+          <h1 className="text-white">Set new Password</h1>
           {succes && <SuccessMSJ message={succes} />}
           {error && <AlertMSJ message={error} />}
           <form onSubmit={(e) => handleSubmit(e)}>
-            <label>Email</label>
+            <label>Password</label>
             <input
               className="ph-center d-flex "
               onChange={(e) => handleChange(e)}
-              name="email"
-              type="email"
-              placeholder="Enter email"
+              name="password"
+              type="password"
+              placeholder="Enter password"
               autoFocus
               required
             />
             <div className="btnContainer">
-              <button onClick={(e) => handleSubmit(e)}>Restore password</button>
+              <button onClick={(e) => handleSubmit(e)}>Set new password</button>
             </div>
           </form>
           <Link to="/">
@@ -61,4 +68,4 @@ const RestorePassowrd = () => {
   );
 };
 
-export default RestorePassowrd;
+export default NewPassword;

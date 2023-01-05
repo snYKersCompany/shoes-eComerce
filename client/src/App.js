@@ -19,6 +19,8 @@ import Main from "./components/Home/Main";
 import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
 import RestorePassword from "./components/Auth/RestorePassword";
+import NewPassword from "./components/Auth/NewPassowrd";
+
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -42,6 +44,7 @@ function App() {
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
           <Route path="/restore-password" element={<RestorePassword />} />
+          <Route path="/new-password" element={<NewPassword />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />

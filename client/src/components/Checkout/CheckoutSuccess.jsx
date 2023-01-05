@@ -22,9 +22,13 @@ const CheckoutSuccess = () => {
     console.log(query);
     const payment = query.slice(9, 15); // 'paypal'
     // '?payment=paypal&_id=JdKqrX3YnXR8p1SrZ9nfhy3xqcF3&token=72N35155N6843844E'.slice(9,15)
-    if (payment === "paypal") executePayment(query);
+    if (payment === "paypal") {
+      executePayment(query);
+      //dispatch (mandar email)
+    }
     if (payment === "stripe") {
       dispatch(changeStatusOrder(query, { state: "aprobed" }));
+      //dispatch (mandar email)
     }
   }, [dispatch]);
 
