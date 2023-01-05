@@ -100,13 +100,16 @@ const UserOrders = () => {
   //conseguimos todas las ordenes del usuario
   const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
 
-  // console.log('orders', orders)
+  console.log('orders', orders)
   // console.log('dashboard', userDashboard)
+
+  console.log('USER ORDER',userOrders)
 
   //conseguimos los productos de esa orden
   const productsBought = userOrders.map((e) => e.products).flat();
 
-  console.log('esto es useParams ID', id)
+  console.log('PRODUCT BOUGHT',productsBought)
+
 
   //agregar que se pueda postear solamente en las que tengan el estado de "aproved"
   //podria llenar un estado con los valores que le llegan del array, si entra en la factura [0] que le llegue esa info y
