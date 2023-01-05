@@ -16,7 +16,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
   const [viewPdf, setViewPdf] = useState(true);
   const { orders, orderDetails } = useSelector((state) => state.orders);
 
-  console.log("esto es orders", orders);
+  // console.log("esto es orders", orders);
 
   const [sortOrder, setSortOrder] = useState("");
   const [valueOrder, setValueOrder] = useState(-1);
@@ -36,7 +36,7 @@ function AdminDashboardOrders({ setOrderDetails }) {
   };
 
   const handlerViewPdf = ({ _id }) => {
-    console.log(_id)
+    console.log(_id);
     dispatch(getOrderDetails(_id));
     setViewPdf(!viewPdf);
   };
