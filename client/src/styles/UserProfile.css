@@ -4,6 +4,7 @@
 }
 
 .AdminAccount-container {
+  width: 100vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, auto);
@@ -141,13 +142,14 @@
 
 /* Desktop */
 
-@media (min-width: 1024px) {
+@media (min-width: 1000px) {
   .AdminAccount-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, auto);
     grid-auto-rows: 1fr;
     grid-auto-flow: column;
+    width: 90vw;
   }
 
   .AdminAccount-background {
@@ -211,9 +213,6 @@
 }
 
 @media (min-width: 1280px) {
-  .AdminAccount-container {
-    width: 87vw !important;
-  }
   .AdminAccount-name {
     margin-left: -5rem;
   }

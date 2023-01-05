@@ -1,0 +1,56 @@
+.containerPaymentCarrousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.individualPaymentContainerCard {
+  scroll-snap-align: start;
+}
+
+/*Scroll*/
+.containerPaymentCarrousel::-webkit-scrollbar {
+  color: black;
+  height: 5px;
+}
+
+.containerPaymentCarrousel::-webkit-scrollbar-thumb {
+  background-color: rgb(175, 8, 8);
+  border-radius: 10px;
+}
+
+/* Cards */
+.PaymentCarrouselCard {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 3px;
+  height: 220px;
+  border-radius: 15px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 26%,
+    rgb(189, 14, 14) 55%,
+    rgba(0, 0, 0, 1) 84%
+  );
+  z-index: -1 !important;
+  overflow: hidden;
+}
+.imgPaymentCardCarrousel {
+  width: 200px;
+  /* transform: scaleY(-1) rotate(-75deg) */
+  z-index: 3 !important;
+  transform: scaleX(-1) rotate(10deg);
+}
+
+.PaymentCarrouseltxt {
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  margin-top: -30px;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: underline;
+}

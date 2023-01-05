@@ -12,8 +12,6 @@ const UserDashboard = () => {
 
   return (
     <>
-      <h3 className="d-flex justify-content-center ">Hello User</h3>
-
       <div className="userDashBoardContainer">
         <div className="userDashBoard d-flex w-100">
           <Tab.Container
