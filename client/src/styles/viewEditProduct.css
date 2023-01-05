@@ -1,0 +1,93 @@
+.viewEditContainer {
+    overflow: hidden;
+}
+
+.viewEdit {
+    z-index: 2;
+}
+
+.left {
+    /* border: solid 1px red; */
+    width: 20rem;
+}
+
+.imageCard1 {
+    /* position: absolute; */
+    width: 300px;
+    z-index: 2;
+    transform: rotate(28deg);
+    object-fit: contain;
+}
+
+.imageCard2 {
+    position: absolute;
+    width: 200px;
+    margin-left: 90px;
+    margin-top: -190px;
+    z-index: 1;
+    transform: scaleX(-1) rotate(50deg);
+    object-fit: contain;
+}
+
+.right {
+    /* border: solid 1px blue; */
+    width: 28rem;
+
+}
+
+.text-green {
+    color: chartreuse;
+}
+
+.input {
+    background-color: transparent;
+    color: white;
+    outline: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: solid 1px rgb(174, 0, 255);
+}
+
+.input2 {
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.input3 {
+    color: rgb(174, 0, 255);
+    font-size: 1.62rem;
+    border: none;
+}
+
+/* .VEPStock{
+} */
+
+.containerInputVEP{
+    margin: 0 40px;
+}
+
+.inputVEP{
+    width: 40px !important;
+}
+
+.descriptionVEP{
+    height: 50px;
+    overflow-y: scroll;
+}
+.VEPlabelAux{
+    color: yellow;
+}
+
+
+
+/* 
+.circle1 {
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    background: rgb(217, 0, 255) !important;
+    
+    overflow: hidden;
+} */

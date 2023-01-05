@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unbounded:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+@keyframes btn {
+    0% {
+        background: linear-gradient(85.99deg, #f8bf97 7.66%, #f65aca 99.12%)
+    }
+
+    100% {
+        background: linear-gradient(85.99deg, #f8bf97 7.66%, #f65aca 99.12%);
+    }
+}
+
+.card {
+    width: 400px;
+    height: 740px !important;
+    left: 0px;
+    top: 0px;
+    font-family: 'Bebas Neue', cursive;
+    /* background: linear-gradient(192.03deg, #091E51 6.17%, #1D1C41 93.05%); */
+    background: linear-gradient(45deg, #042653, #081116,#042653 80%);
+    border-radius: 25px !important;
+    margin: 8px;
+    overflow: hidden;
+}
+
+.card:hover{
+    box-shadow: inset 3px 3px 5px #ffffff, 0px 0px 10px rgb(255, 255, 255);
+    opacity: 1;
+}
+
+.brand {
+    text-transform: uppercase;
+    color: #B11BA4;
+}
+
+.name {
+    font-family: 'Lato', sans-serif;
+    margin: 0 !important;
+
+}
+
+.cardContainer {
+    margin-top: -20px;
+    z-index: 1;
+    object-fit: contain;
+}
+
+.cardImage1 {
+    position: absolute;
+    z-index: 1;
+    transform: rotate(28deg) scale(1.05);
+    object-fit: contain;
+    max-width: 380px;
+}
+
+.cardImage2 {
+    margin-left: 70px;
+    margin-top: -60px;
+    z-index: 2;
+    transform: scaleX(-1) scale(0.80) rotate(50deg);
+    object-fit: contain;
+    max-width: 380px;
+
+}
+
+.text-gold {
+    color: gold;
+    font-weight: 900px;
+    font-family: 'Lato', sans-serif;
+}
+
+.starsCards {
+    margin: 0 1px;
+}
+
+.fav {
+    color: gold;
+    font-size: 3rem;
+}
+
+
+.primary {
+    background: transparent !important;
+}
+
+.btnFav {
+    z-index: 1;
+}
+
+.btnCard {
+    background: linear-gradient(85.99deg, #FC964C 7.66%, #CB33A0 99.12%);
+    border-radius: 7px;
+    color: white;
+    font-size: 30px;
+    width: 160px;
+    height: 50px;
+    border: none;
+    animation-duration: 8000ms;
+    /* arreglar animation */
+}
+
+.btnCard:hover {
+    animation-name: btn;
+}
+
+
+.CardBody1:hover {
+    cursor: default;
+}
+
+.circle1{
+    margin-top: -170px;
+    margin-left: -180px;
+    height: 515px !important;
+    width: 519px !important;
+    border-radius: 50%;
+    background: radial-gradient(66.25% 66.38% at 86.8% 22.93%, #13A5E2 0%, #a113a5 100%);
+}
+
+
+
+.circleContainer {
+    margin-top: 50px;
+    position: absolute;
+}
+
+.margintop {
+    margin-top: 2rem !important;
+}

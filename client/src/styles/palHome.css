@@ -1,0 +1,43 @@
+/* .elHome { */
+/* background: linear-gradient(50deg, #e95cc2 5%, #61178a,#340078); */
+/* background: rgb(2,0,36);
+    background: linear-gradient(45deg, rgba(2,0,36,1) 5%, rgba(214,102,227,0.989233193277311) 23%, rgba(16,2,24,1) 100%);
+} */
+
+/* .elHome {
+    background-image: url('../utils/images/background/Trianglify.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
+/* .elHome {
+  background: rgb(235, 90, 192);
+  background: linear-gradient(
+    45deg,
+    rgba(235, 90, 192, 1) 0%,
+    rgba(99, 21, 128, 1) 50%, */
+/* rgba(58,3,112,1) 50% */
+/* rgba(51, 1, 112, 1) 100%
+  );
+} */
+
+/* .elHome { */
+/* background: radial-gradient(circle); */
+/* background: rgb(232, 86, 189);
+  background: linear-gradient(
+    158deg,
+    rgba(232, 86, 189, 1) 0%,
+    rgba(58, 3, 112, 1) 35%,
+    rgba(51, 1, 112, 1) 100%
+  );
+} */
+
+.elHome {
+  background: rgb(162, 162, 162);
+  background: linear-gradient(
+    158deg,
+    rgb(116, 111, 111) 0%,
+    rgba(27, 26, 26, 1) 37%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}

@@ -1,0 +1,32 @@
+.containerTodo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.first {
+    display: flex;
+    padding-top: 35rem !important ;
+    background-color: #212529;
+}
+
+.container {
+    position: relative;
+}
+
+.footer {
+    position: absolute !important;
+    bottom: 0;
+    /* width: 100% !important; */
+    padding-left: -1px;
+}
+
+.lastDiv {
+    text-align: center;
+    padding: 3px;
+}
+
+.aboutUS { 
+    font-size: 1.3vh;
+}

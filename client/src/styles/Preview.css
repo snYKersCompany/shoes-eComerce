@@ -1,0 +1,26 @@
+.carrousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  min-height: 40vh;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-evenly;
+  width: 65%;
+}
+.content {
+  color: black;
+}
+
+.addedProducts {
+  display: flex;
+  color: rgb(255, 153, 0);
+  font-size: 4rem;
+  font-family: Bebas Neue, cursive;
+}

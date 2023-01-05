@@ -1,0 +1,28 @@
+.customContainer {
+  background-color: #bababa;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  margin-top: 0rem;
+}
+.img1 {
+  height: 6em;
+  width: 6em;
+  margin: 0.5em;
+}
+.img2 {
+  height: 3.5em;
+  width: 3.5em;
+}
+.obj1 {
+  align-items: center;
+}
+.obj2 {
+  /* background-color: red; */
+  align-items: center;
+}
+.obj3 {
+  align-items: center;
+}
+.customBtn {
+  margin: auto;
+}

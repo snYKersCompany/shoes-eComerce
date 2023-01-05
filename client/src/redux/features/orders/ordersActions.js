@@ -13,7 +13,6 @@ export const getAllOrders = (body = {}) => async (dispatch) => {
 
 export const getOrderDetails = (_id) => async (dispatch) => {
   try {
-    console.log(orders)
     const orders = await axios.get(`/orders/${_id}`);
     return dispatch(getOrderDetail(orders.data));
   } catch (error) {

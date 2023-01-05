@@ -1,0 +1,111 @@
+@font-face {
+    font-family: NikeFutura;
+    src: url(../utils/fonts/Futura.otf);
+}
+
+@font-face {
+    font-family: HelveticaNeue;
+    src: url(../utils/fonts/HelveticaNeue.otf);
+}
+
+.details {
+    margin: 0 2rem;
+}
+
+.section1 {
+    height: 49rem;
+}
+
+.title {
+    margin-top: 2rem;
+    color: red;
+    font-family: NikeFutura;
+    font-weight: 100;
+}
+
+.image {
+    transform: scaleX(-1);
+    width: 25rem;
+    z-index: 1;
+    margin-bottom: -3rem;
+    margin-top: 13rem;
+    margin-right: -1.5rem;
+}
+
+.released {
+    color: gold;
+    font-family: NikeFutura;
+    font-weight: 100;
+    margin-top: -0.5rem;
+}
+
+.div1 {
+    /* background: rgb(24, 26, 41); */
+    border: 1px solid black;
+    border-radius: 0 0rem 0 2rem;
+}
+
+.div2 {
+    background: rgb(24, 26, 41);
+    border-radius: 0 2rem 0 0rem;
+}
+
+.custom {
+    background: red !important;
+    color: white;
+}
+
+.category,
+.brand {
+    margin-bottom: -0.2rem;
+}
+
+.DetailsContainerImg {
+    width: 350px;
+}
+
+.DetailsHeader {
+    padding: 0 5px 0 0;
+}
+
+.horizontalWrapper {
+    width: 20rem;
+    height: 3rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 1rem;
+}
+
+/* .horizontalWrapper::-webkit-scrollbar {
+    margin-top: 1rem;
+} */
+
+.horizontalItem {
+    border: solid red 1px !important;
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.horizontalItem:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+.star {
+    color: goldenrod;
+}
+
+.inputCardCart{
+    width: 40px !important;
+}
+
+@media (min-width:650px) {
+    .DetailsContainerImg {
+        width: 420px;
+    }
+
+}
