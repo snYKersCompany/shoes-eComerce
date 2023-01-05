@@ -3,14 +3,6 @@
   color: white;
 }
 
-.FormCreateError {
-  color: rgb(248, 68, 68);
-  margin-top: 4px;
-  display: flex;
-  font-size: 12px;
-  border-color: rgb(248, 68, 68);
-}
-
 .AdminAccount-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -65,6 +57,14 @@
   align-items: center;
   grid-auto-flow: column;
   padding-top: 20px;
+}
+
+.FormCreateError {
+  color: rgb(248, 68, 68);
+  margin-top: 4px;
+  display: flex;
+  font-size: 12px;
+  border-color: rgb(248, 68, 68);
 }
 
 /* ---------------------- */
