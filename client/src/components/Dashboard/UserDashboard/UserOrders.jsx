@@ -94,18 +94,23 @@ const UserOrders = () => {
   // );
 
   //conseguimos los productos de esa orden
-  const productsBought = userOrders.map((e) => e.products).flat();
+  const productsBought = orders.map((e) => e.products).flat();
+  
+  console.log(product)
+
 
   //color de la orden según el estado de la compra
  const functionColor = (state) => {
   state= state.toLowerCase()
     switch (state) {
-      case "completed":
+      case "aprobed":
         return "linear-gradient(318deg, rgba(185,255,186,1) 52%, rgba(0,0,0,1) 100%)";
       case "pending":
         return "linear-gradient(318deg, rgba(255,246,185,1) 52%, rgba(0,0,0,1) 100%)";
       case "cancelled":
         return "linear-gradient(318deg, rgba(245,172,172,1) 52%, rgba(0,0,0,1) 100%)";
+      case "rejected":
+      return "linear-gradient(318deg, rgba(245,172,172,1) 52%, rgba(0,0,0,1) 100%)";
       default:
         return "#ffffff";
     }

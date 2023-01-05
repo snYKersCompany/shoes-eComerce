@@ -10,6 +10,8 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { BsFileEarmarkArrowDown } from "react-icons/bs";
 import { CiFilter } from "react-icons/ci";
 import "../../../styles/AdminDashboardOrders.css";
+import FilterContainer from "../../Filters/FilterContainer";
+import DashboardSearch from "../DashboardSearch";
 
 function AdminDashboardOrders({ setOrderDetails }) {
   const dispatch = useDispatch();
@@ -65,15 +67,18 @@ function AdminDashboardOrders({ setOrderDetails }) {
   };
 
   return (
-    <div style={{ background: "rgb(36,36,36)" }}>
+    <div >
       {viewPdf ? (
         <div className="AdminDashboard-userProfileGrid">
           <div className="AdminDashboard-userProfilefilters">
+            <DashboardSearch type={"users"} search={""} setSearch={()=> console.log()}/>
             <button className="d-flex align-items-center">
-              <span style={{ color: "white", "font-size": "1rem" }}>
+              {/* <span style={{ color: "white", "font-size": "1rem" }}>
                 filter
               </span>
-              <CiFilter />
+              <CiFilter /> */}
+
+              <FilterContainer/>
             </button>
           </div>
 

@@ -41,13 +41,13 @@ const CardFav = ({
     <Card className="CardFav-container ">
       <div className="CardFav-heart me-4 mt-4">
         <>
-          <Button variant="custom" className="btnFav" onClick={handlerOnClick}>
+          <button variant="custom" className="btnFav" onClick={handlerOnClick}>
             {check ? (
               <BsFillHeartFill className=" card-top fav" />
             ) : (
               <BsHeart className=" card-top fav" />
             )}
-          </Button>
+          </button>
         </>
       </div>
 
