@@ -16,6 +16,9 @@ import { getProductsDetails } from "../../redux/features/products/productsAction
 //styles
 import "../../styles/details.css";
 
+
+import { getReviewProduct } from "../../redux/features/reviews/reviewsActions";
+
 const Details = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -23,6 +26,7 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(getProductsDetails(id));
+    dispatch(getReviewProduct(id));
   }, [dispatch, id]);
 
   //local Storage
@@ -218,7 +222,7 @@ const Details = () => {
           <></>
         )}
       </div>
-      <Reviews productDetail={productDetail}/>
+      <Reviews id={id}/>
     </>
   );
 };

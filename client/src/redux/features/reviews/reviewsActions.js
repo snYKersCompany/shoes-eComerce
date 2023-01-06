@@ -29,9 +29,9 @@ export const getPaypal = (token) => async (dispatch) => {
 export const getReviewProduct = (_id) => async (dispatch) => {
     try{
         const reviewsProduct = await axios.get(`/reviews/product/${_id}`)
-        console.log('Esto es getReviewProduct')
-        console.log(reviewsProduct)
-        return dispatch(getReviewsProducts(reviewsProduct))
+        // console.log('Esto es getReviewProduct')
+        // console.log(reviewsProduct)
+        return dispatch(getReviewsProducts(reviewsProduct.data))
     }catch(error){
         return error
     }
