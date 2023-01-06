@@ -199,10 +199,6 @@ const Create = () => {
   const [file, setFile] = useState(null);
   const [image, setImage] = useState("");
 
-  /* let handleImg = (e) => {
-    setAuxImg(e.target.value);
-  }; */
-
   const handleImage = async (e) => {
     setFile(e.target.files[0]);
     const data = new FormData();
@@ -216,7 +212,6 @@ const Create = () => {
       setImage(info.url);
       setform({ ...form, [e.target.name]: info.url });
     }
-    console.log("Info url: ", info.url);
   }  
 
   let handleImgForm = () => {
@@ -225,10 +220,10 @@ const Create = () => {
       ? setError({ ...error, img: false })
       : setError({ ...error, img: "Upload an image" });
   };
+  console.log("Input: ", form);
 
   let submitForm = (e) => {
     e.preventDefault();
-
     let formToSend = {
       name: form.name,
       brand: form.brand,
@@ -243,7 +238,7 @@ const Create = () => {
       price: form.price,
       description: form.description,
     };
-    console.log("Form to send: ", formToSend );
+    console.log("Form: ", formToSend);
     setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
@@ -484,7 +479,7 @@ const Create = () => {
                     <Button
                       className="d-flex mx-1"
                       onClick={ handleImgForm }
-                    ></Button>
+                    >Subir</Button>
                   </Form.Group>
 
                 {/* ===================================== */}

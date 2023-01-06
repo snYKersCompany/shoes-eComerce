@@ -18,6 +18,7 @@ import Error404 from "./components/Error404/Error404";
 import Main from "./components/Home/Main";
 import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
+import FormUserUpdate from './components/Checkout/UpdateUser';
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -58,6 +59,7 @@ function App() {
           />
           <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
+          <Route path = '/update' element = {<FormUserUpdate />} />
         </Routes>
       </AuthProvider>
     </div>

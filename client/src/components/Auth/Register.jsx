@@ -64,7 +64,7 @@ const Register = () => {
   }
 
   function validatePassword(password) {
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+    if (!/^[a-zA-Z0-9_-]{4,16}$/.test(password)) {
       setError(
         `Password invalid, It must have 8 letters, 1 number and 1 character`
       );
