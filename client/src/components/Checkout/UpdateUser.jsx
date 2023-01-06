@@ -5,7 +5,6 @@ import axios from "axios";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
-import Button from "react-bootstrap/esm/Button";
 import "../../styles/FormUser.css";
 
 export default function FormUserUpdate() {
@@ -21,12 +20,12 @@ export default function FormUserUpdate() {
     city: "",
     state: "",
     country: "",
-    image: "",
+    image: ""
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
   const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");  
+
   // Hooks
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,6 +37,17 @@ export default function FormUserUpdate() {
   // Functions
   useEffect(() => {
     dispatch(getUserDashboards(userDashboard._id));
+    if (userDashboard) {
+      setInput({
+        username: userDashboard.username,
+        phone: userDashboard.phone,
+        address: userDashboard.address,
+        city: userDashboard.city,
+        state: userDashboard.state,
+        country: userDashboard.country,
+        image: userDashboard.image || "https://cdn-icons-png.flaticon.com/512/25/25634.png",
+      });
+    }
     if (submit === true) {
       setTimeout(() => {
         setSubmit(false);
@@ -88,13 +98,10 @@ export default function FormUserUpdate() {
     { method: "POST", body: data }
     );
     const info = await response.json();
-    if (info.url) {
-      setImage(info.url);
-      setInput({ ...input, [e.target.name]: info.url });      
+    if (info.url) {      
+      setInput({ ...input, [e.target.name]: info.url });
     }
   }
-
-  console.log("Input: ", input);
 
   async function handleSubmit(event) {
     if (user) {
@@ -112,8 +119,7 @@ export default function FormUserUpdate() {
         country: "",
         image: "",
       });
-      setFile(null);
-      setImage("");
+      setFile(null);      
       navigate("/cart");
     } else {
       navigate("/login");
@@ -132,7 +138,7 @@ export default function FormUserUpdate() {
       </div>
       <div className="Update-avatar">
         {file ? <img className = "Update-avatar-image" src = {URL.createObjectURL(file)} alt = "profile" height = "170px"/>
-        : <img className="Update-avatar-image" src="https://cdn-icons-png.flaticon.com/512/25/25634.png" alt="default" height="170px" /> }
+        : <img className="Update-avatar-image" src = {input.image} alt="default" height="170px" /> }
       </div>
       <div className="Update-name">
         <h3 className="text-white">{userDashboard.username}</h3>
@@ -165,7 +171,7 @@ export default function FormUserUpdate() {
           id="phone"
           type="text"
           name="phone"
-          value={input.phone}
+          value={input.phone ? input.phone : ""}
           className={error.phone && "danger-input"}
           onChange={handleChange}
         />
@@ -181,7 +187,7 @@ export default function FormUserUpdate() {
           id="address"
           type="text"
           name="address"
-          value={input.address}
+          value={input.address ? input.address : ""}
           className={error.address && "danger-input"}
           onChange={handleChange}
         />
@@ -197,7 +203,7 @@ export default function FormUserUpdate() {
           id="city"
           type="text"
           name="city"
-          value={input.city}
+          value={input.city ? input.city : ""}
           className={error.city && "danger-input"}
           onChange={handleChange}
         />
@@ -213,7 +219,7 @@ export default function FormUserUpdate() {
           id="state"
           type="text"
           name="state"
-          value={input.state}
+          value={input.state ? input.state : ""}
           className={error.state && "danger-input"}
           onChange={handleChange}
         />
@@ -229,7 +235,7 @@ export default function FormUserUpdate() {
           id="country"
           type="text"
           name="country"
-          value={input.country}
+          value={input.country ? input.country : ""}
           className={error.country && "danger-input"}
           onChange={handleChange}
         />

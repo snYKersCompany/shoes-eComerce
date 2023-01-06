@@ -152,6 +152,10 @@
   color: white;
 }
 
+.Update-button:hover {
+  background: #1e9bff;
+}
+
 .Update-button:disabled{
   background: #717171;
 }
