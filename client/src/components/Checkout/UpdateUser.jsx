@@ -12,8 +12,6 @@ export default function FormUserUpdate() {
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
 
-  console.log(userDashboard)
-
   // States
   const [input, setInput] = useState({
     username: "",
@@ -22,10 +20,11 @@ export default function FormUserUpdate() {
     city: "",
     state: "",
     country: "",
-    image: "",
+    image: ""
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
+  const [file, setFile] = useState(null);
 
   // Hooks
   const dispatch = useDispatch();
@@ -38,12 +37,23 @@ export default function FormUserUpdate() {
   // Functions
   useEffect(() => {
     dispatch(getUserDashboards(userDashboard._id));
+    if (userDashboard) {
+      setInput({
+        username: userDashboard.username,
+        phone: userDashboard.phone,
+        address: userDashboard.address,
+        city: userDashboard.city,
+        state: userDashboard.state,
+        country: userDashboard.country,
+        image: userDashboard.image || "https://cdn-icons-png.flaticon.com/512/25/25634.png",
+      });
+    }
     if (submit === true) {
       setTimeout(() => {
         setSubmit(false);
         document.getElementById("Form").reset();
       }, 5000);
-    }
+    }    
   }, [submit, user, _id, dispatch, userDashboard._id]);
 
   function validateInput(value, name) {
@@ -78,10 +88,24 @@ export default function FormUserUpdate() {
     setInput({ ...input, [event.target.name]: event.target.value });
     validateInput(event.target.value, event.target.name);
   }
+  
+  const handleImage = async (e) => {
+    setFile(e.target.files[0]);
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    data.append("upload_preset", UPLOAD_PRESET);
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    { method: "POST", body: data }
+    );
+    const info = await response.json();
+    if (info.url) {      
+      setInput({ ...input, [e.target.name]: info.url });
+    }
+  }
 
   async function handleSubmit(event) {
     if (user) {
-      event.preventDefault();
+      event.preventDefault();      
       await axios.put(
         `users/update/${user.uid}`,
         input
@@ -95,8 +119,8 @@ export default function FormUserUpdate() {
         country: "",
         image: "",
       });
+      setFile(null);      
       navigate("/cart");
-
     } else {
       navigate("/login");
     }
@@ -113,15 +137,11 @@ export default function FormUserUpdate() {
         />
       </div>
       <div className="Update-avatar">
-        <img
-          className="Update-avatar-image"
-          src="https://cdn-icons-png.flaticon.com/512/25/25634.png"
-          alt="namaeasd"
-          height="170px"
-        />
+        {file ? <img className = "Update-avatar-image" src = {URL.createObjectURL(file)} alt = "profile" height = "170px"/>
+        : <img className="Update-avatar-image" src = {input.image} alt="default" height="170px" /> }
       </div>
       <div className="Update-name">
-        <h3 className="text-white">Jon Mircha</h3>
+        <h3 className="text-white">{userDashboard.username}</h3>
       </div>
 
       <form onSubmit={handleSubmit} className="Update-form" id="Form">
@@ -131,22 +151,14 @@ export default function FormUserUpdate() {
           <label className="label-onlyread">{user.email}</label>
         ) : null}
 
-        <label htmlFor="username">Username: </label>
-        {userDashboard ? (
-          
-          <label className="label-onlyread">{user?.username }</label>
-
-        ) : null}
-
         <label htmlFor="image">Image: </label>
         <input
-          placeholder={"upload a image"}
-          id="update-image"
+          className="update-image"
+          onChange={(e) => handleImage(e)}
+          placeholder={"upload an image"}          
           type="file"
           name="image"
-          value={input.image}
-          className="update-image"
-          onChange={handleChange}
+          id = "image"          
         />
 
         <label htmlFor="phone">Phone: </label>
@@ -159,7 +171,7 @@ export default function FormUserUpdate() {
           id="phone"
           type="text"
           name="phone"
-          value={input.phone}
+          value={input.phone ? input.phone : ""}
           className={error.phone && "danger-input"}
           onChange={handleChange}
         />
@@ -175,7 +187,7 @@ export default function FormUserUpdate() {
           id="address"
           type="text"
           name="address"
-          value={input.address}
+          value={input.address ? input.address : ""}
           className={error.address && "danger-input"}
           onChange={handleChange}
         />
@@ -191,7 +203,7 @@ export default function FormUserUpdate() {
           id="city"
           type="text"
           name="city"
-          value={input.city}
+          value={input.city ? input.city : ""}
           className={error.city && "danger-input"}
           onChange={handleChange}
         />
@@ -207,7 +219,7 @@ export default function FormUserUpdate() {
           id="state"
           type="text"
           name="state"
-          value={input.state}
+          value={input.state ? input.state : ""}
           className={error.state && "danger-input"}
           onChange={handleChange}
         />
@@ -223,7 +235,7 @@ export default function FormUserUpdate() {
           id="country"
           type="text"
           name="country"
-          value={input.country}
+          value={input.country ? input.country : ""}
           className={error.country && "danger-input"}
           onChange={handleChange}
         />
