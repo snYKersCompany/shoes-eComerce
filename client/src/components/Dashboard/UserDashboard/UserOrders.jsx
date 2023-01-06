@@ -21,7 +21,6 @@ const UserOrders = () => {
     setToOrderDetail(true);
   };
 
-  console.log('logea 1 o 2 veces?')
   const backToOrders = (e) => {
     e.preventDefault();
     setToOrderDetail(false);

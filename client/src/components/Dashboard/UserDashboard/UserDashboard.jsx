@@ -13,9 +13,6 @@ import { useEffect } from "react";
 
 import { getAllOrders } from '../../../redux/features/orders/ordersActions'
 
-
-
-
 const UserDashboard = () => {
   const dispatch = useDispatch()
   // console.log(UserDashboard)
@@ -115,12 +112,6 @@ const UserDashboard = () => {
                 }
                 </Tab.Pane>
 
-
-
-                
-                <Tab.Pane eventKey="orders">
-                  {control === "orders" ? <UserOrders /> : <></>}
-                </Tab.Pane>
               </Tab.Content>
             </div>
           </Tab.Container>
