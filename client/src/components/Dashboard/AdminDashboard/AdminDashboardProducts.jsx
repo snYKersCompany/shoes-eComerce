@@ -1,6 +1,6 @@
+import React, { useEffect } from "react";
 import FilterContainer from "../../Filters/FilterContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import {
   getAllProducts,
   getProductsDetails,

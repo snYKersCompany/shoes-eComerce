@@ -13,7 +13,6 @@ import Carrousel from "../../Home/Main/Carrousel";
 import "../../../styles/Preview.css";
 
 const PreviewModal = ({ repeated, ...rest }) => {
-  console.log(repeated);
   let cart = JSON.parse(localStorage.getItem("carrito")) || [];
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -21,7 +20,6 @@ const PreviewModal = ({ repeated, ...rest }) => {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
   const ref = useRef(null);
-
   const handleClickCartNav = (event) => {
     setShow(!show);
     setTarget(event.target);
@@ -179,8 +177,7 @@ const PreviewModal = ({ repeated, ...rest }) => {
 
 const Preview = ({ setProduct, repeated }) => {
   const [modalShow, setModalShow] = useState(false);
-  const [previewRepeated, setPreviewRepeate] = useState();
-  console.log(repeated);
+  const [previewRepeated, setPreviewRepeate] = useState(); // eslint-disable-line
 
   const handleAddToCart = (e) => {
     setModalShow(true);

@@ -1,31 +1,30 @@
-.userDashBoard{
-    display: flex;
-    width: 100vw !important;
-    overflow: hidden;
-    height: 95vh ;
+.userDashBoard {
+  display: flex;
+  width: 100vw !important;
+  overflow: hidden;
+  height: 95vh;
 }
 
 .navSection {
-    flex-wrap:  wrap;
-    width: 10vw;
+  flex-wrap: wrap;
+  width: 10vw;
 }
 
 .navSection div a {
-    width: 95%;
+  width: 95%;
 }
-
 
 .section {
-    width: 100%;
-    overflow-x: scroll;
+  width: 100%;
+  overflow-x: scroll;
 }
 
-@media (max-width:1000px) {
-    .navSection {
-        width: 100%;
-        flex-direction: row !important;
-    }    
-    .userDashBoard {
-        flex-direction: column !important;
-    }
+@media (max-width: 1000px) {
+  .navSection {
+    width: 100%;
+    flex-direction: row !important;
+  }
+  .userDashBoard {
+    flex-direction: column !important;
+  }
 }

@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
-import { addOrders /*, deletefilters */ } from "../../redux/features/products/productsActions";
+import { addOrders } from "../../redux/features/products/productsActions";
 
 const OrderByAlphabet = () => {
   const dispatch = useDispatch();

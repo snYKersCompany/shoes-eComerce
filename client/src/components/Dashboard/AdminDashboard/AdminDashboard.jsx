@@ -1,24 +1,18 @@
-import React from "react";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import AdminDashboardOrders from "./AdminDashboardOrders";
 import AdminDashboardProducts from "./AdminDashboardProducts";
 import AdminDashboardUsers from "./AdminDashboardUsers";
 import AdminDashboardAccount from "./AdminDashboardAccount";
+import OrderDetails from "./OrdersDetails";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 
-import OrderDetails from "./OrdersDetails";
-import { useParams } from "react-router-dom";
-
 const AdminDashboard = () => {
   const [orderDetails, setOrderDetails] = useState(true);
-
   const { section } = useParams();
-
   const [control, setControl] = useState("");
 
   if (section) {
