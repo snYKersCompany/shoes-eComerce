@@ -18,6 +18,9 @@ import "../../styles/details.css";
 import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 
+
+import { getReviewProduct } from "../../redux/features/reviews/reviewsActions";
+
 const Details = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,6 +29,7 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(getProductsDetails(id));
+    dispatch(getReviewProduct(id));
   }, [dispatch, id]);
 
   //local Storage
@@ -220,9 +224,14 @@ const Details = () => {
         ) : (
           <></>
         )}
+
+      // </div>
+      // <Reviews id={id}/>
+
       </div>      
       <Reviews productDetail={productDetail}/>
       <Button className="d-flex mx-1" onClick={ () => navigate('/') }>Return Home</Button>
+
     </>
   );
 };
