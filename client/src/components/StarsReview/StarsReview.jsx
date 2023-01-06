@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-
-import { AiOutlineStar } from "react-icons/si";
+import React from "react";
 import "../../styles/starsReview.css";
 
 const StarsReview = ({ stars }) => {

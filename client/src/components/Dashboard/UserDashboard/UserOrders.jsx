@@ -26,8 +26,7 @@ const UserOrders = () => {
     setToOrderDetail(false);
   };
   //end of handlers to travel and set states
-
-
+  
   //rating handler
   const handleRating = (input) => {
     setAvgRating(input);

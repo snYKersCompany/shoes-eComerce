@@ -122,7 +122,7 @@
 }
 
 .fav {
-  color: gold;
+  color: gold !important;
   font-size: 3rem;
 }
 

@@ -6,16 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getUserDashboards,
   getOneUser,
-
 } from "../../redux/features/users/usersActions";
 import { useAuth } from "../../context/authContext";
 import "../../styles/userDashboard.css";
 
 const Dashboard = () => {
   const { userDashboard } = useSelector((state) => state.users);
-  // let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
-  //SI HAY USER ---> Verificacion de rol
-
   const dispatch = useDispatch();
   const { user } = useAuth();
 
@@ -25,7 +21,7 @@ const Dashboard = () => {
   }, [dispatch, user.uid]);
 
   return (
-    <>
+    <div className="">
       {userDashboard ? (
         <>
           <NavBar />
@@ -36,7 +32,7 @@ const Dashboard = () => {
           )}
         </>
       ) : null}
-    </>
+    </div>
   );
 };
 

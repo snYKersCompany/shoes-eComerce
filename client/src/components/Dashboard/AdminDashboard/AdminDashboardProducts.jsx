@@ -1,11 +1,12 @@
+import React, { useEffect } from "react";
 import FilterContainer from "../../Filters/FilterContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import {
   getAllProducts,
   getProductsDetails,
 } from "../../../redux/features/products/productsActions";
 import { FaTrash } from "react-icons/fa";
+import { RiSearchFill } from "react-icons/ri";
 import { RiSearchFill} from "react-icons/ri";
 import { useState } from "react";
 import ModalProductDetails from "./Modals/ModalProductDetails";
@@ -22,7 +23,6 @@ function AdminDashboardProducts() {
 
   useEffect(() => {
     dispatch(getAllProducts(filters, orders));
-
   }, [dispatch, filters, orders]);
 
   function setActualPage(n) {}
@@ -39,10 +39,7 @@ function AdminDashboardProducts() {
   const handlerDelete = (id) => {
     setWarning(id);
   };
-
-
-
-
+  
   return (
     <div className="AdminProducts-gridContainer text-white">
       

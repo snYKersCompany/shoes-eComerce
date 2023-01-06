@@ -1,8 +1,7 @@
 import React from "react";
 import "../../styles/reviews.css";
-import { BsFillStarFill } from "react-icons/bs";
+import { BsFillStarFill } from "react-icons/bs"; // eslint-disable-line
 // import { useSelector } from "react-redux";
-
 const Reviews = ({productDetail}) => {
 
 // const reviews = productDetail.map(e=> e.reviews.rating)
@@ -17,6 +16,13 @@ const Reviews = ({productDetail}) => {
       <h3 className="section-name">Reviews</h3>
       <div className="container-reviews">
         <div className="">
+
+          {/*img del usuario */}
+          <img src="" alt="" />
+          {/*titulo de la review */}
+          <p></p>
+          {/*con la cantidad de rating que tenga */}
+          {/* {[...Array(productDetail.rating)].map((i, index) => (
             {/*img del usuario */}
             <img src="" alt="" />
             {/*titulo de la review */}

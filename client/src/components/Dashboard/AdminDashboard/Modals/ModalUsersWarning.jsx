@@ -1,28 +1,23 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteProducts,
-  getAllProducts,
-} from "../../../../redux/features/products/productsActions";
+import { useDispatch } from "react-redux";
 import "../../../../styles/modalProductsWarning.css";
 import { deleteUser } from "../../../../redux/features/users/usersActions";
 
 const ModalUsersWarning = (props) => {
-
   const dispatch = useDispatch();
 
   const handlerOnClick = () => {
-    const orderName = Object.keys(props.order)[0]
-    const orderSearch = {}
-    
-    if(orderName.length) orderSearch.orderBy = props.order
-    if(props.search.length) orderSearch.search = props.search
+    const orderName = Object.keys(props.order)[0];
+    const orderSearch = {};
 
-    dispatch(deleteUser(props.show, orderSearch))
-    alert(`Inserte Accion para eliminar el User ${props.show}`)
-    
+    if (orderName.length) orderSearch.orderBy = props.order;
+    if (props.search.length) orderSearch.search = props.search;
+
+    dispatch(deleteUser(props.show, orderSearch));
+    alert(`Inserte Accion para eliminar el User ${props.show}`);
+
     props.onHide();
   };
 
