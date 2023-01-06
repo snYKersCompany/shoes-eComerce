@@ -4,7 +4,7 @@ import {
   getUserDashboards,
   putUserInformation,
 } from "../../../redux/features/users/usersActions";
-import { FiEdit3 } from "react-icons/fi";
+import { MdModeEdit } from "react-icons/md";
 import "../../../styles/UserProfile.css";
 
 function UserProfile() {
@@ -170,7 +170,7 @@ function UserProfile() {
         <form className="AdminAccount-form">
           {lockers.map((f, i) => (
             <div key={i}>
-              <div className="d-flex flex-column p-2 align-items-start">
+              <div className="d-flex flex-column align-items-start">
                 <label className="AdminAccount-labelForm">{f.label}</label>
                 <div className="d-flex">
                   <input
@@ -189,7 +189,7 @@ function UserProfile() {
                     className="AdminAccount-btnForm"
                     onClick={(e) => handleEdit(e, f.form)}
                   >
-                    <FiEdit3 />
+                    <MdModeEdit />
                   </button>
                 </div>
               </div>

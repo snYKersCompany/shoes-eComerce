@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import { BsFillHeartFill, BsFillStarFill, BsHeart } from "react-icons/bs";
-
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   addUserProductFavorites,
   deleteUserProductFavorites,
 } from "../../../redux/features/users/usersActions";
+import { BsFillHeartFill, BsFillStarFill, BsHeart } from "react-icons/bs";
 import "../../../styles/CardFav.css";
 
 const CardFav = ({
@@ -41,13 +38,13 @@ const CardFav = ({
     <Card className="CardFav-container ">
       <div className="CardFav-heart me-4 mt-4">
         <>
-          <Button variant="custom" className="btnFav" onClick={handlerOnClick}>
+          <button variant="custom" className="btnFav" onClick={handlerOnClick}>
             {check ? (
-              <BsFillHeartFill className=" card-top fav" />
+              <BsFillHeartFill className="card-top fav" />
             ) : (
-              <BsHeart className=" card-top fav" />
+              <BsHeart className="card-top fav" />
             )}
-          </Button>
+          </button>
         </>
       </div>
 

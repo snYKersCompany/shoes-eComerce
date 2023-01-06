@@ -1,8 +1,8 @@
 import React from "react";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-import "../../../styles/noFavourites.css";
 import { IoHeartDislikeSharp } from "react-icons/io5";
+import "../../../styles/noFavourites.css";
 
 function NoFavourites() {
   return (

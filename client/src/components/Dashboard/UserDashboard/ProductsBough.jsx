@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -56,19 +56,19 @@ const ProductsBought = () => {
   };
 
   const toProductReview = (e, id) => {
-    console.log('entro')
+    console.log("entro");
     e.preventDefault();
     setAvgRating(0);
     setIdSingleProduct(id);
-    console.log('esto es el id del prod', id)
+    console.log("esto es el id del prod", id);
     setMoveToReview(true);
-    navigate('/account/bought')
+    navigate("/account/bought");
   };
 
-  const backToProdBought = (e)=> {
+  const backToProdBought = (e) => {
     e.preventDefault();
     setMoveToReview(false);
-  }
+  };
 
   return moveToReview === false ? (
     <>

@@ -1,6 +1,5 @@
 .FakeBodyAdminDashboard {
-  background-color: rgb(36, 36, 36);
-  color: white;
+  background: rgb(36, 36, 36);
 }
 
 .AdminAccount-container {
@@ -31,6 +30,7 @@
   display: grid;
   justify-items: center;
   align-items: center;
+  text-align: center;
   padding: 50px 0 0 0;
 }
 
@@ -38,6 +38,7 @@
   font-size: 3rem;
   font-weight: 800;
   text-transform: uppercase;
+  color: #fb7849;
 }
 
 .AdminAccount-form {
@@ -48,6 +49,7 @@
   display: grid;
   justify-items: center;
   align-items: start;
+  margin-bottom: 1rem;
 }
 
 .AdminAccount-btnSave {
@@ -90,12 +92,9 @@
 }
 
 .AdminAccount-labelForm {
-  font-size: 1.3rem;
-}
-
-.AdminAccount-labelForm {
   font-size: 1.7rem;
   font-weight: bold;
+  color: white;
 }
 
 .AdminAccount-inputForm {
@@ -104,21 +103,22 @@
   color: rgb(255, 255, 255);
   font-size: 1.2rem;
   border: none;
-  border-bottom: 1px solid rgb(180, 180, 180);
+  border-bottom: 1px solid #7b62fa;
 }
 
 .editfocus {
   background-color: rgba(112, 112, 112, 0);
-  color: rgb(213, 255, 145);
+  color: #91ffd3;
 }
 
 .AdminAccount-btnForm {
   border: none;
-  margin-left: 2px;
+  margin-left: 4px;
   font-size: 1.5rem;
   padding: 0 4px;
-  background-color: transparent;
+  background-color: #694bff;
   color: white;
+  border-radius: 50%;
 }
 
 .btnCard {
@@ -214,7 +214,8 @@
 
 @media (min-width: 1280px) {
   .AdminAccount-name {
-    margin-left: -5rem;
+    margin-left: -10rem;
+    margin-top: 2rem;
   }
   .AdminAccount-form {
     margin-top: 3rem;
@@ -226,9 +227,9 @@
     width: 91vw !important;
   }
   .AdminAccount-name {
-    margin-left: -14rem;
+    margin-left: -11rem;
   }
   .AdminAccount-form {
-    margin-top: 1rem;
+    margin-top: 3rem;
   }
 }

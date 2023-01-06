@@ -82,8 +82,12 @@
 }
 
 .btnFav {
+  background-color: transparent;
+  border: none;
+  margin: 5px 0 2rem 0;
   z-index: 1;
 }
+
 
 .btnCard {
   background: linear-gradient(85.99deg, #fc964c 7.66%, #cb33a0 99.12%);

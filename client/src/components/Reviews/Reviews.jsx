@@ -15,7 +15,6 @@ const Reviews = ({ id }) => {
   console.log("ESTO ES ID DE PARAMETROS", id);
   console.log("ESTO ES EL REVIEW DEL PRODUCT", product);
 
-
   // useEffect(() => {
   //   dispatch(getReviewProduct(id));
   // }, [id, dispatch]);

@@ -1,16 +1,12 @@
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 import "../../../styles/review.css";
 
 function Review() {
-
-    //FALTAN LAS ESTRELLAS
-
-
+  //FALTAN LAS ESTRELLAS
   return (
     <div
       className="modal show"
@@ -20,8 +16,6 @@ function Review() {
         <Modal.Header closeButton>
           <Modal.Title>Make your review!</Modal.Title>
         </Modal.Header>
-        
-
 
         {/* body pas cribi */}
         <Modal.Body>
@@ -45,7 +39,6 @@ function Review() {
         </Modal.Body>
 
         {/*final pas cribi */}
-        
 
         <Modal.Footer>
           <Button variant="secondary">back</Button>
@@ -57,4 +50,3 @@ function Review() {
 }
 
 export default Review;
-
