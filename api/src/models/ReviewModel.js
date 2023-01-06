@@ -8,7 +8,7 @@ const ReviewSchema = mongoose.Schema({
     },
     _idUser:{
         ref:"users",
-        type:String,
+        type:mongoose.Schema.Types.String,
         require:true
     },
     rating:{
