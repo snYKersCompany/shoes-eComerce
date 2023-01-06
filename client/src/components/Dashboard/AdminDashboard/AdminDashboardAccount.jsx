@@ -4,7 +4,7 @@ import {
   getUserDashboards,
   putUserInformation,
 } from "../../../redux/features/users/usersActions";
-import { FiEdit3 } from "react-icons/fi";
+import { MdModeEdit } from "react-icons/md";
 import "../../../styles/UserProfile.css";
 
 function AdminDashboardAccount() {
@@ -112,16 +112,51 @@ function AdminDashboardAccount() {
   };
 
   const lockers = [
-    { label: "Username: ", form: "username", placeholder: "Only words", required: "Nesesita",},
+    {
+      label: "Username: ",
+      form: "username",
+      placeholder: "Only words",
+      required: "Nesesita",
+    },
     // { label: "E-mail: ", form: "email", placeholder: "fulano@gmail.com", required: "Nesesita",},
-    { label: "Phone: ", form: "phone", placeholder: "123456789", required: "Nesesita",},
-    { label: "Address: ", form: "address", placeholder: "av.siempreviva 742", required: "Nesesita" },
+    {
+      label: "Phone: ",
+      form: "phone",
+      placeholder: "123456789",
+      required: "Nesesita",
+    },
+    {
+      label: "Address: ",
+      form: "address",
+      placeholder: "av.siempreviva 742",
+      required: "Nesesita",
+    },
     // { label: "Other: ", form: "other", placeholder: "Timbre 3 puerta amarilla", required: "Nesesita",},
-    { label: "City: ", form: "city", placeholder: "Sidney", required: "Nesesita",},
-    { label: "Country: ", form: "country", placeholder: "Wakanda", required: "Nesesita",},
-    { label: "State: ", form: "state", placeholder: "California", required: "Nesesita",},
+    {
+      label: "City: ",
+      form: "city",
+      placeholder: "Sidney",
+      required: "Nesesita",
+    },
+    {
+      label: "Country: ",
+      form: "country",
+      placeholder: "Wakanda",
+      required: "Nesesita",
+    },
+    {
+      label: "State: ",
+      form: "state",
+      placeholder: "California",
+      required: "Nesesita",
+    },
     // { label: "Roles: ", form: "roles", placeholder: "Admin", required: "Nesesita",},
-    { label: "Image: ", form: "image", placeholder: "Hay que cambiar esto por una imagen", required: "Nesesita",},
+    {
+      label: "Image: ",
+      form: "image",
+      placeholder: "Hay que cambiar esto por una imagen",
+      required: "Nesesita",
+    },
   ];
 
   return (
@@ -168,10 +203,10 @@ function AdminDashboardAccount() {
                     }`}
                   />
                   <button
-                    className="AdminAccount-btnForm"
+                    className="AdminAccount-btnForm d-flex justify-content-center align-items-center"
                     onClick={(e) => handleEdit(e, f.form)}
                   >
-                    <FiEdit3 />
+                    <MdModeEdit />
                   </button>
                 </div>
               </div>
