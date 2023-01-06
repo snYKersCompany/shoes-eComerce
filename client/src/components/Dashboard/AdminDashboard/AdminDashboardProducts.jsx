@@ -46,11 +46,11 @@ function AdminDashboardProducts() {
   return (
     <div className="AdminProducts-gridContainer text-white">
       
-      <div className="AdminProducts-create ms-4 mt-4">
+      <div className="AdminProducts-create ">
           <ModalFormCreate />
       </div>
 
-      <div className="AdminProducts-filters me-4 mt-4">
+      <div className="AdminProducts-filters ">
         <FilterContainer setActualPage={setActualPage} className="customFilter" />
       </div>
 

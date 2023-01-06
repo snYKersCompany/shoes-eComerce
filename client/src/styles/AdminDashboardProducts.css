@@ -4,6 +4,7 @@
     grid-template-rows: 60px, auto ;
     justify-content: center;
     background: linear-gradient(16deg, rgba(69, 67, 86, 0.916) 1%, rgba(51,50,66,0.9164040616246498) 100%);
+    overflow: hidden;
 }
 
 .AdminProducts-filters{
@@ -11,13 +12,17 @@
     grid-column: 1/2;
     grid-row: 1/2;
     margin-top: 8px;
+    margin-right: 8px;
     justify-self: end;
+    margin-right: 40px;
+
 }
 
 .AdminProducts-create{
     display: grid;
     grid-column: 1/2;
     grid-row: 1/2;
+    margin-left: 40px;
 }
 
 
@@ -266,7 +271,7 @@
     }
 }
 
-@media (min-width:750px) {
+@media (min-width:700px) {
     .AdminProducts-gridContainer{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -283,8 +288,57 @@
         max-width: 700px;
         min-width: 700px;
     }
-    
-    
+}
+
+
+@media (min-width:1200px) {
+    .AdminProducts-gridContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 60px, auto ;
+        justify-content: center;
+    }
+    .AdminProducts-containerCard{
+        display: grid;
+        justify-content: center;
+        grid-column: auto;
+    }
+
+    .AdminProducts-product{
+        grid-template-rows: 1fr 20px ;
+        max-width: 500px;
+        min-width: 500px;
+    }
+    .AdminProducts-filters{
+        margin-top: 2rem;
+    }
+}
+
+@media (min-width:1800px) {
+    .AdminProducts-gridContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 60px, auto ;
+        justify-content: center;
+    }
+    .AdminProducts-containerCard{
+        display: grid;
+        justify-content: center;
+        grid-column: auto;
+    }
+    .AdminProducts-filters{
+        display: grid;
+        grid-column: 2/4;
+        grid-row: 1/2;
+        margin-top: 8px;
+        justify-self: end;
+    }
+    .AdminProducts-create{
+        display: grid;
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
 
 }
 
