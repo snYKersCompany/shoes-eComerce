@@ -1,11 +1,56 @@
 const { ReviewModel, ProductsModel, UsersModel } = require("../../models/ModelsDB");
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 
 const getReview = async (req, res)=>{
     try {
         const { _id } = req.params;
 
-        const review = ReviewModel.findById(_id)
+        const review = await ReviewModel.findById(_id)
+
+        return res.status(200).json(review);
+    } catch (error) {
+        return res.status(404).json({message:error.message}) 
+    }
+} 
+
+const getReviewProduct = async (req, res)=>{
+    try {
+        const { _id } = req.params;
+        const review = await ReviewModel.aggregate([
+            {$match:{_idProduct:ObjectId(_id)}},
+            {$lookup:{
+                from:'users',
+                localField:'_idUser',
+                foreignField:'_id',
+                as:'user'
+            }},
+            // {$unionWith:'$user'}
+        ])
+        // const review = await ReviewModel.find({_idProduct:_id})
+
+        return res.status(200).json(review);
+    } catch (error) {
+        return res.status(404).json({message:error.message}) 
+    }
+} 
+
+const getReviewUser = async (req, res)=>{
+    try {
+        const { _id } = req.params;
+
+        const review = await ReviewModel.aggregate([
+            {$match:{_idUser:_id}},
+            {$lookup:{
+                from:'products',
+                localField:'_idProduct',
+                foreignField:'_id',
+                as:'product'
+            }},
+            // {$unionWith:'user'}
+        ])
+        // const review = await ReviewModel.find({_idUser:_id})
 
         return res.status(200).json(review);
     } catch (error) {
@@ -78,6 +123,8 @@ const deleteReview = async (req, res)=>{
 
 module.exports = {
     getReviews,
+    getReviewProduct,
+    getReviewUser,
     getReview,
     postReviews,
     putReview,
