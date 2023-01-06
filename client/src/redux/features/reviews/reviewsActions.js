@@ -19,6 +19,12 @@ export const getPaypal = (token) => async (dispatch) => {
     return error;
   }
 };
+export const getPaypal = (token) => async (dispatch) => {
+    try{
+        const vaucher = await axios.get(`/paypal/execute-payment${token}`)
+        console.log('esto es /reviewActions/postReview vaucher')
+        console.log(token)
+        console.log(vaucher)
 
 export const getReviewProduct = (_id) => async (dispatch) => {
   try {

@@ -9,6 +9,8 @@ import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import "../../../styles/review.css";
+import FilterContainer from "../../Filters/FilterContainer";
+import DashboardSearch from "../DashboardSearch";
 
 const UserOrders = () => {
   const dispatch = useDispatch();

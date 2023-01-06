@@ -6,27 +6,25 @@ import {
   getAllUsers,
   putUserStatus,
 } from "../../../redux/features/users/usersActions";
-import { FaTrash } from "react-icons/fa";
-import "../../../styles/AdminDashboardUsers.css";
-
+import { FaTrash, FaUserSlash, FaUser } from "react-icons/fa";
+import Form from "react-bootstrap/Form";
+import "../../../styles/AdminDashboardUsers.css"
 function AdminDashboardUsers() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
-
   const [warning, setWarning] = useState(false);
-
   const [orderUser, setOrderUser] = useState(""); // eslint-disable-line
-  const [valueOrder, setValueOrder] = useState(-1); // eslint-disable-line
+  const [valueOrder, setValueOrder] = useState(-1); // eslint-disable-line  
   // const [directionOrder, setDirectionOrder] = useState("↑↓");
   const [search, setSearch] = useState("");
-
+  
   useEffect(() => {
     const orderSearch = {};
     if (orderUser.length) orderSearch.orderBy = { [orderUser]: valueOrder };
     if (search.length) orderSearch.search = search;
     dispatch(getAllUsers(orderSearch));
   }, [dispatch, orderUser, valueOrder, search]);
-
+  
   const handleFormCheck = ({ target }, _id) => {
     dispatch(putUserStatus(_id, { status: target.checked }));
   };
@@ -52,16 +50,15 @@ function AdminDashboardUsers() {
           type="users"
           search={search}
           setSearch={(a) => setSearch(a)}
-        />
-      </div>
-
-      {users.map((user, i) => (
+        />        
+          {users.map((user,i) => (
         <div className="AdminDshbUsers-userContainer" key={i}>
           <div className="AdminDshbUsers-userGrid">
-            <div className="cardUser-avatar">
-              <img src={user.image} alt={user.name} />
-            </div>
 
+            
+            <div className="cardUser-avatar">
+              <img src={user.image} alt={user.name}  />
+            </div>
             <div className="cardUser-info">
               <p className="cardUser-username">{user.username}</p>
               <p className="cardUser-idUser">{user._id}</p>
@@ -118,12 +115,58 @@ function AdminDashboardUsers() {
         order={{ [orderUser]: valueOrder }}
         search={search}
       />
+              <p className="cardUser-countryuser">{user.country}-{user.city}</p>
+            </div>
+
+              <div className="cardUser-switchs">
+
+
+                  <label className="cardUser-switchs-label">status</label>
+                  
+                  <label className="switch">
+                    <input type="checkbox"
+                    defaultChecked={user.status}
+                    onClick={(e) => handleFormCheck(e, user._id)} 
+                    />
+
+                    <span className="slider round"></span>
+                  </label>
+
+
+                  <label className="cardUser-switchs-label">Role</label>
+
+                  <label className="switch">
+                  <input type="checkbox"
+                  defaultChecked={user.roles[0] === "admin"}
+                  onClick={(e) => handleFormAdmin(e, user._id)}
+                  />
+
+                  <span className="slider round"></span>
+                  </label>
+
+              </div>
+
+              <div className="cardUser-delete">
+                <button className="cardUser-btn" onClick={() => setWarning(user._id)}>
+                  <FaTrash />
+                </button>
+              </div>
+            </div>
+
+            </div>
+          ))}
+
+        <ModalUsersWarning
+          show={warning}
+          onHide={() => setWarning(false)}
+          order={{ [orderUser]: valueOrder }}
+          search={search}
+        />
     </div>
   );
 }
 
 export default AdminDashboardUsers;
-
 // return (
 //   <div>
 
@@ -134,7 +177,6 @@ export default AdminDashboardUsers;
 //         setSearch={(a) => setSearch(a)}
 //         />
 //     </div>
-
 //      <Table striped bordered hover>
 //       <thead>
 //         <tr>
@@ -212,4 +254,6 @@ export default AdminDashboardUsers;
 //     </Table>
 //   </div>
 // );
+// }
+
 // }

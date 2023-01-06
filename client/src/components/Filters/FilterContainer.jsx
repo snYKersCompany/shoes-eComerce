@@ -23,6 +23,10 @@ function FilterContainer({ setActualPage, name, ...props }) {
         <button variant="custom" onClick={handleShow} className="btnCard1">
           Filters
         </button>
+    <div>
+      <button variant='custom' onClick={handleShow} className="btnCard1">
+        Filters
+      </button>
       </div>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>

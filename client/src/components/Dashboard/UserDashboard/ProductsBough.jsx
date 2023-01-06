@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { postReview } from "../../../redux/features/reviews/reviewsActions";
 import InputChangeRating from "../../StarsReview/InputChangeRating";
 import StarsReview from "../../StarsReview/StarsReview";
+import { useNavigate } from 'react-router-dom';
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/esm/Button";
@@ -66,7 +67,20 @@ const ProductsBought = () => {
     e.preventDefault();
     setMoveToReview(false);
   };
+    console.log('entro')
+    e.preventDefault();
+    setAvgRating(0);
+    setIdSingleProduct(id);
+    console.log('esto es el id del prod', id)
+    setMoveToReview(true);
+    navigate('/account/bought')
+  };
 
+  const backToProdBought = (e)=> {
+    e.preventDefault();
+    setMoveToReview(false);
+  }
+  
   return moveToReview === false ? (
     <>
       <Table striped bordered hover>

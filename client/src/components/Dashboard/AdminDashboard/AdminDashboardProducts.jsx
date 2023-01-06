@@ -7,6 +7,7 @@ import {
 } from "../../../redux/features/products/productsActions";
 import { FaTrash } from "react-icons/fa";
 import { RiSearchFill } from "react-icons/ri";
+import { RiSearchFill} from "react-icons/ri";
 import { useState } from "react";
 import ModalProductDetails from "./Modals/ModalProductDetails";
 import ModalProductWarning from "./Modals/ModalProductsWarning";
@@ -38,69 +39,77 @@ function AdminDashboardProducts() {
   const handlerDelete = (id) => {
     setWarning(id);
   };
-
+  
   return (
     <div className="AdminProducts-gridContainer text-white">
+      
       <div className="AdminProducts-create ">
-        <ModalFormCreate />
+          <ModalFormCreate />
       </div>
 
       <div className="AdminProducts-filters ">
-        <FilterContainer
-          setActualPage={setActualPage}
-          className="customFilter"
-        />
+        <FilterContainer setActualPage={setActualPage} className="customFilter" />
       </div>
 
-      {products.map((product, i) => (
-        <div className="AdminProducts-containerCard" key={i}>
-          <div className="AdminProducts-product">
-            <div className="productAdmin-img">
-              <img
-                src={product.card_picture}
-                alt={product.name}
-                className="productAdmin-img-inside"
-                // width={"180px"}
-              />
-            </div>
 
-            <div className="productAdmin-id">
-              <p>{product._id}</p>
-            </div>
 
-            <div className="productAdmin-brand">
-              <h5>{product.brand}</h5>
-              <p>{product.name}</p>
-            </div>
 
-            <div className="productAdmin-price">
-              <p>${product.price}</p>
-            </div>
+          {products.map((product, i) => (
 
-            <div className="productAdmin-btns">
-              <button
-                className="productAdmin-btn1"
-                onClick={() => handlerDetails(product._id)}
-              >
-                {/* <BiSearch /> */}
-                <RiSearchFill />
-              </button>
+            <div className="AdminProducts-containerCard" key={i}>
+              
+              <div className="AdminProducts-product">
 
-              <button
-                className="productAdmin-btn2"
-                onClick={() => handlerDelete(product._id)}
-              >
-                <FaTrash />
-              </button>
-            </div>
-          </div>
-        </div>
-      ))}
-      {/* {card} */}
-      <ModalProductDetails show={Object.entries(productDetail).length} />
 
-      {/* Warning  */}
-      <ModalProductWarning show={warning} onHide={() => setWarning(false)} />
+                <div className="productAdmin-img">
+                  <img src={product.card_picture} alt={product.name} 
+                  className="productAdmin-img-inside"
+                  // width={"180px"} 
+                   />
+                </div>
+
+                <div className="productAdmin-id">
+                  <p>{product._id}</p>
+                </div>
+
+                <div className="productAdmin-brand">
+                  <h5>{product.brand}</h5>
+                  <p>{product.name}</p>
+                </div>
+
+
+                <div className="productAdmin-price">
+                  <p>${product.price}</p>
+                </div>
+                
+                <div className="productAdmin-btns">
+                  <button
+                    className="productAdmin-btn1"
+                    onClick={() => handlerDetails(product._id)}
+                  >
+                    {/* <BiSearch /> */}
+                    <RiSearchFill/>
+                  </button>
+
+
+                  <button
+                    className="productAdmin-btn2"
+                    onClick={() => handlerDelete(product._id)}
+                    >
+                    <FaTrash />
+                  </button>
+                </div>
+
+              </div>
+            
+
+         </div>
+          ))}
+        {/* {card} */}
+        <ModalProductDetails show={Object.entries(productDetail).length} />
+
+        {/* Warning  */}
+        <ModalProductWarning show={warning} onHide={() => setWarning(false)} />
     </div>
   );
 }
