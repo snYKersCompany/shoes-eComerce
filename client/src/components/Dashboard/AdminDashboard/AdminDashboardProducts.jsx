@@ -1,5 +1,3 @@
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/esm/Button";
 import FilterContainer from "../../Filters/FilterContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -7,8 +5,8 @@ import {
   getAllProducts,
   getProductsDetails,
 } from "../../../redux/features/products/productsActions";
-import { BiSearch } from "react-icons/bi";
-import { FiTrash } from "react-icons/fi";
+import { FaTrash } from "react-icons/fa";
+import { RiSearchFill} from "react-icons/ri";
 import { useState } from "react";
 import ModalProductDetails from "./Modals/ModalProductDetails";
 import ModalProductWarning from "./Modals/ModalProductsWarning";
@@ -47,11 +45,13 @@ function AdminDashboardProducts() {
 
   return (
     <div className="AdminProducts-gridContainer text-white">
-      <div className="AdminProducts-filters">
-        <FilterContainer setActualPage={setActualPage} className="customFilter" />
+      
+      <div className="AdminProducts-create ms-4 mt-4">
+          <ModalFormCreate />
       </div>
-      <div className="AdminProducts-create">
-        <ModalFormCreate />
+
+      <div className="AdminProducts-filters me-4 mt-4">
+        <FilterContainer setActualPage={setActualPage} className="customFilter" />
       </div>
 
 
@@ -60,11 +60,15 @@ function AdminDashboardProducts() {
           {products.map((product, i) => (
 
             <div className="AdminProducts-containerCard" key={i}>
-            
+              
               <div className="AdminProducts-product">
 
+
                 <div className="productAdmin-img">
-                  <img src={product.card_picture} alt={product.name} width={"200px"}  />
+                  <img src={product.card_picture} alt={product.name} 
+                  className="productAdmin-img-inside"
+                  // width={"180px"} 
+                   />
                 </div>
 
                 <div className="productAdmin-id">
@@ -72,33 +76,30 @@ function AdminDashboardProducts() {
                 </div>
 
                 <div className="productAdmin-brand">
-                  <p>{product.brand}</p>
-                </div>
-
-                <div className="productAdmin-name">
+                  <h5>{product.brand}</h5>
                   <p>{product.name}</p>
                 </div>
+
 
                 <div className="productAdmin-price">
                   <p>${product.price}</p>
                 </div>
                 
-                <div className="productAdmin-btn1">
+                <div className="productAdmin-btns">
                   <button
-                    className="p-1"
+                    className="productAdmin-btn1"
                     onClick={() => handlerDetails(product._id)}
                   >
-                    <BiSearch />
+                    {/* <BiSearch /> */}
+                    <RiSearchFill/>
                   </button>
-                </div>
 
-                <div className="productAdmin-btn2">
 
                   <button
-                    className="p-1"
+                    className="productAdmin-btn2"
                     onClick={() => handlerDelete(product._id)}
                     >
-                    <FiTrash />
+                    <FaTrash />
                   </button>
                 </div>
 
