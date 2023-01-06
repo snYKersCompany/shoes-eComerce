@@ -131,6 +131,9 @@
 }
 
 .btnFav {
+  background-color: transparent;
+  border: none;
+  margin: 5px 0 2rem 0;
   z-index: 1;
 }
 

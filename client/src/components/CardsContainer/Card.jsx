@@ -43,9 +43,9 @@ const CardProduct = ({
 
   return (
     <Card className="d-flex card ">
-      <div className="d-flex justify-content-end me-4 mt-4">
+      <div className="d-flex justify-content-end me-4 mt-4" >
           <>
-            <Button
+            <button
               variant="custom"
               className="btnFav"
               onClick={handlerOnClick}
@@ -55,7 +55,7 @@ const CardProduct = ({
               ) : (
                 <BsHeart className="d-flex justify-content-center card-top fav" />
               )}
-            </Button>
+            </button>
           </>
         
       </div>

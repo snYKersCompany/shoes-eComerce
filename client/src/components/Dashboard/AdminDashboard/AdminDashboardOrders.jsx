@@ -14,6 +14,8 @@ import { postReview } from "../../../redux/features/reviews/reviewsActions";
 
 import StarsReview from "../../StarsReview/StarsReview";
 import InputChangeRating from "../../StarsReview/InputChangeRating";
+import FilterContainer from "../../Filters/FilterContainer";
+import DashboardSearch from "../DashboardSearch";
 
 const UserOrders = () => {
   const dispatch = useDispatch();

@@ -27,6 +27,68 @@ const UserOrders = () => {
   };
   //end of handlers to travel and set states
 
+
+  //rating handler
+  const handleRating = (input) => {
+    setAvgRating(input);
+  };
+  //end of rating handler
+
+  const handlerInputReview = (e) => {
+    setReviewInput({
+      ...reviewInput,
+      [e.target.inputReview]: e.target.value,
+    });
+  };
+
+  //ACTION DE POST REVIEW
+  const sendPostReview = (e) => {
+    e.preventDefault();
+    dispatch(
+      postReview({
+        _idProduct: idSingleProduct,
+        _idUser: user,
+        rating: avgRating,
+        description: Object.values(reviewInput).toString(),
+      })
+    );
+  };
+  // console.log(
+  //   "esto es y reviewInput en el comp",
+  //   Object.values(reviewInput).toString()
+  // );
+
+  //conseguimos los productos de esa orden
+  const productsBought = orders.map((e) => e.products).flat();
+  
+
+
+  //color de la orden según el estado de la compra
+ const functionColor = (state) => {
+  state= state.toLowerCase()
+    switch (state) {
+      case "aprobed":
+        return "linear-gradient(318deg, rgba(185,255,186,1) 52%, rgba(0,0,0,1) 100%)";
+      case "pending":
+        return "linear-gradient(318deg, rgba(255,246,185,1) 52%, rgba(0,0,0,1) 100%)";
+      case "cancelled":
+        return "linear-gradient(318deg, rgba(245,172,172,1) 52%, rgba(0,0,0,1) 100%)";
+      case "rejected":
+      return "linear-gradient(318deg, rgba(245,172,172,1) 52%, rgba(0,0,0,1) 100%)";
+      default:
+        return "#ffffff";
+    }
+  };
+
+
+  //agregar que se pueda postear solamente en las que tengan el estado de "aproved"
+  //podria llenar un estado con los valores que le llegan del array, si entra en la factura [0] que le llegue esa info y
+  //llene el estado, si entra en la factura en la position [1] que se llene el estado con la info  en de esa factura
+  //en el onclick que matchee con el id de la compra y ahi mapea la tabla de products: captura el id en el evento y mapeas dentro de userOrders
+
+  //en el onclick de userORders se ouede llenar un estado con los products que coincidan con el id capturado.
+
+
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
     <Table striped bordered hover>
