@@ -1,14 +1,42 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
+import ProductsBought from "./ProductsBough";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
+import { useEffect } from "react";
+
+import { getAllOrders } from '../../../redux/features/orders/ordersActions'
 
 const UserDashboard = () => {
-  const [control, setControl] = useState("");
+  const dispatch = useDispatch()
+  // console.log(UserDashboard)
+  const {userDashboard} = useSelector(state=> state.users)
+
+  // const { section } = useParams();
+  
+  const [control,setControl] = useState("")
+  
+
+  useEffect(() => {
+    if(userDashboard._id) {
+      dispatch(getAllOrders({}, userDashboard._id))
+    }
+  }, [dispatch, userDashboard._id])
+
+  // if (section.length) {
+  //  if (section !== control){
+  //   setControl(section)
+  // }
+  // };
+  // console.log(control.toString())
+
+  // console.log('esto es control =====================================================>>>>>>', control)
 
   return (
     <>
@@ -48,6 +76,12 @@ const UserDashboard = () => {
                   <CgList className="d-flex" /> Orders
                 </Nav.Link>
               </Nav.Item>
+
+              <Nav.Item className="d-flex">
+                <Nav.Link eventKey="bought" className="d-flex" onClick={()=> setControl("bought")}>
+                  <CgList className="d-flex" /> Products bought
+                </Nav.Link>
+              </Nav.Item>
             </Nav>
 
             <div className="section d-flex add">
@@ -66,6 +100,18 @@ const UserDashboard = () => {
                 <Tab.Pane eventKey="orders">
                   {control === "orders" ? <UserOrders /> : <></>}
                 </Tab.Pane>
+
+                <Tab.Pane
+                  eventKey="bought"
+                  className="d-flex justify-content-center align-content-center"
+                >
+                  {control === "bought"?
+                  <ProductsBought />
+                :  
+                <></>
+                }
+                </Tab.Pane>
+
               </Tab.Content>
             </div>
           </Tab.Container>
