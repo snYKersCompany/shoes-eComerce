@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "../NavBar2.0/NavBar2.0";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Preview from "../Paypal/Preview/Preview";
+import Reviews from "../Reviews/Reviews";
 //BS
 import Image from "react-bootstrap/Image";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -217,6 +218,7 @@ const Details = () => {
           <></>
         )}
       </div>
+      <Reviews productDetail={productDetail}/>
     </>
   );
 };
