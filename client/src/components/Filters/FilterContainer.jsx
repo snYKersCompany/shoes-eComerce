@@ -13,7 +13,6 @@ import "../../styles/filterContainer.css";
 
 function FilterContainer({ setActualPage, name, ...props }) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -23,10 +22,6 @@ function FilterContainer({ setActualPage, name, ...props }) {
         <button variant="custom" onClick={handleShow} className="btnCard1">
           Filters
         </button>
-    <div>
-      <button variant='custom' onClick={handleShow} className="btnCard1">
-        Filters
-      </button>
       </div>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
@@ -46,10 +41,7 @@ function FilterContainer({ setActualPage, name, ...props }) {
                   onClick={handleClose}
                 />
                 <FilterBrand onClick={handleClose} />
-                {/* <ClearFilters 
-                onClick={handleClose}/> */}
               </div>
-              {/* <FilterOrder /> */}
               <div className="d-flex">
                 <OrderByAlphabet onClick={handleClose} />
                 <FilterPrice
@@ -66,4 +58,5 @@ function FilterContainer({ setActualPage, name, ...props }) {
     </>
   );
 }
+
 export default FilterContainer;
