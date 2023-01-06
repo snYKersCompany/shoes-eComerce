@@ -5,12 +5,12 @@
     grid-auto-rows: 1fr;
 }
 
-.AdminDashboard-userProfilefilters{
-    display: grid;
-    grid-column: 1/2;
-    grid-row: 1/2;
-    justify-items: end;
-    gap: 20px;
+.AdminDashboard-userProfilefilters {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  justify-items: start;
+  gap: 20px;
 }
 .AdminDashboard-userProfilefilters button{
     background: transparent;

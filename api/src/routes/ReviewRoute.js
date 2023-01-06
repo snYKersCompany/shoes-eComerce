@@ -1,8 +1,12 @@
 const express = require('express');
-const { getReviews, postReviews, getReview, putReview, deleteReview } = require('../controllers/Reviews');
+const { getReviews, postReviews, getReview, putReview, deleteReview, getReviewUser, getReviewProduct } = require('../controllers/Reviews');
 const router = express.Router()
 
 router.get('/', getReviews)
+
+router.get('/product/:_id', getReviewProduct)
+
+router.get('/user/:_id', getReviewUser)
 
 router.get('/:_id', getReview)
 

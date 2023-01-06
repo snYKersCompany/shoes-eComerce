@@ -9,11 +9,13 @@ const UserFavorites = () => {
 
   return (
     <div className="UserFavorites-container favSize">
-      <div className="UserFavorites">
+      {/* <div className="UserFavorites"> */}
         {userDashboard.productsFavourites &&
         userDashboard.productsFavourites.length ? (
           userDashboard.productsFavourites.map((el) => {
             return (
+              <div className="UserFavorites">
+
               <CardFav
                 className="UserFavorites-card"
                 key={el._id}
@@ -27,12 +29,13 @@ const UserFavorites = () => {
                   (idProduct) => idProduct === el._id
                 )}
               />
+              </div>
             );
           })
         ) : (
           <NoFavourites />
         )}
-      </div>
+      {/* </div> */}
     </div>
   );
 };
