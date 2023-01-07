@@ -11,23 +11,22 @@ import { CgUserList, CgHeart, CgList } from "react-icons/cg";
 import "../../../styles/userDashboard.css";
 import { useEffect } from "react";
 
-import { getAllOrders } from '../../../redux/features/orders/ordersActions'
+import { getAllOrders } from "../../../redux/features/orders/ordersActions";
 
 const UserDashboard = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // console.log(UserDashboard)
-  const {userDashboard} = useSelector(state=> state.users)
+  const { userDashboard } = useSelector((state) => state.users);
 
   // const { section } = useParams();
-  
-  const [control,setControl] = useState("")
-  
+
+  const [control, setControl] = useState("");
 
   useEffect(() => {
-    if(userDashboard._id) {
-      dispatch(getAllOrders({}, userDashboard._id))
+    if (userDashboard._id) {
+      dispatch(getAllOrders({}, userDashboard._id));
     }
-  }, [dispatch, userDashboard._id])
+  }, [dispatch, userDashboard._id]);
 
   // if (section.length) {
   //  if (section !== control){
@@ -41,59 +40,57 @@ const UserDashboard = () => {
   return (
     <>
       <div className="userDashBoardContainer">
-        <div className="userDashBoard d-flex w-100">
-          <Tab.Container
-            className="d-flex tabContainer"
-            defaultActiveKey={control}
-          >
-            <Nav variant="pills" className="navSection d-flex flex-column ">
-              <Nav.Item className="d-flex">
+        <div className="userDashBoard ">
+          <Tab.Container className=" tabContainer" defaultActiveKey={control}>
+            <Nav variant="pills" className="navSection">
+              <Nav.Item className="">
                 <Nav.Link
                   eventKey="profile"
-                  className="d-flex"
+                  className=""
                   onClick={() => setControl("profile")}
                 >
-                  <CgUserList className="d-flex" /> Profile
+                  <CgUserList className="" /> Profile
                 </Nav.Link>
               </Nav.Item>
 
-              <Nav.Item className="d-flex">
+              <Nav.Item className="">
                 <Nav.Link
                   eventKey="favorites"
-                  className="d-flex"
+                  className=""
                   onClick={() => setControl("favorites")}
                 >
-                  <CgHeart className="d-flex" /> Favorites
+                  <CgHeart className="" /> Favorites
                 </Nav.Link>
               </Nav.Item>
 
-              <Nav.Item className="d-flex">
+              <Nav.Item className="">
                 <Nav.Link
                   eventKey="orders"
-                  className="d-flex"
+                  className=""
                   onClick={() => setControl("orders")}
                 >
-                  <CgList className="d-flex" /> Orders
+                  <CgList className="" /> Orders
                 </Nav.Link>
               </Nav.Item>
 
-              <Nav.Item className="d-flex">
-                <Nav.Link eventKey="bought" className="d-flex" onClick={()=> setControl("bought")}>
-                  <CgList className="d-flex" /> Products bought
+              <Nav.Item className="">
+                <Nav.Link
+                  eventKey="bought"
+                  className=""
+                  onClick={() => setControl("bought")}
+                >
+                  <CgList className="" /> Products bought
                 </Nav.Link>
               </Nav.Item>
             </Nav>
 
-            <div className="section d-flex add">
+            <div className="section  add">
               <Tab.Content>
                 <Tab.Pane eventKey="profile">
                   {control === "profile" ? <UserProfile /> : <></>}
                 </Tab.Pane>
 
-                <Tab.Pane
-                  eventKey="favorites"
-                  className="d-flex justify-content-center align-content-center"
-                >
+                <Tab.Pane eventKey="favorites" className="">
                   {control === "favorites" ? <UserFavorites /> : <></>}
                 </Tab.Pane>
 
@@ -101,17 +98,9 @@ const UserDashboard = () => {
                   {control === "orders" ? <UserOrders /> : <></>}
                 </Tab.Pane>
 
-                <Tab.Pane
-                  eventKey="bought"
-                  className="d-flex justify-content-center align-content-center"
-                >
-                  {control === "bought"?
-                  <ProductsBought />
-                :  
-                <></>
-                }
+                <Tab.Pane eventKey="bought" className="">
+                  {control === "bought" ? <ProductsBought /> : <></>}
                 </Tab.Pane>
-
               </Tab.Content>
             </div>
           </Tab.Container>

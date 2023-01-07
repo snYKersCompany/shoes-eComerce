@@ -5,12 +5,12 @@ import {
   getAllProducts,
   getProductsDetails,
 } from "../../../redux/features/products/productsActions";
-import { FaTrash } from "react-icons/fa";
-import { RiSearchFill } from "react-icons/ri";
-import { useState } from "react";
 import ModalProductDetails from "./Modals/ModalProductDetails";
 import ModalProductWarning from "./Modals/ModalProductsWarning";
 import ModalFormCreate from "./Modals/ModalFormCreate";
+import { FaTrash } from "react-icons/fa";
+import { RiSearchFill } from "react-icons/ri";
+import { useState } from "react";
 import "../../../styles/AdminDashboardProducts.css";
 
 function AdminDashboardProducts() {

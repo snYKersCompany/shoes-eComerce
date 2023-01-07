@@ -21,7 +21,7 @@ const Dashboard = () => {
   }, [dispatch, user.uid]);
 
   return (
-    <div className="">
+    <div className="Dasboard-container">
       {userDashboard ? (
         <>
           <NavBar />
