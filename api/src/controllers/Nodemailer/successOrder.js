@@ -14,7 +14,7 @@ const template = `<!doctype html><html ⚡4email data-css-strict><head><meta cha
 <p style="text-align: center"><strong>Follow us on our networks, please do not answer this message.</strong></p></td></tr></table></td></tr></table> <!--[if mso]></td></tr></table><![endif]--></td></tr></table></td></tr></table></td></tr></table></div></body></html>`
  
 
-const successOrder = async (req, res) => {
+ const successOrder = async (req, res) => {
     const { email } = req.body;
     try {
         const info = await transporter.sendMail({
