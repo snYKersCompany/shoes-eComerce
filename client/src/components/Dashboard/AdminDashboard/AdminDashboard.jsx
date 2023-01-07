@@ -7,7 +7,9 @@ import AdminDashboardAccount from "./AdminDashboardAccount";
 import OrderDetails from "./OrdersDetails";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
-import { CgUserList, CgHeart, CgList } from "react-icons/cg";
+import { TbFileSearch } from "react-icons/tb";
+import { GiConverseShoe } from "react-icons/gi";
+import { RiUserSearchLine, RiUserSettingsLine } from "react-icons/ri";
 import "../../../styles/userDashboard.css";
 
 const AdminDashboard = () => {
@@ -22,88 +24,80 @@ const AdminDashboard = () => {
   }
 
   // const { userDashboard } = useSelector((state) => state.users);
+  /* <h3 className="d-flex justify-content-center text-light">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}! - your rol is: {userDashboard.roles}</h3> */
   return (
-    <>
-      {/* <h3 className="d-flex justify-content-center text-light">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}! - your rol is: {userDashboard.roles}</h3> */}
-
-      <div className="userDashBoardContainer d-flex">
-        <div className="userDashBoard d-flex">
-          <Tab.Container
-            className="d-flex tabContainer"
-            defaultActiveKey={control}
+    <Tab.Container
+      className="userDashBoard-container"
+      defaultActiveKey={control}
+    >
+      <Nav variant="pills" className="userDashBoard-nav-section">
+        <Nav.Item className="userDashBoard-orders">
+          <Nav.Link
+            eventKey="orders"
+            className="userDashBoard-nav-link"
+            onClick={() => setControl("orders")}
           >
-            <Nav
-              variant="pills"
-              className="navSection d-flex flex-column datevuelta "
-            >
-              <Nav.Item className="d-flex">
-                <Nav.Link
-                  eventKey="orders"
-                  className="d-flex"
-                  onClick={() => setControl("orders")}
-                >
-                  <CgUserList className="d-flex" /> Orders
-                </Nav.Link>
-              </Nav.Item>
+            <TbFileSearch className="userDashBoard-nav-icon" />
+            <span className="text-icon">Orders</span>
+          </Nav.Link>
+        </Nav.Item>
 
-              <Nav.Item className="d-flex">
-                <Nav.Link
-                  eventKey="products"
-                  className="d-flex"
-                  onClick={() => setControl("products")}
-                >
-                  <CgHeart className="d-flex" /> Products
-                </Nav.Link>
-              </Nav.Item>
+        <Nav.Item className="userDashBoard-products">
+          <Nav.Link
+            eventKey="products"
+            className="userDashBoard-nav-link ic-ctm2"
+            onClick={() => setControl("products")}
+          >
+            <GiConverseShoe className="userDashBoard-nav-icon ic-ctm1" />
+            <span className="text-icon">Products</span>
+          </Nav.Link>
+        </Nav.Item>
 
-              <Nav.Item className="d-flex">
-                <Nav.Link
-                  eventKey="users"
-                  className="d-flex"
-                  onClick={() => setControl("users")}
-                >
-                  <CgList className="d-flex" /> Users
-                </Nav.Link>
-              </Nav.Item>
+        <Nav.Item className="userDashBoard-users">
+          <Nav.Link
+            eventKey="users"
+            className="userDashBoard-nav-link"
+            onClick={() => setControl("users")}
+          >
+            <RiUserSearchLine className="userDashBoard-nav-icon" />
+            <span className="text-icon">Users</span>
+          </Nav.Link>
+        </Nav.Item>
 
-              <Nav.Item className="d-flex">
-                <Nav.Link
-                  eventKey="profile"
-                  className="d-flex"
-                  onClick={() => setControl("profile")}
-                >
-                  <CgList className="d-flex" /> Profile
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-            <div className="section">
-              <Tab.Content>
-                <Tab.Pane eventKey="orders">
-                  {orderDetails ? (
-                    <AdminDashboardOrders
-                      setOrderDetails={() => setOrderDetails(false)}
-                    />
-                  ) : (
-                    <OrderDetails
-                      setOrderDetails={() => setOrderDetails(true)}
-                    />
-                  )}
-                </Tab.Pane>
-                <Tab.Pane eventKey="products">
-                  <AdminDashboardProducts />
-                </Tab.Pane>
-                <Tab.Pane eventKey="users">
-                  <AdminDashboardUsers />
-                </Tab.Pane>
-                <Tab.Pane eventKey="profile">
-                  <AdminDashboardAccount />
-                </Tab.Pane>
-              </Tab.Content>
-            </div>
-          </Tab.Container>
-        </div>
-      </div>
-    </>
+        <Nav.Item className="userDashBoard-profile">
+          <Nav.Link
+            eventKey="profile"
+            className="userDashBoard-nav-link"
+            onClick={() => setControl("profile")}
+          >
+            <RiUserSettingsLine className="userDashBoard-nav-icon" />
+            <span className="text-icon">Profile</span>
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      {/* fin nav */}
+
+      <Tab.Content className="userDashBoard-tab-section">
+        <Tab.Pane eventKey="orders">
+          {orderDetails ? (
+            <AdminDashboardOrders
+              setOrderDetails={() => setOrderDetails(false)}
+            />
+          ) : (
+            <OrderDetails setOrderDetails={() => setOrderDetails(true)} />
+          )}
+        </Tab.Pane>
+        <Tab.Pane eventKey="products">
+          <AdminDashboardProducts />
+        </Tab.Pane>
+        <Tab.Pane eventKey="users">
+          <AdminDashboardUsers />
+        </Tab.Pane>
+        <Tab.Pane eventKey="profile">
+          <AdminDashboardAccount />
+        </Tab.Pane>
+      </Tab.Content>
+    </Tab.Container>
   );
 };
 
