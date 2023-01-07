@@ -26,7 +26,6 @@
 }
 
 .userDashBoard-nav-icon {
-  /* margin-bottom: -50px !important; */
   font-size: 2.3rem;
   color: #fb7849;
 }
@@ -39,8 +38,6 @@
   grid-column: 1/2;
   grid-row: 1/2;
   overflow-y: scroll;
-  /* overflow-x: hidden; */
-  /* width: 90vw; */
 }
 
 .userDashBoard-orders {
@@ -155,5 +152,8 @@
   }
   .ic-ctm1 {
     font-size: 4rem;
+  }
+  .userDashBoard-tab-section {
+    width: 100%;
   }
 }

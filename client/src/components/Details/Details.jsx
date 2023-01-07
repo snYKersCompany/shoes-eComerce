@@ -15,14 +15,20 @@ import { TbStarOff } from "react-icons/tb";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
 //styles
 import "../../styles/details.css";
+import Button from "react-bootstrap/esm/Button";
+import { useNavigate } from "react-router-dom";
+
+import { getReviewProduct } from "../../redux/features/reviews/reviewsActions";
 
 const Details = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const { productDetail } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(getProductsDetails(id));
+    dispatch(getReviewProduct(id));
   }, [dispatch, id]);
 
   //local Storage
@@ -218,7 +224,12 @@ const Details = () => {
           <></>
         )}
       </div>
-      <Reviews productDetail={productDetail}/>
+      <Reviews id={id} />
+
+      <Reviews productDetail={productDetail} />
+      <Button className="d-flex mx-1" onClick={() => navigate("/")}>
+        Return Home
+      </Button>
     </>
   );
 };
