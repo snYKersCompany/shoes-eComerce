@@ -225,10 +225,9 @@ const Details = () => {
           <></>
         )}
 
-      // </div>
-      // <Reviews id={id}/>
+       </div>
+ <Reviews id={id}/>
 
-      </div>      
       <Reviews productDetail={productDetail}/>
       <Button className="d-flex mx-1" onClick={ () => navigate('/') }>Return Home</Button>
 
