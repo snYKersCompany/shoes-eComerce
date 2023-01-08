@@ -4,7 +4,7 @@ import {
   getUserDashboards,
   putUserInformation,
 } from "../../../redux/features/users/usersActions";
-import { FiEdit3 } from "react-icons/fi";
+import { MdModeEdit } from "react-icons/md";
 import "../../../styles/UserProfile.css";
 
 function AdminDashboardAccount() {
@@ -118,12 +118,7 @@ function AdminDashboardAccount() {
       placeholder: "Only words",
       required: "Nesesita",
     },
-    // {
-    //   label: "E-mail: ",
-    //   form: "email",
-    //   placeholder: "fulano@gmail.com",
-    //   required: "Nesesita",
-    // },
+    // { label: "E-mail: ", form: "email", placeholder: "fulano@gmail.com", required: "Nesesita",},
     {
       label: "Phone: ",
       form: "phone",
@@ -136,12 +131,7 @@ function AdminDashboardAccount() {
       placeholder: "av.siempreviva 742",
       required: "Nesesita",
     },
-    // {
-    //   label: "Other: ",
-    //   form: "other",
-    //   placeholder: "Timbre 3 puerta amarilla",
-    //   required: "Nesesita",
-    // },
+    // { label: "Other: ", form: "other", placeholder: "Timbre 3 puerta amarilla", required: "Nesesita",},
     {
       label: "City: ",
       form: "city",
@@ -160,12 +150,7 @@ function AdminDashboardAccount() {
       placeholder: "California",
       required: "Nesesita",
     },
-    // {
-    //   label: "Roles: ",
-    //   form: "roles",
-    //   placeholder: "Admin",
-    //   required: "Nesesita",
-    // },
+    // { label: "Roles: ", form: "roles", placeholder: "Admin", required: "Nesesita",},
     {
       label: "Image: ",
       form: "image",
@@ -218,10 +203,10 @@ function AdminDashboardAccount() {
                     }`}
                   />
                   <button
-                    className="AdminAccount-btnForm"
+                    className="AdminAccount-btnForm d-flex justify-content-center align-items-center"
                     onClick={(e) => handleEdit(e, f.form)}
                   >
-                    <FiEdit3 />
+                    <MdModeEdit />
                   </button>
                 </div>
               </div>

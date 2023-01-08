@@ -28,12 +28,12 @@ async function postNewOrder(products, finalAmount = 0, user, data) {
 
 const getOrders = async (req, res) => {
   try {
-    const { ordersSort } = req.query
+    const { ordersSort, _id } = req.query
 
     let jsonOrdersSort = {}
     if (ordersSort) jsonOrdersSort = JSON.parse(ordersSort)
 
-    const order = await sortAdminDashboard(jsonOrdersSort)
+    const order = await sortAdminDashboard(jsonOrdersSort, _id)
     return res.status(200).json({ order: order })
   } catch (error) {
     return res.status(404).json({ error: error.message });
@@ -41,10 +41,14 @@ const getOrders = async (req, res) => {
 };
 
 
-const sortAdminDashboard = async ({ orderBy }) => {
+const sortAdminDashboard = async ({ orderBy }, _id) => {
   let sort = {};
   if (orderBy) sort = orderBy
-  const sortedOrders = await OrderModel.find().sort(sort)
+
+  let parameters = {}
+  if(_id) parameters = {"user.uid":_id}
+
+  const sortedOrders = await OrderModel.find(parameters).sort(sort)
   return sortedOrders
 };
 

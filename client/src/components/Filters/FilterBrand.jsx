@@ -1,16 +1,18 @@
-import React, {/*{ useState }*/} from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterAdds, deletefilters } from "../../redux/features/products/productsActions";
+import {
+  filterAdds,
+  deletefilters,
+} from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
 const FilterBrand = () => {
   const dispatch = useDispatch();
   const { brands } = useSelector((state) => state.products);
 
-
   function handleFilterCategories(e) {
     e.preventDefault();
-    if(e.target.value === "none") dispatch(deletefilters("brand"))
+    if (e.target.value === "none") dispatch(deletefilters("brand"));
     else dispatch(filterAdds({ brand: e.target.value }));
   }
 
@@ -22,9 +24,7 @@ const FilterBrand = () => {
         handleFilterCategories(e);
       }}
     >
-      <option value="none">
-        Brand
-      </option>
+      <option value="none">Brand</option>
       {brands &&
         brands.map((e, i) => (
           <option key={i} value={e}>

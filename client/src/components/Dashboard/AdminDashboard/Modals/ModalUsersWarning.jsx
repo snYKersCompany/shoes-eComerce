@@ -1,14 +1,12 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/esm/Button";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteProducts,
-  getAllProducts,
-} from "../../../../redux/features/products/productsActions";
+import { useDispatch } from "react-redux";
 import "../../../../styles/modalProductsWarning.css";
 import { deleteUser } from "../../../../redux/features/users/usersActions";
 import { useAuth } from "../../../../context/authContext";
+
+import { putUserDeleted } from "../../../../redux/features/nodemailer/nodeMailerActions";
 
 const ModalUsersWarning = (props) => {
   const dispatch = useDispatch();
@@ -22,9 +20,15 @@ const ModalUsersWarning = (props) => {
     if (props.search.length) orderSearch.search = props.search;
     dispatch(deleteUser(props.show, orderSearch));
     deleteUserFB(user);
-
     alert(`Inserte Accion para eliminar el User ${props.show}`);
 
+    dispatch(putUserDeleted(props.email));
+    props.onEmail();
+    props.onHide();
+  };
+
+  const handlerCancel = () => {
+    props.onEmail();
     props.onHide();
   };
 
@@ -47,7 +51,7 @@ const ModalUsersWarning = (props) => {
 
       <div className="d-flex ">
         <Modal.Body className="d-flex">
-          <Button className="bg-success me-5" onClick={() => props.onHide()}>
+          <Button className="bg-success me-5" onClick={() => handlerCancel()}>
             Cancel
           </Button>
           <Button className="bg-danger" onClick={() => handlerOnClick()}>

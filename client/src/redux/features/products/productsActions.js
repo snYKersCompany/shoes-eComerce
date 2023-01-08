@@ -29,47 +29,44 @@ export const getAllProducts =
   (filters = {}, orders = {}, search = "") =>
   async (dispatch) => {
     try {
-      // console.log(filters);
       let query = filterQuery(filters);
       let orderBy = JSON.stringify(orders);
       if (orderBy.length === 2) orderBy = ``;
       else orderBy = `orderBy=${orderBy}`;
 
-        let searchBy = "";
-        if (search.length) searchBy = `search=${search}`;
+      let searchBy = "";
+      if (search.length) searchBy = `search=${search}`;
 
-        let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
-        dispatch(getProducts(product.data.products));
-      } catch (error) {
-        return error;
-      }
-    };
+      let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
+      dispatch(getProducts(product.data.products));
+    } catch (error) {
+      return error;
+    }
+  };
 
 export const getCategorys =
   (filters = {}, orders = {}, search = "") =>
-    async (dispatch) => {
-      try {
-        const entriesFilter = Object.entries(filters)[0];
-        let query = filterQuery(filters);
-        let orderBy = JSON.stringify(orders);
-        if (orderBy.length === 2) orderBy = ``;
-        else orderBy = `orderBy=${orderBy}`;
+  async (dispatch) => {
+    try {
+      const entriesFilter = Object.entries(filters)[0];
+      let query = filterQuery(filters);
+      let orderBy = JSON.stringify(orders);
+      if (orderBy.length === 2) orderBy = ``;
+      else orderBy = `orderBy=${orderBy}`;
 
-        let searchBy = "";
-        if (search.length) searchBy = `search=${search}`;
+      let searchBy = "";
+      if (search.length) searchBy = `search=${search}`;
 
-        let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
-        dispatch(getCategory([product.data.products, entriesFilter]));
-      } catch (error) {
-        return error;
-      }
-    };
+      let product = await axios(`/products?${query}&${orderBy}&${searchBy}`);
+      dispatch(getCategory([product.data.products, entriesFilter]));
+    } catch (error) {
+      return error;
+    }
+  };
 
 export const getProductsDetails = (_id) => async (dispatch) => {
   try {
     const products = await axios("/products/details/" + _id);
-    console.log("esto es product detail", products.data[0]);
-
     return dispatch(productsDetails(products.data[0]));
   } catch (error) {
     return error;

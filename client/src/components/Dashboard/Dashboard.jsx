@@ -1,10 +1,8 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import NavBar from "../NavBar2.0/NavBar2.0";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import UserDashboard from "./UserDashboard/UserDashboard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import {
   getUserDashboards,
   getOneUser,
@@ -14,9 +12,6 @@ import "../../styles/userDashboard.css";
 
 const Dashboard = () => {
   const { userDashboard } = useSelector((state) => state.users);
-  // let userMONGO = { role: ["6397b0b5a0730c95052cae5a"] };
-  //SI HAY USER ---> Verificacion de rol
-
   const dispatch = useDispatch();
   const { user } = useAuth();
 
@@ -26,7 +21,7 @@ const Dashboard = () => {
   }, [dispatch, user.uid]);
 
   return (
-    <>
+    <div className="Dasboard-container">
       {userDashboard ? (
         <>
           <NavBar />
@@ -37,7 +32,7 @@ const Dashboard = () => {
           )}
         </>
       ) : null}
-    </>
+    </div>
   );
 };
 

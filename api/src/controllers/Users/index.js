@@ -17,10 +17,7 @@ const listUsers = async ({ search, orderBy }) => {
 
     let sort = {}
     if (orderBy) sort = orderBy
-    // console.log({search, orderBy})
-    // console.log({sort, parameters})
     const users = await UsersModel.find(parameters).sort(sort);
-    // console.log({users})
     return users;
 }
 
@@ -120,7 +117,7 @@ const deleteUser = async (id) => {
     return deleteUser;
 }
 
-const modifyUser = async ({ id, name, username, password, status, roles, email, country, phone, address, city, state, image }) => {
+const modifyUser = async ({ id, name, username, password, status, roles, email, country, phone, address, city, cp, state, image }) => {
     let user = await UsersModel.findById(id);
     if (!user) throw new Error(`The user with an id ${id} was not found in the database`);
 
@@ -138,6 +135,7 @@ const modifyUser = async ({ id, name, username, password, status, roles, email, 
     if (phone && phone.length) parameters.phone = phone;
     if (address && address.length) parameters.address = address;
     if (city && city.length) parameters.city = city;
+    if (cp && cp.length) parameters.cp = cp;
     if (country && country.length) parameters.country = country;
     if (state && state.length) parameters.state = state;
     if (roles && roles.length) parameters.roles = roles;

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProducts,
@@ -9,14 +8,11 @@ import {
   getGenders,
 } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
-// import Filters from "../Filters/Filters";
 import Pagination from "react-bootstrap/Pagination";
-// import { Link } from "react-router-dom";
 import FilterContainer from "../Filters/FilterContainer";
 
-
 import "../../styles/filterContainer.css";
-import '../../styles/paginado.css'
+import "../../styles/paginado.css";
 
 const Paginated = () => {
   const dispatch = useDispatch();
@@ -26,12 +22,12 @@ const Paginated = () => {
 
   useEffect(() => {
     dispatch(getAllProducts(filters, orders, search));
-    // dispatch(getCategories());
-    // dispatch(getBrands());
-    // dispatch(getRatings());
-    // dispatch(getGenders());
+    dispatch(getCategories());
+    dispatch(getBrands());
+    dispatch(getRatings());
+    dispatch(getGenders());
   }, [dispatch, filters, orders, search]);
-  // console.log(search);
+
   let pages = []; // el número de páginas de mi componente
 
   //logica de recorrido del páginado
@@ -86,7 +82,6 @@ const Paginated = () => {
         {products.length >= 1 ? (
           pages.length < 8 ? (
             <Pagination className="d-flex justify-content-center paginadoCustom">
-              
               {actualPage !== 1 ? (
                 <Pagination.Prev onClick={() => currentPage(actualPage - 1)} />
               ) : (
@@ -170,13 +165,6 @@ const Paginated = () => {
           <></>
         )}
       </div>
-      {/* <div className=" d-flex w-100 justify-content-end pe-3">
-        <Link to={"/create"}>
-          <button className="d- flex p-2 border border-none rounded border-primary">
-            Add Product (Demo)
-          </button>
-        </Link>
-      </div> */}
       {productsSliced.length > 0 ? (
         <div>
           <div className="d-flex flex-column">

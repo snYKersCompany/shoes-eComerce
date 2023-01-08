@@ -43,8 +43,7 @@ const OrderDetails = ({ setOrderDetails, id }) => {
           Back
         </Button>
         <h3 className="text-white bg-dark">
-          {/* orderDetails.finalAmount */}
-          Final Amount: ${orderDetails.finalAmout}  
+          Final Amount: ${orderDetails.finalAmount}
         </h3>
       </div>
     </div>
@@ -52,46 +51,3 @@ const OrderDetails = ({ setOrderDetails, id }) => {
 };
 
 export default OrderDetails;
-
-//state de la orden
-// let order = {
-//   finalAmount: 458,
-//   products: [
-//     {
-//       id: "63972933f60a0fb9ec9dfe44",
-//       name: "Air Jordan",
-//       brand: "nike",
-//       description: "text",
-//       card_picture:
-//         "https://image.goat.com/750/attachments/product_template_pictures/images/020/806/444/original/507844_00.png.png",
-//       size: "4.5",
-//       price: 53,
-//       count: 5,
-//       totalPrice: 265,
-//     },
-//     {
-//       id: "63972933f60a0fb9ec9dfe46",
-//       name: "Air Jordan",
-//       brand: "nike",
-//       description: "text",
-//       card_picture:
-//         "https://image.goat.com/750/attachments/product_template_pictures/images/008/870/353/original/235806_00.png.png",
-//       size: "11.5",
-//       price: 73,
-//       count: 2,
-//       totalPrice: 146,
-//     },
-//     {
-//       id: "63972933f60a0fb9ec9dfe47",
-//       name: "Air Jordan",
-//       brand: "nike",
-//       description: "text",
-//       card_picture:
-//         "https://image.goat.com/750/attachments/product_template_pictures/images/010/223/048/original/13607_00.png.png",
-//       size: "11",
-//       price: 73,
-//       count: 1,
-//       totalPrice: 73,
-//     },
-//   ],
-// };

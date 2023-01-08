@@ -20,7 +20,7 @@ import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
 import RestorePassword from "./components/Auth/RestorePassword";
 import NewPassword from "./components/Auth/NewPassowrd";
-
+import FormUserUpdate from './components/Checkout/UpdateUser';
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -63,6 +63,7 @@ function App() {
           />
           <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
+          <Route path='/update' element={<FormUserUpdate />} />
         </Routes>
       </AuthProvider>
     </div>

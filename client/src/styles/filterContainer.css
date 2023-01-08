@@ -5,11 +5,10 @@
 } */
 
 .filterMargin {
-    margin-left: 102rem !important;
-    padding-top: 5px;
-    position: absolute;
-  
-  }
+  margin-left: 102rem !important;
+  padding-top: 5px;
+  position: absolute;
+}
 .btnCard1 {
   background: linear-gradient(85.99deg, #fc964c 7.66%, #cb33a0 99.12%);
   border-radius: 7px;
@@ -21,4 +20,5 @@
   animation-duration: 8000ms;
   /* arreglar animation */
   color: white !important;
+  font-size: 1.2rem;
 }
