@@ -18,7 +18,6 @@ import "../../styles/details.css";
 import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 
-
 import { getReviewProduct } from "../../redux/features/reviews/reviewsActions";
 
 const Details = () => {
@@ -213,7 +212,7 @@ const Details = () => {
               ))}
           </select>
         </section>
-        
+
         {count !== false ? (
           <section className="d-flex mb-2 flex-row justify-content-center align-items-center">
             <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
@@ -224,9 +223,13 @@ const Details = () => {
         ) : (
           <></>
         )}
-      </div>      
-      <Reviews productDetail={productDetail}/>
-      <Button className="d-flex mx-1" onClick={ () => navigate('/') }>Return Home</Button>
+      </div>
+      <Reviews id={id} />
+
+      <Reviews productDetail={productDetail} />
+      <Button className="d-flex mx-1" onClick={() => navigate("/")}>
+        Return Home
+      </Button>
     </>
   );
 };
