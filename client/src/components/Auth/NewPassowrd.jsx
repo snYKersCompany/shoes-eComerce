@@ -23,9 +23,9 @@ const NewPassword = () => {
       setError("");
       setSuccess("Password changed successfully");
       navigate("/");
-      dispatch(
-        putUserInformation(user.uid, { password: newPassword.password })
-      );
+      //   dispatch(
+      //     putUserInformation(user.uid, { password: newPassword.password })
+      //   );
     } catch (error) {
       console.log(error);
       setError(error.message);
