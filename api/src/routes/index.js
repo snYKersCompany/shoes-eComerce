@@ -7,6 +7,9 @@ const authRoutes = require('./Auth.Routes');
 const reviewMiddleware = require('./ReviewRoute')
 const checkoutRoute = require('./CheckoutRoute')
 const paypalMiddleware = require('./PaypalRoute')
+const SuccesMailRoute = require('./SuccesMailRoute')
+const UserDeletedMail = require('./UserDeletedMail')
+const UserSuspendedMail = require('./UserSuspendedMail')
 
 const router = Router();
 
@@ -18,5 +21,7 @@ router.use('/auth', authRoutes);
 router.use('/reviews', reviewMiddleware)
 router.use('/checkouts', checkoutRoute)
 router.use('/paypal', paypalMiddleware)
-
+router.use('/success-order', SuccesMailRoute)
+router.use('/user-deleted', UserDeletedMail)
+router.use('/user-suspended', UserSuspendedMail)
 module.exports = router;
