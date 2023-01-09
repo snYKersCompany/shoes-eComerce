@@ -60,12 +60,20 @@
   font-family: Bebas Neue, cursive;
 }
 
-.registerLoginRedirection {
+.registerLoginRedirectionHome {
   font-family: Bebas Neue, cursive;
   display: flex;
   color: rgb(198754);
-  margin-left: 30px;
-  font-size: 1em;
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: rgb(25, 135, 84);
+}
+
+.registerLoginRedirectionLogin {
+  font-family: Bebas Neue, cursive;
+  display: flex;
+  color: rgb(198754);
+  font-size: 1.2em;
   color: rgb(25, 135, 84);
 }
 

@@ -136,6 +136,9 @@ const Register = () => {
     <>
       <div className="registerContainer">
         <div className="registerWelcomeContainer">
+          <Link to="/" className="registerLoginRedirectionHome">
+            Home
+          </Link>
           <h3 className="registerWelcomeMSJ">Welcome to snYKers</h3>
           <h5 className="registerWelcomeMSJRegister">Register your Account</h5>
         </div>
@@ -192,7 +195,7 @@ const Register = () => {
         </Form>
         <div className="registerLoginContainer">
           <h3 className="registerLoginText">Already have an account?</h3>
-          <Link to="/login" className="registerLoginRedirection">
+          <Link to="/login" className="registerLoginRedirectionLogin">
             Login
           </Link>
         </div>

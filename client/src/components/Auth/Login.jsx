@@ -84,6 +84,9 @@ const Login = () => {
     <>
       <div className="loginContainer">
         <div className="loginWelcomeContainer">
+          <Link to="/" className="loginActionBTNHome">
+            Home
+          </Link>
           <h3 className="loginWelcomeMSJ">Welcome back to snYKers</h3>
           <h5 className="loginWelcomeMSJLogin">LogIn your Account</h5>
         </div>
