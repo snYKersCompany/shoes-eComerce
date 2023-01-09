@@ -134,81 +134,75 @@ const Register = () => {
 
   return (
     <>
-      <CardGroup>
-        <Card className="text-center text-white" style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Register</Card.Title>
+      <div className="registerContainer">
+        <div className="registerWelcomeMSJContainer">
+          <h3 className="registerWelcomeMSJ">Welcome to snYKers</h3>
+          <h5 className="registerWelcomeMSJRegister">Register your Account</h5>
+        </div>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <div className="registerForm">
             {error && <AlertMSJ message={error} />}
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Form.Group controlId="formBasicUsername" className="mb-4">
-                <Form.Label>Username</Form.Label>
+            <Form.Group controlId="formBasicUsername" className="mb-4">
+              <Form.Control
+                size="40"
+                className="ph-center"
+                onChange={(e) => handleChange(e)}
+                name="username"
+                type="username"
+                placeholder="Username"
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail" className="mb-4">
+              <Form.Control
+                className="ph-center"
+                onChange={(e) => handleChange(e)}
+                name="email"
+                type="email"
+                placeholder="Email Address"
+                required
+              />
+            </Form.Group>
+            <Form.Group
+              onChange={onChange}
+              controlId="formBasicPassword"
+              className="mb-4"
+            >
+              <div>
                 <Form.Control
                   size="40"
-                  maxLength="256"
                   className="ph-center"
                   onChange={(e) => handleChange(e)}
-                  name="username"
-                  type="username"
-                  placeholder="Username"
+                  name="password"
+                  type={shown ? "text" : "password"}
+                  placeholder="Password"
                   required
                 />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  className="ph-center"
-                  onChange={(e) => handleChange(e)}
-                  name="email"
-                  type="email"
-                  placeholder="Enter email"
-                  required
-                />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-
-              <Form.Group
-                onChange={onChange}
-                controlId="formBasicPassword"
-                className="mb-4"
-              >
-                <Form.Label>Password</Form.Label>
                 <div className="d-flex justify-content-center">
-                  <Form.Control
-                    size="40"
-                    maxLength="256"
-                    className="ph-center"
-                    onChange={(e) => handleChange(e)}
-                    name="password"
-                    type={shown ? "text" : "password"}
-                    placeholder="Password"
-                    required
-                  />
-                  <Button className="d-flex" onClick={switchShown}>
+                  <Button variant="dark" onClick={switchShown}>
                     {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
                   </Button>
                 </div>
-              </Form.Group>
-
-              <Form.Group controlId="formBasicCheckbox"></Form.Group>
-              {error ? null : (
-                <Button variant="primary" type="submit">
-                  Register
-                </Button>
-              )}
-            </Form>
-            <Link to="/login">
-              <Button variant="primary" className="mt-4">
-                Already have an account? Login here
+              </div>
+            </Form.Group>
+            {error ? null : (
+              <Button
+                variant="success"
+                type="submit"
+                className="registerBTNSubmit"
+              >
+                Register
               </Button>
-            </Link>
-          </Card.Body>
-          <Card.Footer className="text-muted">
-            <Link to="/">Go Home</Link>
-          </Card.Footer>
-        </Card>
-      </CardGroup>
+            )}
+          </div>
+        </Form>
+        <div className="registerLogin">
+          <h3 className="registerLoginText">Already have an account?</h3>
+          <Link to="/login" className="registerLoginRedirection">
+            Login
+          </Link>
+        </div>
+      </div>
     </>
   );
 };
