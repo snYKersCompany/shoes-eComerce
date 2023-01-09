@@ -8,7 +8,8 @@ import Home from "./components/Home/Home";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Details from "./components/Details/Details";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import UserProtectedRoute from "./components/ProtectedRoute/UserProtectedRoute";
+import EmailVerifiedProtectedRoute from "./components/ProtectedRoute/EmailVerifiedProtectedRoute";
 import CheckoutCancel from "./components/Checkout/CheckoutCancel";
 import CheckoutSuccess from "./components/Checkout/CheckoutSuccess";
 import Cart from "./components/Cart/Cart";
@@ -19,8 +20,8 @@ import Main from "./components/Home/Main";
 import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
 import RestorePassword from "./components/Auth/RestorePassword";
-import NewPassword from "./components/Auth/NewPassowrd";
 import FormUserUpdate from './components/Checkout/UpdateUser';
+import EmailVerification from "./components/Auth/EmailVerification";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -44,21 +45,23 @@ function App() {
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
           <Route path="/restore-password" element={<RestorePassword />} />
-          <Route path="/new-password" element={<NewPassword />} />
+          <Route path="/verify-email" element={<EmailVerification />} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
           <Route path="/checkout/:id" element={
-            <Elements stripe={stripePromise}>
-              <Checkout />
-            </Elements>} />
-          <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+            <EmailVerifiedProtectedRoute>
+              <Elements stripe={stripePromise}>
+                <Checkout />
+              </Elements>
+            </EmailVerifiedProtectedRoute>} />
+          <Route path="/cart" element={<UserProtectedRoute><Cart /></UserProtectedRoute>} />
           <Route
             path="/account/:section"
             element={
-              <ProtectedRoute>
+              <EmailVerifiedProtectedRoute>
                 <Dashboard />
-              </ProtectedRoute>
+              </EmailVerifiedProtectedRoute>
             }
           />
           <Route path="/home/:id" element={<Details />} />

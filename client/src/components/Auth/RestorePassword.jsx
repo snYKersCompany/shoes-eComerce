@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import AlertMSJ from "./AlertMSJ";
 import SuccessMSJ from "./SuccessMSJ";
-import NavBar from "../NavBar2.0/NavBar2.0";
+//BS
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 
 const RestorePassowrd = () => {
   const { resetPassword } = useAuth();
@@ -30,34 +34,50 @@ const RestorePassowrd = () => {
   };
 
   return (
-    <div>
-      <NavBar />
-      <section className="login">
-        <div className="loginContainer">
-          <h1 className="text-white">Restore password</h1>
-          {succes && <SuccessMSJ message={succes} />}
-          {error && <AlertMSJ message={error} />}
-          <form onSubmit={(e) => handleSubmit(e)}>
-            <label>Email</label>
-            <input
-              className="ph-center d-flex "
-              onChange={(e) => handleChange(e)}
-              name="email"
-              type="email"
-              placeholder="Enter email"
-              autoFocus
-              required
-            />
-            <div className="btnContainer">
-              <button onClick={(e) => handleSubmit(e)}>Restore password</button>
-            </div>
-          </form>
-          <Link to="/">
-            <button>Back</button>
-          </Link>
-        </div>
-      </section>
-    </div>
+    <>
+      <CardGroup>
+        <Card className="text-center text-white" style={{ width: "18rem" }}>
+          <Card.Body>
+            {succes && <SuccessMSJ message={succes} />}
+            {error && <AlertMSJ message={error} />}
+            <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Restore password</Form.Label>
+                <div className="d-flex justify-content-center">
+                  <Form.Control
+                    className="ph-center d-flex "
+                    onChange={(e) => handleChange(e)}
+                    name="email"
+                    type="email"
+                    placeholder="Enter email"
+                  />
+                  <span className="d-flex" style={{ width: "43px" }}></span>
+                </div>
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+              <Form.Group>
+                <Button variant="primary" type="submit">
+                  Send Restore Password Email
+                </Button>
+              </Form.Group>
+              <br />
+              <Form.Group>
+                <Link to="/login">
+                  <Button variant="primary" type="submit">
+                    LogIn with New Password
+                  </Button>
+                </Link>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+          <Card.Footer className="text-muted">
+            <Link to="/">Go Home</Link>
+          </Card.Footer>
+        </Card>
+      </CardGroup>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -14,7 +14,8 @@ import "../../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { logIn, logInGoogle } = useAuth();
+  const { logIn, logInGoogle, user } = useAuth();
+  console.log(user);
 
   const [shown, setShown] = useState(false);
   const [password, setPassword] = useState("");
@@ -22,8 +23,10 @@ const Login = () => {
   const switchShown = () => setShown(!shown);
   const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
+  useEffect(() => {}, [user]);
+
   /////-----STATES-----/////
-  const [user, setUser] = useState({
+  const [userInput, setUserInput] = useState({
     email: "",
     password: "",
   });
@@ -32,7 +35,7 @@ const Login = () => {
 
   /////-----HANDLES-----/////
   const handleChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value });
+    setUserInput({ ...userInput, [name]: value });
   };
 
   //Funcion con try cath async
@@ -40,7 +43,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      await logIn(user.email, user.password);
+      await logIn(userInput.email, userInput.password);
       navigate("/");
     } catch (error) {
       console.log("catch");

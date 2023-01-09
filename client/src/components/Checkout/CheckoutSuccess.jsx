@@ -17,14 +17,11 @@ import "../../styles/checkoutSuccess.css";
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
   const { email } = useSelector((state) => state.users.userDashboard);
-  // console.log(user.email)
   localStorage.removeItem("carrito");
-  console.log(window.location.search);
   useEffect(() => {
     //Buscar otro metodo que sirva para todos los metodos de pago
     const query = window.location.search;
-    const payment = query.slice(9, 15); // 'paypal'
-    // '?payment=paypal&_id=JdKqrX3YnXR8p1SrZ9nfhy3xqcF3&token=72N35155N6843844E'.slice(9,15)
+    const payment = query.slice(9, 15);
     if (email) {
       if (payment === "paypal") executePayment(query);
       if (payment === "stripe") {

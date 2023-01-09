@@ -32,8 +32,7 @@ const NavBar2 = () => {
   /////-----HANDLES-----/////
   const handleLogOut = async () => {
     await logOut();
-    alert("You have been loged out");
-    navigate("/home");
+    navigate("/");
   };
 
   ///TOOLTIP///

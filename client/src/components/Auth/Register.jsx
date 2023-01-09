@@ -92,12 +92,15 @@ const Register = () => {
     setError("");
     try {
       const userUID = await signUp(userIN.email, userIN.password);
-      navigate("/");
-      alert("Your register went succesfully :D");
+      console.log(userUID.user.emailVerified);
+      if (userUID.user.emailVerified === false) {
+        navigate("/verify-email");
+      } else {
+        navigate("/");
+      }
       dispatch(
         putUserInformation(userUID.user.uid, {
           username: userIN.username,
-          password: userIN.password,
         })
       );
       setUser({ username: "", email: "", password: "" });
