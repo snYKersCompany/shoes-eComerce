@@ -16,12 +16,12 @@ const listUsers = async ({ search, orderBy }) => {
     }
 
     let sort = {}
-    if (orderBy) sort = orderBy    
-    const users = await UsersModel.find(parameters).sort(sort);    
+    if (orderBy) sort = orderBy
+    const users = await UsersModel.find(parameters).sort(sort);
     return users;
 }
 
-const addUser = async (uid, email, username, password, name, phone, address, city, cp, state, country, image, roles) => {
+const addUser = async (uid, email, username, name, phone, address, city, cp, state, country, image, roles) => {
     const result = await UsersModel.findById({ _id: uid });
     if (result) {
         return result;
@@ -30,7 +30,7 @@ const addUser = async (uid, email, username, password, name, phone, address, cit
         _id: uid,
         email: email,
         username: username,
-        password: password,
+        // password: await UsersModel.encryptPassword(password),
         name: name,
         phone: phone,
         address: address,
@@ -65,7 +65,7 @@ const findUser = async (_id) => {
 
 const getUserDashboard = async (id) => {
     if (!id) throw new Error(`It needs an id property`);
-    
+
     let user = await UsersModel.findById(id);
 
     user = await UsersModel.aggregate([
@@ -113,11 +113,11 @@ const deleteUser = async (id) => {
         return `The user with an id ${id} was not found in the database`;
     }
     const deleteUser = await UsersModel.deleteOne({ _id: id });
-    
+
     return deleteUser;
 }
 
-const modifyUser = async ({ id, name, username, password, status, roles, email, country, phone, address, city, cp, state, image }) => {
+const modifyUser = async ({ id, name, username, status, roles, email, country, phone, address, city, cp, state, image }) => {
     let user = await UsersModel.findById(id);
     if (!user) throw new Error(`The user with an id ${id} was not found in the database`);
 
@@ -129,7 +129,7 @@ const modifyUser = async ({ id, name, username, password, status, roles, email, 
     let parameters = {}
     if (name && name.length) parameters.name = name;
     if (username && username.length) parameters.username = username;
-    if (password && password.length) parameters.password = password = await UsersModel.encryptPassword(password);
+    // if (password && password.length) parameters.password = password = await UsersModel.encryptPassword(password);
     if (email && email.length) parameters.email = email;
     if (typeof status === 'boolean') parameters.status = status;
     if (phone && phone.length) parameters.phone = phone;
@@ -180,7 +180,7 @@ const postUsers = async (array) => {
             name: e.name,
             username: e.username,
             email: e.email,
-            password: e.password,
+            // password: e.password,
             phone: e.phone,
             address: e.address,
             city: e.city,
