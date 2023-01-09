@@ -21,7 +21,7 @@ const template = `<!doctype html><html ⚡4email data-css-strict><head><meta cha
             from: 'Snyckers henrypg.n2@gmail.com', // sender address
             to: email, // list of receivers
             subject: "Your purchase was successful", // Subject line
-            html: template,
+            html: '<p>Hello {{name}}, {{email}}</p>',
         });
         res.status(200).send(info)
     } catch (error) {
