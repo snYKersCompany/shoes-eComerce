@@ -73,7 +73,7 @@ const NavBar2 = () => {
                 </Link>
 
                 <Link to={"/home"} className="noneDecoration">
-                  <NavItem className="linkNav">All</NavItem>
+                  <NavItem className="linkNav">Products</NavItem>
                 </Link>
 
                 <Link to={"/basketball"} className="noneDecoration">
