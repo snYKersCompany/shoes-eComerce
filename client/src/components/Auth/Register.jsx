@@ -135,12 +135,12 @@ const Register = () => {
   return (
     <>
       <div className="registerContainer">
-        <div className="registerWelcomeMSJContainer">
+        <div className="registerWelcomeContainer">
           <h3 className="registerWelcomeMSJ">Welcome to snYKers</h3>
           <h5 className="registerWelcomeMSJRegister">Register your Account</h5>
         </div>
         <Form onSubmit={(e) => handleSubmit(e)}>
-          <div className="registerForm">
+          <div className="registerFormContainer">
             {error && <AlertMSJ message={error} />}
             <Form.Group controlId="formBasicUsername" className="mb-4">
               <Form.Control
@@ -168,35 +168,29 @@ const Register = () => {
               controlId="formBasicPassword"
               className="mb-4"
             >
-              <div>
-                <Form.Control
-                  size="40"
-                  className="ph-center"
-                  onChange={(e) => handleChange(e)}
-                  name="password"
-                  type={shown ? "text" : "password"}
-                  placeholder="Password"
-                  required
-                />
-                <div className="d-flex justify-content-center">
-                  <Button variant="dark" onClick={switchShown}>
-                    {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
-                  </Button>
-                </div>
+              <Form.Control
+                size="40"
+                className="ph-center"
+                onChange={(e) => handleChange(e)}
+                name="password"
+                type={shown ? "text" : "password"}
+                placeholder="Password"
+                required
+              />
+              <div className="d-flex justify-content-center">
+                <Button variant="dark" onClick={switchShown}>
+                  {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
+                </Button>
               </div>
             </Form.Group>
             {error ? null : (
-              <Button
-                variant="success"
-                type="submit"
-                className="registerBTNSubmit"
-              >
-                Register
+              <Button variant="success" type="submit">
+                <p className="registerBTNSubmit">Register</p>
               </Button>
             )}
           </div>
         </Form>
-        <div className="registerLogin">
+        <div className="registerLoginContainer">
           <h3 className="registerLoginText">Already have an account?</h3>
           <Link to="/login" className="registerLoginRedirection">
             Login
