@@ -181,8 +181,7 @@ const Create = () => {
     let control = { ...form.stock, [el]: Number(e.target.value) };
     Object.values(control).includes(0)
       ? setError({ ...error, stock: "All the sizes must have an stock most of 0" })
-      : setError({ ...error, stock: false });
-         
+      : setError({ ...error, stock: false });         
   };
 
   let handleRelease = (e) => {
@@ -211,15 +210,15 @@ const Create = () => {
     if (info.url) {
       setImage(info.url);
       setform({ ...form, [e.target.name]: info.url });
+      image.length > 1
+      ? setError({ ...error, img: false })
+      : setError({ ...error, img: "Upload an image" });
     }
   }  
 
-  let handleImgForm = () => {
-    setform({ ...form, img: image });
-    image.length > 1
-      ? setError({ ...error, img: false })
-      : setError({ ...error, img: "Upload an image" });
-  };
+  /* let handleImgForm = () => {
+    setform({ ...form, img: image });    
+  }; */
   console.log("Input: ", form);
 
   let submitForm = (e) => {
