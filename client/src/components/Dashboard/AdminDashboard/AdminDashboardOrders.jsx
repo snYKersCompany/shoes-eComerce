@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { postReview } from "../../../redux/features/reviews/reviewsActions";
+// import {getAllOrders} from "../../../redux/features/orders/ordersActions"
 import StarsReview from "../../StarsReview/StarsReview";
 import InputChangeRating from "../../StarsReview/InputChangeRating";
 import Button from "react-bootstrap/esm/Button";
@@ -9,8 +10,6 @@ import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import "../../../styles/review.css";
-import FilterContainer from "../../Filters/FilterContainer";
-import DashboardSearch from "../DashboardSearch";
 
 const UserOrders = () => {
   const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const UserOrders = () => {
 
   //conseguimos todas las ordenes del usuario
   const captureUserName = userDashboard.name;
-  const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
+  // const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
 
   //handlers to travel and set states
   const toPurchaseDetails = (e, prod) => {
@@ -85,21 +84,31 @@ const UserOrders = () => {
     );
   };
 
+  // console.log(orders)
+  
+
+  const functionColor = (state) =>{
+    switch (state) {
+      case "cancelled":
+          return "#FFA0A0"
+      case "cancelled":
+        return "#FFA0A0"
+      case "pending":
+        return "#FFDE69"
+      case "aprobed":
+        return "#B5FFB8"
+      default:
+        return "#ffffff"
+    }
+  }
+
+
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
     <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>date</th>
-          <th>status</th>
-          <th>ticket</th>
-          <th>price</th>
-        </tr>
-      </thead>
       <tbody>
-        {userOrders &&
-          userOrders.map((prd, inx) => (
+        {orders &&
+          orders.map((prd, inx) => (
             <tr key={inx}>
               <td>{prd._id}</td>
               <td>{prd.date}</td>

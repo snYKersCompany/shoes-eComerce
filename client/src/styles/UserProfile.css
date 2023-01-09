@@ -3,7 +3,7 @@
 }
 
 .AdminAccount-container {
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, auto);
@@ -149,7 +149,7 @@
     grid-template-rows: repeat(5, auto);
     grid-auto-rows: 1fr;
     grid-auto-flow: column;
-    width: 90vw;
+    width: 100%;
   }
 
   .AdminAccount-background {
@@ -224,7 +224,7 @@
 
 @media (min-width: 1920px) {
   .AdminAccount-container {
-    width: 91vw !important;
+    width: 100% !important;
   }
   .AdminAccount-name {
     margin-left: -11rem;

@@ -212,7 +212,7 @@ const Create = () => {
     const info = await response.json();
     if (info.url) {
       setImage(info.url);
-      setform({ ...form, [e.target.name]: info.url });
+      setform({ ...form, img: info.url });
     }
   };
 
@@ -223,6 +223,7 @@ const Create = () => {
       : setError({ ...error, img: "Upload an image" });
   };
   console.log("Input: ", form);
+  console.log("Error ", error);
 
   let submitForm = (e) => {
     e.preventDefault();

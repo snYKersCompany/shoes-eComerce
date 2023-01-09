@@ -2,7 +2,8 @@
   display: grid !important;
   grid-template-columns: 1fr;
   grid-template-rows: 95% 5%;
-  height: 90vh;
+  height: 90vh; /*Cambiar por posición normal y sticky*/
+
 }
 
 .userDashBoard-nav-section {
@@ -79,7 +80,7 @@
     display: grid !important;
     grid-template-columns: 15% 85%;
     grid-template-rows: 1fr;
-    height: 100vh;
+    height: 90vh; /*Cambiar por posición normal y sticky*/
   }
   .userDashBoard-nav-section {
     display: grid !important;
