@@ -74,7 +74,7 @@ function AdminDashboardProducts() {
             </div>
 
             <div className="productAdmin-price">
-              <p>${product.price}</p>
+              <p className="fw-bold">${product.price}</p>
             </div>
 
             <div className="productAdmin-btns">

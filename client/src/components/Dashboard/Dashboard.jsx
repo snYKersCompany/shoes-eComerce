@@ -21,10 +21,12 @@ const Dashboard = () => {
   }, [dispatch, user.uid]);
 
   return (
-    <div className="Dasboard-container">
+    <div className="Dashboard-container">
       {userDashboard ? (
         <>
-          <NavBar />
+          <div className="Dashboard-NavBar2">
+            <NavBar />
+          </div>
           {userDashboard.roles === "admin" ? (
             <AdminDashboard />
           ) : (
