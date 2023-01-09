@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AdminDashboardOrders from "./AdminDashboardOrders";
 import AdminDashboardProducts from "./AdminDashboardProducts";
@@ -11,7 +11,6 @@ import { TbFileSearch } from "react-icons/tb";
 import { GiConverseShoe } from "react-icons/gi";
 import { RiUserSearchLine, RiUserSettingsLine } from "react-icons/ri";
 import "../../../styles/AdminDashboard.css";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllOrders } from "../../../redux/features/orders/ordersActions";
 import { clearFilters } from "../../../redux/features/products/productsActions";

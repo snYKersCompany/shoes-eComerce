@@ -3,6 +3,8 @@
     grid-template-columns: 1fr ;
     grid-template-rows: 80px 1fr ;
     grid-auto-rows: 1fr;
+    height: 100%;
+    background-color: #333242;
 }
 
 .AdminDashboard-userProfilefilters {
@@ -21,53 +23,241 @@
 }
 
 .AdminDashboard-userProfileOrders{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-self: center;
-    padding: 4px 0;
+    display: grid;
     margin: 8px 0;
     border: none;
-    width: 98%;
-    border-radius: 10px;
-}
-
-.AdminDashboard-orderInfo{
-    text-align: start;
+    width: 95%;
+    border-radius: 25px;
+    color: white;
+    grid-template-columns: 40% 30% 15% 15%;
+    justify-items: center;
+    justify-self: center;
 }
 
 .AdminDashboard-userProfile{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    display: grid;
+    grid-column: 1/2;
+    
     margin-right: 4px;
-    width: fit-content;
     font-size: 0.8rem;    
 }
+
+.AdminDashboard-orderInfo{
+    display: grid;
+    grid-column: 2/3;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.AdminDashboard-orderPrice{
+    display: grid;
+    grid-column: 3/4;
+    text-align: center;
+    align-items: center;
+}
+
+.AdminDashboard-orderPrice p{
+    margin-bottom: 0;
+}
+
+.AdminDashboard-btnControllers{
+    display: grid;
+    grid-column: 4/5;
+    align-items: center;
+    justify-items: center;
+}
+
+.btnControllers-AdminDsh{
+    display: flex;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    color: white;
+    padding: 5px;
+    background: #694bff;
+}
+
 
 .AdminDashboard-orderInfo p{
     display: flex;
     margin-bottom: 2px;
     margin-left: 14px;
+    margin-bottom: 0;
 }
 
 .AdminDashboard-userProfile img {
     border: none;
     border-radius: 50%;
+    background-color: white;
+    width: 120px;
+    padding: 5px;
+    margin-top: 5px;
+    justify-self: center;
 }
 
 .AdminDashboard-userProfilefilters button {
     height: 40px;
     width: 60px;
-    margin: 15px;
+    
 }
 
-.btnControllers-AdminDsh{
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: rgb(255, 0, 140) !important;
+
+
+.AD-orderInfo-name{
+    color: #fb7849;
+    font-weight: bold ;
 }
+
+.AD-orderInfo-id{
+    color: #8674fa ;
+    display: none;
+}
+
+
+/*Card Order Details*/
+.ContainerOrderDetails{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    background-color: #323141;
+    height: 100%;
+
+}
+
+.CardContainerOrderDetails{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    color: white;
+    align-items: center;
+    justify-items: center;
+    background-color: #252733;
+    height: fit-content;
+    width: 90%;
+    justify-self: center;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 30px;
+}
+
+.ImageOrderDetails{
+    text-align: center;
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-items: center;
+    justify-content: center;
+}
+
+.InfoOrderDetails{
+    text-align: center;
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    color: #fb7849;
+}
+
+.QuantityOrderDetails{
+    justify-items: center;
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.imgCardOrderDetails{
+    width: 180px;
+    margin: 0;
+}
+
+.imgCardOrderDetails img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.IDCardOrderDetails{
+    margin-top: -30px;
+    color: #8674fa ;
+}
+
+.buttonOrderDetails{
+    margin: 20px 0 5px 40px ;
+    justify-self: start;
+}
+
+.text-btn-OrderDetails{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-left: -10px;
+}
+
+@media (min-width:768px) {
+    .AdminDashboard-userProfileOrders{
+        width: 600px;
+    }
+    .AD-orderInfo-id{
+        display: inline;
+    }
+}
+@media (min-width:1024px){
+    .ContainerOrderDetails{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .buttonOrderDetails{
+        display: grid;
+        grid-column: 1/3;
+    }
+}
+
+@media (min-width:1280px) {
+    .AdminDashboard-userProfileGrid{
+        display: grid;
+        grid-template-columns: repeat(2,1fr) ;
+        grid-template-rows: 80px 1fr ;
+        grid-auto-rows: 1fr;
+        height: 100%;
+        background-color: #333242;
+    }
+    
+    .AdminDashboard-userProfilefilters {
+        grid-column: 1/3;
+    }
+
+    .AdminDashboard-userProfileOrders{
+        width: 500px;
+        justify-self: center;
+    }
+}
+
+@media (min-width:1920px) {
+    .AdminDashboard-userProfileGrid{
+        display: grid;
+        grid-template-columns: repeat(3,1fr) ;
+        grid-template-rows: 80px 1fr ;
+        grid-auto-rows: 1fr;
+        height: 100%;
+        background-color: #333242;
+    }
+    
+    .AdminDashboard-userProfilefilters {
+        grid-column: 1/4;
+      }
+    .AdminDashboard-userProfileOrders{
+        width: 500px;
+        justify-self: center;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 

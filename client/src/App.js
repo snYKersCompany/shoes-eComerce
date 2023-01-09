@@ -19,6 +19,8 @@ import Main from "./components/Home/Main";
 import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
 import FormUserUpdate from './components/Checkout/UpdateUser';
+import DemoGrid from "./components/DemoGrid/DemoGrid"
+
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -57,6 +59,9 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route path="/demogrid" element={<DemoGrid/>}/>
+
           <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
           <Route path = '/update' element = {<FormUserUpdate />} />

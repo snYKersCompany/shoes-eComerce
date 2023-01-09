@@ -77,10 +77,6 @@ function AdminDashboardUsers() {
             <div className="cardUser-info">
               <p className="cardUser-username">{user.username}</p>
               <p className="cardUser-idUser">{user._id}</p>
-              <p className="cardUser-auxInfo">{user.email}</p>
-              <p className="cardUser-auxInfo">{user.phone}</p>
-              {/* <p className="cardUser-auxInfo">{user.address}</p> */}
-              <p className="cardUser-auxInfo">{user.city}</p>
               <p className="cardUser-countryuser">
                 {user.country}-{user.city}
               </p>
