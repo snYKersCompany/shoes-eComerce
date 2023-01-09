@@ -223,10 +223,8 @@ const Details = () => {
         ) : (
           <></>
         )}
-      </div>
-      <Reviews id={id} />
-
-      <Reviews productDetail={productDetail} />
+      </div>  
+      <Reviews productDetail={productDetail} id={id}/>
       <Button className="d-flex mx-1" onClick={() => navigate("/")}>
         Return Home
       </Button>
