@@ -6,14 +6,13 @@ import {
   getAllUsers,
   putUserStatus,
 } from "../../../redux/features/users/usersActions";
-import { putUserSuspended } from "../../../redux/features/nodemailer/nodeMailerActions"
+import { putUserSuspended } from "../../../redux/features/nodemailer/nodeMailerActions";
 import { FaTrash } from "react-icons/fa";
 import "../../../styles/AdminDashboardUsers.css";
 
 function AdminDashboardUsers() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
-
   const [warning, setWarning] = useState(false);
 
   const [orderUser, setOrderUser] = useState(""); // eslint-disable-line
@@ -31,8 +30,8 @@ function AdminDashboardUsers() {
 
   const handleFormCheck = ({ target }, _id, email) => {
     dispatch(putUserStatus(_id, { status: target.checked }));
-    if (!target.checked){
-      dispatch(putUserSuspended(email))
+    if (!target.checked) {
+      dispatch(putUserSuspended(email));
     }
   };
 
@@ -52,10 +51,8 @@ function AdminDashboardUsers() {
 
   const handleSendEmail = (user) => {
     setWarning(user._id);
-    setLocalEmail(user.email)
-
+    setLocalEmail(user.email);
   };
-
 
   return (
     <div className="AdminDshbUsers-grid">

@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema({
   _id: { type: String, require: true },
   name: { type: String, validate: [validateName, 'The field name cannot contain strange characters'] },
   username: { type: String, default: "" },
-  password: { type: String },
+  // password: { type: String },
   email: { type: String, require: true, validate: [validateEmail, 'The field email must set with a valid format'] },
   phone: { type: String, default: "" },
   address: { type: String, /*validate: [validateAddress, 'It must have more than 5 characters']*/ },
@@ -43,14 +43,14 @@ const userSchema = mongoose.Schema({
   versionKey: false
 });
 
-userSchema.statics.encryptPassword = async (password) => {  
-  const salt = await bcrypt.genSalt(10)
-  return await bcrypt.hash(password, salt);
-}
+// userSchema.statics.encryptPassword = async (password) => {  
+//   const salt = await bcrypt.genSalt(10)
+//   return await bcrypt.hash(password, salt);
+// }
 
-userSchema.statics.comparePassword = async (password, receivedPassword) => {
-  return await bcrypt.compare(password, receivedPassword);
-}
+// userSchema.statics.comparePassword = async (password, receivedPassword) => {
+//   return await bcrypt.compare(password, receivedPassword);
+// }
 
 const UsersModel = mongoose.model('users', userSchema);
 
