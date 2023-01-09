@@ -209,3 +209,10 @@
     margin-bottom: 1rem;
   }
 }
+
+@media (min-width: 768px) {
+  .Update-avatar-image {
+    width: 250px;
+    height: 250px;
+  }
+}
