@@ -1,16 +1,12 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
-import { useState } from "react";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ToggleButton from "react-bootstrap/ToggleButton";
-import "../../styles/create.css";
-import FormGroup from "react-bootstrap/esm/FormGroup";
-import Button from "react-bootstrap/esm/Button";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createProduct } from "../../redux/features/products/productsActions";
 import { Link } from "react-router-dom";
+import { createProduct } from "../../redux/features/products/productsActions";
+import Button from "react-bootstrap/esm/Button";
+import Form from "react-bootstrap/Form";
+import "../../styles/create.css";
 
-const Create = () => {  
+const Create = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState({
     name: " ",
@@ -176,12 +172,23 @@ const Create = () => {
   };
   //  =============================================
 
-  let handleStock = (e, el) => { 
-    setform({ ...form, stock: { ...form.stock, [el]: Number(e.target.value) }});
+  let handleStock = (e, el) => {
+    setform({
+      ...form,
+      stock: { ...form.stock, [el]: Number(e.target.value) },
+    });
     let control = { ...form.stock, [el]: Number(e.target.value) };
     Object.values(control).includes(0)
+<<<<<<< HEAD
       ? setError({ ...error, stock: "All the sizes must have an stock most of 0" })
       : setError({ ...error, stock: false });         
+=======
+      ? setError({
+          ...error,
+          stock: "All the sizes must have an stock most of 0",
+        })
+      : setError({ ...error, stock: false });
+>>>>>>> dev
   };
 
   let handleRelease = (e) => {
@@ -192,7 +199,7 @@ const Create = () => {
           release: "Invalid Date",
         });
     setform({ ...form, release: e.target.value });
-  };  
+  };
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET_PRODUCT;
   const [file, setFile] = useState(null);
@@ -203,8 +210,9 @@ const Create = () => {
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", UPLOAD_PRESET);
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-    { method: "POST", body: data }
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+      { method: "POST", body: data }
     );
     const info = await response.json();
     if (info.url) {
@@ -214,7 +222,7 @@ const Create = () => {
       ? setError({ ...error, img: false })
       : setError({ ...error, img: "Upload an image" });
     }
-  }  
+  };
 
   /* let handleImgForm = () => {
     setform({ ...form, img: image });    
@@ -238,11 +246,11 @@ const Create = () => {
       description: form.description,
     };
     console.log("Form: ", formToSend);
-    setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
+    setController({ ...controller, general: true }); //muestra un aviso para que no se agregue un producto más de dos veces
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
-    ? dispatch(createProduct(formToSend))
-    : console.log("Algo Falló");
+      ? dispatch(createProduct(formToSend))
+      : console.log("Algo Falló");
   };
 
   const user = { admin: true };
@@ -352,7 +360,7 @@ const Create = () => {
                   </Form.Select>
                   <label className="FormCreateError">{error.color}</label>
                 </Form.Group>
-                    
+
                 <Form.Group className="d-flex mb-3 mx-2 flex-column justify-content-start w-100">
                   <Form.Label className="d-flex">Gender</Form.Label>
                   <Form.Select
@@ -465,25 +473,32 @@ const Create = () => {
                   <></>
                 )}
                 {/* ============ Reducible ============ */}
-                
+
                 <Form.Group className="mt-3 d-flex flex-column">
-                    <Form.Control
-                    type = "file"
+                  <Form.Control
+                    type="file"
                     className="d-flex FormCreateInputUrl"
-                    onChange = { (e) => handleImage(e) }
-                    name = "img"
+                    onChange={(e) => handleImage(e)}
+                    name="img"
                     placeholder="Upload an image"
+                  />
+                  {file ? (
+                    <img
+                      alt="preview"
+                      height="60"
+                      width="60"
+                      src={URL.createObjectURL(file)}
                     />
-                    {file ? <img alt = "preview" height = "60" width = "60" src = {URL.createObjectURL(file)}/> : null}
-                    <Button
-                      className="d-flex mx-1"
-                      onClick={ handleImgForm }
-                    >Subir</Button>
-                  </Form.Group>
+                  ) : null}
+                  <Button className="d-flex mx-1" onClick={handleImgForm}>
+                    Subir
+                  </Button>
+                </Form.Group>
 
                 {/* ===================================== */}
                 <div className="d-flex mt-5">
-                  {Boolean(     //   ============ Reducible ============
+                  {Boolean(
+                    //   ============ Reducible ============
                     Object.values(form).filter((el) => el === " ").length >= 1
                   ) === false &&
                   Boolean(
@@ -493,7 +508,7 @@ const Create = () => {
                     <Button
                       className="d-flex formCreateButtonSubmit"
                       type="sumbit"
-                      disabled = {false}
+                      disabled={false}
                     >
                       Send
                     </Button>
@@ -501,11 +516,11 @@ const Create = () => {
                     <Button
                       className="d-flex formCreateButtonSubmit"
                       type="sumbit"
-                      disabled = {true}
+                      disabled={true}
                     >
                       Send
                     </Button> // =======================================
-                  )}    
+                  )}
                 </div>
               </Form.Group>
             </div>

@@ -1,0 +1,15 @@
+.comment {
+    color: red;
+
+}
+
+/* .comment-input {
+    padding: 2rem ;
+    width: 15rem;
+} */
+
+.comment input{
+    width: 50rem;
+    height: 15rem;
+    max-width: 25rem;
+}
