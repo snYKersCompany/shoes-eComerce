@@ -179,16 +179,11 @@ const Create = () => {
     });
     let control = { ...form.stock, [el]: Number(e.target.value) };
     Object.values(control).includes(0)
-<<<<<<< HEAD
-      ? setError({ ...error, stock: "All the sizes must have an stock most of 0" })
-      : setError({ ...error, stock: false });         
-=======
       ? setError({
           ...error,
           stock: "All the sizes must have an stock most of 0",
         })
       : setError({ ...error, stock: false });
->>>>>>> dev
   };
 
   let handleRelease = (e) => {
