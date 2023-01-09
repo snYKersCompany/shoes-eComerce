@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AdminDashboardOrders from "./AdminDashboardOrders";
 import AdminDashboardProducts from "./AdminDashboardProducts";
@@ -11,17 +11,26 @@ import { TbFileSearch } from "react-icons/tb";
 import { GiConverseShoe } from "react-icons/gi";
 import { RiUserSearchLine, RiUserSettingsLine } from "react-icons/ri";
 import "../../../styles/AdminDashboard.css";
+import { useDispatch } from "react-redux";
+import { getAllOrders } from "../../../redux/features/orders/ordersActions";
+import { clearFilters } from "../../../redux/features/products/productsActions";
 
 const AdminDashboard = () => {
   const [orderDetails, setOrderDetails] = useState(true);
   const { section } = useParams();
   const [control, setControl] = useState("");
-
+  const dispatch= useDispatch()
   if (section) {
     if (section !== control) {
       setControl(section);
     }
   }
+
+  useEffect (()=>{ 
+  dispatch(getAllOrders())
+  return () => dispatch(clearFilters())
+
+})
 
   // const { userDashboard } = useSelector((state) => state.users);
   /* <h3 className="d-flex justify-content-center text-light">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}! - your rol is: {userDashboard.roles}</h3> */
