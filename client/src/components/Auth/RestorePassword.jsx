@@ -1,28 +1,84 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import AlertMSJ from "./AlertMSJ";
+import SuccessMSJ from "./SuccessMSJ";
 //BS
-import Alert from "react-bootstrap/Alert";
-import isotipo from "../../utils/images/isotipo.svg";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import CardGroup from "react-bootstrap/CardGroup";
 
-const RestorePassword = ({ message }) => {
-  const [show, setShow] = useState(true);
+const RestorePassowrd = () => {
+  const { resetPassword } = useAuth();
+  const [error, setError] = useState("");
+  const [succes, setSuccess] = useState("");
+  const [forgotenUser, setForgotenUser] = useState({
+    email: "",
+  });
 
-  if (show) {
-    return (
-      <Alert variant="success" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Email Sended!</Alert.Heading>
-        <p>{message}</p>
-      </Alert>
-    );
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setError("");
+      await resetPassword(forgotenUser.email);
+      setSuccess(" Check your inbox email and follow the instructions");
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
+  };
+
+  const handleChange = ({ target: { name, value } }) => {
+    setForgotenUser({ ...forgotenUser, [name]: value });
+  };
+
   return (
-    <img
-      display="inline-block"
-      width="250px"
-      height="250px"
-      src={isotipo}
-      alt="snykers"
-    />
+    <>
+      <CardGroup>
+        <Card className="text-center text-white" style={{ width: "18rem" }}>
+          <Card.Body>
+            {succes && <SuccessMSJ message={succes} />}
+            {error && <AlertMSJ message={error} />}
+            <Form onSubmit={(e) => handleSubmit(e)}>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Restore password</Form.Label>
+                <div className="d-flex justify-content-center">
+                  <Form.Control
+                    className="ph-center d-flex "
+                    onChange={(e) => handleChange(e)}
+                    name="email"
+                    type="email"
+                    placeholder="Enter email"
+                  />
+                  <span className="d-flex" style={{ width: "43px" }}></span>
+                </div>
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+              <Form.Group>
+                <Button variant="primary" type="submit">
+                  Send Restore Password Email
+                </Button>
+              </Form.Group>
+              <br />
+              <Form.Group>
+                <Link to="/login">
+                  <Button variant="primary" type="submit">
+                    LogIn with New Password
+                  </Button>
+                </Link>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+          <Card.Footer className="text-muted">
+            <Link to="/">Go Home</Link>
+          </Card.Footer>
+        </Card>
+      </CardGroup>
+    </>
   );
 };
 
-export default RestorePassword;
+export default RestorePassowrd;

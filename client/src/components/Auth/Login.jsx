@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -9,13 +9,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
-import RestorePassword from "./RestorePassword";
 //styles
 import "../../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { logIn, logInGoogle, resetPassword } = useAuth();
+  const { logIn, logInGoogle, user } = useAuth();
+  console.log(user);
 
   const [shown, setShown] = useState(false);
   const [password, setPassword] = useState("");
@@ -23,18 +23,19 @@ const Login = () => {
   const switchShown = () => setShown(!shown);
   const onChange = ({ currentTarget }) => setPassword(currentTarget.value);
 
+  useEffect(() => {}, [user]);
+
   /////-----STATES-----/////
-  const [user, setUser] = useState({
+  const [userInput, setUserInput] = useState({
     email: "",
     password: "",
   });
 
   const [error, setError] = useState("");
-  const [forgotPassword, setForgotPassword] = useState("");
 
   /////-----HANDLES-----/////
   const handleChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value });
+    setUserInput({ ...userInput, [name]: value });
   };
 
   //Funcion con try cath async
@@ -42,15 +43,8 @@ const Login = () => {
     e.preventDefault();
     setError("");
     try {
-      await logIn(user.email, user.password);
-      navigate("/home");
-      // const products = JSON.parse(localStorage.getItem("carrito"));
-      // if (products.length > 0) {
-      //   navigate("/cart");
-      // }
-      // else {
-      //   navigate("/home");
-      // }
+      await logIn(userInput.email, userInput.password);
+      navigate("/");
     } catch (error) {
       console.log("catch");
       console.log(error.code);
@@ -73,21 +67,15 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await logInGoogle();
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const handleResetPassword = async () => {
-    if (!user.email) {
-      return setError("Please enter your email");
-    }
+  const handleResetPassword = () => {
     try {
-      await resetPassword(user.email);
-      setForgotPassword(
-        "We have sent you an email with a link to reset your password"
-      );
+      navigate("/restore-password");
     } catch (error) {
       setError(error.message);
     }
@@ -99,7 +87,6 @@ const Login = () => {
         <Card className="text-center text-white" style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>Login</Card.Title>
-            {forgotPassword && <RestorePassword message={forgotPassword} />}
             {error && <AlertMSJ message={error} />}
             <Form onSubmit={(e) => handleSubmit(e)}>
               <Form.Group controlId="formBasicEmail">
@@ -167,7 +154,7 @@ const Login = () => {
             </Link>
           </Card.Body>
           <Card.Footer className="text-muted">
-            <Link to="/home">Go Home</Link>
+            <Link to="/">Go Home</Link>
           </Card.Footer>
         </Card>
       </CardGroup>
