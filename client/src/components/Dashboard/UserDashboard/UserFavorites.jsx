@@ -33,7 +33,9 @@ const UserFavorites = () => {
             );
           })
         ) : (
-          <NoFavourites />
+          <div className="alertFavoritesCards">
+            <NoFavourites />
+          </div>
         )}
       {/* </div> */}
     </div>

@@ -7,7 +7,7 @@ import SuccessMSJ from "./SuccessMSJ";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 //styles
-import "../../styles/RestorePassowrd.css";
+import "../../styles/RestorePassword.css";
 
 const RestorePassowrd = () => {
   const { resetPassword } = useAuth();
