@@ -6,7 +6,7 @@ import { useAuth } from "../../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { createPayment } from "../../redux/features/orders/ordersActions";
-import '../../styles/PaymentMethod.css';
+import "../../styles/PaymentMethod.css";
 
 const PaymentMethod = () => {
   const { user } = useAuth();
@@ -58,31 +58,31 @@ const PaymentMethod = () => {
   };
 
   return (
-    <div className = "content">
-      <div className = "form">        
-      <Form className = "radio">
-        {["paypal", "stripe"].map((type) => (
-          <div key={`inline-${type}`}>
-            <Form.Check
-              inline
-              label={type}
-              name="group1"
-              type="radio"
-              id={`inline-${type}`}
-              onClick={() => setPaymentMethod(type)}
-            />
-          </div>
-        ))}
-      </Form>
-        </div>      
-      <div className = "formButton">
-      <Button
-        variant="secondary customBtn"
-        onClick={() => handleClick()}
-        disabled={!paymentMethod.length}        
-      >
-        Buy
-      </Button>
+    <div className="content">
+      <div className="form">
+        <Form className="radio">
+          {["paypal", "stripe"].map((type) => (
+            <div key={`inline-${type}`}>
+              <Form.Check
+                inline
+                label={type}
+                name="group1"
+                type="radio"
+                id={`inline-${type}`}
+                onClick={() => setPaymentMethod(type)}
+              />
+            </div>
+          ))}
+        </Form>
+      </div>
+      <div className="formButton">
+        <Button
+          variant="secondary customBtn"
+          onClick={() => handleClick()}
+          disabled={!paymentMethod.length}
+        >
+          Buy
+        </Button>
       </div>
     </div>
   );
