@@ -8,7 +8,6 @@ import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../redux/features/products/productsActions";
-import "../../styles/create.css";
 
 const Create = () => {
   const dispatch = useDispatch();
