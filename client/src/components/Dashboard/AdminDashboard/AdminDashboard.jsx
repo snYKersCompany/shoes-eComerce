@@ -33,6 +33,20 @@ const AdminDashboard = () => {
   }
   )
 
+
+  useEffect(()=>{
+    dispatch(getAllOrders())
+    return () =>{dispatch(clearFilters())}
+  }
+  )
+
+
+  useEffect(()=>{
+    dispatch(getAllOrders())
+    return () =>{dispatch(clearFilters())}
+  }
+  )
+
   // const { userDashboard } = useSelector((state) => state.users);
   /* <h3 className="d-flex justify-content-center text-light">Hi again {userDashboard.username ? userDashboard.username : userDashboard.email}! - your rol is: {userDashboard.roles}</h3> */
   return (

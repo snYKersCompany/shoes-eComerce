@@ -17,7 +17,7 @@
   grid-template-rows: repeat(7, auto);
 
   width: 365px;
-  height: 740px !important;
+  height: 770px !important;
   font-family: "Bebas Neue", cursive;
   background: linear-gradient(45deg, #042653, #081116, #042653 80%);
   border-radius: 25px !important;

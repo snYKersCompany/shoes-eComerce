@@ -81,7 +81,7 @@ function AdminDashboardAccount() {
       // email: /^[a-zA-Z0-9.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9.]+$/,
       phone: /^\d{7,14}$/,
       // address: /^[a-zA-Z0-9_-]{1,40}$/,
-      address: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+      address: /^[a-zA-ZÀ-ÿ\s0-9.,_-]{1,40}$/,  // minuscula, mayuscula, espacios, numeros, caracteres(.,-_)
       // other: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
       city: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
       country: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
