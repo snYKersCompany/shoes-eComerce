@@ -45,7 +45,12 @@ const getProducts = async ({rating, search, category, gender, priceMin, priceMax
             description:1,
             stock:1,
             reviews:1,
-            rating:{$avg:'$productReviews.rating'}
+            rating:1,
+            rating:{
+                $cond:{
+                    if:{
+                        $eq:[{$avg:'$productReviews.rating'},null]},
+                        then:0,else:{$avg:'$productReviews.rating'}}}
         }},
         
         {$sort:sort},
@@ -84,7 +89,8 @@ const getProductsById = async (_id)=>{
             stock:1,
             reviews:1,
             productReviews:1,
-            rating:{$avg:'$productReviews.rating'}
+            rating:1
+            // rating:{$avg:'$productReviews.rating'}
         }},
     ])
 
