@@ -9,7 +9,9 @@ const SuccessMSJ = ({ message }) => {
   if (show) {
     return (
       <Alert variant="success" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Everything went right!</Alert.Heading>
+        <Alert.Heading className="text-center">
+          Everything went right!
+        </Alert.Heading>
         <p>{message}</p>
       </Alert>
     );
