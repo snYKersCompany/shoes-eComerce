@@ -1,20 +1,8 @@
-.noFavs{
-    margin-left: 25rem;
-}
-
-.leyenda-head{
-    font-weight: bold;
-}
-
-.leyenda-body{
-    font-weight: bold;
-    font-style:italic;
-}
-
-
-.dislike {
+.fakeBodyNoFav{
+    color: white;
     display: flex;
-    position: absolute;
-    margin-left: 900px;
-    /* padding-right: 15px; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
+

@@ -40,7 +40,15 @@ const CardProduct = ({
     if (!check) dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));
     if(typeof checkHeart === "boolean") setCheck(!check);
   };
-
+  console.log({
+    _id,
+  name,
+  price,
+  card_picture,
+  brand,
+  rating,
+  checkHeart,
+  })
   return (
     <Card className="d-flex card ">
       <div className="d-flex justify-content-end me-4 mt-4" >

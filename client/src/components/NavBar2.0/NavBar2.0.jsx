@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 //JSX
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { GrHomeRounded } from "react-icons/gr";
 import { FaRegUser } from "react-icons/fa";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
@@ -15,8 +16,8 @@ import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
 import { useSelector } from "react-redux";
 //style
-import "../../styles/navbar.css";
 import Button from "react-bootstrap/esm/Button";
+import "../../styles/navbar.css";
 
 const NavBar2 = () => {
   const { userDashboard } = useSelector((state) => state.users);
@@ -54,20 +55,27 @@ const NavBar2 = () => {
       <div className="d-flex h-100 p-0 navBarContainerGeneral">
         <div className="d-flex  ContainerGeneralNav ">
           <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
+          {
+            window.location.pathname !== '/home' ? 
+            <a href="/home" className="link-to-home">
+            <GrHomeRounded className="d-flex mt-3 mx-4"/>
+            </a>
+            : null
+          }
             <Link to={"/"} className="NavImg">
               <label className="brandNav">snYKers</label>
-              {/* <img alt="SNYKERS" src={logoBlanco} /> */}
             </Link>
           </NavB.Brand>
-
-          <SearchBar />
+          <div className="SearchNavBar">
+            <SearchBar />
+          </div>
 
           <Nav
             className="justify-content-end align-items-center"
             activeKey="/home"
           >
             <div className="d-flex ">
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center linksAuxNav">
                 <Link to={"/"} className="noneDecoration">
                   <NavItem className="linkNav">Home</NavItem>
                 </Link>
@@ -85,7 +93,7 @@ const NavBar2 = () => {
                 </Link>
               </div>
 
-              <div className="d-flex align-items-center ms-2">
+              <div className="d-flex align-items-center ms-2 cartAndAccount">
                 <Dropdown as={NavItem}>
                   <Dropdown.Toggle
                     as={NavLink}

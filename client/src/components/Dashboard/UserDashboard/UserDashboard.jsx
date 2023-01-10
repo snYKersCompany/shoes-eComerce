@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
-import ProductsBought from "./ProductsBough";
+import ProductsBought from "./ProductsBought";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
@@ -12,99 +13,123 @@ import "../../../styles/userDashboard.css";
 import { useEffect } from "react";
 
 import { getAllOrders } from "../../../redux/features/orders/ordersActions";
+import { useParams } from "react-router-dom";
 
 const UserDashboard = () => {
-  const dispatch = useDispatch();
-  // console.log(UserDashboard)
+  
   const { userDashboard } = useSelector((state) => state.users);
-
-  // const { section } = useParams();
-
+  const { section } = useParams()
   const [control, setControl] = useState("");
+  
+  if (section) {
+    if (section !== control && control != "favorites") {
+      setControl(section);
+    }
+  }
 
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     if (userDashboard._id) {
       dispatch(getAllOrders({}, userDashboard._id));
     }
   }, [dispatch, userDashboard._id]);
 
-  // if (section.length) {
-  //  if (section !== control){
-  //   setControl(section)
-  // }
-  // };
-  // console.log(control.toString())
+
 
   // console.log('esto es control =====================================================>>>>>>', control)
 
   return (
     <>
-      <div className="userDashBoardContainer">
-        <div className="userDashBoard ">
-          <Tab.Container className=" tabContainer" defaultActiveKey={control}>
-            <Nav variant="pills" className="navSection">
-              <Nav.Item className="">
+      <div className="userDashBoard-container">
+          <Tab.Container defaultActiveKey={control}>
+            
+            <Nav variant="pills" className="userDashBoard-nav-section">
+              
+              <Nav.Item className="userDashBoard-profile">
                 <Nav.Link
                   eventKey="profile"
-                  className=""
+                  className="userDashBoard-nav-link ic-ctm2"
                   onClick={() => setControl("profile")}
                 >
-                  <CgUserList className="" /> Profile
+                  <div className="userDashBoard-nav-display">
+                    <CgUserList className="userDashBoard-nav-icon " /> 
+                    <span className="text-icon">profile</span>
+                  </div>
                 </Nav.Link>
               </Nav.Item>
 
-              <Nav.Item className="">
+
+              <Nav.Item className="userDashBoard-users">
                 <Nav.Link
                   eventKey="favorites"
-                  className=""
+                  className="userDashBoard-nav-link"              
+
                   onClick={() => setControl("favorites")}
                 >
-                  <CgHeart className="" /> Favorites
+                  <div className="userDashBoard-nav-display">
+                  <CgHeart className="userDashBoard-nav-icon" />
+                    <span className="text-icon">Favorites</span>
+                  </div>
                 </Nav.Link>
               </Nav.Item>
 
-              <Nav.Item className="">
+
+
+              <Nav.Item className="userDashBoard-orders">
                 <Nav.Link
                   eventKey="orders"
-                  className=""
+                  className="userDashBoard-nav-link"              
                   onClick={() => setControl("orders")}
                 >
-                  <CgList className="" /> Orders
+                  <div className="userDashBoard-nav-display">
+                  <CgList  className="userDashBoard-nav-icon" />
+                    <span className="text-icon">Orders</span>
+                  </div>
                 </Nav.Link>
               </Nav.Item>
 
-              <Nav.Item className="">
+
+
+              <Nav.Item className="userDashBoard-products">
                 <Nav.Link
                   eventKey="bought"
-                  className=""
+                  className="userDashBoard-nav-link"
                   onClick={() => setControl("bought")}
                 >
-                  <CgList className="" /> Products bought
+
+                  <div className="userDashBoard-nav-display">
+                  <CgList  className="userDashBoard-nav-icon" />
+                    <span className="text-icon">Products bought</span>
+                  </div>
+
                 </Nav.Link>
               </Nav.Item>
+
             </Nav>
 
-            <div className="section  add">
-              <Tab.Content>
+              <Tab.Content className="userDashBoard-tab-section">
                 <Tab.Pane eventKey="profile">
-                  {control === "profile" ? <UserProfile /> : <></>}
+                  <UserProfile/> 
                 </Tab.Pane>
 
-                <Tab.Pane eventKey="favorites" className="">
-                  {control === "favorites" ? <UserFavorites /> : <></>}
+                <Tab.Pane eventKey="favorites" >
+                  {control=== "favorites"?
+                  <UserFavorites /> 
+                  :
+                  <></>
+                  }
                 </Tab.Pane>
 
                 <Tab.Pane eventKey="orders">
-                  {control === "orders" ? <UserOrders /> : <></>}
+                  <UserOrders /> 
                 </Tab.Pane>
 
-                <Tab.Pane eventKey="bought" className="">
-                  {control === "bought" ? <ProductsBought /> : <></>}
-                </Tab.Pane>
-              </Tab.Content>
-            </div>
+                <Tab.Pane eventKey="bought" >
+                  <ProductsBought /> 
+                  </Tab.Pane>
+               </Tab.Content>
           </Tab.Container>
-        </div>
       </div>
     </>
   );

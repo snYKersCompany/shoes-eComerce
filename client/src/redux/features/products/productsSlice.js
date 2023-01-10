@@ -12,9 +12,9 @@ export const productsSlice = createSlice({
     category: {},
     brand: {},
     categories: ['lifestyle', 'basketball', 'skateboarding', 'running', 'other'],
-    brands: ['nike', 'nikeña', 'champion', 'converse', 'gucci', 'vans', 'adidas', 'henry', 'nike ', 'prueba'],
+    brands: ['nike', 'nikeña', 'champion', 'converse', 'gucci', 'vans', 'adidas', 'henry', 'nike ', 'prueba', "other"],
     ratings: [0, 1, 2, 3, 4, 5],
-    genders: ['women', 'men', 'Unisex', 'Men', 'Women'],
+    genders: ['women', 'men', 'unisex', 'Unisex', 'Men', 'Women'],
     search: "",
   },
   reducers: {
