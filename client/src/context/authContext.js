@@ -82,12 +82,10 @@ export const AuthProvider = ({ children }) => {
     const getUserData = (firebaseUser) => {
         const userFormated = formatUserData(firebaseUser)
         try {
-            dispatch(findOrCreateUser(userFormated))
+            return userFormated
         } catch (error) {
-            console.log(error)
             return null
         }
-        return userFormated
     }
 
     //FORAMTEO DE FIREBASEUSER
