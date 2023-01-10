@@ -19,14 +19,13 @@ const AdminDashboard = () => {
   const [orderDetails, setOrderDetails] = useState(true);
   const { section } = useParams();
   const [control, setControl] = useState("");
-
+  const dispatch= useDispatch()
   if (section) {
     if (section !== control) {
       setControl(section);
     }
   }
 
-  const dispatch = useDispatch()
 
   useEffect(()=>{
     dispatch(getAllOrders())
