@@ -29,6 +29,11 @@
   align-items: center;
 }
 
+.cartEmptyBackBTN {
+  font-family: Bebas Neue, cursive;
+  margin-bottom: 0;
+}
+
 @media (min-height: 720px) {
   .mainView {
     min-height: 95vh;
