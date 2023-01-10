@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import "../../styles/create.css";
@@ -8,9 +8,9 @@ import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../redux/features/products/productsActions";
-import { Link } from "react-router-dom";
+import "../../styles/create.css";
 
-const Create = () => {  
+const Create = () => {
   const dispatch = useDispatch();
   const { brands } = useSelector(state => state.products)
   const [error, setError] = useState({
@@ -24,7 +24,7 @@ const Create = () => {
     categories: "Select almost 1 category",
     stock: " ",
     release: " ",
-    img: " ",
+    img: "Upload an image",
   });
 
   const [form, setform] = useState({
@@ -191,13 +191,18 @@ const Create = () => {
   };
   //  =============================================
 
-  let handleStock = (e, el) => { 
-    setform({ ...form, stock: { ...form.stock, [el]: Number(e.target.value) }});
+  let handleStock = (e, el) => {
+    setform({
+      ...form,
+      stock: { ...form.stock, [el]: Number(e.target.value) },
+    });
     let control = { ...form.stock, [el]: Number(e.target.value) };
     Object.values(control).includes(0)
-      ? setError({ ...error, stock: "All the sizes must have an stock most of 0" })
+      ? setError({
+          ...error,
+          stock: "All the sizes must have an stock most of 0",
+        })
       : setError({ ...error, stock: false });
-         
   };
 
   let handleRelease = (e) => {
@@ -208,37 +213,30 @@ const Create = () => {
           release: "Invalid Date",
         });
     setform({ ...form, release: e.target.value });
-  };  
+  };
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME;
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESET_PRODUCT;
-  const [file, setFile] = useState(null);
-  const [image, setImage] = useState("");
+  const [file, setFile] = useState(null);  
 
   const handleImage = async (e) => {
     setFile(e.target.files[0]);
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", UPLOAD_PRESET);
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-    { method: "POST", body: data }
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+      { method: "POST", body: data }
     );
     const info = await response.json();
-    if (info.url) {
-      setImage(info.url);
+    if (info.url) {      
       setform({ ...form, [e.target.name]: info.url });
-    }
-  }  
-
-  let handleImgForm = () => {
-    setform({ ...form, img: image });
-    image.length > 1
-      ? setError({ ...error, img: false })
-      : setError({ ...error, img: "Upload an image" });
+      setError({ ...error, img: false });
+    }    
   };
-  console.log("Input: ", form);
+  console.log("Input: ", form, "Error: ", error);
 
   let submitForm = (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     let formToSend = {
       name: form.name,
       brand: form.brand,
@@ -254,13 +252,13 @@ const Create = () => {
       description: form.description,
     };
     console.log("Form: ", formToSend);
-    setController({...controller, general: true}) //muestra un aviso para que no se agregue un producto más de dos veces
+    setController({ ...controller, general: true }); //muestra un aviso para que no se agregue un producto más de dos veces
     !Object.values(form).includes("") &&
     Object.values(error).filter((el) => el !== false).length < 1
-    ? dispatch(createProduct(formToSend))
-    : console.log("Algo Falló");
+      ? dispatch(createProduct(formToSend))
+      : console.log("Algo Falló");
   };
-
+  
   const user = { admin: true };
   const sizes = [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5];
   const categories = [
@@ -388,7 +386,7 @@ const Create = () => {
                   </Form.Select>
                   <label className="FormCreateError">{error.color}</label>
                 </Form.Group>
-                    
+
                 <Form.Group className="d-flex mb-3 mx-2 flex-column justify-content-start w-100">
                   <Form.Label className="d-flex">Gender</Form.Label>
                   <Form.Select
@@ -482,44 +480,29 @@ const Create = () => {
                 <label className="FormCreateError">{error.stock}</label>
               </div>
             </div>
+            {/* ============ Reducible ============ */}
             <div className=" containerFormCreateImgs align-items-center justify-content-center d-flex h-100 w-100 flex-column ">
               <Form.Group className="d-flex flex-column justify-content-center align-items-center w-100">
-                {controller.radio === true ? (
-                  form.img.length >= 1 ? (
-                    <img
-                      className="d-flex w-100 containerFormCreateImgs"
-                      src={form.img}
-                      alt="Img Upload"
-                    />
-                  ) : (
-                    <img
-                      src="https://static.thenounproject.com/png/559530-200.png"
-                      alt="add Img"
-                    />
-                  )
-                ) : (
-                  <></>
-                )}
+                {
+                  file ? <img alt = "preview" height = "120" width = "120" src = {URL.createObjectURL(file)} />
+                  : <img src="https://static.thenounproject.com/png/559530-200.png" alt="add Img" />
+                }
                 {/* ============ Reducible ============ */}
-                
+
                 <Form.Group className="mt-3 d-flex flex-column">
-                    <Form.Control
-                    type = "file"
+                  <Form.Control
+                    type="file"
                     className="d-flex FormCreateInputUrl"
-                    onChange = { (e) => handleImage(e) }
-                    name = "img"
+                    onChange={(e) => handleImage(e)}
+                    name="img"
                     placeholder="Upload an image"
-                    />
-                    {file ? <img alt = "preview" height = "60" width = "60" src = {URL.createObjectURL(file)}/> : null}
-                    <Button
-                      className="d-flex mx-1"
-                      onClick={ handleImgForm }
-                    >Subir</Button>
-                  </Form.Group>
+                  />                  
+                </Form.Group>
 
                 {/* ===================================== */}
                 <div className="d-flex mt-5">
-                  {Boolean(     //   ============ Reducible ============
+                  {Boolean(
+                    //   ============ Reducible ============
                     Object.values(form).filter((el) => el === " ").length >= 1
                   ) === false &&
                   Boolean(
@@ -527,20 +510,20 @@ const Create = () => {
                   ) === false ? (
                     <Button
                       className="d-flex formCreateButtonSubmit"
-                      type="sumbit"
-                      disabled = {false}
+                      type="submit"
+                      disabled={false}
                     >
                       Send
                     </Button>
                   ) : (
                     <Button
                       className="d-flex formCreateButtonSubmit"
-                      type="sumbit"
-                      disabled = {true}
+                      type="submit"
+                      disabled={true}
                     >
                       Send
                     </Button> // =======================================
-                  )}    
+                  )}
                 </div>
               </Form.Group>
             </div>

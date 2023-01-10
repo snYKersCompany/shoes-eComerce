@@ -13,10 +13,44 @@ const getProducts = async ({rating, search, category, gender, priceMin, priceMax
     if(priceMax) parameters.price = {...parameters.price, $lte:parseInt(priceMax)}
     if(search) parameters.name = {$regex:`(?i)${search}(?-i)`}
     
-    let sort = null
+    let sort = {rating:-1}
     if(orderBy) sort = JSON.parse(orderBy)
 
-    const products = await ProductsModel.find(parameters).sort(sort)
+    // const products = await ProductsModel.find(parameters).sort(sort)
+
+    const products = await ProductsModel.aggregate([
+        { $match: parameters },
+        {
+        $lookup:{
+            from: "reviews",
+            localField: "reviews",
+            foreignField: "_id",
+            as: "productReviews"
+            }
+        },
+        { $project: {
+            sales:1,
+            name:1,
+            brand:1,
+            category:1,
+            collection:1,
+            color:1,
+            gender:1,
+            card_picture:1,
+            detail_picture:1,
+            original_picture:1,
+            release_date:1,
+            price:1,
+            range:1,
+            description:1,
+            stock:1,
+            reviews:1,
+            rating:{$avg:'$productReviews.rating'}
+        }},
+        
+        {$sort:sort},
+    ])
+
     return products; 
 }
 
@@ -31,7 +65,27 @@ const getProductsById = async (_id)=>{
             foreignField: "_id",
             as: "productReviews"
             }
-        }
+        },
+        { $project: {
+            sales:1,
+            name:1,
+            brand:1,
+            category:1,
+            collection:1,
+            color:1,
+            gender:1,
+            card_picture:1,
+            detail_picture:1,
+            original_picture:1,
+            release_date:1,
+            price:1,
+            range:1,
+            description:1,
+            stock:1,
+            reviews:1,
+            productReviews:1,
+            rating:{$avg:'$productReviews.rating'}
+        }},
     ])
 
     return products;

@@ -1,3 +1,83 @@
 .ph-center {
   text-align: center;
 }
+
+.registerContainer {
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 1fr 1fr 40% 1fr;
+  height: 100vh;
+}
+
+.registerWelcomeContainer {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  justify-items: center;
+  align-self: center;
+}
+
+.registerFormContainer {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  justify-items: center;
+  align-items: center;
+}
+
+.registerLoginContainer {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 4/5;
+  justify-items: center;
+  align-self: center;
+}
+
+.registerWelcomeMSJ {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 3.5em;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+}
+
+.registerWelcomeMSJRegister {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 2em;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+}
+
+.registerLoginText {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 1.5em;
+  font-family: Bebas Neue, cursive;
+}
+
+.registerLoginRedirectionHome {
+  font-family: Bebas Neue, cursive;
+  display: flex;
+  color: rgb(198754);
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: rgb(25, 135, 84);
+}
+
+.registerLoginRedirectionLogin {
+  font-family: Bebas Neue, cursive;
+  display: flex;
+  color: rgb(198754);
+  font-size: 1.2em;
+  color: rgb(25, 135, 84);
+}
+
+.registerBTNSubmit {
+  font-family: Bebas Neue, cursive;
+  margin-bottom: 0px;
+}

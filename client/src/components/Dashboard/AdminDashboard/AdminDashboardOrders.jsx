@@ -1,21 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { postReview } from "../../../redux/features/reviews/reviewsActions";
-import StarsReview from "../../StarsReview/StarsReview";
-import InputChangeRating from "../../StarsReview/InputChangeRating";
-import Button from "react-bootstrap/esm/Button";
-import Form from "react-bootstrap/Form";
-import Table from "react-bootstrap/Table";
-import Modal from "react-bootstrap/Modal";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import "../../../styles/review.css";
-import FilterContainer from "../../Filters/FilterContainer";
-import DashboardSearch from "../DashboardSearch";
+import { RiSearchFill } from "react-icons/ri";
+import {IoMdArrowRoundBack} from "react-icons/io"
+
+import "../../../styles/AdminDashboardOrders.css";
 
 const UserOrders = () => {
-  const dispatch = useDispatch();
-
-  const { userDashboard, user } = useSelector((state) => state.users);
   const { orders } = useSelector((state) => state.orders);
 
   const [actualOrderProducts, setActualOrderProducts] = useState();
@@ -24,15 +14,7 @@ const UserOrders = () => {
   const [toOrderDetail, setToOrderDetail] = useState(false);
   const [toReview, setToReview] = useState(false);
 
-  //to handle inputs
-  const [reviewInput, setReviewInput] = useState("");
-  const [avgRating, setAvgRating] = useState(0);
-  //fill w single product id
-  const [idSingleProduct, setIdSingleProduct] = useState();
-
   //conseguimos todas las ordenes del usuario
-  const captureUserName = userDashboard.name;
-  const userOrders = orders.filter((e) => e.user.uid === userDashboard._id);
 
   //handlers to travel and set states
   const toPurchaseDetails = (e, prod) => {
@@ -41,149 +23,129 @@ const UserOrders = () => {
     setToOrderDetail(true);
   };
 
-  const toProductReview = (e, idOneProduct) => {
-    e.preventDefault();
-    setAvgRating(0);
-    setIdSingleProduct(idOneProduct);
-    setToReview(true);
-  };
-
-  const backToOrderDetails = (e) => {
-    e.preventDefault();
-    setToReview(false);
-  };
-
   const backToOrders = (e) => {
     e.preventDefault();
     setToOrderDetail(false);
   };
   //end of handlers to travel and set states
 
-  //rating handler
-  const handleRating = (input) => {
-    setAvgRating(input);
-  };
-  //end of rating handler
-
-  const handlerInputReview = (e) => {
-    setReviewInput({
-      ...reviewInput,
-      [e.target.inputReview]: e.target.value,
-    });
-  };
-
-  //ACTION DE POST REVIEW
-  const sendPostReview = (e) => {
-    e.preventDefault();
-    dispatch(
-      postReview({
-        _idProduct: idSingleProduct,
-        _idUser: user,
-        rating: avgRating,
-        description: Object.values(reviewInput).toString(),
-      })
-    );
+  const functionColor = (state) => {
+    switch (state) {
+      case "cancelled":
+        return "#F5234D";
+      case "pending":
+        return "yellow";
+      case "aprobed":
+        return "greenyellow";
+      default:
+        return "#ffffff";
+    }
   };
 
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>date</th>
-          <th>status</th>
-          <th>ticket</th>
-          <th>price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {userOrders &&
-          userOrders.map((prd, inx) => (
-            <tr key={inx}>
-              <td>{prd._id}</td>
-              <td>{prd.date}</td>
-              <td>{prd.state}</td>
-              <td>{prd.ticket ? prd.ticket : "nothing"}</td>
-              <td>{prd.finalAmount}</td>
-              <td>
-                <Button onClick={(e) => toPurchaseDetails(e, prd.products)}>
-                  detail
-                </Button>
-              </td>
-            </tr>
+    <div style={{ background: "rgb(36,36,36)" }}>
+      <div className="AdminDashboard-userProfileGrid">
+        <div className="AdminDashboard-userProfilefilters">
+          {/* <button className="d-flex align-items-center">
+                <span style={{"color": "white", "font-size": "1rem"}}>sin filtros</span>
+                <CiFilter/>
+              </button> */}
+        </div>
+
+        {orders &&
+          orders.map((order, i) => (
+            <div
+              key={i}
+              className="AdminDashboard-userProfileOrders"
+              style={{ backgroundColor: "#252733" }}
+            >
+              <div className="AdminDashboard-userProfile">
+                <img
+                  src={`${
+                    order?.user?.image
+                      ? order.user.image
+                      : "https://cdn-icons-png.flaticon.com/512/25/25634.png"
+                  }`}
+                  alt="order-user"
+                />
+                <label className="AD-orderInfo-id" key={order._id}>
+                  {order._id}
+                </label>
+              </div>
+
+              <div className="AdminDashboard-orderInfo">
+                <p key={i + "user"} className="AD-orderInfo-name">
+                  {" "}
+                  {order?.user?.username ? order.user.username : "prueba"}
+                </p>
+                <p key={order.date}>{order?.date.slice(0, 10)}</p>
+                <p
+                  className="fst-italic"
+                  style={{ color: functionColor(order.state) }}
+                  key={order.state}
+                >
+                  {order?.state}
+                </p>
+              </div>
+
+              <div className="AdminDashboard-orderPrice">
+                <p className="fw-bold" key={i + "amount"}>
+                  ${order.finalAmount || "$00"}
+                </p>
+              </div>
+
+              <div className="AdminDashboard-btnControllers">
+                <button
+                  className="btnControllers-AdminDsh"
+                  onClick={(e) => toPurchaseDetails(e, order.products)}
+                >
+                  {/* <BiSearchAlt2 /> */}
+                  <RiSearchFill />
+                </button>
+              </div>
+            </div>
           ))}
-      </tbody>
-    </Table>
-  ) : //aca estamos en los productos de cada orden
-  toReview === false ? (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>name</th>
-          <th>quantity</th>
-          <th>price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {actualOrderProducts &&
-          actualOrderProducts.map((prd, inx) => (
-            <tr key={inx}>
-              <td>{prd.name}</td>
-              <td>{prd.count}</td>
-              <td>{prd.price}</td>
-              <td>
-                <Button onClick={(e) => toProductReview(e, prd.id)}>
-                  make your review
-                </Button>
-              </td>
-            </tr>
-          ))}
-        <tr>
-          <td>
-            <Button onClick={(e) => backToOrders(e)}>Back</Button>
-          </td>
-        </tr>
-      </tbody>
-    </Table>
+      </div>
+    </div>
   ) : (
-    //aca estamos en la review de cada producto de cada orden de compra
-    <div
-      className="modal show"
-      style={{ display: "block", position: "initial" }}
-    >
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Make your review!</Modal.Title>
-        </Modal.Header>
-        {/* body pas cribi */}
-        <Modal.Body>
-          <>
-            <FloatingLabel controlId="floatingTextarea" className="mb-3">
-              {captureUserName}
-            </FloatingLabel>
-            <InputChangeRating rating={avgRating} handleRating={handleRating} />
-            <StarsReview stars={avgRating} />
-            <FloatingLabel controlId="floatingTextarea2" label="Comments">
-              <Form.Control
-                as="textarea"
-                placeholder="Leave a comment here"
-                style={{ height: "100px" }}
-                name="reviewInput"
-                onChange={(e) => handlerInputReview(e)}
-              />
-            </FloatingLabel>
-          </>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={(e) => backToOrderDetails(e)}>
-            back
-          </Button>
-          <Button variant="primary" onClick={(e) => sendPostReview(e)}>
-            send review
-          </Button>
-        </Modal.Footer>
-      </Modal.Dialog>
+    //aca estamos en los productos de cada orden
+
+    <div className="ContainerOrderDetails">
+      <div className="buttonOrderDetails">
+        <button className="btnCard1" onClick={(e) => backToOrders(e)}>
+          <span className="text-btn-OrderDetails">
+            <IoMdArrowRoundBack/> Back
+          </span>
+        </button>
+      </div>
+
+      {actualOrderProducts &&
+        actualOrderProducts.map((prd, inx) => (
+          // console.log(prd)
+
+          <div className=" CardContainerOrderDetails">
+            
+                <div className="ImageOrderDetails">
+                  <div className="imgCardOrderDetails">
+                    <img src={prd.img} alt={prd.name}  />
+                  </div>
+                  <p className="IDCardOrderDetails">{prd.id}</p>
+                </div>
+
+                <div className="InfoOrderDetails">
+                  <h3>{prd.name}</h3>
+                </div>
+
+                <div className="QuantityOrderDetails">
+                    <p>Count: {prd.count}</p>
+                    <p className="fw-bold"> Total Price: ${prd.totalPrice}</p>
+                </div>
+          </div>
+        
+        ))}
+
+      
     </div>
   );
 };

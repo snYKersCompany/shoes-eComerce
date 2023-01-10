@@ -18,7 +18,6 @@ import "../../styles/details.css";
 import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 
-
 import { getReviewProduct } from "../../redux/features/reviews/reviewsActions";
 
 const Details = () => {
@@ -73,7 +72,6 @@ const Details = () => {
 
       if (products.findIndex((el) => el.idAux === cart.idAux) === 0) {
         setRepeated("true");
-        alert(`The product ${productDetail.name} is already in the cart`);
       } else {
         setRepeated("false");
         localStorage.setItem(
@@ -82,7 +80,6 @@ const Details = () => {
             JSON.parse(localStorage.getItem("carrito")).concat([cart])
           )
         );
-        alert(`The product ${productDetail.name} was successfully added`);
       }
     } else {
       let cart = {
@@ -98,7 +95,6 @@ const Details = () => {
       };
       setRepeated("false");
       localStorage.setItem("carrito", JSON.stringify([cart]));
-      alert(`The product ${productDetail.name} was successfully added`);
     }
   }
 
@@ -213,7 +209,7 @@ const Details = () => {
               ))}
           </select>
         </section>
-        
+
         {count !== false ? (
           <section className="d-flex mb-2 flex-row justify-content-center align-items-center">
             <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
@@ -224,14 +220,11 @@ const Details = () => {
         ) : (
           <></>
         )}
-
-      {/*  </div>
-       <Reviews id={id}/> */}
-
-      </div>      
-      <Reviews productDetail={productDetail}/>
-      <Button className="d-flex mx-1" onClick={ () => navigate('/') }>Return Home</Button>
-
+      </div>  
+      <Reviews productDetail={productDetail} id={id}/>
+      <Button className="d-flex mx-1" onClick={() => navigate("/")}>
+        Return Home
+      </Button>
     </>
   );
 };

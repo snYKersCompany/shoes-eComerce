@@ -86,19 +86,21 @@ const Register = () => {
     setShown(false);
     setUser({ ...userIN, [name]: value });
   };
-  console.log(userIN.password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       const userUID = await signUp(userIN.email, userIN.password);
-      navigate("/");
-      alert("Your register went succesfully :D");
+      console.log(userUID.user.emailVerified);
+      if (userUID.user.emailVerified === false) {
+        navigate("/verify-email");
+      } else {
+        navigate("/");
+      }
       dispatch(
         putUserInformation(userUID.user.uid, {
           username: userIN.username,
-          password: userIN.password,
         })
       );
       setUser({ username: "", email: "", password: "" });
@@ -126,86 +128,78 @@ const Register = () => {
       if (error.code === "auth/missing-email") {
         setError("Introduce an email");
       }
+      //if (error.code === "")
     }
   };
 
   return (
     <>
-      <CardGroup>
-        <Card className="text-center text-white" style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Register</Card.Title>
+      <div className="registerContainer">
+        <div className="registerWelcomeContainer">
+          <Link to="/" className="registerLoginRedirectionHome">
+            Home
+          </Link>
+          <h3 className="registerWelcomeMSJ">Welcome to snYKers</h3>
+          <h5 className="registerWelcomeMSJRegister">Register your Account</h5>
+        </div>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <div className="registerFormContainer">
             {error && <AlertMSJ message={error} />}
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Form.Group controlId="formBasicUsername" className="mb-4">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  size="40"
-                  maxLength="256"
-                  className="ph-center"
-                  onChange={(e) => handleChange(e)}
-                  name="username"
-                  type="username"
-                  placeholder="Username"
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  className="ph-center"
-                  onChange={(e) => handleChange(e)}
-                  name="email"
-                  type="email"
-                  placeholder="Enter email"
-                  required
-                />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-
-              <Form.Group
-                onChange={onChange}
-                controlId="formBasicPassword"
-                className="mb-4"
-              >
-                <Form.Label>Password</Form.Label>
-                <div className="d-flex justify-content-center">
-                  <Form.Control
-                    size="40"
-                    maxLength="256"
-                    className="ph-center"
-                    onChange={(e) => handleChange(e)}
-                    name="password"
-                    type={shown ? "text" : "password"}
-                    placeholder="Password"
-                    required
-                  />
-                  <Button className="d-flex" onClick={switchShown}>
-                    {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
-                  </Button>
-                </div>
-              </Form.Group>
-
-              <Form.Group controlId="formBasicCheckbox"></Form.Group>
-              {error ? null : (
-                <Button variant="primary" type="submit">
-                  Register
+            <Form.Group controlId="formBasicUsername" className="mb-4">
+              <Form.Control
+                size="40"
+                className="ph-center"
+                onChange={(e) => handleChange(e)}
+                name="username"
+                type="username"
+                placeholder="Username"
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail" className="mb-4">
+              <Form.Control
+                className="ph-center"
+                onChange={(e) => handleChange(e)}
+                name="email"
+                type="email"
+                placeholder="Email Address"
+                required
+              />
+            </Form.Group>
+            <Form.Group
+              onChange={onChange}
+              controlId="formBasicPassword"
+              className="mb-4"
+            >
+              <Form.Control
+                size="40"
+                className="ph-center"
+                onChange={(e) => handleChange(e)}
+                name="password"
+                type={shown ? "text" : "password"}
+                placeholder="Password"
+                required
+              />
+              <div className="d-flex justify-content-center">
+                <Button variant="dark" onClick={switchShown}>
+                  {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
                 </Button>
-              )}
-            </Form>
-            <Link to="/login">
-              <Button variant="primary" className="mt-4">
-                Already have an account? Login here
+              </div>
+            </Form.Group>
+            {error ? null : (
+              <Button variant="success" type="submit">
+                <p className="registerBTNSubmit">Register</p>
               </Button>
-            </Link>
-          </Card.Body>
-          <Card.Footer className="text-muted">
-            <Link to="/home">Go Home</Link>
-          </Card.Footer>
-        </Card>
-      </CardGroup>
+            )}
+          </div>
+        </Form>
+        <div className="registerLoginContainer">
+          <h3 className="registerLoginText">Already have an account?</h3>
+          <Link to="/login" className="registerLoginRedirectionLogin">
+            Login
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

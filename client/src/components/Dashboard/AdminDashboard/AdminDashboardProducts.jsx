@@ -5,12 +5,12 @@ import {
   getAllProducts,
   getProductsDetails,
 } from "../../../redux/features/products/productsActions";
-import { FaTrash } from "react-icons/fa";
-import { RiSearchFill } from "react-icons/ri";
-import { useState } from "react";
 import ModalProductDetails from "./Modals/ModalProductDetails";
 import ModalProductWarning from "./Modals/ModalProductsWarning";
 import ModalFormCreate from "./Modals/ModalFormCreate";
+import { FaTrash } from "react-icons/fa";
+import { RiSearchFill } from "react-icons/ri";
+import { useState } from "react";
 import "../../../styles/AdminDashboardProducts.css";
 
 function AdminDashboardProducts() {
@@ -19,6 +19,7 @@ function AdminDashboardProducts() {
     (state) => state.products
   );
   const [warning, setWarning] = useState(false);
+  const [ idReviews, setIdReviews] = useState([])
 
   useEffect(() => {
     dispatch(getAllProducts(filters, orders));
@@ -35,8 +36,10 @@ function AdminDashboardProducts() {
   //Modal
   const [modalShow, setModalShow] = useState(false); // eslint-disable-line
 
-  const handlerDelete = (id) => {
+  const handlerDelete = (id, _idReviews, product) => {
+    console.log(product)
     setWarning(id);
+    setIdReviews(_idReviews);
   };
 
   return (
@@ -74,7 +77,7 @@ function AdminDashboardProducts() {
             </div>
 
             <div className="productAdmin-price">
-              <p>${product.price}</p>
+              <p className="fw-bold">${product.price}</p>
             </div>
 
             <div className="productAdmin-btns">
@@ -88,7 +91,7 @@ function AdminDashboardProducts() {
 
               <button
                 className="productAdmin-btn2"
-                onClick={() => handlerDelete(product._id)}
+                onClick={() => handlerDelete(product._id, product.reviews, product)}
               >
                 <FaTrash />
               </button>
@@ -100,7 +103,12 @@ function AdminDashboardProducts() {
       <ModalProductDetails show={Object.entries(productDetail).length} />
 
       {/* Warning  */}
-      <ModalProductWarning show={warning} onHide={() => setWarning(false)} />
+      <ModalProductWarning 
+      show={warning} 
+      onHide={() => {setWarning(false); setIdReviews([])}} 
+      reviews = {idReviews}
+      // setReviews = {()=> setIdReviews([])}
+      />
     </div>
   );
 }

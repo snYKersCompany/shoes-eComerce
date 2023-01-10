@@ -7,6 +7,7 @@ import {
   getAllProducts,
 } from "../../../../redux/features/products/productsActions";
 import "../../../../styles/modalProductsWarning.css";
+import { deleteReviewProduct } from "../../../../redux/features/reviews/reviewsActions";
 
 const ModalProductWarning = (props) => {
   const { filters, orders } = useSelector((state) => state.products);
@@ -14,10 +15,12 @@ const ModalProductWarning = (props) => {
   const dispatch = useDispatch();
 
   const handlerOnClick = () => {
-    console.log(props)
+    // console.log(props)
     dispatch(deleteProducts(props.show));
     props.onHide();
     dispatch(getAllProducts());
+    // console.log(props.reviews)
+    if(props.reviews.length) dispatch(deleteReviewProduct(props.show, props.reviews))
   };
 
   return (

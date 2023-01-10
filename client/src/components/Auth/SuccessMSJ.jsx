@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import Alert from "react-bootstrap/Alert";
 // import isotipo from "../../utils/images/isotipo.svg";
 
-const AlertMSJ = ({ message }) => {
+const SuccessMSJ = ({ message }) => {
   const [show, setShow] = useState(true);
 
   if (show) {
     return (
-      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+      <Alert variant="success" onClose={() => setShow(false)} dismissible>
         <Alert.Heading className="text-center">
-          Oh snap! You got an error!
+          Everything went right!
         </Alert.Heading>
         <p>{message}</p>
       </Alert>
@@ -19,4 +19,4 @@ const AlertMSJ = ({ message }) => {
   return <></>;
 };
 
-export default AlertMSJ;
+export default SuccessMSJ;
