@@ -29,7 +29,7 @@ const getProductsById = async (_id)=>{
             from: "reviews",
             localField: "reviews",
             foreignField: "_id",
-            as: "reviews"
+            as: "productReviews"
             }
         }
     ])
@@ -106,7 +106,9 @@ const deleteProductById = async (_id)=>{
 }
 
 async function saleProducts (products){
+    console.log("saleProducts")
     const promisedProducts = products.map( product => {
+        console.log(product)
         const updateProduct = ProductsModel.updateOne(
             { _id:product.id },
             { $inc:{
@@ -114,19 +116,23 @@ async function saleProducts (products){
                 "sales": product.count
             }}
         )
+        console.log(updateProduct)
         return updateProduct;
     })
-    await Promise.all(promisedProducts)
-
+    console.log("promisedProducts")
+    const algo = await Promise.all(promisedProducts)
+    
+    console.log("promisedProducts")
     let findProducts = products.map( product => ProductsModel.findOne({
         _id:product.id, 
         [`stock.${product.size}`]:{$lt:0}
     }) )
+    console.log("findProducts")
     findProducts = await Promise.all(findProducts)
-    
     const validateStock = findProducts.find(prods => prods !== null)
-
+    console.log(findProducts)
     if(validateStock) {
+        console.log("findProducts")
         products.forEach( async product => {
             const updateProduct = await ProductsModel.updateOne(
                 { _id:product.id },
@@ -166,7 +172,21 @@ async function saleProducts (products){
 //     "price": 67,
 //     "count": 10,
 //     "totalPrice": 938
-// }
+// },
+// ]
+
+// const products = [
+//     {
+//         "id": "63972933f60a0fb9ec9dfe4e",
+//         "name": "Air Jordan 12",
+//         "description": "<p>The Wmns Air Jordan 12 Retro &#39;Reptile&#39; sneaker draws details from the 1996 classic and elevates them with luxe style additions. This April 2019-released, women&#39;s-exclusive shoe features the AJ12’s original stitching, inspired by the Rising Sun Flag of Japan. Its black leather upper is laden with exotic reptile-inspired texture and embellished with gold accents. This edition is completed with classic Zoom cushioning and sections of herringbone tread.</p>\n",
+//         "img": "https://image.goat.com/750/attachments/product_template_pictures/images/021/042/384/original/500924_00.png.png",
+//         "size": "4,5",
+//         "idAux": "63972933f60a0fb9ec9dfe4e4.5",
+//         "price": 63,
+//         "count": 2,
+//         "totalPrice": 126
+//     }
 // ]
 
 // saleProducts(products)

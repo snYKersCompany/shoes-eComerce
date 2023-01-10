@@ -6,12 +6,13 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import "../../styles/create.css";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../redux/features/products/productsActions";
 import { Link } from "react-router-dom";
 
 const Create = () => {  
   const dispatch = useDispatch();
+  const { brands } = useSelector(state => state.products)
   const [error, setError] = useState({
     name: " ",
     description: " ",
@@ -111,7 +112,7 @@ const Create = () => {
     ) {
       return setform({ ...form }); //sin doble espacios
     }
-    setform({ ...form, brand: e.target.value });
+    setform({ ...form, brand: [e.target.value] });
     controller.brand.test(e.target.value) === false &&
     controller.brand.test(e.target.value) === false
       ? setError({ ...error, brand: false })
@@ -134,18 +135,32 @@ const Create = () => {
   //  ============================================
 
   //    ============ Reducible ============
-  let handleGender = (e) => {
-    e.target.value === "none"
-      ? setError({ ...error, gender: "choose a gender" })
-      : setError({ ...error, gender: false });
-    setform({ ...form, gender: [e.target.value] });
-  };
+  // let handleGender = (e) => {
+  //   e.target.value === "none"
+  //     ? setError({ ...error, gender: "choose a gender" })
+  //     : setError({ ...error, gender: false });
+  //   setform({ ...form, gender: [e.target.value] });
+  // };
 
-  let handleColor = (e) => {
+  // let handleColor = (e) => {
+  //   e.target.value === "none"
+  //     ? setError({ ...error, color: "choose a color" })
+  //     : setError({ ...error, color: false });
+  //   setform({ ...form, color: e.target.value });
+  // };
+
+  let handleGenderColorBrand = (e, name) => {
     e.target.value === "none"
-      ? setError({ ...error, color: "choose a color" })
-      : setError({ ...error, color: false });
-    setform({ ...form, color: e.target.value });
+      ? setError({ ...error, [name]: `choose a ${name}` })
+      : setError({ ...error, [name]: false });
+    setform({ ...form, [name]: [e.target.value] });
+  };
+  
+  let handleSelectBrand = (e, name) => {
+    e.target.value === "none"
+      ? setError({ ...error, [name]: `choose a ${name}` })
+      : setError({ ...error, [name]: false });
+    setform({ ...form, [name]: e.target.value });
   };
   //  =====================================
 
@@ -292,8 +307,9 @@ const Create = () => {
               </Form.Group>
 
               <div className="d-flex justify-content-between">
-                <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2">
-                  <Form.Label className="d-flex">Brand:</Form.Label>
+
+                {/* <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2">
+                  <Form.Label className="d-flex">Other Brand:</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Insert the brand"
@@ -302,8 +318,27 @@ const Create = () => {
                     value={form.brand}
                   />
                   <label className="FormCreateError">{error.brand}</label>
+                </Form.Group> */}
+                
+                <Form.Group className="d-flex mb-3 mx-2 flex-column justify-content-start w-100">
+                  <Form.Label className="d-flex">Brand:</Form.Label>
+                  <Form.Select
+                    defaultValue={"none"}
+                    className={
+                      form.brand === ""
+                        ? "border border-danger"
+                        : "border border-success"
+                    }
+                    onChange={(e) => handleSelectBrand(e, "brand")}
+                  >
+                    <option value="none" hidden>
+                      Choose a brand
+                    </option>
+                    {brands.map(br => <option value={br}>{br}</option> )}
+                  </Form.Select>
+                  <label className="FormCreateError">{error.brand}</label>
                 </Form.Group>
-
+                
                 <Form.Group className="d-flex mb-3 flex-column justify-content-start me-2 color-warning">
                   <Form.Label className="d-flex">Release Date:</Form.Label>
                   <Form.Control
@@ -338,7 +373,7 @@ const Create = () => {
                         ? "border border-danger"
                         : "border border-success"
                     }
-                    onChange={(e) => handleColor(e)}
+                    onChange={(e) => handleGenderColorBrand(e, "color")}
                   >
                     <option value="none" hidden>
                       Choose a color
@@ -363,14 +398,14 @@ const Create = () => {
                         ? "border border-danger"
                         : "border border-success"
                     }
-                    onChange={(e) => handleGender(e)}
+                    onChange={(e) => handleGenderColorBrand(e, "gender")}
                   >
                     <option value="none" hidden>
                       Choose a genre
                     </option>
-                    <option value="Women">Women</option>
-                    <option value="Men">Men</option>
-                    <option value="Unisex">Unisex</option>
+                    <option value="women">Women</option>
+                    <option value="men">Men</option>
+                    <option value="unisex">Unisex</option>
                   </Form.Select>
                   <label className="FormCreateError">{error.gender}</label>
                 </Form.Group>
@@ -488,8 +523,7 @@ const Create = () => {
                     Object.values(form).filter((el) => el === " ").length >= 1
                   ) === false &&
                   Boolean(
-                    Object.values(error).filter((el) => el !== false).length >=
-                      1
+                    Object.values(error).filter((el) => el !== false).length >= 1
                   ) === false ? (
                     <Button
                       className="d-flex formCreateButtonSubmit"

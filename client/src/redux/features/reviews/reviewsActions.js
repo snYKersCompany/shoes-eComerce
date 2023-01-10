@@ -36,3 +36,36 @@ export const getReviewProduct = (_id) => async (dispatch) => {
     return error;
   }
 };
+
+export const deleteReviewProduct = (_id, _idReviews) => async (dispatch) => {
+  try {
+    const deleteReviews = await axios.delete(`/reviews/product/${_id}`, {_idReviews});
+    // console.log('Esto es getReviewProduct')
+    // console.log(reviewsProduct)
+    return deleteReviews;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteReviewUser = (_id, _idReviews) => async (dispatch) => {
+  try {
+    const deleteReviews = await axios.delete(`/reviews/user/${_id}`, {_idReviews});
+    // console.log('Esto es getReviewProduct')
+    // console.log(reviewsProduct)
+    return deleteReviews;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deleteReview = (_id, _idProduct, _idUser) => async (dispatch) => {
+  try {
+    const deleteReviews = await axios.delete(`/reviews/unique/${_id}`, {_idProduct, _idUser});
+    // console.log('Esto es getReviewProduct')
+    // console.log(reviewsProduct)
+    return deleteReviews;
+  } catch (error) {
+    return error;
+  }
+};

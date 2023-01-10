@@ -44,7 +44,7 @@ export const getCreateOrderDB = (payload) => {
 export const createPayment = async (body) => {
   try {
     const vaucher = await axios.post(`http://localhost:3001/api/paypal/create-payment`, body)
-    return vaucher.data.data
+    return vaucher.data
   } catch (error) {
     return error
   }
@@ -53,7 +53,7 @@ export const createPayment = async (body) => {
 export const executePayment = async (token) => {
   try {
     const vaucher = await axios.get(`http://localhost:3001/api/paypal/execute-payment${token}`)
-    return vaucher.data.data
+    return vaucher.data
   } catch (error) {
     return error
   }

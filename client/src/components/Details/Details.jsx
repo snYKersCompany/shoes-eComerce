@@ -225,8 +225,8 @@ const Details = () => {
           <></>
         )}
 
-      // </div>
-      // <Reviews id={id}/>
+      {/*  </div>
+       <Reviews id={id}/> */}
 
       </div>      
       <Reviews productDetail={productDetail}/>
