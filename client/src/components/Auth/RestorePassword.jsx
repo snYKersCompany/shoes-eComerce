@@ -6,8 +6,8 @@ import SuccessMSJ from "./SuccessMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
+//styles
+import "../../styles/RestorePassowrd.css";
 
 const RestorePassowrd = () => {
   const { resetPassword } = useAuth();
@@ -35,48 +35,46 @@ const RestorePassowrd = () => {
 
   return (
     <>
-      <CardGroup>
-        <Card className="text-center text-white" style={{ width: "18rem" }}>
-          <Card.Body>
+      <div className="restorePassContainer">
+        <div className="restorePassWelcomeContainer">
+          <Link to="/" className="restorePassActionBTNHome">
+            Home
+          </Link>
+          <h3 className="restorePassWelcomeMSJ">Thanks for trusting in us</h3>
+          <h5 className="restorePassWelcomeMSJRestore">
+            Restore your password
+          </h5>
+        </div>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <div className="restorePassFormContainer">
             {succes && <SuccessMSJ message={succes} />}
             {error && <AlertMSJ message={error} />}
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Restore password</Form.Label>
-                <div className="d-flex justify-content-center">
-                  <Form.Control
-                    className="ph-center d-flex "
-                    onChange={(e) => handleChange(e)}
-                    name="email"
-                    type="email"
-                    placeholder="Enter email"
-                  />
-                  <span className="d-flex" style={{ width: "43px" }}></span>
-                </div>
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-              <Form.Group>
-                <Button variant="primary" type="submit">
-                  Send Restore Password Email
-                </Button>
-              </Form.Group>
-              <br />
-              <Form.Group>
-                <Link to="/login">
-                  <Button variant="primary" type="submit">
-                    LogIn with New Password
-                  </Button>
-                </Link>
-              </Form.Group>
-            </Form>
-          </Card.Body>
-          <Card.Footer className="text-muted">
-            <Link to="/">Go Home</Link>
-          </Card.Footer>
-        </Card>
-      </CardGroup>
+            <Form.Group controlId="formBasicEmail" className="mb-4">
+              <Form.Control
+                className="ph-center d-flex "
+                onChange={(e) => handleChange(e)}
+                name="email"
+                type="email"
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Button variant="success" type="submit">
+              <p className="restorePassBTNSubmit">
+                Send Restore Password Email
+              </p>
+            </Button>
+          </div>
+        </Form>
+        <div className="restorePassActionsBTNSContainer">
+          <div className="restorePassActionsBTNSFlex">
+            <Link to="/login">
+              <button className="restorePassActionBTN " type="submit">
+                LogIn with New Password
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

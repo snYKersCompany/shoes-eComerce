@@ -64,7 +64,6 @@ const NavBar2 = () => {
           }
             <Link to={"/"} className="NavImg">
               <label className="brandNav">snYKers</label>
-              {/* <img alt="SNYKERS" src={logoBlanco} /> */}
             </Link>
           </NavB.Brand>
 
