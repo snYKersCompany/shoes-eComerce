@@ -18,7 +18,7 @@ const CardsContainer = ({ productsSliced }) => {
               brand={product.brand}
               card_picture={product.card_picture}
               price={product.price}
-              rating={product.rating}
+              rating={Math.round(product.rating)}
               checkHeart={userDashboard?.favourites?.some(
                 (idProduct) => idProduct === product._id
               )}

@@ -41,6 +41,8 @@
   grid-column: 1/2;
   grid-row: 1/2;
   overflow-y: scroll;
+  background-color: #333242;
+
 }
 
 .userDashBoard-orders {
