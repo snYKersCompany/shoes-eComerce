@@ -1,0 +1,147 @@
+.ProductBougth-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: 100%;
+    width: 100%;
+    background: #323141;
+    justify-items: center;
+    text-align: center;
+  }
+  
+  .ProductBougth-card {
+    display: grid;
+    color: white;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    border-radius: 20px;
+    background: #252733;
+    width: 65%;
+    height: fit-content;
+    padding: 1rem;
+    /* justify-self: center; */
+    justify-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .ProductBougth-card-img {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 180px;
+    height: 160px;
+    justify-content: center;
+  }
+
+  .ProductBougth-card-img img{
+    object-fit: contain;
+    width: 100%;
+  }
+
+
+  
+  .ProductBougth-card-name {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    /* align-items: center; */
+    /* justify-items: center; */
+    /* text-align: center; */
+  }
+  
+  .ProductBougth-btn {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    border: none;
+    font-size: 1rem;
+    width: 60%;
+    align-items: center;
+  }
+
+  .ModalContainerPB{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background-color: #323141 ;
+    justify-items: center;
+    padding-top: 1rem;
+  }
+  
+  .ModalContainerPB div{
+    background-color: #252733;
+    height: fit-content;
+    
+  }
+
+  /* .ModalContainerPB div div{
+    height: 50vh;
+  } */
+
+
+
+  .ModalContainerPB-header{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    color: #fb7849;
+  }
+
+  .ModalContainerPB-header div{
+    border: none;
+  }
+  
+
+  .ModalContainerPB-body{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+
+
+
+  .ModalContainerPB-body div .form-floating{
+    width: 80vw;
+    padding: 0;
+  }
+
+
+  .ModalContainerPB-footer{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
+
+
+  .ModalContainerPB-footer div{
+    border: none;
+    padding-top: 0;
+  }
+
+
+
+  .ModalContainerPB-body div input{
+    margin-right: 0.8rem;
+    border: rgb(163, 162, 162) solid 1px ;
+    border-radius: 6px;
+    margin-bottom: 0.3rem;
+  }
+
+  .makeBtnReview{
+    font-size: 1rem ;
+  }
+
+  @media (min-width:360px) {
+    .ProductBougth-btn{
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (min-width:768px) {
+    .ModalContainerPB-body div .form-floating{
+      width: 450px;
+      padding: 0;
+    }
+  }

@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { postReview } from "../../../redux/features/reviews/reviewsActions";
+import StarsReview from "../../StarsReview/StarsReview";
+import InputChangeRating from "../../StarsReview/InputChangeRating";
 
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
-import Table from "react-bootstrap/Table";
-
-import InputChangeRating from "../../StarsReview/InputChangeRating";
-import StarsReview from "../../StarsReview/StarsReview";
-
-import { postReview } from "../../../redux/features/reviews/reviewsActions";
+import "../../../styles/ProductBought.css";
 
 const ProductsBought = () => {
   const dispatch = useDispatch();
@@ -28,6 +26,7 @@ const ProductsBought = () => {
   const [moveToReview, setMoveToReview] = useState(false);
 
   const userPurchases = orders.map((e) => e.products).flat();
+  // console.log("ESTOOOO VERR::::::::::::::::::::::", userPurchases);
 
   const handlerInputReview = (e) => {
     setReviewInput({
@@ -56,11 +55,11 @@ const ProductsBought = () => {
   };
 
   const toProductReview = (e, id) => {
-    console.log("entro");
+    // console.log("entro");
     e.preventDefault();
     setAvgRating(0);
     setIdSingleProduct(id);
-    console.log("esto es el id del prod", id);
+    // console.log("esto es el id del prod", id);
     setMoveToReview(true);
     navigate("/account/bought");
   };
@@ -71,48 +70,49 @@ const ProductsBought = () => {
   };
 
   return moveToReview === false ? (
-    <>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>quantity</th>
-            <th>price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userPurchases &&
-            userPurchases.map((prd, inx) => (
-              <tr key={inx}>
-                <td>{prd.name}</td>
-                <td>{prd.count}</td>
-                <td>{prd.price}</td>
-                <td>
-                  <Button onClick={(e) => toProductReview(e, prd.id)}>
-                    make your review
-                  </Button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </Table>
-    </>
+    <div className="ProductBougth-container">
+      {userPurchases &&
+        userPurchases.map((prd, i) => (
+          <div key={i} className="ProductBougth-card">
+            <div className="ProductBougth-card-img">
+              <img
+                
+                src={prd.img}
+                alt={prd.name}
+              />
+            </div>
+            <p className="ProductBougth-card-name">{prd.name}</p>
+            <button
+              className="ProductBougth-btn btnCard1"
+              onClick={(e) => toProductReview(e, prd.id)}
+            >
+              make your review
+            </button>
+          </div>
+        ))}
+        
+    </div>
   ) : (
     <div
       className="modal show"
       style={{ display: "block", position: "initial" }}
     >
+      <div className="ModalContainerPB">
       <Modal.Dialog>
-        <Modal.Header closeButton>
+
+      <div className="ModalContainerPB-header">
+
+        <Modal.Header >
           <Modal.Title>Make your review!</Modal.Title>
         </Modal.Header>
+      </div>
         {/* body pas cribi */}
+         <div className="ModalContainerPB-body">
         <Modal.Body>
-          <>
-            <FloatingLabel controlId="floatingTextarea" className="mb-3">
-              {captureUserName}
-            </FloatingLabel>
-            <InputChangeRating rating={avgRating} handleRating={handleRating} />
+          
+            
+              
+            <InputChangeRating rating={avgRating} handleRating={handleRating}  />
             <StarsReview stars={avgRating} />
             <FloatingLabel controlId="floatingTextarea2" label="Comments">
               <Form.Control
@@ -123,17 +123,25 @@ const ProductsBought = () => {
                 onChange={(e) => handlerInputReview(e)}
               />
             </FloatingLabel>
-          </>
+            <FloatingLabel controlId="floatingTextarea" className="mb-3">
+              {captureUserName}
+            </FloatingLabel>
         </Modal.Body>
+          </div>
+
+        <div className="ModalContainerPB-footer">
+
         <Modal.Footer>
-          <Button variant="primary" onClick={(e) => sendPostReview(e)}>
+          <button className="btnCard1 makeBtnReview" onClick={(e) => sendPostReview(e)}>
             send review
-          </Button>
+          </button>
           <Button variant="secondary" onClick={(e) => backToProdBought(e)}>
             back
           </Button>
         </Modal.Footer>
+        </div>
       </Modal.Dialog>
+      </div>
     </div>
   );
 };

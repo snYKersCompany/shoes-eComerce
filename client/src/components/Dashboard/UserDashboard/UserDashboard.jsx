@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import UserProfile from "./UserProfile";
 import UserFavorites from "./UserFavorites";
 import UserOrders from "./UserOrders";
-import ProductsBought from "./ProductsBough";
+import ProductsBought from "./ProductsBought";
 import Nav from "react-bootstrap/Nav";
 import Tab from "react-bootstrap/Tab";
 import { CgUserList, CgHeart, CgList } from "react-icons/cg";
@@ -22,7 +22,7 @@ const UserDashboard = () => {
   const [control, setControl] = useState("");
   
   if (section) {
-    if (section !== control) {
+    if (section !== control && control != "favorites") {
       setControl(section);
     }
   }
@@ -114,7 +114,11 @@ const UserDashboard = () => {
                 </Tab.Pane>
 
                 <Tab.Pane eventKey="favorites" >
+                  {control=== "favorites"?
                   <UserFavorites /> 
+                  :
+                  <></>
+                  }
                 </Tab.Pane>
 
                 <Tab.Pane eventKey="orders">
