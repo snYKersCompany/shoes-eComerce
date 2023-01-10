@@ -24,7 +24,7 @@ const CheckoutSuccess = () => {
 
   const { email, username } = useSelector((state) => state.users.userDashboard);
   const { orderDetails } = useSelector((state) => state.orders);
-  dispatch(putSuccesOrder(orderDetails));
+ 
  
   localStorage.removeItem("carrito");
 
@@ -38,6 +38,7 @@ const CheckoutSuccess = () => {
         dispatch(changeStatusOrder(query, { state: "aprobed" }));
       }
       dispatch(getOrderDetails(id))
+      dispatch(putSuccesOrder(orderDetails));
     }
   }, [dispatch, email, username, id]);
 

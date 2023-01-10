@@ -46,9 +46,6 @@ const getTemplate = (orderDetails) => {
 <td align="center" valign="top" class="es-p15r"><a target="_blank" href="https://twitter.com/SnykersShop"><amp-img src="https://yapbbi.stripocdn.email/content/assets/img/social-icons/logo-black/twitter-logo-black.png" alt="Tw" title="Twitter" height="32" width="32"></amp-img></a></td><td align="center" valign="top"><a target="_blank" href="https://www.instagram.com/snykersonlineshop/"> <BsInstagram /> </a></td></tr></table></td></tr></table></td></tr></table> <!--[if mso]></td><td width="20"></td><td width="270" valign="top"><![endif]--><table class="es-right" cellspacing="0" cellpadding="0" align="right"><tr><td width="270" align="left"><table width="100%" cellspacing="0" cellpadding="0" role="presentation"><tr><td align="left"><p><br></p>
 <p style="text-align: center"><strong>Follow us on our networks, please do not answer this message.</strong></p></td></tr></table></td></tr></table> <!--[if mso]></td></tr></table><![endif]--></td></tr></table></td></tr></table></td></tr></table></div></body></html>`
 
-
-console.log("Esto es template" , html)
-
 return html;
 };
 
