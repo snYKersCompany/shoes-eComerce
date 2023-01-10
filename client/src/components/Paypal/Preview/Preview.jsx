@@ -42,7 +42,7 @@ const PreviewModal = ({ repeated, ...rest }) => {
             <Modal.Header closeButton>
               <Modal.Title
                 id="contained-modal-title-center"
-                className="addedProducts"
+                className="txt-center addedProducts"
               >
                 This product is already in your cart
               </Modal.Title>

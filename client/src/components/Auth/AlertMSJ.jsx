@@ -12,7 +12,7 @@ const AlertMSJ = ({ message }) => {
         <Alert.Heading className="text-center">
           Oh snap! You got an error!
         </Alert.Heading>
-        <p>{message}</p>
+        <p className="text-center">{message}</p>
       </Alert>
     );
   }

@@ -129,23 +129,25 @@ const Login = () => {
           </div>
         </Form>
         <div className="loginActionBTNSContainer">
-          <button
-            className="loginActionBTN "
-            type="submit"
-            onClick={handleResetPassword}
-          >
-            Forgot Password ?
-          </button>
-          <br />
-          <button className="loginActionBTN" onClick={handleGoogleLogin}>
-            Login with Google
-          </button>
-          <br />
-          <Link to="/register">
-            <button className="loginActionBTN ">
-              Dont have an account? Register here
+          <div className="loginActionsBTNSFlex">
+            <button
+              className="loginActionBTN"
+              type="submit"
+              onClick={handleResetPassword}
+            >
+              Forgot Password ?
             </button>
-          </Link>
+            <br />
+            <button className="loginActionBTN" onClick={handleGoogleLogin}>
+              Login with Google
+            </button>
+            <br />
+            <Link to="/register">
+              <button className="loginActionBTN ">
+                Dont have an account? Register here
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>

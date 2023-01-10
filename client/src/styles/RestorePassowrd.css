@@ -1,15 +1,10 @@
-.ph-center {
-  text-align: center;
-}
-
-.loginContainer {
-  color: white;
+.restorePassContainer {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 20%;
 }
 
-.loginWelcomeContainer {
+.restorePassWelcomeContainer {
   display: grid;
   grid-column: 1/2;
   grid-row: 1/2;
@@ -17,7 +12,7 @@
   align-self: center;
 }
 
-.loginFormContainer {
+.restorePassFormContainer {
   display: grid;
   grid-column: 1/2;
   grid-row: 2/3;
@@ -25,7 +20,7 @@
   align-items: center;
 }
 
-.loginActionBTNSContainer {
+.restorePassActionsBTNSContainer {
   display: grid;
   grid-column: 1/2;
   grid-row: 3/4;
@@ -33,15 +28,16 @@
   align-self: center;
 }
 
-.loginActionsBTNSFlex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+.restorePassActionBTNHome {
+  font-family: Bebas Neue, cursive;
+  color: rgb(198754);
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: rgb(25, 135, 84);
+  text-align: center;
 }
 
-.loginWelcomeMSJ {
-  display: flex;
+.restorePassWelcomeMSJ {
   color: rgb(255, 153, 0);
   margin-left: 30px;
   font-size: 3.5em;
@@ -50,8 +46,7 @@
   text-align: center;
 }
 
-.loginWelcomeMSJLogin {
-  display: flex;
+.restorePassWelcomeMSJRestore {
   color: rgb(255, 153, 0);
   margin-left: 30px;
   font-size: 2em;
@@ -60,13 +55,12 @@
   text-align: center;
 }
 
-.loginBTNSubmit {
-  display: grid;
+.restorePassBTNSubmit {
   font-family: Bebas Neue, cursive;
   margin-bottom: 0px;
 }
 
-.loginActionBTN {
+.restorePassActionBTN {
   background-color: rgb(255, 153, 0);
   font-family: Bebas Neue, cursive;
   border-radius: 15px;
@@ -76,12 +70,9 @@
   font-size: 1em;
 }
 
-.loginActionBTNHome {
-  font-family: Bebas Neue, cursive;
+.restorePassActionsBTNSFlex {
   display: flex;
-  color: rgb(198754);
-  margin-top: 20px;
-  font-size: 1.5em;
-  color: rgb(25, 135, 84);
-  text-align: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }

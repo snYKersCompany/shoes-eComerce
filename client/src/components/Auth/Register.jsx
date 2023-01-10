@@ -8,8 +8,6 @@ import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 //style
 import "../../styles/register.css";
 //actions
@@ -194,6 +192,7 @@ const Register = () => {
           </div>
         </Form>
         <div className="registerLoginContainer">
+          <div className="registerLoginContainerFlex"></div>
           <h3 className="registerLoginText">Already have an account?</h3>
           <Link to="/login" className="registerLoginRedirectionLogin">
             Login
