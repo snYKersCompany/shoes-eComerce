@@ -22,5 +22,8 @@
   display: flex;
   color: rgb(255, 153, 0);
   font-size: 4rem;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
   font-family: Bebas Neue, cursive;
 }
