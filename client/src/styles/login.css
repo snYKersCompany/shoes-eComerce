@@ -1,3 +1,87 @@
 .ph-center {
   text-align: center;
 }
+
+.loginContainer {
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.loginWelcomeContainer {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  justify-items: center;
+  align-self: center;
+}
+
+.loginFormContainer {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  justify-items: center;
+  align-items: center;
+}
+
+.loginActionBTNSContainer {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 3/4;
+  justify-items: center;
+  align-self: center;
+}
+
+.loginActionsBTNSFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.loginWelcomeMSJ {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 3.5em;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+  text-align: center;
+}
+
+.loginWelcomeMSJLogin {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 2em;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+  text-align: center;
+}
+
+.loginBTNSubmit {
+  display: grid;
+  font-family: Bebas Neue, cursive;
+  margin-bottom: 0px;
+}
+
+.loginActionBTN {
+  background-color: rgb(255, 153, 0);
+  font-family: Bebas Neue, cursive;
+  border-radius: 15px;
+  height: 60px;
+  width: 130px;
+  border-color: rgb(255, 153, 0);
+  font-size: 1em;
+}
+
+.loginActionBTNHome {
+  font-family: Bebas Neue, cursive;
+  display: flex;
+  color: rgb(198754);
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: rgb(25, 135, 84);
+  text-align: center;
+}

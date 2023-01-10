@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 //JSX
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { GrHomeRounded } from "react-icons/gr";
 import { FaRegUser } from "react-icons/fa";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
@@ -32,8 +33,7 @@ const NavBar2 = () => {
   /////-----HANDLES-----/////
   const handleLogOut = async () => {
     await logOut();
-    alert("You have been loged out");
-    navigate("/home");
+    navigate("/");
   };
 
   ///TOOLTIP///
@@ -55,9 +55,15 @@ const NavBar2 = () => {
       <div className="d-flex h-100 p-0 navBarContainerGeneral">
         <div className="d-flex  ContainerGeneralNav ">
           <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
+          {
+            window.location.pathname !== '/home' ? 
+            <a href="/home" className="link-to-home">
+            <GrHomeRounded />
+            </a>
+            : null
+          }
             <Link to={"/"} className="NavImg">
               <label className="brandNav">snYKers</label>
-              {/* <img alt="SNYKERS" src={logoBlanco} /> */}
             </Link>
           </NavB.Brand>
 
@@ -74,7 +80,7 @@ const NavBar2 = () => {
                 </Link>
 
                 <Link to={"/home"} className="noneDecoration">
-                  <NavItem className="linkNav">All</NavItem>
+                  <NavItem className="linkNav">Products</NavItem>
                 </Link>
 
                 <Link to={"/basketball"} className="noneDecoration">

@@ -9,8 +9,10 @@ const AlertMSJ = ({ message }) => {
   if (show) {
     return (
       <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-        <p>{message}</p>
+        <Alert.Heading className="text-center">
+          Oh snap! You got an error!
+        </Alert.Heading>
+        <p className="text-center">{message}</p>
       </Alert>
     );
   }

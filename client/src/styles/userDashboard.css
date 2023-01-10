@@ -1,30 +1,163 @@
-.userDashBoard {
-  display: flex;
-  width: 100vw !important;
-  overflow: hidden;
-  height: 95vh;
+.userDashBoard-container {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  grid-template-rows: 95% 5%;
+  height: 91vh; /*Cambiar por posición normal y sticky*/
+
+
 }
 
-.navSection {
-  flex-wrap: wrap;
-  width: 10vw;
+.userDashBoard-nav-section {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background: #252733;
+  height: 100%;
 }
 
-.navSection div a {
-  width: 95%;
-}
-
-.section {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background: #302f3e !important;
   width: 100%;
-  overflow-x: scroll;
 }
 
-@media (max-width: 1000px) {
-  .navSection {
-    width: 100%;
-    flex-direction: row !important;
+.text-icon {
+  display: none;
+  color: #fb7849;
+}
+
+.userDashBoard-nav-icon {
+  font-size: 2.3rem;
+  color: #fb7849;
+}
+.ic-ctm1 {
+  font-size: 2.5rem;
+}
+
+.userDashBoard-tab-section {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  overflow-y: scroll;
+}
+
+.userDashBoard-orders {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.userDashBoard-products {
+  display: grid;
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.userDashBoard-users {
+  display: grid;
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+.userDashBoard-profile {
+  display: grid;
+  grid-column: 4/5;
+  grid-row: 1/2;
+}
+
+.userDashBoard-nav-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .text-icon {
+    display: inline;
   }
-  .userDashBoard {
-    flex-direction: column !important;
+}
+
+@media (min-width: 1024px) {
+  .userDashBoard-container {
+    display: grid !important;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 1fr;
+    height: 93vh; /*Cambiar por posición normal y sticky*/
+  }
+  .userDashBoard-nav-section {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(4, 1fr);
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-items: center;
+    align-items: center;
+  }
+  .userDashBoard-tab-section {
+    display: grid;
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .userDashBoard-orders {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .userDashBoard-products {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    text-align: center;
+  }
+  .userDashBoard-users {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 3/4;
+  }
+  .userDashBoard-profile {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 4/5;
+  }
+  .userDashBoard-nav-icon {
+    font-size: 2.5rem;
+  }
+  .text-icon {
+    font-size: 1.5rem;
+  }
+  .ic-ctm1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .userDashBoard-container {
+    display: grid;
+    grid-template-columns: 10% 90%;
+  }
+  .userDashBoard-nav-icon {
+    font-size: 2.5rem;
+  }
+  .text-icon {
+    font-size: 1.5rem;
+  }
+  .ic-ctm1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .userDashBoard-nav-icon {
+    font-size: 3.5rem;
+  }
+  .text-icon {
+    font-size: 2rem;
+  }
+  .ic-ctm1 {
+    font-size: 4rem;
+  }
+  .userDashBoard-tab-section {
+    width: 100%;
   }
 }

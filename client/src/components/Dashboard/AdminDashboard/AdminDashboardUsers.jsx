@@ -6,19 +6,20 @@ import {
   getAllUsers,
   putUserStatus,
 } from "../../../redux/features/users/usersActions";
+import { putUserSuspended } from "../../../redux/features/nodemailer/nodeMailerActions";
 import { FaTrash } from "react-icons/fa";
 import "../../../styles/AdminDashboardUsers.css";
 
 function AdminDashboardUsers() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
-
   const [warning, setWarning] = useState(false);
 
   const [orderUser, setOrderUser] = useState(""); // eslint-disable-line
   const [valueOrder, setValueOrder] = useState(-1); // eslint-disable-line
   // const [directionOrder, setDirectionOrder] = useState("↑↓");
   const [search, setSearch] = useState("");
+  const [localEmail, setLocalEmail] = useState("");
 
   useEffect(() => {
     const orderSearch = {};
@@ -27,8 +28,11 @@ function AdminDashboardUsers() {
     dispatch(getAllUsers(orderSearch));
   }, [dispatch, orderUser, valueOrder, search]);
 
-  const handleFormCheck = ({ target }, _id) => {
+  const handleFormCheck = ({ target }, _id, email) => {
     dispatch(putUserStatus(_id, { status: target.checked }));
+    if (!target.checked) {
+      dispatch(putUserSuspended(email));
+    }
   };
 
   const handleFormAdmin = ({ target }, _id) => {
@@ -44,6 +48,11 @@ function AdminDashboardUsers() {
   //   if (valueOrder > 0) setDirectionOrder("↑");
   //   else setDirectionOrder("↓");
   // };
+
+  const handleSendEmail = (user) => {
+    setWarning(user._id);
+    setLocalEmail(user.email);
+  };
 
   return (
     <div className="AdminDshbUsers-grid">
@@ -65,10 +74,6 @@ function AdminDashboardUsers() {
             <div className="cardUser-info">
               <p className="cardUser-username">{user.username}</p>
               <p className="cardUser-idUser">{user._id}</p>
-              <p className="cardUser-auxInfo">{user.email}</p>
-              <p className="cardUser-auxInfo">{user.phone}</p>
-              {/* <p className="cardUser-auxInfo">{user.address}</p> */}
-              <p className="cardUser-auxInfo">{user.city}</p>
               <p className="cardUser-countryuser">
                 {user.country}-{user.city}
               </p>

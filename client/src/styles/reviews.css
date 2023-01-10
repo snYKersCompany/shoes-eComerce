@@ -1,0 +1,95 @@
+.master {
+    background: #44485f;
+    display: grid;
+
+}
+
+
+.container {
+    background: black;
+    display: grid;
+    grid-template-columns: 10% 10% 20% 60%;
+    grid-template-rows: 60% 40%;
+    border-radius: 7ch;
+    margin: 7px;
+    height: 100%;
+    
+}
+
+
+.container-reviews{
+    display: grid;
+    grid-column: 1/5;
+    grid-row: 1/2;
+    width: 100%;
+}
+
+
+.review-image {
+    display: grid;
+    grid-column:1/2;
+    grid-row: 1/2;
+    justify-items: center;
+    align-items: center;
+}
+
+
+.review-name{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+
+.review-stars {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-row: 1/2;
+    grid-column: 3/4;
+}
+
+.comment {
+    display: grid;
+    grid-column: 1/5;
+    grid-row: 2/3;
+}
+
+.input-comment {
+    display: grid;
+    grid-column: 1/5;
+    grid-row: 2/3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

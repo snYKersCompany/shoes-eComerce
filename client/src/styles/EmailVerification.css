@@ -1,0 +1,39 @@
+.verifyEmailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 92vh;
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: black;
+  font-size: 10px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.verifyEmailTxt {
+  display: flex;
+  color: rgb(255, 153, 0);
+  margin-left: 30px;
+  font-size: 4em;
+  font-family: Bebas Neue, cursive;
+  margin-top: 7px;
+  margin-bottom: 2rem;
+}
+
+.verifyEmailBtn {
+  margin-top: 15px;
+  padding: 10px 15px;
+  font-size: small;
+  border-radius: 10px;
+  letter-spacing: 0.01em;
+  font-family: Bebas Neue, cursive;
+}
+
+@media (min-height: 720px) {
+  .verifyEmailContainer {
+    min-height: 95vh;
+  }
+}

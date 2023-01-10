@@ -3,6 +3,7 @@
     grid-template-columns: repeat(1fr);
     grid-template-rows: auto;
     gap: 15px;
+    background-color: #323141;
     justify-items: center;
 }
 
@@ -10,6 +11,7 @@
     display: grid;
     grid-column: 1/2;
     grid-row: 1/2;
+    margin-top: 1rem;
 }
 
 .AdminDshbUsers-userContainer{
@@ -21,6 +23,7 @@
     width: max-content;
     border-radius: 20px;
     color: white;
+    max-width: 95vw;
 }
 
 
@@ -28,7 +31,7 @@
 
 .AdminDshbUsers-userGrid{
     display: grid;
-    width: 95vw;
+    width: 100%;
     grid-template-columns: 28% 45% 12% 15%;
     grid-template-rows: 1fr;
 }
@@ -68,6 +71,7 @@
 .cardUser-username{
     font-size: 1.3rem;
     margin-top: 10px;
+    color: #fb7849;
 }
 
 .cardUser-idUser{
@@ -93,16 +97,25 @@
 .cardUser-btn{
     background: transparent;
     border: none;
-    color: rgb(248, 74, 74);
+    color: rgb(255, 255, 255);
     border-radius: 7px;
     width: fit-content;
     padding: 6px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     align-items: center;
     justify-self: center;
+    background: #694bff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    padding: 6px;
 }
 
-
+@media (min-width: 300px) {
+    .AdminDshbUsers-userGrid{
+        width: 95vw;
+    }
+}
 
 @media (min-width: 450px) {
     .AdminDshbUsers-userGrid{
@@ -116,7 +129,7 @@
     
     .AdminDshbUsers-grid{
         grid-template-columns: 1fr 1fr;
-        width: 100vw;
+        width: 100%;
         
     }
 
@@ -203,15 +216,7 @@
 }
 
 .cardUser-btn{
-    background: transparent;
-    border: none;
-    color: rgb(248, 74, 74);
-    border-radius: 7px;
-    width: fit-content;
-    padding: 6px;
-    font-size: 1.3rem;
-    align-items: center;
-    justify-self: center;
+    margin-top: 1rem;
 }
 
 
@@ -219,12 +224,12 @@
 
 }
 
-@media (min-width: 1000px) {
+/* @media (min-width: 1000px) {
     .AdminDshbUsers-grid{
         width: 90vw; 
     }
 
-}
+} */
 
 @media (min-width: 1200px) {
 
@@ -268,7 +273,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(250, 115, 115);
+  background-color: crimson;
   -webkit-transition: .4s;
   transition: .4s;
 }

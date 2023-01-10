@@ -8,8 +8,8 @@ export default function ModalFormCreate() {
   const handleShow = () => setShow(true);
   return (
     <>
-      <button className="btnAddProducts" onClick={handleShow}>
-        Add Products
+      <button className="btnCard1" onClick={handleShow}>
+        Add
       </button>
 
       <Modal show={show} onHide={handleClose} size="lg">
