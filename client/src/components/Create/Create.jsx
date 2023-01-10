@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ToggleButton from "react-bootstrap/ToggleButton";
 import "../../styles/create.css";
-<<<<<<< HEAD
-import { useEffect } from "react";
-=======
-import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../redux/features/products/productsActions";
->>>>>>> dev
 
 const Create = () => {
   const dispatch = useDispatch();
