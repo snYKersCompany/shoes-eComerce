@@ -5,6 +5,7 @@ import { createProduct } from "../../redux/features/products/productsActions";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
 import "../../styles/create.css";
+import { useEffect } from "react";
 
 const Create = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,23 @@ const Create = () => {
     release: (date) =>
       date.split("-")[0] < 1900 || date.split("-")[0] > 2100 ? false : true,
   });
+
+  // Hooks
+  useEffect(() => {
+    setform({
+    name: "",
+    description: "",
+    brand: "",
+    price: "",
+    categories: "",
+    size: "",
+    color: "", 
+    gender: "", 
+    stock: "", 
+    release: "",
+    img: "",
+    });
+  }, []);
 
   //validations
   let handleName = (e) => {
