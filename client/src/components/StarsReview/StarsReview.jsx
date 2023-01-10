@@ -10,6 +10,7 @@ const StarsReview = ({ stars }) => {
   // Redondeamos el resultado si es decimal
   const starPercentageRounded = Math.round(starPercentage);
 
+  console.log(starPercentageRounded)
   // Creamos el estilo para que las estrellas amarillas
   // se vean según el número que recibimos.
   const StarStyles = () => {

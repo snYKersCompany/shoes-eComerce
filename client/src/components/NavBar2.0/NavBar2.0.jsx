@@ -16,8 +16,8 @@ import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
 import { useSelector } from "react-redux";
 //style
-import "../../styles/navbar.css";
 import Button from "react-bootstrap/esm/Button";
+import "../../styles/navbar.css";
 
 const NavBar2 = () => {
   const { userDashboard } = useSelector((state) => state.users);
@@ -58,7 +58,7 @@ const NavBar2 = () => {
           {
             window.location.pathname !== '/home' ? 
             <a href="/home" className="link-to-home">
-            <GrHomeRounded />
+            <GrHomeRounded className="d-flex mt-3 mx-4"/>
             </a>
             : null
           }
@@ -66,15 +66,16 @@ const NavBar2 = () => {
               <label className="brandNav">snYKers</label>
             </Link>
           </NavB.Brand>
-
-          <SearchBar />
+          <div className="SearchNavBar">
+            <SearchBar />
+          </div>
 
           <Nav
             className="justify-content-end align-items-center"
             activeKey="/home"
           >
             <div className="d-flex ">
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center linksAuxNav">
                 <Link to={"/"} className="noneDecoration">
                   <NavItem className="linkNav">Home</NavItem>
                 </Link>
@@ -92,7 +93,7 @@ const NavBar2 = () => {
                 </Link>
               </div>
 
-              <div className="d-flex align-items-center ms-2">
+              <div className="d-flex align-items-center ms-2 cartAndAccount">
                 <Dropdown as={NavItem}>
                   <Dropdown.Toggle
                     as={NavLink}
