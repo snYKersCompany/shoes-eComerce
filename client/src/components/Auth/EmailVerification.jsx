@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 //actions
 import { useAuth } from "../../context/authContext";
 //JSX
@@ -8,22 +8,41 @@ import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/esm/Button";
 import "../../styles/EmailVerification.css";
+import { useEffect } from "react";
+import { BsCheck } from "react-icons/bs";
 
 const EmailVerification = () => {
-  const { firebaseUser, emailVerification, logOut, user } = useAuth();
+  const navigate = useNavigate();
+  const { firebaseUser, emailVerification, user } = useAuth();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [sended, setSended] = useState(false);
 
-  console.log(firebaseUser);
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   const handleVerificationBTN = (e) => {
     e.preventDefault();
     try {
       emailVerification(firebaseUser);
-      setSuccess("Please check your email and follow the steps");
       setError("");
+      setSuccess("Please check your email and follow the steps");
+      setSended(true);
     } catch (error) {
+      if (error.code === "auth/too-many-requests") {
+        setSuccess("");
+        setError("Too many requestes, try it later");
+      }
       setError(error);
+    }
+  };
+
+  const handleVerificationCompleted = async (e) => {
+    if (sended === false) {
+      setError("This user isnt verified yet");
+    } else {
+      navigate("/");
     }
   };
 
@@ -40,11 +59,13 @@ const EmailVerification = () => {
         >
           Send Verification Email
         </Button>
-        <Link to="/">
-          <Button variant="outline-warning" className="verifyEmailBtn">
-            Verification Completed
-          </Button>
-        </Link>
+        <Button
+          variant="outline-warning"
+          className="verifyEmailBtn"
+          onClick={(e) => handleVerificationCompleted(e)}
+        >
+          Verification Completed
+        </Button>
         <Link to="/">
           <Button variant="outline-danger" className="verifyEmailBtn">
             Go home

@@ -50,7 +50,7 @@ function App() {
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
           <Route path="/restore-password" element={<RestorePassword />} />
-          <Route path="/verify-email" element={<EmailVerification />} />
+          <Route path="/verify-email" element={<UserProtectedRoute><EmailVerification /></UserProtectedRoute>} />
           <Route path="/register" element={<Register />} />
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
@@ -70,7 +70,7 @@ function App() {
             }
           />
 
-          <Route path="/demogrid" element={<DemoGrid/>}/>
+          <Route path="/demogrid" element={<DemoGrid />} />
 
           <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
