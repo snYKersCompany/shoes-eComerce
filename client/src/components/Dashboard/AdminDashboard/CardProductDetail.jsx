@@ -9,6 +9,7 @@ const CardProductDetail = ({
   count,
   price,
   totalPrice,
+  key,
 }) => {
   return (
     <div className="d-flex containerCardCart justify-content-evenly">
