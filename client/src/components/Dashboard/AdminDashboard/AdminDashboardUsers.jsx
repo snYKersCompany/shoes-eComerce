@@ -14,6 +14,7 @@ function AdminDashboardUsers() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
   const [warning, setWarning] = useState(false);
+  const [idReviews, setIdReviews] = useState([])
 
   const [orderUser, setOrderUser] = useState(""); // eslint-disable-line
   const [valueOrder, setValueOrder] = useState(-1); // eslint-disable-line
@@ -108,7 +109,7 @@ function AdminDashboardUsers() {
             <div className="cardUser-delete">
               <button
                 className="cardUser-btn"
-                onClick={() => setWarning(user._id)}
+                onClick={() => {setWarning(user._id); setIdReviews(user.reviews)}}
               >
                 <FaTrash />
               </button>
@@ -119,9 +120,10 @@ function AdminDashboardUsers() {
 
       <ModalUsersWarning
         show={warning}
-        onHide={() => setWarning(false)}
+        onHide={() => {setWarning(false); setIdReviews([])}}
         order={{ [orderUser]: valueOrder }}
         search={search}
+        reviews = {idReviews}
       />
     </div>
   );

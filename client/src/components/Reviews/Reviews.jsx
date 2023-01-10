@@ -27,31 +27,53 @@ const Reviews = ({ id }) => {
       {product && product.length ? (
         product.map((e) => {
           return (
-            <div className="d-column container">
+
+            // <div className="master">
+
+
+
+
+            <div className="container">
+
               <div className="container-reviews">
-                <div className="">
-                  {/*img del usuario */}
+
+                      {/*img del usuario */}
+                <div className="review-image">
                   {e.user.image ? (
                     <img src={e.user.image} alt="not " />
-                  ) : (
-                    <CiUser />
-                  )}
+                    ) : (
+                      <CiUser />
+                      )}
+                  </div>
+
+
+                  <div className="review-name">
                   {/* <p>{e.user.username}</p> */}
                   {/*titulo de la review */}
-                  <p></p>
+                  <h6>user said: </h6>
+                  </div>
+
+                  <div className="review-stars">
                   {/*con la cantidad de rating que tenga */}
                   <StarsReview stars={e.rating} />
-                </div>
-                {/*body de la review */}
-                <div className="comment">
+                  </div>
+
+
+                  <div className="comment">
                   <input
                     type="text"
                     value={e.description}
                     className="input-comment"
-                  />
+                    />
                 </div>
+
               </div>
+                {/*body de la review */}
+        
+
             </div>
+
+      // </div> 
           );
         })
       ) : (

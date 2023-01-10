@@ -12,16 +12,16 @@ const PAYPAL_API = 'https://api-m.sandbox.paypal.com';
 const auth = { user: CLIENT, pass: SECRET };
 
 
-const createPayment = (req, res)=>{
+const createPayment = async (req, res)=>{
     try {
-        const { finalAmout, products, user } = req.body;
+        const { finalAmount, products, user } = req.body;
         const _id = user.uid
         const body = {
             intent: 'CAPTURE',
             purchase_units: [{
                 amount: {
                     currency_code: 'USD', //https://developer.paypal.com/reference/currency-codes/
-                    value: String(finalAmout)
+                    value: String(finalAmount)
                 }
             }],
             application_context: {
@@ -34,21 +34,22 @@ const createPayment = (req, res)=>{
         }
         //         return_url: 'http://localhost:3000/execute-payment',
         //         cancel_url: 'http://localhost:3000/cancel-payment'
-        
+        console.log({ finalAmount, products, user })
         // validateProducts modifica y verifica si hay sficiente stock en cada producto
-        const validateProducts = saleProducts(products)  //  Devuelte true/false dependiendo si hay stock suficiente o no, respectivamente
+        const validateProducts = await saleProducts(products)  //  Devuelte true/false dependiendo si hay stock suficiente o no, respectivamente
+        console.log(validateProducts)
+        
         if(!validateProducts) throw new Error("No hay stock suficiente")
-    
         request.post(`${PAYPAL_API}/v2/checkout/orders`, {
             auth,
             body,
             json:true
         }, (err, response)=>{
             const data = response.body
-            //      CREAR NUEVA ORDEN CON LOS DATOS { finalAmout, products, user, data }
-            if(data.status === 'CREATED') postNewOrder(products, finalAmout, user, data)
-    
-            res.json({ data })
+            //      CREAR NUEVA ORDEN CON LOS DATOS { finalAmount, products, user, data }
+            if(data.status === 'CREATED') postNewOrder(products, finalAmount, user, data)
+            console.log(data)
+            res.json( data )
         })
         
     } catch (error) {
@@ -74,7 +75,7 @@ const executePayment = (req, res) => {
         //  HACER VALIDACION PARA SAVER SI ES APROVE O CANCELED Y MODIFICAR LA ORDEN 
 
 
-        res.json({ data: response.body })
+        res.json( response.body )
     })
 }
 router.get('/execute-payment', executePayment)
