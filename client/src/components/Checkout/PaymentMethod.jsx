@@ -49,6 +49,7 @@ const PaymentMethod = () => {
         };
         console.log(body);
         const voucher = await createPayment(body);
+        console.log(voucher)
         const { href } = voucher.links.find((link) => link.rel === "approve");
         window.location.href = href;
       }
