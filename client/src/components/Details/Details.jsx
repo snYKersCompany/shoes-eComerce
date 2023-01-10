@@ -103,6 +103,9 @@ const Details = () => {
     <>
       <NavBar />
       <ScrollToTop />
+      <Button className="d-flex mx-1" onClick={() => navigate("/")}>
+        Return Home
+      </Button>
       <div className="details d-flex flex-column">
         <div className="d-flex justify-content-center DetailsContainerGeneral">
           <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
@@ -222,9 +225,6 @@ const Details = () => {
         )}
       </div>  
       <Reviews productDetail={productDetail} id={id}/>
-      <Button className="d-flex mx-1" onClick={() => navigate("/")}>
-        Return Home
-      </Button>
     </>
   );
 };
