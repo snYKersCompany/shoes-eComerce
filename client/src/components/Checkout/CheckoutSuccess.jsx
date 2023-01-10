@@ -7,6 +7,7 @@ import NavBar from "../NavBar2.0/NavBar2.0";
 import {
   executePayment,
   changeStatusOrder,
+  getOrderDetails
 } from "../../redux/features/orders/ordersActions";
 
 import { putSuccesOrder } from "../../redux/features/nodemailer/nodeMailerActions";
@@ -16,20 +17,29 @@ import "../../styles/checkoutSuccess.css";
 
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
-  const { email } = useSelector((state) => state.users.userDashboard);
+
+  const query = window.location.search;
+  const payment = query.slice(9, 15);
+  const id = query.split("=").pop()
+
+  const { email, username } = useSelector((state) => state.users.userDashboard);
+  const { orderDetails } = useSelector((state) => state.orders);
+  dispatch(putSuccesOrder(orderDetails));
+ 
   localStorage.removeItem("carrito");
+
   useEffect(() => {
     //Buscar otro metodo que sirva para todos los metodos de pago
-    const query = window.location.search;
-    const payment = query.slice(9, 15);
+
     if (email) {
       if (payment === "paypal") executePayment(query);
       if (payment === "stripe") {
+
         dispatch(changeStatusOrder(query, { state: "aprobed" }));
       }
-      dispatch(putSuccesOrder(email));
+      dispatch(getOrderDetails(id))
     }
-  }, [dispatch, email]);
+  }, [dispatch, email, username, id]);
 
   return (
     <>
