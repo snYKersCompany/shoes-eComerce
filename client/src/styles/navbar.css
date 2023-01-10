@@ -14,13 +14,6 @@
   height: 10vh;
 }
 
-@media screen and (max-width: 760px) {
-  .logo {
-    position: absolute;
-    visibility: hidden;
-    width: 0;
-  }
-}
 
 .brandNav {
   font-family: NexaSlabThin;
@@ -90,6 +83,34 @@
   justify-content: space-evenly;
   align-items: center;
 }
+
+@media screen and (max-width: 760px) {
+  .logo {
+    position: absolute;
+    visibility: hidden;
+    width: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .linksAuxNav{
+    display: none;
+  }
+  .noneDecoration{
+    display: none;
+  }
+  .ContainerGeneralNav{
+    justify-content: space-between;
+  }
+  .cartAndAccount{
+    margin-right: 1rem;
+    justify-self: end;
+  }
+  .SearchNavBar{
+    margin: auto;
+  }
+}
+
 
 /* .ContainerGeneralNav:hover{
   cursor: pointer;
