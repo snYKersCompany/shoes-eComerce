@@ -1,5 +1,16 @@
-.Dasboard-container {
+.Dashboard-container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, auto);
+  grid-template-rows: 7vh 93vh;
+  overflow: hidden;
+}
+.Dashboard-NavBar2 div{
+  display: grid;
+  grid-column: 1/2;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .Dashboard-container {
+    grid-template-rows: 7vh 93vh;
+  }
 }

@@ -11,10 +11,10 @@ import "../../styles/Cart.css";
 
 const Cart = () => {
   let priceTotal = 0;
-  let productsCart = localStorage.getItem("carrito");
+  let productsCart = localStorage.getItem("carrito"); // []
 
   const [products, setProducts] = useState(
-    productsCart?.length > 1 ? JSON.parse(productsCart) : []
+    productsCart?.length > 1 ? JSON.parse(productsCart) : [] // []
   );
   const [priceToSend, setPriceToSend] = useState(
     products.length

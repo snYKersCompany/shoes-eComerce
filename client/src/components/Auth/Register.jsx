@@ -86,19 +86,21 @@ const Register = () => {
     setShown(false);
     setUser({ ...userIN, [name]: value });
   };
-  console.log(userIN.password);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     try {
       const userUID = await signUp(userIN.email, userIN.password);
-      navigate("/");
-      alert("Your register went succesfully :D");
+      console.log(userUID.user.emailVerified);
+      if (userUID.user.emailVerified === false) {
+        navigate("/verify-email");
+      } else {
+        navigate("/");
+      }
       dispatch(
         putUserInformation(userUID.user.uid, {
           username: userIN.username,
-          password: userIN.password,
         })
       );
       setUser({ username: "", email: "", password: "" });
@@ -126,6 +128,7 @@ const Register = () => {
       if (error.code === "auth/missing-email") {
         setError("Introduce an email");
       }
+      //if (error.code === "")
     }
   };
 
@@ -202,7 +205,7 @@ const Register = () => {
             </Link>
           </Card.Body>
           <Card.Footer className="text-muted">
-            <Link to="/home">Go Home</Link>
+            <Link to="/">Go Home</Link>
           </Card.Footer>
         </Card>
       </CardGroup>

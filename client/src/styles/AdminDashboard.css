@@ -2,7 +2,9 @@
   display: grid !important;
   grid-template-columns: 1fr;
   grid-template-rows: 95% 5%;
-  height: 90vh;
+  height: 91vh; /*Cambiar por posición normal y sticky*/
+
+
 }
 
 .userDashBoard-nav-section {
@@ -18,6 +20,7 @@
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   background: #302f3e !important;
+  width: 100%;
 }
 
 .text-icon {
@@ -79,7 +82,7 @@
     display: grid !important;
     grid-template-columns: 15% 85%;
     grid-template-rows: 1fr;
-    height: 100vh;
+    height: 100%; /*Cambiar por posición normal y sticky*/
   }
   .userDashBoard-nav-section {
     display: grid !important;
