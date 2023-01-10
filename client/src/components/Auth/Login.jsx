@@ -7,8 +7,7 @@ import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
+
 //styles
 import "../../styles/login.css";
 
@@ -83,81 +82,72 @@ const Login = () => {
 
   return (
     <>
-      <CardGroup>
-        <Card className="text-center text-white" style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>Login</Card.Title>
+      <div className="loginContainer">
+        <div className="loginWelcomeContainer">
+          <Link to="/" className="loginActionBTNHome">
+            Home
+          </Link>
+          <h3 className="loginWelcomeMSJ">Welcome back to snYKers</h3>
+          <h5 className="loginWelcomeMSJLogin">LogIn your Account</h5>
+        </div>
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <div className="loginFormContainer">
             {error && <AlertMSJ message={error} />}
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <div className="d-flex justify-content-center">
-                  <Form.Control
-                    className="ph-center d-flex "
-                    onChange={(e) => handleChange(e)}
-                    name="email"
-                    type="email"
-                    placeholder="Enter email"
-                  />
-                  <span className="d-flex" style={{ width: "43px" }}></span>
-                </div>
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-
-              <Form.Group
-                onChange={onChange}
-                controlId="formBasicPassword"
-                className="mb-4"
-              >
-                <Form.Label>Password</Form.Label>
-                <div className="d-flex justify-content-center">
-                  <Form.Control
-                    className="ph-center d-flex w-80"
-                    onChange={(e) => handleChange(e)}
-                    name="password"
-                    placeholder="Password"
-                    type={shown ? "text" : "password"}
-                    value={password}
-                  />
-
-                  <Button className="d-flex" onClick={switchShown}>
-                    {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
-                  </Button>
-                </div>
-              </Form.Group>
-
-              <Button variant="primary" type="submit">
-                Login
-              </Button>
-              <Button
-                className="m-2"
-                variant="primary"
-                type="submit"
-                onClick={handleResetPassword}
-              >
-                Forgot Password ?
-              </Button>
-            </Form>
-            <Button
-              className="m-2"
-              variant="primary"
-              onClick={handleGoogleLogin}
+            <Form.Group controlId="formBasicEmail" className="mb-4">
+              <Form.Control
+                className="ph-center d-flex "
+                onChange={(e) => handleChange(e)}
+                name="email"
+                type="email"
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Form.Group
+              onChange={onChange}
+              controlId="formBasicPassword"
+              className="mb-4"
             >
-              Login with Google
-            </Button>
-            <Link to="/register">
-              <Button className="m-2" variant="primary">
-                Dont have an account? Register here
+              <Form.Control
+                className="ph-center d-flex w-80"
+                onChange={(e) => handleChange(e)}
+                name="password"
+                placeholder="Password"
+                type={shown ? "text" : "password"}
+                value={password}
+              />
+              <div className="d-flex justify-content-center">
+                <Button variant="dark" onClick={switchShown}>
+                  {shown ? <AiFillEye /> : <AiFillEyeInvisible />}
+                </Button>
+              </div>
+            </Form.Group>
+            {error ? null : (
+              <Button variant="success" type="submit">
+                <p className="loginBTNSubmit">Login</p>
               </Button>
-            </Link>
-          </Card.Body>
-          <Card.Footer className="text-muted">
-            <Link to="/">Go Home</Link>
-          </Card.Footer>
-        </Card>
-      </CardGroup>
+            )}
+          </div>
+        </Form>
+        <div className="loginActionBTNSContainer">
+          <button
+            className="loginActionBTN "
+            type="submit"
+            onClick={handleResetPassword}
+          >
+            Forgot Password ?
+          </button>
+          <br />
+          <button className="loginActionBTN" onClick={handleGoogleLogin}>
+            Login with Google
+          </button>
+          <br />
+          <Link to="/register">
+            <button className="loginActionBTN ">
+              Dont have an account? Register here
+            </button>
+          </Link>
+        </div>
+      </div>
     </>
   );
 };
