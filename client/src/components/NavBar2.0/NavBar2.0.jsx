@@ -56,7 +56,6 @@ const NavBar2 = () => {
           <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
             <Link to={"/"} className="NavImg">
               <label className="brandNav">snYKers</label>
-              {/* <img alt="SNYKERS" src={logoBlanco} /> */}
             </Link>
           </NavB.Brand>
 

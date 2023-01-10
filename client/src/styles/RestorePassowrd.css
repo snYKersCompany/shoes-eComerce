@@ -1,8 +1,7 @@
 .restorePassContainer {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 1fr 1fr 1fr;
-  height: 100vh;
+  grid-template-rows: 1fr 1fr 20%;
 }
 
 .restorePassWelcomeContainer {
@@ -31,33 +30,32 @@
 
 .restorePassActionBTNHome {
   font-family: Bebas Neue, cursive;
-  display: flex;
   color: rgb(198754);
   margin-top: 20px;
   font-size: 1.5em;
   color: rgb(25, 135, 84);
+  text-align: center;
 }
 
 .restorePassWelcomeMSJ {
-  display: flex;
   color: rgb(255, 153, 0);
   margin-left: 30px;
   font-size: 3.5em;
   font-family: Bebas Neue, cursive;
   margin-top: 7px;
+  text-align: center;
 }
 
 .restorePassWelcomeMSJRestore {
-  display: flex;
   color: rgb(255, 153, 0);
   margin-left: 30px;
   font-size: 2em;
   font-family: Bebas Neue, cursive;
   margin-top: 7px;
+  text-align: center;
 }
 
 .restorePassBTNSubmit {
-  display: grid;
   font-family: Bebas Neue, cursive;
   margin-bottom: 0px;
 }
@@ -70,4 +68,11 @@
   width: 130px;
   border-color: rgb(255, 153, 0);
   font-size: 1em;
+}
+
+.restorePassActionsBTNSFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }

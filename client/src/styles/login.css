@@ -7,7 +7,6 @@
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
-  height: 100vh;
 }
 
 .loginWelcomeContainer {
@@ -34,6 +33,13 @@
   align-self: center;
 }
 
+.loginActionsBTNSFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
 .loginWelcomeMSJ {
   display: flex;
   color: rgb(255, 153, 0);
@@ -41,6 +47,7 @@
   font-size: 3.5em;
   font-family: Bebas Neue, cursive;
   margin-top: 7px;
+  text-align: center;
 }
 
 .loginWelcomeMSJLogin {
@@ -50,6 +57,7 @@
   font-size: 2em;
   font-family: Bebas Neue, cursive;
   margin-top: 7px;
+  text-align: center;
 }
 
 .loginBTNSubmit {
@@ -75,4 +83,5 @@
   margin-top: 20px;
   font-size: 1.5em;
   color: rgb(25, 135, 84);
+  text-align: center;
 }

@@ -6,8 +6,6 @@ import SuccessMSJ from "./SuccessMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 //styles
 import "../../styles/RestorePassowrd.css";
 
@@ -60,21 +58,21 @@ const RestorePassowrd = () => {
                 placeholder="Enter email"
               />
             </Form.Group>
-            <Form.Group className="mb-4">
-              <Button variant="success" type="submit">
-                <p className="restorePassBTNSubmit">
-                  Send Restore Password Email
-                </p>
-              </Button>
-            </Form.Group>
+            <Button variant="success" type="submit">
+              <p className="restorePassBTNSubmit">
+                Send Restore Password Email
+              </p>
+            </Button>
           </div>
         </Form>
         <div className="restorePassActionsBTNSContainer">
-          <Link to="/login">
-            <button className="restorePassActionBTN " type="submit">
-              LogIn with New Password
-            </button>
-          </Link>
+          <div className="restorePassActionsBTNSFlex">
+            <Link to="/login">
+              <button className="restorePassActionBTN " type="submit">
+                LogIn with New Password
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>

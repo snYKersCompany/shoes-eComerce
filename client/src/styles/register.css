@@ -6,8 +6,7 @@
   color: white;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: 1fr 1fr 40% 1fr;
-  height: 100vh;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .registerWelcomeContainer {
@@ -29,7 +28,7 @@
 .registerLoginContainer {
   display: grid;
   grid-column: 1/2;
-  grid-row: 4/5;
+  grid-row: 3/4;
   justify-items: center;
   align-self: center;
 }
@@ -41,6 +40,7 @@
   font-size: 3.5em;
   font-family: Bebas Neue, cursive;
   margin-top: 7px;
+  text-align: center;
 }
 
 .registerWelcomeMSJRegister {
@@ -50,6 +50,7 @@
   font-size: 2em;
   font-family: Bebas Neue, cursive;
   margin-top: 7px;
+  text-align: center;
 }
 
 .registerLoginText {
@@ -58,6 +59,7 @@
   margin-left: 30px;
   font-size: 1.5em;
   font-family: Bebas Neue, cursive;
+  text-align: center;
 }
 
 .registerLoginRedirectionHome {
@@ -67,6 +69,7 @@
   margin-top: 20px;
   font-size: 1.5em;
   color: rgb(25, 135, 84);
+  text-align: center;
 }
 
 .registerLoginRedirectionLogin {
@@ -75,9 +78,17 @@
   color: rgb(198754);
   font-size: 1.2em;
   color: rgb(25, 135, 84);
+  text-align: center;
 }
 
 .registerBTNSubmit {
   font-family: Bebas Neue, cursive;
   margin-bottom: 0px;
+}
+
+.registerLoginContainerFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
 }
