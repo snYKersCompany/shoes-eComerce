@@ -7,39 +7,66 @@ import NavBar from "../NavBar2.0/NavBar2.0";
 import {
   executePayment,
   changeStatusOrder,
-  getOrderDetails
+  getOrderDetails,
 } from "../../redux/features/orders/ordersActions";
-
 import { putSuccesOrder } from "../../redux/features/nodemailer/nodeMailerActions";
 //styles
 import Button from "react-bootstrap/esm/Button";
 import "../../styles/checkoutSuccess.css";
+import { useState } from "react";
 
 const CheckoutSuccess = () => {
   const dispatch = useDispatch();
-
+  // const { orderDetails } = useSelector((state) => state.orders);
+  const { email, username, _id } = useSelector((state) => state.users.userDashboard);
   const query = window.location.search;
   const payment = query.slice(9, 15);
-  const id = query.split("=").pop()
+  const id = query.split("=").pop();
 
-  const { email, username } = useSelector((state) => state.users.userDashboard);
-  const { orderDetails } = useSelector((state) => state.orders);
-  dispatch(putSuccesOrder(orderDetails));
- 
-  localStorage.removeItem("carrito");
+  const carrito = JSON.parse(localStorage.getItem('carrito'))
 
+  const [orderDetails, setOrderDetails] = useState({
+    user:{
+      email,
+      username,
+      uid:_id
+    },
+    products:carrito,
+    finalAmount:carrito && carrito.length ? carrito.reduce((acc, curr)=> acc=acc+curr.totalPrice, 0) : null
+  })
+  
   useEffect(() => {
-    //Buscar otro metodo que sirva para todos los metodos de pago
-
-    if (email) {
-      if (payment === "paypal") executePayment(query);
-      if (payment === "stripe") {
-
-        dispatch(changeStatusOrder(query, { state: "aprobed" }));
-      }
-      dispatch(getOrderDetails(id))
+    if(email && username && _id){
+      setOrderDetails({...orderDetails, user:{
+        email, username, uid:_id
+      }})
     }
+    
+    //Buscar otro metodo que sirva para todos los metodos de pago
+    if (payment === "paypal") executePayment(query);
+    
+    if (payment === "stripe") dispatch(changeStatusOrder(query, { state: "aprobed" }));
+    
   }, [dispatch, email, username, id]);
+  
+  if(
+    orderDetails.user.email &&
+    orderDetails.user.username &&
+    orderDetails.user.uid &&
+    orderDetails.products.length &&
+    orderDetails.finalAmount &&
+    (payment === "paypal" || payment === "stripe")
+    ){
+      console.log("info para mandarle al mail", orderDetails);
+      // dispatch(getOrderDetails(id));
+      // console.log("getOrderDetails")
+      dispatch(putSuccesOrder(orderDetails));
+      // console.log("orderDetails")
+      localStorage.removeItem("carrito");
+  }
+  // console.log("info para mandarle al mail", orderDetails);
+  //   console.log({carrito})
+  //   console.log({ email, username, _id })
 
   return (
     <>

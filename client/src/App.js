@@ -73,7 +73,7 @@ function App() {
 
           <Route path="/home/:id" element={<Details />} />
           <Route path="/preview" element={<Preview />} />
-          <Route path='/update' element={<FormUserUpdate />} />
+          {/* <Route path='/update' element={<FormUserUpdate />} /> */}
         </Routes>
       </AuthProvider>
     </div>

@@ -266,7 +266,7 @@ const Paginated = () => {
           </>
         )}
       </Pagination>
-      )
+      
     </div>
   ) : (
     <div></div>

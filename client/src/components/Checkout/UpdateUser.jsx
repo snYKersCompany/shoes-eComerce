@@ -13,6 +13,7 @@ export default function FormUserUpdate() {
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
 
+  console.log('esto es updateUser de checkout', userDashboard)
   // States
   const [input, setInput] = useState({
     username: "",
