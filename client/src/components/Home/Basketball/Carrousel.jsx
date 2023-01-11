@@ -28,8 +28,8 @@ const Carrousel = ({name, category, gender="men", color}) => {
             <h3 className="titleCarrouselBskt">{name}</h3>
             <div className={`containerCarrouselBskt`}>
                 {products[0]!=='void' && products?.length >1?
-                products.slice(0,25).map(el =>
-                    <Link to={`/home/${el._id}`}>
+                products.slice(0,25).map((el, i) =>
+                    <Link to={`/home/${el._id}`} key={i}>
                         <div className="individualCardContainerBskt">
                             <CardBasketball name={el.name} img={el.card_picture} color={color}   />
                         </div>

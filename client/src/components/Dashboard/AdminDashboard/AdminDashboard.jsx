@@ -13,7 +13,7 @@ import { RiUserSearchLine, RiUserSettingsLine } from "react-icons/ri";
 import "../../../styles/AdminDashboard.css";
 import { useDispatch } from "react-redux";
 import { getAllOrders } from "../../../redux/features/orders/ordersActions";
-import { clearFilters } from "../../../redux/features/products/productsActions";
+import { clearFilters, clearOrders } from "../../../redux/features/products/productsActions";
 
 const AdminDashboard = () => {
   const [orderDetails, setOrderDetails] = useState(true);
@@ -29,7 +29,10 @@ const AdminDashboard = () => {
 
   useEffect(()=>{
     dispatch(getAllOrders())
-    return () =>{dispatch(clearFilters())}
+    return () =>{
+      dispatch(clearFilters())
+      dispatch(clearOrders())
+    }
   }
   )
 
