@@ -100,10 +100,14 @@ const Details = () => {
 
   //Fin local Storage
   return (
-    <>
-      <NavBar />
-      <ScrollToTop />
-      <div className="details d-flex flex-column">
+    <div className="gridGeneralDetails">
+
+      <div className="containerNavDetails">
+        <NavBar />
+        <ScrollToTop />
+      </div>
+      
+      <div className="detailsContainerCard">
         <div className="d-flex justify-content-center DetailsContainerGeneral">
           <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
             <div className="div1 col-6 d-flex flex-column align-items-start text-start DetailsHeader">
@@ -135,6 +139,9 @@ const Details = () => {
             </div>
           </section>
         </div>
+      </div>
+
+      <div className="detailsContainerInfo">
         <section className="d-flex flex-column justify-content-center align-items-center text-center mb-2">
           <em className="fs-5 text-secondary">
             <div
@@ -221,11 +228,17 @@ const Details = () => {
           <></>
         )}
       </div>  
-      <Reviews productDetail={productDetail} id={id}/>
-      <Button className="d-flex mx-1" onClick={() => navigate("/")}>
+      
+      <div className="reviewsContainerDetails">
+        <Reviews productDetail={productDetail} id={id}/>
+      </div>
+
+      <div className="buttonBackDetails">
+      <button className="d-flex mx-1" onClick={() => navigate("/")}>
         Return Home
-      </Button>
-    </>
+      </button>
+      </div>
+    </div>
   );
 };
 

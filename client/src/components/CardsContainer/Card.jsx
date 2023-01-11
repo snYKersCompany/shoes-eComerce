@@ -83,9 +83,10 @@ const CardProduct = ({
             {rating !== 0 ? (
               <>
                 {/* Rating:{" "} */}
-                {[...Array(rating)].map((index, i) => (
+                {/* {[...Array(rating)].map((index, i) => (
                   <BsFillStarFill key={i} className={"starsCards"} />
-                ))}
+                ))} */}
+                1
               </>
             ) : (
               // <BsStar/>
