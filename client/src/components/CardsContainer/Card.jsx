@@ -1,20 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import {
-  BsFillHeartFill, // eslint-disable-line
-  BsFillStarFill,
-  BsHeart,
-  BsStar, // eslint-disable-line
-} from "react-icons/bs"; // eslint-disable-line
-
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addUserProductFavorites,
   deleteUserProductFavorites,
 } from "../../redux/features/users/usersActions";
+import { BsFillHeartFill, BsFillStarFill, BsHeart } from "react-icons/bs";
+import Card from "react-bootstrap/Card";
 import "../../styles/card.css";
 
 const CardProduct = ({
@@ -27,14 +19,9 @@ const CardProduct = ({
   checkHeart,
 }) => {
   const dispatch = useDispatch();
-  // console.log("Esto es checkHeart", checkHeart)
   const { userDashboard } = useSelector((state) => state.users);
-
   const [check, setCheck] = useState(checkHeart);
-  // useEffect(() => {
-  //   setCheck(checkHeart);
-  // }, [checkHeart]);
-  // console.log(typeof checkHeart)
+
   const handlerOnClick = () => {
     if (check)
       dispatch(
@@ -44,15 +31,7 @@ const CardProduct = ({
       dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));
     if (typeof checkHeart === "boolean") setCheck(!check);
   };
-  console.log({
-    _id,
-  name,
-  price,
-  card_picture,
-  brand,
-  rating,
-  checkHeart,
-  })
+
   return (
     <Card className="d-flex card ">
       <div className="d-flex justify-content-end me-4 mt-4">
