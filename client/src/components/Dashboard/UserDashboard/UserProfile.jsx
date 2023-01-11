@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getUserDashboards,
@@ -11,6 +11,9 @@ function UserProfile() {
   const dispatch = useDispatch();
 
   const { userDashboard, user } = useSelector((state) => state.users); //user se usa para el _id // userDashboard es para las props
+
+  console.log('esto es userProfile de userDashboard', userDashboard)
+
 
   const [change, setChange] = useState({
     username: userDashboard.username ? userDashboard.username : "",
@@ -38,6 +41,24 @@ function UserProfile() {
     state: false,
     image: false,
   }); //  si cambia a true significa que hay un error en su respectivo formulario
+
+  useEffect(() => {
+    if (Object.entries(userDashboard).length)
+      setChange({
+        username: userDashboard.username ? userDashboard.username : "",
+        // email: userDashboard.email ? userDashboard.email : "",
+        phone: userDashboard.phone ? userDashboard.phone : "",
+        address: userDashboard.address ? userDashboard.address : "",
+        city: userDashboard.city ? userDashboard.city : "",
+        country: userDashboard.country ? userDashboard.country : "",
+        // roles: userDashboard.roles ? userDashboard.roles : "",
+        image: userDashboard.image ? userDashboard.image : "",
+        state: userDashboard.state ? userDashboard.state : "",
+      });
+  }, [userDashboard]);
+
+
+
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -176,7 +197,7 @@ function UserProfile() {
                   <input
                     type="string"
                     placeholder={f.placeholder}
-                    defaultValue={change[f.form]}
+                    value={change[f.form]}
                     onChange={(e) => handleChange(e, f.form)}
                     disabled={disable !== f.form}
                     className={`${disable === f.form ? "editfocus" : ""}   ${
