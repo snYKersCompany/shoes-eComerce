@@ -7,7 +7,7 @@ const userSuspended = async (req, res) => {
             from: 'Snyckers henrypg.n2@gmail.com', // sender address
             to: email, // list of receivers
             subject: "Account disabled", // Subject line
-            html: "CUENTA DE USUARIO SUSPENDIDA"
+            html: "Your account has been temporarily deactivated, if we made a mistake please reply to this message requesting the activation of your account. Thank you!"
         });
       res.status(200).send(info)
     } catch (error) {
