@@ -4,12 +4,12 @@ const userSuspended = async (req, res) => {
     const { email } = req.body;
     try {
         const info = await transporter.sendMail({
-            from: 'Snyckers henrypg.n2@gmail.com', // sender address
+            from: 'Snykers henrypg.n2@gmail.com', // sender address
             to: email, // list of receivers
             subject: "Account disabled", // Subject line
-            html: "Your account has been temporarily deactivated, if we made a mistake please reply to this message requesting the activation of your account. Thank you!"
+            html: `Your user with email ${email} has been temporaly suspended`
         });
-      res.status(200).send(info)
+        res.status(200).send(info)
     } catch (error) {
         res.status(400).send(error);
         return ({
@@ -19,5 +19,5 @@ const userSuspended = async (req, res) => {
 };
 
 module.exports = {
-   userSuspended
+    userSuspended
 };

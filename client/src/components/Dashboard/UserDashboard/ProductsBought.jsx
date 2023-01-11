@@ -8,6 +8,7 @@ import InputChangeRating from "../../StarsReview/InputChangeRating";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/esm/Button";
+import NoFavourites from "./NoFavourites";
 import Form from "react-bootstrap/Form";
 import "../../../styles/ProductBought.css";
 
@@ -17,6 +18,9 @@ const ProductsBought = () => {
   const { userDashboard, user } = useSelector((state) => state.users);
   const captureUserName = userDashboard.name;
   const { orders } = useSelector((state) => state.orders);
+
+  
+  const leyend = "With your first purchase you can add a review to the product."
 
 
 
@@ -28,8 +32,11 @@ const ProductsBought = () => {
 
   const [moveToReview, setMoveToReview] = useState(false);
 
-  const userPurchases = orders.filter(e=> e.state === 'aprobed').map((e) => e.products).flat();
-  console.log("ESTOOOO VERR::::::::::::::::::::::", userPurchases);
+
+  const userPurchases = orders
+    .filter((e) => e.state === "aprobed")
+    .map((e) => e.products)
+    .flat();
 
   const handlerInputReview = (e) => {
     setReviewInput({
@@ -55,7 +62,7 @@ const ProductsBought = () => {
         description: Object.values(reviewInput).toString(),
       })
     );
-      navigate('/account')
+    navigate("/account");
   };
 
   const toProductReview = (e, id) => {
@@ -75,15 +82,11 @@ const ProductsBought = () => {
 
   return moveToReview === false ? (
     <div className="ProductBougth-container">
-      {userPurchases &&
+      {userPurchases.length ?
         userPurchases.map((prd, i) => (
           <div key={i} className="ProductBougth-card">
             <div className="ProductBougth-card-img">
-              <img
-                
-                src={prd.img}
-                alt={prd.name}
-              />
+              <img src={prd.img} alt={prd.name} />
             </div>
             <p className="ProductBougth-card-name">{prd.name}</p>
             <button
@@ -93,58 +96,63 @@ const ProductsBought = () => {
               make your review
             </button>
           </div>
-        ))}
+        ))
+       
+      : <div className="alertFavoritesCards">
+      <NoFavourites leyend = {leyend}/>
+      </div>
+    }
         
     </div>
-  ) : (
+  )  : (
     <div
       className="modal show"
       style={{ display: "block", position: "initial" }}
     >
       <div className="ModalContainerPB">
-      <Modal.Dialog>
-
-      <div className="ModalContainerPB-header">
-
-        <Modal.Header >
-          <Modal.Title>Make your review!</Modal.Title>
-        </Modal.Header>
-      </div>
-        {/* body pas cribi */}
-         <div className="ModalContainerPB-body">
-        <Modal.Body>
-          
-            
-              
-            <InputChangeRating rating={avgRating} handleRating={handleRating}  />
-            <StarsReview stars={avgRating} />
-            <FloatingLabel controlId="floatingTextarea2" label="Comments">
-              <Form.Control
-                as="textarea"
-                placeholder="Leave a comment here"
-                style={{ height: "100px" }}
-                name="reviewInput"
-                onChange={(e) => handlerInputReview(e)}
+        <Modal.Dialog>
+          <div className="ModalContainerPB-header">
+            <Modal.Header>
+              <Modal.Title>Make your review!</Modal.Title>
+            </Modal.Header>
+          </div>
+          {/* body pas cribi */}
+          <div className="ModalContainerPB-body">
+            <Modal.Body>
+              <InputChangeRating
+                rating={avgRating}
+                handleRating={handleRating}
               />
-            </FloatingLabel>
-            <FloatingLabel controlId="floatingTextarea" className="mb-3">
-              {captureUserName}
-            </FloatingLabel>
-        </Modal.Body>
+              <StarsReview stars={avgRating} />
+              <FloatingLabel controlId="floatingTextarea2" label="Comments">
+                <Form.Control
+                  as="textarea"
+                  placeholder="Leave a comment here"
+                  style={{ height: "100px" }}
+                  name="reviewInput"
+                  onChange={(e) => handlerInputReview(e)}
+                />
+              </FloatingLabel>
+              <FloatingLabel controlId="floatingTextarea" className="mb-3">
+                {captureUserName}
+              </FloatingLabel>
+            </Modal.Body>
           </div>
 
-        <div className="ModalContainerPB-footer">
-
-        <Modal.Footer>
-          <button className="btnCard1 makeBtnReview" onClick={(e) => sendPostReview(e)}>
-            send review
-          </button>
-          <Button variant="secondary" onClick={(e) => backToProdBought(e)}>
-            back
-          </Button>
-        </Modal.Footer>
-        </div>
-      </Modal.Dialog>
+          <div className="ModalContainerPB-footer">
+            <Modal.Footer>
+              <button
+                className="btnCard1 makeBtnReview"
+                onClick={(e) => sendPostReview(e)}
+              >
+                send review
+              </button>
+              <Button variant="secondary" onClick={(e) => backToProdBought(e)}>
+                back
+              </Button>
+            </Modal.Footer>
+          </div>
+        </Modal.Dialog>
       </div>
     </div>
   );

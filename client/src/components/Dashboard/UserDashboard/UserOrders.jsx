@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RiSearchFill } from "react-icons/ri";
 
-import {IoMdArrowRoundBack} from "react-icons/io"
+import NoFavourites from "./NoFavourites";
+
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 import "../../../styles/AdminDashboardOrders.css";
-
 
 const UserOrders = () => {
   const { orders } = useSelector((state) => state.orders);
 
   const [actualOrderProducts, setActualOrderProducts] = useState();
+
+  const leyend = "With your first purchase  your orders!."
 
   // states to travel through tabs
   const [toOrderDetail, setToOrderDetail] = useState(false);
@@ -40,10 +43,10 @@ const UserOrders = () => {
         return "#ffffff";
     }
   };
+
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
-
-<div className="ContainerGeneralADO">
+    <div className="ContainerGeneralADO">
       <div className="AdminDashboard-userProfileGrid">
         <div className="AdminDashboard-userProfilefilters">
           {/* <button className="d-flex align-items-center">
@@ -52,7 +55,7 @@ const UserOrders = () => {
               </button> */}
         </div>
 
-        {orders &&
+        {orders.length ?
           orders.map((order, i) => (
             <div
               key={i}
@@ -104,7 +107,10 @@ const UserOrders = () => {
                 </button>
               </div>
             </div>
-          ))}
+          ))
+        :  <div className="alertFavoritesCards">
+      <NoFavourites leyend = {leyend}/>
+      </div>}
       </div>
     </div>
   ) : (
@@ -114,7 +120,7 @@ const UserOrders = () => {
       <div className="buttonOrderDetails">
         <button className="btnCard1" onClick={(e) => backToOrders(e)}>
           <span className="text-btn-OrderDetails">
-            <IoMdArrowRoundBack/> Back
+            <IoMdArrowRoundBack /> Back
           </span>
         </button>
       </div>
@@ -123,28 +129,24 @@ const UserOrders = () => {
         actualOrderProducts.map((prd, inx) => (
           // console.log(prd)
 
-          <div className=" CardContainerOrderDetails">
-            
-                <div className="ImageOrderDetails">
-                  <div className="imgCardOrderDetails">
-                    <img src={prd.img} alt={prd.name}  />
-                  </div>
-                  <p className="IDCardOrderDetails">{prd.id}</p>
-                </div>
+          <div key={inx} className=" CardContainerOrderDetails">
+            <div className="ImageOrderDetails">
+              <div className="imgCardOrderDetails">
+                <img src={prd.img} alt={prd.name} />
+              </div>
+              <p className="IDCardOrderDetails">{prd.id}</p>
+            </div>
 
-                <div className="InfoOrderDetails">
-                  <h3>{prd.name}</h3>
-                </div>
+            <div className="InfoOrderDetails">
+              <h3>{prd.name}</h3>
+            </div>
 
-                <div className="QuantityOrderDetails">
-                    <p>Count: {prd.count}</p>
-                    <p className="fw-bold"> Total Price: ${prd.totalPrice}</p>
-                </div>
+            <div className="QuantityOrderDetails">
+              <p>Count: {prd.count}</p>
+              <p className="fw-bold"> Total Price: ${prd.totalPrice}</p>
+            </div>
           </div>
-        
         ))}
-
-      
     </div>
   );
 };

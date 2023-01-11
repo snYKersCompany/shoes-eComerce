@@ -32,8 +32,8 @@ const NavBar2 = () => {
 
   /////-----HANDLES-----/////
   const handleLogOut = async () => {
-    await logOut();
     navigate("/");
+    await logOut();
   };
 
   ///TOOLTIP///

@@ -8,7 +8,11 @@ import Form from "react-bootstrap/Form";
 import { createPayment } from "../../redux/features/orders/ordersActions";
 import "../../styles/PaymentMethod.css";
 
-const PaymentMethod = () => {
+import paypal_icon from "../../utils/images/PayPal_icon.png"
+import stripe_icon from "../../utils/images/Stripe_icon.png"
+
+const PaymentMethod = ({buyController}) => {
+  console.log(buyController)
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -31,15 +35,15 @@ const PaymentMethod = () => {
     try {
       if (paymentMethod === "stripe") {
         axios
-          .post("http://localhost:3001/api/checkouts", {
-            products: products,
-            finalAmount: priceToSend,
-            user,
-          })
-          .then((res) => {
-            if (res.data.url) window.location.href = res.data.url;
-          })
-          .catch((err) => console.log(err.message));
+        .post("/checkouts", {
+          products: products,
+          finalAmount: priceToSend,
+          user,
+        })
+        .then((res) => {
+          if (res.data.url) window.location.href = res.data.url;
+        })
+        .catch((err) => console.log(err.message));
       }
       if (paymentMethod === "paypal") {
         const body = {
@@ -61,17 +65,19 @@ const PaymentMethod = () => {
   return (
     <div className="content">
       <div className="form">
+        {/* <p>Choose your payment method:</p> */}
         <Form className="radio">
-          {["paypal", "stripe"].map((type) => (
-            <div key={`inline-${type}`}>
+          {[["paypal", paypal_icon], ["stripe", stripe_icon]].map((type) => (
+            <div key={`inline-${type[0]}`} className="formCheck">
               <Form.Check
                 inline
-                label={type}
                 name="group1"
                 type="radio"
-                id={`inline-${type}`}
-                onClick={() => setPaymentMethod(type)}
+                id={`inline-${type[0]}`}
+                onClick={() => setPaymentMethod(type[0])}
               />
+              <img src={type[1]} alt="" width={"70"}/>
+              <label>{type[0]}</label>
             </div>
           ))}
         </Form>
@@ -80,7 +86,7 @@ const PaymentMethod = () => {
         <Button
           variant="secondary customBtn"
           onClick={() => handleClick()}
-          disabled={!paymentMethod.length}
+          disabled={(!paymentMethod.length || !buyController)}
         >
           Buy
         </Button>
