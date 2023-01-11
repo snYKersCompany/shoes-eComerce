@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import "../../../../styles/modalProductsWarning.css";
 import { deleteUser } from "../../../../redux/features/users/usersActions";
 import { useAuth } from "../../../../context/authContext";
-
 import { putUserDeleted } from "../../../../redux/features/nodemailer/nodeMailerActions";
 import { deleteReviewUser } from "../../../../redux/features/reviews/reviewsActions";
 
@@ -28,8 +27,8 @@ const ModalUsersWarning = (props) => {
       dispatch(deleteReviewUser(props.show, props.reviews));
     alert(`Inserte Accion para eliminar el User ${props.show}`);
     console.log("email", props.email);
-    dispatch(putUserDeleted({ email: user.email }));
-    props.onEmail();
+    dispatch(putUserDeleted({ email: props.email }));
+    // props.onEmail();
     props.onHide();
   };
 
