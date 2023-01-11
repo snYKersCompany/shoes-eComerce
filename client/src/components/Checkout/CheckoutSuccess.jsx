@@ -15,13 +15,13 @@ import Button from "react-bootstrap/esm/Button";
 import "../../styles/checkoutSuccess.css";
 
 const CheckoutSuccess = () => {
-  const dispatch = useDispatch();
   const { orderDetails } = useSelector((state) => state.orders);
+  const dispatch = useDispatch();
   const { email, username } = useSelector((state) => state.users.userDashboard);
   const query = window.location.search;
   const payment = query.slice(9, 15);
   const id = query.split("=").pop();
-  console.log("info para mandarle al mail", orderDetails);
+
   useEffect(() => {
     //Buscar otro metodo que sirva para todos los metodos de pago
     if (payment === "paypal") executePayment(query);
@@ -29,8 +29,12 @@ const CheckoutSuccess = () => {
       dispatch(changeStatusOrder(query, { state: "aprobed" }));
     }
     dispatch(getOrderDetails(id));
+  }, [dispatch, email, username, id, payment, query]);
+
+  useEffect(() => {
+    console.log("orderdetails antes del dispatch", orderDetails);
     dispatch(putSuccesOrder(orderDetails));
-  }, [dispatch, email, username, id]);
+  }, [orderDetails, dispatch]);
 
   localStorage.removeItem("carrito");
 

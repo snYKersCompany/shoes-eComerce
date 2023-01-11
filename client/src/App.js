@@ -21,10 +21,7 @@ import Women from "./components/Home/Women";
 import Checkout from './components/Checkout/Checkout';
 import RestorePassword from "./components/Auth/RestorePassword";
 import FormUserUpdate from './components/Checkout/UpdateUser';
-
 import DemoGrid from "./components/DemoGrid/DemoGrid"
-
-
 import EmailVerification from "./components/Auth/EmailVerification";
 
 //styles
@@ -46,7 +43,6 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/women" element={<Women />} />
-          <Route path="/" element={<Home />} />
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
           <Route path="/restore-password" element={<RestorePassword />} />
@@ -55,11 +51,12 @@ function App() {
           <Route path="/order-canceled" element={<CheckoutCancel />} />
           <Route path="/order-completed" element={<CheckoutSuccess />} />
           <Route path="/checkout/:id" element={
-            <EmailVerifiedProtectedRoute>
-              <Elements stripe={stripePromise}>
+            <Elements stripe={stripePromise}>
+              <EmailVerifiedProtectedRoute>
                 <Checkout />
-              </Elements>
-            </EmailVerifiedProtectedRoute>} />
+              </EmailVerifiedProtectedRoute>
+            </Elements>
+          } />
           <Route path="/cart" element={<UserProtectedRoute><Cart /></UserProtectedRoute>} />
           <Route
             path="/account/:section"
