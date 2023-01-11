@@ -36,12 +36,12 @@ router.get('/favorites/:id', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-    try {
-        const dataProduct = req.body
-        const newProduct = await postProduct(dataProduct)
-        return res.status(200).json(newProduct);
+    try {        
+        const newProduct = await postProduct(req.body)
+        console.log(newProduct);
+        return res.status(201).json(newProduct);
     } catch (error) {
-        return res.status(404).send(error.message)
+        return res.status(400).send({ error: error.message })
     }
 });
 
