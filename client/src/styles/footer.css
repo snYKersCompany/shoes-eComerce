@@ -1,32 +1,50 @@
 .containerTodo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .first {
-    display: flex;
-    padding-top: 35rem !important ;
-    background-color: #212529;
+  display: flex;
+  padding-top: 55rem !important ;
+  background-color: #212529;
 }
 
 .container {
-    position: relative;
+  position: relative;
 }
 
 .footer {
-    position: absolute !important;
-    bottom: 0;
-    /* width: 100% !important; */
-    padding-left: -1px;
+  position: absolute !important;
+  bottom: 0;
+  /* width: 100% !important; */
+  padding-left: -1px;
 }
 
 .lastDiv {
-    text-align: center;
-    padding: 3px;
+  text-align: center;
+  padding: 3px;
 }
 
-.aboutUS { 
-    font-size: 1.3vh;
+.aboutUS {
+  font-size: 1.3vh;
+}
+
+@media (min-width: 768px) {
+  .first {
+    padding-top: 50rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .first {
+    padding-top: 42rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
