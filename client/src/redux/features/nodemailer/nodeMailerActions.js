@@ -1,11 +1,12 @@
 import axios from "axios";
 
-export const putSuccesOrder = (email) => async (dispatch) => {
+export const putSuccesOrder = (orderDetails) => async (dispatch) => {
   try {
-    const successMail = await axios.put(`/success-order`, {email});
+    const successMail = await axios.put(`/success-order`, {orderDetails});
   } catch (error) {
     return error;
   }
+  
 };
 
 export const putUserDeleted = (email) => async (dispatch) => {

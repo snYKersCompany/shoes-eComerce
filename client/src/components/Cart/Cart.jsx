@@ -68,8 +68,8 @@ const Cart = () => {
             <PaymentCarrousel />
             <div className="noProductsBtnContainer">
               <Link to="/">
-                <Button variant="warning" className="noProductsBtn">
-                  Back to Snykers Shop
+                <Button variant="warning">
+                  <p className="cartEmptyBackBTN">Back to Snykers Shop</p>
                 </Button>
               </Link>
             </div>

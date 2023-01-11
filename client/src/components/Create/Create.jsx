@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import ToggleButton from "react-bootstrap/ToggleButton";
 import "../../styles/create.css";
-import FormGroup from "react-bootstrap/esm/FormGroup";
 import Button from "react-bootstrap/esm/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../redux/features/products/productsActions";
@@ -57,6 +54,23 @@ const Create = () => {
     release: (date) =>
       date.split("-")[0] < 1900 || date.split("-")[0] > 2100 ? false : true,
   });
+
+  // Hooks
+  useEffect(() => {
+    setform({
+    name: "",
+    description: "",
+    brand: "",
+    price: "",
+    categories: "",
+    size: "",
+    color: "", 
+    gender: "", 
+    stock: "", 
+    release: "",
+    img: "",
+    });
+  }, []);
 
   //validations
   let handleName = (e) => {
@@ -331,7 +345,7 @@ const Create = () => {
                     <option value="none" hidden>
                       Choose a brand
                     </option>
-                    {brands.map(br => <option value={br}>{br}</option> )}
+                    {brands.map((br, i) => <option value={br} key = {i}>{br}</option> )}
                   </Form.Select>
                   <label className="FormCreateError">{error.brand}</label>
                 </Form.Group>

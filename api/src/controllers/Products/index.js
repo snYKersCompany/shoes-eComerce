@@ -122,7 +122,7 @@ const postProduct = async (dataProduct)=>{
         price
     }
     if(category) parameters.category = category;
-    if(color) parameters.color = color;
+    if(color) parameters.color = color[0];
     if(gender) parameters.gender = gender;
     if(original_picture) parameters.original_picture = original_picture;
     if(release_date) parameters.release_date = release_date;

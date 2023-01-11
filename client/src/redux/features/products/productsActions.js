@@ -81,10 +81,9 @@ export const clearProductsDetail = () => async (dispatch) => {
   }
 };
 
-export const createProduct = (payload) => async () => {
-  console.log('pasa por la action --->', payload)
-  try {
-    const post = await axios.post("/products/create", payload);
+export const createProduct = (payload) => async () => {  
+  try {    
+    const post = await axios.post("/products/create", payload);        
     return post;
   } catch (error) {
     return error;
