@@ -35,7 +35,7 @@ const PaymentMethod = ({buyController}) => {
     try {
       if (paymentMethod === "stripe") {
         axios
-          .post("http://localhost:3001/api/checkouts", {
+          .post("/checkouts", {
             products: products,
             finalAmount: priceToSend,
             user,
