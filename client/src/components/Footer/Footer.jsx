@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import {
   juaniGH,
   martinGH,
@@ -27,10 +26,10 @@ const Footer = () => {
         <div className="container my-5 container">
           <div className="text-center text-lg-start text-white footer">
             <div className="p-4 pb-0 containerTodo flex-column">
-              <section className="">
-                <div className="row">
+              <section className="d-flex justify-content-center ">
+                <div className="row d-flex justify-content-center ">
                   <div className="col-lg-4 col-md-6 mb-4 mb-md-0 mx-3">
-                    <h5 className="">snYKers</h5>
+                    <h5 className="d-flex justify-content-center ">snYKers</h5>
 
                     <p className="aboutUS">
                       snYKers is a web page design by a team of 7 full stack
@@ -40,47 +39,7 @@ const Footer = () => {
                     <p className="aboutUS">Give us your review!</p>
                   </div>
 
-                  <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
-                    <h5 className="text-uppercase">Developer's</h5>
-
-                    <ul className="list-unstyled mb-0">
-                      <li>
-                        <a href="#!" className="text-white">
-                          Santiago Romero
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!" className="text-white">
-                          Rodrigo Martinez
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!" className="text-white">
-                          Walter Celiz
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!" className="text-white">
-                          Juan I. Arrigoni
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!" className="text-white">
-                          Cristian G. Vera
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!" className="text-white">
-                          Martin Gadea
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#!" className="text-white">
-                          Cristian Treachi
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                  <h5 className="text-uppercase">Developer's</h5>
 
                   <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
                     <h5 className="text-uppercase btn btn-outline-light btn-floating m-1">
@@ -269,8 +228,8 @@ const Footer = () => {
                   className="btn btn-outline-light btn-floating m-1"
                   href="toFacebook"
                   role="button"
-                  target='_blank'
-                  rel='noreferrer'
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <i className="fab fa-facebook-f"></i>
                 </a>
@@ -279,8 +238,8 @@ const Footer = () => {
                   className="btn btn-outline-light btn-floating m-1"
                   href={twAPP}
                   role="button"
-                  target='_blank'
-                  rel='noreferrer'
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <i className="fab fa-twitter"></i>
                 </a>
@@ -289,8 +248,8 @@ const Footer = () => {
                   className="btn btn-outline-light btn-floating m-1"
                   href={igAPP}
                   role="button"
-                  target='_blank'
-                  rel='noreferrer'
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <i className="fab fa-instagram"></i>
                 </a>
