@@ -1,13 +1,14 @@
 import axios from "axios";
 
 export const putSuccesOrder = (orderDetails) => async (dispatch) => {
+  console.log(orderDetails)
   try {
     const successMail = await axios.put(`/success-order`, orderDetails);
     return successMail.data[0]
   } catch (error) {
     return error;
   }
-  
+
 };
 
 export const putUserDeleted = (email) => async (dispatch) => {

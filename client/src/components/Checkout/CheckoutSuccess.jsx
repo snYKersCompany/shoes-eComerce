@@ -27,14 +27,12 @@ const CheckoutSuccess = () => {
   useEffect(() => {
     //Buscar otro metodo que sirva para todos los metodos de pago
 
-    if (email) {
-      if (payment === "paypal") executePayment(query);
-      if (payment === "stripe") {
-        dispatch(changeStatusOrder(query, { state: "aprobed" }));
-      }
-      dispatch(getOrderDetails(id));
-      dispatch(putSuccesOrder(orderDetails));
+    if (payment === "paypal") executePayment(query);
+    if (payment === "stripe") {
+      dispatch(changeStatusOrder(query, { state: "aprobed" }));
     }
+    dispatch(getOrderDetails(id));
+    dispatch(putSuccesOrder(orderDetails));
   }, [dispatch, email, username, id]);
 
   return (

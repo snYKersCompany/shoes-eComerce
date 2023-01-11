@@ -118,19 +118,19 @@ function AdminDashboardUsers() {
               </button>
             </div>
           </div>
+          <ModalUsersWarning
+            user={user}
+            show={warning}
+            onHide={() => {
+              setWarning(false);
+              setIdReviews([]);
+            }}
+            order={{ [orderUser]: valueOrder }}
+            search={search}
+            reviews={idReviews}
+          />
         </div>
       ))}
-
-      <ModalUsersWarning
-        show={warning}
-        onHide={() => {
-          setWarning(false);
-          setIdReviews([]);
-        }}
-        order={{ [orderUser]: valueOrder }}
-        search={search}
-        reviews={idReviews}
-      />
     </div>
   );
 }
