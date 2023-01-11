@@ -95,7 +95,7 @@ export const deleteProducts = (_id) => async () => {
     const del = await axios.delete(`/products/${_id}`);
     return del;
   } catch (error) {
-    return error;
+    return error; 
   }
 };
 
