@@ -18,16 +18,18 @@ const OrderDetails = ({ setOrderDetails, id }) => {
       <div className="d-flex flex-column justify-content-center align-items-center">
         {orderDetails.products?.map((p, i) => {
           return (
-            <CardProductDetail
-              key={i}
-              name={p.name}
-              brand={p.brand}
-              card_picture={p.card_picture}
-              size={p.size}
-              count={p.count}
-              price={p.price}
-              totalPrice={p.totalPrice}
-            />
+            <div key={i}>
+              <CardProductDetail
+                key={i}
+                name={p.name}
+                brand={p.brand}
+                card_picture={p.card_picture}
+                size={p.size}
+                count={p.count}
+                price={p.price}
+                totalPrice={p.totalPrice}
+              />
+            </div>
           );
         })}
       </div>

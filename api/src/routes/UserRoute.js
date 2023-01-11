@@ -73,7 +73,6 @@ router.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const data = req.body;
-
     const message = await controllers.modifyUser({ id, ...data });
     return res.status(200).json(message);
   } catch (error) {

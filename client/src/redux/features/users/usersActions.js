@@ -9,6 +9,7 @@ import {
 } from "./usersSlice";
 
 export const findOrCreateUser = (payload) => async () => {
+  console.log(payload)
   try {
     const post = await axios.post("/users", payload);
     return post;
@@ -19,15 +20,15 @@ export const findOrCreateUser = (payload) => async () => {
 
 export const getAllUsers =
   (body = {}) =>
-  async (dispatch) => {
-    try {
-      const jsonBody = JSON.stringify(body);
-      const users = await axios.get(`/users?orderSearch=${jsonBody}`);
-      return dispatch(getAllUser(users.data.users));
-    } catch (error) {
-      return error;
-    }
-  };
+    async (dispatch) => {
+      try {
+        const jsonBody = JSON.stringify(body);
+        const users = await axios.get(`/users?orderSearch=${jsonBody}`);
+        return dispatch(getAllUser(users.data.users));
+      } catch (error) {
+        return error;
+      }
+    };
 
 export const addSearchs = (search) => async (dispatch) => {
   try {
@@ -101,6 +102,7 @@ export const clearUsers = () => async (dispatch) => {
 };
 
 export const putUserInformation = (user, change) => async (dispatch) => {
+  console.log(user, change)
   try {
     const response = await axios.put(`/users/update/${user}`, change);
     return dispatch(updateUserDashboard(response.data[0]));
@@ -121,14 +123,14 @@ export const putUserStatus = (id, body) => async (dispatch) => {
 
 export const deleteUser =
   (_id, body = {}) =>
-  async (dispatch) => {
-    try {
-      const jsonBody = JSON.stringify(body);
-      const deleteOneUser = await axios.delete(
-        `/users/${_id}?orderSearch=${jsonBody}`
-      );
-      return dispatch(getAllUser(deleteOneUser.data.users));
-    } catch (error) {
-      return error;
-    }
-  };
+    async (dispatch) => {
+      try {
+        const jsonBody = JSON.stringify(body);
+        const deleteOneUser = await axios.delete(
+          `/users/${_id}?orderSearch=${jsonBody}`
+        );
+        return dispatch(getAllUser(deleteOneUser.data.users));
+      } catch (error) {
+        return error;
+      }
+    };

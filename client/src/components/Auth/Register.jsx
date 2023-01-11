@@ -11,7 +11,10 @@ import Form from "react-bootstrap/Form";
 //style
 import "../../styles/register.css";
 //actions
-import { putUserInformation } from "../../redux/features/users/usersActions";
+import {
+  putUserInformation,
+  findOrCreateUser,
+} from "../../redux/features/users/usersActions";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -97,7 +100,9 @@ const Register = () => {
         navigate("/");
       }
       dispatch(
-        putUserInformation(userUID.user.uid, {
+        findOrCreateUser({
+          uid: userUID.user.uid,
+          email: userIN.email,
           username: userIN.username,
         })
       );

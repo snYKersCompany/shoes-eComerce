@@ -36,7 +36,7 @@ const createCheckout = async (req, res) => {
     });
 
 
-    res.send({ url: session.url });
+    res.json({ url: session.url });
   } catch (error) {
     console.log(error)
   }

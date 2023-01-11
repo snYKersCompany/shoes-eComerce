@@ -22,6 +22,7 @@ const Checkout = () => {
       <h1>Checkout</h1>
       <FormUserUpdate />
       <PaymentMethod />
+      buy
     </>
   );
 };
