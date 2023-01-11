@@ -10,10 +10,7 @@ import { deleteReviewUser } from "../../../../redux/features/reviews/reviewsActi
 
 const ModalUsersWarning = (props) => {
   const dispatch = useDispatch();
-  console.log(props);
-
   const { deleteUserFB } = useAuth();
-
   const handlerOnClick = () => {
     const orderName = Object.keys(props.order)[0];
     const orderSearch = {};

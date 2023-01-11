@@ -42,8 +42,7 @@ export const AuthProvider = ({ children }) => {
   //DELETE USER
   const deleteUserFB = async (user) => {
     try {
-      const deleted = await deleteUser(user);
-      return deleted;
+      await deleteUser(user);
     } catch (error) {
       console.log(error);
       return error;

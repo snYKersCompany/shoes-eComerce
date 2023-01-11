@@ -21,12 +21,9 @@ const CheckoutSuccess = () => {
   const query = window.location.search;
   const payment = query.slice(9, 15);
   const id = query.split("=").pop();
-
-  localStorage.removeItem("carrito");
-
+  console.log("info para mandarle al mail", orderDetails);
   useEffect(() => {
     //Buscar otro metodo que sirva para todos los metodos de pago
-
     if (payment === "paypal") executePayment(query);
     if (payment === "stripe") {
       dispatch(changeStatusOrder(query, { state: "aprobed" }));
@@ -34,6 +31,8 @@ const CheckoutSuccess = () => {
     dispatch(getOrderDetails(id));
     dispatch(putSuccesOrder(orderDetails));
   }, [dispatch, email, username, id]);
+
+  localStorage.removeItem("carrito");
 
   return (
     <>

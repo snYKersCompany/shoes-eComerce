@@ -93,7 +93,7 @@ function AdminDashboardUsers() {
                 <span className="slider round"></span>
               </label>
 
-              <label className="cardUser-switchs-label">Role</label>
+              <label className="cardUser-switchs-label">Admin</label>
 
               <label className="switch">
                 <input
