@@ -14,7 +14,7 @@ function AdminDashboardUsers() {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
   const [warning, setWarning] = useState(false);
-  const [idReviews, setIdReviews] = useState([])
+  const [idReviews, setIdReviews] = useState([]);
 
   const [orderUser, setOrderUser] = useState(""); // eslint-disable-line
   const [valueOrder, setValueOrder] = useState(-1); // eslint-disable-line
@@ -32,7 +32,7 @@ function AdminDashboardUsers() {
   const handleFormCheck = ({ target }, _id, email) => {
     dispatch(putUserStatus(_id, { status: target.checked }));
     if (!target.checked) {
-      dispatch(putUserSuspended(email));
+      dispatch(putUserSuspended({ email: email }));
     }
   };
 
@@ -87,13 +87,13 @@ function AdminDashboardUsers() {
                 <input
                   type="checkbox"
                   defaultChecked={user.status}
-                  onClick={(e) => handleFormCheck(e, user._id)}
+                  onClick={(e) => handleFormCheck(e, user._id, user.email)}
                 />
 
                 <span className="slider round"></span>
               </label>
 
-              <label className="cardUser-switchs-label">Role</label>
+              <label className="cardUser-switchs-label">Admin</label>
 
               <label className="switch">
                 <input
@@ -109,22 +109,28 @@ function AdminDashboardUsers() {
             <div className="cardUser-delete">
               <button
                 className="cardUser-btn"
-                onClick={() => {setWarning(user._id); setIdReviews(user.reviews)}}
+                onClick={() => {
+                  setWarning(user._id);
+                  setIdReviews(user.reviews);
+                }}
               >
                 <FaTrash />
               </button>
             </div>
           </div>
+          <ModalUsersWarning
+            user={user}
+            show={warning}
+            onHide={() => {
+              setWarning(false);
+              setIdReviews([]);
+            }}
+            order={{ [orderUser]: valueOrder }}
+            search={search}
+            reviews={idReviews}
+          />
         </div>
       ))}
-
-      <ModalUsersWarning
-        show={warning}
-        onHide={() => {setWarning(false); setIdReviews([])}}
-        order={{ [orderUser]: valueOrder }}
-        search={search}
-        reviews = {idReviews}
-      />
     </div>
   );
 }

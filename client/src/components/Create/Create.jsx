@@ -189,15 +189,8 @@ const Create = () => {
       : setError({ ...error, size: false });
   };
 
-  let handleCategory = (value) => {
-    let a = form.categories;
-    a.length >= 1 ? (a = a.filter((el) => el === value)) : (a = []);
-    a.length < 1
-      ? setform({ ...form, categories: [...form.categories, value] })
-      : setform({
-          ...form,
-          categories: form.categories.filter((el) => el !== value),
-        });
+  let handleCategory = (value) => {        
+    setform({ ...form, categories: [value] })
     form.categories.length === 1 && value === form.categories[0]
       ? setError({ ...error, categories: "Select almost 1 category" })
       : setError({ ...error, categories: false });
@@ -285,12 +278,14 @@ const Create = () => {
 
   return user.admin === true ? (
     controller.general === false ? (
-      <div className="containerGeneralFormCreate">
+      <div className="containerGeneralFormCreate">        
         <div className="d-flex containerFormCreate">
           <Form
             className="d-flex flex-wrap w-100 FormCreateContainerResponsive"
             onSubmit={(e) => submitForm(e)}
           >
+            <div className = "formGrid">
+            <div className = "containerForm">              
             <div className="d-flex flex-column">
               <Form.Group className="d-flex mb-3 flex-column justify-content-start">
                 <Form.Label className="d-flex">Name:</Form.Label>
@@ -345,7 +340,7 @@ const Create = () => {
                     <option value="none" hidden>
                       Choose a brand
                     </option>
-                    {brands.map(br => <option value={br}>{br}</option> )}
+                    {brands.map((br, i) => <option value={br} key = {i}>{br}</option> )}
                   </Form.Select>
                   <label className="FormCreateError">{error.brand}</label>
                 </Form.Group>
@@ -432,14 +427,17 @@ const Create = () => {
                       : "border border-danger"
                   }`}
                 >
-                  {categories.map((category) => (
-                    <Form.Check
+                  {categories.map((category, i) => (
+                    <div key={i}>
+                    <label>{category}</label>
+                    <input
+                      type = "radio"
                       key={category}
-                      className=" me-3"
-                      label={category}
+                      className="me-3 ms-2"
                       name="categories"
                       onChange={() => handleCategory(category)}
                     />
+                    </div>
                   ))}
                 </div>
               </Form.Group>
@@ -493,7 +491,9 @@ const Create = () => {
                 <label className="FormCreateError">{error.stock}</label>
               </div>
             </div>
+            </div>
             {/* ============ Reducible ============ */}
+            <div className = "formImage">
             <div className=" containerFormCreateImgs align-items-center justify-content-center d-flex h-100 w-100 flex-column ">
               <Form.Group className="d-flex flex-column justify-content-center align-items-center w-100">
                 {
@@ -539,6 +539,8 @@ const Create = () => {
                   )}
                 </div>
               </Form.Group>
+            </div>
+            </div>
             </div>
           </Form>
         </div>

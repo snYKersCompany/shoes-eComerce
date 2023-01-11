@@ -1,12 +1,36 @@
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);    
+}
+
+.containerForm{
+    display: grid;    
+    grid-row: 1/2;
+}
+
+.formImage{
+    display: grid;
+    grid-row: 2/3;
+}
+
+/* .modalForm div div{
+    width: 80vw;
+    margin: auto;
+} */
+
 .containerGeneralFormCreate{
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    width: max-content; 
+    height: max-content;
 }
-.containerFormCreate{
+.containerFormCreate{    
     background-color: whitesmoke;
-    padding: 10px;
+    padding: 5px;
     border: solid 1px rgb(150, 150, 150);
     border-radius: 6px;
     margin: 7px;
@@ -30,7 +54,7 @@
     margin-right: 5px;
 }
 .ContainerStockCreate{
-    width: 605px !important; 
+    width: max-content !important; 
 }
 .FormCreateInputSize{
     width: 170px;
