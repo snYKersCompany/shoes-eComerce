@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
@@ -7,10 +8,13 @@ import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+//actions
+import { findOrCreateUser } from "../../redux/features/users/usersActions";
 //styles
 import "../../styles/login.css";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { logIn, logInGoogle, user } = useAuth();
 
@@ -63,7 +67,15 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await logInGoogle();
+      const googleUser = await logInGoogle();
+      console.log(googleUser);
+      dispatch(
+        findOrCreateUser({
+          uid: googleUser.user.uid,
+          email: googleUser.user.email,
+          username: googleUser.user.displayName,
+        })
+      );
       navigate("/");
     } catch (error) {
       setError(error.message);
