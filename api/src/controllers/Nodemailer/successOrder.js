@@ -1,8 +1,6 @@
 const { transporter } = require("../../config/nodemailer")
 
 
-
-
 const successOrder = async (req, res) => {
     const { orderDetails } = req.body;
     try {
