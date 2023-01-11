@@ -29,7 +29,7 @@ const ProductsBought = () => {
   const [moveToReview, setMoveToReview] = useState(false);
 
   const userPurchases = orders.filter(e=> e.state === 'aprobed').map((e) => e.products).flat();
-  console.log("ESTOOOO VERR::::::::::::::::::::::", userPurchases);
+  // console.log("ESTOOOO VERR::::::::::::::::::::::", userPurchases);
 
   const handlerInputReview = (e) => {
     setReviewInput({
