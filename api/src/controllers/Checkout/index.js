@@ -29,8 +29,8 @@ const createCheckout = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: `http://localhost:3000/order-completed?payment=stripe&_id=${newOrder._id}`,
-      cancel_url: `http://localhost:3000/order-canceled?payment=stripe&_id=${newOrder._id}`,
+      success_url: `https://snykers.vercel.app/order-completed?payment=stripe&_id=${newOrder._id}`,
+      cancel_url: `https://snykers.vercel.app/order-canceled?payment=stripe&_id=${newOrder._id}`,
       // success_url: 'https://snykers.vercel.app/order-completed?payment=stripe',
       // cancel_url: 'https://snykers.vercel.app/order-canceled?payment=stripe',
     });
