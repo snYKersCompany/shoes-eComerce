@@ -20,7 +20,7 @@ const Reviews = ({ id }) => {
   // }, [id, dispatch]);
 
   return (
-    <>
+    <div className="ContainerTotalRevws">
       {product && product.length ? (
         product.map((e) => {
           return (
@@ -53,7 +53,6 @@ const Reviews = ({ id }) => {
               <div className="comment">
                 <p>
                   {e.description}
-
                 </p>
               </div>
 
@@ -66,7 +65,7 @@ const Reviews = ({ id }) => {
           <NoReviews />
         </>
       )}
-    </>
+    </div>
   );
 };
 

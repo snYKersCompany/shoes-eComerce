@@ -58,7 +58,7 @@ const NavBar2 = () => {
           {
             window.location.pathname !== '/home' ? 
             <a href="/home" className="link-to-home">
-            <GrHomeRounded />
+            <GrHomeRounded className="d-flex mt-3 mx-4"/>
             </a>
             : null
           }

@@ -36,28 +36,35 @@ const CardProduct = ({
   // }, [checkHeart]);
   // console.log(typeof checkHeart)
   const handlerOnClick = () => {
-    if (check) dispatch(deleteUserProductFavorites(userDashboard._id, { favorite: _id }));
-    if (!check) dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));
-    if(typeof checkHeart === "boolean") setCheck(!check);
+    if (check)
+      dispatch(
+        deleteUserProductFavorites(userDashboard._id, { favorite: _id })
+      );
+    if (!check)
+      dispatch(addUserProductFavorites(userDashboard._id, { favorite: _id }));
+    if (typeof checkHeart === "boolean") setCheck(!check);
   };
-
+  console.log({
+    _id,
+  name,
+  price,
+  card_picture,
+  brand,
+  rating,
+  checkHeart,
+  })
   return (
     <Card className="d-flex card ">
-      <div className="d-flex justify-content-end me-4 mt-4" >
-          <>
-            <button
-              variant="custom"
-              className="btnFav"
-              onClick={handlerOnClick}
-            >
-              {check ? (
-                <BsFillHeartFill className="d-flex justify-content-center card-top fav" />
-              ) : (
-                <BsHeart className="d-flex justify-content-center card-top fav" />
-              )}
-            </button>
-          </>
-        
+      <div className="d-flex justify-content-end me-4 mt-4">
+        <>
+          <button variant="custom" className="btnFav" onClick={handlerOnClick}>
+            {check ? (
+              <BsFillHeartFill className="d-flex justify-content-center card-top fav" />
+            ) : (
+              <BsHeart className="d-flex justify-content-center card-top fav" />
+            )}
+          </button>
+        </>
       </div>
 
       {/* Efecto Blur */}
@@ -82,14 +89,11 @@ const CardProduct = ({
           <Card.Text className="text-gold fs-5 mb-0">
             {rating !== 0 ? (
               <>
-                {/* Rating:{" "} */}
-                {/* {[...Array(rating)].map((index, i) => (
+                {[Number(rating)].map((index, i) => (
                   <BsFillStarFill key={i} className={"starsCards"} />
-                ))} */}
-                1
+                ))}
               </>
             ) : (
-              // <BsStar/>
               <>New</>
             )}
           </Card.Text>

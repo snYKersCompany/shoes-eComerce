@@ -4,7 +4,7 @@ const InputChangeRating = (props) => {
   return (
     <input
       type="number"
-      step="0.1"
+      step="1"
       min="0"
       max="5"
       value={props.rating}

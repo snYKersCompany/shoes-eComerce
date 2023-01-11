@@ -121,11 +121,10 @@ const Login = () => {
                 </Button>
               </div>
             </Form.Group>
-            {error ? null : (
-              <Button variant="success" type="submit">
-                <p className="loginBTNSubmit">Login</p>
-              </Button>
-            )}
+
+            <Button variant="success" type="submit">
+              <p className="loginBTNSubmit">Login</p>
+            </Button>
           </div>
         </Form>
         <div className="loginActionBTNSContainer">

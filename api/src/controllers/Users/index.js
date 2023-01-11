@@ -118,33 +118,37 @@ const deleteUser = async (id) => {
 }
 
 const modifyUser = async ({ id, name, username, status, roles, email, country, phone, address, city, cp, state, image }) => {
-    let user = await UsersModel.findById(id);
-    if (!user) throw new Error(`The user with an id ${id} was not found in the database`);
+    try {
+        let user = await UsersModel.findById(id);
+        if (!user) throw new Error(`The user with an id ${id} was not found in the database`);
+        // const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        // if (expression.test(password)) {
+        //     throw new Error(`Password invalid, It must have 8 letters, 1 number and 1 character`);
+        // }
 
-    // const expression = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    // if (expression.test(password)) {
-    //     throw new Error(`Password invalid, It must have 8 letters, 1 number and 1 character`);
-    // }
+        let parameters = {}
+        if (name && name.length) parameters.name = name;
+        if (username && username.length) parameters.username = username;
+        // if (password && password.length) parameters.password = password = await UsersModel.encryptPassword(password);
+        if (email && email.length) parameters.email = email;
+        if (typeof status === 'boolean') parameters.status = status;
+        if (phone && phone.length) parameters.phone = phone;
+        if (address && address.length) parameters.address = address;
+        if (city && city.length) parameters.city = city;
+        if (cp && cp.length) parameters.cp = cp;
+        if (country && country.length) parameters.country = country;
+        if (state && state.length) parameters.state = state;
+        if (roles && roles.length) parameters.roles = roles;
+        if (image && image.length) parameters.image = image;
+        // if(image.length) parameters.image = image;
+        await UsersModel.updateOne({ _id: id }, { $set: parameters });
+        // return `The user with an id ${id} was successfully modified`;
+        const updateUser = await getUserDashboard(id)
+        return updateUser
+    } catch (error) {
+        return error
+    }
 
-    let parameters = {}
-    if (name && name.length) parameters.name = name;
-    if (username && username.length) parameters.username = username;
-    // if (password && password.length) parameters.password = password = await UsersModel.encryptPassword(password);
-    if (email && email.length) parameters.email = email;
-    if (typeof status === 'boolean') parameters.status = status;
-    if (phone && phone.length) parameters.phone = phone;
-    if (address && address.length) parameters.address = address;
-    if (city && city.length) parameters.city = city;
-    if (cp && cp.length) parameters.cp = cp;
-    if (country && country.length) parameters.country = country;
-    if (state && state.length) parameters.state = state;
-    if (roles && roles.length) parameters.roles = roles;
-    if (image && image.length) parameters.image = image;
-    // if(image.length) parameters.image = image;
-    await UsersModel.updateOne({ _id: id }, { $set: parameters });
-    // return `The user with an id ${id} was successfully modified`;
-    const updateUser = await getUserDashboard(id)
-    return updateUser
 }
 
 const addFavoriteProducts = async (_id, favorite) => {

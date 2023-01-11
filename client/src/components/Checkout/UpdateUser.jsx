@@ -20,7 +20,7 @@ export default function FormUserUpdate() {
     city: "",
     state: "",
     country: "",
-    image: ""
+    image: "",
   });
   const [error, setError] = useState({});
   const [submit, setSubmit] = useState(false);
@@ -45,7 +45,9 @@ export default function FormUserUpdate() {
         city: userDashboard.city,
         state: userDashboard.state,
         country: userDashboard.country,
-        image: userDashboard.image || "https://cdn-icons-png.flaticon.com/512/25/25634.png",
+        image:
+          userDashboard.image ||
+          "https://cdn-icons-png.flaticon.com/512/25/25634.png",
       });
     }
     if (submit === true) {
@@ -53,11 +55,10 @@ export default function FormUserUpdate() {
         setSubmit(false);
         document.getElementById("Form").reset();
       }, 5000);
-    }    
+    }
   }, [submit, user, _id, dispatch, userDashboard._id]);
 
   function validateInput(value, name) {
-
     switch (name) {
       case "phone":
         return !value
@@ -88,42 +89,35 @@ export default function FormUserUpdate() {
     setInput({ ...input, [event.target.name]: event.target.value });
     validateInput(event.target.value, event.target.name);
   }
-  
+
   const handleImage = async (e) => {
     setFile(e.target.files[0]);
     const data = new FormData();
     data.append("file", e.target.files[0]);
     data.append("upload_preset", UPLOAD_PRESET);
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-    { method: "POST", body: data }
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+      { method: "POST", body: data }
     );
     const info = await response.json();
-    if (info.url) {      
+    if (info.url) {
       setInput({ ...input, [e.target.name]: info.url });
     }
-  }
+  };
 
   async function handleSubmit(event) {
-    if (user) {
-      event.preventDefault();      
-      await axios.put(
-        `users/update/${user.uid}`,
-        input
-      );
-      setSubmit(true);
-      setInput({
-        phone: "",
-        address: "",
-        city: "",
-        state: "",
-        country: "",
-        image: "",
-      });
-      setFile(null);      
-      navigate("/cart");
-    } else {
-      navigate("/login");
-    }
+    event.preventDefault();
+    await axios.put(`users/update/${user.uid}`, input);
+    setSubmit(true);
+    setInput({
+      phone: "",
+      address: "",
+      city: "",
+      state: "",
+      country: "",
+      image: "",
+    });
+    setFile(null);
   }
 
   return (
@@ -137,8 +131,21 @@ export default function FormUserUpdate() {
         />
       </div>
       <div className="Update-avatar">
-        {file ? <img className = "Update-avatar-image" src = {URL.createObjectURL(file)} alt = "profile" height = "170px"/>
-        : <img className="Update-avatar-image" src = {input.image} alt="default" height="170px" /> }
+        {file ? (
+          <img
+            className="Update-avatar-image"
+            src={URL.createObjectURL(file)}
+            alt="profile"
+            height="170px"
+          />
+        ) : (
+          <img
+            className="Update-avatar-image"
+            src={input.image}
+            alt="default"
+            height="170px"
+          />
+        )}
       </div>
       <div className="Update-name">
         <h3 className="text-white">{userDashboard.username}</h3>
@@ -146,19 +153,16 @@ export default function FormUserUpdate() {
 
       <form onSubmit={handleSubmit} className="Update-form" id="Form">
         <label htmlFor="email">Email: </label>
-        {user ? (
-
-          <label className="label-onlyread">{user.email}</label>
-        ) : null}
+        {user ? <label className="label-onlyread">{user.email}</label> : null}
 
         <label htmlFor="image">Image: </label>
         <input
           className="update-image"
           onChange={(e) => handleImage(e)}
-          placeholder={"upload an image"}          
+          placeholder={"upload an image"}
           type="file"
           name="image"
-          id = "image"          
+          id="image"
         />
 
         <label htmlFor="phone">Phone: </label>

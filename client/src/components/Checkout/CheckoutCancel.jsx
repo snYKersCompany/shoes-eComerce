@@ -35,7 +35,9 @@ const CheckoutCancel = () => {
       <PaymentCarrousel />
       <div className="CheckoutCancelBtnContainer">
         <Link to="/">
-          <Button variant="warning">Back to Snykers Shop</Button>
+          <Button variant="warning">
+            <p className="checkoutCancelBackBTN">Back to Snykers Shop</p>
+          </Button>
         </Link>
       </div>
     </div>
