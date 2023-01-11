@@ -7,7 +7,7 @@ const userDeleted = async (req, res) => {
             from: 'Snyckers henrypg.n2@gmail.com', // sender address
             to: email, // list of receivers
             subject: "User banned permanently", // Subject line
-            html: "MENSAJE USUARIO BANNEADO",
+            html: `Your user with email ${email} has been baned from snYKers`,
         });
         res.status(200).send(info)
     } catch (error) {
@@ -20,5 +20,5 @@ const userDeleted = async (req, res) => {
 
 module.exports = {
     userDeleted,
-   
+
 }
