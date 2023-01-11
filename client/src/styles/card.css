@@ -13,12 +13,10 @@
 
 .card {
   width: 400px;
-  height: 740px !important;
-  left: 0px;
-  top: 0px;
+  height: 750px !important;
   font-family: "Bebas Neue", cursive;
-  /* background: linear-gradient(192.03deg, #091E51 6.17%, #1D1C41 93.05%); */
-  background: linear-gradient(45deg, #042653, #081116, #042653 80%);
+  /* background: linear-gradient(45deg, #042653, #081116, #042653 80%); */
+  background: #212529 !important;
   border-radius: 25px !important;
   margin: 8px;
   overflow: hidden;
@@ -30,7 +28,7 @@
 
 .brand {
   text-transform: uppercase;
-  color: #b11ba4;
+  color: #fb7849;
 }
 
 .name {
@@ -87,7 +85,6 @@
   margin: 5px 0 2rem 0;
   z-index: 1;
 }
-
 
 .btnCard {
   background: linear-gradient(85.99deg, #fc964c 7.66%, #cb33a0 99.12%);

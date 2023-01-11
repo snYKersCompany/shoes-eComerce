@@ -80,7 +80,7 @@ const CardProduct = ({
             ${price}
           </Card.Text>
           <Link to={`/home/${_id}`} className="link">
-            <button className="btnCard ">More Info</button>
+            <button className="btnCard">More Info</button>
           </Link>
         </div>
       </Card.Body>

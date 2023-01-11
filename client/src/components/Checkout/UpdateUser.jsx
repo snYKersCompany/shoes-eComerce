@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
 import "../../styles/FormUser.css";
 
@@ -28,7 +28,7 @@ export default function FormUserUpdate() {
 
   // Hooks
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Variables
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME; // eslint-disable-line
@@ -56,7 +56,7 @@ export default function FormUserUpdate() {
         document.getElementById("Form").reset();
       }, 5000);
     }
-  }, [submit, user, _id, dispatch, userDashboard._id]);
+  }, [submit, user, _id, dispatch, userDashboard._id]); //eslint-disable-line
 
   function validateInput(value, name) {
     switch (name) {
@@ -181,37 +181,21 @@ export default function FormUserUpdate() {
         />
         {!error.phone ? null : <p className="danger">{error.phone}</p>}
 
-        <label htmlFor="address">Address: </label>
+        <label htmlFor="country">Country: </label>
         <input
           placeholder={
-            userDashboard.address
-              ? userDashboard.address
+            userDashboard.country
+              ? userDashboard.country
               : "You must complete this field"
           }
-          id="address"
+          id="country"
           type="text"
-          name="address"
-          value={input.address ? input.address : ""}
-          className={error.address && "danger-input"}
+          name="country"
+          value={input.country ? input.country : ""}
+          className={error.country && "danger-input"}
           onChange={handleChange}
         />
-        {!error.address ? null : <p className="danger">{error.address}</p>}
-
-        <label htmlFor="city">City: </label>
-        <input
-          placeholder={
-            userDashboard.city
-              ? userDashboard.city
-              : "You must complete this field"
-          }
-          id="city"
-          type="text"
-          name="city"
-          value={input.city ? input.city : ""}
-          className={error.city && "danger-input"}
-          onChange={handleChange}
-        />
-        {!error.city ? null : <p className="danger">{error.city}</p>}
+        {!error.country ? null : <p className="danger">{error.country}</p>}
 
         <label htmlFor="state">State: </label>
         <input
@@ -229,21 +213,37 @@ export default function FormUserUpdate() {
         />
         {!error.state ? null : <p className="danger">{error.state}</p>}
 
-        <label htmlFor="country">Country: </label>
+        <label htmlFor="city">City: </label>
         <input
           placeholder={
-            userDashboard.country
-              ? userDashboard.country
+            userDashboard.city
+              ? userDashboard.city
               : "You must complete this field"
           }
-          id="country"
+          id="city"
           type="text"
-          name="country"
-          value={input.country ? input.country : ""}
-          className={error.country && "danger-input"}
+          name="city"
+          value={input.city ? input.city : ""}
+          className={error.city && "danger-input"}
           onChange={handleChange}
         />
-        {!error.country ? null : <p className="danger">{error.country}</p>}
+        {!error.city ? null : <p className="danger">{error.city}</p>}
+
+        <label htmlFor="address">Address: </label>
+        <input
+          placeholder={
+            userDashboard.address
+              ? userDashboard.address
+              : "You must complete this field"
+          }
+          id="address"
+          type="text"
+          name="address"
+          value={input.address ? input.address : ""}
+          className={error.address && "danger-input"}
+          onChange={handleChange}
+        />
+        {!error.address ? null : <p className="danger">{error.address}</p>}
 
         {/* Submit Button */}
         <button
