@@ -1,10 +1,11 @@
 import React from "react";
-import {Link} from "react-router-dom"
+// import { Link } from "react-router-dom";
 
 const BannerThree = () => {
   return (
     <div className="mb3-container">
-    <div className="mb3">
+      <h3 className="mb3-h3"> German Quality </h3>
+      {/* <div className="mb3">
       <div className="mb3-text">
       <p>Adidas</p>
       <p>Yeezy Boost Wave Runner</p>
@@ -14,7 +15,7 @@ const BannerThree = () => {
       <button className="mb3-btn" >MORE INFO</button>
       </Link>
       </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -15,12 +15,12 @@ const Carrousel = () => {
 
   return (
     <>
-      <h1 className="carr-txt">Find your style</h1>
+      <h1 className="carr-txt">NIKE style</h1>
       <div className="containerCarrousel">
         {products[0] !== "void" && products?.length > 1 ? (
           products.slice(0, 25).map((el, i) => (
             <div key={i} className="individualCardContainer">
-              <Link to={`/home/${el._id}`}>
+              <Link to={`/home/${el._id}`} className="text-decoration-none">
                 <CardCarrousel name={el.name} img={el.card_picture} />
               </Link>
             </div>
