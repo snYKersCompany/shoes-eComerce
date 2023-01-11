@@ -43,7 +43,6 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="*" element={<Error404 />} />
           <Route path="/women" element={<Women />} />
-          <Route path="/" element={<Home />} />
           <Route path="/basketball" element={<Basketball />} />
           <Route path="/login" element={<Login />} />
           <Route path="/restore-password" element={<RestorePassword />} />

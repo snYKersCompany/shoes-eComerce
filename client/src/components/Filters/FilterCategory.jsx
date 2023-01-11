@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deletefilters, filterAdds } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
-const FilterCategory = () => {
+const FilterCategory = ({setActualPage}) => {
   const dispatch = useDispatch();
 
   const { categories } = useSelector((state) => state.products);
@@ -12,6 +12,7 @@ const FilterCategory = () => {
     e.preventDefault();
     if(e.target.value === "none") dispatch(deletefilters("category"))
     else dispatch(filterAdds({ category: e.target.value }));
+    setActualPage(1)
   }
 
   return (

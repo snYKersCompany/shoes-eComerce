@@ -6,7 +6,7 @@ import {
 } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
-const FilterBrand = () => {
+const FilterBrand = ({setActualPage}) => {
   const dispatch = useDispatch();
   const { brands } = useSelector((state) => state.products);
 
@@ -14,6 +14,7 @@ const FilterBrand = () => {
     e.preventDefault();
     if (e.target.value === "none") dispatch(deletefilters("brand"));
     else dispatch(filterAdds({ brand: e.target.value }));
+    setActualPage(1)
   }
 
   return (
