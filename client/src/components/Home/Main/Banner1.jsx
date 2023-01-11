@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import img from "../../../utils/images/main/recortado.png";
+import "../../../styles/banner.css";
 
 const Banner = () => {
   return (

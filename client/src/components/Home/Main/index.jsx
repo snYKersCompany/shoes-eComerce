@@ -1,11 +1,6 @@
 import React from "react";
-import "../../../styles/banner.css";
-import "../../../styles/carrouselMain.css";
-import "../../../styles/bannerTwo.css";
-import "../../../styles/carrouselTwo.css";
-import "../../../styles/reviewMain.css";
-import "../../../styles/bannerThree.css";
-import { useAuth } from "../../../context/authContext";
+
+// import { useAuth } from "../../../context/authContext";
 //components
 import NavBar from "../../NavBar2.0/NavBar2.0";
 import Carrousel from "./Carrousel";
@@ -19,8 +14,8 @@ import Welcome from "./Welcome";
 import Carrousel3 from "./Carrousel3";
 
 const Main = () => {
-  const { user } = useAuth();
-  console.log(user);
+  // const { user } = useAuth();
+  // console.log(user);
   return (
     <>
       <div className="background-index">

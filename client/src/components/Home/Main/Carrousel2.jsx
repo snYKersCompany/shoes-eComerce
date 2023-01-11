@@ -15,6 +15,7 @@ import imgConverse2 from "../../../utils/images/main/converse2.jpg";
 import imgConverse3 from "../../../utils/images/main/converse3.jpg";
 import imgConverse4 from "../../../utils/images/main/converse4.jpg";
 import imgConverse5 from "../../../utils/images/main/converse5.jpg";
+import "../../../styles/carrouselTwo.css";
 const CarrouselTwo = () => {
   return (
     <>

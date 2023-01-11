@@ -7,7 +7,7 @@
 
 .first {
   display: flex;
-  padding: 2rem;
+  padding-top: 55rem !important ;
   background-color: #212529;
 }
 
@@ -17,12 +17,34 @@
 
 .footer {
   position: absolute !important;
+  bottom: 0;
+  /* width: 100% !important; */
+  padding-left: -1px;
 }
 
 .lastDiv {
   text-align: center;
+  padding: 3px;
 }
 
 .aboutUS {
   font-size: 1.3vh;
+}
+
+@media (min-width: 768px) {
+  .first {
+    padding-top: 50rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .first {
+    padding-top: 42rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
