@@ -81,9 +81,9 @@ export const clearProductsDetail = () => async (dispatch) => {
   }
 };
 
-export const createProduct = (payload) => async () => {
-  try {
-    const post = await axios.post("/products/create", payload);
+export const createProduct = (payload) => async () => {  
+  try {    
+    const post = await axios.post("/products/create", payload);        
     return post;
   } catch (error) {
     return error;
@@ -95,7 +95,7 @@ export const deleteProducts = (_id) => async () => {
     const del = await axios.delete(`/products/${_id}`);
     return del;
   } catch (error) {
-    return error;
+    return error; 
   }
 };
 
