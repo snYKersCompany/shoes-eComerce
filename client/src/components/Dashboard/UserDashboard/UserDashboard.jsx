@@ -21,7 +21,7 @@ const UserDashboard = () => {
   const [control, setControl] = useState("");
 
   if (section) {
-    if (section !== control && control != "favorites") {
+    if (section !== control && control !== "favorites") {
       setControl(section);
     }
   }
@@ -88,7 +88,7 @@ const UserDashboard = () => {
               >
                 <div className="userDashBoard-nav-display">
                   <CgList className="userDashBoard-nav-icon" />
-                  <span className="text-icon">Products bought</span>
+                  <span className="text-icon">Bought</span>
                 </div>
               </Nav.Link>
             </Nav.Item>

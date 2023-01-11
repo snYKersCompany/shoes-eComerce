@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { getUserDashboards } from "../../redux/features/users/usersActions";
 import "../../styles/FormUser.css";
 import PaymentMethod from "./PaymentMethod";
@@ -13,7 +13,7 @@ export default function FormUserUpdate() {
   const { _id } = useParams();
   const { userDashboard } = useSelector((state) => state.users);
 
-  console.log('esto es updateUser de checkout', userDashboard)
+  // console.log('esto es updateUser de checkout', userDashboard)
   // States
   const [input, setInput] = useState({
     username: "",
@@ -31,7 +31,7 @@ export default function FormUserUpdate() {
 
   // Hooks
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Variables
   const CLOUD_NAME = process.env.REACT_APP_CLOUD_NAME; // eslint-disable-line
@@ -41,18 +41,20 @@ export default function FormUserUpdate() {
   useEffect(() => {
     dispatch(getUserDashboards(userDashboard._id));
     if (userDashboard) {
-      setBuyController(false)
-      console.log(userDashboard)
+      setBuyController(false);
+      console.log(userDashboard);
       if (
-        userDashboard.username!=="" &&
-        userDashboard.phone!=="" &&
-        userDashboard.address!=="" &&
-        userDashboard.city!=="" &&
-        userDashboard.state!=="" &&
-        userDashboard.country!=="" &&
+        userDashboard.username !== "" &&
+        userDashboard.phone !== "" &&
+        userDashboard.address !== "" &&
+        userDashboard.city !== "" &&
+        userDashboard.state !== "" &&
+        userDashboard.country !== "" &&
         // userDashboard.other!=="" &&
-        userDashboard.image!==""
-        ) { setBuyController(true) }
+        userDashboard.image !== ""
+      ) {
+        setBuyController(true);
+      }
 
       setInput({
         username: userDashboard.username,
@@ -72,7 +74,7 @@ export default function FormUserUpdate() {
         document.getElementById("Form").reset();
       }, 5000);
     }
-  }, [submit, user, _id, dispatch, userDashboard._id]);
+  }, [submit, user, _id, dispatch, userDashboard._id]); //eslint-disable-line
 
   function validateInput(value, name) {
     switch (name) {
@@ -138,7 +140,6 @@ export default function FormUserUpdate() {
 
   return (
     <div className="updateUser">
-
       <div className="Update-container">
         <div className="Update-background">
           <img
@@ -287,7 +288,7 @@ export default function FormUserUpdate() {
           {submit && <h2 className="confirm">Data successfully set!</h2>}
         </form>
       </div>
-      <PaymentMethod buyController={buyController}/>
+      <PaymentMethod buyController={buyController} />
     </div>
   );
 }
