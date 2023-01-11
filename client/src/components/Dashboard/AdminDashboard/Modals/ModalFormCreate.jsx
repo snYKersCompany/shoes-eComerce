@@ -12,8 +12,8 @@ export default function ModalFormCreate() {
         Add
       </button>
 
-      <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Body className="d-flex">
+      <Modal show={show} onHide={handleClose} size="lg" className = "modalForm">
+        <Modal.Body className="d-flex justify-content-center">
           <Create />
         </Modal.Body>
       </Modal>
