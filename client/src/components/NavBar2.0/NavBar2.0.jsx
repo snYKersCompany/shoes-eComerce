@@ -32,8 +32,8 @@ const NavBar2 = () => {
 
   /////-----HANDLES-----/////
   const handleLogOut = async () => {
-    await logOut();
     navigate("/");
+    await logOut();
   };
 
   ///TOOLTIP///
@@ -55,13 +55,11 @@ const NavBar2 = () => {
       <div className="d-flex h-100 p-0 navBarContainerGeneral">
         <div className="d-flex  ContainerGeneralNav ">
           <NavB.Brand className="d-flex p-0 ContainerNavImg logo">
-          {
-            window.location.pathname !== '/home' ? 
-            <a href="/home" className="link-to-home">
-            <GrHomeRounded className="d-flex mt-3 mx-4"/>
-            </a>
-            : null
-          }
+            {window.location.pathname !== "/home" ? (
+              <a href="/home" className="link-to-home">
+                <GrHomeRounded className="d-flex mt-3 mx-4" />
+              </a>
+            ) : null}
             <Link to={"/"} className="NavImg">
               <label className="brandNav">snYKers</label>
             </Link>
