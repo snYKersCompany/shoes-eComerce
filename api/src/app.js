@@ -18,7 +18,7 @@ const server = express();
 createRoles();
 server.set('pkg', pkg);
 server.name = "API";
-// server.use(cors({origin: "*"}));
+server.use(cors({origin: "*"}));
 // server.use(cors({origin: "http://localhost:3000"}));
 // server.use(cors());
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
