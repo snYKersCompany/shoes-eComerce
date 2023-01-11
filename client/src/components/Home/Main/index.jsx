@@ -5,7 +5,6 @@ import "../../../styles/bannerTwo.css";
 import "../../../styles/carrouselTwo.css";
 import "../../../styles/reviewMain.css";
 import "../../../styles/bannerThree.css";
-import { useAuth } from "../../../context/authContext";
 //components
 import NavBar from "../../NavBar2.0/NavBar2.0";
 import Banner from "./Banner1";
@@ -18,8 +17,6 @@ import BannerThree from "./Banner3";
 import Footer from "../../Footer/Footer";
 
 const Main = () => {
-  const { user } = useAuth();
-  console.log(user);
   return (
     <>
       <div className="background-index">

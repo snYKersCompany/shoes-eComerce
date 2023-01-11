@@ -7,14 +7,12 @@ import AlertMSJ from "./AlertMSJ";
 //BS
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
 //styles
 import "../../styles/login.css";
 
 const Login = () => {
   const navigate = useNavigate();
   const { logIn, logInGoogle, user } = useAuth();
-  console.log(user);
 
   const [shown, setShown] = useState(false);
   const [password, setPassword] = useState("");

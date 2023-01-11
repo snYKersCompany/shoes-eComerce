@@ -12,22 +12,24 @@ import { deleteReviewUser } from "../../../../redux/features/reviews/reviewsActi
 const ModalUsersWarning = (props) => {
   const dispatch = useDispatch();
 
-  const { deleteUserFB, user } = useAuth();
+  const { deleteUserFB, user, firebaseUser } = useAuth();
+
   const handlerOnClick = () => {
     const orderName = Object.keys(props.order)[0];
     const orderSearch = {};
 
-    console.log(props)
+    console.log(props);
 
     if (orderName.length) orderSearch.orderBy = props.order;
     if (props.search.length) orderSearch.search = props.search;
     dispatch(deleteUser(props.show, orderSearch));
-    deleteUserFB(user);
-    if(props.reviews.length) dispatch(deleteReviewUser(props.show, props.reviews))
+    deleteUserFB(firebaseUser);
+    if (props.reviews.length)
+      dispatch(deleteReviewUser(props.show, props.reviews));
     alert(`Inserte Accion para eliminar el User ${props.show}`);
-
-    // dispatch(putUserDeleted(props.email));
-    // props.onEmail();
+    console.log("email", props.email);
+    dispatch(putUserDeleted({ email: user.email }));
+    props.onEmail();
     props.onHide();
   };
 
