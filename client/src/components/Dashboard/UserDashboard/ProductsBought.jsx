@@ -18,6 +18,9 @@ const ProductsBought = () => {
   const captureUserName = userDashboard.name;
   const { orders } = useSelector((state) => state.orders);
 
+
+
+
   const [avgRating, setAvgRating] = useState(0);
   const [reviewInput, setReviewInput] = useState("");
 
@@ -25,8 +28,8 @@ const ProductsBought = () => {
 
   const [moveToReview, setMoveToReview] = useState(false);
 
-  const userPurchases = orders.map((e) => e.products).flat();
-  // console.log("ESTOOOO VERR::::::::::::::::::::::", userPurchases);
+  const userPurchases = orders.filter(e=> e.state === 'aprobed').map((e) => e.products).flat();
+  console.log("ESTOOOO VERR::::::::::::::::::::::", userPurchases);
 
   const handlerInputReview = (e) => {
     setReviewInput({
@@ -52,6 +55,7 @@ const ProductsBought = () => {
         description: Object.values(reviewInput).toString(),
       })
     );
+      navigate('/account')
   };
 
   const toProductReview = (e, id) => {

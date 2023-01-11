@@ -88,7 +88,7 @@ const CardProduct = ({
             {name}
           </Card.Title>
           <Card.Text className="text-gold fs-5 mb-0">
-            {rating !== 0 ? (
+            {Math.round(rating) !== 0 ? (
               <>
                 {/* Rating:{" "} */}
                 {[...Array(rating)].map((index, i) => (
