@@ -345,7 +345,7 @@ const Create = () => {
                     <option value="none" hidden>
                       Choose a brand
                     </option>
-                    {brands.map(br => <option value={br}>{br}</option> )}
+                    {brands.map((br, i) => <option value={br} key = {i}>{br}</option> )}
                   </Form.Select>
                   <label className="FormCreateError">{error.brand}</label>
                 </Form.Group>
