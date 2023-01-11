@@ -33,7 +33,7 @@ const Reviews = ({ id }) => {
 
 
 
-            <div className="container">
+            <div className="container-review-user">
 
               <div className="container-reviews">
 
