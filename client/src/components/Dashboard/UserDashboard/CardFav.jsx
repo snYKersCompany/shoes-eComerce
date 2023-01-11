@@ -9,6 +9,7 @@ import {
 import { BsFillHeartFill, BsFillStarFill, BsHeart } from "react-icons/bs";
 import "../../../styles/CardFav.css";
 
+
 const CardFav = ({
   _id,
   name,

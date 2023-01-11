@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RiSearchFill } from "react-icons/ri";
 
+import NoFavourites from "./NoFavourites";
+
 import {IoMdArrowRoundBack} from "react-icons/io"
 
 import "../../../styles/AdminDashboardOrders.css";
@@ -11,6 +13,8 @@ const UserOrders = () => {
   const { orders } = useSelector((state) => state.orders);
 
   const [actualOrderProducts, setActualOrderProducts] = useState();
+
+  const leyend = "With your first purchase  your orders!."
 
   // states to travel through tabs
   const [toOrderDetail, setToOrderDetail] = useState(false);
@@ -40,6 +44,7 @@ const UserOrders = () => {
         return "#ffffff";
     }
   };
+
   //aca estamos en las ordenes
   return toOrderDetail === false ? (
 
@@ -52,7 +57,7 @@ const UserOrders = () => {
               </button> */}
         </div>
 
-        {orders &&
+        {orders.length ?
           orders.map((order, i) => (
             <div
               key={i}
@@ -104,7 +109,10 @@ const UserOrders = () => {
                 </button>
               </div>
             </div>
-          ))}
+          ))
+        :  <div className="alertFavoritesCards">
+      <NoFavourites leyend = {leyend}/>
+      </div>}
       </div>
     </div>
   ) : (

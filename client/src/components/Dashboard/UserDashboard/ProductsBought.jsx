@@ -8,6 +8,7 @@ import InputChangeRating from "../../StarsReview/InputChangeRating";
 import Modal from "react-bootstrap/Modal";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/esm/Button";
+import NoFavourites from "./NoFavourites";
 import Form from "react-bootstrap/Form";
 import "../../../styles/ProductBought.css";
 
@@ -18,6 +19,9 @@ const ProductsBought = () => {
   const captureUserName = userDashboard.name;
   const { orders } = useSelector((state) => state.orders);
 
+  
+  const leyend = "With your first purchase you can add a review to the product."
+
 
 
 
@@ -27,6 +31,7 @@ const ProductsBought = () => {
   const [idSingleProduct, setIdSingleProduct] = useState();
 
   const [moveToReview, setMoveToReview] = useState(false);
+
 
   const userPurchases = orders.filter(e=> e.state === 'aprobed').map((e) => e.products).flat();
   console.log("ESTOOOO VERR::::::::::::::::::::::", userPurchases);
@@ -75,7 +80,7 @@ const ProductsBought = () => {
 
   return moveToReview === false ? (
     <div className="ProductBougth-container">
-      {userPurchases &&
+      {userPurchases.length ?
         userPurchases.map((prd, i) => (
           <div key={i} className="ProductBougth-card">
             <div className="ProductBougth-card-img">
@@ -93,10 +98,15 @@ const ProductsBought = () => {
               make your review
             </button>
           </div>
-        ))}
+        ))
+       
+      : <div className="alertFavoritesCards">
+      <NoFavourites leyend = {leyend}/>
+      </div>
+    }
         
     </div>
-  ) : (
+  )  : (
     <div
       className="modal show"
       style={{ display: "block", position: "initial" }}
