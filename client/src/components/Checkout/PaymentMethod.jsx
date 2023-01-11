@@ -35,15 +35,15 @@ const PaymentMethod = ({buyController}) => {
     try {
       if (paymentMethod === "stripe") {
         axios
-          .post("http://localhost:3001/api/checkouts", {
-            products: products,
-            finalAmount: priceToSend,
-            user,
-          })
-          .then((res) => {
-            if (res.data.url) window.location.href = res.data.url;
-          })
-          .catch((err) => console.log(err.message));
+        .post("/checkouts", {
+          products: products,
+          finalAmount: priceToSend,
+          user,
+        })
+        .then((res) => {
+          if (res.data.url) window.location.href = res.data.url;
+        })
+        .catch((err) => console.log(err.message));
       }
       if (paymentMethod === "paypal") {
         const body = {

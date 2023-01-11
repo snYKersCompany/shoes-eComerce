@@ -6,7 +6,7 @@ import "../../../styles/UserFavorites.css";
 
 const UserFavorites = () => {
   const { userDashboard } = useSelector((state) => state.users);
-
+  const leyend = "You need to add products to favorite"
   return (
     <div className="UserFavorites-container favSize">
       {/* <div className="UserFavorites"> */}
@@ -34,7 +34,7 @@ const UserFavorites = () => {
           })
         ) : (
           <div className="alertFavoritesCards">
-            <NoFavourites />
+            <NoFavourites leyend = {leyend}/>
           </div>
         )}
       {/* </div> */}
