@@ -10,12 +10,18 @@
     grid-column: 3/4;
     grid-row: 1/3;    
     justify-content: space-evenly;
+    gap: 1em;
+    align-items: stretch;
+    border:solid .2em rgb(180, 171, 165);
+
 }
 
 .radio {
     display: flex;
-    flex-direction: row;
-    padding: 10px 25px;
+    flex-direction: column;
+    padding: 7px 15px;
+    /* border:solid .2em red; */
+    gap: .5em;
 }
 
 .formButton {
@@ -23,4 +29,14 @@
     grid-column: 3/4;
     grid-row: 3/6;
     margin: 5px 5px;
+}
+
+.formCheck {
+    padding-left: .5em;
+    /* border:solid .2em rgb(180, 171, 165); */
+    width: 250px;
+    height: 40px;
+}
+.formCheck > img {
+    margin-right: 1em;
 }

@@ -22,7 +22,7 @@ const Banner= ({inverted, tittle, content, img, color, secondColor}) =>{
                 </div>
 
                 <div className="containerBtnBannerAuxBskt">
-                    <button style={{"background-color": secondColor, color}} className="btnBannerAuxBskt">View More</button>
+                    <button style={{"backgroundColor": secondColor, color}} className="btnBannerAuxBskt">View More</button>
                 </div>
             </div>
         </div>

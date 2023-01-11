@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 //JSX
 import FormUserUpdate from "./UpdateUser";
-import PaymentMethod from "./PaymentMethod";
+import NavBar from "../NavBar2.0/NavBar2.0";
 //actions
 import { getUserDashboards } from "../../redux/features/users/usersActions";
 import { useAuth } from "../../context/authContext";
 //
+
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -19,10 +19,8 @@ const Checkout = () => {
 
   return (
     <>
-      <h1>Checkout</h1>
+      <NavBar />
       <FormUserUpdate />
-      <PaymentMethod />
-      buy
     </>
   );
 };

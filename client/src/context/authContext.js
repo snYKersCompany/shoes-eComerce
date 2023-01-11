@@ -1,10 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 //Actions
-import {
-  //   findOrCreateUser,
-  getUserDashboards,
-} from "../redux/features/users/usersActions";
+import { getUserDashboards } from "../redux/features/users/usersActions"
 //FirebaseAuth
 import {
   createUserWithEmailAndPassword,
@@ -45,8 +42,7 @@ export const AuthProvider = ({ children }) => {
   //DELETE USER
   const deleteUserFB = async (user) => {
     try {
-      const deleted = await deleteUser(user);
-      return deleted;
+      await deleteUser(user);
     } catch (error) {
       console.log(error);
       return error;
@@ -118,42 +114,32 @@ export const AuthProvider = ({ children }) => {
     return userCredentials;
   };
 
+
+
   //VIEWER
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        setFirebaseUser(firebaseUser);
-        const userData = await getUserData(firebaseUser);
-        dispatch(getUserDashboards(userData.uid)); // AGREGADO POR EL BIEN DE LA TRAMA
-        setUser(userData);
-        setLoading(false);
+        setFirebaseUser(firebaseUser)
+        const userData = await getUserData(firebaseUser)
+        dispatch(getUserDashboards(userData.uid))   // AGREGADO POR EL BIEN DE LA TRAMA
+        setUser(userData)
+        setLoading(false)
       } else {
-        dispatch(getUserDashboards());
-        setUser(null);
-        setLoading(false);
+        dispatch(getUserDashboards())
+        setUser(null)
+        setLoading(false)
       }
-    });
-    return () => unsub();
+    })
+    return () => unsub()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
   return (
     <>
-      <authContext.Provider
-        value={{
-          signUp,
-          logIn,
-          logOut,
-          logInGoogle,
-          resetPassword,
-          user,
-          loading,
-          deleteUserFB,
-          emailVerification,
-          firebaseUser,
-        }}
-      >
+      < authContext.Provider value={{ signUp, logIn, logOut, logInGoogle, resetPassword, user, loading, deleteUserFB, emailVerification, firebaseUser }
+      }>
         {children}
-      </authContext.Provider>
+      </authContext.Provider >
     </>
-  );
-};
+  )
+}

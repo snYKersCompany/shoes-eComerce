@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterAdds, deletefilters } from "../../redux/features/products/productsActions";
 import Form from "react-bootstrap/Form";
 
-const FilterGender = () => {
+const FilterGender = ({setActualPage}) => {
   const dispatch = useDispatch();
   const { genders } = useSelector((state) => state.products);
 
@@ -11,6 +11,7 @@ const FilterGender = () => {
     e.preventDefault();
     if(e.target.value === "none") dispatch(deletefilters("gender"))
     else dispatch(filterAdds({ gender: e.target.value }));
+    setActualPage(1)
   }
 
   return (

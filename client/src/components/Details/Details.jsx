@@ -7,15 +7,12 @@ import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import Preview from "../Paypal/Preview/Preview";
 import Reviews from "../Reviews/Reviews";
 //BS
-import Image from "react-bootstrap/Image";
-import ListGroup from "react-bootstrap/ListGroup";
 import { BsFillStarFill } from "react-icons/bs";
 import { TbStarOff } from "react-icons/tb";
 //actions
 import { getProductsDetails } from "../../redux/features/products/productsActions";
 //styles
 import "../../styles/details.css";
-import Button from "react-bootstrap/esm/Button";
 import { useNavigate } from "react-router-dom";
 
 import { getReviewProduct } from "../../redux/features/reviews/reviewsActions";
@@ -100,102 +97,120 @@ const Details = () => {
 
   //Fin local Storage
   return (
-    <>
-      <NavBar />
-      <ScrollToTop />
-      <Button className="d-flex mx-1" onClick={() => navigate("/")}>
-        Return Home
-      </Button>
-      <div className="details d-flex flex-column">
-        <div className="d-flex justify-content-center DetailsContainerGeneral">
-          <section className="d-flex mt-5 section1 mb-5 DetailsContainerImg">
-            <div className="div1 col-6 d-flex flex-column align-items-start text-start DetailsHeader">
-              <h2 className="fs-1 title ms-3 brand">
+    <div className="gridGeneralDetails">
+
+      <div className="containerNavDetails">
+        <NavBar />
+        <ScrollToTop />
+      </div>
+      
+      <div className="detailsContainerCard">
+        <div className="d-flex DetailsContainerGeneral">
+          <section className="d-flex  section1 DetailsContainerCard">
+            <div className="">
+              <h2 className="">
                 {productDetail.brand}&nbsp;{productDetail.name}
               </h2>
-              <p className="fs-3 ms-3 mb-1 cat text-black category fw-bold">
+              <p className="">
                 {productDetail.gender} <br />
                 {productDetail.category}
               </p>
-              <p className="fs-3 ms-3 text-secondary">
+              <p className="">
                 Color: {productDetail.color}
               </p>
             </div>
 
-            <div className="div2 col-6 d-flex flex-column align-items-end text-end">
-              <Image
+            <div className="">
+              <img
                 className="image"
                 src={productDetail.detail_picture}
                 alt={productDetail.name}
+                width={"150px"}
               />
-              <p className="fs-6 me-3 text-secondary">
+              <p className="text-secondary">
                 Collection <br />
                 {productDetail.collection}
               </p>
-              <p className="released fs-4 me-3">
+              <p className="released  ">
                 Released {productDetail.release_date}
               </p>
             </div>
           </section>
         </div>
-        <section className="d-flex flex-column justify-content-center align-items-center text-center mb-2">
-          <em className="fs-5 text-secondary">
-            <div
-              dangerouslySetInnerHTML={{ __html: productDetail.description }}
-            />
+      </div>
+
+      <div className="detailsContainerInfo">
+        <div >
+          <span className="subtittleDescriptionDetails">Description</span>
+          <em className="">
+            <div className="ContentDescriptionDetails">
+              <div
+                dangerouslySetInnerHTML={{ __html: productDetail.description }}
+              />
+            </div>
           </em>
 
-          <p className="fw-bold fs-5">Ranges:</p>
+          <span className="subtittleDescriptionDetails">Sizes:</span>
           {/* productDetail.ranges */}
-          <ListGroup horizontal className={`horizontalWrapper`}>
+          <div className="ContainerSizes">
+            <div className="auxContainerSize">
+
             {productDetail.stock ? (
               Object.entries(productDetail.stock).map((r) =>
-                r[1] !== 0 ? (
-                  <ListGroup.Item
-                    onClick={() => handleSize(r[0], r[1])}
-                    key={r[0]}
-                    value={r[0]}
-                    style={{ order: r[0] * 2 }}
-                    className={`${
-                      size === r[0]
-                        ? "horizontalItem bg-warning"
-                        : "horizontalItem"
-                    }`}
-                  >
-                    {r[0]}
-                  </ListGroup.Item>
+              r[1] !== 0 ? (
+                <div
+                onClick={() => handleSize(r[0], r[1])}
+                key={r[0]}
+                value={r[0]}
+                style={{ order: r[0] * 2 }}
+                className={`${
+                  size === r[0]
+                  ? "containerSize selectedSize"
+                  : "containerSize"
+                }`}
+                > 
+                      {r[0]}
+                  </div>
                 ) : (
-                  <ListGroup.Item
-                    disabled
-                    key={r[0]}
-                    style={{ order: r[0] * 2 }}
-                    className={`horizontalItem bg-warning"}`}
+                  <div
+                  disabled
+                  key={r[0]}
+                  style={{ order: r[0] * 2 }}
+                  className={`containerSize bg-warning"}`}
                   >
                     {r[0]}
-                  </ListGroup.Item>
+                  </div>
                 )
-              )
-            ) : (
-              <></>
-            )}
-          </ListGroup>
+                )
+                ) : (
+                  <></>
+                  )}
+            </div>
+          </div>
+
 
           {productDetail.rating === 0 ? (
-            <h1 className="fw-bold fs-5">
+            <h4 className="fw-bold fs-5">
               None Rating:
               <br />
               <TbStarOff />
-            </h1>
+            </h4>
           ) : (
-            <p className="fw-bold fs-5">
-              Rating: <br />
-              {[...Array(productDetail.rating)].map((i, index) => (
+          <span className="subtittleDescriptionDetails">
+            Rating:
+            <div className="StarContainerDetails">
+              <div className="StarContainer">
+              
+              {[...Array(productDetail)].map((i, index) => (
                 <BsFillStarFill key={index} className="star " />
-              ))}
-            </p>
+                ))}
+
+              </div>
+            </div>
+          </span>
           )}
-        </section>
-        <section className="d-flex justify-content-center m-3">
+        </div>
+        <div className="d-flex justify-content-center">
           <label>Count: </label>
           <select
             defaultValue={"null"}
@@ -211,11 +226,11 @@ const Details = () => {
                 </option>
               ))}
           </select>
-        </section>
+        </div>
 
         {count !== false ? (
-          <section className="d-flex mb-2 flex-row justify-content-center align-items-center">
-            <p className="fw-bold d-flex align-items-center align-self-center mt-3 me-3 fs-5">
+          <section className="d-flex ">
+            <p className="d-flex ">
               Price: ${productDetail.price}
             </p>
             <Preview setProduct={setProduct} repeated={repeated} />
@@ -224,8 +239,17 @@ const Details = () => {
           <></>
         )}
       </div>  
-      <Reviews productDetail={productDetail} id={id}/>
-    </>
+      
+      <div className="reviewsContainerDetails">
+        <Reviews productDetail={productDetail} id={id}/>
+      </div>
+
+      <div className="buttonBackDetails">
+      <button className="d-flex mx-1" onClick={() => navigate("/")}>
+        Return Home
+      </button>
+      </div>
+    </div>
   );
 };
 
