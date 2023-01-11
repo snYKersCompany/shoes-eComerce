@@ -21,7 +21,7 @@ const CheckoutSuccess = () => {
   const query = window.location.search;
   const payment = query.slice(9, 15);
   const id = query.split("=").pop();
-  if (orderDetails) dispatch(putSuccesOrder(orderDetails));
+
   localStorage.removeItem("carrito");
 
   useEffect(() => {
@@ -33,6 +33,7 @@ const CheckoutSuccess = () => {
         dispatch(changeStatusOrder(query, { state: "aprobed" }));
       }
       dispatch(getOrderDetails(id));
+      dispatch(putSuccesOrder(orderDetails));
     }
   }, [dispatch, email, username, id]);
 
