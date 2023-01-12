@@ -1,4 +1,4 @@
-# Gropupal Project - Henry
+# Gropupal Project - snYKers
 
 ## SNYKERS
 
