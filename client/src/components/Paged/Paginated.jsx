@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProducts,
-  getCategories,
-  getBrands,
-  getRatings,
-  getGenders,
+  // getCategories,
+  // getBrands,
+  // getRatings,
+  // getGenders,
 } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Pagination from "react-bootstrap/Pagination";

@@ -4,8 +4,22 @@
 }
 
 .HWT1-container {
-  /* background: yellow; */
+  display: grid !important;
+  justify-items: center;
+  align-items: center;
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin-top: 10rem !important;
+}
+
+.HWT1-text {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
   color: yellow;
   font-family: Nulshock;
-  margin-top: 10rem !important;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
 }

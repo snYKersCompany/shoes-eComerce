@@ -8,44 +8,63 @@
   src: url(../utils/fonts/nulshock.otf);
 }
 
-.ContainerHWB2 {
+.WBanner2-container {
   background: url(../utils/images/banner3back.jpg);
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-attachment: fixed;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, auto);
 }
 
-.HWB2-section1 {
+.WBanner2-section1 {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  margin-bottom: 2rem;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+
   background: orangered;
   padding: 1rem;
   clip-path: polygon(100% 0, 100% 77%, 82% 100%, 0 100%, 0 0);
 }
 
-.HWB2-shadow {
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-}
+.WBanner2-section2 {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  align-self: center;
+  justify-self: center;
 
-.HWB2-section2 {
   background: url(../utils/images/banner2image.jpg);
   background-repeat: no-repeat;
   background-size: contain;
-  padding: 20rem;
+  height: 60vh;
+  width: 100%;
   clip-path: polygon(14% 0, 100% 0, 100% 79%, 57% 100%, 0 100%, 0 18%);
 }
-.HWB2-section2:hover {
+
+.WBanner2-section2:hover {
   transform: scale(1.05);
   transition: 1s;
 }
 
-.HWB2-name {
+.WBanner2-shadow {
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.WBanner2-name {
   font-size: 3rem;
   width: 20rem;
   font-family: IntegralCF;
 }
 
-.HWB2-price {
+.WBanner2-price {
   font-size: 3rem;
   font-family: Nulshock;
 }
@@ -95,6 +114,67 @@
   content: "O";
 }
 
-.HWB2-button:hover .box:before {
+.WBanner2-button:hover .box:before {
   transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .WBanner2-section2 {
+    width: 70vw;
+  }
+}
+
+@media (min-width: 1280px) {
+  .WBanner2-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 90vh;
+  }
+
+  .WBanner2-section1 {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    height: 400px;
+    width: 350px;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    margin-top: 8rem;
+    margin-left: -23rem;
+  }
+
+  .WBanner2-section2 {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    align-self: center;
+    justify-self: center;
+    height: 700px;
+    width: 400px;
+    margin-top: 2rem;
+    margin-right: -23rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .WBanner2-container {
+    height: 90vh;
+  }
+
+  .WBanner2-section1 {
+    height: 400px;
+    width: 350px;
+
+    margin-top: 20rem;
+    margin-left: -35rem;
+  }
+
+  .WBanner2-section2 {
+    height: 900px;
+    width: 800px;
+    margin-top: 2rem;
+    margin-right: -40rem;
+  }
 }

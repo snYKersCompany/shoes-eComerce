@@ -8,41 +8,66 @@
   src: url(../utils/fonts/IntegralCF-Regular.otf);
 }
 
-.HWB3-container {
+.WBanner3-container {
   background: url(../utils/images/banner2back.jpg);
   background-attachment: fixed;
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-top: -8px !important;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
 }
 
-.HWB3 {
-  height: 75vh;
+.WBanner3-section1 {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
 }
 
-.HWB3-section1,
-.HWB3-section2,
-.HWB3-section3 {
-  width: 30%;
+.WBanner3-section2 {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 3/4;
+  justify-items: center;
+  align-items: center;
 }
 
-.HWB3-text1,
-.HWB3-text2 {
+.WBanner3-section3 {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+.WBanner3-text1 {
   font-family: Nulshock;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
-.HWB3-stroke {
+.WBanner3-text2 {
+  font-family: Nulshock;
+  font-size: 2rem;
+}
+
+.WBanner3-stroke {
   filter: drop-shadow(0 0 1px #000) drop-shadow(1px 1px 0 #000)
     drop-shadow(-1px 1px 0 #000) drop-shadow(1px -1px 0 #000);
 }
 
-.HWB3-iframe {
+.WBanner3-iframe {
   border-radius: 5%;
+  height: 500px;
+  width: 360px;
 }
 
-.HWB3-button {
+.WBanner3-button {
   padding: 1.3em 3em;
   font-size: 12px;
   text-transform: uppercase;
@@ -51,21 +76,33 @@
   color: #000;
   background-color: #fff;
   border: 2px solid black;
-  /* border-radius: 45px; */
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
   font-family: IntegralCF;
+  margin-bottom: 2rem;
 }
 
-.HWB3-button:hover {
+.WBanner3-button:hover {
   background-color: #ffff00;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: black;
   transform: translateY(-7px);
 }
 
-.HWB3-button:active {
+.WBanner3-button:active {
   transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  .WBanner3-iframe {
+    width: 560px;
+  }
+}
+
+@media (min-width: 768px) {
+  .WBanner3-iframe {
+    width: 760px;
+  }
 }
