@@ -6,7 +6,29 @@
 /*Body*/
 
 .fakeBodyBskt{
-    background: rgb(77, 1, 36);
+    background: #323141;
+}
+
+.containerTextBskt{
+    display: grid;
+    background: url("https://s.yimg.com/os/creatr-uploaded-images/2020-02/a5039ce0-4f8a-11ea-9f7f-0628e189edff") !important;
+    color: white;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    align-items: center;
+    justify-self: center;
+    height: 450px;
+}
+
+
+
+.BgTextBskt{
+    display: grid;
+    grid-column: 1/2;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(3,1fr);
+    
 }
 
 
@@ -80,6 +102,10 @@
     object-fit: cover;
 }
 
+.txtDecorationNoneBsk{
+    text-decoration: none !important;
+}
+
 
 
     /* Carrousel */
@@ -87,12 +113,13 @@
         display: flex;
         margin: 7px 0 0 10px;
         font-size: 27px;
-        color: azure;
+        color: #fb7648;
         font-family: 'Bebas Neue', cursive ;
     }
 
     .containerCarrouselBskt{
         width: 100%;
+        margin-bottom: 12rem;
         height: max-content;
         display: flex;
         overflow-x: scroll;
@@ -109,7 +136,7 @@
         }
 
         .containerCarrouselBskt::-webkit-scrollbar-thumb{
-            background: linear-gradient(176deg, rgba(144,12,62,1) 18%, rgba(199,0,57,1) 100%);
+            background: #ff3217;
             /* background-color: #db109b95; */
             border-radius: 12px;
         }
@@ -121,8 +148,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(180deg, #5a1744 1%, rgb(157, 9, 44) 90%);
+        /* background: linear-gradient(180deg, #5a1744 1%, rgb(157, 9, 44) 90%); */
+        /* background: linear-gradient(147deg, #00005c 1%, rgba(20,0,37,1) 32%); */
+        background: linear-gradient(120deg, rgba(0,0,92,1) 1%, rgba(20,0,37,1) 64%);
+
         margin: 10px 6px;
+
         height: 260px;
         border-radius: 5px;
         width: 300px;
