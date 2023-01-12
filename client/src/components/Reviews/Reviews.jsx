@@ -41,7 +41,6 @@ const Reviews = ({ id }) => {
                 <div className="review-name">
                   {/* <p>{e.user.username}</p> */}
                   {/*titulo de la review */}
-                  <p>CrisGab22</p>
                 </div>
 
                 <div className="review-stars">

@@ -187,9 +187,9 @@ const Preview = ({ setProduct, repeated }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={(e) => handleAddToCart(e)}>
+      <button className="btnCard1" onClick={(e) => handleAddToCart(e)}>
         Add to cart
-      </Button>
+      </button>
       <PreviewModal
         show={modalShow}
         repeated={repeated}

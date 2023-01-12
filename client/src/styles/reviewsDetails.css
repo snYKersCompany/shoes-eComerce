@@ -1,16 +1,16 @@
 .ContainerTotalRevws{
 
-    background-color: #362451ab;
+    background-color: #252733;
     padding: 5px 12px;
     border-radius: 1rem;
 }
 
 .container-reviews{
-    margin: 7px 0;
+    margin: 10px 0;
     display: grid;
     grid-template-rows: repeat(2, auto);
     grid-column: repeat(3, auto);
-    background-color: #5a4d73;
+    background-color:  #323141;
     border-radius: 1rem;
 }
 
@@ -36,7 +36,7 @@
 .comment p{
     margin-top: 8px;
     margin-left: 8px;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
 
 

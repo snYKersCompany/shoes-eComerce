@@ -25,7 +25,7 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
     setEdit(child) // con esto se habilita la edición de un solo componente
     setControl(child)//cambia de ventana entre stock y datos normales
   }
-  
+
   
   //form tiene esta estructura:
   const [form, setform] = useState({
@@ -692,7 +692,7 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
                 <label>{error.color}</label>
               </fieldset>
             }
-
+{/* 
               {edit !== "collection" ?
               <fieldset className="d-flex flex-column mb-3">
               Collection
@@ -722,7 +722,7 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
                 </label>
                 <label>{error.collection}</label>
               </fieldset>
-                  }
+                  } */}
             </div>
 
             <div className="d-flex">
@@ -813,7 +813,7 @@ const ViewEditProduct = ({ productDetail, viewStock, handlerOnClick}) => {
                           <button className="ms-1 input2" onClick={(e) => handleEdit(e, r[0])}>
                             <VscEdit className="input3" />
                           </button>
-                        </label>
+                        </label >
                         :
                         <label>
                           <input
