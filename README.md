@@ -46,7 +46,7 @@ Front-end:
 - **react-router-dom**: 6.4.4
 - **react-scripts**: 5.0.1
 - **redux**: 4.2.0
-- 
+ 
 - Backend:
 - **axios**: 0.27.2
 - **bcryptjs**: 2.4.3
