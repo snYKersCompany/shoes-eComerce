@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 
+import '../../styles/payment.css'
+
 const Payment = ({ InfoToSend }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const Payment = ({ InfoToSend }) => {
 
   return (
     <>
-      <Button variant="secondary customBtn" onClick={() => handleClick()}>
+        <Button className="btnCard" onClick={() => handleClick()} >
         Buy
       </Button>
     </>

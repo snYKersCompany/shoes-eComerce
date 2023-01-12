@@ -14,6 +14,7 @@
   margin: 5px 0 -5px 20px;
   font-size: 1.3rem;
   font-family: "Bebas Neue", cursive;
+  color: greenyellow;
 }
 
 .HWC1-card {
@@ -27,5 +28,5 @@
 }
 
 .HWC1-cardContainer::-webkit-scrollbar-thumb {
-  background: cyan;
+  background: greenyellow;
 }

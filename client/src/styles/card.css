@@ -20,6 +20,7 @@
   border-radius: 25px !important;
   margin: 8px;
   overflow: hidden;
+  clip-path: polygon(10% 0, 100% 0, 100% 91%, 91% 100%, 0 100%, 0 9%);
 }
 
 .card:hover {

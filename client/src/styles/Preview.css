@@ -26,4 +26,73 @@
   align-self: center;
   justify-self: center;
   font-family: Bebas Neue, cursive;
+  /* background: orange !important;
+  color: red !important; */
+}
+
+.btn-to-cart {
+  background: linear-gradient(
+    85.99deg,
+    #fc964c 7.66%,
+    #cb33a0 99.12%
+  ) !important;
+  border-radius: 7px !important;
+  color: white !important;
+  font-size: 15px !important;
+  width: 75px !important;
+  height: 40px !important;
+  border: none !important;
+  animation-duration: 8000ms !important;
+}
+
+.coso-head {
+  /* background: rgb(48, 54, 68);
+  background: linear-gradient(
+    121deg,
+    rgba(48, 54, 68, 1) 0%,
+    rgba(4, 4, 4, 1) 85%,
+    rgba(47, 55, 68, 1) 100%,
+    rgba(47, 55, 68, 1) 100%
+  ); */
+
+  /* background: rgb(113, 114, 116);
+  background: linear-gradient(
+    121deg,
+    rgb(85, 86, 87) 0%,
+    rgb(70, 70, 71) 56%,
+    rgba(47, 55, 68, 1) 100%,
+    rgba(57, 58, 59, 1) 100%
+  ); */
+  border:none !important;
+  background: #333242;
+}
+
+.coso-title {
+  color: #f8632d;
+}
+
+.coso-body {
+  /* background: rgb(113, 114, 116);
+  background: linear-gradient(
+    121deg,
+    rgb(85, 86, 87) 0%,
+    rgb(23, 28, 33, 1) 88%,
+    rgba(47, 55, 68, 1) 100%,
+    rgba(57, 58, 59, 1) 100%
+  ); */
+  background: #333242;
+
+}
+
+.coso-footer {
+  /* background: rgb(93, 93, 94);
+  background: linear-gradient(
+    129deg,
+    rgb(85, 86, 87) 0%,
+    rgb(19, 21, 23) 80%,
+    rgba(47, 55, 68, 1) 100%,
+    rgba(0, 0, 0, 1) 100%
+  ); */
+  background: #333242!important;
+  border:none !important;
 }
