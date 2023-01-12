@@ -3,6 +3,7 @@ import { getProductsDetails } from "../../redux/features/products/productsAction
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/cardCart.css";
+import { FaTrash } from "react-icons/fa";
 
 const CardCart = ({
   i,
@@ -85,7 +86,7 @@ const CardCart = ({
     navigate(`/home/${id}`);
   };
   return (
-    <div className="d-flex containerCardCart justify-content-evenly">
+    <div className="d-flex cardCart justify-content-evenly">
       <div className="d-flex h-100 align-items-center">
         <img src={img} alt={name} className="imgCardCart" />
         <Link to={`/home/${id}`}>
@@ -115,12 +116,18 @@ const CardCart = ({
 
       <div className="d-flex h-100">
         <div className="d-flex h-100 align-items-center controlCardCart justify-content-between">
-          <img
+          {/* <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Delete-button.svg/862px-Delete-button.svg.png"
             alt="delete"
             className="imgControlCardCart"
             onClick={() => handleDelete(id + size, actualTotalPrice)}
-          />
+          /> */}
+          <button
+            className="btn-delete-cartCard"
+            onClick={() => handleDelete(id + size, actualTotalPrice)}
+          >
+            <FaTrash />
+          </button>
         </div>
       </div>
     </div>

@@ -54,7 +54,7 @@ const Cart = () => {
               />
             );
           })}
-          <h2 style={{ color: "white" }}>Total: {priceToSend}</h2>
+          <h2 className="total-amount-cardCart">Total: ${priceToSend}</h2>
           <Payment />
         </div>
       ) : (

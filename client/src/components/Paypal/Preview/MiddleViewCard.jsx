@@ -5,7 +5,9 @@ import "../../../styles/MiddleViewCard.css";
 
 function MiddleViewCard({ product }) {
   return (
-    <Container
+    <div className="previous-view">
+
+          <Container
       className="justify-content-md-center customContainer"
       key={product._id}
       style={{ width: "auto", padding: "0" }}
@@ -26,6 +28,8 @@ function MiddleViewCard({ product }) {
         <Col xs lg="2" md="auto" className="d-flex obj3"></Col>
       </Row>
     </Container>
+    </div>
+
   );
 }
 

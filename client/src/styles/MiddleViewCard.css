@@ -1,5 +1,22 @@
 .customContainer {
-  background-color: #bababa;
+  /* background-color: #bababa; */
+  /* background: rgb(121, 122, 125);
+  background: linear-gradient(
+    73deg,
+    rgba(121, 122, 125, 1) 0%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(47, 55, 68, 1) 100%,
+    rgba(0, 0, 0, 1) 100%
+  ); */
+
+  background: rgb(54, 36, 81);
+  background: linear-gradient(
+    73deg,
+    rgba(54, 36, 81, 1) 0%,
+    rgb(27, 12, 43) 80%,
+    rgb(0, 0, 0) 100%,
+    rgba(0, 0, 0, 1) 100%
+  );  
   border-radius: 20px;
   margin-bottom: 2rem;
   margin-top: 0rem;
@@ -25,4 +42,8 @@
 }
 .customBtn {
   margin: auto;
+}
+
+.previous-view {
+  color: #fb7849;
 }
