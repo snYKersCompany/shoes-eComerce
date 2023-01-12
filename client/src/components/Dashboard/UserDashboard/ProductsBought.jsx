@@ -62,7 +62,8 @@ const ProductsBought = () => {
         description: Object.values(reviewInput).toString(),
       })
     );
-    navigate("/account/bought");
+    setMoveToReview(false)
+    // navigate("/home");
   };
 
   const toProductReview = (e, id) => {
@@ -80,6 +81,7 @@ const ProductsBought = () => {
     setMoveToReview(false);
   };
 
+    console.log(window.location.href)
   return moveToReview === false ? (
     <div className="ProductBougth-container">
       {userPurchases.length ?
