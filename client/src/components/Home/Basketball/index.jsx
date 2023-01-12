@@ -5,12 +5,16 @@ import NavBar from "../../NavBar2.0/NavBar2.0";
 import Carrousel from "./Carrousel";
 import Text from "./Text";
 import Footer from "../../Footer/Footer";
+import ScrollToTop from "../../ScrollToTop/ScrollToTop";
+
 import "./basketball.css";
 
 const Index = () => {
   return (
     <>
       <NavBar />
+      <ScrollToTop />
+
       <div className="fakeBodyBskt">
         <Text />  
         <Carrousel name={"Only Basketball"} category={"basketball"} color={"1"} />
