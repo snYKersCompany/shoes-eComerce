@@ -9,6 +9,15 @@
     text-align: center;
   }
   
+.ProductBougth-textDecorationNone{
+  text-decoration: none;
+  color: white;
+}
+.ProductBougth-textDecorationNone:hover{
+  text-decoration: none;
+  color: rgb(194, 191, 191);
+}
+
   .ProductBougth-card {
     display: grid;
     color: white;

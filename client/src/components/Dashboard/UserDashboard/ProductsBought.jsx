@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postReview } from "../../../redux/features/reviews/reviewsActions";
 import StarsReview from "../../StarsReview/StarsReview";
 import InputChangeRating from "../../StarsReview/InputChangeRating";
@@ -81,7 +81,6 @@ const ProductsBought = () => {
     setMoveToReview(false);
   };
 
-    console.log(window.location.href)
   return moveToReview === false ? (
     <div className="ProductBougth-container">
       {userPurchases.length ?
@@ -90,7 +89,9 @@ const ProductsBought = () => {
             <div className="ProductBougth-card-img">
               <img src={prd.img} alt={prd.name} />
             </div>
-            <p className="ProductBougth-card-name">{prd.name}</p>
+            <Link to={`/home/${prd.id}`} className={"ProductBougth-textDecorationNone"}>
+              <p className="ProductBougth-card-name">{prd.name}</p>
+            </Link>
             <button
               className="ProductBougth-btn btnCard1"
               onClick={(e) => toProductReview(e, prd.id)}
