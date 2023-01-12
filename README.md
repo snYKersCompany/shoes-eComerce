@@ -13,7 +13,14 @@
 - Use best practices.
 - Use and practice the GIT workflow.
 
--## Devs
+## Devs
+- **Cristian Treachi**
+- **Rodrigo Martineze**
+- **Cristian Vera**
+- **Walter Celiz**
+- **Santiago Romero**
+- **Martin Gadea**
+- **Juan Ignacio Arrigoni**
 
 
 ## Starting
