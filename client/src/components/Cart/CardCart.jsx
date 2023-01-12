@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getProductsDetails } from "../../redux/features/products/productsActions";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/cardCart.css";
 import { FaTrash } from "react-icons/fa";
 
@@ -23,6 +23,7 @@ const CardCart = ({
   const [quantity, setQuantity] = useState(count);
   const [actualTotalPrice, setActualTotalPrice] = useState(quantity * price);
   const [actualStock, setActualStock] = useState(productDetail.stock);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProductsDetails(id));
@@ -80,15 +81,17 @@ const CardCart = ({
       localStorage.setItem("carrito", JSON.stringify(newCart));
     }
   };
+
+  const handleRedirect = () => {
+    navigate(`/home/${id}`);
+  };
   return (
     <div className="d-flex cardCart justify-content-evenly">
       <div className="d-flex h-100 align-items-center">
         <img src={img} alt={name} className="imgCardCart" />
-        <Link to={`/home/${id}`} className="link-cardCart-name">
-          {" "}
-          <h3 className="h3-cardCart">{name}</h3>
+        <Link to={`/home/${id}`}>
+          <h3>{name}</h3>
         </Link>
-
         <div
           className="d-flex mx-4 h-75 bg-danger"
           style={{ width: " 2px" }}

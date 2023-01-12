@@ -117,6 +117,9 @@ const NavBar2 = () => {
                         <Dropdown.Item href="/account/orders">
                           Orders
                         </Dropdown.Item>
+                        <Dropdown.Item href="/account/bought">
+                          Bought
+                        </Dropdown.Item>
                         <Dropdown.Item onClick={handleLogOut}>
                           LogOut
                         </Dropdown.Item>

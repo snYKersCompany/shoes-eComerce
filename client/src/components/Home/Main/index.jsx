@@ -11,7 +11,7 @@ import ReviewMain from "./ReviewMain";
 import BannerThree from "./Banner3";
 import Footer from "../../Footer/Footer";
 import Welcome from "./Welcome";
-import Carrousel3 from "./Carrousel3";
+import Carrousel3 from "./Carrousel3"
 
 const Main = () => {
   // const { user } = useAuth();

@@ -17,6 +17,7 @@ export const getAllOrders = (body = {}, _id = "") => async (dispatch) => {
 export const getOrderDetails = (_id) => async (dispatch) => {
   try {
     const orders = await axios.get(`/orders/${_id}`);
+    console.log(orders.data)
     return dispatch(getOrderDetail(orders.data));
   } catch (error) {
     return error;
