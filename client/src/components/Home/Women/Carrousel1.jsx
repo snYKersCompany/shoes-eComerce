@@ -15,7 +15,7 @@ const Carrousel1 = ({ name }) => {
   return (
     <div className="HWC1-container">
       <div className="HWC1">
-        <h3 className="HWC1-title text-green">Running Shoes</h3>
+        <h3 className="HWC1-title">Running Shoes</h3>
         <div className="HWC1-cardContainer">
           {running !== "void" && running?.length > 1 ? (
             running.slice(0, 25).map((el, i) => (
