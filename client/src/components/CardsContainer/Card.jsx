@@ -1,19 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import {
-  BsFillHeartFill, // eslint-disable-line
-  BsFillStarFill,
-  BsHeart,
-  BsStar, // eslint-disable-line
-} from "react-icons/bs"; // eslint-disable-line
-
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addUserProductFavorites,
   deleteUserProductFavorites,
 } from "../../redux/features/users/usersActions";
+import { BsFillHeartFill, BsFillStarFill, BsHeart } from "react-icons/bs";
+import Card from "react-bootstrap/Card";
 import "../../styles/card.css";
 
 const CardProduct = ({
@@ -27,7 +20,6 @@ const CardProduct = ({
 }) => {
   const dispatch = useDispatch();
   const { userDashboard } = useSelector((state) => state.users);
-
   const [check, setCheck] = useState(checkHeart);
 
   const handlerOnClick = () => {
@@ -88,7 +80,7 @@ const CardProduct = ({
             ${price}
           </Card.Text>
           <Link to={`/home/${_id}`} className="link">
-            <button className="btnCard ">More Info</button>
+            <button className="btnCard">More Info</button>
           </Link>
         </div>
       </Card.Body>

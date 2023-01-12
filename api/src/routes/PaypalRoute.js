@@ -28,8 +28,8 @@ const createPayment = async (req, res)=>{
                 brand_name: 'Snikets.com', // Nombre de la empresa
                 landing_page: 'LOGIN',  // NO_PREFERENCE    Configuracion del formulario de PAYPAL
                 user_action: 'PAY_NOW',
-                return_url: `https://snykers.vercel.app/order-completed?payment=paypal&_id=${_id}`,
-                cancel_url: `https://snykers.vercel.app/order-canceled?payment=paypal&_id=${_id}`
+                return_url: `http://localhost:3000/order-completed?payment=paypal&_id=${_id}`,
+                cancel_url: `http://localhost:3000/order-canceled?payment=paypal&_id=${_id}`
             }
         }
         //         return_url: 'http://localhost:3000/execute-payment',

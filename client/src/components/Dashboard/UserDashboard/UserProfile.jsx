@@ -12,9 +12,6 @@ function UserProfile() {
 
   const { userDashboard, user } = useSelector((state) => state.users); //user se usa para el _id // userDashboard es para las props
 
-  console.log('esto es userProfile de userDashboard', userDashboard)
-
-
   const [change, setChange] = useState({
     username: userDashboard.username ? userDashboard.username : "",
     // email: userDashboard.email?userDashboard.email : "",

@@ -106,33 +106,39 @@ const Details = () => {
       
       <div className="detailsContainerCard">
         <div className="d-flex DetailsContainerGeneral">
-          <section className="d-flex  section1 DetailsContainerCard">
-            <div className="">
-              <h2 className="">
-                {productDetail.brand}&nbsp;{productDetail.name}
-              </h2>
-              <p className="">
-                {productDetail.gender} <br />
-                {productDetail.category}
-              </p>
-              <p className="">
-                Color: {productDetail.color}
-              </p>
-            </div>
-
-            <div className="">
+          <section className="DetailsContainerCard">
+          <div className="DetailsContainerCard-2">
               <img
                 className="image"
                 src={productDetail.detail_picture}
                 alt={productDetail.name}
-                width={"150px"}
               />
-              <p className="text-secondary">
-                Collection <br />
-                {productDetail.collection}
-              </p>
-              <p className="released  ">
+              {/* <p className="released  ">
                 Released {productDetail.release_date}
+              </p> */}
+            </div>
+            <div className="DetailsContainerCard-1">
+              <h2 >
+                <div className="DetailsContainerBrand" >
+                {productDetail.brand}
+
+                </div>
+                <div className="DetailsContainerName">
+                {productDetail.name}
+
+                </div>
+              </h2>
+              <p className="DetailsContainerExtras">
+                {productDetail.gender} <br />
+                {productDetail.category}
+              </p>
+              <p>
+                <span className="DetailsContainerColor">
+                Color: {" "}
+                </span>
+                <span className="DetailsContainerColortxt">
+                {productDetail.color}
+                </span>
               </p>
             </div>
           </section>
@@ -169,6 +175,7 @@ const Details = () => {
                   : "containerSize"
                 }`}
                 > 
+                {console.log(r[1])}
                       {r[0]}
                   </div>
                 ) : (
@@ -188,13 +195,34 @@ const Details = () => {
             </div>
           </div>
 
+          <div className="d-flex justify-content-around ">
+          <span className="subtittleDescriptionDetails">
+            Price:
+            <div className="PriceContainerDetails">
+              <div className="text-white">
+                <p className="mb-0">
+              ${productDetail.price}
 
-          {productDetail.rating === 0 ? (
-            <h4 className="fw-bold fs-5">
-              None Rating:
-              <br />
+                </p>
+              </div>
+            </div>
+          </span>
+          {productDetail.rating !== 0 ? (
+            <span className="subtittleDescriptionDetails">
+            Rating:
+            <div className="StarContainerDetails">
+              <div className="StarContainer">
+              
+              <p className="none-rating-details mb-0 ">
+              None: {" "}
               <TbStarOff />
-            </h4>
+            </p>  
+
+              </div>
+            </div>
+          </span>
+
+            
           ) : (
           <span className="subtittleDescriptionDetails">
             Rating:
@@ -209,46 +237,60 @@ const Details = () => {
             </div>
           </span>
           )}
-        </div>
-        <div className="d-flex justify-content-center">
-          <label>Count: </label>
-          <select
-            defaultValue={"null"}
-            onChange={(e) => setCount(Number(e.target.value))}
-          >
-            <option hidden key={"null"}>
-              select the units
-            </option>
-            {stock.length >= 1 &&
-              stock.map((und) => (
-                <option value={und} key={und}>
-                  {und}
-                </option>
-              ))}
-          </select>
+          
         </div>
 
-        {count !== false ? (
-          <section className="d-flex ">
-            <p className="d-flex ">
-              Price: ${productDetail.price}
-            </p>
-            <Preview setProduct={setProduct} repeated={repeated} />
-          </section>
-        ) : (
-          <></>
-        )}
+        <div className="CountDescriptionDetails">
+          <span className="subtittleDescriptionDetails AddCartInfoDetailsCount">
+            <div className="d-flex align-items-center">
+
+            Count:
+            <select
+              defaultValue={"null"}
+              onChange={(e) => setCount(Number(e.target.value))}
+              className="SelectSizeDetails"
+              >
+              <option hidden key={"null"}>
+                select the units
+              </option>
+              {stock.length >= 1 &&
+                stock.map((und) => (
+                  <option value={und} key={und}>
+                    {und}
+                  </option>
+                ))}
+            </select>
+            </div>
+          </span>
+          {count !== false ? (
+            <div className="AddCartInfoDetails">
+              
+              <p className="subtittleDescriptionDetails me-3">
+                <span className="me-1">Price: </span> <span className="text-white">${productDetail.price * count}</span>
+              </p>
+
+              <Preview setProduct={setProduct} repeated={repeated} />
+            </div>
+          ) : (
+            <></>
+          )}
+
+        </div>
+
+
       </div>  
+      </div>
+
       
       <div className="reviewsContainerDetails">
         <Reviews productDetail={productDetail} id={id}/>
       </div>
 
-      <div className="buttonBackDetails">
+      {/* <div className="buttonBackDetails">
       <button className="d-flex mx-1" onClick={() => navigate("/")}>
         Return Home
       </button>
-      </div>
+      </div> */}
     </div>
   );
 };

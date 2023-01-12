@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: NikeFutura;
     src: url(../utils/fonts/Futura.otf);
@@ -11,81 +12,89 @@
 .gridGeneralDetails{
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: 1fr;
     height: 100%;
     width: 100%;
     background-color: #333242;
     gap: 20px;
+    overflow-x: hidden;
 }
 
 .containerNavDetails{
     display: grid;
-    grid-column: 1/3;
+    grid-column: 1/2;
     grid-row: 1/2;
     justify-items: center;
     align-items: center;
-    overflow-x: hidden;
 }
 
 .detailsContainerCard{
     display: grid;
     grid-column: 1/2;
     grid-row: 2/3;
-    justify-items: end;
-    margin-left: 1rem;
+    justify-items: center;
 }
 
-.detailsContainer{
+/* .detailsContainer{
     display: grid;
     grid-column: 1/2;
-    grid-row: 2/3;
+    grid-row: 3/4;
     justify-items: center;
     align-items: center;
-}
+} */
 
 .detailsContainerInfo{
     display: grid;
-    grid-column: 2/3;
-    grid-row: 2/3;
+    grid-column: 1/2;
+    grid-row: 3/4;
     justify-items: start;
     align-self: center;
-    background-color: #362451 ;
+    background-color: #252733 ;
     color: white;
     justify-items: center ;
-    border-radius: 40px;
+    border-radius: 1rem ;
     margin: 1rem;
+    max-width: 95vw;
+    align-content: flex-end;
+    padding-bottom: 2rem;
 }
 
 .reviewsContainerDetails{
-    grid-column: 1/3;
-    grid-row: 3/4;
+    grid-column: 1/2;
+    grid-row: 4/5;
     align-items: center;
     justify-items: center;
-    width: 80%;
+    width: 95%;
     justify-self: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 .subtittleDescriptionDetails{
-    color: #39FF88;
+    color: #fb7648;
     font-weight: 500;
-    display: flex;
-    justify-content: start;
+    justify-content: center;
     margin-left: 1.2rem;
     margin-top: 1rem;
     font-size: 1.1rem;
 }
+
 
 .ContentDescriptionDetails{
     background-color: rgba(240, 248, 255, 0.317);
     border-radius: 1rem;
     color: white;
     font-size: 1.1rem;
-    margin: 0 1rem;
+    padding: 0 1rem;
+    text-align: center;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .ContentDescriptionDetails div{
     padding: .5rem 1rem;
+    height: 200px;
+    overflow-y: scroll;
+
 }
 
 .ContentDescriptionDetails div p{
@@ -107,10 +116,11 @@
     display: grid;
     gap: 10px;
     border-radius: 1rem;
-    grid-template-columns: repeat(10,1fr);
+    grid-template-columns: repeat(5,1fr);
     justify-items: center;
     align-items: center;
     color: black;
+
     }
 
 
@@ -139,6 +149,8 @@
     width: 100px;
     background-color: rgba(240, 248, 255, 0.317);
     border-radius: 8px;
+    color: rgb(255, 191, 41);
+    padding: 2px;
 
 }
 
@@ -146,8 +158,58 @@
     display: flex;
     align-items: center;
     justify-items: center;
-    padding: 4px;
+    padding: 0 4px;
 }
+
+.none-rating-details{
+    color: white;
+    margin: auto;
+}
+
+.PriceContainerDetails{
+    margin-left: .5rem;
+    width: fit-content;
+    padding: 0 0.8rem ;
+    text-align: center;
+    background-color: rgba(240, 248, 255, 0.317);
+    border-radius: 8px;
+}
+
+.CountDescriptionDetails{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 1.2rem;
+    justify-items: center;
+    justify-self: center;
+}
+
+.AddCartInfoDetailsCount{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    margin-left: 1.8rem;
+}
+
+.AddCartInfoDetails{
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    align-items: center;
+    margin-top: 1rem;
+    
+}
+
+.AddCartInfoDetails{
+    display: flex;
+}
+
+.SelectSizeDetails{
+    padding: 2px;
+    border: none;
+    margin-left: 0.5rem;
+    border-radius: 6px;
+}
+
 
 .buttonBackDetails{
     display: grid;
@@ -169,8 +231,160 @@
 
 .DetailsContainerCard{
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, auto);
+    grid-template-rows: repeat(2, 1fr);
+    background-color: #252733;
+    color: white;
+    border-radius: 3rem;
+    align-items: center;
+    justify-items: center;
+    height: fit-content;
+    text-align: center;
+    align-self: center;
+    padding: 0 10px;
+    height: 100%;
+}
+
+.DetailsContainerCard-1{
+    height: fit-content;
+}
+
+.DetailsContainerCard-2{
+    width: 300px;
+    height: 250px;
+}
+
+.DetailsContainerCard-2 img{
+    object-fit: contain;
+    width: 100%;
+}
+
+.DetailsContainerBrand{
+    color: #fb7648;
+    text-transform: uppercase;
+}
+
+.DetailsContainerName{
+    color: #694bff;
+}
+
+.DetailsContainerExtras{
+    font-style: italic;
+}
+
+.DetailsContainerColor{
+    font-weight: bold;
+}
+
+.DetailsContainerColortxt{
+    font-style: italic;
+    color: greenyellow;
+
+}
+
+@media (min-width:768px) {
+.ContentDescriptionDetails{
+    width: 95%
+}
+
+.ContainerSizes .auxContainerSize{
+    padding: 1rem .5rem;
+    display: grid;
+    gap: 10px;
+    border-radius: 1rem;
+    grid-template-columns: repeat(10,1fr);
+    justify-items: center;
+    align-items: center;
+    color: black;
+    }
+
+}
+
+@media (min-width:1000px) {
+    .gridGeneralDetails{
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: auto, 1fr;
+        height: 100%;
+        width: 100%;
+        background-color: #323141;
+        gap: 20px;
+        overflow-x: hidden;
+    }
+    
+    .containerNavDetails{
+        display: grid;
+        grid-column: 1/3;
+        grid-row: 1/2;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    .detailsContainerCard{
+        display: grid;
+        grid-column: 1/2;
+        grid-row: 2/3;
+        justify-items: end;
+        margin-left: 1rem;
+    }
+    
+    .detailsContainer{
+        display: grid;
+        grid-column: 1/2;
+        grid-row: 2/3;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    .detailsContainerInfo{
+        display: grid;
+        grid-column: 2/3;
+        grid-row: 2/3;
+        justify-items: center;
+        align-self: center;
+        background-color: #252733 ;
+        color: white;
+        justify-items: center ;
+        border-radius: 40px;
+        margin: 1rem;
+        align-content: flex-end;
+        padding: 15px 0;
+        margin: 0 auto;
+        margin-right: 1rem;
+        max-width: 760px;
+    }
+    
+    .reviewsContainerDetails{
+        grid-column: 1/3;
+        grid-row: 3/4;
+        align-items: center;
+        justify-items: center;
+        width: 95%;
+        justify-self: center;
+        gap: 20px;
+    }
+
+
+}
+
+
+@media (min-width:1280px) {
+    .gridGeneralDetails{
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 40% 1fr;
+        height: 100%;
+        width: 100%;
+        background-color: #323141;
+        gap: 20px;
+        overflow-x: hidden;
+    }
+    
+    .detailsContainerCard{
+        justify-self: flex-end;
+    }
+    .detailsContainerInfo{
+        margin-right: 20%;
+    }
 }
 
 
@@ -178,5 +392,22 @@
 
 
 
-
-
+@media (min-width:1920px) {
+    .gridGeneralDetails{
+        display: grid;
+        grid-template-rows: auto;
+        height: 100%;
+        width: 100%;
+        background-color: #323141;
+        gap: 20px;
+        overflow-x: hidden;
+    }
+    
+    .detailsContainerCard{
+        justify-self: flex-end;
+    }
+    .detailsContainerInfo{
+        justify-self: flex-start;
+        margin-right: 20vw;
+    }
+}

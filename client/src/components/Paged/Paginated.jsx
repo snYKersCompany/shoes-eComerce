@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProducts,
-  getCategories,
-  getBrands,
-  getRatings,
-  getGenders,
+  // getCategories,
+  // getBrands,
+  // getRatings,
+  // getGenders,
 } from "../../redux/features/products/productsActions";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Pagination from "react-bootstrap/Pagination";
@@ -71,11 +71,7 @@ const Paginated = () => {
   return products[0] !== "void" ? (
     <div>
       <div>
-        {/* filters funciona pero no hace el paginado */}
-        <div></div>
-        {/* <Filters setActualPage={setActualPage} /> */}
-
-        <div className="d-flex align-self-start filterMargin mb-5">
+        <div className="filtersInPaged">
           <FilterContainer setActualPage={setActualPage} />
         </div>
 
@@ -110,6 +106,7 @@ const Paginated = () => {
               )}
             </Pagination>
           ) : (
+            /* si hay mucho contenido */
             <Pagination className="d-flex justify-content-center">
               {/* {First and Prev} */}
               {actualPage !== 1 ? (
@@ -191,35 +188,6 @@ const Paginated = () => {
           </div>
         </div>
       )}
-      {/* <Pagination className="d-flex justify-content-center mt-3">
-              {actualPage !== 1 ? (
-                <Pagination.Prev onClick={() => currentPage(actualPage - 1)} />
-              ) : (
-                <Pagination.Prev disabled />
-              )}
-
-              {pages.map((page) =>
-                page === actualPage ? (
-                  <Pagination.Item
-                    key={page}
-                    active
-                    onClick={() => currentPage(page)}
-                  >
-                    {page}
-                  </Pagination.Item>
-                ) : (
-                  <Pagination.Item key={page} onClick={() => currentPage(page)}>
-                    {page}
-                  </Pagination.Item>
-                )
-              )}
-              {actualPage !== pages[pages.length - 1] ? (
-                <Pagination.Next onClick={() => currentPage(actualPage + 1)} />
-              ) : (
-                <Pagination.Next disabled />
-              )}
-            </Pagination>
-          ) : ( */}
       <Pagination className="d-flex justify-content-center">
         {/* {First and Prev} */}
         {actualPage !== 1 ? (
@@ -266,7 +234,6 @@ const Paginated = () => {
           </>
         )}
       </Pagination>
-      
     </div>
   ) : (
     <div></div>

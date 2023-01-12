@@ -1,12 +1,17 @@
 import Alert from "react-bootstrap/Alert";
+import "./noReviews.css"
 
 const NoReviews = () => {
 
     
   return (
-    <div>
+    <div className="ContainerAlertContaierNotRev">
           <Alert variant="success">
-      <Alert.Heading>Sadly this product doesn't have any review yet...</Alert.Heading>
+      <Alert.Heading>
+        <span className="headertittleNoRvws">
+        Sadly this product doesn't have any review yet...
+        </span>
+        </Alert.Heading>
 
       <hr />
       <p className="mb-0">

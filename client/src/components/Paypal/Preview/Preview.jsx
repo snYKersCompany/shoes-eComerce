@@ -57,14 +57,14 @@ const PreviewModal = ({ repeated, ...rest }) => {
 
               {user ? (
                 <Link to="/cart">
-                  <Button variant="secondary customBtn">Go Cart</Button>
+                  <Button className="btn-to-cart">Go Cart</Button>
                 </Link>
               ) : (
                 <div ref={ref} className="text-center">
                   <Button
                     variant="secondary customBtn"
                     onClick={handleClickCartNav}
-                    className="cartNav"
+                    className="btn-to-cart"
                   >
                     Go Cart
                   </Button>
@@ -108,33 +108,42 @@ const PreviewModal = ({ repeated, ...rest }) => {
             aria-labelledby="contained-modal-title-vcenter"
             centered
           >
-            <Modal.Header closeButton>
+            <Modal.Header closeButton
+            className="coso-head"
+            display='hidden'
+            >
               <Modal.Title
                 id="contained-modal-title-center"
-                className="addedProducts"
+                // className="addedProducts"
+                className="coso-title"
+               
               >
                 You added products to the cart
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body             
+            className="coso-body"
+            >
               <MiddleViewCard product={cart.at(-1)} />
               <Carrousel />
             </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={rest.onHide} variant="danger">
+            <Modal.Footer             
+            className="coso-footer"
+            >
+              <Button onClick={rest.onHide} className='btn-to-cart'>
                 Close
               </Button>
 
               {user ? (
                 <Link to="/cart">
-                  <Button variant="secondary customBtn">Go Cart</Button>
+                  <Button className="btn-to-cart">Go Cart</Button>
                 </Link>
               ) : (
                 <div ref={ref} className="text-center">
                   <Button
                     variant="secondary customBtn"
                     onClick={handleClickCartNav}
-                    className="cartNav"
+                    className="btn-to-cart"
                   >
                     Go Cart
                   </Button>
@@ -187,9 +196,9 @@ const Preview = ({ setProduct, repeated }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={(e) => handleAddToCart(e)}>
+      <button className="btnCard1" onClick={(e) => handleAddToCart(e)}>
         Add to cart
-      </Button>
+      </button>
       <PreviewModal
         show={modalShow}
         repeated={repeated}

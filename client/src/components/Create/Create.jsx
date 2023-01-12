@@ -497,7 +497,10 @@ const Create = () => {
             <div className=" containerFormCreateImgs align-items-center justify-content-center d-flex h-100 w-100 flex-column ">
               <Form.Group className="d-flex flex-column justify-content-center align-items-center w-100">
                 {
-                  file ? <img alt = "preview" height = "120" width = "120" src = {URL.createObjectURL(file)} />
+                  file ? 
+                  <div className="ImgFormCreateInputNew">
+                    <img alt = "preview"  src = {URL.createObjectURL(file)} />
+                  </div> 
                   : <img src="https://static.thenounproject.com/png/559530-200.png" alt="add Img" />
                 }
                 {/* ============ Reducible ============ */}

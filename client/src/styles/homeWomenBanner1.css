@@ -13,110 +13,107 @@
   src: url(../utils/fonts/nulshock.otf);
 }
 
-.ContainerHWB1 {
-  background: url(../utils/images/HWB1.jpg);
-  background-attachment: fixed;
-  background-position: top !important;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 30rem !important;
+.Women-b1-container {
+  background: url(../utils/images/womenBanner1.jpeg) !important;
+  background-attachment: fixed !important;
+  background-position: bottom !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
 }
 
-.HWB1 {
-  margin: 0 2rem;
-  margin-top: -1.5rem;
+.Women-b1-texts {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 7rem;
+  margin-bottom: 2rem;
 }
 
-.HWB1-texts {
-  width: 33vw;
-  padding: 2rem;
+.Women-b1-images {
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-.HWB1-hr {
-  background: white;
-  width: 6rem;
-  height: 0.2rem;
-  margin-bottom: -0.01rem;
+.Women-b1-image1 {
+  transform: rotate(90deg) scaleY(-1);
 }
 
-.HWB1-text1 {
+.Women-b1-ofert {
+  display: grid;
+  grid-column: 1/2;
+  grid-row: 3/4;
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.Women-b1-text1 {
   font-family: IntegralCF;
   font-size: 1.5rem;
   text-transform: uppercase;
+  color: cyan;
 }
 
-.HWB1-text2 {
+.Women-b1-text2 {
   font-family: Roboto;
-  margin-top: -1rem;
+  padding: 0 3rem;
+  font-size: 1.5rem;
 }
 
-.HWB1-images {
-  width: 33vw;
-  padding: 2rem;
-}
-
-.HWB1-title {
+.Women-b1-title {
   font-family: IntegralCF;
-  font-size: 3.2rem;
+  font-size: 3.3rem;
   text-transform: uppercase;
   font-weight: 800;
   text-align: center;
 }
 
-.HWB1-image1 {
-  position: absolute;
-  transform: rotate(90deg) scaleY(-1);
-  margin-right: 11rem;
-}
-
-.HWB1-image2 {
-  transform: rotate(90deg) scaleY(1);
-  margin-left: 11rem;
-}
-
 .hov:hover {
-  transform: rotate(1deg) !important;
+  transform: rotate(155deg) scaleY(-1) !important;
+  transition: 3s;
 }
 
-.HWB1-ofert {
-  /* width: 33vw; */
-  padding: 2rem;
-}
-
-.HWB1-ofertText {
+.Women-b1-ofertText {
   font-family: Nulshock;
   font-size: 2.5rem;
 }
 
-.HWB1-ofertPrice {
+.Women-b1-ofertPrice {
   font-family: Nulshock;
   font-size: 5rem;
-  margin-top: -3rem;
+  color: greenyellow;
 }
 
-.HWB1-hr-marg {
-  margin-left: 12rem;
-}
-
-.HWB1-p-marg {
-  margin-left: 9rem;
-}
-
-.HWB1-button {
+.Women-b1-button {
   background: white;
   color: black;
-  padding: 0.5rem 2rem;
   font-family: IntegralCF;
 }
 
-.HWB1-button:hover {
+.Women-b1-button:hover {
   background: black;
   color: white;
 }
 
-.HWB1-stroke {
+.Women-b1-stroke {
   filter: drop-shadow(0 0 1px #000) drop-shadow(1px 1px 0 #000)
     drop-shadow(-1px 1px 0 #000) drop-shadow(1px -1px 0 #000);
+}
+.Women-b1-stroke2 {
+  filter: drop-shadow(0 0 1px rgb(72, 72, 72))
+    drop-shadow(0px 0px 0 rgb(72, 72, 72))
+    drop-shadow(0px 1px 0 rgb(72, 72, 72))
+    drop-shadow(0px 0px 0 rgb(72, 72, 72));
 }
 
 .fancy {
@@ -127,7 +124,6 @@
   color: black;
   cursor: pointer;
   display: inline-block;
-  /* float: right; */
   font-weight: 700;
   letter-spacing: 0.05em;
   margin: 0;
@@ -165,7 +161,7 @@
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .fancy .top-key {
@@ -199,17 +195,17 @@
 }
 
 .fancy:hover {
-  color: white;
-  background: black;
+  color: black;
+  background: #ee601e;
 }
 
 .fancy:hover::before {
   width: 0.9375rem;
-  background: white;
+  background: black;
 }
 
 .fancy:hover .text {
-  color: white;
+  color: black;
   padding-left: 1.5em;
 }
 
@@ -226,4 +222,94 @@
 
 .text-cyan {
   color: cyan;
+}
+
+@media (min-width: 768px) {
+  .Women-b1-texts {
+    margin-top: 10rem;
+  }
+  .Women-b1-text2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .Women-b1-text1 {
+    margin-top: 4rem !important;
+    font-size: 2.5rem;
+  }
+  .Women-b1-text2 {
+    font-size: 1.5rem;
+  }
+  .Women-b1-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Women-b1-container {
+    display: grid;
+    grid-template-columns: 40% 25% 25%;
+  }
+
+  .Women-b1-texts {
+    display: grid;
+    grid-column: 1/2;
+    grid-row: 1/3;
+    justify-items: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .Women-b1-images {
+    display: grid;
+    grid-column: 2/3;
+    margin-top: 5rem;
+  }
+
+  .Women-b1-ofert {
+    display: grid;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    margin-top: -1rem;
+  }
+
+  .Women-b1-ofertPrice {
+    margin-top: -15rem;
+  }
+
+  .fancyLink {
+    margin-top: -20rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .Women-b1-container {
+    display: grid;
+    grid-template-columns: 40% 25% 25%;
+  }
+  .Women-b1-texts {
+    margin-top: -6rem;
+  }
+
+  .Women-b1-text2 {
+    margin-top: -20rem;
+  }
+
+  .Women-b1-images {
+    margin-top: 9rem;
+  }
+
+  .Women-b1-ofert {
+    margin-top: 2rem;
+  }
+
+  .Women-b1-ofertPrice {
+    margin-top: -15rem;
+  }
+
+  .fancyLink {
+    margin-top: -20rem;
+  }
 }
