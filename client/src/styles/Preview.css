@@ -55,14 +55,16 @@
     rgba(47, 55, 68, 1) 100%
   ); */
 
-  background: rgb(113, 114, 116);
+  /* background: rgb(113, 114, 116);
   background: linear-gradient(
     121deg,
     rgb(85, 86, 87) 0%,
     rgb(70, 70, 71) 56%,
     rgba(47, 55, 68, 1) 100%,
     rgba(57, 58, 59, 1) 100%
-  );
+  ); */
+  border:none !important;
+  background: #333242;
 }
 
 .coso-title {
@@ -70,23 +72,27 @@
 }
 
 .coso-body {
-  background: rgb(113, 114, 116);
+  /* background: rgb(113, 114, 116);
   background: linear-gradient(
     121deg,
     rgb(85, 86, 87) 0%,
     rgb(23, 28, 33, 1) 88%,
     rgba(47, 55, 68, 1) 100%,
     rgba(57, 58, 59, 1) 100%
-  );
+  ); */
+  background: #333242;
+
 }
 
 .coso-footer {
-  background: rgb(93, 93, 94);
+  /* background: rgb(93, 93, 94);
   background: linear-gradient(
     129deg,
     rgb(85, 86, 87) 0%,
     rgb(19, 21, 23) 80%,
     rgba(47, 55, 68, 1) 100%,
     rgba(0, 0, 0, 1) 100%
-  );
+  ); */
+  background: #333242!important;
+  border:none !important;
 }

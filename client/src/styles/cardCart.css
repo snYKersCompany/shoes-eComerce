@@ -7,21 +7,27 @@
   border: none;
   border-radius: 10px;
   align-items: center;
-  background: rgb(48, 54, 68);
-  background: linear-gradient(
+  /* background: rgb(48, 54, 68); */
+  background: #212529;
+  /* background: #212529; */
+  /* background: linear-gradient(
     121deg,
     rgba(48, 54, 68, 1) 0%,
     rgba(4, 4, 4, 1) 85%,
     rgba(47, 55, 68, 1) 100%,
     rgba(47, 55, 68, 1) 100%
-  );
+  ); */
   border: solid black 1px;
   font-family: "Bebas Neue", cursive;
 }
 
 .fontSizeCardCart {
-  color: #fb7849;
+  color: white;
   font-size: 22px;
+}
+
+.asd {
+  color: #fb7849 ; 
 }
 
 .controlCardCart {
@@ -61,7 +67,7 @@
 
 .modifyCount {
   cursor: pointer;
-  color:white;
+  color:#fb7849;
 }
 
 .span-white {
@@ -73,9 +79,10 @@
   color:white;
 }
 .link-cardCart-name:hover{
-  color: #fd8d64;
-  transition:0.8s;
+  color: white;
 }
+
+
 
 .btn-delete-cartCard {
   background: transparent;
@@ -83,13 +90,12 @@
   color: rgb(255, 255, 255);
   border-radius: 7px;
   width: fit-content;
-  padding: 6px;
   font-size: 1.2rem;
   align-items: center;
   justify-self: center;
-  background: #a54d2d;
+  background: #694bff;
   border: none;
   border-radius: 50%;
   display: flex;
-  padding: 6px;
+  padding: 8px;
 }

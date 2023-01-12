@@ -41,6 +41,15 @@
 }
 
 .total-amount-cardCart{
-  color: white;
+  color: greenyellow;
 
+}
+
+.lineal-bar{
+  background: #694bff;
+}
+
+.container-cart-card-trolley{
+  background: #333242 ;
+  
 }
