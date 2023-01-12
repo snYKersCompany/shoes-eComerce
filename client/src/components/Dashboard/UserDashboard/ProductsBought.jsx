@@ -62,7 +62,7 @@ const ProductsBought = () => {
         description: Object.values(reviewInput).toString(),
       })
     );
-    navigate("/account");
+    navigate("/home");
   };
 
   const toProductReview = (e, id) => {

@@ -110,12 +110,13 @@ const PreviewModal = ({ repeated, ...rest }) => {
           >
             <Modal.Header closeButton
             className="coso-head"
+            display='hidden'
             >
               <Modal.Title
                 id="contained-modal-title-center"
                 // className="addedProducts"
                 className="coso-title"
-
+               
               >
                 You added products to the cart
               </Modal.Title>
@@ -129,7 +130,7 @@ const PreviewModal = ({ repeated, ...rest }) => {
             <Modal.Footer             
             className="coso-footer"
             >
-              <Button onClick={rest.onHide} variant="danger">
+              <Button onClick={rest.onHide} className='btn-to-cart'>
                 Close
               </Button>
 

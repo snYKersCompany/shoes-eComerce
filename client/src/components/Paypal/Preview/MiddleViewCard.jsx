@@ -7,7 +7,7 @@ function MiddleViewCard({ product }) {
   return (
     <div className="previous-view">
 
-          <Container
+      <Container
       className="justify-content-md-center customContainer"
       key={product._id}
       style={{ width: "auto", padding: "0" }}

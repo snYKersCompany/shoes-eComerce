@@ -30,6 +30,7 @@ const Cart = () => {
   };
 
   return (
+    <div className="container-cart-card-trolley">
     <div className="noProductsContainer">
       <NavBar />
       {products.length ? (
@@ -54,7 +55,7 @@ const Cart = () => {
               />
             );
           })}
-          <h2 className="total-amount-cardCart">Total: ${priceToSend}</h2>
+          <h2 className="total-amount-cardCart">Final: ${priceToSend}</h2>
           <Payment />
         </div>
       ) : (
@@ -76,6 +77,7 @@ const Cart = () => {
           </div>
         </>
       )}
+    </div>
     </div>
   );
 };
