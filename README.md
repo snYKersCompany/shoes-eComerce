@@ -6,7 +6,7 @@
   <img height="max" />
 </p>
 
-## Groupal Project Objectives
+## Project Objectives
 
 - Build an eComerce using React, Redux-Toolkit, MongoDB, NodeJS, Express, and other libraries.
 - Affirm and connect the concepts learned in the race.
