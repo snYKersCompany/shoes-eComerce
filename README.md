@@ -1,6 +1,6 @@
-# Gropupal Project - snYKers
+# Henry Groupal Project
 
-## SNYKERS
+# SNYKERS
 
 <p align="center">
   <img height="max" />
