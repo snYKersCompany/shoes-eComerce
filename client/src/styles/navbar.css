@@ -123,3 +123,16 @@
     text-decoration: none;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 } */
+
+
+.home-navbar{
+  display: flex;
+  margin: auto;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+  margin-right: 2rem;
+  font-size: 1.65rem;
+  filter: invert(75%);
+}
