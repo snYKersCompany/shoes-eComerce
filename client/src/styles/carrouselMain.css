@@ -14,11 +14,11 @@
 /*Scroll*/
 .containerCarrousel::-webkit-scrollbar {
   height: 5px;
+  width: 10px;
 }
 
 .containerCarrousel::-webkit-scrollbar-thumb {
   background-color: #f96029;
-  width: 100px;
 }
 
 /* Cards */
@@ -38,19 +38,15 @@
   );
   z-index: -1 !important;
   overflow: hidden;
-  clip-path: polygon(100% 0, 100% 85%, 89% 100%, 0 100%, 0 0);
 }
 .imgCardCarrousel {
   width: 200px;
-  /* transform: scaleY(-1) rotate(-75deg) */
   z-index: 3 !important;
   transform: scaleX(-1) rotate(10deg);
 }
 
 .img-back {
   background-color: white;
-  /* clip-path: polygon(100% 69%, 71% 69%, 90% 67%, 68% 61%, 98% 54%, 75% 54%, 99% 40%, 80% 39%, 98% 32%, 56% 42%, 98% 25%, 63% 33%, 97% 16%, 0% 24%, 33% 31%, 0 39%, 31% 42%, 0 49%, 13% 49%, 1% 59%, 25% 54%, 0 72%, 10% 68%, 3% 78%, 22% 70%, 4% 84%); */
-  /* transform:  rotate(90deg); */
 }
 
 .txt {

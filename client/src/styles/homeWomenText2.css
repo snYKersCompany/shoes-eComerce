@@ -32,3 +32,12 @@
   font-style: italic;
   /* color: rgb(98, 97, 97); */
 }
+
+@media (min-width: 768px) {
+  .HWT2-p1 {
+    font-size: 1.6rem;
+  }
+  .HWT2-p2 {
+    font-size: 1.3rem;
+  }
+}
