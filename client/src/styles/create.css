@@ -1,7 +1,8 @@
 .formGrid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);    
+    grid-template-rows: 1fr auto;    
+    
 }
 
 .containerForm{
@@ -12,7 +13,21 @@
 .formImage{
     display: grid;
     grid-row: 2/3;
+    height: fit-content;
 }
+
+.ImgFormCreateInputNew{
+    height: 400px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.ImgFormCreateInputNew img {
+    object-fit: contain;
+    width: 100%;
+}
+
 
 /* .modalForm div div{
     width: 80vw;
@@ -54,7 +69,8 @@
     margin-right: 5px;
 }
 .ContainerStockCreate{
-    width: max-content !important; 
+    width: 600px !important; 
+    margin-bottom: 0;
 }
 .FormCreateInputSize{
     width: 170px;
