@@ -14,7 +14,6 @@
   height: 10vh;
 }
 
-
 .brandNav {
   font-family: NexaSlabThin;
   color: white;
@@ -84,6 +83,10 @@
   align-items: center;
 }
 
+.nav-hamburger {
+  display: none;
+}
+
 @media screen and (max-width: 760px) {
   .logo {
     position: absolute;
@@ -93,24 +96,29 @@
 }
 
 @media screen and (max-width: 600px) {
-  .linksAuxNav{
+  .linksAuxNav {
     display: none;
   }
-  .noneDecoration{
+  .noneDecoration {
     display: none;
   }
-  .ContainerGeneralNav{
+  .ContainerGeneralNav {
     justify-content: space-between;
   }
-  .cartAndAccount{
+  .cartAndAccount {
     margin-right: 1rem;
     justify-self: end;
   }
-  .SearchNavBar{
+  .SearchNavBar {
     margin: auto;
   }
+  .nav-hamburger {
+    margin-left: 1rem;
+  }
+  .nav-hamburger {
+    display: inline;
+  }
 }
-
 
 /* .ContainerGeneralNav:hover{
   cursor: pointer;
@@ -124,8 +132,7 @@
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 } */
 
-
-.home-navbar{
+.home-navbar {
   display: flex;
   margin: auto;
   align-self: center;

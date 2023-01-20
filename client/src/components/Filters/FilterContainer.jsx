@@ -35,16 +35,18 @@ function FilterContainer({ setActualPage, name, ...props }) {
                   setActualPage={setActualPage}
                   onClick={handleClose}
                 />
-                <FilterGender 
+                <FilterGender
                   setActualPage={setActualPage}
-                  onClick={handleClose} />
+                  onClick={handleClose}
+                />
                 <FilterRating
                   setActualPage={setActualPage}
                   onClick={handleClose}
                 />
-                <FilterBrand 
+                <FilterBrand
                   setActualPage={setActualPage}
-                  onClick={handleClose} />
+                  onClick={handleClose}
+                />
               </div>
               <div className="d-flex">
                 <OrderByAlphabet onClick={handleClose} />

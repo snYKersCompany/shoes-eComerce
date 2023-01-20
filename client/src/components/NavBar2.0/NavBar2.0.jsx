@@ -1,21 +1,19 @@
 import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useAuth } from "../../context/authContext";
-//JSX
-import { HiOutlineShoppingCart } from "react-icons/hi";
-import { GrHomeRounded } from "react-icons/gr";
-import { FaRegUser } from "react-icons/fa";
-import Overlay from "react-bootstrap/Overlay";
-import Popover from "react-bootstrap/Popover";
 import SearchBar from "../SearchBar/SearchBar";
-//BS
+import Hamburger from "./Hamburger";
 import NavB from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
 import NavItem from "react-bootstrap/NavItem";
 import NavLink from "react-bootstrap/NavLink";
-import { useSelector } from "react-redux";
-//style
+import { HiOutlineShoppingCart } from "react-icons/hi";
+import { GrHomeRounded } from "react-icons/gr";
+import { FaRegUser } from "react-icons/fa";
+import Overlay from "react-bootstrap/Overlay";
+import Popover from "react-bootstrap/Popover";
 import Button from "react-bootstrap/esm/Button";
 import "../../styles/navbar.css";
 
@@ -89,6 +87,9 @@ const NavBar2 = () => {
                 <Link to={"/women"} className="noneDecoration">
                   <NavItem className="linkNav">Women</NavItem>
                 </Link>
+              </div>
+              <div className="nav-hamburger">
+                <Hamburger />
               </div>
 
               <div className="d-flex align-items-center ms-2 cartAndAccount">
