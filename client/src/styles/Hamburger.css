@@ -1,6 +1,17 @@
 .btn-hamburger {
   background: transparent;
   border: none;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 1.9rem;
+}
+
+.pruebaHamburger{
+  color: rgb(94, 92, 92);
+}
+
+.containerGenSpanHamb{
+  margin-left: 0.5rem;
+}
+.containerIndvSpanHamb{
+  margin: 0.7rem 0;
 }

@@ -21,7 +21,6 @@ const Carrousel = ({name, category, gender="men", color}) => {
         dispatch(getAllProducts());
       }, [dispatch]);
 
-      console.log(products);
 
     return(
         <>
