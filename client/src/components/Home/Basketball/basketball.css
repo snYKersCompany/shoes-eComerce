@@ -19,6 +19,7 @@
     align-items: center;
     justify-self: center;
     height: 450px;
+    text-align: center;
 }
 
 
@@ -49,6 +50,8 @@
 
     justify-content: center;
     overflow: hidden;
+    text-align: center;
+
 }
 
 .containerInfoBannerBskt{
@@ -57,6 +60,8 @@
     align-items: center;
     flex-direction: column;
     width: 700px;
+    text-align: center;
+
 }
 
 
@@ -66,6 +71,8 @@
     font-size: 40px;
     color: rgb(255, 255, 255);
     margin-bottom: 1rem;
+    text-align: center;
+
 }
 
 .spanBannerBskt{

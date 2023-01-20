@@ -6,8 +6,11 @@
   font-family: Bebas Neue, cursive;
   margin-top: 7px;
   margin-bottom: 2rem;
+  text-align: center;
 }
-
+.CarrouselCartCards{
+  scroll-snap-type: x mandatory ;
+}
 .noProductsContainer {
   display: flex;
   flex-direction: column;

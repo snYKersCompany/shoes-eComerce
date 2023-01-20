@@ -34,7 +34,7 @@ const Cart = () => {
     <div className="noProductsContainer">
       <NavBar />
       {products.length ? (
-        <div className="d-flex p-5 justify-content-center align-items-center flex-column">
+        <div className="CarrouselCartCards d-flex p-5 justify-content-center align-items-center flex-column">
           {products.map((el, i) => {
             return (
               <CardCart
