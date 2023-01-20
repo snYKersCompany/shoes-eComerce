@@ -118,11 +118,16 @@
   transform: translateY(0);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 450px)  {
   .WBanner2-section2 {
-    width: 70vw;
+    width: 400px;
+    justify-self: center;
+
   }
 }
+
+
+
 
 @media (min-width: 1280px) {
   .WBanner2-container {
@@ -172,7 +177,7 @@
   }
 
   .WBanner2-section2 {
-    height: 900px;
+    height: 800px;
     width: 800px;
     margin-top: 2rem;
     margin-right: -40rem;
